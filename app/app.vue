@@ -8,16 +8,14 @@ useHead({
   }
 })
 
-const title = 'Nuxt Starter Template'
-const description = 'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.'
+const title = 'Référentiel Logiciels CEJEF'
+const description = 'Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD (Loi sur la protection des données)'
 
 useSeoMeta({
   title,
   description,
   ogTitle: title,
   ogDescription: description,
-  ogImage: 'https://ui.nuxt.com/assets/templates/nuxt/starter-light.png',
-  twitterImage: 'https://ui.nuxt.com/assets/templates/nuxt/starter-light.png',
   twitterCard: 'summary_large_image'
 })
 </script>
@@ -26,24 +24,19 @@ useSeoMeta({
   <UApp>
     <UHeader>
       <template #left>
-        <NuxtLink to="/">
-          <AppLogo class="w-auto h-6 shrink-0" />
+        <NuxtLink to="/" class="flex items-center gap-2">
+          <UIcon name="i-lucide-graduation-cap" class="w-6 h-6 text-violet-600 dark:text-violet-400" />
+          <span class="font-semibold text-gray-900 dark:text-white hidden sm:inline">
+            Référentiel Logiciels CEJEF
+          </span>
+          <span class="font-semibold text-gray-900 dark:text-white sm:hidden">
+            CEJEF
+          </span>
         </NuxtLink>
-
-        <TemplateMenu />
       </template>
 
       <template #right>
         <UColorModeButton />
-
-        <UButton
-          to="https://github.com/nuxt-ui-templates/starter"
-          target="_blank"
-          icon="i-simple-icons-github"
-          aria-label="GitHub"
-          color="neutral"
-          variant="ghost"
-        />
       </template>
     </UHeader>
 
@@ -51,24 +44,20 @@ useSeoMeta({
       <NuxtPage />
     </UMain>
 
-    <USeparator icon="i-simple-icons-nuxtdotjs" />
+    <USeparator />
 
     <UFooter>
       <template #left>
-        <p class="text-sm text-muted">
-          Built with Nuxt UI • © {{ new Date().getFullYear() }}
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+          CEJEF - Centre Jurassien d'Enseignement et de Formation • {{ new Date().getFullYear() }}
         </p>
       </template>
 
       <template #right>
-        <UButton
-          to="https://github.com/nuxt-ui-templates/starter"
-          target="_blank"
-          icon="i-simple-icons-github"
-          aria-label="GitHub"
-          color="neutral"
-          variant="ghost"
-        />
+        <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
+          <span class="hidden sm:inline">Classification LGPD</span>
+        </div>
       </template>
     </UFooter>
   </UApp>
