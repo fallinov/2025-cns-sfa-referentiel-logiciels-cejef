@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Software } from '~/types/software'
+import { getCertificationLevel } from '~/types/software'
 
 interface Props {
   software: Software
@@ -7,6 +8,8 @@ interface Props {
 
 const props = defineProps<Props>()
 const { openDetail } = useSoftware()
+
+const certificationLevel = getCertificationLevel(props.software.lgpd)
 
 const handleClick = () => {
   openDetail(props.software)
@@ -20,7 +23,10 @@ const handleClick = () => {
   >
     <template #header>
       <div class="flex items-start gap-3">
-        <div class="flex-shrink-0">
+        <div
+          v-if="software.icon"
+          class="flex-shrink-0"
+        >
           <UIcon
             :name="software.icon"
             class="w-10 h-10 text-gray-700 dark:text-gray-300"
@@ -53,7 +59,13 @@ const handleClick = () => {
     </template>
 
     <div class="space-y-3">
-      <!-- Classification LGPD -->
+      <!-- Badge de certification CEJEF -->
+      <CertificationBadge
+        :level="certificationLevel"
+        compact
+      />
+
+      <!-- Classification LGPD détaillée -->
       <LgpdIcons :lgpd="software.lgpd" />
 
       <!-- Description -->

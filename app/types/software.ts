@@ -19,6 +19,23 @@ export interface LgpdClassification {
 }
 
 /**
+ * Niveau de certification CEJEF basé sur les critères LGPD
+ * - Niveau 1: Certifié (tous les critères à 1)
+ * - Niveau 2: Attention requise (au moins un critère à 2, aucun à 3)
+ * - Niveau 3: Interdit (au moins un critère à 3)
+ */
+export type CertificationLevel = 1 | 2 | 3
+
+/**
+ * Calcule le niveau de certification global à partir de la classification LGPD
+ */
+export function getCertificationLevel(lgpd: LgpdClassification): CertificationLevel {
+  const values = [lgpd.hosting, lgpd.rgpd, lgpd.dataCollection]
+  const maxValue = Math.max(...values)
+  return maxValue as CertificationLevel
+}
+
+/**
  * Interface principale d'un logiciel pédagogique
  */
 export interface Software {

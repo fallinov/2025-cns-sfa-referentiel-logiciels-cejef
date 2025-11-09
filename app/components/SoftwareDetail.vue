@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { getCertificationLevel } from '~/types/software'
+
 const { selectedSoftware, isDetailOpen, closeDetail } = useSoftware()
 
 // Créer une ref locale pour le v-model:open du USlideover
@@ -15,6 +17,11 @@ watch(isOpen, (newVal) => {
     closeDetail()
   }
 })
+
+// Calcul du niveau de certification
+const certificationLevel = computed(() =>
+  selectedSoftware.value ? getCertificationLevel(selectedSoftware.value.lgpd) : 1
+)
 
 // Mappage des icônes de plateformes
 const platformIcons: Record<string, string> = {
@@ -56,6 +63,7 @@ const formatLanguages = (codes: string[]) => {
         <div class="space-y-4">
           <div class="flex items-center gap-4">
             <UIcon
+              v-if="selectedSoftware.icon"
               :name="selectedSoftware.icon"
               class="w-16 h-16 text-gray-700 dark:text-gray-300 flex-shrink-0"
             />
@@ -96,6 +104,20 @@ const formatLanguages = (codes: string[]) => {
 
         <USeparator />
 
+        <!-- Certification CEJEF -->
+        <div class="space-y-3">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+            <UIcon
+              name="i-lucide-badge-check"
+              class="w-5 h-5"
+            />
+            Certification CEJEF
+          </h3>
+          <CertificationBadge :level="certificationLevel" />
+        </div>
+
+        <USeparator />
+
         <!-- Section 2 : Classification LGPD -->
         <div class="space-y-3">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
@@ -103,7 +125,7 @@ const formatLanguages = (codes: string[]) => {
               name="i-lucide-shield"
               class="w-5 h-5"
             />
-            Classification LGPD
+            Critères LGPD détaillés
           </h3>
           <LgpdIcons
             :lgpd="selectedSoftware.lgpd"
