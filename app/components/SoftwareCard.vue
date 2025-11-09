@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { Software } from '~/types/software'
-import { getCertificationLevel } from '~/types/software'
+import type {Software} from '~/types/software'
+import {getCertificationLevel} from '~/types/software'
 
 interface Props {
   software: Software
 }
 
 const props = defineProps<Props>()
-const { openDetail } = useSoftware()
+const {openDetail} = useSoftware()
 
 const certificationLevel = getCertificationLevel(props.software.lgpd)
 
@@ -55,23 +55,21 @@ const handleClick = () => {
             </UBadge>
           </div>
         </div>
+        <!-- Badge de certification CEJEF -->
+        <CertificationBadge
+          :level="certificationLevel"
+          compact
+        />
       </div>
     </template>
 
     <div class="space-y-3">
-      <!-- Badge de certification CEJEF -->
-      <CertificationBadge
-        :level="certificationLevel"
-        compact
-      />
-
-      <!-- Classification LGPD détaillée -->
-      <LgpdIcons :lgpd="software.lgpd" />
-
       <!-- Description -->
       <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
         {{ software.shortDescription }}
       </p>
+
+      <ul class="flex flex-col gap-3 flex-1 mt-6 grow-0"><li class="flex items-center gap-2 min-w-0"><span class="iconify i-lucide:user size-5 shrink-0 text-primary" aria-hidden="true"></span><span class="text-muted text-sm truncate">One developer</span></li><li class="flex items-center gap-2 min-w-0"><span class="iconify i-lucide:infinity size-5 shrink-0 text-primary" aria-hidden="true"></span><span class="text-muted text-sm truncate">Unlimited projects</span></li><li class="flex items-center gap-2 min-w-0"><span class="iconify i-lucide:github size-5 shrink-0 text-primary" aria-hidden="true"></span><span class="text-muted text-sm truncate">Access to GitHub repository</span></li><li class="flex items-center gap-2 min-w-0"><span class="iconify i-lucide:refresh-cw size-5 shrink-0 text-primary" aria-hidden="true"></span><span class="text-muted text-sm truncate">Unlimited patch &amp; minor updates</span></li><li class="flex items-center gap-2 min-w-0"><span class="iconify i-lucide:clock size-5 shrink-0 text-primary" aria-hidden="true"></span><span class="text-muted text-sm truncate">Lifetime access</span></li></ul>
     </div>
 
     <template #footer>

@@ -27,7 +27,7 @@ const certificationConfig = {
     textClass: 'text-orange-700 dark:text-orange-300',
     iconClass: 'text-orange-600 dark:text-orange-400',
     label: 'Attention : les apprentis ne peuvent pas entrer de données personnelles (création de compte, nom, prénom)',
-    shortLabel: 'Attention requise',
+    shortLabel: 'Attention',
     icon: 'i-lucide-triangle-alert'
   },
   3: {
@@ -45,24 +45,13 @@ const config = certificationConfig[props.level]
 </script>
 
 <template>
-  <div
-    class="rounded-lg border-2 p-3"
-    :class="config.bgClass"
+  <UBadge
+    :class="config.bgClass + ' ' + config.textClass"
+    :icon="config.icon"
+    size="md"
+
+    variant="solid"
   >
-    <div class="flex items-start gap-2">
-      <UIcon
-        :name="config.icon"
-        :class="config.iconClass"
-        class="w-5 h-5 flex-shrink-0 mt-0.5"
-      />
-      <div class="flex-1 min-w-0">
-        <p
-          class="text-sm font-medium leading-tight"
-          :class="config.textClass"
-        >
-          {{ compact ? config.shortLabel : config.label }}
-        </p>
-      </div>
-    </div>
-  </div>
+    {{ compact ? config.shortLabel : config.label }}
+  </UBadge>
 </template>
