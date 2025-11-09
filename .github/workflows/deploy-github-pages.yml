@@ -3,7 +3,7 @@
 # =============================================================================
 # Ce workflow se déclenche automatiquement à chaque push sur la branche main
 # Il génère un site statique avec Nuxt et le déploie sur GitHub Pages
-# URL de test : https://fallinov.github.io/2025-sfa-nuxt-devops/
+# URL de test : https://fallinov.github.io/2025-cns-sfa-referentiel-logiciels-cejef/
 
 name: Deploy to GitHub Pages (Staging)
 
@@ -70,7 +70,7 @@ jobs:
       - name: Static HTML export with Nuxt
         run: npm run generate
         env:
-          NUXT_APP_BASE_URL: /2025-sfa-nuxt-devops/
+          NUXT_APP_BASE_URL: /2025-cns-sfa-referentiel-logiciels-cejef/
 
       # --- ÉTAPE 6 : Préparer l'upload vers GitHub Pages ---
       # Crée un artifact (archive) contenant tous les fichiers générés
