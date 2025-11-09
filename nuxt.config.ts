@@ -8,9 +8,16 @@ export default defineNuxtConfig({
   // ========================================
   // Modules = extensions qui ajoutent des fonctionnalités à Nuxt
   modules: [
-    '@nuxt/eslint',  // Vérification de la qualité du code (linting)
-    '@nuxt/ui'       // Bibliothèque de composants UI pré-stylés
+    '@nuxt/eslint', // Vérification de la qualité du code (linting)
+    '@nuxt/ui' // Bibliothèque de composants UI pré-stylés
   ],
+
+  // ========================================
+  // OUTILS DE DÉVELOPPEMENT
+  // ========================================
+  devtools: {
+    enabled: true // Active les DevTools Nuxt pour le débogage
+  },
 
   // ========================================
   // CONFIGURATION DE L'APPLICATION
@@ -22,7 +29,6 @@ export default defineNuxtConfig({
     //   - En local : '/' (racine)
     //   - GitHub Pages : '/mon-projet-nuxt/' (sous-dossier)
     //   - Production : '/' (racine du domaine)
-    // @ts-expect-error - process.env is available in Nuxt config
     baseURL: process.env.NUXT_APP_BASE_URL || '/',
 
     // Configuration du <head> HTML (balises meta, favicon, etc.)
@@ -34,22 +40,14 @@ export default defineNuxtConfig({
       ],
       link: [
         {
-          rel: 'icon',                // Type de lien : icône
-          type: 'image/x-icon',       // Format du fichier
+          rel: 'icon', // Type de lien : icône
+          type: 'image/x-icon', // Format du fichier
           // Chemin du favicon avec gestion du baseURL
           // Le .replace(/\/+/g, '/') évite les doubles slashes (//)
-          // @ts-expect-error - process.env is available in Nuxt config
           href: `${process.env.NUXT_APP_BASE_URL || ''}/favicon.ico`.replace(/\/+/g, '/')
         }
       ]
     }
-  },
-
-  // ========================================
-  // OUTILS DE DÉVELOPPEMENT
-  // ========================================
-  devtools: {
-    enabled: true  // Active les DevTools Nuxt pour le débogage
   },
 
   // ========================================
@@ -72,8 +70,8 @@ export default defineNuxtConfig({
   eslint: {
     config: {
       stylistic: {
-        commaDangle: 'never',   // Pas de virgule finale (ex: [1, 2, 3] ✅ pas [1, 2, 3,] ❌)
-        braceStyle: '1tbs'      // Style d'accolades "One True Brace Style"
+        commaDangle: 'never', // Pas de virgule finale (ex: [1, 2, 3] ✅ pas [1, 2, 3,] ❌)
+        braceStyle: '1tbs' // Style d'accolades "One True Brace Style"
       }
     }
   }

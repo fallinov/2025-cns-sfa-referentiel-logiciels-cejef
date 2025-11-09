@@ -1,5 +1,21 @@
 <script setup lang="ts">
 const { selectedSoftware, isDetailOpen, closeDetail } = useSoftware()
+const { getIcon } = useSoftwareIcon()
+
+// Créer une ref locale pour le v-model:open du USlideover
+const isOpen = ref(false)
+
+// Synchroniser isOpen avec isDetailOpen (quand ouvert programmatiquement)
+watch(isDetailOpen, (newVal) => {
+  isOpen.value = newVal
+})
+
+// Quand isOpen change (fermé par l'utilisateur via overlay ou ESC)
+watch(isOpen, (newVal) => {
+  if (!newVal && isDetailOpen.value) {
+    closeDetail()
+  }
+})
 
 // Mappage des icônes de plateformes
 const platformIcons: Record<string, string> = {
@@ -12,31 +28,51 @@ const platformIcons: Record<string, string> = {
 </script>
 
 <template>
-  <USlideover v-model="isDetailOpen" class="max-w-2xl">
-    <template v-if="selectedSoftware">
-      <div class="p-6 space-y-6">
+  <USlideover
+    v-model:open="isOpen"
+    side="right"
+    :title="selectedSoftware?.name || 'Détails du logiciel'"
+    description="Informations détaillées sur le logiciel sélectionné"
+  >
+    <template #body>
+      <div
+        v-if="selectedSoftware"
+        class="space-y-6"
+      >
         <!-- Section 1 : Identification -->
         <div class="space-y-4">
-          <div class="flex items-start gap-4">
-            <div class="text-6xl flex-shrink-0">{{ selectedSoftware.logo }}</div>
-            <div class="flex-1 min-w-0">
-              <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
-                {{ selectedSoftware.name }}
-              </h2>
-              <div class="flex flex-wrap gap-2 mt-2">
-                <UBadge v-if="selectedSoftware.supportedBy" color="success" variant="soft">
-                  <template #leading>
-                    <UIcon name="i-lucide-check-circle" class="w-4 h-4" />
-                  </template>
-                  Pris en charge CEJEF
-                </UBadge>
-                <UBadge v-if="selectedSoftware.campusTraining" color="info" variant="soft">
-                  <template #leading>
-                    <UIcon name="i-lucide-graduation-cap" class="w-4 h-4" />
-                  </template>
-                  Formation Campus disponible
-                </UBadge>
-              </div>
+          <div class="flex items-center gap-4">
+            <UIcon
+              :name="getIcon(selectedSoftware.name)"
+              class="w-16 h-16 text-gray-700 dark:text-gray-300 flex-shrink-0"
+            />
+            <div class="flex flex-wrap gap-2">
+              <UBadge
+                v-if="selectedSoftware.supportedBy"
+                color="success"
+                variant="soft"
+              >
+                <template #leading>
+                  <UIcon
+                    name="i-lucide-check-circle"
+                    class="w-4 h-4"
+                  />
+                </template>
+                Pris en charge CEJEF
+              </UBadge>
+              <UBadge
+                v-if="selectedSoftware.campusTraining"
+                color="info"
+                variant="soft"
+              >
+                <template #leading>
+                  <UIcon
+                    name="i-lucide-graduation-cap"
+                    class="w-4 h-4"
+                  />
+                </template>
+                Formation Campus disponible
+              </UBadge>
             </div>
           </div>
 
@@ -45,32 +81,46 @@ const platformIcons: Record<string, string> = {
           </p>
         </div>
 
-        <UDivider />
+        <USeparator />
 
         <!-- Section 2 : Classification LGPD -->
         <div class="space-y-3">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-            <UIcon name="i-lucide-shield" class="w-5 h-5" />
+            <UIcon
+              name="i-lucide-shield"
+              class="w-5 h-5"
+            />
             Classification LGPD
           </h3>
-          <LgpdIcons :lgpd="selectedSoftware.lgpd" :show-labels="true" />
+          <LgpdIcons
+            :lgpd="selectedSoftware.lgpd"
+            :show-labels="true"
+          />
         </div>
 
-        <UDivider />
+        <USeparator />
 
         <!-- Section 3 : Informations techniques -->
         <div class="space-y-3">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-            <UIcon name="i-lucide-settings" class="w-5 h-5" />
+            <UIcon
+              name="i-lucide-settings"
+              class="w-5 h-5"
+            />
             Informations techniques
           </h3>
 
           <div class="grid gap-3">
             <!-- Plateformes -->
             <div class="flex items-start gap-2">
-              <UIcon name="i-lucide-monitor" class="w-5 h-5 text-gray-500 mt-0.5" />
+              <UIcon
+                name="i-lucide-monitor"
+                class="w-5 h-5 text-gray-500 mt-0.5"
+              />
               <div class="flex-1">
-                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Plateformes</div>
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Plateformes
+                </div>
                 <div class="flex flex-wrap gap-1 mt-1">
                   <UBadge
                     v-for="platform in selectedSoftware.platforms"
@@ -80,7 +130,10 @@ const platformIcons: Record<string, string> = {
                     size="sm"
                   >
                     <template #leading>
-                      <UIcon :name="platformIcons[platform] || 'i-lucide-help-circle'" class="w-3 h-3" />
+                      <UIcon
+                        :name="platformIcons[platform] || 'i-lucide-help-circle'"
+                        class="w-3 h-3"
+                      />
                     </template>
                     {{ platform }}
                   </UBadge>
@@ -90,9 +143,14 @@ const platformIcons: Record<string, string> = {
 
             <!-- Connexion obligatoire -->
             <div class="flex items-start gap-2">
-              <UIcon name="i-lucide-user" class="w-5 h-5 text-gray-500 mt-0.5" />
+              <UIcon
+                name="i-lucide-user"
+                class="w-5 h-5 text-gray-500 mt-0.5"
+              />
               <div class="flex-1">
-                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Connexion obligatoire</div>
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Connexion obligatoire
+                </div>
                 <div class="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
                   {{ selectedSoftware.accountRequired ? 'Oui' : 'Non' }}
                 </div>
@@ -101,9 +159,14 @@ const platformIcons: Record<string, string> = {
 
             <!-- Langues -->
             <div class="flex items-start gap-2">
-              <UIcon name="i-lucide-languages" class="w-5 h-5 text-gray-500 mt-0.5" />
+              <UIcon
+                name="i-lucide-languages"
+                class="w-5 h-5 text-gray-500 mt-0.5"
+              />
               <div class="flex-1">
-                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Langues</div>
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Langues
+                </div>
                 <div class="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
                   {{ selectedSoftware.languages.join(', ') }}
                 </div>
@@ -112,9 +175,14 @@ const platformIcons: Record<string, string> = {
 
             <!-- Type de licence -->
             <div class="flex items-start gap-2">
-              <UIcon name="i-lucide-file-text" class="w-5 h-5 text-gray-500 mt-0.5" />
+              <UIcon
+                name="i-lucide-file-text"
+                class="w-5 h-5 text-gray-500 mt-0.5"
+              />
               <div class="flex-1">
-                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Type de licence</div>
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Type de licence
+                </div>
                 <div class="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
                   {{ selectedSoftware.licenseType }}
                 </div>
@@ -123,9 +191,14 @@ const platformIcons: Record<string, string> = {
 
             <!-- Coût -->
             <div class="flex items-start gap-2">
-              <UIcon name="i-lucide-coins" class="w-5 h-5 text-gray-500 mt-0.5" />
+              <UIcon
+                name="i-lucide-coins"
+                class="w-5 h-5 text-gray-500 mt-0.5"
+              />
               <div class="flex-1">
-                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Coût</div>
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Coût
+                </div>
                 <div class="mt-1">
                   <UBadge
                     :color="selectedSoftware.cost === 'Gratuit' ? 'success' : selectedSoftware.cost === 'Freemium' ? 'info' : 'warning'"
@@ -133,7 +206,10 @@ const platformIcons: Record<string, string> = {
                   >
                     {{ selectedSoftware.cost }}
                   </UBadge>
-                  <span v-if="selectedSoftware.price" class="text-sm text-gray-600 dark:text-gray-400 ml-2">
+                  <span
+                    v-if="selectedSoftware.price"
+                    class="text-sm text-gray-600 dark:text-gray-400 ml-2"
+                  >
                     {{ selectedSoftware.price }}
                   </span>
                 </div>
@@ -142,21 +218,29 @@ const platformIcons: Record<string, string> = {
           </div>
         </div>
 
-        <UDivider />
+        <USeparator />
 
         <!-- Section 4 : Pédagogie -->
         <div class="space-y-3">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-            <UIcon name="i-lucide-book-open" class="w-5 h-5" />
+            <UIcon
+              name="i-lucide-book-open"
+              class="w-5 h-5"
+            />
             Pédagogie
           </h3>
 
           <div class="grid gap-3">
             <!-- Catégorie -->
             <div class="flex items-start gap-2">
-              <UIcon name="i-lucide-tag" class="w-5 h-5 text-gray-500 mt-0.5" />
+              <UIcon
+                name="i-lucide-tag"
+                class="w-5 h-5 text-gray-500 mt-0.5"
+              />
               <div class="flex-1">
-                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Catégorie fonctionnelle</div>
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Catégorie fonctionnelle
+                </div>
                 <div class="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
                   {{ selectedSoftware.category }}
                 </div>
@@ -165,9 +249,14 @@ const platformIcons: Record<string, string> = {
 
             <!-- Disciplines -->
             <div class="flex items-start gap-2">
-              <UIcon name="i-lucide-layers" class="w-5 h-5 text-gray-500 mt-0.5" />
+              <UIcon
+                name="i-lucide-layers"
+                class="w-5 h-5 text-gray-500 mt-0.5"
+              />
               <div class="flex-1">
-                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Disciplines</div>
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Disciplines
+                </div>
                 <div class="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
                   {{ selectedSoftware.disciplines.join(', ') }}
                 </div>
@@ -176,9 +265,14 @@ const platformIcons: Record<string, string> = {
 
             <!-- Activité -->
             <div class="flex items-start gap-2">
-              <UIcon name="i-lucide-activity" class="w-5 h-5 text-gray-500 mt-0.5" />
+              <UIcon
+                name="i-lucide-activity"
+                class="w-5 h-5 text-gray-500 mt-0.5"
+              />
               <div class="flex-1">
-                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Activité pédagogique</div>
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Activité pédagogique
+                </div>
                 <div class="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
                   {{ selectedSoftware.activity }}
                 </div>
@@ -187,9 +281,14 @@ const platformIcons: Record<string, string> = {
 
             <!-- Niveau technique -->
             <div class="flex items-start gap-2">
-              <UIcon name="i-lucide-bar-chart-3" class="w-5 h-5 text-gray-500 mt-0.5" />
+              <UIcon
+                name="i-lucide-bar-chart-3"
+                class="w-5 h-5 text-gray-500 mt-0.5"
+              />
               <div class="flex-1">
-                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Niveau technique requis</div>
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Niveau technique requis
+                </div>
                 <div class="mt-1">
                   <UBadge
                     :color="selectedSoftware.technicalLevel === 'Débutant' ? 'success' : selectedSoftware.technicalLevel === 'Intermédiaire' ? 'warning' : 'error'"
@@ -205,20 +304,31 @@ const platformIcons: Record<string, string> = {
 
         <!-- Section 5 : Ressources (si disponibles) -->
         <template v-if="selectedSoftware.integrations || selectedSoftware.documentation">
-          <UDivider />
+          <USeparator />
 
           <div class="space-y-3">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-              <UIcon name="i-lucide-link" class="w-5 h-5" />
+              <UIcon
+                name="i-lucide-link"
+                class="w-5 h-5"
+              />
               Ressources
             </h3>
 
             <div class="grid gap-3">
               <!-- Intégrations -->
-              <div v-if="selectedSoftware.integrations" class="flex items-start gap-2">
-                <UIcon name="i-lucide-puzzle" class="w-5 h-5 text-gray-500 mt-0.5" />
+              <div
+                v-if="selectedSoftware.integrations"
+                class="flex items-start gap-2"
+              >
+                <UIcon
+                  name="i-lucide-puzzle"
+                  class="w-5 h-5 text-gray-500 mt-0.5"
+                />
                 <div class="flex-1">
-                  <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Intégrations</div>
+                  <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Intégrations
+                  </div>
                   <div class="flex flex-wrap gap-1 mt-1">
                     <UBadge
                       v-for="integration in selectedSoftware.integrations"
@@ -234,17 +344,28 @@ const platformIcons: Record<string, string> = {
               </div>
 
               <!-- Documentation -->
-              <div v-if="selectedSoftware.documentation" class="flex items-start gap-2">
-                <UIcon name="i-lucide-book" class="w-5 h-5 text-gray-500 mt-0.5" />
+              <div
+                v-if="selectedSoftware.documentation"
+                class="flex items-start gap-2"
+              >
+                <UIcon
+                  name="i-lucide-book"
+                  class="w-5 h-5 text-gray-500 mt-0.5"
+                />
                 <div class="flex-1">
-                  <div class="text-sm font-medium text-gray-700 dark:text-gray-300">Documentation</div>
+                  <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Documentation
+                  </div>
                   <a
                     :href="selectedSoftware.documentation"
                     target="_blank"
                     class="text-sm text-violet-600 dark:text-violet-400 hover:underline mt-0.5 inline-flex items-center gap-1"
                   >
                     Voir la documentation
-                    <UIcon name="i-lucide-external-link" class="w-3 h-3" />
+                    <UIcon
+                      name="i-lucide-external-link"
+                      class="w-3 h-3"
+                    />
                   </a>
                 </div>
               </div>
@@ -252,26 +373,17 @@ const platformIcons: Record<string, string> = {
           </div>
         </template>
 
-        <!-- Boutons d'action -->
-        <div class="flex gap-3 pt-4">
+        <!-- Bouton d'action -->
+        <div class="pt-4 border-t border-gray-200 dark:border-gray-800">
           <UButton
             :to="selectedSoftware.toolUrl"
             target="_blank"
             color="primary"
             size="lg"
-            class="flex-1"
+            block
             trailing-icon="i-lucide-external-link"
           >
             Accéder à l'outil
-          </UButton>
-          <UButton
-            color="neutral"
-            variant="outline"
-            size="lg"
-            icon="i-lucide-x"
-            @click="closeDetail"
-          >
-            Fermer
           </UButton>
         </div>
       </div>

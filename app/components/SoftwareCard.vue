@@ -7,6 +7,7 @@ interface Props {
 
 const props = defineProps<Props>()
 const { openDetail } = useSoftware()
+const { getIcon } = useSoftwareIcon()
 
 // Mappage des icônes de plateformes
 const platformIcons: Record<string, string> = {
@@ -29,16 +30,31 @@ const handleClick = () => {
   >
     <template #header>
       <div class="flex items-start gap-3">
-        <div class="text-4xl flex-shrink-0">{{ software.logo }}</div>
+        <div class="flex-shrink-0">
+          <UIcon
+            :name="getIcon(software.name)"
+            class="w-10 h-10 text-gray-700 dark:text-gray-300"
+          />
+        </div>
         <div class="flex-1 min-w-0">
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white truncate">
             {{ software.name }}
           </h3>
           <div class="flex flex-wrap gap-1 mt-1">
-            <UBadge v-if="software.supportedBy" color="success" variant="soft" size="xs">
+            <UBadge
+              v-if="software.supportedBy"
+              color="success"
+              variant="soft"
+              size="xs"
+            >
               CEJEF
             </UBadge>
-            <UBadge v-if="software.campusTraining" color="info" variant="soft" size="xs">
+            <UBadge
+              v-if="software.campusTraining"
+              color="info"
+              variant="soft"
+              size="xs"
+            >
               Formation Campus
             </UBadge>
           </div>
@@ -65,7 +81,10 @@ const handleClick = () => {
           size="xs"
         >
           <template #leading>
-            <UIcon :name="platformIcons[platform] || 'i-lucide-help-circle'" class="w-3 h-3" />
+            <UIcon
+              :name="platformIcons[platform] || 'i-lucide-help-circle'"
+              class="w-3 h-3"
+            />
           </template>
           {{ platform }}
         </UBadge>

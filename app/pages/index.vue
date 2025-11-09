@@ -18,15 +18,31 @@ useSeoMeta({
     >
       <template #links>
         <div class="flex flex-col sm:flex-row gap-3">
-          <UBadge color="primary" variant="soft" size="lg" class="justify-center sm:justify-start">
+          <UBadge
+            color="primary"
+            variant="soft"
+            size="lg"
+            class="justify-center sm:justify-start"
+          >
             <template #leading>
-              <UIcon name="i-lucide-graduation-cap" class="w-4 h-4" />
+              <UIcon
+                name="i-lucide-graduation-cap"
+                class="w-4 h-4"
+              />
             </template>
             {{ softwareList.length }} logiciels disponibles
           </UBadge>
-          <UBadge color="success" variant="soft" size="lg" class="justify-center sm:justify-start">
+          <UBadge
+            color="success"
+            variant="soft"
+            size="lg"
+            class="justify-center sm:justify-start"
+          >
             <template #leading>
-              <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
+              <UIcon
+                name="i-lucide-shield-check"
+                class="w-4 h-4"
+              />
             </template>
             Classification LGPD
           </UBadge>
@@ -58,24 +74,52 @@ useSeoMeta({
         <template #links>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
             <div class="text-center">
-              <UIcon name="i-lucide-home" class="w-8 h-8 mx-auto mb-2 text-violet-600 dark:text-violet-400" />
-              <div class="text-sm font-medium">Hébergement</div>
-              <div class="text-xs text-gray-500">Localisation</div>
+              <UIcon
+                name="i-lucide-home"
+                class="w-8 h-8 mx-auto mb-2 text-violet-600 dark:text-violet-400"
+              />
+              <div class="text-sm font-medium">
+                Hébergement
+              </div>
+              <div class="text-xs text-gray-500">
+                Localisation
+              </div>
             </div>
             <div class="text-center">
-              <UIcon name="i-lucide-user-check" class="w-8 h-8 mx-auto mb-2 text-violet-600 dark:text-violet-400" />
-              <div class="text-sm font-medium">Données perso.</div>
-              <div class="text-xs text-gray-500">Usage autorisé</div>
+              <UIcon
+                name="i-lucide-user-check"
+                class="w-8 h-8 mx-auto mb-2 text-violet-600 dark:text-violet-400"
+              />
+              <div class="text-sm font-medium">
+                Données perso.
+              </div>
+              <div class="text-xs text-gray-500">
+                Usage autorisé
+              </div>
             </div>
             <div class="text-center">
-              <UIcon name="i-lucide-shield-check" class="w-8 h-8 mx-auto mb-2 text-violet-600 dark:text-violet-400" />
-              <div class="text-sm font-medium">RGPD</div>
-              <div class="text-xs text-gray-500">Conformité</div>
+              <UIcon
+                name="i-lucide-shield-check"
+                class="w-8 h-8 mx-auto mb-2 text-violet-600 dark:text-violet-400"
+              />
+              <div class="text-sm font-medium">
+                RGPD
+              </div>
+              <div class="text-xs text-gray-500">
+                Conformité
+              </div>
             </div>
             <div class="text-center">
-              <UIcon name="i-lucide-bar-chart-2" class="w-8 h-8 mx-auto mb-2 text-violet-600 dark:text-violet-400" />
-              <div class="text-sm font-medium">Collecte</div>
-              <div class="text-xs text-gray-500">Niveau</div>
+              <UIcon
+                name="i-lucide-bar-chart-2"
+                class="w-8 h-8 mx-auto mb-2 text-violet-600 dark:text-violet-400"
+              />
+              <div class="text-sm font-medium">
+                Collecte
+              </div>
+              <div class="text-xs text-gray-500">
+                Niveau
+              </div>
             </div>
           </div>
         </template>

@@ -24,8 +24,14 @@ useSeoMeta({
   <UApp>
     <UHeader>
       <template #left>
-        <NuxtLink to="/" class="flex items-center gap-2">
-          <UIcon name="i-lucide-graduation-cap" class="w-6 h-6 text-violet-600 dark:text-violet-400" />
+        <NuxtLink
+          to="/"
+          class="flex items-center gap-2"
+        >
+          <UIcon
+            name="i-lucide-graduation-cap"
+            class="w-6 h-6 text-violet-600 dark:text-violet-400"
+          />
           <span class="font-semibold text-gray-900 dark:text-white hidden sm:inline">
             Référentiel Logiciels CEJEF
           </span>
@@ -55,7 +61,10 @@ useSeoMeta({
 
       <template #right>
         <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
+          <UIcon
+            name="i-lucide-shield-check"
+            class="w-4 h-4"
+          />
           <span class="hidden sm:inline">Classification LGPD</span>
         </div>
       </template>

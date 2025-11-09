@@ -20,11 +20,11 @@ export const useSoftware = () => {
    * Récupère un logiciel par son ID
    */
   const getSoftwareById = (id: string): Software | undefined => {
-    return softwareList.find((software) => software.id === id)
+    return softwareList.find(software => software.id === id)
   }
 
   /**
-   * Ouvre le modal de détail avec un logiciel sélectionné
+   * Ouvre le slideover de détail avec un logiciel sélectionné
    */
   const openDetail = (software: Software) => {
     selectedSoftware.value = software
@@ -32,7 +32,7 @@ export const useSoftware = () => {
   }
 
   /**
-   * Ferme le modal de détail
+   * Ferme le slideover de détail
    */
   const closeDetail = () => {
     isDetailOpen.value = false
@@ -44,8 +44,8 @@ export const useSoftware = () => {
 
   return {
     // État
-    selectedSoftware: readonly(selectedSoftware),
-    isDetailOpen: readonly(isDetailOpen),
+    selectedSoftware,
+    isDetailOpen,
 
     // Méthodes
     getSoftwareList,
