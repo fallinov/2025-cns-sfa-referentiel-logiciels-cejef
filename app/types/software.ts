@@ -2,27 +2,20 @@
  * Types pour le référentiel logiciels CEJEF
  */
 
-export type HostingLocation = 'CH' | 'UE' | 'Hors-UE' | 'CEJEF' | 'Chine'
-export type PersonalDataUsage = 'Autorisées' | 'Anonymisé' | 'Interdites'
-export type RgpdCompliance = 'Conforme' | 'Partiel' | 'Non conforme'
-export type DataCollection = 'Limitée' | 'Modérée' | 'Extensive'
 export type Platform = 'web' | 'windows' | 'mac' | 'smartphone' | 'tablet'
 export type CostType = 'Gratuit' | 'Freemium' | 'Payant'
-export type TechnicalLevel = 'Débutant' | 'Intermédiaire' | 'Avancé'
 
 /**
  * Classification LGPD (Loi sur la protection des données)
- * Approche iconographique (Option C)
+ * Valeurs numériques: 1 = OK, 2 = Danger, 3 = Interdit
  */
 export interface LgpdClassification {
-  /** Localisation de l'hébergement des données */
-  hosting: HostingLocation
-  /** Utilisation des données personnelles */
-  personalData: PersonalDataUsage
-  /** Conformité RGPD (Règlement Général sur la Protection des Données) */
-  rgpd: RgpdCompliance
-  /** Niveau de collecte de données */
-  dataCollection: DataCollection
+  /** Localisation de l'hébergement des données (1 = OK, 2 = Danger, 3 = Interdit) */
+  hosting: 1 | 2 | 3
+  /** Conformité RGPD (1 = OK, 2 = Danger, 3 = Interdit) */
+  rgpd: 1 | 2 | 3
+  /** Niveau de collecte de données (1 = OK, 2 = Danger, 3 = Interdit) */
+  dataCollection: 1 | 2 | 3
 }
 
 /**
@@ -33,18 +26,20 @@ export interface Software {
   id: string
   /** Nom du logiciel */
   name: string
-  /** Logo (emoji ou URL) - deprecated, utiliser icon */
+  /** Logo SVG (nom du fichier) */
   logo: string
-  /** Icône SVG (format i-simple-icons-xxx ou i-lucide-xxx) */
-  icon: string
+  /** Icône (Simple Icons) */
+  icon?: string
   /** Description courte */
   shortDescription: string
 
-  /** Classification LGPD (Option C - Iconographique) */
+  /** Classification LGPD (1 = OK, 2 = Danger, 3 = Interdit) */
   lgpd: LgpdClassification
+  /** Utilisation de données personnelles */
+  personalData: boolean
 
   /** Pris en charge par le CEJEF */
-  supportedBy: 'CEJEF' | null
+  supportedByCEJEF: boolean
   /** Formation Campus disponible */
   campusTraining: boolean
   /** Plateformes supportées */
@@ -59,11 +54,11 @@ export interface Software {
   disciplines: string[]
   /** Type d'activité pédagogique */
   activity: string
-  /** Niveau technique requis */
-  technicalLevel: TechnicalLevel
+  /** Niveau technique requis (1 = Débutant, 2 = Intermédiaire, 3 = Expert) */
+  technicalLevel: 1 | 2 | 3
   /** Connexion obligatoire */
   accountRequired: boolean
-  /** Langues de l'interface */
+  /** Langues de l'interface (codes ISO: fr, en, de, etc.) */
   languages: string[]
   /** Type de licence */
   licenseType: string

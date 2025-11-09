@@ -41,7 +41,7 @@ const handleClick = () => {
           </h3>
           <div class="flex flex-wrap gap-1 mt-1">
             <UBadge
-              v-if="software.supportedBy"
+              v-if="software.supportedByCEJEF"
               color="success"
               variant="soft"
               size="xs"

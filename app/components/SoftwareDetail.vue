@@ -24,6 +24,20 @@ const platformIcons: Record<string, string> = {
   smartphone: 'i-lucide-smartphone',
   tablet: 'i-lucide-tablet'
 }
+
+// Mappage des codes de langues vers leurs noms complets
+const languageNames: Record<string, string> = {
+  fr: 'Français',
+  en: 'Anglais',
+  de: 'Allemand',
+  es: 'Espagnol',
+  it: 'Italien'
+}
+
+// Fonction pour formater les langues
+const formatLanguages = (codes: string[]) => {
+  return codes.map(code => languageNames[code] || code).join(', ')
+}
 </script>
 
 <template>
@@ -47,7 +61,7 @@ const platformIcons: Record<string, string> = {
             />
             <div class="flex flex-wrap gap-2">
               <UBadge
-                v-if="selectedSoftware.supportedBy"
+                v-if="selectedSoftware.supportedByCEJEF"
                 color="success"
                 variant="soft"
               >
@@ -167,7 +181,7 @@ const platformIcons: Record<string, string> = {
                   Langues
                 </div>
                 <div class="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
-                  {{ selectedSoftware.languages.join(', ') }}
+                  {{ formatLanguages(selectedSoftware.languages) }}
                 </div>
               </div>
             </div>
@@ -290,10 +304,10 @@ const platformIcons: Record<string, string> = {
                 </div>
                 <div class="mt-1">
                   <UBadge
-                    :color="selectedSoftware.technicalLevel === 'Débutant' ? 'success' : selectedSoftware.technicalLevel === 'Intermédiaire' ? 'warning' : 'error'"
+                    :color="selectedSoftware.technicalLevel === 1 ? 'success' : selectedSoftware.technicalLevel === 2 ? 'warning' : 'error'"
                     variant="soft"
                   >
-                    {{ selectedSoftware.technicalLevel }}
+                    {{ selectedSoftware.technicalLevel === 1 ? 'Débutant' : selectedSoftware.technicalLevel === 2 ? 'Intermédiaire' : 'Expert' }}
                   </UBadge>
                 </div>
               </div>
