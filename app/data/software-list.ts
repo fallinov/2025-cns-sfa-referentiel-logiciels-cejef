@@ -8,6 +8,7 @@ export const softwareList: Software[] = [
     id: '1',
     name: 'Kahoot!',
     logo: '📊',
+    icon: 'i-simple-icons-kahoot',
     shortDescription: 'Plateforme de quiz interactifs pour évaluations formatives et gamification de l\'apprentissage en temps réel.',
     lgpd: {
       hosting: 'UE',
@@ -34,6 +35,7 @@ export const softwareList: Software[] = [
     id: '2',
     name: 'Padlet',
     logo: '📌',
+    icon: 'i-simple-icons-padlet',
     shortDescription: 'Tableau blanc collaboratif pour brainstorming, collecte d\'idées et travaux de groupe asynchrones.',
     lgpd: {
       hosting: 'UE',
@@ -58,6 +60,7 @@ export const softwareList: Software[] = [
     id: '3',
     name: 'Canva',
     logo: '🎨',
+    icon: 'i-simple-icons-canva',
     shortDescription: 'Outil de création graphique pour infographies, présentations et supports visuels professionnels.',
     lgpd: {
       hosting: 'Hors-UE',
@@ -82,6 +85,7 @@ export const softwareList: Software[] = [
     id: '4',
     name: 'H5P',
     logo: '🔧',
+    icon: 'i-simple-icons-h5p',
     shortDescription: 'Création de contenus interactifs intégrables dans Moodle : vidéos enrichies, quiz, présentations.',
     lgpd: {
       hosting: 'CEJEF',
@@ -107,6 +111,7 @@ export const softwareList: Software[] = [
     id: '5',
     name: 'TikTok',
     logo: '🎵',
+    icon: 'i-simple-icons-tiktok',
     shortDescription: 'Plateforme de partage vidéo. Hébergement hors-UE avec collecte extensive de données. Non conforme LGPD.',
     lgpd: {
       hosting: 'Chine',
@@ -131,6 +136,7 @@ export const softwareList: Software[] = [
     id: '6',
     name: 'Moodle',
     logo: '🎓',
+    icon: 'i-simple-icons-moodle',
     shortDescription: 'Plateforme d\'apprentissage en ligne (LMS) open source. Hébergement CEJEF, données sécurisées localement.',
     lgpd: {
       hosting: 'CEJEF',
@@ -157,6 +163,7 @@ export const softwareList: Software[] = [
     id: '7',
     name: 'Microsoft Teams',
     logo: '💬',
+    icon: 'i-simple-icons-microsoftteams',
     shortDescription: 'Plateforme de communication et collaboration pour classes virtuelles, réunions et travail d\'équipe.',
     lgpd: {
       hosting: 'UE',
@@ -183,6 +190,7 @@ export const softwareList: Software[] = [
     id: '8',
     name: 'Notion',
     logo: '📝',
+    icon: 'i-simple-icons-notion',
     shortDescription: 'Espace de travail tout-en-un pour notes, documentation, bases de données et gestion de projets collaboratifs.',
     lgpd: {
       hosting: 'Hors-UE',
@@ -208,6 +216,7 @@ export const softwareList: Software[] = [
     id: '9',
     name: 'Figma',
     logo: '🎨',
+    icon: 'i-simple-icons-figma',
     shortDescription: 'Outil de design collaboratif pour maquettes, prototypes et interfaces utilisateur en temps réel.',
     lgpd: {
       hosting: 'Hors-UE',
@@ -233,6 +242,7 @@ export const softwareList: Software[] = [
     id: '10',
     name: 'Quizlet',
     logo: '🧠',
+    icon: 'i-simple-icons-quizlet',
     shortDescription: 'Plateforme de cartes mémoire (flashcards) pour révisions et mémorisation active avec jeux éducatifs.',
     lgpd: {
       hosting: 'Hors-UE',
@@ -257,6 +267,7 @@ export const softwareList: Software[] = [
     id: '11',
     name: 'Genially',
     logo: '✨',
+    icon: 'i-simple-icons-genially',
     shortDescription: 'Création de présentations interactives, infographies animées et contenus visuels engageants.',
     lgpd: {
       hosting: 'UE',
@@ -282,6 +293,7 @@ export const softwareList: Software[] = [
     id: '12',
     name: 'Wooclap',
     logo: '🙋',
+    icon: 'i-lucide-presentation',
     shortDescription: 'Outil d\'interaction en classe pour sondages, quiz et questions en temps réel durant les cours.',
     lgpd: {
       hosting: 'UE',
@@ -308,6 +320,7 @@ export const softwareList: Software[] = [
     id: '13',
     name: 'Mentimeter',
     logo: '📱',
+    icon: 'i-simple-icons-mentimeter',
     shortDescription: 'Présentations interactives avec sondages en direct, nuages de mots et quiz pour engager l\'audience.',
     lgpd: {
       hosting: 'UE',
@@ -333,6 +346,7 @@ export const softwareList: Software[] = [
     id: '14',
     name: 'Edpuzzle',
     logo: '🎬',
+    icon: 'i-lucide-film',
     shortDescription: 'Enrichissement de vidéos avec questions intégrées pour l\'apprentissage actif et le suivi des élèves.',
     lgpd: {
       hosting: 'Hors-UE',
@@ -359,6 +373,7 @@ export const softwareList: Software[] = [
     id: '15',
     name: 'Google Workspace',
     logo: '📄',
+    icon: 'i-simple-icons-google',
     shortDescription: 'Suite bureautique collaborative : Docs, Sheets, Slides, Drive pour travail en ligne et partage.',
     lgpd: {
       hosting: 'Hors-UE',
@@ -385,6 +400,7 @@ export const softwareList: Software[] = [
     id: '16',
     name: 'Framapad',
     logo: '📋',
+    icon: 'i-lucide-file-text',
     shortDescription: 'Éditeur de texte collaboratif en temps réel, open source, respectueux de la vie privée. Hébergement FR.',
     lgpd: {
       hosting: 'UE',
@@ -410,6 +426,7 @@ export const softwareList: Software[] = [
     id: '17',
     name: 'ChatGPT',
     logo: '🤖',
+    icon: 'i-simple-icons-openai',
     shortDescription: 'Assistant IA conversationnel pour aide à la rédaction, brainstorming et apprentissage personnalisé.',
     lgpd: {
       hosting: 'Hors-UE',

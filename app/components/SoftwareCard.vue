@@ -7,7 +7,6 @@ interface Props {
 
 const props = defineProps<Props>()
 const { openDetail } = useSoftware()
-const { getIcon } = useSoftwareIcon()
 
 // Mappage des icônes de plateformes
 const platformIcons: Record<string, string> = {
@@ -32,7 +31,7 @@ const handleClick = () => {
       <div class="flex items-start gap-3">
         <div class="flex-shrink-0">
           <UIcon
-            :name="getIcon(software.name)"
+            :name="software.icon"
             class="w-10 h-10 text-gray-700 dark:text-gray-300"
           />
         </div>

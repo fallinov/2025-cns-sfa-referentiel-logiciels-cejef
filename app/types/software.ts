@@ -33,8 +33,10 @@ export interface Software {
   id: string
   /** Nom du logiciel */
   name: string
-  /** Logo (emoji ou URL) */
+  /** Logo (emoji ou URL) - deprecated, utiliser icon */
   logo: string
+  /** Icône SVG (format i-simple-icons-xxx ou i-lucide-xxx) */
+  icon: string
   /** Description courte */
   shortDescription: string
 
