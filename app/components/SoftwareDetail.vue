@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const { selectedSoftware, isDetailOpen, closeDetail } = useSoftware()
-const { getIcon } = useSoftwareIcon()
 
 // Créer une ref locale pour le v-model:open du USlideover
 const isOpen = ref(false)
@@ -57,7 +56,7 @@ const formatLanguages = (codes: string[]) => {
         <div class="space-y-4">
           <div class="flex items-center gap-4">
             <UIcon
-              :name="getIcon(selectedSoftware.name)"
+              :name="selectedSoftware.icon"
               class="w-16 h-16 text-gray-700 dark:text-gray-300 flex-shrink-0"
             />
             <div class="flex flex-wrap gap-2">

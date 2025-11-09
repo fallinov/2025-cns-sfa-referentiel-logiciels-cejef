@@ -86,6 +86,7 @@ export const softwareList: Software[] = [
     id: '4',
     name: 'H5P',
     logo: 'h5p.svg',
+
     icon: 'i-simple-icons-h5p',
     shortDescription: 'Création de contenus interactifs intégrables dans Moodle : vidéos enrichies, quiz, présentations.',
     lgpd: {
@@ -191,6 +192,7 @@ export const softwareList: Software[] = [
     id: '8',
     name: 'Notion',
     logo: 'notion.svg',
+
     icon: 'i-simple-icons-notion',
     shortDescription: 'Espace de travail tout-en-un pour notes, documentation, bases de données et gestion de projets collaboratifs.',
     lgpd: {
