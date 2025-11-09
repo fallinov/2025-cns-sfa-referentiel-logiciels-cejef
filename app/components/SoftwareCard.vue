@@ -8,15 +8,6 @@ interface Props {
 const props = defineProps<Props>()
 const { openDetail } = useSoftware()
 
-// Mappage des icônes de plateformes
-const platformIcons: Record<string, string> = {
-  web: 'i-lucide-globe',
-  windows: 'i-lucide-laptop',
-  mac: 'i-lucide-laptop',
-  smartphone: 'i-lucide-smartphone',
-  tablet: 'i-lucide-tablet'
-}
-
 const handleClick = () => {
   openDetail(props.software)
 }
@@ -69,25 +60,6 @@ const handleClick = () => {
       <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
         {{ software.shortDescription }}
       </p>
-
-      <!-- Plateformes -->
-      <div class="flex flex-wrap gap-1">
-        <UBadge
-          v-for="platform in software.platforms"
-          :key="platform"
-          color="neutral"
-          variant="subtle"
-          size="xs"
-        >
-          <template #leading>
-            <UIcon
-              :name="platformIcons[platform] || 'i-lucide-help-circle'"
-              class="w-3 h-3"
-            />
-          </template>
-          {{ platform }}
-        </UBadge>
-      </div>
     </div>
 
     <template #footer>
