@@ -22,16 +22,23 @@ export default defineNuxtConfig({
     //   - En local : '/' (racine)
     //   - GitHub Pages : '/mon-projet-nuxt/' (sous-dossier)
     //   - Production : '/' (racine du domaine)
+    // @ts-expect-error - process.env is available in Nuxt config
     baseURL: process.env.NUXT_APP_BASE_URL || '/',
 
     // Configuration du <head> HTML (balises meta, favicon, etc.)
     head: {
+      title: 'Référentiel Logiciels CEJEF',
+      meta: [
+        { name: 'description', content: 'Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD' },
+        { name: 'author', content: 'CEJEF' }
+      ],
       link: [
         {
           rel: 'icon',                // Type de lien : icône
           type: 'image/x-icon',       // Format du fichier
           // Chemin du favicon avec gestion du baseURL
           // Le .replace(/\/+/g, '/') évite les doubles slashes (//)
+          // @ts-expect-error - process.env is available in Nuxt config
           href: `${process.env.NUXT_APP_BASE_URL || ''}/favicon.ico`.replace(/\/+/g, '/')
         }
       ]
