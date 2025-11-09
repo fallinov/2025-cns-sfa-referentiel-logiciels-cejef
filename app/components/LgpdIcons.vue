@@ -10,11 +10,14 @@ withDefaults(defineProps<Props>(), {
   showLabels: false
 })
 
-// Icônes fixes par groupe de critères LGPD (une seule icône par groupe)
-const ICONS = {
-  hosting: 'i-lucide-server', // Serveur pour l'hébergement
-  rgpd: 'i-lucide-shield', // Bouclier pour la conformité RGPD
-  dataCollection: 'i-lucide-database' // Base de données pour la collecte
+// Icônes de statut selon la valeur (1 = OK, 2 = Attention, 3 = Interdit)
+const getStatusIcon = (value: 1 | 2 | 3) => {
+  const icons: Record<number, string> = {
+    1: 'i-lucide-circle-check', // OK = coche verte
+    2: 'i-lucide-triangle-alert', // Attention = triangle orange
+    3: 'i-lucide-circle-x' // Interdit = croix rouge
+  }
+  return icons[value] || 'i-lucide-circle-help'
 }
 
 // Système de couleurs : 1 = OK (vert), 2 = Danger (orange), 3 = Interdit (rouge)
@@ -45,6 +48,13 @@ const getValueLabel = (value: 1 | 2 | 3) => {
   }
   return labels[value] || 'N/A'
 }
+
+// Labels détaillés pour chaque critère
+const CRITERION_LABELS = {
+  hosting: 'Hébergement',
+  rgpd: 'RGPD',
+  dataCollection: 'Collecte'
+}
 </script>
 
 <template>
@@ -55,7 +65,7 @@ const getValueLabel = (value: 1 | 2 | 3) => {
       :class="getBgColor(lgpd.hosting)"
     >
       <UIcon
-        :name="ICONS.hosting"
+        :name="getStatusIcon(lgpd.hosting)"
         :class="getColor(lgpd.hosting)"
         class="w-5 h-5 flex-shrink-0"
       />
@@ -64,7 +74,7 @@ const getValueLabel = (value: 1 | 2 | 3) => {
         class="flex-1 min-w-0"
       >
         <div class="text-xs text-gray-500 dark:text-gray-400">
-          Hébergement
+          {{ CRITERION_LABELS.hosting }}
         </div>
         <div class="text-sm font-medium truncate">
           {{ getValueLabel(lgpd.hosting) }}
@@ -78,7 +88,7 @@ const getValueLabel = (value: 1 | 2 | 3) => {
       :class="getBgColor(lgpd.rgpd)"
     >
       <UIcon
-        :name="ICONS.rgpd"
+        :name="getStatusIcon(lgpd.rgpd)"
         :class="getColor(lgpd.rgpd)"
         class="w-5 h-5 flex-shrink-0"
       />
@@ -87,7 +97,7 @@ const getValueLabel = (value: 1 | 2 | 3) => {
         class="flex-1 min-w-0"
       >
         <div class="text-xs text-gray-500 dark:text-gray-400">
-          RGPD
+          {{ CRITERION_LABELS.rgpd }}
         </div>
         <div class="text-sm font-medium truncate">
           {{ getValueLabel(lgpd.rgpd) }}
@@ -101,7 +111,7 @@ const getValueLabel = (value: 1 | 2 | 3) => {
       :class="getBgColor(lgpd.dataCollection)"
     >
       <UIcon
-        :name="ICONS.dataCollection"
+        :name="getStatusIcon(lgpd.dataCollection)"
         :class="getColor(lgpd.dataCollection)"
         class="w-5 h-5 flex-shrink-0"
       />
@@ -110,7 +120,7 @@ const getValueLabel = (value: 1 | 2 | 3) => {
         class="flex-1 min-w-0"
       >
         <div class="text-xs text-gray-500 dark:text-gray-400">
-          Collecte
+          {{ CRITERION_LABELS.dataCollection }}
         </div>
         <div class="text-sm font-medium truncate">
           {{ getValueLabel(lgpd.dataCollection) }}
