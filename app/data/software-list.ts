@@ -7,7 +7,7 @@ export const softwareList: Software[] = [
   {
     id: '1',
     name: 'Kahoot!',
-    logo: 'kahoot.svg',
+    logo: null,
     icon: 'i-simple-icons-kahoot',
     shortDescription: 'Plateforme de quiz interactifs pour évaluations formatives et gamification de l\'apprentissage en temps réel.',
     lgpd: {
@@ -35,7 +35,7 @@ export const softwareList: Software[] = [
   {
     id: '2',
     name: 'Padlet',
-    logo: 'padlet.svg',
+    logo: null,
     icon: 'i-simple-icons-padlet',
     shortDescription: 'Tableau blanc collaboratif pour brainstorming, collecte d\'idées et travaux de groupe asynchrones.',
     lgpd: {
@@ -62,7 +62,7 @@ export const softwareList: Software[] = [
   {
     id: '3',
     name: 'Canva',
-    logo: 'canva.svg',
+    logo: null,
     icon: 'i-simple-icons-canva',
     shortDescription: 'Outil de création graphique pour infographies, présentations et supports visuels professionnels.',
     lgpd: {
@@ -88,7 +88,7 @@ export const softwareList: Software[] = [
   {
     id: '4',
     name: 'H5P',
-    logo: 'h5p.svg',
+    logo: 'h5p',
     icon: null,
     shortDescription: 'Création de contenus interactifs intégrables dans Moodle : vidéos enrichies, quiz, présentations.',
     lgpd: {
@@ -115,7 +115,7 @@ export const softwareList: Software[] = [
   {
     id: '5',
     name: 'TikTok',
-    logo: 'tiktok.svg',
+    logo: null,
     icon: 'i-simple-icons-tiktok',
     shortDescription: 'Plateforme de partage vidéo. Hébergement hors-UE avec collecte extensive de données. Non conforme LGPD.',
     lgpd: {
@@ -141,7 +141,7 @@ export const softwareList: Software[] = [
   {
     id: '6',
     name: 'Moodle',
-    logo: 'moodle.svg',
+    logo: null,
     icon: 'i-simple-icons-moodle',
     shortDescription: 'Plateforme d\'apprentissage en ligne (LMS) open source. Hébergement CEJEF, données sécurisées localement.',
     lgpd: {
@@ -169,7 +169,7 @@ export const softwareList: Software[] = [
   {
     id: '7',
     name: 'Microsoft Teams',
-    logo: 'microsoftteams.svg',
+    logo: null,
     icon: 'i-simple-icons-microsoftteams',
     shortDescription: 'Plateforme de communication et collaboration pour classes virtuelles, réunions et travail d\'équipe.',
     lgpd: {
@@ -197,7 +197,7 @@ export const softwareList: Software[] = [
   {
     id: '8',
     name: 'Notion',
-    logo: 'notion.svg',
+    logo: null,
     icon: 'i-simple-icons-notion',
     shortDescription: 'Espace de travail tout-en-un pour notes, documentation, bases de données et gestion de projets collaboratifs.',
     lgpd: {
@@ -224,7 +224,7 @@ export const softwareList: Software[] = [
   {
     id: '9',
     name: 'Figma',
-    logo: 'figma.svg',
+    logo: null,
     icon: 'i-simple-icons-figma',
     shortDescription: 'Outil de design collaboratif pour maquettes, prototypes et interfaces utilisateur en temps réel.',
     lgpd: {
@@ -251,7 +251,7 @@ export const softwareList: Software[] = [
   {
     id: '10',
     name: 'Quizlet',
-    logo: 'quizlet.svg',
+    logo: null,
     icon: 'i-simple-icons-quizlet',
     shortDescription: 'Plateforme de cartes mémoire (flashcards) pour révisions et mémorisation active avec jeux éducatifs.',
     lgpd: {
@@ -277,7 +277,7 @@ export const softwareList: Software[] = [
   {
     id: '11',
     name: 'Genially',
-    logo: 'genially.svg',
+    logo: null,
     icon: null,
     shortDescription: 'Création de présentations interactives, infographies animées et contenus visuels engageants.',
     lgpd: {
@@ -304,7 +304,7 @@ export const softwareList: Software[] = [
   {
     id: '12',
     name: 'Wooclap',
-    logo: 'wooclap.svg',
+    logo: null,
     icon: null,
     shortDescription: 'Outil d\'interaction en classe pour sondages, quiz et questions en temps réel durant les cours.',
     lgpd: {
@@ -332,7 +332,7 @@ export const softwareList: Software[] = [
   {
     id: '13',
     name: 'Mentimeter',
-    logo: 'mentimeter.svg',
+    logo: null,
     icon: null,
     shortDescription: 'Présentations interactives avec sondages en direct, nuages de mots et quiz pour engager l\'audience.',
     lgpd: {
@@ -359,7 +359,7 @@ export const softwareList: Software[] = [
   {
     id: '14',
     name: 'Edpuzzle',
-    logo: 'edpuzzle.svg',
+    logo: null,
     icon: null,
     shortDescription: 'Enrichissement de vidéos avec questions intégrées pour l\'apprentissage actif et le suivi des élèves.',
     lgpd: {
@@ -387,7 +387,7 @@ export const softwareList: Software[] = [
   {
     id: '15',
     name: 'Google Workspace',
-    logo: 'googleworkspace.svg',
+    logo: null,
     icon: 'i-simple-icons-google',
     shortDescription: 'Suite bureautique collaborative : Docs, Sheets, Slides, Drive pour travail en ligne et partage.',
     lgpd: {
@@ -415,7 +415,7 @@ export const softwareList: Software[] = [
   {
     id: '16',
     name: 'Framapad',
-    logo: 'framapad.svg',
+    logo: null,
     icon: null,
     shortDescription: 'Éditeur de texte collaboratif en temps réel, open source, respectueux de la vie privée. Hébergement FR.',
     lgpd: {
@@ -442,7 +442,7 @@ export const softwareList: Software[] = [
   {
     id: '17',
     name: 'ChatGPT',
-    logo: 'chatgpt.svg',
+    logo: null,
     icon: 'i-simple-icons-openai',
     shortDescription: 'Assistant IA conversationnel pour aide à la rédaction, brainstorming et apprentissage personnalisé.',
     lgpd: {

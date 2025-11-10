@@ -7,10 +7,9 @@ export default defineNuxtConfig({
   // MODULES NUXT
   // ========================================
   // Modules = extensions qui ajoutent des fonctionnalités à Nuxt
-  modules: [
-    '@nuxt/eslint', // Vérification de la qualité du code (linting)
-    '@nuxt/ui' // Bibliothèque de composants UI pré-stylés
-  ],
+  modules: [// Vérification de la qualité du code (linting)
+    '@nuxt/eslint', // Bibliothèque de composants UI pré-stylés
+    '@nuxt/ui'],
 
   // ========================================
   // OUTILS DE DÉVELOPPEMENT

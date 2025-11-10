@@ -38,7 +38,7 @@ export function getCertificationLevel(lgpd?: LgpdClassification): CertificationL
 export interface Software {
   id: string
   name: string
-  logo: string
+  logo: string | null
   icon?: string | null
   shortDescription: string
 
