@@ -89,8 +89,7 @@ export const softwareList: Software[] = [
     id: '4',
     name: 'H5P',
     logo: 'h5p.svg',
-
-    icon: 'i-simple-icons-h5p',
+    icon: null,
     shortDescription: 'Création de contenus interactifs intégrables dans Moodle : vidéos enrichies, quiz, présentations.',
     lgpd: {
       hosting: 1,
@@ -199,7 +198,6 @@ export const softwareList: Software[] = [
     id: '8',
     name: 'Notion',
     logo: 'notion.svg',
-
     icon: 'i-simple-icons-notion',
     shortDescription: 'Espace de travail tout-en-un pour notes, documentation, bases de données et gestion de projets collaboratifs.',
     lgpd: {
@@ -280,7 +278,7 @@ export const softwareList: Software[] = [
     id: '11',
     name: 'Genially',
     logo: 'genially.svg',
-    icon: 'i-simple-icons-genially',
+    icon: null,
     shortDescription: 'Création de présentations interactives, infographies animées et contenus visuels engageants.',
     lgpd: {
       hosting: 1,
@@ -307,7 +305,7 @@ export const softwareList: Software[] = [
     id: '12',
     name: 'Wooclap',
     logo: 'wooclap.svg',
-    icon: 'i-simple-icons-wooclap',
+    icon: null,
     shortDescription: 'Outil d\'interaction en classe pour sondages, quiz et questions en temps réel durant les cours.',
     lgpd: {
       hosting: 1,
@@ -335,7 +333,7 @@ export const softwareList: Software[] = [
     id: '13',
     name: 'Mentimeter',
     logo: 'mentimeter.svg',
-    icon: 'i-simple-icons-mentimeter',
+    icon: null,
     shortDescription: 'Présentations interactives avec sondages en direct, nuages de mots et quiz pour engager l\'audience.',
     lgpd: {
       hosting: 1,
@@ -362,7 +360,7 @@ export const softwareList: Software[] = [
     id: '14',
     name: 'Edpuzzle',
     logo: 'edpuzzle.svg',
-    icon: 'i-simple-icons-edpuzzle',
+    icon: null,
     shortDescription: 'Enrichissement de vidéos avec questions intégrées pour l\'apprentissage actif et le suivi des élèves.',
     lgpd: {
       hosting: 2,
@@ -418,7 +416,7 @@ export const softwareList: Software[] = [
     id: '16',
     name: 'Framapad',
     logo: 'framapad.svg',
-    icon: 'i-simple-icons-etherpad',
+    icon: null,
     shortDescription: 'Éditeur de texte collaboratif en temps réel, open source, respectueux de la vie privée. Hébergement FR.',
     lgpd: {
       hosting: 1,

@@ -26,12 +26,9 @@ const handleClick = () => {
   >
     <template #header>
       <div class="flex items-start gap-3">
-        <div
-          v-if="software.icon"
-          class="flex-shrink-0"
-        >
+        <div class="flex-shrink-0">
           <UIcon
-            :name="software.icon"
+            :name="software.icon ?? 'i-simple-icons-appstore'"
             class="w-10 h-10 text-gray-700 dark:text-gray-300"
           />
         </div>

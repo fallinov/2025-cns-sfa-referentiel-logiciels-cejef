@@ -39,7 +39,7 @@ export interface Software {
   id: string
   name: string
   logo: string
-  icon?: string
+  icon?: string | null
   shortDescription: string
 
   lgpd: LgpdClassification

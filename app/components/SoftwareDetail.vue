@@ -63,8 +63,7 @@ const formatLanguages = (codes: string[]) => {
         <div class="space-y-4">
           <div class="flex items-center gap-4">
             <UIcon
-              v-if="selectedSoftware.icon"
-              :name="selectedSoftware.icon"
+              :name="selectedSoftware.icon ?? 'i-simple-icons-appstore'"
               class="w-16 h-16 text-gray-700 dark:text-gray-300 flex-shrink-0"
             />
             <div class="flex flex-wrap gap-2">
