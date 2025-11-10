@@ -1,4 +1,4 @@
-import type { Software } from '~/types/software'
+import type { Software } from '~~/types/software'
 import { softwareList } from '~/data/software-list'
 
 /**

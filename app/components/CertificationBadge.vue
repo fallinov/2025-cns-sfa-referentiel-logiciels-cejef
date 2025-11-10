@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { CertificationLevel } from '~/types/software'
+import type { CertificationLevel } from '~~/types/software'
 
 interface Props {
-  level: CertificationLevel
+  level?: CertificationLevel | null
   compact?: boolean
 }
 
@@ -11,7 +11,15 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 // Configuration par niveau de certification
-const certificationConfig = {
+const certificationConfig: Record<1 | 2 | 3, {
+  color: string
+  bgClass: string
+  textClass: string
+  iconClass: string
+  label: string
+  shortLabel: string
+  icon: string
+}> = {
   1: {
     color: 'green',
     bgClass: 'bg-green-100 dark:bg-green-900/30 border-green-500',
@@ -41,17 +49,19 @@ const certificationConfig = {
   }
 }
 
-const config = certificationConfig[props.level]
+// Si level est null/undefined, config sera null et rien ne sera rendu
+const config = props.level ? certificationConfig[props.level] : null
 </script>
 
 <template>
-  <UBadge
-    :class="config.bgClass + ' ' + config.textClass"
-    :icon="config.icon"
-    size="md"
-
-    variant="solid"
-  >
-    {{ compact ? config.shortLabel : config.label }}
-  </UBadge>
+  <template v-if="config">
+    <UBadge
+      :class="config.bgClass + ' ' + config.textClass"
+      :icon="config.icon"
+      size="md"
+      variant="solid"
+    >
+      {{ compact ? config.shortLabel : config.label }}
+    </UBadge>
+  </template>
 </template>

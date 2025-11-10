@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { Software } from '~/types/software'
-import { getCertificationLevel } from '~/types/software'
+import type { Software } from '~~/types/software'
+import { getCertificationLevel } from '~~/types/software'
 
 interface Props {
   software: Software
@@ -9,7 +9,8 @@ interface Props {
 const props = defineProps<Props>()
 const { openDetail } = useSoftware()
 
-const certificationLevel = getCertificationLevel(props.software.lgpd)
+// Utilise la valeur explicite si présente, sinon calcule à partir du LGPD
+const certificationLevel = props.software.certificationLevel ?? getCertificationLevel(props.software.lgpd)
 
 const handleClick = () => {
   openDetail(props.software)

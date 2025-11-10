@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { LgpdClassification } from '~/types/software'
+import type { LgpdClassification } from '~~/types/software'
 
 interface Props {
   lgpd: LgpdClassification

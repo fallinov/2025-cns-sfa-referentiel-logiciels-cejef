@@ -1,4 +1,4 @@
-import type { Software } from '~/types/software'
+import type { Software } from '~~/types/software'
 
 /**
  * Liste des logiciels pédagogiques du référentiel CEJEF

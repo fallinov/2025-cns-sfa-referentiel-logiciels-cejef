@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getCertificationLevel } from '~/types/software'
+import { getCertificationLevel } from '~~/types/software'
 
 const { selectedSoftware, isDetailOpen, closeDetail } = useSoftware()
 
