@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type {Software} from '~/types/software'
-import {getCertificationLevel} from '~/types/software'
+import type { Software } from '~/types/software'
+import { getCertificationLevel } from '~/types/software'
 
 interface Props {
   software: Software
 }
 
 const props = defineProps<Props>()
-const {openDetail} = useSoftware()
+const { openDetail } = useSoftware()
 
 const certificationLevel = getCertificationLevel(props.software.lgpd)
 
@@ -19,6 +19,7 @@ const handleClick = () => {
 <template>
   <UCard
     class="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full"
+    :ui="{ header: 'bg-amber-200' }"
     @click="handleClick"
   >
     <template #header>
@@ -69,7 +70,15 @@ const handleClick = () => {
         {{ software.shortDescription }}
       </p>
 
-      <ul class="flex flex-col gap-3 flex-1 mt-6 grow-0"><li class="flex items-center gap-2 min-w-0"><span class="iconify i-lucide:user size-5 shrink-0 text-primary" aria-hidden="true"></span><span class="text-muted text-sm truncate">One developer</span></li><li class="flex items-center gap-2 min-w-0"><span class="iconify i-lucide:infinity size-5 shrink-0 text-primary" aria-hidden="true"></span><span class="text-muted text-sm truncate">Unlimited projects</span></li><li class="flex items-center gap-2 min-w-0"><span class="iconify i-lucide:github size-5 shrink-0 text-primary" aria-hidden="true"></span><span class="text-muted text-sm truncate">Access to GitHub repository</span></li><li class="flex items-center gap-2 min-w-0"><span class="iconify i-lucide:refresh-cw size-5 shrink-0 text-primary" aria-hidden="true"></span><span class="text-muted text-sm truncate">Unlimited patch &amp; minor updates</span></li><li class="flex items-center gap-2 min-w-0"><span class="iconify i-lucide:clock size-5 shrink-0 text-primary" aria-hidden="true"></span><span class="text-muted text-sm truncate">Lifetime access</span></li></ul>
+      <ul class="flex flex-col gap-3 flex-1 mt-6 grow-0">
+        <li class="flex items-center gap-2 min-w-0">
+          <span
+            class="iconify i-lucide:lightbulb size-5 shrink-0"
+            aria-hidden="true"
+          />
+          <span class="text-muted text-sm truncate">One developer</span>
+        </li>
+      </ul>
     </div>
 
     <template #footer>

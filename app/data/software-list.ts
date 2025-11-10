@@ -29,7 +29,8 @@ export const softwareList: Software[] = [
     licenseType: 'Freemium',
     toolUrl: 'https://kahoot.com',
     integrations: ['Moodle', 'Teams'],
-    documentation: 'https://support.kahoot.com'
+    documentation: 'https://support.kahoot.com',
+    certificationLevel: 1
   },
   {
     id: '2',
@@ -55,7 +56,8 @@ export const softwareList: Software[] = [
     languages: ['fr', 'en'],
     licenseType: 'Freemium',
     toolUrl: 'https://padlet.com',
-    documentation: 'https://help.padlet.com'
+    documentation: 'https://help.padlet.com',
+    certificationLevel: 2
   },
   {
     id: '3',
@@ -80,7 +82,8 @@ export const softwareList: Software[] = [
     accountRequired: true,
     languages: ['fr', 'en', 'de'],
     licenseType: 'Freemium',
-    toolUrl: 'https://canva.com'
+    toolUrl: 'https://canva.com',
+    certificationLevel: 2
   },
   {
     id: '4',
@@ -107,7 +110,8 @@ export const softwareList: Software[] = [
     languages: ['fr', 'en'],
     licenseType: 'Open source',
     toolUrl: 'https://h5p.org',
-    integrations: ['Moodle']
+    integrations: ['Moodle'],
+    certificationLevel: 1
   },
   {
     id: '5',
@@ -132,7 +136,8 @@ export const softwareList: Software[] = [
     accountRequired: true,
     languages: ['fr', 'en'],
     licenseType: 'Gratuit',
-    toolUrl: 'https://tiktok.com'
+    toolUrl: 'https://tiktok.com',
+    certificationLevel: 3
   },
   {
     id: '6',
@@ -159,7 +164,8 @@ export const softwareList: Software[] = [
     licenseType: 'Open source',
     toolUrl: 'https://moodle.org',
     integrations: ['H5P', 'BigBlueButton'],
-    documentation: 'https://docs.moodle.org'
+    documentation: 'https://docs.moodle.org',
+    certificationLevel: 1
   },
   {
     id: '7',
@@ -186,7 +192,8 @@ export const softwareList: Software[] = [
     licenseType: 'Freemium',
     toolUrl: 'https://teams.microsoft.com',
     integrations: ['Office 365', 'OneDrive'],
-    documentation: 'https://support.microsoft.com/teams'
+    documentation: 'https://support.microsoft.com/teams',
+    certificationLevel: 1
   },
   {
     id: '8',
@@ -213,7 +220,8 @@ export const softwareList: Software[] = [
     languages: ['fr', 'en'],
     licenseType: 'Freemium',
     toolUrl: 'https://notion.so',
-    documentation: 'https://notion.so/help'
+    documentation: 'https://notion.so/help',
+    certificationLevel: 2
   },
   {
     id: '9',
@@ -239,7 +247,8 @@ export const softwareList: Software[] = [
     languages: ['en'],
     licenseType: 'Freemium',
     toolUrl: 'https://figma.com',
-    documentation: 'https://help.figma.com'
+    documentation: 'https://help.figma.com',
+    certificationLevel: 2
   },
   {
     id: '10',
@@ -264,7 +273,8 @@ export const softwareList: Software[] = [
     accountRequired: true,
     languages: ['fr', 'en', 'de'],
     licenseType: 'Freemium',
-    toolUrl: 'https://quizlet.com'
+    toolUrl: 'https://quizlet.com',
+    certificationLevel: 2
   },
   {
     id: '11',
@@ -290,7 +300,8 @@ export const softwareList: Software[] = [
     languages: ['fr', 'en', 'de'],
     licenseType: 'Freemium',
     toolUrl: 'https://genial.ly',
-    documentation: 'https://help.genial.ly'
+    documentation: 'https://help.genial.ly',
+    certificationLevel: 1
   },
   {
     id: '12',
@@ -317,7 +328,8 @@ export const softwareList: Software[] = [
     licenseType: 'Freemium',
     toolUrl: 'https://wooclap.com',
     integrations: ['Moodle', 'Teams', 'PowerPoint'],
-    documentation: 'https://wooclap.com/help'
+    documentation: 'https://wooclap.com/help',
+    certificationLevel: 1
   },
   {
     id: '13',
@@ -343,7 +355,8 @@ export const softwareList: Software[] = [
     languages: ['fr', 'en', 'de'],
     licenseType: 'Freemium',
     toolUrl: 'https://mentimeter.com',
-    documentation: 'https://help.mentimeter.com'
+    documentation: 'https://help.mentimeter.com',
+    certificationLevel: 1
   },
   {
     id: '14',
@@ -370,7 +383,8 @@ export const softwareList: Software[] = [
     licenseType: 'Freemium',
     toolUrl: 'https://edpuzzle.com',
     integrations: ['Google Classroom', 'Teams'],
-    documentation: 'https://support.edpuzzle.com'
+    documentation: 'https://support.edpuzzle.com',
+    certificationLevel: 2
   },
   {
     id: '15',
@@ -397,7 +411,8 @@ export const softwareList: Software[] = [
     licenseType: 'Freemium',
     toolUrl: 'https://workspace.google.com',
     integrations: ['Classroom', 'Meet'],
-    documentation: 'https://support.google.com/workspace'
+    documentation: 'https://support.google.com/workspace',
+    certificationLevel: 3
   },
   {
     id: '16',
@@ -423,7 +438,8 @@ export const softwareList: Software[] = [
     languages: ['fr', 'en'],
     licenseType: 'Open source',
     toolUrl: 'https://framapad.org',
-    documentation: 'https://framapad.org/abc/fr/'
+    documentation: 'https://framapad.org/abc/fr/',
+    certificationLevel: 1
   },
   {
     id: '17',
@@ -449,6 +465,7 @@ export const softwareList: Software[] = [
     languages: ['fr', 'en', 'de'],
     licenseType: 'Freemium',
     toolUrl: 'https://chat.openai.com',
-    documentation: 'https://help.openai.com'
+    documentation: 'https://help.openai.com',
+    certificationLevel: 3
   }
 ]
