@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { CertificationLevel } from '~~/types/software'
+import { getLevelColorName, getLevelBorderColor } from '~/utils/level-colors'
 
 interface Props {
   level?: CertificationLevel | null
@@ -12,37 +13,21 @@ const props = withDefaults(defineProps<Props>(), {
 
 // Configuration par niveau de certification
 const certificationConfig: Record<1 | 2 | 3, {
-  color: string
-  bgClass: string
-  textClass: string
-  iconClass: string
   label: string
   shortLabel: string
   icon: string
 }> = {
   1: {
-    color: 'green',
-    bgClass: 'bg-green-100 dark:bg-green-900/30 border-green-500',
-    textClass: 'text-green-700 dark:text-green-300',
-    iconClass: 'text-green-600 dark:text-green-400',
     label: 'Logiciel certifié et validé, compatible CEJEF',
     shortLabel: 'Certifié CEJEF',
     icon: 'i-lucide-circle-check-big'
   },
   2: {
-    color: 'orange',
-    bgClass: 'bg-orange-100 dark:bg-orange-900/30 border-orange-500',
-    textClass: 'text-orange-700 dark:text-orange-300',
-    iconClass: 'text-orange-600 dark:text-orange-400',
     label: 'Attention : les apprentis ne peuvent pas entrer de données personnelles (création de compte, nom, prénom)',
     shortLabel: 'Attention',
     icon: 'i-lucide-triangle-alert'
   },
   3: {
-    color: 'red',
-    bgClass: 'bg-red-100 dark:bg-red-900/30 border-red-500',
-    textClass: 'text-red-700 dark:text-red-300',
-    iconClass: 'text-red-600 dark:text-red-400',
     label: 'CEJEF interdit l\'utilisation de ce logiciel avec les élèves',
     shortLabel: 'Interdit',
     icon: 'i-lucide-circle-x'
@@ -51,15 +36,18 @@ const certificationConfig: Record<1 | 2 | 3, {
 
 // Si level est null/undefined, config sera null et rien ne sera rendu
 const config = props.level ? certificationConfig[props.level] : null
+const color = props.level ? getLevelColorName(props.level) : undefined
+const borderClass = props.level ? getLevelBorderColor(props.level) : ''
 </script>
 
 <template>
-  <template v-if="config">
+  <template v-if="config && color">
     <UBadge
-      :class="config.bgClass + ' ' + config.textClass"
+      :color="color"
+      :class="borderClass"
       :icon="config.icon"
       size="md"
-      variant="solid"
+      variant="soft"
     >
       {{ compact ? config.shortLabel : config.label }}
     </UBadge>

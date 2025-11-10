@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Software } from '~~/types/software'
 import { getCertificationLevel } from '~~/types/software'
+import { getLevelBgColor } from '~/utils/level-colors'
 
 interface Props {
   software: Software
@@ -20,7 +21,7 @@ const handleClick = () => {
 <template>
   <UCard
     class="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full"
-    :ui="{ header: 'bg-amber-200' }"
+    :ui="{ header: getLevelBgColor(certificationLevel) }"
     @click="handleClick"
   >
     <template #header>
