@@ -4,12 +4,12 @@ const softwareList = getSoftwareList()
 
 // Search and filter functionality
 const searchQuery = ref('')
-const selectedCategory = ref<string | null>(null)
+const selectedCategory = ref<string>('')
 
 // Get unique categories for filtering
 const categories = computed(() => {
-  const cats = new Set(softwareList.map(s => s.category))
-  return Array.from(cats).sort()
+  const cats = Array.from(new Set(softwareList.map(s => s.category))).sort()
+  return ['Toutes les catégories', ...cats]
 })
 
 // Filtered software list based on search and category
@@ -28,7 +28,7 @@ const filteredSoftwareList = computed(() => {
   }
 
   // Filter by category
-  if (selectedCategory.value) {
+  if (selectedCategory.value && selectedCategory.value !== 'Toutes les catégories') {
     filtered = filtered.filter(software => software.category === selectedCategory.value)
   }
 
@@ -38,7 +38,7 @@ const filteredSoftwareList = computed(() => {
 // Clear all filters
 const clearFilters = () => {
   searchQuery.value = ''
-  selectedCategory.value = null
+  selectedCategory.value = 'Toutes les catégories'
 }
 
 useSeoMeta({
@@ -121,8 +121,7 @@ useSeoMeta({
           <!-- Category Filter -->
           <USelectMenu
             v-model="selectedCategory"
-            :options="[null, ...categories]"
-            placeholder="Toutes les catégories"
+            :options="categories"
             size="lg"
             class="w-full sm:w-64"
           >
@@ -137,7 +136,7 @@ useSeoMeta({
 
         <!-- Results info and clear filters -->
         <div
-          v-if="searchQuery || selectedCategory"
+          v-if="searchQuery || (selectedCategory && selectedCategory !== 'Toutes les catégories')"
           class="flex items-center justify-between text-sm"
         >
           <p class="text-gray-600 dark:text-gray-400">

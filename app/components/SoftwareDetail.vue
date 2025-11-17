@@ -3,20 +3,10 @@ import { getCertificationLevel } from '~~/types/software'
 
 const { selectedSoftware, isDetailOpen, closeDetail } = useSoftware()
 
-// Créer une ref locale pour le v-model:open du USlideover
-const isOpen = ref(false)
-
-// Synchroniser isOpen avec isDetailOpen (quand ouvert programmatiquement)
-watch(isDetailOpen, (newVal) => {
-  isOpen.value = newVal
-})
-
-// Quand isOpen change (fermé par l'utilisateur via overlay ou ESC)
-watch(isOpen, (newVal) => {
-  if (!newVal && isDetailOpen.value) {
-    closeDetail()
-  }
-})
+// Gérer la fermeture du slideover
+const handleClose = () => {
+  closeDetail()
+}
 
 // Calcul du niveau de certification
 const certificationLevel = computed(() =>
@@ -49,10 +39,11 @@ const formatLanguages = (codes: string[]) => {
 
 <template>
   <USlideover
-    v-model:open="isOpen"
+    v-model:open="isDetailOpen"
     side="right"
     :title="selectedSoftware?.name || 'Détails du logiciel'"
     description="Informations détaillées sur le logiciel sélectionné"
+    @close="handleClose"
   >
     <template #body>
       <div
