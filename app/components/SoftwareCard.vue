@@ -20,9 +20,14 @@ const handleClick = () => {
 
 <template>
   <UCard
-    class="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full"
+    role="button"
+    tabindex="0"
+    class="software-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full focus-visible:ring-2 focus-visible:ring-violet-600 focus-visible:ring-offset-2 min-h-[88px] sm:min-h-0"
     :ui="{ header: getLevelBgColor(certificationLevel) }"
+    :aria-label="`Voir les détails de ${software.name}`"
     @click="handleClick"
+    @keydown.enter="handleClick"
+    @keydown.space.prevent="handleClick"
   >
     <template #header>
       <div class="flex items-start gap-3">
@@ -33,7 +38,7 @@ const handleClick = () => {
           />
         </div>
         <div class="flex-1 min-w-0">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white truncate">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white truncate">
             {{ software.name }}
           </h3>
           <div class="flex flex-wrap gap-1 mt-1">
@@ -65,19 +70,9 @@ const handleClick = () => {
 
     <div class="space-y-3">
       <!-- Description -->
-      <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+      <p class="text-sm text-gray-700 dark:text-gray-300 line-clamp-2">
         {{ software.shortDescription }}
       </p>
-
-      <ul class="flex flex-col gap-3 flex-1 mt-6 grow-0">
-        <li class="flex items-center gap-2 min-w-0">
-          <span
-            class="iconify i-lucide:lightbulb size-5 shrink-0"
-            aria-hidden="true"
-          />
-          <span class="text-muted text-sm truncate">One developer</span>
-        </li>
-      </ul>
     </div>
 
     <template #footer>
@@ -88,7 +83,7 @@ const handleClick = () => {
         >
           {{ software.cost }}
         </UBadge>
-        <span class="text-xs text-gray-500 dark:text-gray-400">
+        <span class="text-xs text-gray-700 dark:text-gray-300 font-medium">
           {{ software.category }}
         </span>
       </div>
