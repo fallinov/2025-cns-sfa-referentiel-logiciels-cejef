@@ -53,6 +53,7 @@ const formatLanguages = (codes: string[]) => {
     side="right"
     :title="selectedSoftware?.name || 'Détails du logiciel'"
     description="Informations détaillées sur le logiciel sélectionné"
+    class="software-detail-slideover"
   >
     <template #body>
       <div
