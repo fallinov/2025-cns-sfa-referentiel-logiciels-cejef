@@ -151,32 +151,3 @@ h3,
     font-size: 2rem; /* 32px on larger screens */
   }
 }
-
-/* ========================================
-   SLIDEOVER / DRAWER CUSTOMIZATION
-   ========================================
-   Adjusts the width of the software detail slideover
-*/
-
-/* Target the slideover content wrapper */
-.software-detail-slideover [role="dialog"] {
-  max-width: 100%;
-}
-
-@media (min-width: 640px) {
-  .software-detail-slideover [role="dialog"] {
-    max-width: 28rem; /* 448px - md */
-  }
-}
-
-@media (min-width: 768px) {
-  .software-detail-slideover [role="dialog"] {
-    max-width: 32rem; /* 512px - lg */
-  }
-}
-
-@media (min-width: 1024px) {
-  .software-detail-slideover [role="dialog"] {
-    max-width: 36rem; /* 576px - xl */
-  }
-}
