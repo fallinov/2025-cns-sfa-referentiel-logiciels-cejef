@@ -440,7 +440,7 @@ useSeoMeta({
         <div class="flex flex-col sm:flex-row gap-3">
           <UBadge
             color="red"
-            variant="soft"
+            variant="solid"
             size="lg"
             class="justify-center sm:justify-start"
           >
@@ -451,7 +451,7 @@ useSeoMeta({
           </UBadge>
           <UBadge
             color="green"
-            variant="soft"
+            variant="solid"
             size="lg"
             class="justify-center sm:justify-start"
           >
