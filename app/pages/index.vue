@@ -511,27 +511,31 @@ useSeoMeta({
               Réinitialiser
             </UButton>
           </div>
-          <div class="flex flex-wrap gap-2.5">
-            <UButton
-              v-for="filter in popularFilters"
-              :key="filter.id"
-              :color="
-                selectedPopularFilters.includes(filter.id)
-                  ? 'primary'
-                  : 'neutral'
-              "
-              :variant="
-                selectedPopularFilters.includes(filter.id) ? 'solid' : 'soft'
-              "
-              :icon="filter.icon"
-              :aria-pressed="selectedPopularFilters.includes(filter.id)"
-              size="md"
-              class="rounded-full !min-h-[48px] px-5 py-3"
-              role="button"
-              @click="togglePopularFilter(filter.id)"
+          <div class="relative -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div
+              class="flex gap-2.5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2 scroll-smooth"
             >
-              {{ filter.label }}
-            </UButton>
+              <UButton
+                v-for="filter in popularFilters"
+                :key="filter.id"
+                :color="
+                  selectedPopularFilters.includes(filter.id)
+                    ? 'primary'
+                    : 'neutral'
+                "
+                :variant="
+                  selectedPopularFilters.includes(filter.id) ? 'solid' : 'soft'
+                "
+                :icon="filter.icon"
+                :aria-pressed="selectedPopularFilters.includes(filter.id)"
+                size="md"
+                class="rounded-full !min-h-[48px] px-5 py-3 shrink-0 snap-start"
+                role="button"
+                @click="togglePopularFilter(filter.id)"
+              >
+                {{ filter.label }}
+              </UButton>
+            </div>
           </div>
         </div>
 
