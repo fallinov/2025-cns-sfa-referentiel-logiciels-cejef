@@ -48,35 +48,17 @@ const formatLanguages = (codes: string[]) => {
 </script>
 
 <template>
-  <UDrawer
+  <USlideover
     v-model:open="isOpen"
-    direction="right"
+    side="right"
+    :title="selectedSoftware?.name || 'Détails du logiciel'"
+    description="Informations détaillées sur le logiciel sélectionné"
   >
-    <template #content>
+    <template #body>
       <div
         v-if="selectedSoftware"
-        class="min-w-96 size-full p-6 overflow-y-auto"
+        class="space-y-6"
       >
-        <!-- Header -->
-        <div class="mb-6">
-          <div class="flex items-start justify-between mb-2">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
-              {{ selectedSoftware.name }}
-            </h2>
-            <UButton
-              color="neutral"
-              variant="ghost"
-              icon="i-lucide-x"
-              :padded="false"
-              @click="closeDetail"
-            />
-          </div>
-          <p class="text-sm text-gray-600 dark:text-gray-400">
-            Informations détaillées sur le logiciel sélectionné
-          </p>
-        </div>
-
-        <div class="space-y-6">
           <!-- Section 1 : Identification -->
           <div class="space-y-4">
             <div class="flex items-center gap-4">
@@ -438,8 +420,7 @@ const formatLanguages = (codes: string[]) => {
               Accéder à l'outil
             </UButton>
           </div>
-        </div>
       </div>
     </template>
-  </UDrawer>
+  </USlideover>
 </template>
