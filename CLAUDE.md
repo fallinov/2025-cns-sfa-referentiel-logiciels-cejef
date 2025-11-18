@@ -36,8 +36,18 @@ git push origin v1.0.0
 
 ### Tech Stack
 - **Nuxt 4** with Vue 3 (TypeScript)
-- **Nuxt UI** (Tailwind CSS-based component library)
+- **Nuxt UI v4.1.0** (Tailwind CSS-based component library)
 - **Static Site Generation (SSG)** - no backend required
+
+**CRITICAL: Nuxt UI Component Usage**
+- Always verify component APIs against the official Nuxt UI v4.1.0 documentation at https://ui.nuxt.com
+- NEVER use deprecated or non-existent components from older versions
+- When in doubt about a component's API (props, slots, events), consult the documentation first
+- Common mistakes to avoid:
+  - Using `UDrawer` (doesn't exist, use `USlideover` instead)
+  - Using `UDivider` (doesn't exist, use `USeparator` instead)
+  - Using wrong prop names (e.g., `direction` instead of `side` for USlideover)
+  - Using wrong slot names (e.g., `#content` instead of `#body` for USlideover)
 
 ### Data Architecture
 
@@ -124,10 +134,16 @@ To modify a classification, update the `lgpd` object in `app/data/software-list.
 
 All components use Nuxt UI components (prefixed with `U`) which are Tailwind CSS-based.
 
-**Important Nuxt UI component notes**:
-- Use `USlideover` for side panels (not `UDrawer` which doesn't exist)
-- Use `USeparator` for dividers (not `UDivider` which doesn't exist)
-- `USlideover` uses `v-model:open` (not `v-model`) and `side` prop (not `direction`)
+**Important Nuxt UI v4.1.0 component notes**:
+- **ALWAYS** check https://ui.nuxt.com before using any component
+- Use `USlideover` for side panels (not `UDrawer` which doesn't exist in v4.1.0)
+- Use `USeparator` for dividers (not `UDivider` which doesn't exist in v4.1.0)
+- `USlideover` API:
+  - Uses `v-model:open` binding (not just `v-model`)
+  - Uses `side` prop with values: `'left' | 'right'` (not `direction`)
+  - Uses `#body` slot for content (not `#content`)
+  - Supports `title` and `description` props for the header
+  - Automatically handles overlay, ESC key, and close button
 
 ### ESLint Configuration
 
@@ -143,4 +159,5 @@ Run `npm run lint` before committing.
 - **Redeployment required**: Any data changes require regeneration and redeployment.
 - **Base URL handling**: When working on routing or assets, be aware of the dynamic `baseURL` for GitHub Pages.
 - **TypeScript strict mode**: All software objects must match the `Software` interface exactly.
-- **Component library**: Use Nuxt UI components (see https://ui.nuxt.com) instead of creating custom components when possible.
+- **Component library**: Use Nuxt UI v4.1.0 components (see https://ui.nuxt.com) instead of creating custom components when possible.
+- **⚠️ CRITICAL - Component API Verification**: Before implementing or modifying any Nuxt UI component, ALWAYS verify its API in the official documentation at https://ui.nuxt.com. Component APIs may change between versions, and using outdated or incorrect APIs will cause runtime errors.
