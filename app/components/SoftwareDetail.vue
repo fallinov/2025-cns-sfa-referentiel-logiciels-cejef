@@ -53,12 +53,11 @@ const formatLanguages = (codes: string[]) => {
     side="right"
     :title="selectedSoftware?.name || 'Détails du logiciel'"
     description="Informations détaillées sur le logiciel sélectionné"
-    :ui="{ content: 'w-full sm:max-w-md md:max-w-lg lg:max-w-xl' }"
   >
     <template #body>
       <div
         v-if="selectedSoftware"
-        class="space-y-6"
+        class="min-w-96 space-y-6"
       >
           <!-- Section 1 : Identification -->
           <div class="space-y-4">
