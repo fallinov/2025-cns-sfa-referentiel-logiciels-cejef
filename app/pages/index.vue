@@ -550,9 +550,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              color="gray"
+              color="neutral"
+              highlight
               placeholder="Catégories"
-              class="select-menu-filter"
             />
             <USelectMenu
               v-model="selectedDisciplines"
@@ -560,9 +560,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              color="gray"
+              color="neutral"
+              highlight
               placeholder="Disciplines"
-              class="select-menu-filter"
             />
             <USelectMenu
               v-model="selectedActivities"
@@ -570,9 +570,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              color="gray"
+              color="neutral"
+              highlight
               placeholder="Activités pédagogiques"
-              class="select-menu-filter"
             />
             <USelectMenu
               v-model="selectedPlatforms"
@@ -580,9 +580,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              color="gray"
+              color="neutral"
+              highlight
               placeholder="Plateformes"
-              class="select-menu-filter"
             />
             <USelectMenu
               v-model="selectedCosts"
@@ -590,9 +590,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              color="gray"
+              color="neutral"
+              highlight
               placeholder="Coût"
-              class="select-menu-filter"
             />
             <USelectMenu
               v-model="selectedCertifications"
@@ -600,9 +600,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              color="gray"
+              color="neutral"
+              highlight
               placeholder="Certification LGPD"
-              class="select-menu-filter"
             />
           </div>
         </div>

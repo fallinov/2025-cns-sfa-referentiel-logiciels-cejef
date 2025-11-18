@@ -80,20 +80,4 @@ useSeoMeta({
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
 }
-
-/* Filter select menus - high contrast and proper height */
-.select-menu-filter :deep(button) {
-  min-height: 48px !important;
-  padding-top: 0.75rem !important;
-  padding-bottom: 0.75rem !important;
-  border-width: 2px !important;
-  border-color: rgb(17 24 39) !important; /* gray-900 */
-  color: rgb(17 24 39) !important; /* gray-900 */
-  font-weight: 500 !important;
-}
-
-.dark .select-menu-filter :deep(button) {
-  border-color: rgb(243 244 246) !important; /* gray-100 */
-  color: rgb(243 244 246) !important; /* gray-100 */
-}
 </style>
