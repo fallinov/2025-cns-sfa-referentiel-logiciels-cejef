@@ -43,11 +43,13 @@ git push origin v1.0.0
 - Always verify component APIs against the official Nuxt UI v4.1.0 documentation at https://ui.nuxt.com
 - NEVER use deprecated or non-existent components from older versions
 - When in doubt about a component's API (props, slots, events), consult the documentation first
+- **BOTH USlideover and UDrawer exist** in v4.1.0 - choose based on use case:
+  - **USlideover**: Dialog overlay panels (forms, details, editing) - Desktop/Modal focused
+  - **UDrawer**: Mobile-optimized panels with gestures and handles - Touch/Mobile focused
 - Common mistakes to avoid:
-  - Using `USlideover` (deprecated in v4, use `UDrawer` instead)
   - Using `UDivider` (doesn't exist, use `USeparator` instead)
-  - Using wrong prop names (e.g., `side` instead of `direction` for UDrawer)
-  - Using wrong slot names - always check documentation for each component
+  - Using wrong prop names - check documentation for each component
+  - Using wrong slot names - USlideover uses `#body`, UDrawer uses `#content`
 
 ### Data Architecture
 
@@ -80,7 +82,7 @@ app.vue (root layout with UHeader/UMain/UFooter)
 
 **Key components**:
 - `SoftwareCard.vue` - displays software in a grid with LGPD icons
-- `SoftwareDetail.vue` - drawer (side panel) with full software details using UDrawer
+- `SoftwareDetail.vue` - slideover (side panel) with full software details using USlideover
 - `LgpdIcons.vue` - reusable LGPD classification indicators (receives `lgpd` prop and `showLabels` prop for compact/detailed display)
 
 ### Deployment Strategy
@@ -127,7 +129,7 @@ To modify a classification, update the `lgpd` object in `app/data/software-list.
 ### Modifying UI Components
 
 - **Card appearance**: Edit `app/components/SoftwareCard.vue`
-- **Drawer/detail view**: Edit `app/components/SoftwareDetail.vue` (uses `UDrawer` with `v-model:open`, `direction="right"`, and `inset`)
+- **Slideover/detail view**: Edit `app/components/SoftwareDetail.vue` (uses `USlideover` with `v-model:open`, `side="right"`)
 - **LGPD icons**: Edit `app/components/LgpdIcons.vue`
 - **Homepage layout**: Edit `app/pages/index.vue`
 - **Global layout**: Edit `app/app.vue`
@@ -136,15 +138,23 @@ All components use Nuxt UI components (prefixed with `U`) which are Tailwind CSS
 
 **Important Nuxt UI v4.1.0 component notes**:
 - **ALWAYS** check https://ui.nuxt.com before using any component
-- Use `UDrawer` for side panels (not `USlideover` which is deprecated in v4.1.0)
 - Use `USeparator` for dividers (not `UDivider` which doesn't exist in v4.1.0)
-- `UDrawer` API:
+- **USlideover vs UDrawer** - Both exist in v4.1.0, choose wisely:
+  - **USlideover**: For dialog overlays, forms, details - Built on Reka UI Dialog
+  - **UDrawer**: For mobile menus, touch gestures, swipe panels
+- `USlideover` API (used in this project):
   - Uses `v-model:open` binding (not just `v-model`)
-  - Uses `direction` prop with values: `'left' | 'right' | 'top' | 'bottom'` (not `side`)
-  - Uses `#content` slot for the panel content
-  - Use `inset` prop for proper spacing with app layout
-  - Content width controlled via CSS classes (e.g., `class="min-w-96 size-full p-6"`)
+  - Uses `side` prop with values: `'left' | 'right' | 'top' | 'bottom'`
+  - Uses `#body` slot for the main content (also has `#header` and `#footer`)
+  - Supports `title` and `description` props for automatic header
+  - Width controlled via `:ui="{ content: 'w-full sm:max-w-lg' }"`
   - Automatically handles overlay, ESC key, and close button
+- `UDrawer` API (alternative for mobile-first):
+  - Uses `v-model:open` binding
+  - Uses `direction` prop (not `side`)
+  - Uses `#content` slot (not `#body`)
+  - Has `handle` prop for drag handle
+  - Best for bottom sheets and mobile navigation
 
 ### ESLint Configuration
 

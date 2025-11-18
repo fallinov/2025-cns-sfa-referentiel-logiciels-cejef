@@ -46,7 +46,7 @@ useSeoMeta({
       </template>
     </UHeader>
 
-    <UMain>
+    <UMain class="bg-default" data-vaul-drawer-wrapper>
       <NuxtPage />
     </UMain>
 
