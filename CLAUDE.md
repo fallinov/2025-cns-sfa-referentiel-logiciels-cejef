@@ -36,8 +36,20 @@ git push origin v1.0.0
 
 ### Tech Stack
 - **Nuxt 4** with Vue 3 (TypeScript)
-- **Nuxt UI** (Tailwind CSS-based component library)
+- **Nuxt UI v4.1.0** (Tailwind CSS-based component library)
 - **Static Site Generation (SSG)** - no backend required
+
+**CRITICAL: Nuxt UI Component Usage**
+- Always verify component APIs against the official Nuxt UI v4.1.0 documentation at https://ui.nuxt.com
+- NEVER use deprecated or non-existent components from older versions
+- When in doubt about a component's API (props, slots, events), consult the documentation first
+- **BOTH USlideover and UDrawer exist** in v4.1.0 - choose based on use case:
+  - **USlideover**: Dialog overlay panels (forms, details, editing) - Desktop/Modal focused
+  - **UDrawer**: Mobile-optimized panels with gestures and handles - Touch/Mobile focused
+- Common mistakes to avoid:
+  - Using `UDivider` (doesn't exist, use `USeparator` instead)
+  - Using wrong prop names - check documentation for each component
+  - Using wrong slot names - USlideover uses `#body`, UDrawer uses `#content`
 
 ### Data Architecture
 
@@ -117,17 +129,32 @@ To modify a classification, update the `lgpd` object in `app/data/software-list.
 ### Modifying UI Components
 
 - **Card appearance**: Edit `app/components/SoftwareCard.vue`
-- **Slideover/detail view**: Edit `app/components/SoftwareDetail.vue` (uses `USlideover` with `v-model:open` and `side="right"`)
+- **Slideover/detail view**: Edit `app/components/SoftwareDetail.vue` (uses `USlideover` with `v-model:open`, `side="right"`)
 - **LGPD icons**: Edit `app/components/LgpdIcons.vue`
 - **Homepage layout**: Edit `app/pages/index.vue`
 - **Global layout**: Edit `app/app.vue`
 
 All components use Nuxt UI components (prefixed with `U`) which are Tailwind CSS-based.
 
-**Important Nuxt UI component notes**:
-- Use `USlideover` for side panels (not `UDrawer` which doesn't exist)
-- Use `USeparator` for dividers (not `UDivider` which doesn't exist)
-- `USlideover` uses `v-model:open` (not `v-model`) and `side` prop (not `direction`)
+**Important Nuxt UI v4.1.0 component notes**:
+- **ALWAYS** check https://ui.nuxt.com before using any component
+- Use `USeparator` for dividers (not `UDivider` which doesn't exist in v4.1.0)
+- **USlideover vs UDrawer** - Both exist in v4.1.0, choose wisely:
+  - **USlideover**: For dialog overlays, forms, details - Built on Reka UI Dialog
+  - **UDrawer**: For mobile menus, touch gestures, swipe panels
+- `USlideover` API (used in this project):
+  - Uses `v-model:open` binding (not just `v-model`)
+  - Uses `side` prop with values: `'left' | 'right' | 'top' | 'bottom'`
+  - Uses `#body` slot for the main content (also has `#header` and `#footer`)
+  - Supports `title` and `description` props for automatic header
+  - Width controlled via `:ui="{ content: 'w-full sm:max-w-lg' }"`
+  - Automatically handles overlay, ESC key, and close button
+- `UDrawer` API (alternative for mobile-first):
+  - Uses `v-model:open` binding
+  - Uses `direction` prop (not `side`)
+  - Uses `#content` slot (not `#body`)
+  - Has `handle` prop for drag handle
+  - Best for bottom sheets and mobile navigation
 
 ### Code Style and Linting
 
@@ -269,4 +296,5 @@ See `.eslintrc.md` for complete ESLint rules documentation.
 - **Redeployment required**: Any data changes require regeneration and redeployment.
 - **Base URL handling**: When working on routing or assets, be aware of the dynamic `baseURL` for GitHub Pages.
 - **TypeScript strict mode**: All software objects must match the `Software` interface exactly.
-- **Component library**: Use Nuxt UI components (see https://ui.nuxt.com) instead of creating custom components when possible.
+- **Component library**: Use Nuxt UI v4.1.0 components (see https://ui.nuxt.com) instead of creating custom components when possible.
+- **⚠️ CRITICAL - Component API Verification**: Before implementing or modifying any Nuxt UI component, ALWAYS verify its API in the official documentation at https://ui.nuxt.com. Component APIs may change between versions, and using outdated or incorrect APIs will cause runtime errors.
