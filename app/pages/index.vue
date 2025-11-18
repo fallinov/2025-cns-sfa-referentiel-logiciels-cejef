@@ -550,9 +550,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              variant="outline"
+              color="gray"
               placeholder="Catégories"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
+              class="select-menu-filter"
             />
             <USelectMenu
               v-model="selectedDisciplines"
@@ -560,9 +560,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              variant="outline"
+              color="gray"
               placeholder="Disciplines"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
+              class="select-menu-filter"
             />
             <USelectMenu
               v-model="selectedActivities"
@@ -570,9 +570,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              variant="outline"
+              color="gray"
               placeholder="Activités pédagogiques"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
+              class="select-menu-filter"
             />
             <USelectMenu
               v-model="selectedPlatforms"
@@ -580,9 +580,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              variant="outline"
+              color="gray"
               placeholder="Plateformes"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
+              class="select-menu-filter"
             />
             <USelectMenu
               v-model="selectedCosts"
@@ -590,9 +590,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              variant="outline"
+              color="gray"
               placeholder="Coût"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
+              class="select-menu-filter"
             />
             <USelectMenu
               v-model="selectedCertifications"
@@ -600,9 +600,9 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
-              variant="outline"
+              color="gray"
               placeholder="Certification LGPD"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
+              class="select-menu-filter"
             />
           </div>
         </div>
