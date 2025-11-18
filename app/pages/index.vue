@@ -439,7 +439,7 @@ useSeoMeta({
       <template #links>
         <div class="flex flex-col sm:flex-row gap-3">
           <UBadge
-            color="red"
+            color="primary"
             variant="soft"
             size="lg"
             class="justify-center sm:justify-start"
@@ -450,7 +450,7 @@ useSeoMeta({
             {{ softwareList.length }} logiciels disponibles
           </UBadge>
           <UBadge
-            color="green"
+            color="success"
             variant="soft"
             size="lg"
             class="justify-center sm:justify-start"
