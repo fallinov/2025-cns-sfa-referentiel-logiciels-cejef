@@ -146,7 +146,7 @@ export const activities: Activity[] = [
     name: "Documentation",
     description: "Création et consultation de ressources de référence",
     icon: "i-heroicons-document-duplicate",
-    color: "sky",
+    color: "primary",
     taxonomyLevel: "Comprendre"
   },
   {
