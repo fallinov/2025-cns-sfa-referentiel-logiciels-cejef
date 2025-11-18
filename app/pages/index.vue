@@ -552,7 +552,7 @@ useSeoMeta({
               size="xl"
               variant="outline"
               placeholder="Catégories"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
             />
             <USelectMenu
               v-model="selectedDisciplines"
@@ -562,7 +562,7 @@ useSeoMeta({
               size="xl"
               variant="outline"
               placeholder="Disciplines"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
             />
             <USelectMenu
               v-model="selectedActivities"
@@ -572,7 +572,7 @@ useSeoMeta({
               size="xl"
               variant="outline"
               placeholder="Activités pédagogiques"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
             />
             <USelectMenu
               v-model="selectedPlatforms"
@@ -582,7 +582,7 @@ useSeoMeta({
               size="xl"
               variant="outline"
               placeholder="Plateformes"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
             />
             <USelectMenu
               v-model="selectedCosts"
@@ -592,7 +592,7 @@ useSeoMeta({
               size="xl"
               variant="outline"
               placeholder="Coût"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
             />
             <USelectMenu
               v-model="selectedCertifications"
@@ -602,7 +602,7 @@ useSeoMeta({
               size="xl"
               variant="outline"
               placeholder="Certification LGPD"
-              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3 [&_button]:!border-gray-900 [&_button]:!text-gray-900 dark:[&_button]:!border-gray-100 dark:[&_button]:!text-gray-100"
             />
           </div>
         </div>
