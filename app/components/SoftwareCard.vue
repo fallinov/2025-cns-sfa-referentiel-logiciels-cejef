@@ -36,21 +36,21 @@ const handleClick = () => {
         <div class="shrink-0">
           <UIcon
             :name="software.icon ?? 'i-simple-icons-appstore'"
-            class="w-10 h-10 text-gray-700 dark:text-gray-300"
+            class="w-12 h-12 text-gray-700 dark:text-gray-300"
           />
         </div>
         <div class="flex-1 min-w-0">
           <h3
-            class="text-xl font-semibold text-gray-900 dark:text-white truncate"
+            class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white truncate"
           >
             {{ software.name }}
           </h3>
-          <div class="flex flex-wrap gap-1 mt-1">
+          <div class="flex flex-wrap gap-1.5 mt-2">
             <UBadge
               v-if="software.supportedByCEJEF"
               color="success"
               variant="soft"
-              size="xs"
+              size="sm"
             >
               CEJEF
             </UBadge>
@@ -58,7 +58,7 @@ const handleClick = () => {
               v-if="software.campusTraining"
               color="info"
               variant="soft"
-              size="xs"
+              size="sm"
             >
               Formation Campus
             </UBadge>
@@ -71,7 +71,7 @@ const handleClick = () => {
 
     <div class="space-y-3">
       <!-- Description -->
-      <p class="text-sm text-gray-700 dark:text-gray-300 line-clamp-2">
+      <p class="text-base text-gray-700 dark:text-gray-300 line-clamp-2">
         {{ software.shortDescription }}
       </p>
     </div>
@@ -87,10 +87,11 @@ const handleClick = () => {
                 : 'warning'
           "
           variant="soft"
+          size="sm"
         >
           {{ software.cost }}
         </UBadge>
-        <span class="text-xs text-gray-700 dark:text-gray-300 font-medium">
+        <span class="text-sm text-gray-700 dark:text-gray-300 font-medium">
           {{ software.category }}
         </span>
       </div>
