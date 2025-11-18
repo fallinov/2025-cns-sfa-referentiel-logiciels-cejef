@@ -502,9 +502,9 @@ useSeoMeta({
             <UButton
               color="primary"
               variant="link"
-              size="md"
+              size="lg"
               icon="i-lucide-refresh-cw"
-              class="min-h-[44px]"
+              class="!min-h-[48px]"
               :disabled="!selectedPopularFilters.length"
               @click="resetPopularFilters"
             >
@@ -525,8 +525,8 @@ useSeoMeta({
               "
               :icon="filter.icon"
               :aria-pressed="selectedPopularFilters.includes(filter.id)"
-              size="sm"
-              class="rounded-full min-h-[44px] px-4"
+              size="md"
+              class="rounded-full !min-h-[48px] px-5 py-3"
               role="button"
               @click="togglePopularFilter(filter.id)"
             >
@@ -545,54 +545,54 @@ useSeoMeta({
               :items="categoryOptions"
               value-key="value"
               multiple
-              size="lg"
+              size="xl"
               placeholder="Catégories"
-              class="[&_button]:min-h-[44px]"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
             <USelectMenu
               v-model="selectedDisciplines"
               :items="disciplineOptions"
               value-key="value"
               multiple
-              size="lg"
+              size="xl"
               placeholder="Disciplines"
-              class="[&_button]:min-h-[44px]"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
             <USelectMenu
               v-model="selectedActivities"
               :items="activityOptions"
               value-key="value"
               multiple
-              size="lg"
+              size="xl"
               placeholder="Activités pédagogiques"
-              class="[&_button]:min-h-[44px]"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
             <USelectMenu
               v-model="selectedPlatforms"
               :items="platformOptions"
               value-key="value"
               multiple
-              size="lg"
+              size="xl"
               placeholder="Plateformes"
-              class="[&_button]:min-h-[44px]"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
             <USelectMenu
               v-model="selectedCosts"
               :items="costOptions"
               value-key="value"
               multiple
-              size="lg"
+              size="xl"
               placeholder="Coût"
-              class="[&_button]:min-h-[44px]"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
             <USelectMenu
               v-model="selectedCertifications"
               :items="certificationOptions"
               value-key="value"
               multiple
-              size="lg"
+              size="xl"
               placeholder="Certification LGPD"
-              class="[&_button]:min-h-[44px]"
+              class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
           </div>
         </div>
@@ -615,15 +615,15 @@ useSeoMeta({
             <div
               v-for="filter in appliedFilters"
               :key="filter.id"
-              class="inline-flex items-center gap-2 rounded-full border border-violet-200 dark:border-violet-500/30 bg-violet-50 dark:bg-violet-500/10 text-lg text-violet-900 dark:text-violet-100 px-4 py-2 min-h-[40px]"
+              class="inline-flex items-center gap-2 rounded-full border border-violet-200 dark:border-violet-500/30 bg-violet-50 dark:bg-violet-500/10 text-lg text-violet-900 dark:text-violet-100 px-5 py-3 !min-h-[48px]"
             >
               <span class="font-medium">{{ filter.label }}</span>
               <UButton
-                size="sm"
+                size="md"
                 color="neutral"
                 variant="ghost"
                 icon="i-lucide-x"
-                class="min-h-[32px] min-w-[32px]"
+                class="!min-h-[40px] !min-w-[40px]"
                 aria-label="Retirer ce filtre"
                 @click="removeFilter(filter.id)"
               />
@@ -649,9 +649,9 @@ useSeoMeta({
           <UButton
             color="neutral"
             variant="ghost"
-            size="md"
+            size="lg"
             icon="i-lucide-x"
-            class="min-h-[44px]"
+            class="!min-h-[48px]"
             @click="clearFilters"
           >
             Effacer les filtres
