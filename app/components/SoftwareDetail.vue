@@ -57,6 +57,9 @@ const formatLanguages = (codes: string[]) => {
     description="Informations détaillées sur le logiciel sélectionné"
     :ui="{ content: 'w-full max-w-2xl' }"
   >
+    <!-- Empty default slot for programmatic triggering -->
+    <span />
+
     <template #body>
       <div v-if="selectedSoftware" class="space-y-6">
         <!-- Section 1 : Identification -->
