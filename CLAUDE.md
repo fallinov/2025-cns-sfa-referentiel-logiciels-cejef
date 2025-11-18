@@ -44,10 +44,10 @@ git push origin v1.0.0
 - NEVER use deprecated or non-existent components from older versions
 - When in doubt about a component's API (props, slots, events), consult the documentation first
 - Common mistakes to avoid:
-  - Using `UDrawer` (doesn't exist, use `USlideover` instead)
+  - Using `USlideover` (deprecated in v4, use `UDrawer` instead)
   - Using `UDivider` (doesn't exist, use `USeparator` instead)
-  - Using wrong prop names (e.g., `direction` instead of `side` for USlideover)
-  - Using wrong slot names (e.g., `#content` instead of `#body` for USlideover)
+  - Using wrong prop names (e.g., `side` instead of `direction` for UDrawer)
+  - Using wrong slot names - always check documentation for each component
 
 ### Data Architecture
 
@@ -80,7 +80,7 @@ app.vue (root layout with UHeader/UMain/UFooter)
 
 **Key components**:
 - `SoftwareCard.vue` - displays software in a grid with LGPD icons
-- `SoftwareDetail.vue` - slideover (side panel) with full software details using USlideover
+- `SoftwareDetail.vue` - drawer (side panel) with full software details using UDrawer
 - `LgpdIcons.vue` - reusable LGPD classification indicators (receives `lgpd` prop and `showLabels` prop for compact/detailed display)
 
 ### Deployment Strategy
@@ -127,7 +127,7 @@ To modify a classification, update the `lgpd` object in `app/data/software-list.
 ### Modifying UI Components
 
 - **Card appearance**: Edit `app/components/SoftwareCard.vue`
-- **Slideover/detail view**: Edit `app/components/SoftwareDetail.vue` (uses `USlideover` with `v-model:open` and `side="right"`)
+- **Drawer/detail view**: Edit `app/components/SoftwareDetail.vue` (uses `UDrawer` with `v-model:open`, `direction="right"`, and `inset`)
 - **LGPD icons**: Edit `app/components/LgpdIcons.vue`
 - **Homepage layout**: Edit `app/pages/index.vue`
 - **Global layout**: Edit `app/app.vue`
@@ -136,13 +136,14 @@ All components use Nuxt UI components (prefixed with `U`) which are Tailwind CSS
 
 **Important Nuxt UI v4.1.0 component notes**:
 - **ALWAYS** check https://ui.nuxt.com before using any component
-- Use `USlideover` for side panels (not `UDrawer` which doesn't exist in v4.1.0)
+- Use `UDrawer` for side panels (not `USlideover` which is deprecated in v4.1.0)
 - Use `USeparator` for dividers (not `UDivider` which doesn't exist in v4.1.0)
-- `USlideover` API:
+- `UDrawer` API:
   - Uses `v-model:open` binding (not just `v-model`)
-  - Uses `side` prop with values: `'left' | 'right'` (not `direction`)
-  - Uses `#body` slot for content (not `#content`)
-  - Supports `title` and `description` props for the header
+  - Uses `direction` prop with values: `'left' | 'right' | 'top' | 'bottom'` (not `side`)
+  - Uses `#content` slot for the panel content
+  - Use `inset` prop for proper spacing with app layout
+  - Content width controlled via CSS classes (e.g., `class="min-w-96 size-full p-6"`)
   - Automatically handles overlay, ESC key, and close button
 
 ### ESLint Configuration

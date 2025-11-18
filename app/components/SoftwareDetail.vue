@@ -48,18 +48,25 @@ const formatLanguages = (codes: string[]) => {
 </script>
 
 <template>
-  <USlideover
+  <UDrawer
     v-model:open="isOpen"
-    side="right"
-    :title="selectedSoftware?.name || 'Détails du logiciel'"
-    description="Informations détaillées sur le logiciel sélectionné"
-    :ui="{ content: 'w-full sm:max-w-md md:max-w-lg lg:max-w-xl' }"
+    direction="right"
+    inset
   >
     <template #content>
       <div
         v-if="selectedSoftware"
-        class="space-y-6"
+        class="min-w-96 size-full p-6 space-y-6 overflow-y-auto"
       >
+        <!-- Header -->
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            {{ selectedSoftware?.name || 'Détails du logiciel' }}
+          </h2>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Informations détaillées sur le logiciel sélectionné
+          </p>
+        </div>
           <!-- Section 1 : Identification -->
           <div class="space-y-4">
             <div class="flex items-center gap-4">
@@ -423,5 +430,5 @@ const formatLanguages = (codes: string[]) => {
           </div>
       </div>
     </template>
-  </USlideover>
+  </UDrawer>
 </template>
