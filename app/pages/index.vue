@@ -510,7 +510,7 @@ useSeoMeta({
               Réinitialiser
             </UButton>
           </div>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2.5">
             <UButton
               v-for="filter in popularFilters"
               :key="filter.id"
@@ -524,8 +524,8 @@ useSeoMeta({
               "
               :icon="filter.icon"
               :aria-pressed="selectedPopularFilters.includes(filter.id)"
-              size="xs"
-              class="rounded-full"
+              size="sm"
+              class="rounded-full min-h-[44px] px-4"
               role="button"
               @click="togglePopularFilter(filter.id)"
             >
