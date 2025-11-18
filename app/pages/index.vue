@@ -440,9 +440,9 @@ useSeoMeta({
         <div class="flex flex-col sm:flex-row gap-3">
           <UBadge
             color="red"
-            variant="solid"
+            variant="soft"
             size="lg"
-            class="justify-center sm:justify-start bg-red-500 text-white"
+            class="justify-center sm:justify-start"
           >
             <template #leading>
               <UIcon name="i-lucide-graduation-cap" class="w-4 h-4" />
@@ -451,9 +451,9 @@ useSeoMeta({
           </UBadge>
           <UBadge
             color="green"
-            variant="solid"
+            variant="soft"
             size="lg"
-            class="justify-center sm:justify-start bg-green-500 text-white"
+            class="justify-center sm:justify-start"
           >
             <template #leading>
               <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
