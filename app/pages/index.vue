@@ -504,7 +504,6 @@ useSeoMeta({
               variant="link"
               size="lg"
               icon="i-lucide-refresh-cw"
-              class="!min-h-[48px]"
               :disabled="!selectedPopularFilters.length"
               @click="resetPopularFilters"
             >
@@ -512,9 +511,7 @@ useSeoMeta({
             </UButton>
           </div>
           <div class="relative -mx-4 px-4 sm:mx-0 sm:px-0">
-            <div
-              class="flex gap-2.5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2 scroll-smooth"
-            >
+            <div class="flex gap-2.5 overflow-x-auto scrollbar-hide pb-2">
               <UButton
                 v-for="filter in popularFilters"
                 :key="filter.id"
@@ -527,10 +524,8 @@ useSeoMeta({
                   selectedPopularFilters.includes(filter.id) ? 'solid' : 'soft'
                 "
                 :icon="filter.icon"
-                :aria-pressed="selectedPopularFilters.includes(filter.id)"
                 size="lg"
-                class="rounded-full !min-h-[48px] !py-3 px-5 shrink-0 snap-start"
-                role="button"
+                class="shrink-0"
                 @click="togglePopularFilter(filter.id)"
               >
                 {{ filter.label }}
@@ -622,22 +617,24 @@ useSeoMeta({
             </span>
           </div>
           <div class="flex flex-wrap gap-2.5">
-            <div
+            <UBadge
               v-for="filter in appliedFilters"
               :key="filter.id"
-              class="inline-flex items-center gap-2 rounded-full border border-violet-200 dark:border-violet-500/30 bg-violet-50 dark:bg-violet-500/10 text-lg text-violet-900 dark:text-violet-100 px-5 py-3 !min-h-[48px]"
+              color="primary"
+              variant="soft"
+              size="lg"
             >
-              <span class="font-medium">{{ filter.label }}</span>
-              <UButton
-                size="md"
-                color="neutral"
-                variant="ghost"
-                icon="i-lucide-x"
-                class="!min-h-[40px] !min-w-[40px]"
-                aria-label="Retirer ce filtre"
-                @click="removeFilter(filter.id)"
-              />
-            </div>
+              {{ filter.label }}
+              <template #trailing>
+                <UButton
+                  color="primary"
+                  variant="link"
+                  icon="i-lucide-x"
+                  size="xs"
+                  @click="removeFilter(filter.id)"
+                />
+              </template>
+            </UBadge>
           </div>
         </div>
 
@@ -661,7 +658,6 @@ useSeoMeta({
             variant="ghost"
             size="lg"
             icon="i-lucide-x"
-            class="!min-h-[48px]"
             @click="clearFilters"
           >
             Effacer les filtres
@@ -699,7 +695,6 @@ useSeoMeta({
           color="primary"
           variant="soft"
           size="lg"
-          class="min-h-[48px]"
           @click="clearFilters"
         >
           Afficher tous les logiciels
