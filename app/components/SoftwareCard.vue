@@ -71,7 +71,7 @@ const handleClick = () => {
 
     <div class="space-y-3">
       <!-- Description -->
-      <p class="text-base text-gray-700 dark:text-gray-300 line-clamp-2">
+      <p class="text-lg text-gray-700 dark:text-gray-300 line-clamp-2">
         {{ software.shortDescription }}
       </p>
     </div>
@@ -87,11 +87,11 @@ const handleClick = () => {
                 : 'warning'
           "
           variant="soft"
-          size="sm"
+          size="md"
         >
           {{ software.cost }}
         </UBadge>
-        <span class="text-sm text-gray-700 dark:text-gray-300 font-medium">
+        <span class="text-base text-gray-700 dark:text-gray-300 font-medium">
           {{ software.category }}
         </span>
       </div>
