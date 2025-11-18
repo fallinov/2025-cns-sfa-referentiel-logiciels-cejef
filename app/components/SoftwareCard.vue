@@ -1,28 +1,30 @@
 <script setup lang="ts">
-import type { Software } from '~~/types/software'
-import { getCertificationLevel } from '~~/types/software'
-import { getLevelBgColor } from '~/utils/level-colors'
+import type { Software } from "~~/types/software";
+import { getCertificationLevel } from "~~/types/software";
+import { getLevelBgColor } from "~/utils/level-colors";
 
 interface Props {
-  software: Software
+  software: Software;
 }
 
-const props = defineProps<Props>()
-const { openDetail } = useSoftware()
+const props = defineProps<Props>();
+const { openDetail } = useSoftware();
 
 // Utilise la valeur explicite si présente, sinon calcule à partir du LGPD
-const certificationLevel = props.software.certificationLevel ?? getCertificationLevel(props.software.lgpd)
+const certificationLevel =
+  props.software.certificationLevel ??
+  getCertificationLevel(props.software.lgpd);
 
 const handleClick = () => {
-  openDetail(props.software)
-}
+  openDetail(props.software);
+};
 </script>
 
 <template>
   <UCard
     role="button"
     tabindex="0"
-    class="software-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full focus-visible:ring-2 focus-visible:ring-violet-600 focus-visible:ring-offset-2 min-h-[88px] sm:min-h-0"
+    class="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full focus-visible:ring-2 focus-visible:ring-violet-600 focus-visible:ring-offset-2 min-h-[88px] sm:min-h-0"
     :ui="{ header: getLevelBgColor(certificationLevel) }"
     :aria-label="`Voir les détails de ${software.name}`"
     @click="handleClick"
@@ -38,7 +40,9 @@ const handleClick = () => {
           />
         </div>
         <div class="flex-1 min-w-0">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white truncate">
+          <h3
+            class="text-xl font-semibold text-gray-900 dark:text-white truncate"
+          >
             {{ software.name }}
           </h3>
           <div class="flex flex-wrap gap-1 mt-1">
@@ -61,10 +65,7 @@ const handleClick = () => {
           </div>
         </div>
         <!-- Badge de certification CEJEF -->
-        <CertificationBadge
-          :level="certificationLevel"
-          compact
-        />
+        <CertificationBadge :level="certificationLevel" compact />
       </div>
     </template>
 
@@ -78,7 +79,13 @@ const handleClick = () => {
     <template #footer>
       <div class="flex items-center justify-between">
         <UBadge
-          :color="software.cost === 'Gratuit' ? 'success' : software.cost === 'Freemium' ? 'info' : 'warning'"
+          :color="
+            software.cost === 'Gratuit'
+              ? 'success'
+              : software.cost === 'Freemium'
+                ? 'info'
+                : 'warning'
+          "
           variant="soft"
         >
           {{ software.cost }}
