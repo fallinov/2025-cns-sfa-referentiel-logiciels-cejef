@@ -1,29 +1,29 @@
 <script setup lang="ts">
-import { getCertificationLevel } from "~~/types/software";
+import { getCertificationLevel } from "~~/types/software"
 
-const { selectedSoftware, isDetailOpen, closeDetail } = useSoftware();
+const { selectedSoftware, isDetailOpen, closeDetail } = useSoftware()
 
 // Créer une ref locale pour le v-model:open du USlideover
-const isOpen = ref(false);
+const isOpen = ref(false)
 
 // Synchroniser isOpen avec isDetailOpen (quand ouvert programmatiquement)
 watch(isDetailOpen, (newVal) => {
-  isOpen.value = newVal;
-});
+  isOpen.value = newVal
+})
 
 // Quand isOpen change (fermé par l'utilisateur via overlay ou ESC)
 watch(isOpen, (newVal) => {
   if (!newVal && isDetailOpen.value) {
-    closeDetail();
+    closeDetail()
   }
-});
+})
 
 // Calcul du niveau de certification
 const certificationLevel = computed(() =>
   selectedSoftware.value
     ? getCertificationLevel(selectedSoftware.value.lgpd)
-    : 1,
-);
+    : 1
+)
 
 // Mappage des icônes de plateformes
 const platformIcons: Record<string, string> = {
@@ -31,8 +31,8 @@ const platformIcons: Record<string, string> = {
   windows: "i-lucide-laptop",
   mac: "i-lucide-laptop",
   smartphone: "i-lucide-smartphone",
-  tablet: "i-lucide-tablet",
-};
+  tablet: "i-lucide-tablet"
+}
 
 // Mappage des codes de langues vers leurs noms complets
 const languageNames: Record<string, string> = {
@@ -40,13 +40,13 @@ const languageNames: Record<string, string> = {
   en: "Anglais",
   de: "Allemand",
   es: "Espagnol",
-  it: "Italien",
-};
+  it: "Italien"
+}
 
 // Fonction pour formater les langues
 const formatLanguages = (codes: string[]) => {
-  return codes.map((code) => languageNames[code] || code).join(", ");
-};
+  return codes.map(code => languageNames[code] || code).join(", ")
+}
 </script>
 
 <template>
@@ -58,7 +58,7 @@ const formatLanguages = (codes: string[]) => {
     :ui="{ content: 'w-full sm:w-[600px] md:w-[700px] lg:w-[800px]' }"
   >
     <!-- Empty default slot for programmatic triggering -->
-    <span />
+    <span></span>
 
     <template #body>
       <div v-if="selectedSoftware" class="space-y-6">

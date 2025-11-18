@@ -3,13 +3,13 @@ const { getSoftwareList } = useSoftware()
 const softwareList = getSoftwareList()
 
 // Search and filter functionality
-const searchQuery = ref('')
-const selectedCategory = ref<string>('')
+const searchQuery = ref("")
+const selectedCategory = ref<string>("")
 
 // Get unique categories for filtering
 const categories = computed(() => {
   const cats = Array.from(new Set(softwareList.map(s => s.category))).sort()
-  return ['Toutes les catégories', ...cats]
+  return ["Toutes les catégories", ...cats]
 })
 
 // Filtered software list based on search and category
@@ -28,7 +28,7 @@ const filteredSoftwareList = computed(() => {
   }
 
   // Filter by category
-  if (selectedCategory.value && selectedCategory.value !== 'Toutes les catégories') {
+  if (selectedCategory.value && selectedCategory.value !== "Toutes les catégories") {
     filtered = filtered.filter(software => software.category === selectedCategory.value)
   }
 
@@ -37,13 +37,13 @@ const filteredSoftwareList = computed(() => {
 
 // Clear all filters
 const clearFilters = () => {
-  searchQuery.value = ''
-  selectedCategory.value = 'Toutes les catégories'
+  searchQuery.value = ""
+  selectedCategory.value = "Toutes les catégories"
 }
 
 useSeoMeta({
-  title: 'Référentiel Logiciels CEJEF',
-  description: 'Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD'
+  title: "Référentiel Logiciels CEJEF",
+  description: "Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD"
 })
 </script>
 

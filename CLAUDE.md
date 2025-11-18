@@ -156,13 +156,139 @@ All components use Nuxt UI components (prefixed with `U`) which are Tailwind CSS
   - Has `handle` prop for drag handle
   - Best for bottom sheets and mobile navigation
 
-### ESLint Configuration
+### Code Style and Linting
 
-Project uses specific stylistic rules (in `nuxt.config.ts`):
-- `commaDangle: 'never'` - no trailing commas
-- `braceStyle: '1tbs'` - One True Brace Style
+**IMPORTANT: Always run `npm run lint` after modifying any file.**
 
-Run `npm run lint` before committing.
+This project follows strict coding standards enforced by ESLint. Configuration is in `eslint.config.mjs` and based on official Nuxt ESLint standards (@nuxt/eslint).
+
+#### Coding Standards
+
+**String Quotes:**
+```typescript
+// ✅ CORRECT - Use double quotes
+const name = "Kahoot!"
+const path = "app/components"
+
+// ❌ WRONG - Don't use single quotes
+const name = 'Kahoot!'
+```
+
+**Trailing Commas:**
+```typescript
+// ✅ CORRECT - No trailing commas
+const array = [1, 2, 3]
+const obj = { a: 1, b: 2 }
+
+// ❌ WRONG - Trailing commas
+const array = [1, 2, 3,]
+const obj = { a: 1, b: 2, }
+```
+
+**Semicolons:**
+```typescript
+// ✅ CORRECT - No semicolons
+const x = 10
+const y = 20
+
+// ❌ WRONG - Semicolons
+const x = 10;
+const y = 20;
+```
+
+**Brace Style (1tbs - One True Brace Style):**
+```typescript
+// ✅ CORRECT
+if (condition) {
+  doSomething()
+} else {
+  doSomethingElse()
+}
+
+// ❌ WRONG
+if (condition)
+{
+  doSomething()
+}
+```
+
+**Indentation (2 spaces):**
+```typescript
+// ✅ CORRECT
+function example() {
+  if (true) {
+    return "ok"
+  }
+}
+
+// ❌ WRONG (4 spaces)
+function example() {
+    if (true) {
+        return "ok"
+    }
+}
+```
+
+**Object Spacing:**
+```typescript
+// ✅ CORRECT
+const obj = { a: 1, b: 2 }
+if (condition) { }
+
+// ❌ WRONG
+const obj = {a:1,b:2}
+if(condition){}
+```
+
+**Vue Component Attribute Order:**
+Attributes must follow this order:
+1. `v-if`, `v-else-if`, `v-else`, `v-show` (conditionals)
+2. `v-for` (list rendering)
+3. `id`, `ref`, `key` (unique identifiers)
+4. `v-model` (two-way binding)
+5. Other attributes
+6. Event handlers (`@click`, etc.)
+
+**TypeScript:**
+```typescript
+// ✅ CORRECT - Prefer interfaces over types
+interface Software {
+  id: string
+  name: string
+}
+
+// ✅ CORRECT - Use const for non-reassigned variables
+const softwareList = []
+
+// ❌ WRONG - Using 'var'
+var softwareList = []
+```
+
+#### Workflow After File Modifications
+
+**MANDATORY STEPS:**
+1. Make your code changes
+2. Run `npm run lint` to check for errors
+3. Fix any linting errors (or run `npm run lint -- --fix` for auto-fix)
+4. Run `npm run typecheck` to verify TypeScript types
+5. Only then commit your changes
+
+**Quick commands:**
+```bash
+# Check linting
+npm run lint
+
+# Auto-fix linting issues
+npm run lint -- --fix
+
+# Check TypeScript types
+npm run typecheck
+
+# Run both checks
+npm run lint && npm run typecheck
+```
+
+See `.eslintrc.md` for complete ESLint rules documentation.
 
 ## Important Notes
 

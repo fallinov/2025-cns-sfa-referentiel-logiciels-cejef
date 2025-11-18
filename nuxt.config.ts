@@ -8,8 +8,8 @@ export default defineNuxtConfig({
   // ========================================
   // Modules = extensions qui ajoutent des fonctionnalités à Nuxt
   modules: [// Vérification de la qualité du code (linting)
-    '@nuxt/eslint', // Bibliothèque de composants UI pré-stylés
-    '@nuxt/ui'],
+    "@nuxt/eslint", // Bibliothèque de composants UI pré-stylés
+    "@nuxt/ui"],
 
   // ========================================
   // OUTILS DE DÉVELOPPEMENT
@@ -28,22 +28,22 @@ export default defineNuxtConfig({
     //   - En local : '/' (racine)
     //   - GitHub Pages : '/mon-projet-nuxt/' (sous-dossier)
     //   - Production : '/' (racine du domaine)
-    baseURL: process.env.NUXT_APP_BASE_URL || '/',
+    baseURL: process.env.NUXT_APP_BASE_URL || "/",
 
     // Configuration du <head> HTML (balises meta, favicon, etc.)
     head: {
-      title: 'Référentiel Logiciels CEJEF',
+      title: "Référentiel Logiciels CEJEF",
       meta: [
-        { name: 'description', content: 'Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD' },
-        { name: 'author', content: 'CEJEF' }
+        { name: "description", content: "Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD" },
+        { name: "author", content: "CEJEF" }
       ],
       link: [
         {
-          rel: 'icon', // Type de lien : icône
-          type: 'image/x-icon', // Format du fichier
+          rel: "icon", // Type de lien : icône
+          type: "image/x-icon", // Format du fichier
           // Chemin du favicon avec gestion du baseURL
           // Le .replace(/\/+/g, '/') évite les doubles slashes (//)
-          href: `${process.env.NUXT_APP_BASE_URL || ''}/favicon.ico`.replace(/\/+/g, '/')
+          href: `${process.env.NUXT_APP_BASE_URL || ""}/favicon.ico`.replace(/\/+/g, "/")
         }
       ]
     }
@@ -53,14 +53,14 @@ export default defineNuxtConfig({
   // STYLES CSS GLOBAUX
   // ========================================
   // Fichiers CSS appliqués à toutes les pages
-  css: ['~/assets/css/main.css'],
+  css: ["~/assets/css/main.css"],
 
   // ========================================
   // COMPATIBILITÉ
   // ========================================
   // Date de référence pour les comportements de Nuxt
   // Garantit la compatibilité avec les versions futures
-  compatibilityDate: '2025-01-15',
+  compatibilityDate: "2025-01-15",
 
   // ========================================
   // CONFIGURATION ESLINT
@@ -69,8 +69,8 @@ export default defineNuxtConfig({
   eslint: {
     config: {
       stylistic: {
-        commaDangle: 'never', // Pas de virgule finale (ex: [1, 2, 3] ✅ pas [1, 2, 3,] ❌)
-        braceStyle: '1tbs' // Style d'accolades "One True Brace Style"
+        commaDangle: "never", // Pas de virgule finale (ex: [1, 2, 3] ✅ pas [1, 2, 3,] ❌)
+        braceStyle: "1tbs" // Style d'accolades "One True Brace Style"
       }
     }
   }

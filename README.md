@@ -167,8 +167,146 @@ npm run preview          # Prévisualiser le site généré
 
 # Qualité du code
 npm run lint             # Vérifier le code avec ESLint
+npm run lint -- --fix    # Corriger automatiquement les erreurs ESLint
 npm run typecheck        # Vérifier les types TypeScript
 ```
+
+---
+
+## 📐 Normes de codage
+
+Ce projet suit des règles strictes de qualité de code basées sur les standards officiels Nuxt ESLint (@nuxt/eslint).
+
+### Style de code
+
+#### Guillemets
+✅ **Utiliser des guillemets doubles `"`**
+
+```typescript
+// ✅ Correct
+const name = "Kahoot!"
+
+// ❌ Incorrect
+const name = 'Kahoot!'
+```
+
+#### Virgules finales
+✅ **Pas de virgules finales (trailing commas)**
+
+```typescript
+// ✅ Correct
+const array = [1, 2, 3]
+const obj = { a: 1, b: 2 }
+
+// ❌ Incorrect
+const array = [1, 2, 3,]
+const obj = { a: 1, b: 2, }
+```
+
+#### Point-virgules
+✅ **Pas de point-virgules**
+
+```typescript
+// ✅ Correct
+const x = 10
+const y = 20
+
+// ❌ Incorrect
+const x = 10;
+const y = 20;
+```
+
+#### Style d'accolades
+✅ **One True Brace Style (1tbs)**
+
+```typescript
+// ✅ Correct
+if (condition) {
+  doSomething()
+} else {
+  doSomethingElse()
+}
+
+// ❌ Incorrect
+if (condition)
+{
+  doSomething()
+}
+```
+
+#### Indentation
+✅ **2 espaces (pas de tabulations)**
+
+```typescript
+// ✅ Correct
+function example() {
+  if (true) {
+    return "ok"
+  }
+}
+
+// ❌ Incorrect (4 espaces)
+function example() {
+    if (true) {
+        return "ok"
+    }
+}
+```
+
+### Workflow de développement
+
+**⚠️ IMPORTANT : Toujours vérifier le code avant de commit**
+
+```bash
+# 1. Faire vos modifications
+# 2. Vérifier le code
+npm run lint
+
+# 3. Corriger automatiquement si possible
+npm run lint -- --fix
+
+# 4. Vérifier les types TypeScript
+npm run typecheck
+
+# 5. Committer uniquement si tout est vert ✅
+git add .
+git commit -m "feat: ma nouvelle fonctionnalité"
+```
+
+### Configuration des éditeurs
+
+#### Visual Studio Code
+
+Créer `.vscode/settings.json` :
+
+```json
+{
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ]
+}
+```
+
+#### WebStorm / IntelliJ IDEA
+
+1. **Settings** → **Languages & Frameworks** → **JavaScript** → **Code Quality Tools** → **ESLint**
+2. Cocher **"Automatic ESLint configuration"**
+3. Cocher **"Run eslint --fix on save"**
+
+### Documentation complète
+
+Pour la documentation complète des règles ESLint :
+- Voir `.eslintrc.md` dans le projet
+- Voir `CLAUDE.md` section "Code Style and Linting"
+- Consulter la [documentation Nuxt ESLint](https://eslint.nuxt.com)
 
 ---
 

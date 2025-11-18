@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { LgpdClassification } from '~~/types/software'
-import { getLevelTextColor, getLevelBgColor, getLevelIcon, getLevelLabel } from '~/utils/level-colors'
+import type { LgpdClassification } from "~~/types/software"
+import { getLevelTextColor, getLevelBgColor, getLevelIcon, getLevelLabel } from "~/utils/level-colors"
 
 interface Props {
   lgpd: LgpdClassification
@@ -13,9 +13,9 @@ withDefaults(defineProps<Props>(), {
 
 // Labels détaillés pour chaque critère
 const CRITERION_LABELS = {
-  hosting: 'Hébergement',
-  rgpd: 'RGPD',
-  dataCollection: 'Collecte'
+  hosting: "Hébergement",
+  rgpd: "RGPD",
+  dataCollection: "Collecte"
 }
 </script>
 

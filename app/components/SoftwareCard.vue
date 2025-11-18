@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import type { Software } from "~~/types/software";
-import { getCertificationLevel } from "~~/types/software";
-import { getLevelBgColor } from "~/utils/level-colors";
+import type { Software } from "~~/types/software"
+import { getCertificationLevel } from "~~/types/software"
+import { getLevelBgColor } from "~/utils/level-colors"
 
 interface Props {
-  software: Software;
+  software: Software
 }
 
-const props = defineProps<Props>();
-const { openDetail } = useSoftware();
+const props = defineProps<Props>()
+const { openDetail } = useSoftware()
 
 // Utilise la valeur explicite si présente, sinon calcule à partir du LGPD
-const certificationLevel =
-  props.software.certificationLevel ??
-  getCertificationLevel(props.software.lgpd);
+const certificationLevel
+  = props.software.certificationLevel
+    ?? getCertificationLevel(props.software.lgpd)
 
 const handleClick = () => {
-  openDetail(props.software);
-};
+  openDetail(props.software)
+}
 </script>
 
 <template>
