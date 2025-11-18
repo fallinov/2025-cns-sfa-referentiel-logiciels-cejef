@@ -18,14 +18,14 @@ export const disciplines: Discipline[] = [
     name: "Transversal",
     description: "Outils utilisables dans toutes les disciplines et formations",
     icon: "i-heroicons-arrows-pointing-out",
-    color: "gray"
+    color: "neutral"
   },
   {
     id: "arts",
     name: "Arts & Design",
     description: "Arts visuels, design graphique, communication visuelle",
     icon: "i-heroicons-paint-brush",
-    color: "pink",
+    color: "primary",
     department: "Arts appliqués"
   },
   {
@@ -33,7 +33,7 @@ export const disciplines: Discipline[] = [
     name: "Communication",
     description: "Communication d'entreprise, marketing, médias sociaux",
     icon: "i-heroicons-megaphone",
-    color: "blue",
+    color: "primary",
     department: "Commerce"
   },
   {
@@ -41,7 +41,7 @@ export const disciplines: Discipline[] = [
     name: "Informatique",
     description: "Développement logiciel, réseaux, systèmes d'information",
     icon: "i-heroicons-computer-desktop",
-    color: "cyan",
+    color: "primary",
     department: "Technique"
   },
   {
@@ -49,7 +49,7 @@ export const disciplines: Discipline[] = [
     name: "Mathématiques",
     description: "Mathématiques pures et appliquées, statistiques",
     icon: "i-heroicons-calculator",
-    color: "indigo",
+    color: "primary",
     department: "Sciences"
   },
   {
@@ -57,7 +57,7 @@ export const disciplines: Discipline[] = [
     name: "Sciences naturelles",
     description: "Physique, chimie, biologie, sciences de la terre",
     icon: "i-heroicons-beaker",
-    color: "green",
+    color: "success",
     department: "Sciences"
   },
   {
@@ -65,7 +65,7 @@ export const disciplines: Discipline[] = [
     name: "Langues",
     description: "Français, allemand, anglais, autres langues étrangères",
     icon: "i-heroicons-language",
-    color: "purple",
+    color: "primary",
     department: "Langues"
   },
   {
@@ -73,7 +73,7 @@ export const disciplines: Discipline[] = [
     name: "Commerce & Gestion",
     description: "Comptabilité, économie d'entreprise, gestion",
     icon: "i-heroicons-banknotes",
-    color: "emerald",
+    color: "success",
     department: "Commerce"
   },
   {
@@ -81,7 +81,7 @@ export const disciplines: Discipline[] = [
     name: "Santé & Social",
     description: "Soins infirmiers, travail social, santé communautaire",
     icon: "i-heroicons-heart",
-    color: "red",
+    color: "error",
     department: "Santé-Social"
   },
   {
@@ -89,7 +89,7 @@ export const disciplines: Discipline[] = [
     name: "Technique",
     description: "Électronique, mécanique, automation, électrotechnique",
     icon: "i-heroicons-wrench-screwdriver",
-    color: "orange",
+    color: "warning",
     department: "Technique"
   },
   {
@@ -97,7 +97,7 @@ export const disciplines: Discipline[] = [
     name: "Culture générale",
     description: "Histoire, géographie, philosophie, citoyenneté",
     icon: "i-heroicons-globe-alt",
-    color: "teal",
+    color: "primary",
     department: "Culture générale"
   },
   {
@@ -105,7 +105,7 @@ export const disciplines: Discipline[] = [
     name: "Éducation physique",
     description: "Sport, activités physiques, santé et bien-être",
     icon: "i-heroicons-trophy",
-    color: "amber",
+    color: "warning",
     department: "Sport"
   },
   {
@@ -113,7 +113,7 @@ export const disciplines: Discipline[] = [
     name: "Musique",
     description: "Théorie musicale, pratique instrumentale, composition",
     icon: "i-heroicons-musical-note",
-    color: "violet",
+    color: "primary",
     department: "Arts"
   },
   {
@@ -121,7 +121,7 @@ export const disciplines: Discipline[] = [
     name: "Architecture",
     description: "Dessin technique, CAO, construction, urbanisme",
     icon: "i-heroicons-building-office",
-    color: "slate",
+    color: "neutral",
     department: "Technique"
   },
   {
@@ -129,7 +129,7 @@ export const disciplines: Discipline[] = [
     name: "Agriculture & Environnement",
     description: "Sciences agronomiques, écologie, développement durable",
     icon: "i-heroicons-leaf",
-    color: "lime",
+    color: "success",
     department: "Agriculture"
   }
 ]

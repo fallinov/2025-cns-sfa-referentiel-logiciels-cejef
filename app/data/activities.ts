@@ -18,7 +18,7 @@ export const activities: Activity[] = [
     name: "Évaluation formative",
     description: "Évaluation continue pour mesurer la progression et adapter l'enseignement",
     icon: "i-heroicons-clipboard-document-check",
-    color: "blue",
+    color: "primary",
     taxonomyLevel: "Évaluer"
   },
   {
@@ -26,7 +26,7 @@ export const activities: Activity[] = [
     name: "Travail collaboratif",
     description: "Activités de groupe pour co-créer et partager des connaissances",
     icon: "i-heroicons-user-group",
-    color: "purple",
+    color: "primary",
     taxonomyLevel: "Créer"
   },
   {
@@ -34,7 +34,7 @@ export const activities: Activity[] = [
     name: "Création de contenu",
     description: "Production de supports pédagogiques, médias et documents",
     icon: "i-heroicons-sparkles",
-    color: "pink",
+    color: "primary",
     taxonomyLevel: "Créer"
   },
   {
@@ -42,7 +42,7 @@ export const activities: Activity[] = [
     name: "Gestion de cours",
     description: "Organisation, planification et suivi des activités d'apprentissage",
     icon: "i-heroicons-folder-open",
-    color: "gray",
+    color: "neutral",
     taxonomyLevel: "Organiser"
   },
   {
@@ -50,7 +50,7 @@ export const activities: Activity[] = [
     name: "Organisation",
     description: "Structuration des idées, planification et gestion du temps",
     icon: "i-heroicons-squares-2x2",
-    color: "slate",
+    color: "neutral",
     taxonomyLevel: "Organiser"
   },
   {
@@ -58,7 +58,7 @@ export const activities: Activity[] = [
     name: "Révision",
     description: "Consolidation des connaissances et préparation aux examens",
     icon: "i-heroicons-arrow-path",
-    color: "green",
+    color: "success",
     taxonomyLevel: "Comprendre"
   },
   {
@@ -74,7 +74,7 @@ export const activities: Activity[] = [
     name: "Assistance",
     description: "Aide personnalisée et support à l'apprentissage",
     icon: "i-heroicons-question-mark-circle",
-    color: "cyan",
+    color: "primary",
     taxonomyLevel: "Comprendre"
   },
   {
@@ -82,7 +82,7 @@ export const activities: Activity[] = [
     name: "Présentation",
     description: "Communication d'informations et partage de connaissances",
     icon: "i-heroicons-presentation-chart-line",
-    color: "orange",
+    color: "warning",
     taxonomyLevel: "Communiquer"
   },
   {
@@ -90,7 +90,7 @@ export const activities: Activity[] = [
     name: "Recherche",
     description: "Investigation, collecte et analyse d'informations",
     icon: "i-heroicons-magnifying-glass",
-    color: "indigo",
+    color: "primary",
     taxonomyLevel: "Analyser"
   },
   {
@@ -98,7 +98,7 @@ export const activities: Activity[] = [
     name: "Simulation",
     description: "Expérimentation virtuelle et mise en situation pratique",
     icon: "i-heroicons-cube-transparent",
-    color: "teal",
+    color: "primary",
     taxonomyLevel: "Appliquer"
   },
   {
@@ -106,7 +106,7 @@ export const activities: Activity[] = [
     name: "Brainstorming",
     description: "Génération d'idées créatives et résolution de problèmes",
     icon: "i-heroicons-cloud",
-    color: "violet",
+    color: "primary",
     taxonomyLevel: "Créer"
   },
   {
@@ -114,7 +114,7 @@ export const activities: Activity[] = [
     name: "Feedback",
     description: "Retour sur les performances et amélioration continue",
     icon: "i-heroicons-chat-bubble-bottom-center-text",
-    color: "emerald",
+    color: "success",
     taxonomyLevel: "Évaluer"
   },
   {
@@ -122,7 +122,7 @@ export const activities: Activity[] = [
     name: "Gamification",
     description: "Apprentissage ludique par le jeu et les défis",
     icon: "i-heroicons-puzzle-piece",
-    color: "red",
+    color: "error",
     taxonomyLevel: "Appliquer"
   },
   {
@@ -130,7 +130,7 @@ export const activities: Activity[] = [
     name: "Classe inversée",
     description: "Apprentissage autonome hors classe et activités en présentiel",
     icon: "i-heroicons-arrow-uturn-down",
-    color: "amber",
+    color: "warning",
     taxonomyLevel: "Appliquer"
   },
   {
@@ -138,7 +138,7 @@ export const activities: Activity[] = [
     name: "Mémorisation",
     description: "Techniques pour ancrer les connaissances à long terme",
     icon: "i-heroicons-bookmark",
-    color: "lime",
+    color: "success",
     taxonomyLevel: "Se souvenir"
   },
   {

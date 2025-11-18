@@ -24,7 +24,7 @@ const handleClick = () => {
   <UCard
     role="button"
     tabindex="0"
-    class="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full focus-visible:ring-2 focus-visible:ring-violet-600 focus-visible:ring-offset-2 min-h-[88px] sm:min-h-0"
+    class="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 min-h-[88px] sm:min-h-0"
     :ui="{ header: getLevelBgColor(certificationLevel) }"
     :aria-label="`Voir les détails de ${software.name}`"
     @click="handleClick"
