@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import type { LgpdClassification } from "~~/types/software"
-import { getLevelTextColor, getLevelBgColor, getLevelIcon, getLevelLabel } from "~/utils/level-colors"
+import {
+  getLevelTextColor,
+  getLevelBgColor,
+  getLevelIcon,
+  getLevelLabel
+} from "~/utils/level-colors"
 
 interface Props {
   lgpd: LgpdClassification
@@ -29,12 +34,9 @@ const CRITERION_LABELS = {
       <UIcon
         :name="getLevelIcon(lgpd.hosting)"
         :class="getLevelTextColor(lgpd.hosting)"
-        class="w-5 h-5 flex-shrink-0"
+        class="w-5 h-5 shrink-0"
       />
-      <div
-        v-if="showLabels"
-        class="flex-1 min-w-0"
-      >
+      <div v-if="showLabels" class="flex-1 min-w-0">
         <div class="text-xs text-gray-500 dark:text-gray-400">
           {{ CRITERION_LABELS.hosting }}
         </div>
@@ -52,12 +54,9 @@ const CRITERION_LABELS = {
       <UIcon
         :name="getLevelIcon(lgpd.rgpd)"
         :class="getLevelTextColor(lgpd.rgpd)"
-        class="w-5 h-5 flex-shrink-0"
+        class="w-5 h-5 shrink-0"
       />
-      <div
-        v-if="showLabels"
-        class="flex-1 min-w-0"
-      >
+      <div v-if="showLabels" class="flex-1 min-w-0">
         <div class="text-xs text-gray-500 dark:text-gray-400">
           {{ CRITERION_LABELS.rgpd }}
         </div>
@@ -75,12 +74,9 @@ const CRITERION_LABELS = {
       <UIcon
         :name="getLevelIcon(lgpd.dataCollection)"
         :class="getLevelTextColor(lgpd.dataCollection)"
-        class="w-5 h-5 flex-shrink-0"
+        class="w-5 h-5 shrink-0"
       />
-      <div
-        v-if="showLabels"
-        class="flex-1 min-w-0"
-      >
+      <div v-if="showLabels" class="flex-1 min-w-0">
         <div class="text-xs text-gray-500 dark:text-gray-400">
           {{ CRITERION_LABELS.dataCollection }}
         </div>
