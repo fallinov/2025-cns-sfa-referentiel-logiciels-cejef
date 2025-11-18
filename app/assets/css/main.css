@@ -1,10 +1,10 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-@theme {
+@theme static {
   --font-sans: "Public Sans", sans-serif;
 
-  /* Rouge CEJEF - Couleur principale */
+  /* Rouge CEJEF - Remplace la couleur 'red' de Tailwind */
   --color-red-50: #fef2f2;
   --color-red-100: #fee2e2;
   --color-red-200: #fecaca;
@@ -17,7 +17,7 @@
   --color-red-900: #661a1a;
   --color-red-950: #450a0a;
 
-  /* Vert - Pour badges certification niveau 1 */
+  /* Vert CEJEF - Remplace la couleur 'green' de Tailwind */
   --color-green-50: #f4f7f3;
   --color-green-100: #e8efe6;
   --color-green-200: #d1dfc9;
@@ -30,7 +30,7 @@
   --color-green-900: #32462a;
   --color-green-950: #1a2515;
 
-  /* Orange - Pour badges certification niveau 3 */
+  /* Orange CEJEF - Remplace la couleur 'orange' de Tailwind */
   --color-orange-50: #fff7ed;
   --color-orange-100: #ffedd5;
   --color-orange-200: #fed7aa;
