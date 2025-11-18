@@ -55,7 +55,7 @@ const formatLanguages = (codes: string[]) => {
     side="right"
     :title="selectedSoftware?.name || 'Détails du logiciel'"
     description="Informations détaillées sur le logiciel sélectionné"
-    :ui="{ content: 'w-full max-w-2xl' }"
+    :ui="{ content: 'w-full sm:w-[600px] md:w-[700px] lg:w-[800px]' }"
   >
     <!-- Empty default slot for programmatic triggering -->
     <span />
