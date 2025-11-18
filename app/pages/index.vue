@@ -550,6 +550,7 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
+              variant="outline"
               placeholder="Catégories"
               class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
@@ -559,6 +560,7 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
+              variant="outline"
               placeholder="Disciplines"
               class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
@@ -568,6 +570,7 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
+              variant="outline"
               placeholder="Activités pédagogiques"
               class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
@@ -577,6 +580,7 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
+              variant="outline"
               placeholder="Plateformes"
               class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
@@ -586,6 +590,7 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
+              variant="outline"
               placeholder="Coût"
               class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
@@ -595,6 +600,7 @@ useSeoMeta({
               value-key="value"
               multiple
               size="xl"
+              variant="outline"
               placeholder="Certification LGPD"
               class="[&_button]:!min-h-[48px] [&_button]:!py-3"
             />
