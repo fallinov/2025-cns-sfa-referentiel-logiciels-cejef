@@ -439,7 +439,7 @@ useSeoMeta({
       <template #links>
         <div class="flex flex-col sm:flex-row gap-3">
           <UBadge
-            color="primary"
+            color="red"
             variant="soft"
             size="lg"
             class="justify-center sm:justify-start"
@@ -450,7 +450,7 @@ useSeoMeta({
             {{ softwareList.length }} logiciels disponibles
           </UBadge>
           <UBadge
-            color="success"
+            color="green"
             variant="soft"
             size="lg"
             class="justify-center sm:justify-start"
@@ -500,7 +500,7 @@ useSeoMeta({
               </p>
             </div>
             <UButton
-              color="primary"
+              color="red"
               variant="link"
               size="lg"
               icon="i-lucide-refresh-cw"
@@ -620,14 +620,14 @@ useSeoMeta({
             <UBadge
               v-for="filter in appliedFilters"
               :key="filter.id"
-              color="primary"
+              color="red"
               variant="soft"
               size="lg"
             >
               {{ filter.label }}
               <template #trailing>
                 <UButton
-                  color="primary"
+                  color="red"
                   variant="link"
                   icon="i-lucide-x"
                   size="xs"
@@ -692,7 +692,7 @@ useSeoMeta({
           Essayez de modifier vos critères de recherche
         </p>
         <UButton
-          color="primary"
+          color="red"
           variant="soft"
           size="lg"
           @click="clearFilters"

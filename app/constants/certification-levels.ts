@@ -10,7 +10,7 @@ export interface CertificationLevelConfig {
   label: string
   description: string
   badgeLabel: string
-  badgeColor: "success" | "warning" | "error"
+  badgeColor: "green" | "warning" | "error"
   icon: string
 }
 
@@ -20,7 +20,7 @@ export const CERTIFICATION_LEVELS: readonly CertificationLevelConfig[] = [
     label: "Niveau 1 · Conforme",
     description: "Hébergement CEJEF/CH et collecte limitée",
     badgeLabel: "Faible risque",
-    badgeColor: "success",
+    badgeColor: "green",
     icon: "i-lucide-shield-check"
   },
   {
@@ -36,7 +36,7 @@ export const CERTIFICATION_LEVELS: readonly CertificationLevelConfig[] = [
     label: "Niveau 3 · À éviter",
     description: "Hébergement hors UE / collecte extensive",
     badgeLabel: "Risque élevé",
-    badgeColor: "error",
+    badgeColor: "orange",
     icon: "i-lucide-shield-off"
   }
 ] as const

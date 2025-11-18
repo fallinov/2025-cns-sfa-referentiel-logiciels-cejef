@@ -18,14 +18,14 @@ export const disciplines: Discipline[] = [
     name: "Transversal",
     description: "Outils utilisables dans toutes les disciplines et formations",
     icon: "i-heroicons-arrows-pointing-out",
-    color: "neutral"
+    color: "gray"
   },
   {
     id: "arts",
     name: "Arts & Design",
     description: "Arts visuels, design graphique, communication visuelle",
     icon: "i-heroicons-paint-brush",
-    color: "primary",
+    color: "red",
     department: "Arts appliqués"
   },
   {
@@ -33,7 +33,7 @@ export const disciplines: Discipline[] = [
     name: "Communication",
     description: "Communication d'entreprise, marketing, médias sociaux",
     icon: "i-heroicons-megaphone",
-    color: "primary",
+    color: "red",
     department: "Commerce"
   },
   {
@@ -41,7 +41,7 @@ export const disciplines: Discipline[] = [
     name: "Informatique",
     description: "Développement logiciel, réseaux, systèmes d'information",
     icon: "i-heroicons-computer-desktop",
-    color: "primary",
+    color: "red",
     department: "Technique"
   },
   {
@@ -49,7 +49,7 @@ export const disciplines: Discipline[] = [
     name: "Mathématiques",
     description: "Mathématiques pures et appliquées, statistiques",
     icon: "i-heroicons-calculator",
-    color: "primary",
+    color: "red",
     department: "Sciences"
   },
   {
@@ -57,7 +57,7 @@ export const disciplines: Discipline[] = [
     name: "Sciences naturelles",
     description: "Physique, chimie, biologie, sciences de la terre",
     icon: "i-heroicons-beaker",
-    color: "success",
+    color: "green",
     department: "Sciences"
   },
   {
@@ -65,7 +65,7 @@ export const disciplines: Discipline[] = [
     name: "Langues",
     description: "Français, allemand, anglais, autres langues étrangères",
     icon: "i-heroicons-language",
-    color: "primary",
+    color: "red",
     department: "Langues"
   },
   {
@@ -73,7 +73,7 @@ export const disciplines: Discipline[] = [
     name: "Commerce & Gestion",
     description: "Comptabilité, économie d'entreprise, gestion",
     icon: "i-heroicons-banknotes",
-    color: "success",
+    color: "green",
     department: "Commerce"
   },
   {
@@ -89,7 +89,7 @@ export const disciplines: Discipline[] = [
     name: "Technique",
     description: "Électronique, mécanique, automation, électrotechnique",
     icon: "i-heroicons-wrench-screwdriver",
-    color: "warning",
+    color: "gray",
     department: "Technique"
   },
   {
@@ -97,7 +97,7 @@ export const disciplines: Discipline[] = [
     name: "Culture générale",
     description: "Histoire, géographie, philosophie, citoyenneté",
     icon: "i-heroicons-globe-alt",
-    color: "primary",
+    color: "red",
     department: "Culture générale"
   },
   {
@@ -105,7 +105,7 @@ export const disciplines: Discipline[] = [
     name: "Éducation physique",
     description: "Sport, activités physiques, santé et bien-être",
     icon: "i-heroicons-trophy",
-    color: "warning",
+    color: "gray",
     department: "Sport"
   },
   {
@@ -113,7 +113,7 @@ export const disciplines: Discipline[] = [
     name: "Musique",
     description: "Théorie musicale, pratique instrumentale, composition",
     icon: "i-heroicons-musical-note",
-    color: "primary",
+    color: "red",
     department: "Arts"
   },
   {
@@ -121,7 +121,7 @@ export const disciplines: Discipline[] = [
     name: "Architecture",
     description: "Dessin technique, CAO, construction, urbanisme",
     icon: "i-heroicons-building-office",
-    color: "neutral",
+    color: "gray",
     department: "Technique"
   },
   {
@@ -129,7 +129,7 @@ export const disciplines: Discipline[] = [
     name: "Agriculture & Environnement",
     description: "Sciences agronomiques, écologie, développement durable",
     icon: "i-heroicons-leaf",
-    color: "success",
+    color: "green",
     department: "Agriculture"
   }
 ]

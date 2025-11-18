@@ -48,7 +48,7 @@ const handleClick = () => {
           <div class="flex flex-wrap gap-1.5 mt-2">
             <UBadge
               v-if="software.supportedByCEJEF"
-              color="success"
+              color="green"
               variant="soft"
               size="sm"
             >

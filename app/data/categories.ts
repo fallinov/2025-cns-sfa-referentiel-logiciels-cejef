@@ -18,7 +18,7 @@ export const categories: Category[] = [
     description:
       "Outils pour créer des quiz, sondages et évaluations formatives interactives",
     icon: "i-heroicons-academic-cap",
-    color: "primary"
+    color: "red"
   },
   {
     id: "collaboration",
@@ -26,7 +26,7 @@ export const categories: Category[] = [
     description:
       "Plateformes pour le travail collaboratif, partage de documents et co-création",
     icon: "i-heroicons-users",
-    color: "primary"
+    color: "red"
   },
   {
     id: "design",
@@ -34,7 +34,7 @@ export const categories: Category[] = [
     description:
       "Outils de conception graphique, infographies et supports visuels",
     icon: "i-heroicons-paint-brush",
-    color: "primary"
+    color: "red"
   },
   {
     id: "interactif",
@@ -42,7 +42,7 @@ export const categories: Category[] = [
     description:
       "Création de contenus pédagogiques interactifs et multimédias enrichis",
     icon: "i-heroicons-cursor-arrow-ripple",
-    color: "success"
+    color: "green"
   },
   {
     id: "video",
@@ -58,7 +58,7 @@ export const categories: Category[] = [
     description:
       "Systèmes de gestion de l'apprentissage et plateformes de cours en ligne",
     icon: "i-heroicons-book-open",
-    color: "primary"
+    color: "red"
   },
   {
     id: "communication",
@@ -66,14 +66,14 @@ export const categories: Category[] = [
     description:
       "Outils de communication synchrone et asynchrone pour l'enseignement",
     icon: "i-heroicons-chat-bubble-left-right",
-    color: "primary"
+    color: "red"
   },
   {
     id: "productivite",
     name: "Productivité",
     description: "Outils d'organisation, gestion de projets et prise de notes",
     icon: "i-heroicons-clipboard-document-list",
-    color: "neutral"
+    color: "gray"
   },
   {
     id: "presentation",
@@ -81,7 +81,7 @@ export const categories: Category[] = [
     description:
       "Outils pour créer des présentations dynamiques et engageantes",
     icon: "i-heroicons-presentation-chart-bar",
-    color: "warning"
+    color: "gray"
   },
   {
     id: "interaction",
@@ -89,14 +89,14 @@ export const categories: Category[] = [
     description:
       "Outils pour engager les étudiants en temps réel durant les cours",
     icon: "i-heroicons-hand-raised",
-    color: "primary"
+    color: "red"
   },
   {
     id: "bureautique",
     name: "Bureautique",
     description: "Suites bureautiques et outils de traitement de documents",
     icon: "i-heroicons-document-text",
-    color: "neutral"
+    color: "gray"
   },
   {
     id: "ia",
@@ -104,7 +104,7 @@ export const categories: Category[] = [
     description:
       "Assistants IA et outils d'apprentissage automatique pour l'éducation",
     icon: "i-heroicons-cpu-chip",
-    color: "primary"
+    color: "red"
   },
   {
     id: "codage",
@@ -112,7 +112,7 @@ export const categories: Category[] = [
     description:
       "Environnements de développement et plateformes d'apprentissage du code",
     icon: "i-heroicons-code-bracket",
-    color: "success"
+    color: "green"
   },
   {
     id: "simulation",
@@ -120,14 +120,14 @@ export const categories: Category[] = [
     description:
       "Laboratoires virtuels et simulateurs pour sciences et techniques",
     icon: "i-heroicons-beaker",
-    color: "warning"
+    color: "gray"
   },
   {
     id: "carte-mentale",
     name: "Cartes mentales",
     description: "Outils de mind mapping et organisation d'idées visuelles",
     icon: "i-heroicons-squares-plus",
-    color: "success"
+    color: "green"
   }
 ]
 
