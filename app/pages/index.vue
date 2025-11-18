@@ -500,7 +500,7 @@ useSeoMeta({
               </p>
             </div>
             <UButton
-              color="red"
+              color="primary"
               variant="link"
               size="lg"
               icon="i-lucide-refresh-cw"
@@ -620,14 +620,14 @@ useSeoMeta({
             <UBadge
               v-for="filter in appliedFilters"
               :key="filter.id"
-              color="red"
+              color="primary"
               variant="soft"
               size="lg"
             >
               {{ filter.label }}
               <template #trailing>
                 <UButton
-                  color="red"
+                  color="primary"
                   variant="link"
                   icon="i-lucide-x"
                   size="xs"
@@ -692,7 +692,7 @@ useSeoMeta({
           Essayez de modifier vos critères de recherche
         </p>
         <UButton
-          color="red"
+          color="primary"
           variant="soft"
           size="lg"
           @click="clearFilters"

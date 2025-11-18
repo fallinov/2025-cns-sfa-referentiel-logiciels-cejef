@@ -72,7 +72,7 @@ const formatLanguages = (codes: string[]) => {
             <div class="flex flex-wrap gap-2">
               <UBadge
                 v-if="selectedSoftware.supportedByCEJEF"
-                color="green"
+                color="success"
                 variant="soft"
               >
                 <template #leading>
@@ -395,7 +395,7 @@ const formatLanguages = (codes: string[]) => {
                     <UBadge
                       v-for="integration in selectedSoftware.integrations"
                       :key="integration"
-                      color="red"
+                      color="primary"
                       variant="subtle"
                       size="sm"
                     >
@@ -439,7 +439,7 @@ const formatLanguages = (codes: string[]) => {
           <UButton
             :to="selectedSoftware.toolUrl"
             target="_blank"
-            color="red"
+            color="primary"
             size="lg"
             block
             trailing-icon="i-lucide-external-link"
