@@ -1,38 +1,36 @@
 <script setup>
 useHead({
-  meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-  ],
+  meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
   htmlAttrs: {
-    lang: 'fr'
-  }
-})
+    lang: "fr",
+  },
+});
 
-const title = 'Référentiel Logiciels CEJEF'
-const description = 'Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD (Loi sur la protection des données)'
+const title = "Référentiel Logiciels CEJEF";
+const description =
+  "Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD (Loi sur la protection des données)";
 
 useSeoMeta({
   title,
   description,
   ogTitle: title,
   ogDescription: description,
-  twitterCard: 'summary_large_image'
-})
+  twitterCard: "summary_large_image",
+});
 </script>
 
 <template>
   <UApp>
     <UHeader>
       <template #left>
-        <NuxtLink
-          to="/"
-          class="flex items-center gap-2"
-        >
+        <NuxtLink to="/" class="flex items-center gap-2">
           <UIcon
             name="i-lucide-graduation-cap"
             class="w-6 h-6 text-violet-600 dark:text-violet-400"
           />
-          <span class="font-semibold text-gray-900 dark:text-white hidden sm:inline">
+          <span
+            class="font-semibold text-gray-900 dark:text-white hidden sm:inline"
+          >
             Référentiel Logiciels CEJEF
           </span>
           <span class="font-semibold text-gray-900 dark:text-white sm:hidden">
@@ -55,16 +53,16 @@ useSeoMeta({
     <UFooter>
       <template #left>
         <p class="text-sm text-gray-600 dark:text-gray-400">
-          CEJEF - Centre Jurassien d'Enseignement et de Formation • {{ new Date().getFullYear() }}
+          CEJEF - Centre Jurassien d'Enseignement et de Formation •
+          {{ new Date().getFullYear() }}
         </p>
       </template>
 
       <template #right>
-        <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <UIcon
-            name="i-lucide-shield-check"
-            class="w-4 h-4"
-          />
+        <div
+          class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
+        >
+          <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
           <span class="hidden sm:inline">Classification LGPD</span>
         </div>
       </template>
