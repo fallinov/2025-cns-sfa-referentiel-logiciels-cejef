@@ -528,8 +528,8 @@ useSeoMeta({
                 "
                 :icon="filter.icon"
                 :aria-pressed="selectedPopularFilters.includes(filter.id)"
-                size="md"
-                class="rounded-full !min-h-[48px] px-5 py-3 shrink-0 snap-start"
+                size="lg"
+                class="rounded-full !min-h-[48px] !py-3 px-5 shrink-0 snap-start"
                 role="button"
                 @click="togglePopularFilter(filter.id)"
               >
