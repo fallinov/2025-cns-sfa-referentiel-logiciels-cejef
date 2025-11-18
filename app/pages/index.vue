@@ -132,24 +132,44 @@ const certificationLevelLabels = computed(() =>
 
 const popularFilters = [
   {
-    id: "supported",
-    label: "Pris en charge CEJEF",
-    predicate: (software: Software) => software.supportedByCEJEF
+    id: "certified-level-1",
+    label: "Certifié CEJEF",
+    icon: "i-lucide-shield-check",
+    predicate: (software: Software) => {
+      const level
+        = software.certificationLevel ?? getCertificationLevel(software.lgpd)
+      return level === 1
+    }
   },
   {
-    id: "campus",
-    label: "Formation Campus",
-    predicate: (software: Software) => software.campusTraining
-  },
-  {
-    id: "personal",
-    label: "Données perso autorisées",
+    id: "personal-data",
+    label: "Données élèves autorisées",
+    icon: "i-lucide-user-check",
     predicate: (software: Software) => software.personalData
   },
   {
+    id: "supported-cejef",
+    label: "Support CEJEF",
+    icon: "i-lucide-headset",
+    predicate: (software: Software) => software.supportedByCEJEF
+  },
+  {
+    id: "campus-training",
+    label: "Formation disponible",
+    icon: "i-lucide-graduation-cap",
+    predicate: (software: Software) => software.campusTraining
+  },
+  {
     id: "no-account",
-    label: "Sans compte requis",
+    label: "Aucun compte requis",
+    icon: "i-lucide-zap",
     predicate: (software: Software) => !software.accountRequired
+  },
+  {
+    id: "free",
+    label: "100% gratuit",
+    icon: "i-lucide-coins",
+    predicate: (software: Software) => software.cost === "Gratuit"
   }
 ] as const
 const popularFilterMap = popularFilters.reduce(
@@ -502,6 +522,7 @@ useSeoMeta({
               :variant="
                 selectedPopularFilters.includes(filter.id) ? 'solid' : 'soft'
               "
+              :icon="filter.icon"
               :aria-pressed="selectedPopularFilters.includes(filter.id)"
               size="xs"
               class="rounded-full"
