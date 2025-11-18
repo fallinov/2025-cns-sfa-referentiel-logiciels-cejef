@@ -3,8 +3,8 @@ const { getSoftwareList } = useSoftware()
 const softwareList = getSoftwareList()
 
 useSeoMeta({
-  title: 'Référentiel Logiciels CEJEF',
-  description: 'Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD'
+  title: "Référentiel Logiciels CEJEF",
+  description: "Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD"
 })
 </script>
 

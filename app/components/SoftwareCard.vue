@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Software } from '~~/types/software'
-import { getCertificationLevel } from '~~/types/software'
-import { getLevelBgColor } from '~/utils/level-colors'
+import type { Software } from "~~/types/software"
+import { getCertificationLevel } from "~~/types/software"
+import { getLevelBgColor } from "~/utils/level-colors"
 
 interface Props {
   software: Software
@@ -74,7 +74,7 @@ const handleClick = () => {
           <span
             class="iconify i-lucide:lightbulb size-5 shrink-0"
             aria-hidden="true"
-          />
+          ></span>
           <span class="text-muted text-sm truncate">One developer</span>
         </li>
       </ul>

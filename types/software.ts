@@ -2,8 +2,8 @@
  * Types pour le référentiel logiciels CEJEF (source unique)
  */
 
-export type Platform = 'web' | 'windows' | 'mac' | 'smartphone' | 'tablet'
-export type CostType = 'Gratuit' | 'Freemium' | 'Payant'
+export type Platform = "web" | "windows" | "mac" | "smartphone" | "tablet"
+export type CostType = "Gratuit" | "Freemium" | "Payant"
 
 /**
  * Classification LGPD (Loi sur la protection des données)

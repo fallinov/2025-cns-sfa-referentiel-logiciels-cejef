@@ -1,13 +1,13 @@
-import type { Software } from '~~/types/software'
-import { softwareList } from '~/data/software-list'
+import type { Software } from "~~/types/software"
+import { softwareList } from "~/data/software-list"
 
 /**
  * Composable pour gérer l'état des logiciels et du modal de détail
  */
 export const useSoftware = () => {
   // État global partagé entre tous les composants
-  const selectedSoftware = useState<Software | null>('selectedSoftware', () => null)
-  const isDetailOpen = useState<boolean>('isDetailOpen', () => false)
+  const selectedSoftware = useState<Software | null>("selectedSoftware", () => null)
+  const isDetailOpen = useState<boolean>("isDetailOpen", () => false)
 
   /**
    * Récupère la liste de tous les logiciels
