@@ -442,7 +442,7 @@ useSeoMeta({
             color="red"
             variant="solid"
             size="lg"
-            class="justify-center sm:justify-start"
+            class="justify-center sm:justify-start bg-red-500 text-white"
           >
             <template #leading>
               <UIcon name="i-lucide-graduation-cap" class="w-4 h-4" />
@@ -453,7 +453,7 @@ useSeoMeta({
             color="green"
             variant="solid"
             size="lg"
-            class="justify-center sm:justify-start"
+            class="justify-center sm:justify-start bg-green-500 text-white"
           >
             <template #leading>
               <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
