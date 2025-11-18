@@ -605,10 +605,10 @@ useSeoMeta({
         <!-- Applied filters summary -->
         <div
           v-if="appliedFilters.length"
-          class="rounded-2xl border border-violet-200/70 dark:border-violet-500/20 bg-white/60 dark:bg-white/5 px-4 py-3 flex flex-col gap-2"
+          class="rounded-2xl border border-primary-200/70 dark:border-primary-500/20 bg-white/60 dark:bg-white/5 px-4 py-3 flex flex-col gap-2"
         >
           <div
-            class="flex items-center gap-2 text-base uppercase tracking-wide font-semibold text-violet-700 dark:text-violet-200"
+            class="flex items-center gap-2 text-base uppercase tracking-wide font-semibold text-primary-700 dark:text-primary-200"
           >
             <UIcon name="i-lucide-filter" class="w-5 h-5" />
             Filtres appliqués
@@ -717,7 +717,7 @@ useSeoMeta({
             <div class="text-center">
               <UIcon
                 name="i-lucide-home"
-                class="w-10 h-10 mx-auto mb-3 text-violet-600 dark:text-violet-400"
+                class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
               />
               <div class="text-base font-medium">
                 Hébergement
@@ -729,7 +729,7 @@ useSeoMeta({
             <div class="text-center">
               <UIcon
                 name="i-lucide-user-check"
-                class="w-10 h-10 mx-auto mb-3 text-violet-600 dark:text-violet-400"
+                class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
               />
               <div class="text-base font-medium">
                 Données perso.
@@ -741,7 +741,7 @@ useSeoMeta({
             <div class="text-center">
               <UIcon
                 name="i-lucide-shield-check"
-                class="w-10 h-10 mx-auto mb-3 text-violet-600 dark:text-violet-400"
+                class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
               />
               <div class="text-base font-medium">
                 RGPD
@@ -753,7 +753,7 @@ useSeoMeta({
             <div class="text-center">
               <UIcon
                 name="i-lucide-bar-chart-2"
-                class="w-10 h-10 mx-auto mb-3 text-violet-600 dark:text-violet-400"
+                class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
               />
               <div class="text-base font-medium">
                 Collecte

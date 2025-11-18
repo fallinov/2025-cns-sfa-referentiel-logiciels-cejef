@@ -26,7 +26,7 @@ useSeoMeta({
         <NuxtLink to="/" class="flex items-center gap-2">
           <UIcon
             name="i-lucide-graduation-cap"
-            class="w-6 h-6 text-violet-600 dark:text-violet-400"
+            class="w-6 h-6 text-primary-600 dark:text-primary-400"
           />
           <span
             class="font-semibold text-gray-900 dark:text-white hidden sm:inline"

@@ -423,7 +423,7 @@ const formatLanguages = (codes: string[]) => {
                   <a
                     :href="selectedSoftware.documentation"
                     target="_blank"
-                    class="text-sm text-violet-600 dark:text-violet-400 hover:underline mt-0.5 inline-flex items-center gap-1"
+                    class="text-sm text-primary-600 dark:text-primary-400 hover:underline mt-0.5 inline-flex items-center gap-1"
                   >
                     Voir la documentation
                     <UIcon name="i-lucide-external-link" class="w-3 h-3" />
