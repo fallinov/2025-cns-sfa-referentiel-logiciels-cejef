@@ -1,0 +1,26 @@
+{
+  "lsp": {
+    "tailwindcss-language-server": {
+      "settings": {
+        "tailwindCSS": {
+          "validate": true,
+          "lint": {
+            "cssConflict": "warning",
+            "invalidApply": "error",
+            "invalidScreen": "error",
+            "invalidVariant": "error",
+            "invalidConfigPath": "error",
+            "invalidTailwindDirective": "error",
+            "recommendedVariantOrder": "warning"
+          }
+        }
+      }
+    }
+  },
+  "languages": {
+    "CSS": {
+      "format_on_save": "off",
+      "tab_size": 2
+    }
+  }
+}

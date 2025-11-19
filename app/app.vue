@@ -1,4 +1,6 @@
 <script setup>
+const isCommandPaletteOpen = ref(false)
+
 useHead({
   meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
   htmlAttrs: {
@@ -40,13 +42,30 @@ useSeoMeta({
       </template>
 
       <template #right>
-        <UColorModeButton />
+        <div class="flex items-center gap-3">
+          <UButton
+            icon="i-lucide-search"
+            color="neutral"
+            variant="outline"
+            aria-label="Rechercher un logiciel"
+            @click="isCommandPaletteOpen = true"
+          >
+            <span class="hidden sm:inline">Rechercher</span>
+            <template #trailing>
+              <UKbd>⌘K</UKbd>
+            </template>
+          </UButton>
+          <UColorModeButton />
+        </div>
       </template>
     </UHeader>
 
     <UMain>
       <NuxtPage />
     </UMain>
+
+    <!-- Command Palette for global search -->
+    <SoftwareCommandPalette v-model:open="isCommandPaletteOpen" />
 
     <USeparator />
 

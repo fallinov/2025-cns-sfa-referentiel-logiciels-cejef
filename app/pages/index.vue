@@ -9,10 +9,7 @@ import { CERTIFICATION_LEVELS } from "~/constants/certification-levels"
 const { getSoftwareList } = useSoftware()
 const softwareList = getSoftwareList()
 
-// Search and filter functionality
-const searchQuery = ref("")
-const debouncedSearchQuery = ref("")
-
+// Filter functionality (search is handled by global CommandPalette)
 const selectedCategories = ref<string[]>([])
 const selectedDisciplines = ref<string[]>([])
 const selectedActivities = ref<string[]>([])
@@ -20,17 +17,6 @@ const selectedPlatforms = ref<string[]>([])
 const selectedCosts = ref<CostType[]>([])
 const selectedCertifications = ref<CertificationLevel[]>([])
 const selectedPopularFilters = ref<string[]>([])
-
-// Debounce search input for better performance
-const searchDebounceTimer = ref<ReturnType<typeof setTimeout> | null>(null)
-watch(searchQuery, (newValue) => {
-  if (searchDebounceTimer.value) {
-    clearTimeout(searchDebounceTimer.value)
-  }
-  searchDebounceTimer.value = setTimeout(() => {
-    debouncedSearchQuery.value = newValue
-  }, 300)
-})
 
 // Options for select menus - memoized to avoid recalculation
 const usedCategoryIds = computed(
@@ -197,13 +183,6 @@ const resetPopularFilters = () => {
 const appliedFilters = computed(() => {
   const filters: Array<{ id: string, label: string }> = []
 
-  if (searchQuery.value.trim()) {
-    filters.push({
-      id: "search",
-      label: `Recherche : “${searchQuery.value.trim()}”`
-    })
-  }
-
   selectedPopularFilters.value.forEach((filterId) => {
     const filter = popularFilterMap[filterId]
     if (filter) {
@@ -266,11 +245,6 @@ const hasActiveFilters = computed(() => {
 })
 
 const removeFilter = (filterId: string) => {
-  if (filterId === "search") {
-    searchQuery.value = ""
-    return
-  }
-
   if (filterId.startsWith("popular-")) {
     const id = filterId.replace("popular-", "")
     selectedPopularFilters.value = selectedPopularFilters.value.filter(
@@ -327,21 +301,9 @@ const removeFilter = (filterId: string) => {
   }
 }
 
-// Filtered software list based on search and category
+// Filtered software list based on filters (search is handled by global CommandPalette)
 const filteredSoftwareList = computed(() => {
   let filtered = softwareList
-
-  // Filter by search query (using debounced value)
-  if (debouncedSearchQuery.value.trim()) {
-    const query = debouncedSearchQuery.value.toLowerCase().trim()
-    filtered = filtered.filter(
-      software =>
-        software.name.toLowerCase().includes(query)
-        || software.shortDescription.toLowerCase().includes(query)
-        || software.category.toLowerCase().includes(query)
-        || software.disciplines.some(d => d.toLowerCase().includes(query))
-    )
-  }
 
   // Filter by categories
   if (selectedCategories.value.length) {
@@ -408,7 +370,6 @@ const filteredSoftwareList = computed(() => {
 
 // Clear all filters
 const clearFilters = () => {
-  searchQuery.value = ""
   selectedCategories.value = []
   selectedDisciplines.value = []
   selectedActivities.value = []
@@ -464,39 +425,9 @@ useSeoMeta({
       </template>
     </UPageHero>
 
-    <!-- Search and Filter Section -->
+    <!-- Filter Section -->
     <UPageSection>
       <div class="space-y-6">
-        <UInput
-          v-model="searchQuery"
-          icon="i-lucide-search"
-          size="xl"
-          placeholder="Rechercher un logiciel par nom, description ou discipline..."
-          :ui="{
-            wrapper: 'relative',
-            base: 'border-2 border-primary-300 dark:border-primary-700/50 bg-white dark:bg-gray-900 shadow-lg focus-within:border-primary-500 dark:focus-within:border-primary-500 transition-all duration-200',
-            leading: {
-              wrapper: 'absolute inset-y-0 start-0 flex items-center',
-              icon: {
-                base: 'shrink-0 text-primary-600 dark:text-primary-400'
-              }
-            },
-            input:
-              'block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 text-lg placeholder:text-gray-500 dark:placeholder:text-gray-400'
-          }"
-        >
-          <template v-if="searchQuery" #trailing>
-            <UButton
-              color="neutral"
-              variant="link"
-              icon="i-lucide-x"
-              :padded="false"
-              aria-label="Effacer la recherche"
-              @click="searchQuery = ''"
-            />
-          </template>
-        </UInput>
-
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <div>
