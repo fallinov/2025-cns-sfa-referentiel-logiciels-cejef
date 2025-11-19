@@ -328,19 +328,29 @@ const currentViewTitle = computed(() => {
     :ui="{ content: 'w-full sm:max-w-md' }"
   >
     <template #header>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center justify-between w-full">
+        <div class="flex items-center gap-3">
+          <UButton
+            v-if="currentView !== 'main'"
+            color="neutral"
+            variant="ghost"
+            icon="i-lucide-chevron-left"
+            size="sm"
+            square
+            @click="goBack"
+          />
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+            {{ currentViewTitle }}
+          </h2>
+        </div>
         <UButton
-          v-if="currentView !== 'main'"
           color="neutral"
           variant="ghost"
-          icon="i-lucide-arrow-left"
+          icon="i-lucide-x"
           size="sm"
           square
-          @click="goBack"
+          @click="isOpen = false"
         />
-        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-          {{ currentViewTitle }}
-        </h2>
       </div>
     </template>
 
