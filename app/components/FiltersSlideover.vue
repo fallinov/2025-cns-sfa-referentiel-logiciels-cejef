@@ -273,25 +273,53 @@ const mainMenuItems = computed(() => [
     count: props.selectedCertifications.length
   }
 ])
+
+// Current view title
+const currentViewTitle = computed(() => {
+  switch (currentView.value) {
+    case "main":
+      return "Filtre"
+    case "categories":
+      return "Catégories"
+    case "disciplines":
+      return "Disciplines"
+    case "activities":
+      return "Activités pédagogiques"
+    case "platforms":
+      return "Plateformes"
+    case "costs":
+      return "Coût"
+    case "certifications":
+      return "Certification LGPD"
+    default:
+      return "Filtre"
+  }
+})
 </script>
 
 <template>
   <USlideover
     v-model:open="isOpen"
+    :title="currentViewTitle"
     side="left"
     :ui="{ content: 'w-full sm:max-w-md' }"
   >
+    <template #leading>
+      <UButton
+        v-if="currentView !== 'main'"
+        color="neutral"
+        variant="ghost"
+        icon="i-lucide-arrow-left"
+        size="sm"
+        square
+        @click="goBack"
+      />
+    </template>
+
     <template #body>
       <div class="flex flex-col h-full">
         <!-- Main View -->
         <div v-if="currentView === 'main'" class="flex flex-col h-full">
-          <!-- Header -->
-          <div class="pb-4 border-b border-gray-200 dark:border-gray-800">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Filtre
-            </h2>
-          </div>
-
           <!-- Reset all button -->
           <div v-if="hasActiveFilters" class="py-4">
             <UButton
@@ -339,22 +367,6 @@ const mainMenuItems = computed(() => [
           v-else-if="currentView === 'categories'"
           class="flex flex-col h-full"
         >
-          <div
-            class="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-gray-800"
-          >
-            <UButton
-              color="neutral"
-              variant="ghost"
-              icon="i-lucide-arrow-left"
-              size="sm"
-              square
-              @click="goBack"
-            />
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Catégories
-            </h2>
-          </div>
-
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
@@ -384,22 +396,6 @@ const mainMenuItems = computed(() => [
           v-else-if="currentView === 'disciplines'"
           class="flex flex-col h-full"
         >
-          <div
-            class="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-gray-800"
-          >
-            <UButton
-              color="neutral"
-              variant="ghost"
-              icon="i-lucide-arrow-left"
-              size="sm"
-              square
-              @click="goBack"
-            />
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Disciplines
-            </h2>
-          </div>
-
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
@@ -429,22 +425,6 @@ const mainMenuItems = computed(() => [
           v-else-if="currentView === 'activities'"
           class="flex flex-col h-full"
         >
-          <div
-            class="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-gray-800"
-          >
-            <UButton
-              color="neutral"
-              variant="ghost"
-              icon="i-lucide-arrow-left"
-              size="sm"
-              square
-              @click="goBack"
-            />
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Activités pédagogiques
-            </h2>
-          </div>
-
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
@@ -474,22 +454,6 @@ const mainMenuItems = computed(() => [
           v-else-if="currentView === 'platforms'"
           class="flex flex-col h-full"
         >
-          <div
-            class="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-gray-800"
-          >
-            <UButton
-              color="neutral"
-              variant="ghost"
-              icon="i-lucide-arrow-left"
-              size="sm"
-              square
-              @click="goBack"
-            />
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Plateformes
-            </h2>
-          </div>
-
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
@@ -516,22 +480,6 @@ const mainMenuItems = computed(() => [
 
         <!-- Costs View -->
         <div v-else-if="currentView === 'costs'" class="flex flex-col h-full">
-          <div
-            class="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-gray-800"
-          >
-            <UButton
-              color="neutral"
-              variant="ghost"
-              icon="i-lucide-arrow-left"
-              size="sm"
-              square
-              @click="goBack"
-            />
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Coût
-            </h2>
-          </div>
-
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
@@ -561,22 +509,6 @@ const mainMenuItems = computed(() => [
           v-else-if="currentView === 'certifications'"
           class="flex flex-col h-full"
         >
-          <div
-            class="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-gray-800"
-          >
-            <UButton
-              color="neutral"
-              variant="ghost"
-              icon="i-lucide-arrow-left"
-              size="sm"
-              square
-              @click="goBack"
-            />
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Certification LGPD
-            </h2>
-          </div>
-
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
