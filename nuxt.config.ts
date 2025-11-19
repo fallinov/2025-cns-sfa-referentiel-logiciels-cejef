@@ -7,9 +7,14 @@ export default defineNuxtConfig({
   // MODULES NUXT
   // ========================================
   // Modules = extensions qui ajoutent des fonctionnalités à Nuxt
-  modules: [// Vérification de la qualité du code (linting)
-    "@nuxt/eslint", // Bibliothèque de composants UI pré-stylés
-    "@nuxt/ui"],
+  modules: [
+    // Vérification de la qualité du code (linting)
+    "@nuxt/eslint",
+    // Bibliothèque de composants UI pré-stylés
+    "@nuxt/ui",
+    // Optimisation et chargement automatique des polices web
+    "@nuxt/fonts"
+  ],
 
   // ========================================
   // OUTILS DE DÉVELOPPEMENT
@@ -34,7 +39,11 @@ export default defineNuxtConfig({
     head: {
       title: "Référentiel Logiciels CEJEF",
       meta: [
-        { name: "description", content: "Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD" },
+        {
+          name: "description",
+          content:
+            "Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD"
+        },
         { name: "author", content: "CEJEF" }
       ],
       link: [
@@ -43,7 +52,10 @@ export default defineNuxtConfig({
           type: "image/x-icon", // Format du fichier
           // Chemin du favicon avec gestion du baseURL
           // Le .replace(/\/+/g, '/') évite les doubles slashes (//)
-          href: `${process.env.NUXT_APP_BASE_URL || ""}/favicon.ico`.replace(/\/+/g, "/")
+          href: `${process.env.NUXT_APP_BASE_URL || ""}/favicon.ico`.replace(
+            /\/+/g,
+            "/"
+          )
         }
       ]
     }
@@ -73,5 +85,19 @@ export default defineNuxtConfig({
         braceStyle: "1tbs" // Style d'accolades "One True Brace Style"
       }
     }
+  },
+
+  // ========================================
+  // CONFIGURATION DES POLICES WEB
+  // ========================================
+  // @nuxt/fonts gère automatiquement le chargement des polices depuis Google Fonts
+  // avec optimisation (preconnect, preload, font-display)
+  fonts: {
+    families: [
+      {
+        name: "Public Sans", // Police principale CEJEF
+        provider: "google" // Chargée depuis Google Fonts
+      }
+    ]
   }
 })

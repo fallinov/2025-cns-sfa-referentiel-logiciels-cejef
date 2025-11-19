@@ -113,9 +113,11 @@ Quantité de données collectées par l'outil :
 ### Stack technique
 
 - **[Nuxt 4](https://nuxt.com)** : Framework Vue.js pour applications web modernes
-- **[Nuxt UI](https://ui.nuxt.com)** : Bibliothèque de composants UI basée sur Tailwind CSS
+- **[Nuxt UI v4.1.0](https://ui.nuxt.com)** : Bibliothèque de composants UI basée sur Tailwind CSS v4
+- **[Nuxt Fonts](https://fonts.nuxt.com)** : Optimisation automatique des polices web (Google Fonts hébergées localement)
 - **[TypeScript](https://www.typescriptlang.org/)** : Typage statique pour JavaScript
 - **[Vue 3](https://vuejs.org/)** : Framework JavaScript progressif
+- **[Tailwind CSS v4](https://tailwindcss.com)** : Framework CSS utility-first avec thème personnalisé CEJEF
 
 ### Outils de développement
 
@@ -291,9 +293,40 @@ Créer `.vscode/settings.json` :
     "typescript",
     "typescriptreact",
     "vue"
-  ]
+  ],
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore"
 }
 ```
+
+**Note :** Les règles `css.lint.unknownAtRules: "ignore"` désactivent l'avertissement VSCode pour `@theme static`, une règle valide de Tailwind CSS v4 que l'éditeur ne reconnaît pas encore.
+
+#### Zed
+
+Créer `.zed/settings.json` :
+
+```json
+{
+  "lsp": {
+    "tailwindcss-language-server": {
+      "settings": {
+        "tailwindCSS": {
+          "validate": true
+        }
+      }
+    }
+  },
+  "languages": {
+    "CSS": {
+      "format_on_save": "off",
+      "tab_size": 2
+    }
+  }
+}
+```
+
+**Note :** Zed utilise le Tailwind CSS Language Server qui reconnaît nativement `@theme static`. Si vous voyez toujours un avertissement, rechargez Zed (`Cmd+Shift+P` → "Zed: Reload Window").
 
 #### WebStorm / IntelliJ IDEA
 
@@ -572,30 +605,79 @@ git push origin main
 
 ### Configurer la palette de couleurs
 
-Le projet utilise les couleurs de la marque CEJEF et suit l'architecture de couleurs recommandée par Nuxt UI et Tailwind CSS v4.
+Le projet utilise les couleurs de la marque CEJEF et suit l'architecture de couleurs recommandée par Nuxt UI et Tailwind CSS v4. Cette configuration suit les **bonnes pratiques officielles** de Nuxt et Nuxt UI pour garantir une architecture maintenable et évolutive.
+
+#### Fichiers de configuration du thème
+
+Le système de couleurs est configuré dans **4 fichiers clés** :
+
+1. **`app/assets/css/main.css`** - Définition des palettes de couleurs Tailwind CSS
+2. **`app/app.config.ts`** - Mapping des couleurs sémantiques Nuxt UI
+3. **`tailwind.config.ts`** - Documentation et configuration Tailwind CSS
+4. **`nuxt.config.ts`** - Configuration de la police web avec @nuxt/fonts
 
 #### Architecture des couleurs (3 niveaux)
 
-**1. Définition des couleurs dans `app/assets/css/main.css`**
+**Niveau 1 : Définition des palettes Tailwind (`app/assets/css/main.css`)**
 
-Source unique de vérité pour les couleurs. Utilise `@theme static` pour remplacer complètement les couleurs Tailwind par défaut :
+Source unique de vérité pour les couleurs. Utilise `@theme static` pour **remplacer complètement** les couleurs Tailwind par défaut :
 
 ```css
+@import "tailwindcss";
+@import "@nuxt/ui";
+
 @theme static {
+  /* Police principale CEJEF */
+  --font-sans: "Public Sans", sans-serif;
+
   /* Rouge CEJEF - Remplace la couleur 'red' de Tailwind */
-  --color-red-500: #d1232a;  /* Couleur principale */
-  --color-red-50: #fef2f2;   /* Teintes claires */
-  --color-red-950: #450a0a;  /* Teintes foncées */
+  --color-red-50: #fef2f2;   /* Teintes très claires */
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #d1232a;  /* Couleur principale CEJEF */
+  --color-red-600: #b91c22;
+  --color-red-700: #991b1f;
+  --color-red-800: #7f1d1d;
+  --color-red-900: #661a1a;
+  --color-red-950: #450a0a;  /* Teintes très foncées */
   
   /* Vert CEJEF - Remplace la couleur 'green' de Tailwind */
-  --color-green-500: #659157; /* Certification niveau 1 */
+  --color-green-50: #f4f7f3;
+  --color-green-100: #e8efe6;
+  --color-green-200: #d1dfc9;
+  --color-green-300: #a8c49a;
+  --color-green-400: #7fa86b;
+  --color-green-500: #659157;  /* Indicateurs de conformité */
+  --color-green-600: #5a7f4d;
+  --color-green-700: #4d6b41;
+  --color-green-800: #3f5735;
+  --color-green-900: #32462a;
+  --color-green-950: #1a2515;
   
   /* Orange CEJEF - Remplace la couleur 'orange' de Tailwind */
-  --color-orange-500: #f4b886; /* Certification niveau 3 */
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #fed7aa;
+  --color-orange-300: #fdba74;
+  --color-orange-400: #fda760;
+  --color-orange-500: #f4b886;  /* Avertissements et alertes */
+  --color-orange-600: #ea8a5c;
+  --color-orange-700: #c2410c;
+  --color-orange-800: #9a3412;
+  --color-orange-900: #7c2d12;
+  --color-orange-950: #431407;
 }
 ```
 
-**2. Mapping sémantique dans `app/app.config.ts`**
+**Pourquoi `@theme static` ?**
+- ✅ Recommandé par Tailwind CSS v4 pour remplacer les couleurs par défaut
+- ✅ Les couleurs personnalisées remplacent complètement `red`, `green`, `orange`
+- ✅ Tous les utilitaires Tailwind (`bg-red-500`, `text-green-600`) utilisent les couleurs CEJEF
+- ✅ Pas besoin de `extend` dans `tailwind.config.ts`
+
+**Niveau 2 : Mapping sémantique Nuxt UI (`app/app.config.ts`)**
 
 Associe les noms sémantiques Nuxt UI aux couleurs Tailwind redéfinies :
 
@@ -603,25 +685,34 @@ Associe les noms sémantiques Nuxt UI aux couleurs Tailwind redéfinies :
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: "red",      // Rouge CEJEF
-      success: "green",    // Vert CEJEF
-      error: "orange",     // Orange CEJEF
-      info: "gray",
-      neutral: "gray"
+      primary: "red",      // Rouge CEJEF (#d1232a)
+      success: "green",    // Vert CEJEF (#659157)
+      error: "orange",     // Orange CEJEF (#f4b886)
+      info: "gray",        // Gris par défaut de Tailwind
+      neutral: "gray"      // Gris par défaut de Tailwind
     }
   }
 })
 ```
 
-**3. Utilisation dans les composants**
+**Pourquoi cette architecture ?**
+- ✅ Recommandée par la documentation officielle Nuxt UI v4
+- ✅ Permet de changer toutes les couleurs de l'app en modifiant uniquement `app.config.ts`
+- ✅ Les composants restent sémantiques (`color="primary"`) au lieu de couplés (`color="red"`)
+
+**Niveau 3 : Utilisation dans les composants**
 
 Toujours utiliser les **noms sémantiques** dans les props des composants Nuxt UI :
 
 ```vue
-<!-- ✅ CORRECT -->
+<!-- ✅ CORRECT - Utilise le nom sémantique -->
 <UBadge color="primary" variant="soft">
   17 logiciels disponibles
 </UBadge>
+
+<UButton color="success">
+  Conforme RGPD
+</UButton>
 
 <!-- ❌ INCORRECT - Ne jamais utiliser le nom Tailwind directement -->
 <UBadge color="red" variant="soft">
@@ -629,31 +720,170 @@ Toujours utiliser les **noms sémantiques** dans les props des composants Nuxt U
 </UBadge>
 ```
 
+#### Documentation des couleurs (`tailwind.config.ts`)
+
+Le fichier `tailwind.config.ts` documente l'architecture complète des couleurs :
+
+```typescript
+import type { Config } from "tailwindcss"
+
+/**
+ * Configuration Tailwind CSS pour le Référentiel Logiciels CEJEF
+ *
+ * Architecture des couleurs :
+ *
+ * 1. Niveau Tailwind (main.css avec @theme static) :
+ *    - Définit les palettes complètes (50-950) pour red, green, orange
+ *    - Utilise les couleurs de la charte graphique CEJEF
+ *
+ * 2. Niveau Nuxt UI (app.config.ts) :
+ *    - Mappe les couleurs Tailwind vers des noms sémantiques :
+ *      • primary: 'red'    → Rouge CEJEF (#d1232a)
+ *      • success: 'green'  → Vert CEJEF (#659157)
+ *      • error: 'orange'   → Orange CEJEF (#f4b886)
+ *
+ * 3. Niveau Composants :
+ *    - Utilisent les noms sémantiques (primary, success, error)
+ */
+export default {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["Public Sans", "sans-serif"]
+      }
+    }
+  }
+} satisfies Config
+```
+
+#### Configuration de la police web (`nuxt.config.ts`)
+
+Le module `@nuxt/fonts` gère automatiquement le chargement optimisé de la police Google Fonts :
+
+```typescript
+export default defineNuxtConfig({
+  modules: [
+    "@nuxt/eslint",
+    "@nuxt/ui",
+    "@nuxt/fonts"  // Optimise le chargement des polices
+  ],
+  
+  fonts: {
+    families: [
+      {
+        name: "Public Sans",  // Police principale CEJEF
+        provider: "google"    // Télécharge depuis Google Fonts
+      }
+    ]
+  }
+})
+```
+
+**🏠 Hébergement des polices : 100% local sur votre serveur**
+
+Les polices Google Fonts sont **auto-hébergées sur votre serveur CEJEF**, pas sur le cloud Google :
+
+**Au moment du build (`npm run generate`) :**
+1. 📥 `@nuxt/fonts` télécharge les fichiers `.woff2` depuis Google Fonts
+2. 💾 Les stocke dans `.output/public/_fonts/`
+3. 🔧 Génère les CSS optimisés avec chemins locaux
+4. 🚀 Les déploie avec votre site statique
+
+**Résultat :**
+- ✅ **Aucune requête externe** vers Google lors de la navigation des utilisateurs
+- ✅ **Conformité RGPD/LGPD** : Pas de données transmises à Google
+- ✅ **Pas de bannière cookies** nécessaire pour les polices
+- ✅ **Performance optimale** : Chargement depuis votre serveur
+- ✅ **Fiabilité** : Fonctionne même si Google Fonts est indisponible
+
+**Vérification après le build :**
+
+```bash
+npm run generate
+
+# Vérifier que les polices sont stockées localement
+ls -la .output/public/_fonts/
+# Output attendu : public-sans-*.woff2
+```
+
+**Avantages techniques de `@nuxt/fonts` :**
+- ✅ Preconnect automatique lors du build (téléchargement optimisé)
+- ✅ Preload des fichiers de polices critiques dans le `<head>`
+- ✅ Gestion optimisée de `font-display: swap` pour éviter le FOUT/FOIT
+- ✅ Subsetting automatique (seulement les caractères utilisés = fichiers plus petits)
+- ✅ Conversion automatique au format moderne `.woff2` (compression optimale)
+
 #### Modifier les couleurs
 
 **Pour changer une couleur de la palette :**
 
-1. Modifier `app/assets/css/main.css` uniquement
+1. Modifier **uniquement** `app/assets/css/main.css`
 2. Les changements se propagent automatiquement à toute l'application
-3. Pas besoin de modifier les composants
+3. Pas besoin de modifier les composants ni `app.config.ts`
 
 **Exemple : Changer le rouge CEJEF**
 
 ```css
 /* Dans app/assets/css/main.css */
 @theme static {
-  --color-red-500: #ff0000; /* Nouvelle couleur rouge */
-  /* Ajuster les autres nuances si nécessaire */
+  --color-red-500: #ff0000; /* Nouvelle couleur rouge principale */
+  --color-red-600: #cc0000; /* Ajuster les nuances plus foncées */
+  --color-red-400: #ff3333; /* Ajuster les nuances plus claires */
+  /* ... */
 }
 ```
 
-#### Règles importantes
+**Pour changer le mapping sémantique :**
 
-- ✅ **Définir les couleurs dans UN SEUL endroit** : `main.css`
-- ✅ **Utiliser UNIQUEMENT les props** des composants Nuxt UI (pas de CSS personnalisé)
-- ✅ **Toujours utiliser les noms sémantiques** dans les composants : `primary`, `success`, `error`, `info`, `neutral`
-- ❌ **Ne JAMAIS utiliser les noms Tailwind** directement dans les composants : `red`, `green`, `orange`
-- ❌ **Ne JAMAIS créer de classes CSS personnalisées** pour les couleurs
+Si vous voulez que `primary` utilise une autre couleur Tailwind :
+
+```typescript
+// Dans app/app.config.ts
+export default defineAppConfig({
+  ui: {
+    colors: {
+      primary: "blue",  // Change primary de rouge à bleu
+      success: "green",
+      error: "orange"
+    }
+  }
+})
+```
+
+#### Règles importantes et bonnes pratiques
+
+**✅ À FAIRE :**
+- **Définir les couleurs dans UN SEUL endroit** : `app/assets/css/main.css`
+- **Utiliser UNIQUEMENT les props** des composants Nuxt UI (pas de CSS personnalisé)
+- **Toujours utiliser les noms sémantiques** dans les composants : `primary`, `success`, `error`, `info`, `neutral`
+- **Documenter les couleurs** dans `tailwind.config.ts` avec des commentaires
+- **Tester les contrastes WCAG** pour l'accessibilité (https://webaim.org/resources/contrastchecker/)
+- **Utiliser les nuances 50-950** pour avoir une palette complète et cohérente
+
+**❌ À ÉVITER :**
+- **Ne JAMAIS utiliser les noms Tailwind** directement dans les composants : `red`, `green`, `orange`
+- **Ne JAMAIS créer de classes CSS personnalisées** pour les couleurs
+- **Ne JAMAIS définir les couleurs en dur** dans les composants : `style="color: #d1232a"`
+- **Ne JAMAIS mélanger** `@theme` et `extend.colors` dans `tailwind.config.ts` pour les mêmes couleurs
+
+#### Vérifier la configuration
+
+**Tester que les couleurs sont bien appliquées :**
+
+```bash
+# Démarrer le serveur de développement
+npm run dev
+
+# Ouvrir http://localhost:3000
+# Vérifier que les badges, boutons utilisent les couleurs CEJEF
+```
+
+**Vérifier les DevTools Nuxt UI :**
+
+1. Ouvrir http://localhost:3000
+2. Ouvrir les DevTools du navigateur
+3. Onglet Nuxt → UI → Colors
+4. Vérifier que `primary`, `success`, `error` pointent vers les bonnes couleurs
 
 ### Modifier l'interface utilisateur
 
@@ -679,8 +909,8 @@ Toujours utiliser les **noms sémantiques** dans les props des composants Nuxt U
 # Vérifier les mises à jour disponibles
 npm outdated
 
-# Mettre à jour Nuxt et Nuxt UI
-npm install nuxt@latest @nuxt/ui@latest
+# Mettre à jour les modules Nuxt
+npm install nuxt@latest @nuxt/ui@latest @nuxt/fonts@latest @nuxt/eslint@latest
 
 # Mettre à jour toutes les dépendances
 npm update
@@ -696,6 +926,30 @@ git commit -m "chore: update dependencies"
 git push origin main
 ```
 
+**⚠️ Attention lors des mises à jour :**
+
+- **Nuxt UI** : Vérifier la compatibilité avec Tailwind CSS v4
+- **@nuxt/fonts** : Vérifier que les polices sont toujours téléchargées localement après le build
+- **Tailwind CSS** : Les changements dans `@theme static` peuvent nécessiter des ajustements
+
+**Test de régression après mise à jour :**
+
+```bash
+# 1. Vérifier que le build fonctionne
+npm run generate
+
+# 2. Vérifier que les polices sont locales
+ls -la .output/public/_fonts/
+
+# 3. Vérifier les couleurs personnalisées
+npm run dev
+# → Inspecter les badges, boutons pour confirmer les couleurs CEJEF
+
+# 4. Vérifier le linting et le typage
+npm run lint
+npm run typecheck
+```
+
 ---
 
 ## 📚 Ressources
@@ -703,7 +957,9 @@ git push origin main
 ### Documentation officielle
 
 - [Nuxt 4](https://nuxt.com/docs)
-- [Nuxt UI](https://ui.nuxt.com)
+- [Nuxt UI v4.1.0](https://ui.nuxt.com)
+- [Nuxt Fonts](https://fonts.nuxt.com) - Optimisation des polices web
+- [Tailwind CSS v4](https://tailwindcss.com/docs) - Framework CSS avec `@theme static`
 - [Vue 3](https://vuejs.org/guide/introduction.html)
 - [TypeScript](https://www.typescriptlang.org/docs/)
 
