@@ -40,16 +40,52 @@ git push origin v1.0.0
 - **Static Site Generation (SSG)** - no backend required
 
 **CRITICAL: Nuxt UI Component Usage**
-- Always verify component APIs against the official Nuxt UI v4.1.0 documentation at https://ui.nuxt.com
-- NEVER use deprecated or non-existent components from older versions
-- When in doubt about a component's API (props, slots, events), consult the documentation first
-- **BOTH USlideover and UDrawer exist** in v4.1.0 - choose based on use case:
+
+**⚠️ MANDATORY: Always check documentation FIRST before implementing**
+- **BEFORE** writing any code using a Nuxt UI component, consult https://ui.nuxt.com
+- **BEFORE** assuming a component API, verify it in the official documentation
+- **NEVER** use deprecated or non-existent components from older versions
+- **NEVER** reinvent the wheel - Nuxt UI provides most common UI patterns out of the box
+- When in doubt about a component's API (props, slots, events), **STOP and check the documentation**
+
+**Development Best Practices:**
+1. **Use Nuxt UI composables and utilities FIRST** before writing custom JavaScript
+   - `defineShortcuts` for keyboard shortcuts
+   - `useTemplateRef` for DOM references
+   - `useColorMode` for dark/light mode
+   - Built-in form validation, modals, overlays, etc.
+
+2. **Avoid custom CSS when Nuxt UI provides the feature**
+   - Use `:ui` prop to customize components instead of custom CSS classes
+   - Use Tailwind utility classes for spacing, colors, typography
+   - Only write custom CSS for truly unique design requirements
+
+3. **Leverage existing Nuxt UI patterns**
+   - Check documentation for examples before implementing
+   - Use provided slots (#header, #body, #content, #footer) correctly
+   - Follow established patterns (e.g., `v-model` vs `:open` with `@update:open`)
+
+**Component-Specific Guidelines:**
+
+- **UModal** with `#content` slot:
+  - ❌ WRONG: `v-model="isOpen"` (does NOT work with #content slot without trigger)
+  - ✅ CORRECT: `:open="isOpen"` + `@update:open="value => isOpen = value"`
+  - See `app/components/SoftwareCommandPalette.vue` for working example
+
+- **USlideover vs UDrawer** - Both exist in v4.1.0, choose based on use case:
   - **USlideover**: Dialog overlay panels (forms, details, editing) - Desktop/Modal focused
   - **UDrawer**: Mobile-optimized panels with gestures and handles - Touch/Mobile focused
-- Common mistakes to avoid:
+
+- **Common component mistakes to avoid:**
   - Using `UDivider` (doesn't exist, use `USeparator` instead)
   - Using wrong prop names - check documentation for each component
   - Using wrong slot names - USlideover uses `#body`, UDrawer uses `#content`
+
+**Documentation Resources:**
+- Main documentation: https://ui.nuxt.com
+- Composables: https://ui.nuxt.com/docs/composables
+- Components: https://ui.nuxt.com/docs/components
+- When implementing a feature, search the docs for similar examples FIRST
 
 ### Data Architecture
 
