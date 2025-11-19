@@ -479,12 +479,12 @@ useSeoMeta({
             <!-- Left scroll button -->
             <button
               v-if="canScrollLeft"
-              class="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              class="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 shadow-xl hover:bg-white/90 dark:hover:bg-gray-900/90 transition-all"
               @click="scrollFilters('left')"
             >
               <UIcon
                 name="i-lucide-chevron-left"
-                class="w-5 h-5 text-gray-700 dark:text-gray-300"
+                class="w-6 h-6 text-gray-900 dark:text-white"
               />
             </button>
 
@@ -526,12 +526,12 @@ useSeoMeta({
             <!-- Right scroll button -->
             <button
               v-if="canScrollRight"
-              class="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              class="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 shadow-xl hover:bg-white/90 dark:hover:bg-gray-900/90 transition-all"
               @click="scrollFilters('right')"
             >
               <UIcon
                 name="i-lucide-chevron-right"
-                class="w-5 h-5 text-gray-700 dark:text-gray-300"
+                class="w-6 h-6 text-gray-900 dark:text-white"
               />
             </button>
           </div>
