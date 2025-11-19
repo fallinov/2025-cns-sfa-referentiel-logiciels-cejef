@@ -76,7 +76,7 @@ defineShortcuts({
       title="Rechercher un logiciel"
       description="Recherchez parmi tous les logiciels disponibles"
       :ui="{
-        content: 'p-0',
+        content: 'p-0 w-full max-w-3xl',
         body: 'p-0',
         header: 'sr-only',
         description: 'sr-only'
@@ -87,7 +87,7 @@ defineShortcuts({
         <UCommandPalette
           :groups="groups"
           placeholder="Rechercher un logiciel..."
-          class="h-80"
+          class="h-96"
         />
       </template>
     </UModal>
