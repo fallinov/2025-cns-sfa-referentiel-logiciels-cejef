@@ -436,6 +436,16 @@ useSeoMeta({
           <div class="relative -mx-4 px-4 sm:mx-0 sm:px-0">
             <div class="flex gap-2.5 overflow-x-auto scrollbar-hide pb-2">
               <UButton
+                color="neutral"
+                variant="outline"
+                size="lg"
+                icon="i-lucide-sliders-horizontal"
+                class="shrink-0"
+                @click="isFiltersSlideoverOpen = true"
+              >
+                Filtres
+              </UButton>
+              <UButton
                 v-for="filter in popularFilters"
                 :key="filter.id"
                 :color="
@@ -455,18 +465,6 @@ useSeoMeta({
               </UButton>
             </div>
           </div>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <UButton
-            color="neutral"
-            variant="outline"
-            size="xl"
-            icon="i-lucide-sliders-horizontal"
-            @click="isFiltersSlideoverOpen = true"
-          >
-            Filtres
-          </UButton>
         </div>
 
         <!-- Applied filters summary -->
