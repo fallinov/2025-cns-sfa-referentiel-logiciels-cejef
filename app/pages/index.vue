@@ -467,27 +467,35 @@ useSeoMeta({
     <!-- Search and Filter Section -->
     <UPageSection>
       <div class="space-y-6">
-        <UCard
-          class="border border-gray-200/60 dark:border-gray-800 bg-white dark:bg-slate-900"
+        <UInput
+          v-model="searchQuery"
+          icon="i-lucide-search"
+          size="xl"
+          placeholder="Rechercher un logiciel par nom, description ou discipline..."
+          :ui="{
+            wrapper: 'relative',
+            base: 'border-2 border-primary-300 dark:border-primary-700/50 bg-white dark:bg-gray-900 shadow-lg focus-within:border-primary-500 dark:focus-within:border-primary-500 transition-all duration-200',
+            leading: {
+              wrapper: 'absolute inset-y-0 start-0 flex items-center',
+              icon: {
+                base: 'shrink-0 text-primary-600 dark:text-primary-400'
+              }
+            },
+            input:
+              'block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 text-lg placeholder:text-gray-500 dark:placeholder:text-gray-400'
+          }"
         >
-          <UInput
-            v-model="searchQuery"
-            icon="i-lucide-search"
-            size="lg"
-            placeholder="Rechercher un logiciel par nom, description ou discipline..."
-          >
-            <template v-if="searchQuery" #trailing>
-              <UButton
-                color="neutral"
-                variant="link"
-                icon="i-lucide-x"
-                :padded="false"
-                aria-label="Effacer la recherche"
-                @click="searchQuery = ''"
-              />
-            </template>
-          </UInput>
-        </UCard>
+          <template v-if="searchQuery" #trailing>
+            <UButton
+              color="neutral"
+              variant="link"
+              icon="i-lucide-x"
+              :padded="false"
+              aria-label="Effacer la recherche"
+              @click="searchQuery = ''"
+            />
+          </template>
+        </UInput>
 
         <div class="space-y-3">
           <div class="flex items-center justify-between">
