@@ -479,7 +479,7 @@ useSeoMeta({
             <!-- Left scroll button -->
             <button
               v-if="canScrollLeft"
-              class="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 shadow-xl hover:bg-white/90 dark:hover:bg-gray-900/90 transition-all"
+              class="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/30 dark:border-gray-800/30 shadow-xl hover:bg-white/70 dark:hover:bg-gray-900/70 transition-all"
               @click="scrollFilters('left')"
             >
               <UIcon
@@ -498,7 +498,7 @@ useSeoMeta({
                 variant="outline"
                 size="lg"
                 icon="i-lucide-sliders-horizontal"
-                class="shrink-0"
+                class="shrink-0 font-bold rounded-full"
                 @click="isFiltersSlideoverOpen = true"
               >
                 Filtres
@@ -516,7 +516,7 @@ useSeoMeta({
                 "
                 :icon="filter.icon"
                 size="lg"
-                class="shrink-0"
+                class="shrink-0 font-bold rounded-full"
                 @click="togglePopularFilter(filter.id)"
               >
                 {{ filter.label }}
@@ -526,7 +526,7 @@ useSeoMeta({
             <!-- Right scroll button -->
             <button
               v-if="canScrollRight"
-              class="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 shadow-xl hover:bg-white/90 dark:hover:bg-gray-900/90 transition-all"
+              class="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/30 dark:border-gray-800/30 shadow-xl hover:bg-white/70 dark:hover:bg-gray-900/70 transition-all"
               @click="scrollFilters('right')"
             >
               <UIcon
