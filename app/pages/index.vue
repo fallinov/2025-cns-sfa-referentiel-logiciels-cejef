@@ -582,6 +582,7 @@ useSeoMeta({
       v-model:selected-costs="selectedCosts"
       v-model:selected-certifications="selectedCertifications"
       :software-list="softwareList"
+      :filtered-count="filteredSoftwareList.length"
       @clear-filters="clearFilters"
     />
 
