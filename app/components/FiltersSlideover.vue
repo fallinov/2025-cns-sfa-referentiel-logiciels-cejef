@@ -286,20 +286,10 @@ const mainMenuItems = computed(() => [
         <!-- Main View -->
         <div v-if="currentView === 'main'" class="flex flex-col h-full">
           <!-- Header -->
-          <div
-            class="flex items-center justify-between pb-4 border-b border-gray-200 dark:border-gray-800"
-          >
+          <div class="pb-4 border-b border-gray-200 dark:border-gray-800">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
               Filtre
             </h2>
-            <UButton
-              color="neutral"
-              variant="ghost"
-              icon="i-lucide-x"
-              size="sm"
-              square
-              @click="isOpen = false"
-            />
           </div>
 
           <!-- Reset all button -->
