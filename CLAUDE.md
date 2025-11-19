@@ -49,21 +49,41 @@ git push origin v1.0.0
 - When in doubt about a component's API (props, slots, events), **STOP and check the documentation**
 
 **Development Best Practices:**
-1. **Use Nuxt UI composables and utilities FIRST** before writing custom JavaScript
+
+1. **ALWAYS study component documentation and variants BEFORE implementing**
+   - Browse https://ui.nuxt.com/docs/components to find the RIGHT component for your need
+   - Study ALL available variants (color, variant, size props) of the component
+   - Review ALL examples provided in the documentation
+   - Check component props, slots, events, and emits
+   - Copy-paste working examples from docs and adapt them to your use case
+   - **DO NOT** assume how a component works - verify in the documentation
+
+2. **Use Nuxt UI composables and utilities FIRST** before writing custom JavaScript
    - `defineShortcuts` for keyboard shortcuts
    - `useTemplateRef` for DOM references
    - `useColorMode` for dark/light mode
    - Built-in form validation, modals, overlays, etc.
+   - Check https://ui.nuxt.com/docs/composables for all available utilities
 
-2. **Avoid custom CSS when Nuxt UI provides the feature**
+3. **Prioritize Nuxt UI and Tailwind built-in features for ALL customizations**
+   - ✅ **FIRST**: Use `:ui` prop to customize Nuxt UI components (colors, sizes, spacing, variants)
+   - ✅ **SECOND**: Use Tailwind utility classes (spacing, typography, responsive design)
+   - ✅ **THIRD**: Use Tailwind configuration in `tailwind.config.ts` for theme customization
+   - ❌ **ONLY IF NECESSARY**: Write custom CSS/JS for truly unique requirements
+   - **Rule**: NEVER write custom code when Nuxt UI or Tailwind already provides the feature
+   - **Wait for user approval**: Only enhance UX beyond basic implementation when explicitly requested
+
+4. **Avoid custom CSS when Nuxt UI provides the feature**
    - Use `:ui` prop to customize components instead of custom CSS classes
    - Use Tailwind utility classes for spacing, colors, typography
+   - Study the `:ui` customization options in component documentation
    - Only write custom CSS for truly unique design requirements
 
-3. **Leverage existing Nuxt UI patterns**
+5. **Leverage existing Nuxt UI patterns**
    - Check documentation for examples before implementing
    - Use provided slots (#header, #body, #content, #footer) correctly
    - Follow established patterns (e.g., `v-model` vs `:open` with `@update:open`)
+   - When multiple components can solve a problem, choose the most appropriate one
 
 **Component-Specific Guidelines:**
 
