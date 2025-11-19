@@ -401,16 +401,18 @@ const currentViewCount = computed(() => {
         <!-- Main View -->
         <div v-if="currentView === 'main'" class="flex flex-col h-full">
           <!-- Reset all button -->
-          <div class="py-4 px-4">
-            <UButton
-              :color="hasActiveFilters ? 'primary' : 'neutral'"
-              variant="link"
-              :disabled="!hasActiveFilters"
-              @click="emit('clearFilters')"
-            >
-              Réinitialiser tout
-            </UButton>
-          </div>
+          <button
+            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+            :class="
+              hasActiveFilters
+                ? 'text-primary'
+                : 'text-gray-400 dark:text-gray-600'
+            "
+            :disabled="!hasActiveFilters"
+            @click="emit('clearFilters')"
+          >
+            <span class="text-base font-medium"> Réinitialiser tout </span>
+          </button>
 
           <!-- Menu items -->
           <div class="flex-1 overflow-y-auto">
@@ -449,16 +451,18 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div class="py-4 px-4">
-            <UButton
-              :color="selectedCategories.length > 0 ? 'primary' : 'neutral'"
-              variant="link"
-              :disabled="selectedCategories.length === 0"
-              @click="resetCurrentView"
-            >
-              Réinitialiser
-            </UButton>
-          </div>
+          <button
+            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+            :class="
+              selectedCategories.length > 0
+                ? 'text-primary'
+                : 'text-gray-400 dark:text-gray-600'
+            "
+            :disabled="selectedCategories.length === 0"
+            @click="resetCurrentView"
+          >
+            <span class="text-base font-medium"> Réinitialiser </span>
+          </button>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
@@ -490,16 +494,18 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div class="py-4 px-4">
-            <UButton
-              :color="selectedDisciplines.length > 0 ? 'primary' : 'neutral'"
-              variant="link"
-              :disabled="selectedDisciplines.length === 0"
-              @click="resetCurrentView"
-            >
-              Réinitialiser
-            </UButton>
-          </div>
+          <button
+            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+            :class="
+              selectedDisciplines.length > 0
+                ? 'text-primary'
+                : 'text-gray-400 dark:text-gray-600'
+            "
+            :disabled="selectedDisciplines.length === 0"
+            @click="resetCurrentView"
+          >
+            <span class="text-base font-medium"> Réinitialiser </span>
+          </button>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
@@ -531,16 +537,18 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div class="py-4 px-4">
-            <UButton
-              :color="selectedActivities.length > 0 ? 'primary' : 'neutral'"
-              variant="link"
-              :disabled="selectedActivities.length === 0"
-              @click="resetCurrentView"
-            >
-              Réinitialiser
-            </UButton>
-          </div>
+          <button
+            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+            :class="
+              selectedActivities.length > 0
+                ? 'text-primary'
+                : 'text-gray-400 dark:text-gray-600'
+            "
+            :disabled="selectedActivities.length === 0"
+            @click="resetCurrentView"
+          >
+            <span class="text-base font-medium"> Réinitialiser </span>
+          </button>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
@@ -572,16 +580,18 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div class="py-4 px-4">
-            <UButton
-              :color="selectedPlatforms.length > 0 ? 'primary' : 'neutral'"
-              variant="link"
-              :disabled="selectedPlatforms.length === 0"
-              @click="resetCurrentView"
-            >
-              Réinitialiser
-            </UButton>
-          </div>
+          <button
+            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+            :class="
+              selectedPlatforms.length > 0
+                ? 'text-primary'
+                : 'text-gray-400 dark:text-gray-600'
+            "
+            :disabled="selectedPlatforms.length === 0"
+            @click="resetCurrentView"
+          >
+            <span class="text-base font-medium"> Réinitialiser </span>
+          </button>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
@@ -610,16 +620,18 @@ const currentViewCount = computed(() => {
         <!-- Costs View -->
         <div v-else-if="currentView === 'costs'" class="flex flex-col h-full">
           <!-- Reset button -->
-          <div class="py-4 px-4">
-            <UButton
-              :color="selectedCosts.length > 0 ? 'primary' : 'neutral'"
-              variant="link"
-              :disabled="selectedCosts.length === 0"
-              @click="resetCurrentView"
-            >
-              Réinitialiser
-            </UButton>
-          </div>
+          <button
+            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+            :class="
+              selectedCosts.length > 0
+                ? 'text-primary'
+                : 'text-gray-400 dark:text-gray-600'
+            "
+            :disabled="selectedCosts.length === 0"
+            @click="resetCurrentView"
+          >
+            <span class="text-base font-medium"> Réinitialiser </span>
+          </button>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
@@ -651,16 +663,18 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div class="py-4 px-4">
-            <UButton
-              :color="selectedCertifications.length > 0 ? 'primary' : 'neutral'"
-              variant="link"
-              :disabled="selectedCertifications.length === 0"
-              @click="resetCurrentView"
-            >
-              Réinitialiser
-            </UButton>
-          </div>
+          <button
+            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+            :class="
+              selectedCertifications.length > 0
+                ? 'text-primary'
+                : 'text-gray-400 dark:text-gray-600'
+            "
+            :disabled="selectedCertifications.length === 0"
+            @click="resetCurrentView"
+          >
+            <span class="text-base font-medium"> Réinitialiser </span>
+          </button>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
