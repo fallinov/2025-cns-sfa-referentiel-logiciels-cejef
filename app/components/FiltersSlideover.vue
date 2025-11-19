@@ -240,6 +240,30 @@ const closeAndApply = () => {
   isOpen.value = false
 }
 
+// Reset current view filters
+const resetCurrentView = () => {
+  switch (currentView.value) {
+    case "categories":
+      emit("update:selectedCategories", [])
+      break
+    case "disciplines":
+      emit("update:selectedDisciplines", [])
+      break
+    case "activities":
+      emit("update:selectedActivities", [])
+      break
+    case "platforms":
+      emit("update:selectedPlatforms", [])
+      break
+    case "costs":
+      emit("update:selectedCosts", [])
+      break
+    case "certifications":
+      emit("update:selectedCertifications", [])
+      break
+  }
+}
+
 // Main menu items
 const mainMenuItems = computed(() => [
   {
@@ -367,6 +391,13 @@ const currentViewTitle = computed(() => {
           v-else-if="currentView === 'categories'"
           class="flex flex-col h-full"
         >
+          <!-- Reset button -->
+          <div v-if="selectedCategories.length > 0" class="py-4">
+            <UButton color="primary" variant="link" @click="resetCurrentView">
+              Réinitialiser
+            </UButton>
+          </div>
+
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
@@ -396,6 +427,13 @@ const currentViewTitle = computed(() => {
           v-else-if="currentView === 'disciplines'"
           class="flex flex-col h-full"
         >
+          <!-- Reset button -->
+          <div v-if="selectedDisciplines.length > 0" class="py-4">
+            <UButton color="primary" variant="link" @click="resetCurrentView">
+              Réinitialiser
+            </UButton>
+          </div>
+
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
@@ -425,6 +463,13 @@ const currentViewTitle = computed(() => {
           v-else-if="currentView === 'activities'"
           class="flex flex-col h-full"
         >
+          <!-- Reset button -->
+          <div v-if="selectedActivities.length > 0" class="py-4">
+            <UButton color="primary" variant="link" @click="resetCurrentView">
+              Réinitialiser
+            </UButton>
+          </div>
+
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
@@ -454,6 +499,13 @@ const currentViewTitle = computed(() => {
           v-else-if="currentView === 'platforms'"
           class="flex flex-col h-full"
         >
+          <!-- Reset button -->
+          <div v-if="selectedPlatforms.length > 0" class="py-4">
+            <UButton color="primary" variant="link" @click="resetCurrentView">
+              Réinitialiser
+            </UButton>
+          </div>
+
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
@@ -480,6 +532,13 @@ const currentViewTitle = computed(() => {
 
         <!-- Costs View -->
         <div v-else-if="currentView === 'costs'" class="flex flex-col h-full">
+          <!-- Reset button -->
+          <div v-if="selectedCosts.length > 0" class="py-4">
+            <UButton color="primary" variant="link" @click="resetCurrentView">
+              Réinitialiser
+            </UButton>
+          </div>
+
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
@@ -509,6 +568,13 @@ const currentViewTitle = computed(() => {
           v-else-if="currentView === 'certifications'"
           class="flex flex-col h-full"
         >
+          <!-- Reset button -->
+          <div v-if="selectedCertifications.length > 0" class="py-4">
+            <UButton color="primary" variant="link" @click="resetCurrentView">
+              Réinitialiser
+            </UButton>
+          </div>
+
           <div class="flex-1 overflow-y-auto py-4">
             <div class="space-y-1">
               <label
