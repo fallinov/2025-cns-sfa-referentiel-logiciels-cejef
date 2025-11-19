@@ -496,7 +496,7 @@ useSeoMeta({
               <UButton
                 color="neutral"
                 variant="outline"
-                size="lg"
+                size="xl"
                 icon="i-lucide-sliders-horizontal"
                 class="shrink-0 font-bold rounded-full"
                 @click="isFiltersSlideoverOpen = true"
@@ -515,7 +515,7 @@ useSeoMeta({
                   selectedPopularFilters.includes(filter.id) ? 'solid' : 'soft'
                 "
                 :icon="filter.icon"
-                size="lg"
+                size="xl"
                 class="shrink-0 font-bold rounded-full"
                 @click="togglePopularFilter(filter.id)"
               >
