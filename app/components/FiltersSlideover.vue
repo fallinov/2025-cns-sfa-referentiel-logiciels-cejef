@@ -319,6 +319,35 @@ const currentViewTitle = computed(() => {
       return "Filtre"
   }
 })
+
+// Current view selection count
+const currentViewCount = computed(() => {
+  switch (currentView.value) {
+    case "main":
+      return hasActiveFilters.value
+        ? props.selectedCategories.length
+        + props.selectedDisciplines.length
+        + props.selectedActivities.length
+        + props.selectedPlatforms.length
+        + props.selectedCosts.length
+        + props.selectedCertifications.length
+        : 0
+    case "categories":
+      return props.selectedCategories.length
+    case "disciplines":
+      return props.selectedDisciplines.length
+    case "activities":
+      return props.selectedActivities.length
+    case "platforms":
+      return props.selectedPlatforms.length
+    case "costs":
+      return props.selectedCosts.length
+    case "certifications":
+      return props.selectedCertifications.length
+    default:
+      return 0
+  }
+})
 </script>
 
 <template>
@@ -342,9 +371,19 @@ const currentViewTitle = computed(() => {
             square
             @click="goBack"
           />
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
-            {{ currentViewTitle }}
-          </h2>
+          <div class="flex items-center gap-2">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+              {{ currentViewTitle }}
+            </h2>
+            <UBadge
+              v-if="currentViewCount > 0"
+              color="neutral"
+              variant="solid"
+              size="md"
+            >
+              {{ currentViewCount }}
+            </UBadge>
+          </div>
         </div>
         <UButton
           color="neutral"
