@@ -85,12 +85,87 @@ git push origin v1.0.0
    - Follow established patterns (e.g., `v-model` vs `:open` with `@update:open`)
    - When multiple components can solve a problem, choose the most appropriate one
 
+**Debugging and Problem-Solving Best Practices:**
+
+1. **When a component doesn't work as expected:**
+   - ❌ DON'T: Try multiple random solutions hoping one will work
+   - ✅ DO: Stop, read the official documentation examples carefully
+   - ✅ DO: Compare your code EXACTLY with working examples from docs
+   - ✅ DO: Check if you're using the correct binding pattern (v-model vs :open/@update:open)
+
+2. **Understanding component patterns before debugging:**
+   - UModal with trigger in default slot: use `v-model`
+   - UModal with #content slot but external trigger: use `:open` + `@update:open`
+   - Always verify the slot structure matches documentation examples
+
+3. **Avoid "console.log debugging" spiral:**
+   - If console shows state changes but UI doesn't update → wrong binding pattern
+   - Re-read documentation for correct usage pattern
+   - Don't add more console.logs, fix the root cause
+
+4. **When stuck after 2-3 failed attempts:**
+   - STOP trying variations
+   - Re-read the documentation from scratch
+   - Look for similar examples in the docs
+   - Check component GitHub issues if behavior is unexpected
+
+**Development Efficiency:**
+
+1. **Copy-paste working examples FIRST:**
+   - Find the exact use case in documentation
+   - Copy the ENTIRE example code
+   - Adapt it to your needs AFTER verifying it works
+   - Don't try to "understand and rewrite" before testing
+
+2. **Avoid premature optimization:**
+   - Get the basic feature working FIRST with documentation examples
+   - Only then customize with :ui props and Tailwind classes
+   - Don't try to make it perfect in the first iteration
+
 **Component-Specific Guidelines:**
 
-- **UModal** with `#content` slot:
-  - ❌ WRONG: `v-model="isOpen"` (does NOT work with #content slot without trigger)
-  - ✅ CORRECT: `:open="isOpen"` + `@update:open="value => isOpen = value"`
-  - See `app/components/SoftwareCommandPalette.vue` for working example
+- **UModal - CRITICAL: Two Different Binding Patterns**
+
+  **Pattern 1: Trigger inside default slot (recommended)**
+  ```vue
+  <UModal v-model="isOpen">
+    <template #default>
+      <UButton>Open Modal</UButton>
+    </template>
+    <template #content>
+      <!-- Modal content -->
+    </template>
+  </UModal>
+  ```
+
+  **Pattern 2: External trigger (use :open instead of v-model)**
+  ```vue
+  <!-- External button -->
+  <UButton @click="isOpen = true">Open</UButton>
+
+  <!-- Modal elsewhere -->
+  <UModal 
+    :open="isOpen" 
+    @update:open="value => isOpen = value"
+  >
+    <template #content>
+      <!-- Modal content -->
+    </template>
+  </UModal>
+  ```
+
+  **⚠️ WRONG - This will NOT work:**
+  ```vue
+  <UButton @click="isOpen = true">Open</UButton>
+  <UModal v-model="isOpen"> <!-- v-model doesn't work with external trigger -->
+    <template #content>...</template>
+  </UModal>
+  ```
+
+  **Working example in this project:** `app/components/SoftwareCommandPalette.vue`
+  - Shows correct :open/@update:open pattern with external trigger
+  - Demonstrates defineShortcuts usage for keyboard shortcuts
+  - UCommandPalette within UModal #content slot
 
 - **USlideover vs UDrawer** - Both exist in v4.1.0, choose based on use case:
   - **USlideover**: Dialog overlay panels (forms, details, editing) - Desktop/Modal focused
@@ -106,6 +181,13 @@ git push origin v1.0.0
 - Composables: https://ui.nuxt.com/docs/composables
 - Components: https://ui.nuxt.com/docs/components
 - When implementing a feature, search the docs for similar examples FIRST
+
+**Working Examples in This Project:**
+- **SoftwareCommandPalette.vue**: UModal with external trigger and keyboard shortcut
+  - Correct :open/@update:open pattern (not v-model)
+  - defineShortcuts composable for ⌘K keyboard shortcut
+  - UCommandPalette within UModal #content slot
+  - Reference this component when implementing similar patterns
 
 ### Data Architecture
 
