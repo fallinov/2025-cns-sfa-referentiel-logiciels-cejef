@@ -403,7 +403,7 @@ const currentViewCount = computed(() => {
           <!-- Reset all button -->
           <div class="py-4 px-4">
             <UButton
-              :color="hasActiveFilters ? 'error' : 'neutral'"
+              :color="hasActiveFilters ? 'primary' : 'neutral'"
               variant="link"
               :disabled="!hasActiveFilters"
               @click="emit('clearFilters')"
@@ -451,7 +451,7 @@ const currentViewCount = computed(() => {
           <!-- Reset button -->
           <div class="py-4 px-4">
             <UButton
-              :color="selectedCategories.length > 0 ? 'error' : 'neutral'"
+              :color="selectedCategories.length > 0 ? 'primary' : 'neutral'"
               variant="link"
               :disabled="selectedCategories.length === 0"
               @click="resetCurrentView"
@@ -492,7 +492,7 @@ const currentViewCount = computed(() => {
           <!-- Reset button -->
           <div class="py-4 px-4">
             <UButton
-              :color="selectedDisciplines.length > 0 ? 'error' : 'neutral'"
+              :color="selectedDisciplines.length > 0 ? 'primary' : 'neutral'"
               variant="link"
               :disabled="selectedDisciplines.length === 0"
               @click="resetCurrentView"
@@ -533,7 +533,7 @@ const currentViewCount = computed(() => {
           <!-- Reset button -->
           <div class="py-4 px-4">
             <UButton
-              :color="selectedActivities.length > 0 ? 'error' : 'neutral'"
+              :color="selectedActivities.length > 0 ? 'primary' : 'neutral'"
               variant="link"
               :disabled="selectedActivities.length === 0"
               @click="resetCurrentView"
@@ -574,7 +574,7 @@ const currentViewCount = computed(() => {
           <!-- Reset button -->
           <div class="py-4 px-4">
             <UButton
-              :color="selectedPlatforms.length > 0 ? 'error' : 'neutral'"
+              :color="selectedPlatforms.length > 0 ? 'primary' : 'neutral'"
               variant="link"
               :disabled="selectedPlatforms.length === 0"
               @click="resetCurrentView"
@@ -612,7 +612,7 @@ const currentViewCount = computed(() => {
           <!-- Reset button -->
           <div class="py-4 px-4">
             <UButton
-              :color="selectedCosts.length > 0 ? 'error' : 'neutral'"
+              :color="selectedCosts.length > 0 ? 'primary' : 'neutral'"
               variant="link"
               :disabled="selectedCosts.length === 0"
               @click="resetCurrentView"
@@ -653,7 +653,7 @@ const currentViewCount = computed(() => {
           <!-- Reset button -->
           <div class="py-4 px-4">
             <UButton
-              :color="selectedCertifications.length > 0 ? 'error' : 'neutral'"
+              :color="selectedCertifications.length > 0 ? 'primary' : 'neutral'"
               variant="link"
               :disabled="selectedCertifications.length === 0"
               @click="resetCurrentView"
