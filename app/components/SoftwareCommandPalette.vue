@@ -15,6 +15,19 @@ const softwareList = getSoftwareList()
 
 const isOpen = ref(false)
 
+// Detect if user is on Mac (client-side only)
+const isMac = computed(() => {
+  if (import.meta.client) {
+    return /Mac|iPod|iPhone|iPad/.test(navigator.platform)
+  }
+  return true // Default to Mac icon for SSR
+})
+
+// Keyboard shortcut display based on OS
+const shortcutKeys = computed(() => {
+  return isMac.value ? ["⌘", "K"] : ["Ctrl", "K"]
+})
+
 // Transform software list into command palette groups
 const groups = computed(() => [
   {
@@ -52,7 +65,9 @@ defineShortcuts({
     >
       <span class="hidden sm:inline">Rechercher</span>
       <template #trailing>
-        <UKbd>⌘K</UKbd>
+        <UKbd v-for="key in shortcutKeys" :key="key">
+          {{ key }}
+        </UKbd>
       </template>
     </UButton>
 
