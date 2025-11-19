@@ -1,8 +1,19 @@
 <script setup lang="ts">
+/**
+ * SoftwareCommandPalette Component
+ *
+ * IMPORTANT: UModal avec slot #content nécessite :open au lieu de v-model
+ *
+ * Le v-model ne fonctionne PAS correctement quand on utilise le slot #content
+ * sans trigger dans le slot par défaut. Il faut utiliser :open et @update:open
+ * explicitement pour gérer l'état du modal.
+ *
+ * @see https://ui.nuxt.com/docs/components/modal
+ */
 const { getSoftwareList, openDetail } = useSoftware()
 const softwareList = getSoftwareList()
 
-const isOpen = defineModel<boolean>("open", { default: false })
+const isOpen = ref(false)
 
 // Transform software list into command palette groups
 const groups = computed(() => [
@@ -15,7 +26,7 @@ const groups = computed(() => [
       suffix: software.category,
       icon: "i-lucide-package",
       onSelect: () => {
-        openDetail(software.id)
+        openDetail(software)
         isOpen.value = false
       }
     }))
@@ -24,22 +35,46 @@ const groups = computed(() => [
 
 // Handle keyboard shortcut (Cmd+K or Ctrl+K)
 defineShortcuts({
-  meta_k: {
-    handler: () => {
-      isOpen.value = !isOpen.value
-    }
+  meta_k: () => {
+    isOpen.value = !isOpen.value
   }
 })
 </script>
 
 <template>
-  <UModal v-model:open="isOpen" :ui="{ width: 'sm:max-w-2xl' }">
-    <UCommandPalette
-      :groups="groups"
-      placeholder="Rechercher un logiciel..."
-      :autofocus="true"
-      :close="false"
-      class="flex-1"
-    />
-  </UModal>
+  <div>
+    <UButton
+      icon="i-lucide-search"
+      color="neutral"
+      variant="outline"
+      aria-label="Rechercher un logiciel"
+      @click="isOpen = true"
+    >
+      <span class="hidden sm:inline">Rechercher</span>
+      <template #trailing>
+        <UKbd>⌘K</UKbd>
+      </template>
+    </UButton>
+
+    <UModal
+      :open="isOpen"
+      title="Rechercher un logiciel"
+      description="Recherchez parmi tous les logiciels disponibles"
+      :ui="{
+        content: 'p-0',
+        body: 'p-0',
+        header: 'sr-only',
+        description: 'sr-only'
+      }"
+      @update:open="(value) => (isOpen = value)"
+    >
+      <template #content>
+        <UCommandPalette
+          :groups="groups"
+          placeholder="Rechercher un logiciel..."
+          class="h-80"
+        />
+      </template>
+    </UModal>
+  </div>
 </template>
