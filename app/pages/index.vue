@@ -19,6 +19,48 @@ const selectedCertifications = ref<CertificationLevel[]>([])
 const selectedPopularFilters = ref<string[]>([])
 const isFiltersSlideoverOpen = ref(false)
 
+// Scroll functionality for popular filters
+const filtersScrollContainer = ref<HTMLElement | null>(null)
+const canScrollLeft = ref(false)
+const canScrollRight = ref(false)
+
+const updateScrollButtons = () => {
+  if (!filtersScrollContainer.value) return
+  const { scrollLeft, scrollWidth, clientWidth } = filtersScrollContainer.value
+  canScrollLeft.value = scrollLeft > 0
+  canScrollRight.value = scrollLeft < scrollWidth - clientWidth - 1
+}
+
+const scrollFilters = (direction: "left" | "right") => {
+  if (!filtersScrollContainer.value) return
+  const scrollAmount = 300
+  filtersScrollContainer.value.scrollBy({
+    left: direction === "left" ? -scrollAmount : scrollAmount,
+    behavior: "smooth"
+  })
+}
+
+onMounted(() => {
+  if (filtersScrollContainer.value) {
+    updateScrollButtons()
+    filtersScrollContainer.value.addEventListener(
+      "scroll",
+      updateScrollButtons
+    )
+    window.addEventListener("resize", updateScrollButtons)
+  }
+})
+
+onUnmounted(() => {
+  if (filtersScrollContainer.value) {
+    filtersScrollContainer.value.removeEventListener(
+      "scroll",
+      updateScrollButtons
+    )
+    window.removeEventListener("resize", updateScrollButtons)
+  }
+})
+
 // Options for select menus - memoized to avoid recalculation
 const usedCategoryIds = computed(
   () => new Set(softwareList.map(software => software.category))
@@ -434,7 +476,23 @@ useSeoMeta({
             </UButton>
           </div>
           <div class="relative -mx-4 px-4 sm:mx-0 sm:px-0">
-            <div class="flex gap-2.5 overflow-x-auto scrollbar-hide pb-2">
+            <!-- Left scroll button -->
+            <button
+              v-if="canScrollLeft"
+              class="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              @click="scrollFilters('left')"
+            >
+              <UIcon
+                name="i-lucide-chevron-left"
+                class="w-5 h-5 text-gray-700 dark:text-gray-300"
+              />
+            </button>
+
+            <!-- Scroll container -->
+            <div
+              ref="filtersScrollContainer"
+              class="flex gap-2.5 overflow-x-auto scrollbar-hide pb-2"
+            >
               <UButton
                 color="neutral"
                 variant="outline"
@@ -464,6 +522,18 @@ useSeoMeta({
                 {{ filter.label }}
               </UButton>
             </div>
+
+            <!-- Right scroll button -->
+            <button
+              v-if="canScrollRight"
+              class="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              @click="scrollFilters('right')"
+            >
+              <UIcon
+                name="i-lucide-chevron-right"
+                class="w-5 h-5 text-gray-700 dark:text-gray-300"
+              />
+            </button>
           </div>
         </div>
 
