@@ -324,20 +324,24 @@ const currentViewTitle = computed(() => {
 <template>
   <USlideover
     v-model:open="isOpen"
-    :title="currentViewTitle"
     side="left"
     :ui="{ content: 'w-full sm:max-w-md' }"
   >
-    <template #leading>
-      <UButton
-        v-if="currentView !== 'main'"
-        color="neutral"
-        variant="ghost"
-        icon="i-lucide-arrow-left"
-        size="sm"
-        square
-        @click="goBack"
-      />
+    <template #header>
+      <div class="flex items-center gap-3">
+        <UButton
+          v-if="currentView !== 'main'"
+          color="neutral"
+          variant="ghost"
+          icon="i-lucide-arrow-left"
+          size="sm"
+          square
+          @click="goBack"
+        />
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+          {{ currentViewTitle }}
+        </h2>
+      </div>
     </template>
 
     <template #body>
