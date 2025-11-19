@@ -401,10 +401,11 @@ const currentViewCount = computed(() => {
         <!-- Main View -->
         <div v-if="currentView === 'main'" class="flex flex-col h-full">
           <!-- Reset all button -->
-          <div v-if="hasActiveFilters" class="py-4 px-4">
+          <div class="py-4 px-4">
             <UButton
-              color="neutral"
+              :color="hasActiveFilters ? 'error' : 'neutral'"
               variant="link"
+              :disabled="!hasActiveFilters"
               @click="emit('clearFilters')"
             >
               Réinitialiser tout
@@ -448,8 +449,13 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div v-if="selectedCategories.length > 0" class="py-4 px-4">
-            <UButton color="primary" variant="link" @click="resetCurrentView">
+          <div class="py-4 px-4">
+            <UButton
+              :color="selectedCategories.length > 0 ? 'error' : 'neutral'"
+              variant="link"
+              :disabled="selectedCategories.length === 0"
+              @click="resetCurrentView"
+            >
               Réinitialiser
             </UButton>
           </div>
@@ -484,8 +490,13 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div v-if="selectedDisciplines.length > 0" class="py-4 px-4">
-            <UButton color="primary" variant="link" @click="resetCurrentView">
+          <div class="py-4 px-4">
+            <UButton
+              :color="selectedDisciplines.length > 0 ? 'error' : 'neutral'"
+              variant="link"
+              :disabled="selectedDisciplines.length === 0"
+              @click="resetCurrentView"
+            >
               Réinitialiser
             </UButton>
           </div>
@@ -520,8 +531,13 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div v-if="selectedActivities.length > 0" class="py-4 px-4">
-            <UButton color="primary" variant="link" @click="resetCurrentView">
+          <div class="py-4 px-4">
+            <UButton
+              :color="selectedActivities.length > 0 ? 'error' : 'neutral'"
+              variant="link"
+              :disabled="selectedActivities.length === 0"
+              @click="resetCurrentView"
+            >
               Réinitialiser
             </UButton>
           </div>
@@ -556,8 +572,13 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div v-if="selectedPlatforms.length > 0" class="py-4 px-4">
-            <UButton color="primary" variant="link" @click="resetCurrentView">
+          <div class="py-4 px-4">
+            <UButton
+              :color="selectedPlatforms.length > 0 ? 'error' : 'neutral'"
+              variant="link"
+              :disabled="selectedPlatforms.length === 0"
+              @click="resetCurrentView"
+            >
               Réinitialiser
             </UButton>
           </div>
@@ -589,8 +610,13 @@ const currentViewCount = computed(() => {
         <!-- Costs View -->
         <div v-else-if="currentView === 'costs'" class="flex flex-col h-full">
           <!-- Reset button -->
-          <div v-if="selectedCosts.length > 0" class="py-4 px-4">
-            <UButton color="primary" variant="link" @click="resetCurrentView">
+          <div class="py-4 px-4">
+            <UButton
+              :color="selectedCosts.length > 0 ? 'error' : 'neutral'"
+              variant="link"
+              :disabled="selectedCosts.length === 0"
+              @click="resetCurrentView"
+            >
               Réinitialiser
             </UButton>
           </div>
@@ -625,8 +651,13 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div v-if="selectedCertifications.length > 0" class="py-4 px-4">
-            <UButton color="primary" variant="link" @click="resetCurrentView">
+          <div class="py-4 px-4">
+            <UButton
+              :color="selectedCertifications.length > 0 ? 'error' : 'neutral'"
+              variant="link"
+              :disabled="selectedCertifications.length === 0"
+              @click="resetCurrentView"
+            >
               Réinitialiser
             </UButton>
           </div>
