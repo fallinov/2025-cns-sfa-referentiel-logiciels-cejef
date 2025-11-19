@@ -17,6 +17,7 @@ const selectedPlatforms = ref<string[]>([])
 const selectedCosts = ref<CostType[]>([])
 const selectedCertifications = ref<CertificationLevel[]>([])
 const selectedPopularFilters = ref<string[]>([])
+const isFiltersSlideoverOpen = ref(false)
 
 // Options for select menus - memoized to avoid recalculation
 const usedCategoryIds = computed(
@@ -93,23 +94,6 @@ const platformLabelMap = computed(() =>
   )
 )
 
-const costOptions = computed(() => {
-  const values = Array.from(
-    new Set(softwareList.map(software => software.cost))
-  )
-  return values.map(cost => ({
-    label: cost,
-    value: cost
-  }))
-})
-
-const certificationOptions = computed(() =>
-  CERTIFICATION_LEVELS.map(level => ({
-    label: level.label,
-    value: level.value,
-    description: level.description
-  }))
-)
 const certificationLevelLabels = computed(() =>
   Object.fromEntries(
     CERTIFICATION_LEVELS.map(level => [level.value, level.label])
@@ -473,72 +457,16 @@ useSeoMeta({
           </div>
         </div>
 
-        <div class="space-y-3">
-          <div class="text-lg font-semibold text-gray-900 dark:text-white">
-            Filtres les plus courants
-          </div>
-          <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-            <USelectMenu
-              v-model="selectedCategories"
-              :items="categoryOptions"
-              value-key="value"
-              multiple
-              size="xl"
-              color="neutral"
-              highlight
-              placeholder="Catégories"
-            />
-            <USelectMenu
-              v-model="selectedDisciplines"
-              :items="disciplineOptions"
-              value-key="value"
-              multiple
-              size="xl"
-              color="neutral"
-              highlight
-              placeholder="Disciplines"
-            />
-            <USelectMenu
-              v-model="selectedActivities"
-              :items="activityOptions"
-              value-key="value"
-              multiple
-              size="xl"
-              color="neutral"
-              highlight
-              placeholder="Activités pédagogiques"
-            />
-            <USelectMenu
-              v-model="selectedPlatforms"
-              :items="platformOptions"
-              value-key="value"
-              multiple
-              size="xl"
-              color="neutral"
-              highlight
-              placeholder="Plateformes"
-            />
-            <USelectMenu
-              v-model="selectedCosts"
-              :items="costOptions"
-              value-key="value"
-              multiple
-              size="xl"
-              color="neutral"
-              highlight
-              placeholder="Coût"
-            />
-            <USelectMenu
-              v-model="selectedCertifications"
-              :items="certificationOptions"
-              value-key="value"
-              multiple
-              size="xl"
-              color="neutral"
-              highlight
-              placeholder="Certification LGPD"
-            />
-          </div>
+        <div class="flex items-center gap-3">
+          <UButton
+            color="neutral"
+            variant="outline"
+            size="xl"
+            icon="i-lucide-sliders-horizontal"
+            @click="isFiltersSlideoverOpen = true"
+          >
+            Filtres
+          </UButton>
         </div>
 
         <!-- Applied filters summary -->
@@ -643,6 +571,19 @@ useSeoMeta({
 
     <!-- Detail Slideover -->
     <SoftwareDetail />
+
+    <!-- Filters Slideover -->
+    <FiltersSlideover
+      v-model:open="isFiltersSlideoverOpen"
+      v-model:selected-categories="selectedCategories"
+      v-model:selected-disciplines="selectedDisciplines"
+      v-model:selected-activities="selectedActivities"
+      v-model:selected-platforms="selectedPlatforms"
+      v-model:selected-costs="selectedCosts"
+      v-model:selected-certifications="selectedCertifications"
+      :software-list="softwareList"
+      @clear-filters="clearFilters"
+    />
 
     <!-- Info Section -->
     <UPageSection class="mt-16">
