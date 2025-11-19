@@ -325,7 +325,10 @@ const currentViewTitle = computed(() => {
   <USlideover
     v-model:open="isOpen"
     side="left"
-    :ui="{ content: 'w-full sm:max-w-md' }"
+    :ui="{
+      content: 'w-full sm:max-w-md',
+      body: 'p-0'
+    }"
   >
     <template #header>
       <div class="flex items-center justify-between w-full">
@@ -359,7 +362,7 @@ const currentViewTitle = computed(() => {
         <!-- Main View -->
         <div v-if="currentView === 'main'" class="flex flex-col h-full">
           <!-- Reset all button -->
-          <div v-if="hasActiveFilters" class="py-4">
+          <div v-if="hasActiveFilters" class="py-4 px-4">
             <UButton
               color="neutral"
               variant="link"
@@ -375,7 +378,7 @@ const currentViewTitle = computed(() => {
               <button
                 v-for="item in mainMenuItems"
                 :key="item.view"
-                class="w-full flex items-center justify-between py-4 px-1 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                class="w-full flex items-center justify-between py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
                 @click="navigateToView(item.view)"
               >
                 <span
@@ -406,18 +409,18 @@ const currentViewTitle = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div v-if="selectedCategories.length > 0" class="py-4">
+          <div v-if="selectedCategories.length > 0" class="py-4 px-4">
             <UButton color="primary" variant="link" @click="resetCurrentView">
               Réinitialiser
             </UButton>
           </div>
 
-          <div class="flex-1 overflow-y-auto py-4">
+          <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
               <label
                 v-for="option in categoryOptions"
                 :key="option.value"
-                class="flex items-center justify-between py-3 px-1 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                class="flex items-center justify-between py-3 px-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
               >
                 <div class="flex items-center gap-3">
                   <UCheckbox
@@ -442,18 +445,18 @@ const currentViewTitle = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div v-if="selectedDisciplines.length > 0" class="py-4">
+          <div v-if="selectedDisciplines.length > 0" class="py-4 px-4">
             <UButton color="primary" variant="link" @click="resetCurrentView">
               Réinitialiser
             </UButton>
           </div>
 
-          <div class="flex-1 overflow-y-auto py-4">
+          <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
               <label
                 v-for="option in disciplineOptions"
                 :key="option.value"
-                class="flex items-center justify-between py-3 px-1 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                class="flex items-center justify-between py-3 px-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
               >
                 <div class="flex items-center gap-3">
                   <UCheckbox
@@ -478,18 +481,18 @@ const currentViewTitle = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div v-if="selectedActivities.length > 0" class="py-4">
+          <div v-if="selectedActivities.length > 0" class="py-4 px-4">
             <UButton color="primary" variant="link" @click="resetCurrentView">
               Réinitialiser
             </UButton>
           </div>
 
-          <div class="flex-1 overflow-y-auto py-4">
+          <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
               <label
                 v-for="option in activityOptions"
                 :key="option.value"
-                class="flex items-center justify-between py-3 px-1 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                class="flex items-center justify-between py-3 px-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
               >
                 <div class="flex items-center gap-3">
                   <UCheckbox
@@ -514,18 +517,18 @@ const currentViewTitle = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div v-if="selectedPlatforms.length > 0" class="py-4">
+          <div v-if="selectedPlatforms.length > 0" class="py-4 px-4">
             <UButton color="primary" variant="link" @click="resetCurrentView">
               Réinitialiser
             </UButton>
           </div>
 
-          <div class="flex-1 overflow-y-auto py-4">
+          <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
               <label
                 v-for="option in platformOptions"
                 :key="option.value"
-                class="flex items-center justify-between py-3 px-1 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                class="flex items-center justify-between py-3 px-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
               >
                 <div class="flex items-center gap-3">
                   <UCheckbox
@@ -547,18 +550,18 @@ const currentViewTitle = computed(() => {
         <!-- Costs View -->
         <div v-else-if="currentView === 'costs'" class="flex flex-col h-full">
           <!-- Reset button -->
-          <div v-if="selectedCosts.length > 0" class="py-4">
+          <div v-if="selectedCosts.length > 0" class="py-4 px-4">
             <UButton color="primary" variant="link" @click="resetCurrentView">
               Réinitialiser
             </UButton>
           </div>
 
-          <div class="flex-1 overflow-y-auto py-4">
+          <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
               <label
                 v-for="option in costOptions"
                 :key="option.value"
-                class="flex items-center justify-between py-3 px-1 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                class="flex items-center justify-between py-3 px-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
               >
                 <div class="flex items-center gap-3">
                   <UCheckbox
@@ -583,18 +586,18 @@ const currentViewTitle = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <div v-if="selectedCertifications.length > 0" class="py-4">
+          <div v-if="selectedCertifications.length > 0" class="py-4 px-4">
             <UButton color="primary" variant="link" @click="resetCurrentView">
               Réinitialiser
             </UButton>
           </div>
 
-          <div class="flex-1 overflow-y-auto py-4">
+          <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
               <label
                 v-for="option in certificationOptions"
                 :key="`cert-${option.value}`"
-                class="flex items-center justify-between py-3 px-1 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                class="flex items-center justify-between py-3 px-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
               >
                 <div class="flex items-center gap-3">
                   <UCheckbox
