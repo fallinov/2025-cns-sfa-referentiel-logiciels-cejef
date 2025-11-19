@@ -16,7 +16,8 @@ export const activities: Activity[] = [
   {
     id: "evaluation-formative",
     name: "Évaluation formative",
-    description: "Évaluation continue pour mesurer la progression et adapter l'enseignement",
+    description:
+      "Évaluation continue pour mesurer la progression et adapter l'enseignement",
     icon: "i-heroicons-clipboard-document-check",
     color: "primary",
     taxonomyLevel: "Évaluer"
@@ -24,7 +25,8 @@ export const activities: Activity[] = [
   {
     id: "travail-collaboratif",
     name: "Travail collaboratif",
-    description: "Activités de groupe pour co-créer et partager des connaissances",
+    description:
+      "Activités de groupe pour co-créer et partager des connaissances",
     icon: "i-heroicons-user-group",
     color: "primary",
     taxonomyLevel: "Créer"
@@ -40,7 +42,8 @@ export const activities: Activity[] = [
   {
     id: "gestion-cours",
     name: "Gestion de cours",
-    description: "Organisation, planification et suivi des activités d'apprentissage",
+    description:
+      "Organisation, planification et suivi des activités d'apprentissage",
     icon: "i-heroicons-folder-open",
     color: "gray",
     taxonomyLevel: "Organiser"
@@ -64,9 +67,10 @@ export const activities: Activity[] = [
   {
     id: "apprentissage-actif",
     name: "Apprentissage actif",
-    description: "Engagement actif des apprenants dans le processus d'apprentissage",
+    description:
+      "Engagement actif des apprenants dans le processus d'apprentissage",
     icon: "i-heroicons-light-bulb",
-    color: "yellow",
+    color: "warning",
     taxonomyLevel: "Appliquer"
   },
   {
@@ -128,7 +132,8 @@ export const activities: Activity[] = [
   {
     id: "classe-inversee",
     name: "Classe inversée",
-    description: "Apprentissage autonome hors classe et activités en présentiel",
+    description:
+      "Apprentissage autonome hors classe et activités en présentiel",
     icon: "i-heroicons-arrow-uturn-down",
     color: "gray",
     taxonomyLevel: "Appliquer"
@@ -152,9 +157,10 @@ export const activities: Activity[] = [
   {
     id: "communication",
     name: "Communication",
-    description: "Échanges synchrones et asynchrones entre apprenants et enseignants",
+    description:
+      "Échanges synchrones et asynchrones entre apprenants et enseignants",
     icon: "i-heroicons-chat-bubble-left-ellipsis",
-    color: "fuchsia",
+    color: "neutral",
     taxonomyLevel: "Communiquer"
   }
 ]

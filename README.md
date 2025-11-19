@@ -570,6 +570,91 @@ git commit -m "fix: update Kahoot LGPD classification"
 git push origin main
 ```
 
+### Configurer la palette de couleurs
+
+Le projet utilise les couleurs de la marque CEJEF et suit l'architecture de couleurs recommandée par Nuxt UI et Tailwind CSS v4.
+
+#### Architecture des couleurs (3 niveaux)
+
+**1. Définition des couleurs dans `app/assets/css/main.css`**
+
+Source unique de vérité pour les couleurs. Utilise `@theme static` pour remplacer complètement les couleurs Tailwind par défaut :
+
+```css
+@theme static {
+  /* Rouge CEJEF - Remplace la couleur 'red' de Tailwind */
+  --color-red-500: #d1232a;  /* Couleur principale */
+  --color-red-50: #fef2f2;   /* Teintes claires */
+  --color-red-950: #450a0a;  /* Teintes foncées */
+  
+  /* Vert CEJEF - Remplace la couleur 'green' de Tailwind */
+  --color-green-500: #659157; /* Certification niveau 1 */
+  
+  /* Orange CEJEF - Remplace la couleur 'orange' de Tailwind */
+  --color-orange-500: #f4b886; /* Certification niveau 3 */
+}
+```
+
+**2. Mapping sémantique dans `app/app.config.ts`**
+
+Associe les noms sémantiques Nuxt UI aux couleurs Tailwind redéfinies :
+
+```typescript
+export default defineAppConfig({
+  ui: {
+    colors: {
+      primary: "red",      // Rouge CEJEF
+      success: "green",    // Vert CEJEF
+      error: "orange",     // Orange CEJEF
+      info: "gray",
+      neutral: "gray"
+    }
+  }
+})
+```
+
+**3. Utilisation dans les composants**
+
+Toujours utiliser les **noms sémantiques** dans les props des composants Nuxt UI :
+
+```vue
+<!-- ✅ CORRECT -->
+<UBadge color="primary" variant="soft">
+  17 logiciels disponibles
+</UBadge>
+
+<!-- ❌ INCORRECT - Ne jamais utiliser le nom Tailwind directement -->
+<UBadge color="red" variant="soft">
+  17 logiciels disponibles
+</UBadge>
+```
+
+#### Modifier les couleurs
+
+**Pour changer une couleur de la palette :**
+
+1. Modifier `app/assets/css/main.css` uniquement
+2. Les changements se propagent automatiquement à toute l'application
+3. Pas besoin de modifier les composants
+
+**Exemple : Changer le rouge CEJEF**
+
+```css
+/* Dans app/assets/css/main.css */
+@theme static {
+  --color-red-500: #ff0000; /* Nouvelle couleur rouge */
+  /* Ajuster les autres nuances si nécessaire */
+}
+```
+
+#### Règles importantes
+
+- ✅ **Définir les couleurs dans UN SEUL endroit** : `main.css`
+- ✅ **Utiliser UNIQUEMENT les props** des composants Nuxt UI (pas de CSS personnalisé)
+- ✅ **Toujours utiliser les noms sémantiques** dans les composants : `primary`, `success`, `error`, `info`, `neutral`
+- ❌ **Ne JAMAIS utiliser les noms Tailwind** directement dans les composants : `red`, `green`, `orange`
+- ❌ **Ne JAMAIS créer de classes CSS personnalisées** pour les couleurs
+
 ### Modifier l'interface utilisateur
 
 **Composants concernés :**
