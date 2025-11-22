@@ -3,34 +3,31 @@ import type { Config } from "tailwindcss"
 /**
  * Configuration Tailwind CSS pour le Référentiel Logiciels CEJEF
  *
- * Ce fichier documente la configuration des couleurs personnalisées CEJEF
- * qui remplacent les couleurs par défaut de Tailwind CSS.
+ * Architecture des couleurs Liquid Glass :
  *
- * IMPORTANT : Les couleurs sont définies dans app/assets/css/main.css
- * via @theme static pour surcharger les couleurs par défaut de Tailwind.
- *
- * Architecture des couleurs :
- *
- * 1. Niveau Tailwind (main.css avec @theme static) :
- *    - Définit les palettes complètes (50-950) pour red, green, orange
- *    - Utilise les couleurs de la charte graphique CEJEF
+ * 1. Couleurs Tailwind standard (utilisées directement) :
+ *    - Rose : Palette complète rose (50-950) de Tailwind
+ *    - Emerald : Palette complète emerald (50-950) de Tailwind
+ *    - Amber : Palette complète amber (50-950) de Tailwind
  *
  * 2. Niveau Nuxt UI (app.config.ts) :
  *    - Mappe les couleurs Tailwind vers des noms sémantiques :
- *      • primary: 'red'    → Rouge CEJEF (#d1232a)
- *      • success: 'green'  → Vert CEJEF (#659157)
- *      • error: 'orange'   → Orange CEJEF (#f4b886)
+ *      • primary: "rose"    → Rose (#e11d48 - rose-600)
+ *      • success: "emerald" → Emerald (#059669 - emerald-600)
+ *      • warning: "amber"   → Amber (#d97706 - amber-600)
+ *      • error: "red"       → Red standard Tailwind
  *
  * 3. Niveau Composants :
- *    - Utilisent les noms sémantiques (primary, success, error)
- *    - Exemple : <UButton color="primary" /> → utilise le rouge CEJEF
+ *    - Utilisent les noms sémantiques (primary, success, warning)
+ *    - Style Liquid Glass : glassmorphism, backdrop-blur, transparence
+ *    - Exemple : <UButton color="primary" /> → utilise rose avec effet glass
  *
- * Couleurs CEJEF définies :
- * - Rouge (red) : Couleur principale CEJEF - #d1232a (nuance 500)
- * - Vert (green) : Indicateurs de conformité - #659157 (nuance 500)
- * - Orange (orange) : Avertissements et alertes - #f4b886 (nuance 500)
+ * Palette Liquid Glass (basée sur les cartes de certification) :
+ * - Rose (rose-600) : Couleur principale - Niveau 3 "Interdit"
+ * - Emerald (emerald-600) : Indicateurs de conformité - Niveau 1 "Autorisé"
+ * - Amber (amber-600) : Avertissements - Niveau 2 "Attention"
  *
- * @see app/assets/css/main.css - Définition des couleurs avec @theme static
+ * @see app/assets/css/main.css - Police et animations
  * @see app/app.config.ts - Mapping des couleurs sémantiques Nuxt UI
  * @see https://tailwindcss.com/docs/customizing-colors
  * @see https://ui.nuxt.com/getting-started/theme/design-system

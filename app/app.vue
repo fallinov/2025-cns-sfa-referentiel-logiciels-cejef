@@ -21,19 +21,26 @@ useSeoMeta({
 
 <template>
   <UApp>
-    <UHeader>
+    <!-- Header with Liquid Glass effect -->
+    <UHeader
+      :ui="{
+        wrapper: 'bg-white/40 dark:bg-gray-950/40 backdrop-blur-xl border-b border-white/60 dark:border-white/10 shadow-lg'
+      }"
+    >
       <template #left>
-        <NuxtLink to="/" class="flex items-center gap-2">
-          <UIcon
-            name="i-lucide-graduation-cap"
-            class="w-6 h-6 text-primary-600 dark:text-primary-400"
-          />
+        <NuxtLink to="/" class="flex items-center gap-2 group">
+          <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-rose-100/80 dark:bg-rose-900/30 group-hover:bg-rose-200/80 dark:group-hover:bg-rose-800/40 transition-colors">
+            <UIcon
+              name="i-lucide-graduation-cap"
+              class="w-5 h-5 text-rose-600 dark:text-rose-400"
+            />
+          </div>
           <span
-            class="font-semibold text-gray-900 dark:text-white hidden sm:inline"
+            class="font-bold text-gray-900 dark:text-white hidden sm:inline tracking-tight"
           >
             Référentiel Logiciels CEJEF
           </span>
-          <span class="font-semibold text-gray-900 dark:text-white sm:hidden">
+          <span class="font-bold text-gray-900 dark:text-white sm:hidden tracking-tight">
             CEJEF
           </span>
         </NuxtLink>
@@ -42,7 +49,9 @@ useSeoMeta({
       <template #right>
         <div class="flex items-center gap-3">
           <SoftwareCommandPalette />
-          <UColorModeButton />
+          <div class="p-1.5 rounded-lg bg-white/50 dark:bg-white/5 backdrop-blur-md border border-white/60 dark:border-white/10">
+            <UColorModeButton />
+          </div>
         </div>
       </template>
     </UHeader>
@@ -51,11 +60,17 @@ useSeoMeta({
       <NuxtPage />
     </UMain>
 
-    <USeparator />
+    <!-- Separator with gradient -->
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent"></div>
 
-    <UFooter>
+    <!-- Footer with Liquid Glass effect -->
+    <UFooter
+      :ui="{
+        wrapper: 'bg-white/40 dark:bg-gray-950/40 backdrop-blur-xl border-t border-white/60 dark:border-white/10'
+      }"
+    >
       <template #left>
-        <p class="text-sm text-gray-600 dark:text-gray-400">
+        <p class="text-sm text-gray-700 dark:text-gray-300 font-medium">
           CEJEF - Centre Jurassien d'Enseignement et de Formation •
           {{ new Date().getFullYear() }}
         </p>
@@ -63,10 +78,10 @@ useSeoMeta({
 
       <template #right>
         <div
-          class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
+          class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/50 dark:bg-white/5 backdrop-blur-md border border-white/60 dark:border-white/10"
         >
-          <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
-          <span class="hidden sm:inline">Classification LGPD</span>
+          <UIcon name="i-lucide-shield-check" class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          <span class="hidden sm:inline text-sm text-gray-700 dark:text-gray-300 font-medium">Classification LGPD</span>
         </div>
       </template>
     </UFooter>

@@ -55,7 +55,11 @@ const formatLanguages = (codes: string[]) => {
     side="right"
     :title="selectedSoftware?.name || 'Détails du logiciel'"
     description="Informations détaillées sur le logiciel sélectionné"
-    :ui="{ content: 'w-full sm:w-[600px] md:w-[700px] lg:w-[800px]' }"
+    :ui="{
+      content: 'w-full sm:w-[600px] md:w-[700px] lg:w-[800px]',
+      overlay: 'backdrop-blur-sm',
+      wrapper: 'bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl shadow-2xl'
+    }"
   >
     <!-- Empty default slot for programmatic triggering -->
     <span></span>
@@ -65,35 +69,31 @@ const formatLanguages = (codes: string[]) => {
         <!-- Section 1 : Identification -->
         <div class="space-y-4">
           <div class="flex items-center gap-4">
-            <UIcon
-              :name="selectedSoftware.icon ?? 'i-simple-icons-appstore'"
-              class="w-16 h-16 text-gray-700 dark:text-gray-300 shrink-0"
-            />
+            <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-white/50 dark:bg-white/5 backdrop-blur-md border border-white/60 dark:border-white/10 shadow-lg shrink-0">
+              <UIcon
+                :name="selectedSoftware.icon ?? 'i-simple-icons-appstore'"
+                class="w-10 h-10 text-gray-700 dark:text-gray-300"
+              />
+            </div>
             <div class="flex flex-wrap gap-2">
-              <UBadge
+              <div
                 v-if="selectedSoftware.supportedByCEJEF"
-                color="success"
-                variant="soft"
+                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-900/30 backdrop-blur-sm border border-emerald-200/50 dark:border-emerald-800/30"
               >
-                <template #leading>
-                  <UIcon name="i-lucide-check-circle" class="w-4 h-4" />
-                </template>
-                Pris en charge CEJEF
-              </UBadge>
-              <UBadge
+                <UIcon name="i-lucide-check-circle" class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <span class="text-sm font-bold text-emerald-700 dark:text-emerald-300">Pris en charge CEJEF</span>
+              </div>
+              <div
                 v-if="selectedSoftware.campusTraining"
-                color="info"
-                variant="soft"
+                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100/80 dark:bg-blue-900/30 backdrop-blur-sm border border-blue-200/50 dark:border-blue-800/30"
               >
-                <template #leading>
-                  <UIcon name="i-lucide-graduation-cap" class="w-4 h-4" />
-                </template>
-                Formation Campus disponible
-              </UBadge>
+                <UIcon name="i-lucide-graduation-cap" class="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                <span class="text-sm font-bold text-blue-700 dark:text-blue-300">Formation Campus disponible</span>
+              </div>
             </div>
           </div>
 
-          <p class="text-gray-700 dark:text-gray-300">
+          <p class="text-base text-gray-700 dark:text-gray-300 font-medium leading-relaxed">
             {{ selectedSoftware.shortDescription }}
           </p>
         </div>
@@ -103,9 +103,11 @@ const formatLanguages = (codes: string[]) => {
         <!-- Certification CEJEF -->
         <div class="space-y-3">
           <h3
-            class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2"
+            class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2 tracking-tight"
           >
-            <UIcon name="i-lucide-badge-check" class="w-5 h-5" />
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-rose-100/80 dark:bg-rose-900/30">
+              <UIcon name="i-lucide-badge-check" class="w-5 h-5 text-rose-600 dark:text-rose-400" />
+            </div>
             Certification CEJEF
           </h3>
           <CertificationBadge :level="certificationLevel" />
@@ -116,9 +118,11 @@ const formatLanguages = (codes: string[]) => {
         <!-- Section 2 : Classification LGPD -->
         <div class="space-y-3">
           <h3
-            class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2"
+            class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2 tracking-tight"
           >
-            <UIcon name="i-lucide-shield" class="w-5 h-5" />
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-rose-100/80 dark:bg-rose-900/30">
+              <UIcon name="i-lucide-shield" class="w-5 h-5 text-rose-600 dark:text-rose-400" />
+            </div>
             Critères LGPD détaillés
           </h3>
           <LgpdIcons :lgpd="selectedSoftware.lgpd" :show-labels="true" />
@@ -129,9 +133,11 @@ const formatLanguages = (codes: string[]) => {
         <!-- Section 3 : Informations techniques -->
         <div class="space-y-3">
           <h3
-            class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2"
+            class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2 tracking-tight"
           >
-            <UIcon name="i-lucide-settings" class="w-5 h-5" />
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-rose-100/80 dark:bg-rose-900/30">
+              <UIcon name="i-lucide-settings" class="w-5 h-5 text-rose-600 dark:text-rose-400" />
+            </div>
             Informations techniques
           </h3>
 
@@ -266,9 +272,11 @@ const formatLanguages = (codes: string[]) => {
         <!-- Section 4 : Pédagogie -->
         <div class="space-y-3">
           <h3
-            class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2"
+            class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2 tracking-tight"
           >
-            <UIcon name="i-lucide-book-open" class="w-5 h-5" />
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-rose-100/80 dark:bg-rose-900/30">
+              <UIcon name="i-lucide-book-open" class="w-5 h-5 text-rose-600 dark:text-rose-400" />
+            </div>
             Pédagogie
           </h3>
 
@@ -369,9 +377,11 @@ const formatLanguages = (codes: string[]) => {
 
           <div class="space-y-3">
             <h3
-              class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2"
+              class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2 tracking-tight"
             >
-              <UIcon name="i-lucide-link" class="w-5 h-5" />
+              <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-rose-100/80 dark:bg-rose-900/30">
+                <UIcon name="i-lucide-link" class="w-5 h-5 text-rose-600 dark:text-rose-400" />
+              </div>
               Ressources
             </h3>
 
@@ -434,18 +444,16 @@ const formatLanguages = (codes: string[]) => {
           </div>
         </template>
 
-        <!-- Bouton d'action -->
-        <div class="pt-4 border-t border-gray-200 dark:border-gray-800">
-          <UButton
-            :to="selectedSoftware.toolUrl"
+        <!-- Bouton d'action with Liquid Glass -->
+        <div class="pt-4 border-t border-gray-200/50 dark:border-gray-800/50">
+          <a
+            :href="selectedSoftware.toolUrl"
             target="_blank"
-            color="primary"
-            size="lg"
-            block
-            trailing-icon="i-lucide-external-link"
+            class="flex items-center justify-center gap-2 w-full px-6 py-4 rounded-2xl bg-rose-600/90 dark:bg-rose-600/80 backdrop-blur-md border border-rose-500/50 dark:border-rose-400/30 text-white shadow-lg hover:bg-rose-600 dark:hover:bg-rose-600/90 transition-all duration-300"
           >
-            Accéder à l'outil
-          </UButton>
+            <span class="text-base font-bold">Accéder à l'outil</span>
+            <UIcon name="i-lucide-external-link" class="w-5 h-5" />
+          </a>
         </div>
       </div>
     </template>

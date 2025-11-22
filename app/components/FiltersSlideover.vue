@@ -356,7 +356,9 @@ const currentViewCount = computed(() => {
     side="left"
     :ui="{
       content: 'w-full sm:max-w-md',
-      body: 'p-0'
+      body: 'p-0',
+      overlay: 'backdrop-blur-sm',
+      wrapper: 'bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl shadow-2xl'
     }"
   >
     <template #header>
@@ -704,17 +706,14 @@ const currentViewCount = computed(() => {
       </div>
     </template>
 
-    <!-- Footer -->
+    <!-- Footer with Liquid Glass button -->
     <template #footer>
-      <UButton
-        color="primary"
-        variant="solid"
-        size="xl"
-        block
+      <button
+        class="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-rose-600/90 dark:bg-rose-600/80 backdrop-blur-md border border-rose-500/50 dark:border-rose-400/30 text-white shadow-lg hover:bg-rose-600 dark:hover:bg-rose-600/90 transition-all duration-300"
         @click="closeAndApply"
       >
-        {{ footerButtonText }}
-      </UButton>
+        <span class="text-base font-bold">{{ footerButtonText }}</span>
+      </button>
     </template>
   </USlideover>
 </template>

@@ -419,39 +419,30 @@ useSeoMeta({
 
     <!-- Content Wrapper -->
     <div class="relative z-10">
-      <!-- Hero Section -->
+      <!-- Hero Section with Liquid Glass styling -->
       <UPageHero
         title="Référentiel Logiciels CEJEF"
         description="Découvrez les logiciels pédagogiques avec leur classification selon la Loi sur la protection des données (LGPD)"
         class="mb-8"
         :ui="{
-          title: 'text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl'
+          title: 'text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl tracking-tight',
+          description: 'text-lg text-gray-700 dark:text-gray-300 font-medium'
         }"
       >
         <template #links>
           <div class="flex flex-col sm:flex-row gap-3">
-            <UBadge
-              color="primary"
-              variant="soft"
-              size="lg"
-              class="justify-center sm:justify-start"
-            >
-              <template #leading>
-                <UIcon name="i-lucide-graduation-cap" class="w-4 h-4" />
-              </template>
-              {{ softwareList.length }} logiciels disponibles
-            </UBadge>
-            <UBadge
-              color="success"
-              variant="soft"
-              size="lg"
-              class="justify-center sm:justify-start"
-            >
-              <template #leading>
-                <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
-              </template>
-              Classification LGPD
-            </UBadge>
+            <div class="px-5 py-3 rounded-full bg-white/40 dark:bg-white/5 backdrop-blur-md border border-white/60 dark:border-white/10 shadow-lg flex items-center gap-3 justify-center sm:justify-start">
+              <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-rose-600 dark:text-rose-400" />
+              <span class="text-base font-bold text-gray-900 dark:text-white">
+                {{ softwareList.length }} logiciels disponibles
+              </span>
+            </div>
+            <div class="px-5 py-3 rounded-full bg-white/40 dark:bg-white/5 backdrop-blur-md border border-white/60 dark:border-white/10 shadow-lg flex items-center gap-3 justify-center sm:justify-start">
+              <UIcon name="i-lucide-shield-check" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <span class="text-base font-bold text-gray-900 dark:text-white">
+                Classification LGPD
+              </span>
+            </div>
           </div>
         </template>
       </UPageHero>
@@ -462,29 +453,30 @@ useSeoMeta({
           <div class="space-y-3">
             <div class="flex items-center justify-between">
               <div>
-                <div class="text-lg font-semibold text-gray-900 dark:text-white">
+                <div class="text-xl font-bold text-gray-900 dark:text-white tracking-tight">
                   Filtres populaires
                 </div>
-                <p class="text-base text-gray-500 dark:text-gray-400">
+                <p class="text-base text-gray-600 dark:text-gray-400 font-medium">
                   Sélection rapide des critères les plus utilisés
                 </p>
               </div>
-              <UButton
-                color="primary"
-                variant="link"
-                size="lg"
-                icon="i-lucide-refresh-cw"
+              <button
                 :disabled="!selectedPopularFilters.length"
+                class="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300"
+                :class="selectedPopularFilters.length
+                  ? 'bg-white/40 dark:bg-white/5 backdrop-blur-md border border-white/60 dark:border-white/10 shadow-lg hover:bg-white/60 dark:hover:bg-white/10 text-rose-600 dark:text-rose-400'
+                  : 'opacity-50 cursor-not-allowed text-gray-400 dark:text-gray-600'"
                 @click="resetPopularFilters"
               >
-                Réinitialiser
-              </UButton>
+                <UIcon name="i-lucide-refresh-cw" class="w-4 h-4" />
+                <span class="text-base font-bold">Réinitialiser</span>
+              </button>
             </div>
             <div class="relative -mx-4 px-4 sm:mx-0 sm:px-0">
-              <!-- Left scroll button -->
+              <!-- Left scroll button with Liquid Glass effect -->
               <button
                 v-if="canScrollLeft"
-                class="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/30 dark:border-gray-800/30 shadow-xl hover:bg-white/70 dark:hover:bg-gray-900/70 transition-all"
+                class="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/50 dark:bg-white/5 backdrop-blur-xl border border-white/70 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] hover:bg-white/70 dark:hover:bg-white/10 transition-all duration-300"
                 @click="scrollFilters('left')"
               >
                 <UIcon
@@ -498,40 +490,31 @@ useSeoMeta({
                 ref="filtersScrollContainer"
                 class="flex gap-2.5 overflow-x-auto scrollbar-hide pb-2"
               >
-                <UButton
-                  color="neutral"
-                  variant="outline"
-                  size="xl"
-                  icon="i-lucide-sliders-horizontal"
-                  class="shrink-0 font-bold rounded-full"
+                <button
+                  class="shrink-0 flex items-center gap-2 px-5 py-3 rounded-full bg-white/50 dark:bg-white/5 backdrop-blur-md border border-white/70 dark:border-white/10 shadow-lg hover:bg-white/70 dark:hover:bg-white/10 transition-all duration-300"
                   @click="isFiltersSlideoverOpen = true"
                 >
-                  Filtres
-                </UButton>
-                <UButton
+                  <UIcon name="i-lucide-sliders-horizontal" class="w-5 h-5 text-gray-900 dark:text-white" />
+                  <span class="text-base font-bold text-gray-900 dark:text-white">Filtres</span>
+                </button>
+                <button
                   v-for="filter in popularFilters"
                   :key="filter.id"
-                  :color="
-                    selectedPopularFilters.includes(filter.id)
-                      ? 'primary'
-                      : 'neutral'
-                  "
-                  :variant="
-                    selectedPopularFilters.includes(filter.id) ? 'solid' : 'soft'
-                  "
-                  :icon="filter.icon"
-                  size="xl"
-                  class="shrink-0 font-bold rounded-full"
+                  class="shrink-0 flex items-center gap-2 px-5 py-3 rounded-full backdrop-blur-md border shadow-lg transition-all duration-300"
+                  :class="selectedPopularFilters.includes(filter.id)
+                    ? 'bg-rose-600/90 dark:bg-rose-600/80 border-rose-500/50 dark:border-rose-400/30 text-white hover:bg-rose-600 dark:hover:bg-rose-600/90 shadow-rose-500/20'
+                    : 'bg-white/50 dark:bg-white/5 border-white/70 dark:border-white/10 text-gray-900 dark:text-white hover:bg-white/70 dark:hover:bg-white/10'"
                   @click="togglePopularFilter(filter.id)"
                 >
-                  {{ filter.label }}
-                </UButton>
+                  <UIcon :name="filter.icon" class="w-5 h-5" />
+                  <span class="text-base font-bold">{{ filter.label }}</span>
+                </button>
               </div>
 
-              <!-- Right scroll button -->
+              <!-- Right scroll button with Liquid Glass effect -->
               <button
                 v-if="canScrollRight"
-                class="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/30 dark:border-gray-800/30 shadow-xl hover:bg-white/70 dark:hover:bg-gray-900/70 transition-all"
+                class="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/50 dark:bg-white/5 backdrop-blur-xl border border-white/70 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] hover:bg-white/70 dark:hover:bg-white/10 transition-all duration-300"
                 @click="scrollFilters('right')"
               >
                 <UIcon
@@ -542,39 +525,34 @@ useSeoMeta({
             </div>
           </div>
 
-          <!-- Applied filters summary -->
+          <!-- Applied filters summary with Liquid Glass -->
           <div
             v-if="appliedFilters.length"
-            class="rounded-2xl border border-primary-200/70 dark:border-primary-500/20 bg-white/60 dark:bg-white/5 px-4 py-3 flex flex-col gap-2"
+            class="rounded-[24px] border border-rose-200/50 dark:border-rose-500/20 bg-white/50 dark:bg-white/5 backdrop-blur-md px-5 py-4 flex flex-col gap-3 shadow-lg"
           >
             <div
-              class="flex items-center gap-2 text-base uppercase tracking-wide font-semibold text-primary-700 dark:text-primary-200"
+              class="flex items-center gap-2 text-base uppercase tracking-widest font-bold text-rose-700 dark:text-rose-300"
             >
               <UIcon name="i-lucide-filter" class="w-5 h-5" />
               Filtres appliqués
-              <span class="text-sm text-gray-500 dark:text-gray-400">
+              <span class="text-sm font-bold text-gray-600 dark:text-gray-400">
                 ({{ appliedFilters.length }})
               </span>
             </div>
             <div class="flex flex-wrap gap-2.5">
-              <UBadge
+              <div
                 v-for="filter in appliedFilters"
                 :key="filter.id"
-                color="primary"
-                variant="soft"
-                size="lg"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-600/90 dark:bg-rose-600/80 backdrop-blur-sm border border-rose-500/50 dark:border-rose-400/30 text-white shadow-md"
               >
-                {{ filter.label }}
-                <template #trailing>
-                  <UButton
-                    color="primary"
-                    variant="link"
-                    icon="i-lucide-x"
-                    size="xs"
-                    @click="removeFilter(filter.id)"
-                  />
-                </template>
-              </UBadge>
+                <span class="text-sm font-bold">{{ filter.label }}</span>
+                <button
+                  class="hover:bg-white/20 rounded-full p-0.5 transition-colors"
+                  @click="removeFilter(filter.id)"
+                >
+                  <UIcon name="i-lucide-x" class="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -583,8 +561,8 @@ useSeoMeta({
             v-if="hasActiveFilters"
             class="flex items-center justify-between text-lg"
           >
-            <p class="text-gray-600 dark:text-gray-400">
-              <span class="font-semibold text-gray-900 dark:text-white">{{
+            <p class="text-gray-700 dark:text-gray-300 font-medium">
+              <span class="font-bold text-gray-900 dark:text-white">{{
                 filteredSoftwareList.length
               }}</span>
               {{
@@ -593,15 +571,13 @@ useSeoMeta({
                   : "logiciel trouvé"
               }}
             </p>
-            <UButton
-              color="neutral"
-              variant="ghost"
-              size="lg"
-              icon="i-lucide-x"
+            <button
+              class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-white/5 backdrop-blur-md border border-white/60 dark:border-white/10 shadow-lg hover:bg-white/60 dark:hover:bg-white/10 transition-all duration-300 text-gray-900 dark:text-white"
               @click="clearFilters"
             >
-              Effacer les filtres
-            </UButton>
+              <UIcon name="i-lucide-x" class="w-4 h-4" />
+              <span class="text-base font-bold">Effacer les filtres</span>
+            </button>
           </div>
         </div>
 
@@ -619,26 +595,26 @@ useSeoMeta({
           </div>
         </div>
 
-        <!-- No results message -->
+        <!-- No results message with Liquid Glass -->
         <div v-else class="text-center py-12">
-          <UIcon
-            name="i-lucide-search-x"
-            class="w-20 h-20 mx-auto mb-6 text-gray-400"
-          />
-          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
+          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/40 dark:bg-white/5 backdrop-blur-md border border-white/60 dark:border-white/10 shadow-lg mx-auto mb-6">
+            <UIcon
+              name="i-lucide-search-x"
+              class="w-10 h-10 text-gray-600 dark:text-gray-400"
+            />
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
             Aucun logiciel trouvé
           </h3>
-          <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
+          <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 font-medium">
             Essayez de modifier vos critères de recherche
           </p>
-          <UButton
-            color="primary"
-            variant="soft"
-            size="lg"
+          <button
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-rose-600/90 dark:bg-rose-600/80 backdrop-blur-md border border-rose-500/50 dark:border-rose-400/30 text-white shadow-lg hover:bg-rose-600 dark:hover:bg-rose-600/90 transition-all duration-300"
             @click="clearFilters"
           >
-            Afficher tous les logiciels
-          </UButton>
+            <span class="text-base font-bold">Afficher tous les logiciels</span>
+          </button>
         </div>
       </UPageSection>
 
@@ -659,66 +635,76 @@ useSeoMeta({
         @clear-filters="clearFilters"
       />
 
-      <!-- Info Section -->
+      <!-- Info Section with Liquid Glass -->
       <UPageSection class="mt-16">
-        <UPageCTA
-          title="À propos de la classification LGPD"
-          description="Chaque logiciel est évalué selon 4 critères : hébergement des données, utilisation des données personnelles, conformité RGPD et niveau de collecte. Ces informations vous aident à choisir les outils adaptés aux exigences de protection des données."
-          variant="subtle"
-        >
-          <template #links>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
-              <div class="text-center">
+        <div class="rounded-[32px] bg-white/40 dark:bg-white/5 backdrop-blur-xl border border-white/60 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] p-8 md:p-12">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+              À propos de la classification LGPD
+            </h2>
+            <p class="text-lg text-gray-700 dark:text-gray-300 font-medium max-w-3xl mx-auto">
+              Chaque logiciel est évalué selon 4 critères : hébergement des données, utilisation des données personnelles, conformité RGPD et niveau de collecte. Ces informations vous aident à choisir les outils adaptés aux exigences de protection des données.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="text-center p-4 rounded-[20px] bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/50 dark:border-white/10">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-rose-100/80 dark:bg-rose-900/30 mb-3">
                 <UIcon
                   name="i-lucide-home"
-                  class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
+                  class="w-7 h-7 text-rose-600 dark:text-rose-400"
                 />
-                <div class="text-base font-medium">
-                  Hébergement
-                </div>
-                <div class="text-sm text-gray-500">
-                  Localisation
-                </div>
               </div>
-              <div class="text-center">
-                <UIcon
-                  name="i-lucide-user-check"
-                  class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
-                />
-                <div class="text-base font-medium">
-                  Données perso.
-                </div>
-                <div class="text-sm text-gray-500">
-                  Usage autorisé
-                </div>
+              <div class="text-base font-bold text-gray-900 dark:text-white">
+                Hébergement
               </div>
-              <div class="text-center">
-                <UIcon
-                  name="i-lucide-shield-check"
-                  class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
-                />
-                <div class="text-base font-medium">
-                  RGPD
-                </div>
-                <div class="text-sm text-gray-500">
-                  Conformité
-                </div>
-              </div>
-              <div class="text-center">
-                <UIcon
-                  name="i-lucide-bar-chart-2"
-                  class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
-                />
-                <div class="text-base font-medium">
-                  Collecte
-                </div>
-                <div class="text-sm text-gray-500">
-                  Niveau
-                </div>
+              <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Localisation
               </div>
             </div>
-          </template>
-        </UPageCTA>
+            <div class="text-center p-4 rounded-[20px] bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/50 dark:border-white/10">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-rose-100/80 dark:bg-rose-900/30 mb-3">
+                <UIcon
+                  name="i-lucide-user-check"
+                  class="w-7 h-7 text-rose-600 dark:text-rose-400"
+                />
+              </div>
+              <div class="text-base font-bold text-gray-900 dark:text-white">
+                Données perso.
+              </div>
+              <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Usage autorisé
+              </div>
+            </div>
+            <div class="text-center p-4 rounded-[20px] bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/50 dark:border-white/10">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-rose-100/80 dark:bg-rose-900/30 mb-3">
+                <UIcon
+                  name="i-lucide-shield-check"
+                  class="w-7 h-7 text-rose-600 dark:text-rose-400"
+                />
+              </div>
+              <div class="text-base font-bold text-gray-900 dark:text-white">
+                RGPD
+              </div>
+              <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Conformité
+              </div>
+            </div>
+            <div class="text-center p-4 rounded-[20px] bg-white/30 dark:bg-white/5 backdrop-blur-md border border-white/50 dark:border-white/10">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-rose-100/80 dark:bg-rose-900/30 mb-3">
+                <UIcon
+                  name="i-lucide-bar-chart-2"
+                  class="w-7 h-7 text-rose-600 dark:text-rose-400"
+                />
+              </div>
+              <div class="text-base font-bold text-gray-900 dark:text-white">
+                Collecte
+              </div>
+              <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Niveau
+              </div>
+            </div>
+          </div>
+        </div>
       </UPageSection>
     </div>
   </div>

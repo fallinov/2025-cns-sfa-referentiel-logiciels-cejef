@@ -3,48 +3,9 @@
 
 @theme static {
   --font-sans: "Public Sans", sans-serif;
-
-  /* Rouge CEJEF - Remplace la couleur 'red' de Tailwind */
-  --color-red-50: #fef2f2;
-  --color-red-100: #fee2e2;
-  --color-red-200: #fecaca;
-  --color-red-300: #fca5a5;
-  --color-red-400: #f87171;
-  --color-red-500: #d1232a;
-  --color-red-600: #b91c22;
-  --color-red-700: #991b1f;
-  --color-red-800: #7f1d1d;
-  --color-red-900: #661a1a;
-  --color-red-950: #450a0a;
-
-  /* Vert CEJEF - Remplace la couleur 'green' de Tailwind */
-  --color-green-50: #f4f7f3;
-  --color-green-100: #e8efe6;
-  --color-green-200: #d1dfc9;
-  --color-green-300: #a8c49a;
-  --color-green-400: #7fa86b;
-  --color-green-500: #659157;
-  --color-green-600: #5a7f4d;
-  --color-green-700: #4d6b41;
-  --color-green-800: #3f5735;
-  --color-green-900: #32462a;
-  --color-green-950: #1a2515;
-
-  /* Orange CEJEF - Remplace la couleur 'orange' de Tailwind */
-  --color-orange-50: #fff7ed;
-  --color-orange-100: #ffedd5;
-  --color-orange-200: #fed7aa;
-  --color-orange-300: #fdba74;
-  --color-orange-400: #fda760;
-  --color-orange-500: #f4b886;
-  --color-orange-600: #ea8a5c;
-  --color-orange-700: #c2410c;
-  --color-orange-800: #9a3412;
-  --color-orange-900: #7c2d12;
-  --color-orange-950: #431407;
 }
 
-/* Animation delays pour l'effet blob */
+/* Animation delays pour l'effet blob Aurora */
 .animation-delay-2000 {
   animation-delay: 2s;
 }
