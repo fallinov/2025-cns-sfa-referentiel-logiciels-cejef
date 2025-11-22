@@ -413,305 +413,313 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="min-h-screen">
-    <!-- Hero Section -->
-    <UPageHero
-      title="Référentiel Logiciels CEJEF"
-      description="Découvrez les logiciels pédagogiques avec leur classification selon la Loi sur la protection des données (LGPD)"
-      class="mb-8"
-      :ui="{
-        title: 'text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl'
-      }"
-    >
-      <template #links>
-        <div class="flex flex-col sm:flex-row gap-3">
-          <UBadge
-            color="primary"
-            variant="soft"
-            size="lg"
-            class="justify-center sm:justify-start"
-          >
-            <template #leading>
-              <UIcon name="i-lucide-graduation-cap" class="w-4 h-4" />
-            </template>
-            {{ softwareList.length }} logiciels disponibles
-          </UBadge>
-          <UBadge
-            color="success"
-            variant="soft"
-            size="lg"
-            class="justify-center sm:justify-start"
-          >
-            <template #leading>
-              <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
-            </template>
-            Classification LGPD
-          </UBadge>
-        </div>
-      </template>
-    </UPageHero>
+  <div class="min-h-screen relative">
+    <!-- Background Aurora Effect -->
+    <BackgroundAurora />
 
-    <!-- Filter Section -->
-    <UPageSection>
-      <div class="space-y-6">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="text-lg font-semibold text-gray-900 dark:text-white">
-                Filtres populaires
-              </div>
-              <p class="text-base text-gray-500 dark:text-gray-400">
-                Sélection rapide des critères les plus utilisés
-              </p>
-            </div>
-            <UButton
-              color="primary"
-              variant="link"
-              size="lg"
-              icon="i-lucide-refresh-cw"
-              :disabled="!selectedPopularFilters.length"
-              @click="resetPopularFilters"
-            >
-              Réinitialiser
-            </UButton>
-          </div>
-          <div class="relative -mx-4 px-4 sm:mx-0 sm:px-0">
-            <!-- Left scroll button -->
-            <button
-              v-if="canScrollLeft"
-              class="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/30 dark:border-gray-800/30 shadow-xl hover:bg-white/70 dark:hover:bg-gray-900/70 transition-all"
-              @click="scrollFilters('left')"
-            >
-              <UIcon
-                name="i-lucide-chevron-left"
-                class="w-6 h-6 text-gray-900 dark:text-white"
-              />
-            </button>
-
-            <!-- Scroll container -->
-            <div
-              ref="filtersScrollContainer"
-              class="flex gap-2.5 overflow-x-auto scrollbar-hide pb-2"
-            >
-              <UButton
-                color="neutral"
-                variant="outline"
-                size="xl"
-                icon="i-lucide-sliders-horizontal"
-                class="shrink-0 font-bold rounded-full"
-                @click="isFiltersSlideoverOpen = true"
-              >
-                Filtres
-              </UButton>
-              <UButton
-                v-for="filter in popularFilters"
-                :key="filter.id"
-                :color="
-                  selectedPopularFilters.includes(filter.id)
-                    ? 'primary'
-                    : 'neutral'
-                "
-                :variant="
-                  selectedPopularFilters.includes(filter.id) ? 'solid' : 'soft'
-                "
-                :icon="filter.icon"
-                size="xl"
-                class="shrink-0 font-bold rounded-full"
-                @click="togglePopularFilter(filter.id)"
-              >
-                {{ filter.label }}
-              </UButton>
-            </div>
-
-            <!-- Right scroll button -->
-            <button
-              v-if="canScrollRight"
-              class="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/30 dark:border-gray-800/30 shadow-xl hover:bg-white/70 dark:hover:bg-gray-900/70 transition-all"
-              @click="scrollFilters('right')"
-            >
-              <UIcon
-                name="i-lucide-chevron-right"
-                class="w-6 h-6 text-gray-900 dark:text-white"
-              />
-            </button>
-          </div>
-        </div>
-
-        <!-- Applied filters summary -->
-        <div
-          v-if="appliedFilters.length"
-          class="rounded-2xl border border-primary-200/70 dark:border-primary-500/20 bg-white/60 dark:bg-white/5 px-4 py-3 flex flex-col gap-2"
-        >
-          <div
-            class="flex items-center gap-2 text-base uppercase tracking-wide font-semibold text-primary-700 dark:text-primary-200"
-          >
-            <UIcon name="i-lucide-filter" class="w-5 h-5" />
-            Filtres appliqués
-            <span class="text-sm text-gray-500 dark:text-gray-400">
-              ({{ appliedFilters.length }})
-            </span>
-          </div>
-          <div class="flex flex-wrap gap-2.5">
+    <!-- Content Wrapper -->
+    <div class="relative z-10">
+      <!-- Hero Section -->
+      <UPageHero
+        title="Référentiel Logiciels CEJEF"
+        description="Découvrez les logiciels pédagogiques avec leur classification selon la Loi sur la protection des données (LGPD)"
+        class="mb-8"
+        :ui="{
+          title: 'text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl'
+        }"
+      >
+        <template #links>
+          <div class="flex flex-col sm:flex-row gap-3">
             <UBadge
-              v-for="filter in appliedFilters"
-              :key="filter.id"
               color="primary"
               variant="soft"
               size="lg"
+              class="justify-center sm:justify-start"
             >
-              {{ filter.label }}
-              <template #trailing>
-                <UButton
-                  color="primary"
-                  variant="link"
-                  icon="i-lucide-x"
-                  size="xs"
-                  @click="removeFilter(filter.id)"
-                />
+              <template #leading>
+                <UIcon name="i-lucide-graduation-cap" class="w-4 h-4" />
               </template>
+              {{ softwareList.length }} logiciels disponibles
+            </UBadge>
+            <UBadge
+              color="success"
+              variant="soft"
+              size="lg"
+              class="justify-center sm:justify-start"
+            >
+              <template #leading>
+                <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
+              </template>
+              Classification LGPD
             </UBadge>
           </div>
-        </div>
+        </template>
+      </UPageHero>
 
-        <!-- Results info and clear filters -->
-        <div
-          v-if="hasActiveFilters"
-          class="flex items-center justify-between text-lg"
-        >
-          <p class="text-gray-600 dark:text-gray-400">
-            <span class="font-semibold text-gray-900 dark:text-white">{{
-              filteredSoftwareList.length
-            }}</span>
-            {{
-              filteredSoftwareList.length > 1
-                ? "logiciels trouvés"
-                : "logiciel trouvé"
-            }}
-          </p>
-          <UButton
-            color="neutral"
-            variant="ghost"
-            size="lg"
-            icon="i-lucide-x"
-            @click="clearFilters"
-          >
-            Effacer les filtres
-          </UButton>
-        </div>
-      </div>
-
-      <!-- Software Grid -->
-      <div
-        v-if="filteredSoftwareList.length > 0"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6"
-      >
-        <SoftwareCard
-          v-for="software in filteredSoftwareList"
-          :key="software.id"
-          :software="software"
-        />
-      </div>
-
-      <!-- No results message -->
-      <div v-else class="text-center py-12">
-        <UIcon
-          name="i-lucide-search-x"
-          class="w-20 h-20 mx-auto mb-6 text-gray-400"
-        />
-        <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
-          Aucun logiciel trouvé
-        </h3>
-        <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
-          Essayez de modifier vos critères de recherche
-        </p>
-        <UButton
-          color="primary"
-          variant="soft"
-          size="lg"
-          @click="clearFilters"
-        >
-          Afficher tous les logiciels
-        </UButton>
-      </div>
-    </UPageSection>
-
-    <!-- Detail Slideover -->
-    <SoftwareDetail />
-
-    <!-- Filters Slideover -->
-    <FiltersSlideover
-      v-model:open="isFiltersSlideoverOpen"
-      v-model:selected-categories="selectedCategories"
-      v-model:selected-disciplines="selectedDisciplines"
-      v-model:selected-activities="selectedActivities"
-      v-model:selected-platforms="selectedPlatforms"
-      v-model:selected-costs="selectedCosts"
-      v-model:selected-certifications="selectedCertifications"
-      :software-list="softwareList"
-      :filtered-count="filteredSoftwareList.length"
-      @clear-filters="clearFilters"
-    />
-
-    <!-- Info Section -->
-    <UPageSection class="mt-16">
-      <UPageCTA
-        title="À propos de la classification LGPD"
-        description="Chaque logiciel est évalué selon 4 critères : hébergement des données, utilisation des données personnelles, conformité RGPD et niveau de collecte. Ces informations vous aident à choisir les outils adaptés aux exigences de protection des données."
-        variant="subtle"
-      >
-        <template #links>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
-            <div class="text-center">
-              <UIcon
-                name="i-lucide-home"
-                class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
-              />
-              <div class="text-base font-medium">
-                Hébergement
+      <!-- Filter Section -->
+      <UPageSection>
+        <div class="space-y-6">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-lg font-semibold text-gray-900 dark:text-white">
+                  Filtres populaires
+                </div>
+                <p class="text-base text-gray-500 dark:text-gray-400">
+                  Sélection rapide des critères les plus utilisés
+                </p>
               </div>
-              <div class="text-sm text-gray-500">
-                Localisation
-              </div>
+              <UButton
+                color="primary"
+                variant="link"
+                size="lg"
+                icon="i-lucide-refresh-cw"
+                :disabled="!selectedPopularFilters.length"
+                @click="resetPopularFilters"
+              >
+                Réinitialiser
+              </UButton>
             </div>
-            <div class="text-center">
-              <UIcon
-                name="i-lucide-user-check"
-                class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
-              />
-              <div class="text-base font-medium">
-                Données perso.
+            <div class="relative -mx-4 px-4 sm:mx-0 sm:px-0">
+              <!-- Left scroll button -->
+              <button
+                v-if="canScrollLeft"
+                class="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/30 dark:border-gray-800/30 shadow-xl hover:bg-white/70 dark:hover:bg-gray-900/70 transition-all"
+                @click="scrollFilters('left')"
+              >
+                <UIcon
+                  name="i-lucide-chevron-left"
+                  class="w-6 h-6 text-gray-900 dark:text-white"
+                />
+              </button>
+
+              <!-- Scroll container -->
+              <div
+                ref="filtersScrollContainer"
+                class="flex gap-2.5 overflow-x-auto scrollbar-hide pb-2"
+              >
+                <UButton
+                  color="neutral"
+                  variant="outline"
+                  size="xl"
+                  icon="i-lucide-sliders-horizontal"
+                  class="shrink-0 font-bold rounded-full"
+                  @click="isFiltersSlideoverOpen = true"
+                >
+                  Filtres
+                </UButton>
+                <UButton
+                  v-for="filter in popularFilters"
+                  :key="filter.id"
+                  :color="
+                    selectedPopularFilters.includes(filter.id)
+                      ? 'primary'
+                      : 'neutral'
+                  "
+                  :variant="
+                    selectedPopularFilters.includes(filter.id) ? 'solid' : 'soft'
+                  "
+                  :icon="filter.icon"
+                  size="xl"
+                  class="shrink-0 font-bold rounded-full"
+                  @click="togglePopularFilter(filter.id)"
+                >
+                  {{ filter.label }}
+                </UButton>
               </div>
-              <div class="text-sm text-gray-500">
-                Usage autorisé
-              </div>
-            </div>
-            <div class="text-center">
-              <UIcon
-                name="i-lucide-shield-check"
-                class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
-              />
-              <div class="text-base font-medium">
-                RGPD
-              </div>
-              <div class="text-sm text-gray-500">
-                Conformité
-              </div>
-            </div>
-            <div class="text-center">
-              <UIcon
-                name="i-lucide-bar-chart-2"
-                class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
-              />
-              <div class="text-base font-medium">
-                Collecte
-              </div>
-              <div class="text-sm text-gray-500">
-                Niveau
-              </div>
+
+              <!-- Right scroll button -->
+              <button
+                v-if="canScrollRight"
+                class="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/30 dark:border-gray-800/30 shadow-xl hover:bg-white/70 dark:hover:bg-gray-900/70 transition-all"
+                @click="scrollFilters('right')"
+              >
+                <UIcon
+                  name="i-lucide-chevron-right"
+                  class="w-6 h-6 text-gray-900 dark:text-white"
+                />
+              </button>
             </div>
           </div>
-        </template>
-      </UPageCTA>
-    </UPageSection>
+
+          <!-- Applied filters summary -->
+          <div
+            v-if="appliedFilters.length"
+            class="rounded-2xl border border-primary-200/70 dark:border-primary-500/20 bg-white/60 dark:bg-white/5 px-4 py-3 flex flex-col gap-2"
+          >
+            <div
+              class="flex items-center gap-2 text-base uppercase tracking-wide font-semibold text-primary-700 dark:text-primary-200"
+            >
+              <UIcon name="i-lucide-filter" class="w-5 h-5" />
+              Filtres appliqués
+              <span class="text-sm text-gray-500 dark:text-gray-400">
+                ({{ appliedFilters.length }})
+              </span>
+            </div>
+            <div class="flex flex-wrap gap-2.5">
+              <UBadge
+                v-for="filter in appliedFilters"
+                :key="filter.id"
+                color="primary"
+                variant="soft"
+                size="lg"
+              >
+                {{ filter.label }}
+                <template #trailing>
+                  <UButton
+                    color="primary"
+                    variant="link"
+                    icon="i-lucide-x"
+                    size="xs"
+                    @click="removeFilter(filter.id)"
+                  />
+                </template>
+              </UBadge>
+            </div>
+          </div>
+
+          <!-- Results info and clear filters -->
+          <div
+            v-if="hasActiveFilters"
+            class="flex items-center justify-between text-lg"
+          >
+            <p class="text-gray-600 dark:text-gray-400">
+              <span class="font-semibold text-gray-900 dark:text-white">{{
+                filteredSoftwareList.length
+              }}</span>
+              {{
+                filteredSoftwareList.length > 1
+                  ? "logiciels trouvés"
+                  : "logiciel trouvé"
+              }}
+            </p>
+            <UButton
+              color="neutral"
+              variant="ghost"
+              size="lg"
+              icon="i-lucide-x"
+              @click="clearFilters"
+            >
+              Effacer les filtres
+            </UButton>
+          </div>
+        </div>
+
+        <!-- Software Grid -->
+        <div
+          v-if="filteredSoftwareList.length > 0"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center mt-6"
+        >
+          <div
+            v-for="software in filteredSoftwareList"
+            :key="software.id"
+            class="w-full max-w-[450px] h-full"
+          >
+            <CardLiquidGlass :software="software" shape="curve" />
+          </div>
+        </div>
+
+        <!-- No results message -->
+        <div v-else class="text-center py-12">
+          <UIcon
+            name="i-lucide-search-x"
+            class="w-20 h-20 mx-auto mb-6 text-gray-400"
+          />
+          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
+            Aucun logiciel trouvé
+          </h3>
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
+            Essayez de modifier vos critères de recherche
+          </p>
+          <UButton
+            color="primary"
+            variant="soft"
+            size="lg"
+            @click="clearFilters"
+          >
+            Afficher tous les logiciels
+          </UButton>
+        </div>
+      </UPageSection>
+
+      <!-- Detail Slideover -->
+      <SoftwareDetail />
+
+      <!-- Filters Slideover -->
+      <FiltersSlideover
+        v-model:open="isFiltersSlideoverOpen"
+        v-model:selected-categories="selectedCategories"
+        v-model:selected-disciplines="selectedDisciplines"
+        v-model:selected-activities="selectedActivities"
+        v-model:selected-platforms="selectedPlatforms"
+        v-model:selected-costs="selectedCosts"
+        v-model:selected-certifications="selectedCertifications"
+        :software-list="softwareList"
+        :filtered-count="filteredSoftwareList.length"
+        @clear-filters="clearFilters"
+      />
+
+      <!-- Info Section -->
+      <UPageSection class="mt-16">
+        <UPageCTA
+          title="À propos de la classification LGPD"
+          description="Chaque logiciel est évalué selon 4 critères : hébergement des données, utilisation des données personnelles, conformité RGPD et niveau de collecte. Ces informations vous aident à choisir les outils adaptés aux exigences de protection des données."
+          variant="subtle"
+        >
+          <template #links>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
+              <div class="text-center">
+                <UIcon
+                  name="i-lucide-home"
+                  class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
+                />
+                <div class="text-base font-medium">
+                  Hébergement
+                </div>
+                <div class="text-sm text-gray-500">
+                  Localisation
+                </div>
+              </div>
+              <div class="text-center">
+                <UIcon
+                  name="i-lucide-user-check"
+                  class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
+                />
+                <div class="text-base font-medium">
+                  Données perso.
+                </div>
+                <div class="text-sm text-gray-500">
+                  Usage autorisé
+                </div>
+              </div>
+              <div class="text-center">
+                <UIcon
+                  name="i-lucide-shield-check"
+                  class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
+                />
+                <div class="text-base font-medium">
+                  RGPD
+                </div>
+                <div class="text-sm text-gray-500">
+                  Conformité
+                </div>
+              </div>
+              <div class="text-center">
+                <UIcon
+                  name="i-lucide-bar-chart-2"
+                  class="w-10 h-10 mx-auto mb-3 text-primary-600 dark:text-primary-400"
+                />
+                <div class="text-base font-medium">
+                  Collecte
+                </div>
+                <div class="text-sm text-gray-500">
+                  Niveau
+                </div>
+              </div>
+            </div>
+          </template>
+        </UPageCTA>
+      </UPageSection>
+    </div>
   </div>
 </template>
