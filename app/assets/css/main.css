@@ -43,3 +43,12 @@
   --color-orange-900: #7c2d12;
   --color-orange-950: #431407;
 }
+
+/* Animation delays pour l'effet blob */
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
