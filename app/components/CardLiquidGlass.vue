@@ -51,10 +51,13 @@ const shapePath = computed(() => {
   }
 })
 
-// Badge commun pour les métadonnées
-const badgeStyle = "flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 dark:bg-white/5 border border-white/30 dark:border-white/10 backdrop-blur-md shadow-sm transition-all hover:bg-white/40 dark:hover:bg-white/10"
-const badgeTextStyle = "text-base font-bold uppercase tracking-widest text-slate-900 dark:text-slate-100 group-hover:text-white transition-colors duration-300"
-const badgeIconStyle = "text-slate-900 dark:text-slate-100 group-hover:text-white transition-colors duration-300"
+// Configuration UI commune pour les badges avec effet glass
+const badgeUi = {
+  root: "bg-white/20 dark:bg-white/5 border-white/30 dark:border-white/10 backdrop-blur-md shadow-sm hover:bg-white/40 dark:hover:bg-white/10 transition-all",
+  label: "text-base font-bold uppercase tracking-widest text-slate-900 dark:text-slate-100 group-hover:text-white transition-colors duration-300"
+}
+
+const badgeIconClass = "w-5 h-5 text-slate-900 dark:text-slate-100 group-hover:text-white transition-colors duration-300"
 
 // Extraire les initiales du nom (2 premières lettres)
 const initials = computed(() => props.software.name.substring(0, 2).toUpperCase())
@@ -155,26 +158,43 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
 
       <!-- Footer items -->
       <div class="mt-auto flex flex-wrap gap-3">
-        <div :class="badgeStyle">
-          <UIcon name="i-heroicons-wallet" class="w-5 h-5" :class="badgeIconStyle" />
-          <span :class="badgeTextStyle">
-            {{ software.cost }}
-          </span>
-        </div>
+        <UBadge
+          color="neutral"
+          variant="outline"
+          size="lg"
+          :ui="badgeUi"
+        >
+          <template #leading>
+            <UIcon name="i-heroicons-wallet" :class="badgeIconClass" />
+          </template>
+          {{ software.cost }}
+        </UBadge>
 
-        <div v-if="software.supportedByCEJEF" :class="badgeStyle">
-          <UIcon name="i-heroicons-headphones" class="w-5 h-5" :class="badgeIconStyle" />
-          <span :class="badgeTextStyle">
-            Support
-          </span>
-        </div>
+        <UBadge
+          v-if="software.supportedByCEJEF"
+          color="neutral"
+          variant="outline"
+          size="lg"
+          :ui="badgeUi"
+        >
+          <template #leading>
+            <UIcon name="i-heroicons-headphones" :class="badgeIconClass" />
+          </template>
+          Support
+        </UBadge>
 
-        <div v-if="software.campusTraining" :class="badgeStyle">
-          <UIcon name="i-heroicons-academic-cap" class="w-5 h-5" :class="badgeIconStyle" />
-          <span :class="badgeTextStyle">
-            Formation
-          </span>
-        </div>
+        <UBadge
+          v-if="software.campusTraining"
+          color="neutral"
+          variant="outline"
+          size="lg"
+          :ui="badgeUi"
+        >
+          <template #leading>
+            <UIcon name="i-heroicons-academic-cap" :class="badgeIconClass" />
+          </template>
+          Formation
+        </UBadge>
       </div>
     </div>
   </div>

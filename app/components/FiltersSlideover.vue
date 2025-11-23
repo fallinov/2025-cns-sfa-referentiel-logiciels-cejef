@@ -401,46 +401,51 @@ const currentViewCount = computed(() => {
         <!-- Main View -->
         <div v-if="currentView === 'main'" class="flex flex-col h-full">
           <!-- Reset all button -->
-          <button
-            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
-            :class="
-              hasActiveFilters
-                ? 'text-primary'
-                : 'text-gray-400 dark:text-gray-600'
-            "
+          <UButton
+            :color="hasActiveFilters ? 'primary' : 'neutral'"
+            variant="ghost"
+            size="lg"
+            block
             :disabled="!hasActiveFilters"
+            class="justify-start"
             @click="emit('clearFilters')"
           >
-            <span class="text-base font-medium"> Réinitialiser tout </span>
-          </button>
+            Réinitialiser tout
+          </UButton>
 
           <!-- Menu items -->
           <div class="flex-1 overflow-y-auto">
             <div class="divide-y divide-gray-200 dark:divide-gray-800">
-              <button
+              <UButton
                 v-for="item in mainMenuItems"
                 :key="item.view"
-                class="w-full flex items-center justify-between py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                color="neutral"
+                variant="ghost"
+                size="lg"
+                block
+                class="justify-between"
                 @click="navigateToView(item.view)"
               >
-                <span
-                  class="text-base font-medium text-gray-900 dark:text-white"
-                >
-                  {{ item.label }}
-                </span>
-                <div class="flex items-center gap-2">
-                  <span
-                    v-if="item.count > 0"
-                    class="text-sm text-gray-500 dark:text-gray-400"
-                  >
-                    {{ item.count }}
+                <template #leading>
+                  <span class="text-base font-medium">
+                    {{ item.label }}
                   </span>
-                  <UIcon
-                    name="i-lucide-chevron-right"
-                    class="w-5 h-5 text-gray-400"
-                  />
-                </div>
-              </button>
+                </template>
+                <template #trailing>
+                  <div class="flex items-center gap-2">
+                    <span
+                      v-if="item.count > 0"
+                      class="text-sm text-gray-500 dark:text-gray-400"
+                    >
+                      {{ item.count }}
+                    </span>
+                    <UIcon
+                      name="i-lucide-chevron-right"
+                      class="w-5 h-5 text-gray-400"
+                    />
+                  </div>
+                </template>
+              </UButton>
             </div>
           </div>
         </div>
@@ -451,18 +456,17 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <button
-            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
-            :class="
-              selectedCategories.length > 0
-                ? 'text-primary'
-                : 'text-gray-400 dark:text-gray-600'
-            "
+          <UButton
+            :color="selectedCategories.length > 0 ? 'primary' : 'neutral'"
+            variant="ghost"
+            size="lg"
+            block
             :disabled="selectedCategories.length === 0"
+            class="justify-start"
             @click="resetCurrentView"
           >
-            <span class="text-base font-medium"> Réinitialiser </span>
-          </button>
+            Réinitialiser
+          </UButton>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
@@ -494,18 +498,17 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <button
-            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
-            :class="
-              selectedDisciplines.length > 0
-                ? 'text-primary'
-                : 'text-gray-400 dark:text-gray-600'
-            "
+          <UButton
+            :color="selectedDisciplines.length > 0 ? 'primary' : 'neutral'"
+            variant="ghost"
+            size="lg"
+            block
             :disabled="selectedDisciplines.length === 0"
+            class="justify-start"
             @click="resetCurrentView"
           >
-            <span class="text-base font-medium"> Réinitialiser </span>
-          </button>
+            Réinitialiser
+          </UButton>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
@@ -537,18 +540,17 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <button
-            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
-            :class="
-              selectedActivities.length > 0
-                ? 'text-primary'
-                : 'text-gray-400 dark:text-gray-600'
-            "
+          <UButton
+            :color="selectedActivities.length > 0 ? 'primary' : 'neutral'"
+            variant="ghost"
+            size="lg"
+            block
             :disabled="selectedActivities.length === 0"
+            class="justify-start"
             @click="resetCurrentView"
           >
-            <span class="text-base font-medium"> Réinitialiser </span>
-          </button>
+            Réinitialiser
+          </UButton>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
@@ -580,18 +582,17 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <button
-            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
-            :class="
-              selectedPlatforms.length > 0
-                ? 'text-primary'
-                : 'text-gray-400 dark:text-gray-600'
-            "
+          <UButton
+            :color="selectedPlatforms.length > 0 ? 'primary' : 'neutral'"
+            variant="ghost"
+            size="lg"
+            block
             :disabled="selectedPlatforms.length === 0"
+            class="justify-start"
             @click="resetCurrentView"
           >
-            <span class="text-base font-medium"> Réinitialiser </span>
-          </button>
+            Réinitialiser
+          </UButton>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
@@ -620,18 +621,17 @@ const currentViewCount = computed(() => {
         <!-- Costs View -->
         <div v-else-if="currentView === 'costs'" class="flex flex-col h-full">
           <!-- Reset button -->
-          <button
-            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
-            :class="
-              selectedCosts.length > 0
-                ? 'text-primary'
-                : 'text-gray-400 dark:text-gray-600'
-            "
+          <UButton
+            :color="selectedCosts.length > 0 ? 'primary' : 'neutral'"
+            variant="ghost"
+            size="lg"
+            block
             :disabled="selectedCosts.length === 0"
+            class="justify-start"
             @click="resetCurrentView"
           >
-            <span class="text-base font-medium"> Réinitialiser </span>
-          </button>
+            Réinitialiser
+          </UButton>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">
@@ -663,18 +663,17 @@ const currentViewCount = computed(() => {
           class="flex flex-col h-full"
         >
           <!-- Reset button -->
-          <button
-            class="w-full flex items-center py-4 px-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
-            :class="
-              selectedCertifications.length > 0
-                ? 'text-primary'
-                : 'text-gray-400 dark:text-gray-600'
-            "
+          <UButton
+            :color="selectedCertifications.length > 0 ? 'primary' : 'neutral'"
+            variant="ghost"
+            size="lg"
+            block
             :disabled="selectedCertifications.length === 0"
+            class="justify-start"
             @click="resetCurrentView"
           >
-            <span class="text-base font-medium"> Réinitialiser </span>
-          </button>
+            Réinitialiser
+          </UButton>
 
           <div class="flex-1 overflow-y-auto">
             <div class="space-y-1">

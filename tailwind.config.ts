@@ -47,6 +47,11 @@ export default {
       animation: {
         blob: "blob 7s infinite"
       },
+      // Délais d'animation pour les effets blob décalés
+      animationDelay: {
+        2000: "2s",
+        4000: "4s"
+      },
       keyframes: {
         blob: {
           "0%": {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getCertificationLevel } from "~~/types/software"
+import { platformIcons, formatLanguages } from "~/utils/formatters"
 
 const { selectedSoftware, isDetailOpen, closeDetail } = useSoftware()
 
@@ -24,29 +25,6 @@ const certificationLevel = computed(() =>
     ? getCertificationLevel(selectedSoftware.value.lgpd)
     : 1
 )
-
-// Mappage des icônes de plateformes
-const platformIcons: Record<string, string> = {
-  web: "i-lucide-globe",
-  windows: "i-lucide-laptop",
-  mac: "i-lucide-laptop",
-  smartphone: "i-lucide-smartphone",
-  tablet: "i-lucide-tablet"
-}
-
-// Mappage des codes de langues vers leurs noms complets
-const languageNames: Record<string, string> = {
-  fr: "Français",
-  en: "Anglais",
-  de: "Allemand",
-  es: "Espagnol",
-  it: "Italien"
-}
-
-// Fonction pour formater les langues
-const formatLanguages = (codes: string[]) => {
-  return codes.map(code => languageNames[code] || code).join(", ")
-}
 </script>
 
 <template>
