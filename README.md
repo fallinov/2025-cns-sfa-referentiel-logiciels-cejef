@@ -11,6 +11,7 @@
 - [Fonctionnalités](#-fonctionnalités)
 - [Classification LGPD](#-classification-lgpd)
 - [Technologies](#-technologies)
+- [Variants Nuxt UI personnalisés](#-variants-nuxt-ui-personnalisés)
 - [Installation](#-installation)
 - [Développement](#-développement)
 - [Structure du projet](#-structure-du-projet)
@@ -53,10 +54,11 @@ Le **Référentiel Logiciels CEJEF** est une application web destinée aux ensei
 
 ### Interface utilisateur
 
+- **Design Liquid Glass** : Effet verre liquide avec badges et cartes semi-transparents à backdrop-blur
 - **Mode sombre/clair** : Bascule automatique selon les préférences système
 - **Responsive** : Adapté aux ordinateurs, tablettes et smartphones
-- **Performance** : Site statique généré pour un chargement ultra-rapide
-- **Accessibilité** : Conforme aux standards WCAG
+- **Performance** : Site statique généré pour un chargement ultra-rapide, maximise Nuxt UI et Tailwind CSS
+- **Accessibilité** : Conforme aux standards WCAG 2.1 (tailles de texte minimales, contrastes, navigation clavier)
 
 ---
 
@@ -129,6 +131,145 @@ Quantité de données collectées par l'outil :
 
 - **GitHub Pages** : Environnement de staging/test
 - **SFTP** : Environnement de production
+
+---
+
+## 🎨 Variants Nuxt UI personnalisés
+
+Le projet définit des variants personnalisés pour les composants Nuxt UI afin de supporter l'esthétique **Liquid Glass** (verre liquide).
+
+### Variant Badge Liquid Glass
+
+Un variant personnalisé pour `UBadge` appliquant l'effet verre liquide signature du projet :
+
+#### Configuration (app.config.ts)
+
+```typescript
+export default defineAppConfig({
+  ui: {
+    colors: {
+      primary: "red",
+      success: "green",
+      error: "orange",
+      info: "gray",
+      neutral: "gray"
+    },
+    badge: {
+      variants: {
+        // Variant personnalisé "liquid" pour effet Liquid Glass
+        liquid: {
+          root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 rounded-full backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] px-4 py-2",
+          label: "text-sm font-bold uppercase tracking-widest text-white"
+        }
+      }
+    }
+  }
+})
+```
+
+#### Utilisation avec la prop :ui
+
+**⚠️ Important** : Les variants personnalisés ne sont pas reconnus par TypeScript dans les types de Nuxt UI. Il faut donc utiliser la prop `:ui` au lieu de `variant="liquid"`.
+
+```vue
+<script setup>
+// Définir la configuration UI pour les badges liquid glass
+const liquidBadgeUi = {
+  root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 rounded-full backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] px-4 py-2",
+  label: "text-sm font-bold uppercase tracking-widest text-white"
+}
+</script>
+
+<template>
+  <!-- Utilisation avec :ui prop -->
+  <UBadge :ui="liquidBadgeUi">
+    <template #leading>
+      <UIcon name="i-heroicons-wallet" class="w-4 h-4 text-white" />
+    </template>
+    Premium
+  </UBadge>
+</template>
+```
+
+#### Structure de la prop :ui pour UBadge
+
+Le composant `UBadge` de Nuxt UI accepte uniquement deux propriétés dans la configuration `:ui` :
+
+- **`root`** : Classes CSS pour l'élément conteneur (background, border, padding, border-radius, etc.)
+- **`label`** : Classes CSS pour le texte (font-size, font-weight, color, text-transform, etc.)
+
+```typescript
+// ✅ CORRECT - Structure valide
+const liquidBadgeUi = {
+  root: "bg-white/20 border-white/50 rounded-full px-4 py-2",  // Styles du conteneur
+  label: "text-sm font-bold text-white"                         // Styles du texte
+}
+
+// ❌ INCORRECT - Propriétés non supportées
+const liquidBadgeUi = {
+  base: "...",        // N'existe pas dans UBadge
+  background: "...",  // N'existe pas dans UBadge
+  border: "..."       // N'existe pas dans UBadge
+}
+```
+
+#### Effet Liquid Glass
+
+L'effet verre liquide combine plusieurs techniques CSS :
+
+- **Semi-transparence** : `bg-white/20` (background blanc à 20% d'opacité)
+- **Backdrop blur** : `backdrop-blur-md` (flou de l'arrière-plan)
+- **Bordure translucide** : `border-white/50` (bordure blanche à 50% d'opacité)
+- **Ombre douce** : `shadow-[0_2px_10px_rgba(0,0,0,0.05)]`
+- **Coins arrondis** : `rounded-full`
+
+#### Où est-il utilisé ?
+
+- **`CardLiquidGlass.vue`** : Tous les badges (badge de certification en en-tête + badges de métadonnées en pied)
+- Peut être utilisé n'importe où dans l'application pour un look cohérent
+
+#### Créer de nouveaux variants personnalisés
+
+Pour ajouter d'autres variants personnalisés :
+
+1. **Ajouter** la configuration dans `app/app.config.ts` sous `ui.{componentName}.variants`
+2. **Créer** une constante avec la structure `:ui` dans votre composant
+3. **Utiliser** avec la prop `:ui` (pas `variant=""`)
+4. **Documenter** le variant dans cette section
+
+**Exemple pour un bouton liquid glass :**
+
+```typescript
+// Dans app/app.config.ts
+export default defineAppConfig({
+  ui: {
+    button: {
+      variants: {
+        liquid: {
+          root: "bg-white/20 backdrop-blur-md border-white/50 hover:bg-white/30",
+          label: "text-white font-bold"
+        }
+      }
+    }
+  }
+})
+```
+
+```vue
+<!-- Dans votre composant -->
+<script setup>
+const liquidButtonUi = {
+  root: "bg-white/20 backdrop-blur-md border-white/50 hover:bg-white/30",
+  label: "text-white font-bold"
+}
+</script>
+
+<template>
+  <UButton :ui="liquidButtonUi">
+    Cliquez ici
+  </UButton>
+</template>
+```
 
 ---
 
@@ -354,30 +495,38 @@ Pour la documentation complète des règles ESLint :
 ├── app/
 │   ├── assets/
 │   │   └── css/
-│   │       └── main.css        # Styles globaux
+│   │       └── main.css        # Styles globaux et couleurs CEJEF (@theme static)
 │   ├── components/
-│   │   ├── AppLogo.vue         # Logo de l'application
-│   │   ├── LgpdIcons.vue       # Icônes de classification LGPD
-│   │   ├── SoftwareCard.vue    # Carte d'un logiciel
-│   │   ├── SoftwareDetail.vue  # Modal de détail
-│   │   └── TemplateMenu.vue    # Menu de navigation
+│   │   ├── BackgroundAurora.vue       # Arrière-plan avec blobs animés
+│   │   ├── CardLiquidGlass.vue        # Carte logiciel avec effet liquid glass
+│   │   ├── FiltersSlideover.vue       # Panneau latéral de filtres
+│   │   ├── LgpdIcons.vue              # Icônes de classification LGPD
+│   │   ├── SoftwareCard.vue           # Carte simple d'un logiciel
+│   │   ├── SoftwareCommandPalette.vue # Recherche rapide (⌘K)
+│   │   └── SoftwareDetail.vue         # Panneau latéral de détail
 │   ├── composables/
-│   │   └── useSoftware.ts      # Logique métier des logiciels
+│   │   └── useSoftware.ts      # Logique métier et état des logiciels
 │   ├── data/
 │   │   └── software-list.ts    # Base de données des logiciels
 │   ├── pages/
 │   │   └── index.vue           # Page d'accueil
 │   ├── types/
 │   │   └── software.ts         # Définitions TypeScript
+│   ├── utils/
+│   │   └── formatters.ts       # Utilitaires de formatage (langues, plateformes)
+│   ├── app.config.ts           # Configuration Nuxt UI (couleurs, variants)
 │   └── app.vue                 # Composant racine
 ├── public/
+│   ├── logos/                  # Logos des logiciels (SVG)
 │   ├── favicon.ico             # Icône du site
 │   └── .nojekyll               # Désactive Jekyll (GitHub Pages)
 ├── .gitignore                  # Fichiers ignorés par Git
+├── CLAUDE.md                   # Instructions pour Claude Code
 ├── eslint.config.mjs           # Configuration ESLint
 ├── nuxt.config.ts              # Configuration Nuxt
 ├── package.json                # Dépendances du projet
 ├── README.md                   # Ce fichier
+├── tailwind.config.ts          # Configuration Tailwind CSS
 └── tsconfig.json               # Configuration TypeScript
 ```
 
@@ -437,23 +586,185 @@ Composable Nuxt pour gérer l'état global des logiciels :
 
 **Avantage** : État réactif partagé entre tous les composants sans prop drilling.
 
+### Architecture des utilitaires
+
+#### `formatters` (`app/utils/formatters.ts`)
+
+Utilitaires partagés pour le formatage et les mappings, évitant la duplication de code :
+
+**Mappings de langues :**
+```typescript
+export const languageNames: Record<string, string> = {
+  fr: "Français",
+  en: "Anglais",
+  de: "Allemand",
+  es: "Espagnol",
+  it: "Italien"
+}
+```
+
+**Mappings de plateformes vers icônes :**
+```typescript
+export const platformIcons: Record<string, string> = {
+  web: "i-lucide-globe",
+  windows: "i-lucide-laptop",
+  mac: "i-lucide-laptop",
+  smartphone: "i-lucide-smartphone",
+  tablet: "i-lucide-tablet"
+}
+```
+
+**Fonction de formatage :**
+```typescript
+export function formatLanguages(codes: string[]): string {
+  return codes.map(code => languageNames[code] || code).join(", ")
+}
+```
+
+**Utilisation dans les composants :**
+```vue
+<script setup>
+import { platformIcons, formatLanguages } from "~/utils/formatters"
+
+// Utiliser directement les mappings
+const icon = platformIcons[platform]
+const languages = formatLanguages(["fr", "en", "de"])
+</script>
+```
+
+**Avantages** :
+- ✅ DRY (Don't Repeat Yourself) : Une seule source de vérité pour les mappings
+- ✅ Maintenabilité : Modification centralisée des traductions et icônes
+- ✅ Cohérence : Garantit l'uniformité dans toute l'application
+
 ### Architecture des composants
 
 ```
 App.vue (racine)
-├── UHeader (en-tête)
+├── UHeader (en-tête Nuxt UI)
 │   ├── Logo + Titre
-│   └── Bouton mode sombre/clair
+│   ├── SoftwareCommandPalette (recherche ⌘K)
+│   └── UColorModeButton (mode sombre/clair)
 ├── UMain (contenu principal)
 │   └── index.vue (page d'accueil)
-│       ├── UPageHero (bandeau titre)
-│       ├── UPageSection (grille de logiciels)
-│       │   └── SoftwareCard (x N logiciels)
-│       │       └── LgpdIcons (indicateurs LGPD)
-│       ├── SoftwareDetail (modal de détail)
-│       │   └── LgpdIcons (indicateurs détaillés)
-│       └── UPageCTA (section info LGPD)
-└── UFooter (pied de page)
+│       ├── BackgroundAurora (arrière-plan animé)
+│       ├── Section titre
+│       ├── Section grille de logiciels
+│       │   └── CardLiquidGlass (x N logiciels avec effet verre)
+│       │       ├── UBadge avec :ui (liquid glass)
+│       │       └── UIcon (icônes des métadonnées)
+│       ├── FiltersSlideover (filtres dans panneau latéral)
+│       │   └── UButton (boutons de filtre Nuxt UI)
+│       └── SoftwareDetail (détails dans panneau latéral)
+│           └── LgpdIcons (indicateurs détaillés)
+└── UFooter (pied de page Nuxt UI)
+```
+
+**Composants principaux :**
+
+- **`CardLiquidGlass.vue`** : Carte logiciel avec effet liquid glass (badges semi-transparents, backdrop-blur, animations au hover)
+- **`FiltersSlideover.vue`** : Panneau latéral de filtres utilisant `USlideover` et `UButton` de Nuxt UI
+- **`SoftwareCommandPalette.vue`** : Palette de commandes pour recherche rapide avec raccourci clavier `⌘K`
+- **`SoftwareDetail.vue`** : Panneau latéral de détails utilisant `USlideover` de Nuxt UI
+- **`BackgroundAurora.vue`** : Arrière-plan avec blobs animés en CSS (animation configurée dans `tailwind.config.ts`)
+
+### Bonnes pratiques d'utilisation de Nuxt UI
+
+Le projet suit les principes suivants pour maximiser l'utilisation de Nuxt UI et minimiser le CSS/JS personnalisé :
+
+#### 1. Toujours utiliser les composants Nuxt UI en priorité
+
+```vue
+<!-- ✅ CORRECT - Utilise UButton de Nuxt UI -->
+<UButton
+  color="primary"
+  variant="ghost"
+  size="lg"
+  @click="handleClick"
+>
+  Cliquer
+</UButton>
+
+<!-- ❌ INCORRECT - Bouton HTML avec CSS personnalisé -->
+<button class="custom-button" @click="handleClick">
+  Cliquer
+</button>
+```
+
+#### 2. Personnaliser avec la prop :ui au lieu de CSS custom
+
+```vue
+<!-- ✅ CORRECT - Personnalisation via :ui -->
+<UBadge :ui="{ root: 'bg-white/20 backdrop-blur-md', label: 'text-white' }">
+  Badge personnalisé
+</UBadge>
+
+<!-- ❌ INCORRECT - Classes CSS personnalisées -->
+<div class="custom-badge">
+  Badge personnalisé
+</div>
+```
+
+#### 3. Utiliser les utilitaires Tailwind au lieu de CSS custom
+
+```vue
+<!-- ✅ CORRECT - Classes Tailwind -->
+<div class="flex items-center gap-4 p-6 rounded-lg bg-white/10 backdrop-blur-md">
+  Contenu
+</div>
+
+<!-- ❌ INCORRECT - CSS personnalisé dans <style> -->
+<style scoped>
+.custom-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+}
+</style>
+```
+
+#### 4. Centraliser les configurations réutilisables
+
+```vue
+<!-- ✅ CORRECT - Configuration centralisée -->
+<script setup>
+const liquidBadgeUi = {
+  root: "bg-white/20 backdrop-blur-md border-white/50",
+  label: "text-white font-bold"
+}
+</script>
+
+<template>
+  <UBadge :ui="liquidBadgeUi">Badge 1</UBadge>
+  <UBadge :ui="liquidBadgeUi">Badge 2</UBadge>
+</template>
+
+<!-- ❌ INCORRECT - Duplication de code -->
+<template>
+  <UBadge :ui="{ root: 'bg-white/20 backdrop-blur-md', label: 'text-white' }">Badge 1</UBadge>
+  <UBadge :ui="{ root: 'bg-white/20 backdrop-blur-md', label: 'text-white' }">Badge 2</UBadge>
+</template>
+```
+
+#### 5. Extraire les utilitaires partagés
+
+```typescript
+// ✅ CORRECT - Utilitaires dans app/utils/formatters.ts
+export const platformIcons: Record<string, string> = {
+  web: "i-lucide-globe",
+  windows: "i-lucide-laptop"
+}
+```
+
+```vue
+<!-- Puis import dans les composants -->
+<script setup>
+import { platformIcons } from "~/utils/formatters"
+</script>
 ```
 
 ---
@@ -885,12 +1196,92 @@ npm run dev
 3. Onglet Nuxt → UI → Colors
 4. Vérifier que `primary`, `success`, `error` pointent vers les bonnes couleurs
 
+### Améliorer l'accessibilité et l'UX
+
+Le projet respecte les standards **WCAG 2.1** pour l'accessibilité. Voici les bonnes pratiques à suivre :
+
+#### Tailles de texte minimales
+
+Toutes les tailles de texte respectent les minimums WCAG 2.1 :
+
+- **Texte d'interface (badges, labels)** : minimum 14px (`text-sm`)
+- **Texte de contenu (descriptions, paragraphes)** : minimum 16px (`text-base`)
+- **Titres** : minimum 18px (`text-lg`) ou plus selon la hiérarchie
+
+**Exemple dans CardLiquidGlass.vue :**
+```vue
+<!-- Badge : 14px -->
+<UBadge :ui="liquidBadgeUi">
+  <template #leading>
+    <UIcon name="i-heroicons-wallet" class="w-4 h-4 text-white" />
+  </template>
+  {{ software.cost }}
+</UBadge>
+
+<!-- Description : 16px -->
+<p class="text-base font-medium text-slate-700 dark:text-slate-300">
+  {{ software.shortDescription }}
+</p>
+
+<!-- Titre : 24px -->
+<h3 class="font-bold text-2xl text-slate-900 dark:text-white">
+  {{ software.name }}
+</h3>
+```
+
+#### Navigation au clavier
+
+Tous les éléments interactifs sont accessibles au clavier :
+
+```vue
+<!-- Carte focusable avec indicateur visuel -->
+<div
+  tabindex="0"
+  :class="[
+    'group relative flex flex-col h-full',
+    'outline-none focus-visible:ring-4 focus-visible:ring-blue-500/40',
+    'rounded-[24px] overflow-hidden cursor-pointer'
+  ]"
+>
+  <!-- Texte blanc au focus pour contraste suffisant -->
+  <h3 class="... group-hover:text-white group-focus:text-white ...">
+    {{ software.name }}
+  </h3>
+</div>
+```
+
+#### Contraste des couleurs
+
+Tous les textes ont un contraste suffisant (ratio WCAG AA minimum 4.5:1) :
+
+- Texte blanc sur fond coloré au hover/focus
+- Couleurs CEJEF ajustées pour respecter les contrastes
+- Mode sombre avec contrastes adaptés
+
+**Vérifier les contrastes :**
+- Utiliser [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- Tester avec les couleurs définies dans `app/assets/css/main.css`
+
+#### Icônes avec taille adéquate
+
+Les icônes ont une taille minimale de 16px (w-4 h-4) pour être bien visibles :
+
+```vue
+<!-- Icône dans badge : 16px -->
+<UIcon name="i-heroicons-wallet" class="w-4 h-4 text-white" />
+
+<!-- Icône dans header : 20px -->
+<UIcon name="i-lucide-graduation-cap" class="w-5 h-5" />
+```
+
 ### Modifier l'interface utilisateur
 
 **Composants concernés :**
 
-- **Carte de logiciel** : `app/components/SoftwareCard.vue`
-- **Modal de détail** : `app/components/SoftwareDetail.vue`
+- **Carte liquid glass** : `app/components/CardLiquidGlass.vue`
+- **Panneau de filtres** : `app/components/FiltersSlideover.vue`
+- **Panneau de détail** : `app/components/SoftwareDetail.vue`
+- **Recherche rapide** : `app/components/SoftwareCommandPalette.vue`
 - **Icônes LGPD** : `app/components/LgpdIcons.vue`
 - **Page d'accueil** : `app/pages/index.vue`
 - **Layout global** : `app/app.vue`
@@ -899,9 +1290,11 @@ npm run dev
 
 1. Modifier le composant Vue
 2. Tester en local (`npm run dev`)
-3. Commit et push
-4. Vérifier sur staging
-5. Déployer en production avec un tag
+3. Vérifier l'accessibilité (contraste, navigation clavier)
+4. Linter le code (`npm run lint`)
+5. Commit et push
+6. Vérifier sur staging
+7. Déployer en production avec un tag
 
 ### Mettre à jour les dépendances
 
