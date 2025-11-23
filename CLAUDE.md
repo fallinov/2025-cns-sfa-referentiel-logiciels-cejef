@@ -206,11 +206,8 @@ export default defineAppConfig({
     badge: {
       variants: {
         liquid: {
-          base: "rounded-full border backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)]",
-          background: "bg-white/20 dark:bg-white/10",
-          border: "border-white/50",
-          color: "text-white",
-          font: "text-sm font-bold uppercase tracking-widest"
+          root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 rounded-full backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] px-4 py-2",
+          label: "text-sm font-bold uppercase tracking-widest text-white"
         }
       }
     }
@@ -224,9 +221,7 @@ export default defineAppConfig({
 <!-- Define the liquid badge UI configuration -->
 <script setup>
 const liquidBadgeUi = {
-  base: "rounded-full border backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)]",
-  background: "bg-white/20 dark:bg-white/10",
-  border: "border-white/50",
+  root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 rounded-full backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] px-4 py-2",
   label: "text-sm font-bold uppercase tracking-widest text-white"
 }
 </script>
@@ -255,12 +250,12 @@ The `liquidBadgeUi` constant in `CardLiquidGlass.vue` provides component-level c
 
 ```typescript
 const liquidBadgeUi = {
-  base: "rounded-full border backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)]",
-  background: "bg-white/20 dark:bg-white/10",
-  border: "border-white/50",
+  root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 rounded-full backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] px-4 py-2",
   label: "text-sm font-bold uppercase tracking-widest text-white"
 }
 ```
+
+**Important:** UBadge uses `root` for the container element and `label` for text styling. All visual styles (background, border, padding, etc.) must be on `root`.
 
 **Future Variants:**
 
