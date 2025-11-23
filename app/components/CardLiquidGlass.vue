@@ -51,13 +51,14 @@ const shapePath = computed(() => {
   }
 })
 
-// Configuration UI commune pour les badges avec effet glass
+// Configuration UI commune pour les badges avec effet liquid glass
+// Style identique au badge de l'en-tête pour cohérence visuelle
 const badgeUi = {
-  root: "bg-white/20 dark:bg-white/5 border-white/30 dark:border-white/10 backdrop-blur-md shadow-sm hover:bg-white/40 dark:hover:bg-white/10 transition-all",
-  label: "text-base font-bold uppercase tracking-widest text-slate-900 dark:text-slate-100 group-hover:text-white transition-colors duration-300"
+  root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:bg-white/30 dark:hover:bg-white/20 transition-all",
+  label: "text-sm font-bold uppercase tracking-widest text-white transition-colors duration-300"
 }
 
-const badgeIconClass = "w-5 h-5 text-slate-900 dark:text-slate-100 group-hover:text-white transition-colors duration-300"
+const badgeIconClass = "w-4 h-4 text-white transition-colors duration-300"
 
 // Extraire les initiales du nom (2 premières lettres)
 const initials = computed(() => props.software.name.substring(0, 2).toUpperCase())
@@ -104,9 +105,9 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
     <!-- Header Badge -->
     <div class="absolute top-5 right-6 z-20">
       <span
-        class="flex items-center gap-2 text-base font-bold uppercase tracking-widest text-white bg-white/20 px-4 py-2 rounded-full backdrop-blur-md border border-white/50 shadow-[0_2px_10px_rgba(0,0,0,0.05)]"
+        class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white bg-white/20 px-4 py-2 rounded-full backdrop-blur-md border border-white/50 shadow-[0_2px_10px_rgba(0,0,0,0.05)]"
       >
-        <UIcon :name="config.icon" class="w-5 h-5 text-white" :style="{ strokeWidth: 3 }" />
+        <UIcon :name="config.icon" class="w-4 h-4 text-white" :style="{ strokeWidth: 3 }" />
         {{ config.label }}
       </span>
     </div>
@@ -138,12 +139,12 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
       <!-- Title Section -->
       <div class="mb-6 mt-28 flex flex-col gap-1">
         <h3
-          class="font-bold text-2xl text-slate-900 dark:text-white group-hover:text-white tracking-tight drop-shadow-sm transition-colors duration-300"
+          class="font-bold text-2xl text-slate-900 dark:text-white group-hover:text-white group-focus:text-white tracking-tight drop-shadow-sm transition-colors duration-300"
         >
           {{ software.name }}
         </h3>
         <p
-          class="text-base font-extrabold uppercase tracking-widest text-slate-600 dark:text-slate-400 group-hover:text-white/90 transition-colors duration-300"
+          class="text-sm font-extrabold uppercase tracking-widest text-slate-600 dark:text-slate-400 group-hover:text-white group-focus:text-white transition-colors duration-300"
         >
           {{ software.category }}
         </p>
@@ -151,7 +152,7 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
 
       <!-- Description -->
       <p
-        class="text-lg font-medium text-slate-700 dark:text-slate-300 group-hover:text-white mb-8 leading-relaxed flex-grow transition-colors duration-300"
+        class="text-base font-medium text-slate-700 dark:text-slate-300 group-hover:text-white group-focus:text-white mb-8 leading-relaxed flex-grow transition-colors duration-300"
       >
         {{ software.shortDescription }}
       </p>
@@ -161,7 +162,7 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
         <UBadge
           color="neutral"
           variant="outline"
-          size="lg"
+          size="md"
           :ui="badgeUi"
         >
           <template #leading>
@@ -174,7 +175,7 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
           v-if="software.supportedByCEJEF"
           color="neutral"
           variant="outline"
-          size="lg"
+          size="md"
           :ui="badgeUi"
         >
           <template #leading>
@@ -187,7 +188,7 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
           v-if="software.campusTraining"
           color="neutral"
           variant="outline"
-          size="lg"
+          size="md"
           :ui="badgeUi"
         >
           <template #leading>
