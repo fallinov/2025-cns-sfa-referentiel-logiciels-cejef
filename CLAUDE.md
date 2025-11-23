@@ -189,6 +189,87 @@ git push origin v1.0.0
   - UCommandPalette within UModal #content slot
   - Reference this component when implementing similar patterns
 
+### Nuxt UI Custom Variants
+
+This project defines custom variants for Nuxt UI components to support the **Liquid Glass** design aesthetic.
+
+**Configuration Location:** `app/app.config.ts`
+
+#### Liquid Glass Badge Variant
+
+A custom variant for `UBadge` that applies the signature liquid glass effect:
+
+```typescript
+// app/app.config.ts
+export default defineAppConfig({
+  ui: {
+    badge: {
+      variants: {
+        liquid: {
+          base: "rounded-full border backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)]",
+          background: "bg-white/20 dark:bg-white/10",
+          border: "border-white/50",
+          color: "text-white",
+          font: "text-sm font-bold uppercase tracking-widest"
+        }
+      }
+    }
+  }
+})
+```
+
+**Usage Example:**
+
+```vue
+<!-- Define the liquid badge UI configuration -->
+<script setup>
+const liquidBadgeUi = {
+  base: "rounded-full border backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)]",
+  background: "bg-white/20 dark:bg-white/10",
+  border: "border-white/50",
+  label: "text-sm font-bold uppercase tracking-widest text-white"
+}
+</script>
+
+<template>
+  <!-- Use via :ui prop -->
+  <UBadge :ui="liquidBadgeUi">
+    <template #leading>
+      <UIcon name="i-heroicons-wallet" class="w-4 h-4 text-white" />
+    </template>
+    Premium
+  </UBadge>
+</template>
+```
+
+**Note:** We use the `:ui` prop directly instead of `variant="liquid"` to avoid TypeScript type conflicts with Nuxt UI's predefined variants.
+
+**Where it's used:**
+- **CardLiquidGlass.vue**: All badges (header certification badge + footer metadata badges)
+- Provides consistent liquid glass styling across all badge instances
+- Can be used anywhere in the app where liquid glass aesthetic is needed
+
+**Customization via :ui prop:**
+
+The `liquidBadgeUi` constant in `CardLiquidGlass.vue` provides component-level customization:
+
+```typescript
+const liquidBadgeUi = {
+  base: "rounded-full border backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)]",
+  background: "bg-white/20 dark:bg-white/10",
+  border: "border-white/50",
+  label: "text-sm font-bold uppercase tracking-widest text-white"
+}
+```
+
+**Future Variants:**
+
+When creating new custom variants for Nuxt UI components:
+1. Add the variant configuration to `app/app.config.ts` under `ui.{componentName}.variants`
+2. Document the variant in this section
+3. Provide usage examples
+4. Reference where it's currently used in the codebase
+
 ### Data Architecture
 
 **Static data source**: `app/data/software-list.ts` exports a hardcoded array of software objects. There is no database or CMS.

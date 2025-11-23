@@ -51,14 +51,13 @@ const shapePath = computed(() => {
   }
 })
 
-// Configuration UI commune pour les badges avec effet liquid glass
-// Style identique au badge de l'en-tête pour cohérence visuelle
-const badgeUi = {
-  root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:bg-white/30 dark:hover:bg-white/20 transition-all",
-  label: "text-sm font-bold uppercase tracking-widest text-white transition-colors duration-300"
+// Configuration UI pour les badges liquid glass
+const liquidBadgeUi = {
+  base: "rounded-full border backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)]",
+  background: "bg-white/20 dark:bg-white/10",
+  border: "border-white/50",
+  label: "text-sm font-bold uppercase tracking-widest text-white"
 }
-
-const badgeIconClass = "w-4 h-4 text-white transition-colors duration-300"
 
 // Extraire les initiales du nom (2 premières lettres)
 const initials = computed(() => props.software.name.substring(0, 2).toUpperCase())
@@ -104,12 +103,12 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
 
     <!-- Header Badge -->
     <div class="absolute top-5 right-6 z-20">
-      <span
-        class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white bg-white/20 px-4 py-2 rounded-full backdrop-blur-md border border-white/50 shadow-[0_2px_10px_rgba(0,0,0,0.05)]"
-      >
-        <UIcon :name="config.icon" class="w-4 h-4 text-white" :style="{ strokeWidth: 3 }" />
+      <UBadge :ui="liquidBadgeUi">
+        <template #leading>
+          <UIcon :name="config.icon" class="w-4 h-4 text-white" :style="{ strokeWidth: 3 }" />
+        </template>
         {{ config.label }}
-      </span>
+      </UBadge>
     </div>
 
     <!-- Large Icon/Logo in Header -->
@@ -159,40 +158,26 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
 
       <!-- Footer items -->
       <div class="mt-auto flex flex-wrap gap-3">
-        <UBadge
-          color="neutral"
-          variant="outline"
-          size="md"
-          :ui="badgeUi"
-        >
+        <!-- Badge Coût -->
+        <UBadge :ui="liquidBadgeUi">
           <template #leading>
-            <UIcon name="i-heroicons-wallet" :class="badgeIconClass" />
+            <UIcon name="i-heroicons-wallet" class="w-4 h-4 text-white" />
           </template>
           {{ software.cost }}
         </UBadge>
 
-        <UBadge
-          v-if="software.supportedByCEJEF"
-          color="neutral"
-          variant="outline"
-          size="md"
-          :ui="badgeUi"
-        >
+        <!-- Badge Support CEJEF -->
+        <UBadge v-if="software.supportedByCEJEF" :ui="liquidBadgeUi">
           <template #leading>
-            <UIcon name="i-heroicons-headphones" :class="badgeIconClass" />
+            <UIcon name="i-heroicons-headphones" class="w-4 h-4 text-white" />
           </template>
           Support
         </UBadge>
 
-        <UBadge
-          v-if="software.campusTraining"
-          color="neutral"
-          variant="outline"
-          size="md"
-          :ui="badgeUi"
-        >
+        <!-- Badge Formation -->
+        <UBadge v-if="software.campusTraining" :ui="liquidBadgeUi">
           <template #leading>
-            <UIcon name="i-heroicons-academic-cap" :class="badgeIconClass" />
+            <UIcon name="i-heroicons-academic-cap" class="w-4 h-4 text-white" />
           </template>
           Formation
         </UBadge>
