@@ -44,11 +44,12 @@
   --color-orange-950: #431407;
 }
 
-/* Animation delays pour l'effet blob */
-.animation-delay-2000 {
-  animation-delay: 2s;
+/* Classe utilitaire pour masquer les scrollbars horizontales */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-.animation-delay-4000 {
-  animation-delay: 4s;
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
