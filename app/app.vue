@@ -26,14 +26,14 @@ useSeoMeta({
         <NuxtLink to="/" class="flex items-center gap-2">
           <UIcon
             name="i-lucide-graduation-cap"
-            class="w-6 h-6 text-primary-600 dark:text-primary-400"
+            class="w-5 h-5 text-primary-600 dark:text-primary-400"
           />
           <span
-            class="font-semibold text-gray-900 dark:text-white hidden sm:inline"
+            class="font-semibold text-base text-gray-900 dark:text-white hidden sm:inline"
           >
             Référentiel Logiciels CEJEF
           </span>
-          <span class="font-semibold text-gray-900 dark:text-white sm:hidden">
+          <span class="font-semibold text-base text-gray-900 dark:text-white sm:hidden">
             CEJEF
           </span>
         </NuxtLink>
