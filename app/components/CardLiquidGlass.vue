@@ -10,6 +10,12 @@ const props = withDefaults(defineProps<Props>(), {
   shape: "curve"
 })
 
+const { openDetail } = useSoftware()
+
+const handleClick = () => {
+  openDetail(props.software)
+}
+
 // Configuration des couleurs et labels selon le niveau de certification
 const levelConfig = {
   1: {
@@ -64,6 +70,7 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
 
 <template>
   <div
+    role="button"
     tabindex="0"
     :class="[
       'group relative flex flex-col h-full transition-all duration-500 hover:-translate-y-2',
@@ -75,6 +82,10 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
       'ring-1 ring-inset ring-white/50 dark:ring-white/10',
       'shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]'
     ]"
+    :aria-label="`Voir les détails de ${software.name}`"
+    @click="handleClick"
+    @keydown.enter="handleClick"
+    @keydown.space.prevent="handleClick"
   >
     <!-- Liquid Background Wrapper -->
     <div
