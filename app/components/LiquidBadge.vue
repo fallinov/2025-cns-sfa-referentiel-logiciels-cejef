@@ -4,8 +4,8 @@
  * Alternative à UBadge pour un contrôle total sur le style
  *
  * Style inspiré du design Google AI Studio avec:
- * - Fond translucide blanc (bg-white/20)
- * - Bordure semi-transparente (border-white/30)
+ * - Fond translucide blanc (bg-white/30)
+ * - Bordure semi-transparente (border-white/40)
  * - Padding confortable pour texte 16px minimum
  * - Effet backdrop-blur pour glassmorphism
  *
@@ -42,9 +42,9 @@ const sizeClasses = {
       // Structure de base
       'inline-flex items-center',
       // Effet liquid glass - fond translucide uni (pas de gradient)
-      'bg-white/20 dark:bg-white/5',
+      'bg-white/30 dark:bg-white/10',
       // Bordure semi-transparente
-      'border border-white/30 dark:border-white/10',
+      'border border-white/40 dark:border-white/20',
       // Effet glassmorphism - backdrop blur essentiel
       'backdrop-blur-md',
       // Ombre douce pour la profondeur
@@ -54,7 +54,7 @@ const sizeClasses = {
       // Transition douce
       'transition-all',
       // Effet de survol - plus de transparence et bordure plus visible
-      'hover:bg-white/40 hover:border-white/50 dark:hover:bg-white/10',
+      'hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20',
       // Taille avec gap intégré
       sizeClasses[props.size],
       // Texte - toujours bold, uppercase, tracking large
