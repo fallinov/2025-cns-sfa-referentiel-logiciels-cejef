@@ -54,7 +54,7 @@ const shapePath = computed(() => {
 // Configuration UI pour les badges liquid glass
 // Structure adaptée à UBadge de Nuxt UI
 const liquidBadgeUi = {
-  root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 rounded-full backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] px-4 py-2",
+  root: "bg-white/30 dark:bg-white/20 border border-white/60 dark:border-white/40 rounded-full backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] px-4 py-2",
   label: "text-sm font-bold uppercase tracking-widest text-white"
 }
 
@@ -111,22 +111,22 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
     </div>
 
     <!-- Large Icon/Logo in Header -->
-    <div class="absolute top-5 left-6 z-20">
-      <div class="w-14 h-14 flex items-center justify-start">
+    <div class="absolute top-6 left-6 z-20">
+      <div class="w-16 h-16 flex items-center justify-start">
         <img
           v-if="software.logo"
           :src="`/logos/${software.logo}.svg`"
           :alt="software.name"
-          class="w-full h-full object-contain drop-shadow-lg opacity-100 group-hover:scale-110 transition-all duration-300"
+          class="max-w-full max-h-full object-contain drop-shadow-lg opacity-100 group-hover:scale-110 transition-all duration-300"
         />
         <UIcon
           v-else-if="software.icon"
           :name="software.icon"
-          class="w-14 h-14 text-white drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
+          class="w-16 h-16 text-white drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
         />
         <span
           v-else
-          class="text-white font-black text-3xl drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
+          class="text-white font-black text-4xl drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
         >
           {{ initials }}
         </span>
