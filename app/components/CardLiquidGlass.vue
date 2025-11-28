@@ -10,24 +10,27 @@ const props = withDefaults(defineProps<Props>(), {
   shape: "curve"
 })
 
+// Composable pour gérer l'ouverture du détail
+const { openDetail } = useSoftware()
+
 // Configuration des couleurs et labels selon le niveau de certification
 const levelConfig = {
   1: {
     fill: "text-emerald-600",
     label: "Autorisé",
-    icon: "i-heroicons-check-circle",
+    icon: "i-lucide-circle-check-big",
     bg: "bg-emerald-50/10 dark:bg-emerald-950/10"
   },
   2: {
     fill: "text-amber-600",
     label: "Attention",
-    icon: "i-heroicons-exclamation-triangle",
+    icon: "i-lucide-triangle-alert",
     bg: "bg-amber-50/10 dark:bg-amber-950/10"
   },
   3: {
     fill: "text-rose-600",
     label: "Interdit",
-    icon: "i-heroicons-x-circle",
+    icon: "i-lucide-circle-x",
     bg: "bg-rose-50/10 dark:bg-rose-950/10"
   }
 }
@@ -51,13 +54,6 @@ const shapePath = computed(() => {
   }
 })
 
-// Configuration UI pour les badges liquid glass
-// Structure adaptée à UBadge de Nuxt UI
-const liquidBadgeUi = {
-  root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 rounded-full backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] px-4 py-2",
-  label: "text-sm font-bold uppercase tracking-widest text-white"
-}
-
 // Extraire les initiales du nom (2 premières lettres)
 const initials = computed(() => props.software.name.substring(0, 2).toUpperCase())
 </script>
@@ -65,6 +61,7 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
 <template>
   <div
     tabindex="0"
+    role="button"
     :class="[
       'group relative flex flex-col h-full transition-all duration-500 hover:-translate-y-2',
       'outline-none focus-visible:ring-4 focus-visible:ring-blue-500/40',
@@ -75,13 +72,16 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
       'ring-1 ring-inset ring-white/50 dark:ring-white/10',
       'shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]'
     ]"
+    @click="openDetail(software)"
+    @keydown.enter="openDetail(software)"
+    @keydown.space.prevent="openDetail(software)"
   >
     <!-- Liquid Background Wrapper -->
     <div
       :class="[
         'absolute top-0 left-0 w-full z-0 flex flex-col transition-all duration-700 ease-in-out',
         config.fill,
-        'h-[100px] group-hover:h-[140%] group-focus:h-[140%]'
+        'h-[140px] group-hover:h-[140%] group-focus:h-[140%]'
       ]"
     >
       <!-- Solid Top Part -->
@@ -102,31 +102,31 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
 
     <!-- Header Badge -->
     <div class="absolute top-5 right-6 z-20">
-      <UBadge :ui="liquidBadgeUi">
+      <LiquidBadge force-white size="md">
         <template #leading>
-          <UIcon :name="config.icon" class="w-4 h-4 text-white" :style="{ strokeWidth: 3 }" />
+          <UIcon :name="config.icon" class="w-5 h-5" />
         </template>
         {{ config.label }}
-      </UBadge>
+      </LiquidBadge>
     </div>
 
     <!-- Large Icon/Logo in Header -->
-    <div class="absolute top-5 left-6 z-20">
-      <div class="w-14 h-14 flex items-center justify-start">
+    <div class="absolute top-6 left-6 z-20">
+      <div class="w-16 h-16 flex items-center justify-start">
         <img
           v-if="software.logo"
           :src="`/logos/${software.logo}.svg`"
           :alt="software.name"
-          class="w-full h-full object-contain drop-shadow-lg opacity-100 group-hover:scale-110 transition-all duration-300"
+          class="max-w-full max-h-full object-contain drop-shadow-lg opacity-100 group-hover:scale-110 transition-all duration-300"
         />
         <UIcon
           v-else-if="software.icon"
           :name="software.icon"
-          class="w-14 h-14 text-white drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
+          class="w-16 h-16 text-white drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
         />
         <span
           v-else
-          class="text-white font-black text-3xl drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
+          class="text-white font-black text-4xl drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
         >
           {{ initials }}
         </span>
@@ -158,28 +158,28 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
       <!-- Footer items -->
       <div class="mt-auto flex flex-wrap gap-3">
         <!-- Badge Coût -->
-        <UBadge :ui="liquidBadgeUi">
+        <LiquidBadge size="md">
           <template #leading>
-            <UIcon name="i-heroicons-wallet" class="w-4 h-4 text-white" />
+            <UIcon name="i-lucide-wallet" class="w-5 h-5" />
           </template>
           {{ software.cost }}
-        </UBadge>
+        </LiquidBadge>
 
         <!-- Badge Support CEJEF -->
-        <UBadge v-if="software.supportedByCEJEF" :ui="liquidBadgeUi">
+        <LiquidBadge v-if="software.supportedByCEJEF" size="md">
           <template #leading>
-            <UIcon name="i-heroicons-headphones" class="w-4 h-4 text-white" />
+            <UIcon name="i-lucide-headphones" class="w-5 h-5" />
           </template>
           Support
-        </UBadge>
+        </LiquidBadge>
 
         <!-- Badge Formation -->
-        <UBadge v-if="software.campusTraining" :ui="liquidBadgeUi">
+        <LiquidBadge v-if="software.campusTraining" size="md">
           <template #leading>
-            <UIcon name="i-heroicons-academic-cap" class="w-4 h-4 text-white" />
+            <UIcon name="i-lucide-graduation-cap" class="w-5 h-5" />
           </template>
           Formation
-        </UBadge>
+        </LiquidBadge>
       </div>
     </div>
   </div>
