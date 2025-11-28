@@ -430,28 +430,18 @@ useSeoMeta({
       >
         <template #links>
           <div class="flex flex-col sm:flex-row gap-3">
-            <UBadge
-              color="primary"
-              variant="soft"
-              size="lg"
-              class="justify-center sm:justify-start"
-            >
+            <LiquidBadge size="lg">
               <template #leading>
-                <UIcon name="i-lucide-graduation-cap" class="w-4 h-4" />
+                <UIcon name="i-lucide-graduation-cap" class="w-4 h-4 text-gray-900 dark:text-white" />
               </template>
               {{ softwareList.length }} logiciels disponibles
-            </UBadge>
-            <UBadge
-              color="success"
-              variant="soft"
-              size="lg"
-              class="justify-center sm:justify-start"
-            >
+            </LiquidBadge>
+            <LiquidBadge size="lg">
               <template #leading>
-                <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
+                <UIcon name="i-lucide-shield-check" class="w-4 h-4 text-gray-900 dark:text-white" />
               </template>
               Classification LGPD
-            </UBadge>
+            </LiquidBadge>
           </div>
         </template>
       </UPageHero>
