@@ -7,7 +7,6 @@ import { getCertificationLevel } from "~~/types/software"
  */
 
 const route = useRoute()
-const router = useRouter()
 const { getSoftwareById } = useSoftware()
 const { getPreviousSoftware, getNextSoftware } = useSoftwareNavigation()
 
@@ -23,16 +22,16 @@ const nextSoftware = computed(() => software.value ? getNextSoftware(software.va
 defineShortcuts({
   arrowleft: () => {
     if (previousSoftware.value) {
-      router.push(`/logiciels/${previousSoftware.value.id}`)
+      navigateTo(`/logiciels/${previousSoftware.value.id}`)
     }
   },
   arrowright: () => {
     if (nextSoftware.value) {
-      router.push(`/logiciels/${nextSoftware.value.id}`)
+      navigateTo(`/logiciels/${nextSoftware.value.id}`)
     }
   },
   escape: () => {
-    router.push("/")
+    navigateTo("/")
   }
 })
 
@@ -116,10 +115,10 @@ useSeoMeta({
       <!-- Navigation Bar -->
       <div class="mb-8 flex items-center justify-between">
         <UButton
+          to="/"
           color="neutral"
           variant="ghost"
           size="lg"
-          @click="router.push('/')"
         >
           <template #leading>
             <UIcon name="i-lucide-arrow-left" class="w-5 h-5" />
@@ -130,10 +129,10 @@ useSeoMeta({
         <div class="flex gap-2">
           <UButton
             :disabled="!previousSoftware"
+            :to="previousSoftware ? `/logiciels/${previousSoftware.id}` : undefined"
             color="neutral"
             variant="outline"
             size="md"
-            @click="previousSoftware && router.push(`/logiciels/${previousSoftware.id}`)"
           >
             <template #leading>
               <UIcon name="i-lucide-chevron-left" class="w-4 h-4" />
@@ -142,10 +141,10 @@ useSeoMeta({
           </UButton>
           <UButton
             :disabled="!nextSoftware"
+            :to="nextSoftware ? `/logiciels/${nextSoftware.id}` : undefined"
             color="neutral"
             variant="outline"
             size="md"
-            @click="nextSoftware && router.push(`/logiciels/${nextSoftware.id}`)"
           >
             Suivant
             <template #trailing>

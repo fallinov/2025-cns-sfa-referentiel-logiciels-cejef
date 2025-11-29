@@ -17,9 +17,6 @@ useSeoMeta({
   ogDescription: description,
   twitterCard: "summary_large_image"
 })
-
-// Search functionality
-const searchQuery = ref("")
 </script>
 
 <template>

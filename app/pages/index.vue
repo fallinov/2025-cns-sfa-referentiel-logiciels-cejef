@@ -221,160 +221,43 @@ const certificationCounts = computed(() => {
 </script>
 
 <template>
-  <UContainer class="py-8 sm:py-12">
-    <!-- Search and Filters Section -->
-    <div class="mb-8 space-y-6">
-      <!-- Search Bar -->
-      <SearchBar
-        v-model:search="searchQuery"
-        @filter-by-category="handleCategoryFilter"
-      />
+  <div class="relative min-h-screen">
+    <!-- Background gradient with blobs -->
+    <BackgroundGradient />
 
-      <!-- Active Category Filter -->
-      <div v-if="selectedCategory" class="flex items-center gap-2 p-4 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg">
-        <UIcon name="i-lucide-tag" class="w-5 h-5 text-primary-600 dark:text-primary-400" />
-        <span class="font-semibold text-primary-900 dark:text-primary-100">
-          Catégorie : {{ selectedCategory }}
-        </span>
-        <button
-          type="button"
-          class="ml-auto p-1 hover:bg-primary-100 dark:hover:bg-primary-800 rounded-full transition-colors"
-          @click="selectedCategory = null"
-        >
-          <UIcon name="i-lucide-x" class="w-4 h-4 text-primary-600 dark:text-primary-400" />
-        </button>
-      </div>
+    <!-- Content with higher z-index -->
+    <UContainer class="relative z-10 py-8 sm:py-12">
+      <!-- Search and Filters Section -->
+      <div class="mb-8 space-y-6">
+        <!-- Search Bar -->
+        <SearchBar
+          v-model:search="searchQuery"
+          @filter-by-category="handleCategoryFilter"
+        />
 
-      <!-- Popular Filters -->
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
-            Filtres rapides
-          </h2>
-          <UButton
-            v-if="hasActiveFilters || selectedCategory"
-            color="neutral"
-            variant="ghost"
-            size="sm"
-            @click="clearAllFilters"
+        <!-- Active Category Filter -->
+        <div v-if="selectedCategory" class="flex items-center gap-2 p-4 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg">
+          <UIcon name="i-lucide-tag" class="w-5 h-5 text-primary-600 dark:text-primary-400" />
+          <span class="font-semibold text-primary-900 dark:text-primary-100">
+            Catégorie : {{ selectedCategory }}
+          </span>
+          <button
+            type="button"
+            class="ml-auto p-1 hover:bg-primary-100 dark:hover:bg-primary-800 rounded-full transition-colors"
+            @click="selectedCategory = null"
           >
-            <template #leading>
-              <UIcon name="i-lucide-x" class="w-4 h-4" />
-            </template>
-            Tout effacer
-          </UButton>
+            <UIcon name="i-lucide-x" class="w-4 h-4 text-primary-600 dark:text-primary-400" />
+          </button>
         </div>
 
-        <div class="flex flex-wrap gap-2">
-          <UButton
-            v-for="filter in popularFilters"
-            :key="filter.id"
-            :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
-            :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
-            size="md"
-            @click="togglePopularFilter(filter.id)"
-          >
-            <template #leading>
-              <UIcon :name="filter.icon" class="w-4 h-4" />
-            </template>
-            {{ filter.label }}
-          </UButton>
-
-          <!-- Advanced Filters Button -->
-          <UButton
-            color="neutral"
-            variant="outline"
-            size="md"
-            @click="isFiltersSlideoverOpen = true"
-          >
-            <template #leading>
-              <UIcon name="i-lucide-sliders-horizontal" class="w-4 h-4" />
-            </template>
-            Plus de filtres
-            <UBadge
-              v-if="activeFiltersCount > 0"
-              color="primary"
-              size="xs"
-              class="ml-2"
-            >
-              {{ activeFiltersCount }}
-            </UBadge>
-          </UButton>
-        </div>
-      </div>
-
-      <!-- Applied Filters -->
-      <div v-if="appliedFilters.length > 0" class="flex flex-wrap gap-2">
-        <UBadge
-          v-for="filter in appliedFilters"
-          :key="filter.id"
-          color="neutral"
-          variant="outline"
-          size="md"
-        >
-          {{ filter.label }}
-          <template #trailing>
-            <button
-              type="button"
-              class="ml-1 hover:text-red-600 dark:hover:text-red-400"
-              @click="removeFilter(filter.id)"
-            >
-              <UIcon name="i-lucide-x" class="w-3 h-3" />
-            </button>
-          </template>
-        </UBadge>
-      </div>
-    </div>
-
-    <!-- Results Count -->
-    <div class="mb-6 text-sm text-gray-600 dark:text-gray-400">
-      {{ filteredSoftwareList.length }} logiciel{{ filteredSoftwareList.length > 1 ? "s" : "" }} trouvé{{ filteredSoftwareList.length > 1 ? "s" : "" }}
-    </div>
-
-    <!-- Software Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <CardLiquidGlass
-        v-for="software in filteredSoftwareList"
-        :key="software.id"
-        :software="software"
-        shape="curve"
-      />
-    </div>
-
-    <!-- Empty State -->
-    <div
-      v-if="filteredSoftwareList.length === 0"
-      class="text-center py-16"
-    >
-      <UIcon
-        name="i-lucide-search-x"
-        class="w-16 h-16 mx-auto text-gray-400 dark:text-gray-600 mb-4"
-      />
-      <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-        Aucun logiciel trouvé
-      </h3>
-      <p class="text-gray-600 dark:text-gray-400 mb-6">
-        Essayez de modifier vos critères de recherche ou de supprimer des filtres
-      </p>
-      <UButton
-        v-if="hasActiveFilters"
-        color="primary"
-        @click="clearAllFilters"
-      >
-        Réinitialiser les filtres
-      </UButton>
-    </div>
-
-    <!-- Filters Slideover -->
-    <USlideover v-model:open="isFiltersSlideoverOpen" side="right">
-      <template #body>
-        <div class="p-6 space-y-6">
-          <div class="flex items-center justify-between mb-6">
-            <h2 class="text-xl font-bold text-gray-900 dark:text-white">
-              Filtres avancés
+        <!-- Popular Filters -->
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
+              Filtres rapides
             </h2>
             <UButton
-              v-if="hasActiveFilters"
+              v-if="hasActiveFilters || selectedCategory"
               color="neutral"
               variant="ghost"
               size="sm"
@@ -387,69 +270,192 @@ const certificationCounts = computed(() => {
             </UButton>
           </div>
 
-          <!-- Cost Filter -->
-          <div>
-            <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-3">
-              Coût
-            </label>
-            <div class="space-y-2">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
-                  v-model="selectedCosts"
-                  type="checkbox"
-                  value="Gratuit"
-                  class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                />
-                <span class="text-sm text-gray-900 dark:text-white">Gratuit</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
-                  v-model="selectedCosts"
-                  type="checkbox"
-                  value="Freemium"
-                  class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                />
-                <span class="text-sm text-gray-900 dark:text-white">Freemium</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
-                  v-model="selectedCosts"
-                  type="checkbox"
-                  value="Payant"
-                  class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                />
-                <span class="text-sm text-gray-900 dark:text-white">Payant</span>
-              </label>
-            </div>
-          </div>
+          <div class="flex flex-wrap gap-2">
+            <UButton
+              v-for="filter in popularFilters"
+              :key="filter.id"
+              :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
+              :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
+              size="md"
+              @click="togglePopularFilter(filter.id)"
+            >
+              <template #leading>
+                <UIcon :name="filter.icon" class="w-4 h-4" />
+              </template>
+              {{ filter.label }}
+            </UButton>
 
-          <USeparator />
-
-          <!-- Certification Level Filter -->
-          <div>
-            <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-3">
-              Niveau de certification
-            </label>
-            <div class="space-y-2">
-              <label
-                v-for="level in CERTIFICATION_LEVELS"
-                :key="level.value ?? 'null'"
-                class="flex items-center gap-2 cursor-pointer"
+            <!-- Advanced Filters Button -->
+            <UButton
+              color="neutral"
+              variant="outline"
+              size="md"
+              @click="isFiltersSlideoverOpen = true"
+            >
+              <template #leading>
+                <UIcon name="i-lucide-sliders-horizontal" class="w-4 h-4" />
+              </template>
+              Plus de filtres
+              <UBadge
+                v-if="activeFiltersCount > 0"
+                color="primary"
+                size="xs"
+                class="ml-2"
               >
-                <input
-                  v-model="selectedCertifications"
-                  type="checkbox"
-                  :value="level.value"
-                  class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                />
-                <span class="text-sm text-gray-900 dark:text-white">
-                  {{ level.label }} ({{ level.value !== null ? certificationCounts[level.value] : 0 }})
-                </span>
-              </label>
-            </div>
+                {{ activeFiltersCount }}
+              </UBadge>
+            </UButton>
           </div>
         </div>
-      </template>
-    </USlideover>
-  </UContainer>
+
+        <!-- Applied Filters -->
+        <div v-if="appliedFilters.length > 0" class="flex flex-wrap gap-2">
+          <UBadge
+            v-for="filter in appliedFilters"
+            :key="filter.id"
+            color="neutral"
+            variant="outline"
+            size="md"
+          >
+            {{ filter.label }}
+            <template #trailing>
+              <button
+                type="button"
+                class="ml-1 hover:text-red-600 dark:hover:text-red-400"
+                @click="removeFilter(filter.id)"
+              >
+                <UIcon name="i-lucide-x" class="w-3 h-3" />
+              </button>
+            </template>
+          </UBadge>
+        </div>
+      </div>
+
+      <!-- Results Count -->
+      <div class="mb-6 text-sm text-gray-600 dark:text-gray-400">
+        {{ filteredSoftwareList.length }} logiciel{{ filteredSoftwareList.length > 1 ? "s" : "" }} trouvé{{ filteredSoftwareList.length > 1 ? "s" : "" }}
+      </div>
+
+      <!-- Software Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <CardLiquidGlass
+          v-for="software in filteredSoftwareList"
+          :key="software.id"
+          :software="software"
+          shape="curve"
+        />
+      </div>
+
+      <!-- Empty State -->
+      <div
+        v-if="filteredSoftwareList.length === 0"
+        class="text-center py-16"
+      >
+        <UIcon
+          name="i-lucide-search-x"
+          class="w-16 h-16 mx-auto text-gray-400 dark:text-gray-600 mb-4"
+        />
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+          Aucun logiciel trouvé
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">
+          Essayez de modifier vos critères de recherche ou de supprimer des filtres
+        </p>
+        <UButton
+          v-if="hasActiveFilters"
+          color="primary"
+          @click="clearAllFilters"
+        >
+          Réinitialiser les filtres
+        </UButton>
+      </div>
+
+      <!-- Filters Slideover -->
+      <USlideover v-model:open="isFiltersSlideoverOpen" side="right">
+        <template #body>
+          <div class="p-6 space-y-6">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                Filtres avancés
+              </h2>
+              <UButton
+                v-if="hasActiveFilters"
+                color="neutral"
+                variant="ghost"
+                size="sm"
+                @click="clearAllFilters"
+              >
+                <template #leading>
+                  <UIcon name="i-lucide-x" class="w-4 h-4" />
+                </template>
+                Tout effacer
+              </UButton>
+            </div>
+
+            <!-- Cost Filter -->
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                Coût
+              </label>
+              <div class="space-y-2">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input
+                    v-model="selectedCosts"
+                    type="checkbox"
+                    value="Gratuit"
+                    class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                  />
+                  <span class="text-sm text-gray-900 dark:text-white">Gratuit</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input
+                    v-model="selectedCosts"
+                    type="checkbox"
+                    value="Freemium"
+                    class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                  />
+                  <span class="text-sm text-gray-900 dark:text-white">Freemium</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input
+                    v-model="selectedCosts"
+                    type="checkbox"
+                    value="Payant"
+                    class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                  />
+                  <span class="text-sm text-gray-900 dark:text-white">Payant</span>
+                </label>
+              </div>
+            </div>
+
+            <USeparator />
+
+            <!-- Certification Level Filter -->
+            <div>
+              <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                Niveau de certification
+              </label>
+              <div class="space-y-2">
+                <label
+                  v-for="level in CERTIFICATION_LEVELS"
+                  :key="level.value ?? 'null'"
+                  class="flex items-center gap-2 cursor-pointer"
+                >
+                  <input
+                    v-model="selectedCertifications"
+                    type="checkbox"
+                    :value="level.value"
+                    class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                  />
+                  <span class="text-sm text-gray-900 dark:text-white">
+                    {{ level.label }} ({{ level.value !== null ? certificationCounts[level.value] : 0 }})
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </template>
+      </USlideover>
+    </UContainer>
+  </div>
 </template>

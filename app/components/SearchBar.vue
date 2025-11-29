@@ -16,7 +16,6 @@ const search = defineModel<string>("search", { default: "" })
 
 const { getSoftwareList } = useSoftware()
 const softwareList = getSoftwareList()
-const router = useRouter()
 
 // Focus state
 const isFocused = ref(false)
@@ -29,7 +28,7 @@ const emit = defineEmits<{
 
 // Keyboard navigation
 const selectedIndex = ref(-1)
-const selectedType = ref<"category" | "software">("category")
+const selectedType = ref<"search" | "category" | "software">("search")
 const maxCategoryIndex = computed(() => suggestions.value.categories.length - 1)
 const maxSoftwareIndex = computed(() => suggestions.value.software.length - 1)
 
@@ -67,7 +66,7 @@ const suggestions = computed(() => {
   // Filtrer seulement celles qui contiennent le texte recherché
   const categoriesSet = new Set<string>()
   matchingSoftware.forEach((s) => {
-    s.categories?.forEach(cat => {
+    s.categories?.forEach((cat) => {
       if (normalizeText(cat).includes(query)) {
         categoriesSet.add(cat)
       }
@@ -88,7 +87,7 @@ const hasSuggestions = computed(() => suggestions.value.totalResults > 0)
 
 // Gestion des clics
 const handleSoftwareClick = (softwareId: string) => {
-  router.push(`/logiciels/${softwareId}`)
+  navigateTo(`/logiciels/${softwareId}`)
   showSuggestions.value = false
   search.value = ""
   selectedIndex.value = -1
@@ -130,7 +129,16 @@ const handleKeyDown = (event: KeyboardEvent) => {
   switch (event.key) {
     case "ArrowDown":
       event.preventDefault()
-      if (selectedType.value === "category") {
+      if (selectedType.value === "search") {
+        // Depuis la recherche globale
+        if (hasCategories) {
+          selectedType.value = "category"
+          selectedIndex.value = 0
+        } else if (hasSoftware) {
+          selectedType.value = "software"
+          selectedIndex.value = 0
+        }
+      } else if (selectedType.value === "category") {
         if (selectedIndex.value < maxCategoryIndex.value) {
           selectedIndex.value++
         } else if (hasSoftware) {
@@ -155,12 +163,18 @@ const handleKeyDown = (event: KeyboardEvent) => {
           // Revenir aux catégories
           selectedType.value = "category"
           selectedIndex.value = maxCategoryIndex.value
+        } else {
+          // Revenir à la recherche globale
+          selectedType.value = "search"
+          selectedIndex.value = -1
         }
-      } else {
+      } else if (selectedType.value === "category") {
         // Dans les catégories
         if (selectedIndex.value > 0) {
           selectedIndex.value--
         } else {
+          // Revenir à la recherche globale
+          selectedType.value = "search"
           selectedIndex.value = -1
         }
       }
@@ -168,11 +182,18 @@ const handleKeyDown = (event: KeyboardEvent) => {
 
     case "Enter":
       event.preventDefault()
-      if (selectedIndex.value >= 0) {
-        if (selectedType.value === "category") {
-          handleCategoryClick(suggestions.value.categories[selectedIndex.value])
-        } else {
-          handleSoftwareClick(suggestions.value.software[selectedIndex.value].id)
+      if (selectedType.value === "search") {
+        // Appliquer la recherche (ne rien faire, le filtre est déjà actif)
+        showSuggestions.value = false
+      } else if (selectedType.value === "category" && selectedIndex.value >= 0) {
+        const category = suggestions.value.categories[selectedIndex.value]
+        if (category) {
+          handleCategoryClick(category)
+        }
+      } else if (selectedType.value === "software" && selectedIndex.value >= 0) {
+        const software = suggestions.value.software[selectedIndex.value]
+        if (software) {
+          handleSoftwareClick(software.id)
         }
       }
       break
@@ -180,7 +201,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
     case "Escape":
       showSuggestions.value = false
       selectedIndex.value = -1
-      selectedType.value = "category"
+      selectedType.value = "search"
       break
   }
 }

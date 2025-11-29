@@ -1,0 +1,597 @@
+﻿;Plateforme;Proposition de feu signalétique;Localisation;"
+Données recueillies et 
+Politique de confidentialité 
+";Conditions d'utilisation;Remarques ou alternatives;"Changement 
+de statut";Statut M365;;;
+;ADOBE ACROBAT;O;USA- Californie - Akamai Technologies Inc;;"Adobe stocke des données aux USA.
+
+Le contenu enregistré en local n'est ni analysé ni consulté par Adobe et ne sert pas à entraîner l'IA. Ce n'est pas le cas pour ce qui est hébergé en ligne.
+
+N'utilise pas le contenu des utilisateurs pour commercialiser ou promouvoir ses services.";"Stockage en local uniquement. 
+
+Pour l'hébergement des données dans le cloud, Adobe exige que les utilisateurs ne diffusent aucune donnée personnelle. ";;Accès pour personnel scolaire;;;
+;ATLASSIAN (JIRA, CONFLUENCE, TRELLO);O ;;"Si vous utilisez une version serveur ou centre de données des Services: ne collecte aucune information vous concernant (y compris votre contenu), sauf dans des cas limités lorsque cela est autorisé par votre administrateur
+
+Collecte les liens sur lesquels vous cliquez ; le type, la taille et les noms de fichiers des pièces jointes que vous téléchargez sur les Services; les termes de recherche; votre progression dans l'histoire de team’s Jira Align; et la façon dont vous interagissez avec les autres sur les Services.  Recueille des informations sur les équipes et les personnes avec lesquelles vous travaillez et comment vous travaillez avec elles, comme avec qui vous collaborez et communiquez le plus souvent";"Certains contenus peuvent être rendus publics, ce qui signifie que tout ce qui est publié dans l'espace en question, y compris les informations vous concernant, peut être consulté publiquement, indexé et renvoyé dans les résultats de recherche des moteurs de recherche. Les données peuvent être utilisées à des fins marketing.  
+
+Peut conserver des données personnelles après une demande d'effacement.";"Usage enseignant uniquement.
+
+Ne pas inscrire de données personnelles.";;Accès pour personnel scolaire;;;
+;AZENDOO (app);R;;;;Impossible de trouver une page officielle, l’application a certainement été supprimée ou a changé de nom. Dans tous les cas, son usage est similaire à celui de Teams. ;;Bloqué;;;
+;BABBEL;R;USA - Californie - Amazon.com Inc;"nom, adresse e-mail, informations sur l'appareil, données de paiement
+
+comportement d’apprentissage, vocabulaire personnel et progrès d’apprentissage. Inclut les enregistrements vocaux, le cas échéant";"Collecte les données utilisées avec l'IA pour entraîner cette dernière.
+
+Partage certaines données avec des services de marketing et de publicité (ne précise pas lesquelles).";;;n'existe pas;;;
+;BDnF (Application);V;France;;Ne collecte pas de données personnelles, ne vend pas de données;Attention à ne pas importer d'images ou de textes contenant des données personnelles;;n'existe pas;;;
+;BLINKLEARNING;O;USA - Californie - Amazon.com Inc;"Nom, e-mail, âge
+
+Pas de données transférées à des tiers.
+
+BLINKLEARNING S.L. garantit que lors de l'utilisation de l'API Microsoft, aucune donnée utilisateur Microsoft n'est stockée, partagée ou collectée, à l'exception du jeton d'authentification OAuth, de l'ID utilisateur Microsoft et de l'e-mail associé, ainsi que de l'ID des dossiers OneDrive de l'enseignant. Les données ne sont présentées à l'utilisateur que par le biais de la synchronisation avec Microsoft et ne sont jamais stockées sur nos serveurs, à l'exception des données énumérées ci-dessus.";"Consentement nécessaires des tuteurs légaux pour traiter les données personnelles des enfants en-dessous de 14 ans. Dans ce cas, une carte d'identité ou une autre forme d'identification de la personne qui donne son consentement sera exigée.
+
+Dans le cas des personnes âgées de plus de quatorze ans, les données peuvent être traitées avec le consentement de l'utilisateur.";;;n'existe pas;;;
+;BLUEMAIL;O;USA - Californie - Amazon.com Inc;"A l'inscription : adresse e-mail
+
+Optionnel : nom ou pseudo, photo et numéro de téléphone portable.
+
+Récolte le modèle de votre appareil et son système d'exploitation, ainsi que des informations sur les bogues et les pannes
+
+Envoie de la publicité si l'utilisateur a donné son consentement.";"Ne stocke pas les messages électroniques ou les événements de calendrier sur leurs serveurs. 
+
+Si vous utilisez la fonction facultative GemAI (Generative Email), le courriel concerné sera temporairement traité par les serveurs et ensuite transféré à un fournisseur de services d'IA générative pour qu'il y réponde. 
+
+Utilisation en-dessous de 13 ans strictement interdite. Accord parental requis en-dessous de 18 ans.";"Ne pas utiliser les fonctions d'intelligence artificielle.
+
+Usage réservé aux enseignants.";;Accès pour personnel scolaire;;;
+;BOOK CREATOR;O;"USA – Texas -
+
+Cloudflare London, LLC ";"Nom complet, adresse e-mail, préférences linguistiques et photo de profil, l’école d’où vous venez 
+
+ Type d’appareil que vous utilisez, votre système d’exploitation, votre adresse IP, l’URL (Uniform Resource Locator), le parcours de navigation et la durée de la visite. ";"Peut collecter les données personnelles suivantes vous concernant lorsque vous créez et téléchargez du contenu de livre (données de livre) : 
+
+Toutes les données personnelles que vous téléchargez en tant que contenu de livre, ce qui peut inclure : 
+un texte qui comprend des informations vous concernant ; 
+une vidéo ou une photo qui vous montre ; et/ou 
+des fichiers audio qui contiennent des informations vous concernant. ";"Ne pas déposer de données personnelles d’élèves dans les livres. 
+
+Pas d’enregistrement de voix d’élèves. 
+
+Utiliser l'application exclusivement car les données sont stockées en local.";;Accès pour personnel scolaire;;;
+;BOOKILI;O;USA – Californie – Fastly, Inc ;Inscription aux services : le nom, l’adresse postale et électronique, le sexe et genre, l’école et la classe des élèves ;"Existe en version web ou application. 
+
+L’application rend possible les enregistrements audio. 
+
+ Peu d’informations sur les CGU.";"Anonymiser les comptes élèves en utilisant des pseudos. 
+
+Ne pas enregistrer la voix des élèves. 
+
+Pour les évaluer la lecture à voix haute, on peut utiliser l’outil “Progression de la lecture” qui se trouve dans les “Accélérateurs d’apprentissage” lorsque l’on crée un devoir sur Teams. ";;Accès pour personnel scolaire;;;
+;CALENDLY;O;USA – Californie – Cloudflare Inc ;"Nom, adresse e-mail, préférences linguistiques et photo de profil 
+
+Pour planifier une séance : recueille tous les informations contenues dans l’invitation : nom, prénom, adresse e-mail, numéro de téléphone des participants, lieu, sujet de la rencontre ";"RGPD EU
+
+Interdit aux utilisateurs de moins de 18 ans. 
+
+Les données personnelles peuvent être utilisées à des fins de marketing. Peut communiquer vos informations personnelles à des tiers sans vous en informer !
+
+ 
+
+";Usage réservé aux enseignants.;"à autoriser pour 
+enseignants 
+uniquement";;;;
+;CALENGOO;V;;;;Validé par le SEN;;autorisé;;;
+;CANVA;;;;;Attention à ne pas déposer de données personnelles ou sensibles concernant les élèves dans les documents. Attention aussi aux travaux d'élèves : pas de CV, de dissertation, de photos d'élèves ou de leur environnement familial, etc...;;;;;
+;CAPCUT;R;USA - Californie - Akamai Technologies Inc.;"A l'inscription : date de naissance, votre adresse e-mail et le mot de passe
+
+Récolte : adresse IP, identifiants de périphérique, identifiants publicitaires, type de réseau et connexions, modèle de téléphone mobile ou de périphérique, fabricant de l'appareil, codes d'appel de pays, numéro de version de l'application, noms et types d'applications et de fichiers, système d'exploitation, résolution de l'appareil, langue et région du système et informations sur la batterie
+
+Emplacement approximatif, région de la carte SIM 
+";"Peut collecter le contenu que vous créez ou téléchargez y compris les photographies, images, enregistrements audio et vidéos, modèles vidéo que vous générez ou visualisez, commentaires que vous faites et  contenu de like, y compris les métadonnées associées (telles que quand, où et par qui le contenu a été créé).
+
+Recueille même des informations, y compris du texte, des images et des vidéos, trouvées dans le presse-papiers de votre appareil.
+
+Nous pouvons également collecter des informations vous concernant lorsque vous choisissez d'utiliser les Services sans créer de compte.
+
+Peut collecter des informations sur les vidéos, images et audio qui font partie de votre Contenu Utilisateur, telles que l'identification des objets et des paysages qui apparaissent, l'existence et l'emplacement dans une image ou une vidéo des caractéristiques et attributs du visage et du corps, la nature de l'audio et le texte des mots prononcé
+
+Peut partager des informations collectées via l'utilisation des Services (telles que les vues, l'engagement et les clics) avec des partenaires de mesure et de publicité.";Usage déconseillé, même sans création de compte.;;N'existe pas;;;
+;CARD2BRAIN;O ;;;PASSER PAR EDULOG;"Login via EDULOG. 
+Recommandations à voir dans le navigateur EDUCA.";;bloqué;;;
+;CLARO SPEAK PLUS iOS et CLARO PDF PRO iOS ;V;;L’application déclare ne recueillir aucune donnée. La page de la déclaration de confidentialité était cependant indisponible au moment où j’ai voulu la consulter (31.08) ;;Application recommandée dans le cadre du CAS CNE.;;autorisé;;;
+;CLASSCRAFT;R;USA – Californie – Cloudflare Inc ;"Via Microsoft : nom, adresse e-mail, préférences linguistiques et photo de profil  
+
+ 
+La création d’un compte élève induit celle d’un compte parent, qui peut voir les activités de l’enfant et les activités de classe. ";"RGPD EU 
+
+Par le biais de ce site, l’enseigant peut : 
+Créer des exercices gamifiés 
+Attribuer des points de comportement ou en retirer 
+Utiliser des outils de gestion de classe 
+
+ Les données élèves sont supprimées après un an sans activité. Les données enseignant après 2 ans. ";Le comportement en classe et la discipline sont des données sensibles.;;Bloqué;;;
+;CLASSROOMSCREEN;O;USA – Californie – Cloudflare Inc ;"Via Microsoft : nom, adresse e-mail 
+
+
+Sans compte : recueille des données sur la visite et le comportement de navigation, l'adresse IP, le navigateur, la date et l’heure, etc. ";"Abo payant basique : traite nom, prénom, mail, mot de passe 
+
+ 
+Abo Pro : traite les infos de facturation, les images que vous téléchargez, les données que vous saisissez et enregistrez ";"Privilégier une utilisation sans créer de compte. 
+
+ En cas de création de compte, veiller à ne pas fournir d’informations personnelles au sujet des élèves.  ";;Accès pour personnel scolaire;;;
+;CLASSTIME;V;Suisse ;"Connexion possible via Edulog ou Microsoft
+
+Intégration possible dans Teams";Contrat avec EDUCA;;à autoriser;;;;
+;CODE.ORG;V;USA – Californie – Amazon.com Inc. ;"Nom, adresse e-mail, préférences linguistiques et photo de profil 
+
+Heure de connexion, adresse IP et autres données techniques 
+
+Création de compte élève : nom d’utilisateur, adresse e-mail (ne conserve pas les adresses e-mail des élèves), âge (mais pas la date de naissance). ";"RGPD EU 
+
+Organisation caritative à but non lucratif 
+
+Ne conserve pas les adresses e-mail des élèves ";"L’enseignant est responsable de créer des comptes élèves anonymisés. C’est lui crée les profils de la classe. 
+
+Certaines activités du site ne nécessitent pas de création de compte élèves. Les progrès ne sont en revanche pas enregistrés sans création de compte.";;autorisé;;;
+;DICTALY;O ;FR;"adresse email et pseudo
+date et heure de connexion
+messages échangés entre joueurs
+scores aux dictées
+infos sur l'appareil et l'équipement";"RGPD, ne vend pas les données
+
+données conservées 3 ans maximum après la dernière connexion";Attention à bien encadrer l'utilisation car la création de compte permet l'envoi de messages entre utilisateurs.;;n'existe pas;;;
+;DOODLE;O;USA - Californie - Cloudflare Inc;"Via Microsoft : nom, adresse e-mail, préférences linguistiques et photo de profil  
+
+Nom, adresse e-mail ou informations sur votre rendez-vous, données de journal : utilisation interne à des fins d'analyse. D'autres sociétés peuvent y accéder pour effectuer des tâches.
+
+Certaines données personnelles peuvent être conservées après la fin de la période de conservation ou après une demande d'effacement. Doodle peut communiquer les données personnelles sans en informer les utilisateurs.";"Le service n'est pas destiné aux mineurs. 
+
+Doodle peut transférer vos informations personnelles à des sous-traitants secondaires situés en dehors de votre pays. Si le niveau de protection des données dans un pays ne correspond pas au niveau suisse, Doodle s'assure contractuellement que la protection de vos données personnelles est toujours équivalente à celle de la Suisse
+
+FADP s'applique en principe au traitement de vos données personnelles
+
+Si un sondage est supprimé, les informations sont supprimées des bases de données Doodle, mais elles peuvent être archivées sous une autre forme à des fins d'analyse interne. Les données du journal ne sont pas supprimées. De plus, les sondages périmés sont automatiquement supprimés au plus tôt 30 jours après la dernière date du vote ou 30 jours après le dernier accès à un vote sans date.";Veiller à ne pas mentionner de données personnelles dans un Doodle : pas de nom, prénom, situation d'élève par exemple.;;Accès pour personnel scolaire;;;
+;DRIVE INFOMANIAK;V;;;;;;autorisé;;;
+;DRUIDE, ANTIDOTE;V;;;;;;autorisé;;;
+;DUOLINGO;R;USA - Virginie ;"En-dessous de 13 ans, l'adresse mail des parents est obligatoire (un lien de validation est envoyé), pas de données personnelles à fournir.  
+
+Au-dessus de 13 ans, le profil par défaut se crée en mode public. Age, nom et adresse mail à l'inscription (pas visibles dans le profil). 
+
+Partage les données personnelles avec des tiers non impliqués dans son fontionnement.
+
+Utilise les données personnelles pour faire de la publicité.";"Utilise les enregistrements audio des utilisateurs pour entraîner son IA.
+
+Les données relatives au navigateur et à l'appareil, les données de connexion et l'adresse IP sont collectées.
+
+Duolingo génère également des données concernant la participation à des activités éducatives sur le service. Utilise Google Analytics et fournit des publicités personnalisées. Les autres utilisateurs peuvent trouver un compte à partir de l'adresse e-mail, du nom d'utilisateur ou du numéro de téléphone fourni.";;;Bloqué;;;
+;DYNAMILIS;V;Suisse;;;;;;;;
+;EDPUZZLE;O;USA – Californie- Amazon.com Inc. ;Pour créer un compte Edpuzzle en tant qu’enseignant, il peut vous être demandé de fournir certaines informations de base telles que votre prénom et votre nom, votre adresse e-mail, votre mot de passe et votre photo de profil. Vous devrez entrer le niveau scolaire (par exemple, première année) et la matière ;"RGPD EU 
+
+Fonction Open Class : Le terme « classe ouverte » fait référence à une fonctionnalité spécifique disponible uniquement pour les comptes d’enseignant qui permet aux étudiants d’accéder au service Edpuzzle par le biais d’une session restreinte unique élève-enseignant sans fournir de données personnelles. Si l’enseignant crée une classe ouverte, les élèves accèdent à la classe via un code unique ou un lien fourni par leur enseignant. Les enseignants ont également le choix d’attribuer des surnoms aux élèves ou d’opter pour leur attribution aléatoire par Edpuzzle 
+
+La session unique expire à la fin du devoir ou après une période de sept jours d’inactivité ";"Utiliser uniquement la fonction Open Class. 
+
+La fonctionnalité ne permet à l’étudiant de répondre qu’aux questions intégrées dans les leçons vidéo. ";;Accès pour personnel scolaire;;;
+;EDUBASE READER;R;;;;Déconseillé pour la gestion de données personnelles d'élèves dans le navigateur EDUCA.;;Bloqué;;;
+;EDUCAPLAY;O;"USA – Californie –
+ Amazon.com, Inc ";Nom, adresse e-mail, préférences linguistiques et photo de profil ;"RGPD UE 
+
+Inscription interdite aux moins de 16 ans. 
+
+Accès anonyme ou avec pseudo possible pour les élèves. ";"Création de compte enseignant uniquement.  
+
+Ne pas créer de classe. Les élèves utilisent uniquement un pseudo pour jouer. ";;Accès pour personnel scolaire;;;
+;EXAM.NET;O;;"L’enseignant fournit des données à l’inscription : nom, adresse électronique, 
+école, groupe, classe ou organisation, sujet(s), numéro de téléphone";"Accord parental requis pour les élèves en-dessous de 18 ans. 
+
+Exam.net ne partage pas les données avec des tiers et ne vend pas les données. 
+
+Les données de l’enseignant sont conservées 3.5 ans après dernière connexion. 
+
+Les données des tests supprimés par l’enseignant disparaissent. Sinon, elles sont archivées 180 jours après le test et éliminées 3 ans après archivage. ";"Login enseignant via Edulog uniquement ! 
+
+Veiller à supprimer les tests une fois les résultats exploités.  
+
+Privilégier l’utilisation d’un pseudo ou du seul prénom des élèves au moment de passer l’examen.  
+
+Ne pas rattacher à l’adresse e-mail des élèves. ";;Accès pour personnel scolaire;;;
+;FIZZIQ;V;USA - Missouri - Google LLC;"Seules données collectées : données utilisées pour remplir le formulaire de contact sur le site internet. Ces données ne sont communiquées qu'à une personne : Christophe Chazot.
+
+L'application ne recueille aucune donnée.";;;;n'existe pas;;;
+;FLORA INCOGNITA (app);V (sous conditions);Allemagne  ;"Pseudo et mot de passe, détails de l'observation, images enregistrées, métadonnées de la photo, adresse IP, infos sur l'appareil
+
+Les données ne sont pas transmises à des tiers.";L'application a besoin de la localisation GPS pour fonctionner.;Comme l'application a besoin de la localisation GPS pour fonctionner, privilégier une installation sur les appareils de l'école (et nons sur les appareils privés des élèves).;;n'existe pas;;;
+;FOXIT READER;O ;USA - Californie - Cloudflare Inc;Utilisation de l'IA : Pour améliorer le temps de réponse de AI Q&A, le contenu PDF sera chiffré à l'aide d'AES-256 bits et mis en cache pendant 48 heures, puis il sera automatiquement supprimé. Les données cryptées sont stockées dans Amazon EFS ou Azure Files.;Tous les fichiers que vous téléchargez sur les services cloud Foxit et les données que vous avez créées à l'aide des services Foxit sont stockés par Foxit. À moins que vous ne choisissiez de stocker les fichiers et les données sur un serveur Foxit pour une utilisation ultérieure, tous ces fichiers que vous avez téléchargés seront supprimés une fois le processus terminé et les fichiers de sortie seront généralement supprimés en une journée. Pendant ce temps, Foxit ne consulte pas les fichiers ni n'en extrait aucune donnée. Aucune sauvegarde n'est faite des fichiers téléchargés de transition ou de leur sortie traitée, et le contenu de ces fichiers ne n'est pas surveillé sans votre autorisation explicite.;"Création de compte réservée aux enseignants. 
+
+Eviter de conserver des fichiers contenant des données sensibles / personnelles sur le cloud. 
+
+De même, faire attention avec les outils d'IA et ne pas les utiliser sur des documents contenant des données personnelles/sensibles.";;Accès pour personnel scolaire;;;
+;FRAMASOFT;V;Allemagne - Sachsen - Hetzner Online AG;A l'inscription : adresse e-mail et mot de passe.;Récolte des statistiques anonymisées. Ne vend pas ni ne transmet les données.;"Usage pseudonymisé. 
+Attention de ne pas intégrer de données personnelles d'élèves dans les travaux réalisés en ligne.";;n'existe pas;;;
+;GARMIN CONNECT;R;"USA - Californie - Cloudflare Inc
+
+Pour la Suisse, les données sont conservées en Allemagne";"nom, adresse e-mail, préférences linguistiques et photo de profil
+
+adresse IP, l'heure et la date de synchronisation et le niveau de la batterie
+
+la date et l'heure d'accès à nos serveurs, l'emplacement de l'appareil, les paramètres de langue, les informations et les fichiers téléchargés, le comportement de l'utilisateur, l'état de l'appareil, le modèle d'appareil, le matériel et les informations du système d'exploitation";"Pas destiné aux moins de 16 ans.
+
+Envoie des courriels ou notifications de marketing si l'option n'a pas été décochée.
+
+Garmin peut transférer vos données personnelles à une société affiliée, une filiale ou un tiers en cas de réorganisation. Les données peuvent être envoyées vers d'autres pays (dont les USA en ce qui concerne les utilisateurs suisses).";Les données recueillies sont conservées en ligne par Garmin. Certaines touchent à la santé et ne doivent pas être récoltées, comme c'est le cas notamment du rythme cardiaque.;;bloqué;;;
+;GENIALLY;O;Irlande -  Amazon.com, Inc. ;"
+Nom, adresse e-mail, préférences linguistiques et photo de profil";"Création de compte pour les moins de 16 ans
+ avec accord des parents ! ";Création de compte réservée aux enseignants.;;Accès pour personnel scolaire;;;
+;GEOGEBRA;V;;;;;;autorisé;;;
+;GIMKIT;O;USA;élèves : prénom, première lettre du nom de famille et adresse e-mail;"Usage interdit avant 13 ans. Consentement parental nécessaire jusqu'à 16 ans en cas de création de compte.
+
+Ne vend pas les données. Données collectées pour le fonctionnement de la plateforme.";Privilégier un usage sans compte élève. Dans le cas de la création d'un compte élève, choisir des pseudos plutôt que de réelles informations et faire attention à ce que les élèves choisissent un mot de passe différent de leur mot de passe edu.jura!;;n'existe pas;;;
+;GLOSE;R;USA – Missouri – Google LLC ;"A l’inscription :  nom,  adresse e-mail, préférences linguistiques et photo de profil   
+
+Récupère aussi : identifiants de connexion, Adresse IP, Photographie (« Avatar »), Type et version du navigateur utilisé, Système d’information 
+
+Données de profil de lecture collectées : Livres lus/ouverts/importés ; Goûts et préférences de lecture, Temps de lecture, date et heure de lecture, Contributions (annotations, citations, critiques, passages surlignés), Appartenance à des Groupes de lecture, historique des pages du Site visitées, date et heure de visite, temps passé sur chaque page ";"Inscription réservée aux plus de 15 ans. 
+
+A sa création, un profil se trouve en mode public. 
+
+Le site permet de se connecter à d’autres utilisateurs et d’échanger avec eux. Il se considère comme un réseau social. ";;;Bloqué;;;
+;JSTOR;O ;USA - Californie - Fastly Inc.;"nom, photo, nom d'utilisateur
+
+Ne vend pas les données
+
+Recueille l'adresse IP, les infos de journal, d'utilisation du site, de l'appareil, navigateur, fournisseur internet...
+
+Peut transférer des données à des sous-traitants avec lesquels le site a des relations commerciales (dont beaucoup sont aux USA).";Interdit aux moins de 16 ans.;;"à autoriser pour 
+enseignants 
+uniquement";;;;
+;JUNGLEAI;R;;adresse e-mail, prénom, nom, mot de passe, données d'utilisation;Ne s'adresse pas aux personnes de moins de 13 ans;Utilisation basée uniquement sur l'IA;à bloquer;;;;
+;KAHOOT;O;USA - Oregon - Portland - Amazon.com, Inc. ;"Compte enseignant :  nom,  adresse e-mail,  préférences linguistiques et votre photo de profil  
+
+Joueurs élève :  pseudonyme 
+
+Compte élève particulier :  En ce qui concerne les enfants de moins de 13 ans, les informations personnelles se limitent à une adresse e-mail, hachée  immédiatement et de manière permanente afin qu’elle puisse être utilisée uniquement comme rappel de mot de passe (et non pour contacter l’enfant).  Nom d’utilisateur et mot de passe recueillis auprès des titulaires de comptes enfants (=l’enseignant qui inscrit l’élève), qui sont utilisés uniquement à des fins de connexion, afin de permettre au titulaire du compte enfant d’utiliser les services. ";"
+RGPD UE / EE 
+
+Comptes élèves : ne recueille pas, ne conserve pas, n’utilise pas et ne partage pas les renseignements personnels des élèves. 
+
+Kahoot anonymise les informations collectées automatiquement avant de les utiliser. 
+
+Enseignant :  Les informations sur le navigateur ou l’appareil qui sont collectées par le biais de votre appareil, telles que l’adresse MAC (Media Access Control), le type d’ordinateur (Windows ou Macintosh), la résolution de l’écran, le nom et la version du système d’exploitation, le fabricant et le modèle de l’appareil, la langue, le type et la version du navigateur Internet et la version des Services (tels que l’application) ";"Création de compte réservée aux enseignants.
+
+Ne pas créer de comptes élèves pour que ceux-ci fassent leur popre kahoot. Faire utiliser des pseudonymes aux élèves pour jouer une partie. 
+
+Pour l’utilisation de contenu plus spécifique, comme les applications, l’enseignant fournit un QR code qui permet de jouer gratuitement et ne nécessite pas de connexion particulière. ";;Accès pour personnel scolaire;;;
+;KIALO EDU;V;;;;Autorisé dans le navigateur EDUCA.;;n'existe pas;;;
+;KNOWT;"O 
+(sous conditions)";;"Adulte : votre nom, votre nom d'utilisateur, votre adresse e-mail et votre date de naissance
+
+Collecte les photos, documents ou autres fichiers que vous téléchargez. ";"Interdit en-dessous de 13 ans. Consentement des parents requis. Ne collecte, n'utilise ni ne divulgue les informations personnelles d'un enfant si l'école ne dit pas être d'accord. Il existe un formulaire qu'il est possible de faire signer à la plateforme pour obtenir un accord de confidentialité particulier : https://form.fillout.com/t/aymZi6NipYus
+
+Sous réserve de nos accords avec ces écoles, peut collecter ou recevoir des informations sur le  “dossiers des élèves”, qui peuvent inclure les résultats scolaires relatifs à l'utilisation des services.
+
+";"Privilégier les jeux sans création de compte élève.
+
+En anglais uniquement.
+
+Il est possible d'importer ses listes Quizlet sur cette plateforme.";;n'existe pas;;;
+;LEARNINGAPPS;O ;Allemagne - Sachsen - Hetzner Online AG;;Ne transmet aucune donnée personnelle à des tiers.;Si les élèves créent un compte, anonymiser les informations.;;n'existe pas;;;
+;LEARNINGVIEW.ORG;V;Allemagne - Sachsen - Hetzner Online AG;;;Approuvé par le navigateur EDUCA.;;autorisé;;;
+;LINGODEER;R;Singapour;"nom, âge, adresse e-mail
+
+Traite les enregistrements audio. Ces téléchargements seront également accessibles aux autres utilisateurs qui suivent le compte.
+
+Infos techniques, données de localisation, données audio. Les données audio sont envoyées à un fournisseur tiers mais ne sont pas stockées.
+
+Ne garantit pas que leurs fournisseurs tiers suivent leur politique de confidentialité.";"RGPD EU
+
+D'autres utilisateurs peuvent trouver un profil s'ils connaissent le pseudo. De nombreuses informations se trouvent dans les profils, dont les fichiers audio téléchargés.";;;n'existe pas;;;
+;LINKEDIN;R;USA – Washington -  Microsoft Corporation;"A l'inscription : nom, adresse e-mail et/ou numéro de téléphone, lieu de résidence.
+
+Collecte vos données personnelles lorsque vous en fournissez, en publiez ou en téléchargez sur les Services.";"Si vous synchronisez vos calendriers avec LinkedIn, les informations relatives aux réunions de vos calendriers sont collectées.
+
+Si vous ou des tiers choisissez de synchroniser vos comptes de messagerie avec nos Services, nous collecterons également les informations des « en-têtes d'email » que nous pouvons associer aux profils de Membres.
+
+Peut utiliser vos données personnelles pour améliorer et développer ses outils d'IA.
+
+Beaucoup d'autres éléments problématiques sont mentionnés.";;;Bloqué;;;
+;LOCKEE.FR;O;France – Auvergne - O2Switch SAS ;"A l’inscription : nom, prénom, adresse e-mail 
+
+Via Microsoft : nom, adresse e-mail, préférences linguistiques et photo de profil  ";;"Création de compte réservée aux enseignants. 
+
+Les élèves interagissent simplement avec les cadenas. ";;Accès pour personnel scolaire;;;
+;LUCID ;R;USA – Californie – Akamai Technologies Inc ;"Nom, adresse e-mail, préférences linguistiques et photo de profil 
+
+Données de journal, de localisation, appareils et utilisation du produit
+
+Version éducation, à l'inscription d'un mineur : nom, son adresse e-mail et son mot de passe";"Version standard : Stocke, traite et conserve les documents que vous créez et/ou chargez (ainsi que les versions précédentes de vos documents), y compris les documents Lucid que vous créez, les images que vous chargez, les listes de partage et d'autres données liées à votre compte afin de vous fournir les Services. Si vous fournissez des données à caractère personnel dans ces documents, elles sont collectées. 
+Publicités ciblées selon les données recueillies. Peut conserver certaines informations à des fins commerciales.
+
+Version éducation :  activité du compte, données affichées ou cliquées, informations de journal (par exemple, type de navigateur, système d'exploitation, nom et modèle d'appareil, adresse IP, date et heure d'accès, durée passée sur nos sites Web ou dans nos services, identifiant d'appareil ou identifiant unique similaire, URL de référence, page Web qui a conduit un utilisateur à notre site Web); etpréférences de l'utilisateur lors de l'utilisation des Services (par exemple, langue).";;;Bloqué;;;
+;LYRICSTRAINING;O;Irlande -  Amazon.com, Inc. ;e-mail, pseudo, date de naissance, pays;Enregistre les données d'utilisation et les favoris, les activités réalisées, scores.;"Privilégier une utilisation sans créer de compte élève.
+
+Création de compte enseignant uniquement.";;n'existe pas;;;
+;MAGICSCHOOL.AI;O;USA – Oregon – Amazon Technologies Inc ;"Nom, adresse e-mail, préférences linguistiques et photo de profil   
+
+Certaines données techniques sur l'appareil et les logiciels, notamment le type de navigateur, le système d’exploitation, l'adresse IP, le nom de domaine, et/ou un horodatage de la visite. ";"Interdit aux mineurs (-18 ans) 
+
+RGPD UE  
+
+Ne collecte ni ne traite d’informations biométriques ou d’informations de localisation spécifiques à partir des appareils, ni d’autres « données sensibles », à l’exception de l' adresse et  ne fait aucun autre usage de ces informations personnellement identifiables. ";Usage réservé aux enseignants.;;Accès pour personnel scolaire;;;
+;MEMRISE;R;USA - Californie ;"nom, adresse e-mail, pseudo et photo de profil
+
+données de journal, cookies, données d'appareil, infos d'utilisation
+
+réponses aux tets, résultats, scores
+
+Stocke les données vocales";"Utilisation interdite en-dessous de 13 ans.
+
+Utilisation marketing des données.";;;n'existe pas;;;
+;MINDMEISTER;O ;USA - Indiana - CloudFlare CDN Network;"A l'inscription : nom, informations de profil et adresse e-mail
+
+Généralement, les données ne sont pas stockées plus de 30 jours.
+
+Collecte les données de trafic, de localisation, journaux et autres données de communication,  ressources auxquelles vous accédez et utilisez sur les sites, informations sur votre ordinateur et votre connexion Internet, y compris votre adresse IP, votre système d'exploitation, le type de navigateur et l'historique de navigation liés à Meister, pays, région, ville, site que vous avez visité pour la dernière fois.";"Pas destiné aux mineurs (18 ans).
+
+Collecte le contenu créé par l'utilisateur et les fichiers téléchargés";"Comptes enseignants uniquement. Attention au contenu déposé sur la plateforme, qui doit se limiter au pédagogique.
+
+Déconseillé par le navigateur EDUCA concernant la gestion de données personnelles d'élèves.";;n'existe pas;;;
+;MINE;R;USA – Washington – Amazon.com Inc ;"Nom, adresse e-mail, préférences linguistiques et photo de profil   
+
+Adresse IP, le type de navigateur, le système d'exploitation, la page web de référence, les pages visitées dans nos services, la localisation, votre opérateur mobile, les informations sur l'appareil (y compris les ID d'appareil et d'application), les termes de recherche et les informations sur les cookies. ";;Pas directement lié à l'enseignement.;;Bloqué;;;
+;MINECRAFT : EDUCATION EDITION;?;USA - Californie ;"Minecraft education est un outil Microsoft.  
+
+ Le logiciel peut collecter des informations sur vous et votre utilisation du logiciel et les envoyer à Microsoft. 
+
+ Si vous vous connectez à un service proposé par un tiers avec votre compte Microsoft, vous partagerez avec ce tiers les données du compte requises pour ce service. ";;Le jeu peut être installé en local (ordinateur, via Windows Installer, ou IPad). ;;;;;
+;MIRO;O;USA – Californie – Amazon.com, Inc ;"Nom, adresse e-mail, préférences linguistiques et photo de profil   
+
+Données de journal, appareil, localisation ";"DPF Suisse-États-Unis 
+
+Interdit aux moins de 16 ans ! 
+
+Données transmises à des services tiers.";Usage enseignant uniquement. ;;Accès pour personnel scolaire;;;
+;MURAL;R;USA – Virginie – Fastly, Inc ;Nom, adresse e-mail, préférences linguistiques et photo de profil ;"DPF Suisse Etats-Unis 
+
+Usage non destiné aux enfants d’après le site lui-même. ";Le tableau collaboratif de Teams fait le même travail, de même que Digiboard. ;;Bloqué;;;
+;NOTEBOOKLM;O ;USA - Californie - Google;;Les conditions appliquées sont les CGU et politiques de confidentialités générales de Google.;"Enseignants uniquement.
+
+Ne pas intégrer de données personnelles.";;n'existe pas;;;
+;ONE CALENDAR;?;USA – Washington -  Microsoft Corporation;"Recueille les informations anonymes sur les erreurs, les exceptions et les plantages d'applications et sur la façon dont son utilisées les applications (données supprimées après 2 mois).
+
+Nous ne stockons pas vos rendez-vous personnels ou des informations d'anniversaire sur notre serveur(s). Toute synchronisation des données personnelles se fait directement entre votre appareil et fournisseur de calendrier en ligne.";One Calendar peut être configuré pour utiliser des services en ligne. Les CGU de ces services s'apppliquent.;;;;;;
+;ORTHOHPHORE;V (sous conditions);Pologne - Varsovie;"Données élèves : nom et prénom (accessible uniquement à l'enseignant et à l'élève)
+
+Mots écrits par l'élève dans les dictées. Permet de visualiser la progression des élèves. Ces données ne sont pas rendues publiques.";Données conservées durant 2 mois, elles ne sont pas partagées.;Utiliser des pseudos pour les élèves.;;n'existe pas;;;
+;PADLET;O;USA - Californie ;"À la connexion :  nom,  adresse e-mail,  préférences linguistiques et  photo de profil 
+
+Durant l’utilisation :  infos liées à l'appareil, infos sur l'utilisateur, y compris personnelles, et sur la manière dont il utilise le service 
+
+
+";"Pas pour les moins de 13 ans sans supervision/accord parental 
+
+Les padlets publics donnent à  Padlet le droit de voir, de partager et de promouvoir le contenu qu’ils contiennent.  
+
+Données transmises à des services tiers.";"Création de compte réservée aux enseignants. 
+
+L’enseignant crée un pad auquel les élèves accèdent sans se connecter ni s’identifier. 
+
+ATTENTION ces publications ne doivent pas permettre d'identifier les élèves : Pas de nom, pas de pseudo, pas d'image représentant l'élève, pas d'enregistrement de la voix de l'élève. 
+
+Pour une utilisation par les élèves, privilégier Digipad mais éviter de partager des données personnelles.";;Accès pour personnel scolaire;;;
+;PCLOUD;V;Suisse, serveurs au Luxembourg;;;;;autorisé;;;
+;PDF EXPERT;V;"USA- Washington – 
+Amazon.com Inc ";"De manière générale, ne collecte pas les fichiers.
+
+En cas de conversion de fichier, les données sont conservées jusqu’à 3h sur les serveurs. ";;Par précaution, ne pas utiliser avec des documents contenant des données personnelles, sensibles ou confidentielles. ;;autorisé;;;
+;PHONOWRITER;V;;;;Application installée en local, pas d'enregistrement des données;;n'existe pas;;;
+;PHOTOPEA;O;;"Utilisation en mode ""local uniquement"" possible. 
+
+En cas de connexion, récupère : nom, adresse e-mail, copie de l’enregistrement. ";"Les fichiers ouverts dans Photopea ne sont jamais envoyés nulle part, ils ne quittent jamais l'appareil. Ils sont traités entièrement à l'intérieur de l'appareil.
+
+Les données enregistrées en ligne peuvent être partagées avec des services tiers et stockées partout dans le monde.";Utiliser uniquement en mode local. ;;Accès pour personnel scolaire;;;
+;PHYPHOX;V;Allemagne - Nordrhein Westphalen - RWTH Aachen University;"Ne collecte pas explicitement de données personnelles : conçu pour collecter des données de mesure sans lien avec les individus. Cependant, dans certaines circonstances, ces données peuvent être liées à des données personnelles (GPS par exemple). 
+
+Toutes les données mesurées ne sont stockées que sur l'appareil exécutant l'application et ne sont envoyées nulle part, sauf si l'utilisateur transmet volontairement les données lui-même (fonction d'exportation) ou s'il utilise une configuration d'expérience qui inclut la transmission de donnée.";"Si une expérimentation ou l'usage d'un outil proposé par l'application implique un transfer de données vers un tiers, l'application le signale. L'utilisateur peut alors choisir en connaissance de cause s'il souhaite utiliser cette fonction. Les données sont alors rendues anonymes.
+
+Les données seront supprimées dès qu'elles ne sont plus nécessaires pour atteindre l'objectif de leur collecte, au plus tard 90 jours après la collecte.";Application similaire, gratuite et sans récolte de données : Fizziq;;n'existe pas;;;
+;PIXTON;O;USA - Massachusetts ;"Inscription prof : nom, adresse e-mail, préférences linguistiques et photo de profil   
+
+Inscription élève : adresse e-mail ";"RGPD EU
+
+Accord parental nécessaire en-dessous de 13 ans pour les comptes non reliés à un enseignant. 
+
+Une fois un compte supprimé, les données sont effacées après 60 jours. ";"Attention à ne pas intégrer de données personnelles ou sensibles dans les bandes dessinées. 
+
+Pour inscrire les élèves, ne pas utiliser l’adresse e-mail. L’enseigant crée un pseudo pour chaque élève de la classe. ";;Accès pour personnel scolaire;;;
+;PLANDECLASSE.CA;O;Canada - Québec ;"nom, adresse e-mail, préférences linguistiques et votre photo de profil   
+
+ Pas de politique de confidentialité sur le site. ";Pas de CGU;"Ne pas déposer de photos d’élèves. 
+
+Utiliser uniquement les prénoms. 
+
+Ne pas donner le nom réel de la classe ou de l’école. ";;Accès pour personnel scolaire;;;
+;PLICKERS;O;USA – Amazon.com Inc. ;"Nom, adresse e-mail, préférences linguistiques et photo de profil  
+
+Adresse IP, navigateur, heure et date de connexion, localisation, système d’exploitation, type, marque et modèle d’appareil
+ 
+Lorsque les élèves utilisent des cartes Plickers : Récoltes des réponses aux QCM 
+
+Les images sont supprimées immédiatement (pas de collecte ou stockage) ";"DPF Suisse-États-Unis 
+
+Plickers conservera les informations personnelles des enseignants et des élèves pendant une période limitée, mais pas plus de 120 jours ";"Création de compte réservée aux enseignants. 
+
+Les élèves se connectent uniquement via les cartes (QR code) mais l’enseignant y associe un pseudo au préalable. ";;n'existe pas;;;
+;PREZI;R;USA – Washington – Amazon.com Inc ;"Nom, adresse e-mail, préférences linguistiques et photo de profil  
+
+Infos sur l’appareil, le navigateur, adresse IP... 
+
+Pour Prezi, tout ce qui se trouve dans une présentation publique est considéré comme public et peut être collecté. ";"Entre 13 et 18 ans, l’accord parental est requis. 
+
+Les publicités présentées aux autres utilisateurs peuvent faire référence aux informations que vous fournissez. Des informations personnelles peuvent donc être transmises à des inconnus !
+
+Le contenu supprimé est conservé par Prezi. Comme le contenu actif, il peut être vendu à des tiers pour une utilisation commerciale.
+
+Prezi peut transmettre vos informations personnelles sans vous en informer. 
+
+En licence Free, tous les projets sont publics et indexés par les moteurs de recherche. La gestion de la confidentialité est une option payante.";;à bloquer;;;;
+;PROJET VOLTAIRE;V (sous conditions);France;"Version gratuite : email et mot de passe.
+
+Version payante : données de facturation";"Données transmises à aucun tiers.
+
+Collecte des informations quand :
+
+vous créez votre compte Projet Voltaire ;
+vous effectuez une commande sur notre site ;
+vous répondez à une enquête sur notre site ;
+vous participez à un jeu ou un concours ;
+vous prenez contact avec notre Service clientèle ;
+vous rédigez un commentaire.";Ne pas fournir de données d'élèves. Se désabonner de la newsletter et ne participer à aucune enquête en ligne.;;n'existe pas;;;
+;QUIZLET;O ;;"e-mail, date de naissance 
+
+Collecte: 
+Renseignements sur l’appareil 
+le type de navigateur; 
+la préférence linguistique et le fuseau horaire; 
+le site référant, ainsi que la date et l’heure de chaque visite; 
+les informations de connexion comme le fournisseur de services Internet ou l'opérateur mobile; 
+l'adresse IP; 
+les heures de connexion et de déconnexion. ";"
+ 
+Consentement parental requis pour les moins de 13 ans. 
+
+Quizlet peut utiliser les informations personnelles pour commercialiser le Service.  
+
+Concernant les enfants : peut utiliser des renseignements agrégés ou anonymes sur les enfants à des fins de recherche, d'analyse, de marketing et à d'autres fins commerciales. Pour créer un compte enfant, Quizlet recueille la date de naissance de l’utilisateur, son nom d’utilisateur, son adresse électronique et son mot de passe. 
+
+Quizlet conserve vos informations personnelles aussi longtemps que votre compte est actif";" 
+
+Comptes enseignant uniquement.
+
+card2brain.ch est une alternative validée (sur le navigateur Educa). Il n’y a toutefois aucune activité ludique proposée sur cette plateforme. 
+
+ 
+
+Digiflascard ? Moins de jeux que Quizlet 
+Flascards de Quizizz ? Sans création de compte élève.";;n'existe pas;;;
+;REMARKABLE INTEGRATION ONEDRIVE;O ;USA- Californie - Versel Inc;;"Si vous supprimez votre Compte ReMarkable pour quelque raison que ce soit, tout Contenu stocké sur nos serveurs sera également supprimé, mais veuillez noter que le contenu peut être stocké dans des sauvegardes d'infrastructure IT pendant 3 mois maximum.
+
+Si vos notes contiennent des informations personnelles sur d'autres personnes, vous devez vous assurer qu'il est licite pour vous de collecter, stocker et utiliser ces informations";Attention à ne pas prendre de notes ni charger de fichiers contenant des données sensibles ou personnelles.;;Accès pour personnel scolaire;;;
+;SAMSUNG EMAIL;O;;Impossible d'avoir accès à une politique de confidentialité liée spécifiquement à cette application. (26.11.24);;;;autorisé;;;
+;SAMSUNG NOTES;O ;;Même commentaire que pour Samsung Email;;;; autorisé;;;
+;SCHOLARVOX;O ;"France - Nouvelle Aquitaine
+ - Kardol SA";"Nom, prénom, e-mail 
+
+Collecte les recherches effectuées au sein du site, les lectures effectuées, la composition des étagères enregistrées dans le Site, les annotations des livres, les commentaires apposés aux livres. ";Le consentement des mineurs de moins de 16 ans doit être donné par le titulaire de l'autorité parentale. Lorsque vous avez donné votre consentement alors que vous étiez mineurs, les données personnelles vous concernant ont été collectées ;"Usage enseignant uniquement.
+
+L’utilisation d’une adresse privée est recommandée. En cas de suppression de l’adresse edu.jura, l’utilisateur ne pouvant plus se connecter à Scholarvox n’a plus accès au contenu acheté sur la plateforme. ";;Accès pour personnel scolaire;;;
+;SCHOOL AI;O ;USA - Washington- Amazon.com Inc;"Enseignant: Nom, adresse e-mail, mot de passe, nom de l'établissement, rôle dans l'école
+
+Élève: peut inclure nom, notes et données de performance liées à l'école.
+
+Données techniques : navigateur, adresse IP, appareil et système d'exploitation";"Pas pour les moins de 13 ans sans consentement des parents.
+
+Ne vend ni ne loue d'informations personnelles à des tiers. Peut transférer les informations personnelles dans le cadre d'une fusion ou vente de l'entreprise.
+
+Les données élèves sont anonymisées si elles sont envoyées à des tiers.
+
+SchoolAI s'associe à certains fournisseurs tiers, notamment Amazon AWS, ElephantSQL et OpenAI, pour améliorer ses offres de services et son infrastructure. Ces fournisseurs reçoivent des informations personnelles";"Usage enseignant uniquement. 
+
+Ne pas intégrer de données personnelles.";"à autoriser pour 
+enseignants 
+uniquement";;;;
+;SMART TECH : LUMIO;O;USA ou Allemagne ;"Nom, adresse e-mail, préférences linguistiques et photo de profil 
+
+Très complexe de s’y retrouver car Smart tech propose toutes sortes de produits, allant du matériel aux logiciels en passant par des applications. ";;Avec Lumio, les élèves rejoignent les activités de manière anonyme uniquement (avec un pseudo), pas de création de compte élève. ;;n'existe pas;;;
+;SODA PDF;O ;USA - Californie - Cloudflare Inc;Utilisation en ligne avec connexion : nom, adresse e-mail, préférences linguistiques et photo de profil ;"Pas conçu pour des utilisateurs de moins de 16 ans.
+
+Dans le cloud : Soda PDF ne conserve pas votre contenu mais la plateforme recommande de ne pas diffuser de données personnelles.
+
+Mode local : En règle générale, votre contenu est conservé sur votre stockage local.  ";"Utiliser une version installée en local uniquement. 
+
+Ne pas utiliser les outils en ligne pour modifier des fichiers contenant des données personnelles, sensibles ou confidentielles.
+
+Attention aussi aux outils d'intelligence artificielle, qui ne doivent pas être utilisés sur ce type de documents.
+
+";;Accès pour personnel scolaire;;;
+;SOUNDTRAP EDUCATION;R;USA - Missouri - Google LLC;"Version EDUCATION : via Microsoft, nom, informations de profil et adresse électronique des élèves
+
+Récolte la date et l'heure de toute demande faite par les élèves, les sons que les élèves ont diffusés, enregistrés, téléchargés, les interactions avec d'autres élèves
+
+informations sur l'URL, adresse IP, types d'appareils utilisés, identifiants uniques des appareils, attributs des appareils, fournisseur de connexion réseau, performances du réseau et de l'appareil, type de navigateur, langue, système d'exploitation";"Peut transférer des informations personnelles à toute personne ou société qui acquiert la totalité ou la quasi-totalité des actifs ou des activités de Soundtrap.
+
+Si l'école de l'élève l'autorise : 1) toute information personnelle contenue dans le profil public d'un élève (autre que l'adresse électronique) sera accessible à d'autres utilisateurs de Soundtrap, qui pourront consulter leur profil, écouter et commenter leurs sons publics, s'ajouter à leur liste de suiveurs et leur envoyer des messages ; 2) le fait qu'un élève ait écouté les sons d'un utilisateur privilégié sera partagé avec cet utilisateur privilégié, afin que ce dernier puisse suivre la popularité de ses sons ; et 3) les commentaires des élèves seront accessibles à tous les utilisateurs de Soundtrap.";;;Bloqué;;;
+;SPARK;R;USA – Washington – Amazon.com Inc ;"Selon les outils utilisés (IA notamment), l’application traite le contenu des e-mails rédigés ! 
+
+ Elle traite aussi les e-mails partagés, certains contacts... ";Usage interdit aux moins de 18 ans.;;;Bloqué;;;
+;SUNO.AI;R;;Nom, adresse e-mail, préférences linguistiques et photo de profil ;"Les données contenues dans les enregistrements sont récoltées par le site. 
+
+";;;Bloqué;;;
+;TAPTOUCHE;V;;;;Contrat particulier;;;;;
+;TEAMVIEWER;;;;;;;;;;
+;THREEMA EDUCATION;V;Suisse;;;Validé par le navigateur EDUCA;;n'existe pas;;;
+;THUNDERBIRD;V;"USA – Californie –
+ Cloudflare Inc ";"Thunderbird collecte le domaine de messagerie et d'autres données techniques pour configurer et configurer le compte de messagerie. Nom, messages électroniques et carnet d'adresses sont stockés localement sur l'appareil et ne lui sont pas envoyées. 
+
+Ne stocke pas votre contenu à partir de l'intégration d'Apple Calendar, Google Calendar ou Microsoft 365 avec Thunderbird. Ces informations restent sur l'appareil. ";;;;autorisé;;;
+;TRIMBLE INC.;O ;USA - Washington- Amazon.com Inc;"Traite : nom, coordonnées, 
+données de l'entreprise (nom, taille, emplacement ), ID d'employé, âge, sexe, niveau d'éducation, profession,
+adresse IP et emplacement géographique
+Informations visuelles et audio, telles que votre image et des informations sur les produits de travail
+Informations sur un appareil que vous utilisez (navigateur, type d'appareil, système d'exploitation, présence ou utilisation d'applications,  résolution d'écran et langue préférée
+Données relatives à votre utilisation et à votre interaction avec les sites, telles que les publicités cliquées ou consultées, les sites et les zones de contenu, la date et l'heure des activités ou la recherche Web utilisée pour localiser et naviguer vers un site.";"Nous pouvons transférer vos données personnelles à des sociétés de notre groupe et à des tiers (par exemple, partenaires commerciaux, revendeurs), des entités acquérantes ou acquises, des fournisseurs de services et, conformément à la loi applicable, des autorités gouvernementales, des tribunaux, des conseillers externes et des tiers similaires. Certains transferts de données peuvent franchir les frontières nationales.
+
+
+
+Les étudiants qui utilisent les produits doivent être âgés de 14 ans minimum. Dans ce cas, les données sont collectées mais ne sont pas utilisées à des fins marketing.";;;;;;
+;VOKAPI (app);O;Irlande;Eleve (qui est le public cible) : adresse e-mail, pseudo et année scolaire, progrès et résultats de jeu;"Consentement des parents nécessaires pour les élèves de moins de 18 ans.
+
+Toutes les données sont supprimées à la suppression du compte.";Veiller à ce que l'élève n'utilise pas son mot de passe edu pour s'inscrire. ;;n'existe pas;;;
+;WAKELET;O;USA – Californie – Amazon.com, Inc ;"Nom, adresse e-mail, préférences linguistiques et photo de profil   
+
+Infos de trafic, localisation, journal, infos techniques liées à l’appareil et au navigateur, cookies ";Utilisation pour les moins de 13 ans interdite par la plateforme sans un compte Education. Autorisation des parents nécessaire. ;"Comme Padlet, création de compteautorisée aux enseignants uniquement. 
+
+Alternatives : voir Padlet. ";;Accès pour personnel scolaire;;;
+;WAYGROUND (anc. QUIZIZZ);O;USA - Californie ;"Nom, adresse e-mail, préférences linguistiques et photo de profil 
+
+N'exige pas que les étudiants soumettent leur nom ou leurs coordonnées, ni qu'ils créent des comptes. Pour créer un compte élève : adresse e-mail, nom/prénom ou pseudo.
+
+Collecte : Modèle de périphérique, système d'exploitation les identifiants de périphérique tels que IDFA et UDID et les informations réseau.
+Informations de journal : comment et quand vous utilisez le service ainsi que votre type de navigateur, votre langue préférée, votre fuseau horaire, le site référent, les heures de connexion et de déconnexion, et adresse du protocole Internet (IP). ";"Les profils et les activités des étudiants au sein de l'application et du service restent privés. Néanmoins Wayground récolte la progression et les résultats des élèves qui possèdent un compte.
+
+Ne vend pas les données mais les utilise pour faire de la publicité et les partage à des tiers.
+
+";"Privilégier une utilisation par l'enseignant sans créer de compte 
+élèves  .
+
+Attention avec les fichiers déposés dans les outils IA.";;Accès pour personnel scolaire;;;
+;WOOCLAP;O;USA – Washington -  Amazon.com, Inc. ;"Inscription : Prénom, Nom de famille, Adresse e-mail, Domaine (éducation, entreprise, agence événementielle), Nom de l’Organisation/Université, Que vous soyez étudiant ou enseignant,
+Pays, Langue 
+
+Pour les enfants (= moins de 16 ans), traite :
+Données personnelles. Par exemple, nom et  adresse email. 
+Attributs, comme le pays et la langue. 
+Données de participation : par exemple les réponses sur Wooclap et les résultats aux questions notées. ";"RGPD EU 
+
+En cas de simple participation à un jeu (événement) : utilisation d’un pseudo, pas de données collectées excepté les résultats 
+
+Les applications ne peuvent en général pas être utilisées par des enfants de moins de 13 ans sans le consentement de leurs parents et/ou de leurs représentants légaux, à moins qu’une telle utilisation ne soit introduite dans un contexte éducatif ou récréatif sous la direction du personnel enseignant  ";"Création de comptes enseignants uniquement. 
+
+ 
+Pour les participations d’élèves aux événements, utiliser des pseudos. ";;Accès pour personnel scolaire;;;
+;WOOFLASH;V;Belgique;;Autorisation parentale requise.;Autorisé pour gérer des donnés personnelles d'élèves d'après le navigateur EDUCA.;;n'existe pas;;;
+;WORDWALL;O;Ontario - Canada;"nom, prénom, adresse e-mail, rôle dans l'école
+
+Les comptes inactifs sont supprimés après 7 ans d'inactivité.";"Pas destiné aux moins de 13 ans.
+
+Attention : en mode d'assignation de ""devoirs"", les noms, scores et réponses des élèves sont collectées. Privilégier un usage sans inscription et sans assignation aux élèves.";Création de comptes enseignants uniquement. ;;n'existe pas;;;
+;ZAPIER Et ZAPIER OUTLOOK;?;Californie - USA;"A l’inscription :  nom, adresse e-mail, société et informations similaires 
+
+Recueille également :
+Contenu ou informations que vous fournissez dans les Services 
+Contenu que vous fournissez par le biais de notre site 
+Informations sur le traitement des paiements 
+Informations techniques, relatives à l’appareil et à la connexion ";"Cadre de protection des données Suisse-États-Unis 
+
+Les Services vous permettent de créer des connexions ou des intégrations entre les applications tierces que vous utilisez. Lorsque vous utilisez les Services, des informations ou du contenu sont transférés d’une application à une autre.  
+
+Lorsque vous intégrez nos Services à une application tierce, les informations que nous recevons dépendent des paramètres, des autorisations et de la Déclaration de confidentialité contrôlés par cette application tierce. ";;;;;;

@@ -2,7 +2,7 @@
  * Types pour le référentiel logiciels CEJEF (source unique)
  */
 
-export type CostType = "Gratuit" | "Payant" | "Financé CEJEF"
+export type CostType = "Gratuit" | "Payant" | "Freemium" | "Financé CEJEF"
 
 export type DataLocation = "Suisse" | "Union Européenne" | "Hors UE" | "CEJEF"
 
