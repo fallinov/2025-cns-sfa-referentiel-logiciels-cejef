@@ -17,6 +17,9 @@ useSeoMeta({
   ogDescription: description,
   twitterCard: "summary_large_image"
 })
+
+// Search functionality
+const searchQuery = ref("")
 </script>
 
 <template>
@@ -37,6 +40,15 @@ useSeoMeta({
             CEJEF
           </span>
         </NuxtLink>
+      </template>
+
+      <template #center>
+        <div class="hidden lg:block w-full max-w-2xl">
+          <SearchBar
+            v-model:search="searchQuery"
+            compact
+          />
+        </div>
       </template>
 
       <template #right>

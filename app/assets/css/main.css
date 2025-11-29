@@ -2,7 +2,9 @@
 @import "@nuxt/ui";
 
 @theme static {
-  --font-sans: "Public Sans", sans-serif;
+  --font-sans: "Inter", sans-serif;
+
+  /* https://coolors.co/121212-f7f7f7-2e7d32-e98325-c62828 */
 
   /* Rouge CEJEF - Remplace la couleur 'red' de Tailwind */
   --color-red-50: #fde8e8;
@@ -31,17 +33,17 @@
   --color-green-950: #0a190a;
 
   /* Orange CEJEF - Remplace la couleur 'orange' de Tailwind */
-  --color-orange-50: #fef3e6;
-  --color-orange-100: #fde7cd;
-  --color-orange-200: #fbcf9b;
-  --color-orange-300: #f9b769;
-  --color-orange-400: #f79f37;
-  --color-orange-500: #f57c00;
-  --color-orange-600: #c76300;
-  --color-orange-700: #994a00;
-  --color-orange-800: #6b3200;
-  --color-orange-900: #3d1900;
-  --color-orange-950: #1f0d00;
+  --color-orange-50: #fef5ec;
+  --color-orange-100: #fdebd9;
+  --color-orange-200: #fbd7b3;
+  --color-orange-300: #f9c38d;
+  --color-orange-400: #f7af67;
+  --color-orange-500: #e98325;
+  --color-orange-600: #ba691e;
+  --color-orange-700: #8b4f16;
+  --color-orange-800: #5c350f;
+  --color-orange-900: #2e1a07;
+  --color-orange-950: #170d04;
 
   /* Émeraude - Pour niveau 1 "Autorisé" */
   --color-emerald-50: #ecfdf5;

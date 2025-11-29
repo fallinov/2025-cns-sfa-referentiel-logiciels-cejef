@@ -2,7 +2,6 @@
  * Types pour le référentiel logiciels CEJEF (source unique)
  */
 
-export type Platform = "web" | "windows" | "mac" | "smartphone" | "tablet"
 export type CostType = "Gratuit" | "Freemium" | "Payant"
 
 /**
@@ -47,19 +46,9 @@ export interface Software {
 
   supportedByCEJEF: boolean
   campusTraining: boolean
-  platforms: Platform[]
   cost: CostType
   price?: string
-  category: string
-  disciplines: string[]
-  activity: string
-  technicalLevel: 1 | 2 | 3
-  accountRequired: boolean
-  languages: string[]
-  licenseType: string
   toolUrl: string
-
-  integrations?: string[]
   documentation?: string
 
   // certificationLevel : null = pas évalué, 1 = ok, 2 = Attention, 3 = Interdit

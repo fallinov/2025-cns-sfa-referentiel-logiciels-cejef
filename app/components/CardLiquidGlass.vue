@@ -15,22 +15,22 @@ const props = withDefaults(defineProps<Props>(), {
 // Configuration des couleurs et labels selon le niveau de certification
 const levelConfig = {
   1: {
-    fill: "text-emerald-700 dark:text-emerald-600",
+    fill: "text-green-500 dark:text-green-600",
     label: "Autorisé",
     icon: "i-lucide-circle-check-big",
-    bg: "bg-emerald-50/10 dark:bg-emerald-950/10"
+    bg: "bg-green-50/10 dark:bg-green-950/10"
   },
   2: {
-    fill: "text-amber-700 dark:text-amber-600",
+    fill: "text-orange-500 dark:text-orange-600",
     label: "Attention",
     icon: "i-lucide-triangle-alert",
-    bg: "bg-amber-50/10 dark:bg-amber-950/10"
+    bg: "bg-orange-50/10 dark:bg-orange-950/10"
   },
   3: {
-    fill: "text-rose-700 dark:text-rose-600",
+    fill: "text-red-500 dark:text-red-600",
     label: "Interdit",
     icon: "i-lucide-circle-x",
-    bg: "bg-rose-50/10 dark:bg-rose-950/10"
+    bg: "bg-red-50/10 dark:bg-red-950/10"
   }
 }
 
@@ -145,15 +145,6 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
         >
           {{ software.name }}
         </h3>
-        <p
-          :class="[
-            'font-semibold uppercase tracking-wider transition-colors duration-300',
-            compact ? 'text-xs' : 'text-sm'
-          ]"
-          class="text-gray-700 dark:text-gray-300 group-hover:text-white/90 group-focus:text-white/90"
-        >
-          {{ software.category }}
-        </p>
       </div>
 
       <!-- Description (hidden in compact mode) -->

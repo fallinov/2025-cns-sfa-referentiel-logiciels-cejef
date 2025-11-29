@@ -95,7 +95,7 @@ export default defineNuxtConfig({
   fonts: {
     families: [
       {
-        name: "Public Sans", // Police principale CEJEF
+        name: "Inter", // Police principale CEJEF
         provider: "google" // Chargée depuis Google Fonts
       }
     ]
