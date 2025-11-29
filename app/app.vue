@@ -40,10 +40,7 @@ useSeoMeta({
       </template>
 
       <template #right>
-        <div class="flex items-center gap-3">
-          <SoftwareCommandPalette />
-          <UColorModeButton />
-        </div>
+        <UColorModeButton />
       </template>
     </UHeader>
 

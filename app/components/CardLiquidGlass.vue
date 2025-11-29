@@ -4,34 +4,33 @@ import type { Software } from "~~/types/software"
 interface Props {
   software: Software
   shape?: "slant" | "curve" | "arrow"
+  compact?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  shape: "curve"
+  shape: "curve",
+  compact: false
 })
-
-// Composable pour gérer l'ouverture du détail
-const { openDetail } = useSoftware()
 
 // Configuration des couleurs et labels selon le niveau de certification
 const levelConfig = {
   1: {
-    fill: "text-emerald-600",
+    fill: "text-green-500 dark:text-green-600",
     label: "Autorisé",
     icon: "i-lucide-circle-check-big",
-    bg: "bg-emerald-50/10 dark:bg-emerald-950/10"
+    bg: "bg-green-50/10 dark:bg-green-950/10"
   },
   2: {
-    fill: "text-amber-600",
+    fill: "text-orange-500 dark:text-orange-600",
     label: "Attention",
     icon: "i-lucide-triangle-alert",
-    bg: "bg-amber-50/10 dark:bg-amber-950/10"
+    bg: "bg-orange-50/10 dark:bg-orange-950/10"
   },
   3: {
-    fill: "text-rose-600",
+    fill: "text-red-500 dark:text-red-600",
     label: "Interdit",
     icon: "i-lucide-circle-x",
-    bg: "bg-rose-50/10 dark:bg-rose-950/10"
+    bg: "bg-red-50/10 dark:bg-red-950/10"
   }
 }
 
@@ -59,29 +58,28 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
 </script>
 
 <template>
-  <div
-    tabindex="0"
-    role="button"
+  <NuxtLink
+    :to="`/logiciels/${software.id}`"
     :class="[
-      'group relative flex flex-col h-full transition-all duration-500 hover:-translate-y-2',
-      'outline-none focus-visible:ring-4 focus-visible:ring-blue-500/40',
-      'rounded-[24px] overflow-hidden cursor-pointer',
+      'group relative flex flex-col h-full transition-all duration-500 block',
+      compact ? 'hover:-translate-y-1' : 'hover:-translate-y-2',
+      'outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 focus-visible:ring-offset-2',
+      compact ? 'rounded-xl' : 'rounded-[24px]',
+      'overflow-hidden',
       config.bg,
-      'bg-gradient-to-b from-white/20 via-white/5 to-transparent dark:from-white/5 dark:via-white/0 dark:to-transparent',
+      'bg-gradient-to-b from-white/40 via-white/15 to-transparent dark:from-white/10 dark:via-white/5 dark:to-transparent',
       'backdrop-blur-2xl',
       'ring-1 ring-inset ring-white/50 dark:ring-white/10',
       'shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]'
     ]"
-    @click="openDetail(software)"
-    @keydown.enter="openDetail(software)"
-    @keydown.space.prevent="openDetail(software)"
+    :aria-label="`Voir les détails de ${software.name} - ${config.label}`"
   >
     <!-- Liquid Background Wrapper -->
     <div
       :class="[
         'absolute top-0 left-0 w-full z-0 flex flex-col transition-all duration-700 ease-in-out',
         config.fill,
-        'h-[140px] group-hover:h-[140%] group-focus:h-[140%]'
+        compact ? 'h-[80px] group-hover:h-[120%] group-focus:h-[120%]' : 'h-[140px] group-hover:h-[140%] group-focus:h-[140%]'
       ]"
     >
       <!-- Solid Top Part -->
@@ -101,18 +99,18 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
     </div>
 
     <!-- Header Badge -->
-    <div class="absolute top-5 right-6 z-20">
-      <LiquidBadge force-white size="md">
+    <div :class="compact ? 'absolute top-3 right-4 z-20' : 'absolute top-5 right-6 z-20'">
+      <LiquidBadge force-white :size="compact ? 'sm' : 'md'">
         <template #leading>
-          <UIcon :name="config.icon" class="w-5 h-5" />
+          <UIcon :name="config.icon" :class="compact ? 'w-4 h-4' : 'w-5 h-5'" />
         </template>
         {{ config.label }}
       </LiquidBadge>
     </div>
 
     <!-- Large Icon/Logo in Header -->
-    <div class="absolute top-6 left-6 z-20">
-      <div class="w-16 h-16 flex items-center justify-start">
+    <div :class="compact ? 'absolute top-3 left-4 z-20' : 'absolute top-6 left-6 z-20'">
+      <div :class="compact ? 'w-10 h-10' : 'w-16 h-16'" class="flex items-center justify-start">
         <img
           v-if="software.logo"
           :src="`/logos/${software.logo}.svg`"
@@ -122,65 +120,67 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
         <UIcon
           v-else-if="software.icon"
           :name="software.icon"
-          class="w-16 h-16 text-white drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
+          :class="compact ? 'w-10 h-10' : 'w-16 h-16'"
+          class="text-white drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
         />
         <span
           v-else
-          class="text-white font-black text-4xl drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
+          :class="compact ? 'text-2xl' : 'text-4xl'"
+          class="text-white font-black drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
         >
           {{ initials }}
         </span>
       </div>
     </div>
 
-    <div class="p-7 flex flex-col h-full relative z-10">
+    <div :class="compact ? 'p-4' : 'p-7'" class="flex flex-col h-full relative z-10">
       <!-- Title Section -->
-      <div class="mb-6 mt-28 flex flex-col gap-1">
+      <div :class="compact ? 'mb-3 mt-14' : 'mb-6 mt-28'" class="flex flex-col gap-1">
         <h3
-          class="font-bold text-2xl text-slate-900 dark:text-white group-hover:text-white group-focus:text-white tracking-tight drop-shadow-sm transition-colors duration-300"
+          :class="[
+            'font-bold tracking-tight transition-colors duration-300',
+            compact ? 'text-lg' : 'text-2xl'
+          ]"
+          class="text-gray-900 dark:text-white group-hover:text-white group-focus:text-white drop-shadow-sm"
         >
           {{ software.name }}
         </h3>
-        <p
-          class="text-sm font-extrabold uppercase tracking-widest text-slate-600 dark:text-slate-400 group-hover:text-white group-focus:text-white transition-colors duration-300"
-        >
-          {{ software.category }}
-        </p>
       </div>
 
-      <!-- Description -->
+      <!-- Description (hidden in compact mode) -->
       <p
-        class="text-base font-medium text-slate-700 dark:text-slate-300 group-hover:text-white group-focus:text-white mb-8 leading-relaxed flex-grow transition-colors duration-300"
+        v-if="!compact"
+        class="text-base font-normal mb-8 leading-relaxed flex-grow transition-colors duration-300 text-gray-800 dark:text-gray-200 group-hover:text-white/95 group-focus:text-white/95"
       >
         {{ software.shortDescription }}
       </p>
 
       <!-- Footer items -->
-      <div class="mt-auto flex flex-wrap gap-3">
+      <div :class="compact ? 'mt-auto flex flex-wrap gap-2' : 'mt-auto flex flex-wrap gap-3'">
         <!-- Badge Coût -->
-        <LiquidBadge size="md">
+        <LiquidBadge :size="compact ? 'sm' : 'md'">
           <template #leading>
-            <UIcon name="i-lucide-wallet" class="w-5 h-5" />
+            <UIcon :class="compact ? 'w-4 h-4' : 'w-5 h-5'" name="i-lucide-wallet" />
           </template>
           {{ software.cost }}
         </LiquidBadge>
 
         <!-- Badge Support CEJEF -->
-        <LiquidBadge v-if="software.supportedByCEJEF" size="md">
+        <LiquidBadge v-if="software.supportedByCEJEF && !compact" :size="compact ? 'sm' : 'md'">
           <template #leading>
-            <UIcon name="i-lucide-headphones" class="w-5 h-5" />
+            <UIcon :class="compact ? 'w-4 h-4' : 'w-5 h-5'" name="i-lucide-headphones" />
           </template>
           Support
         </LiquidBadge>
 
         <!-- Badge Formation -->
-        <LiquidBadge v-if="software.campusTraining" size="md">
+        <LiquidBadge v-if="software.campusTraining && !compact" :size="compact ? 'sm' : 'md'">
           <template #leading>
-            <UIcon name="i-lucide-graduation-cap" class="w-5 h-5" />
+            <UIcon :class="compact ? 'w-4 h-4' : 'w-5 h-5'" name="i-lucide-graduation-cap" />
           </template>
           Formation
         </LiquidBadge>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>

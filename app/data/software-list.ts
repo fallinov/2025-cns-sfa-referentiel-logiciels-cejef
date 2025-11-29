@@ -1,490 +1,3169 @@
 import type { Software } from "~~/types/software"
 
 /**
- * Liste des logiciels pédagogiques du référentiel CEJEF
+ * Liste complète des logiciels du référentiel CEJEF
+ * Générée automatiquement à partir des données CSV
  *
- * Note: Les données category, disciplines et activity font référence aux IDs
- * des fichiers categories.ts, disciplines.ts et activities.ts
- * Ces données seront migrées vers Directus
+ * Niveaux de certification LGPD:
+ * - Niveau 1 (Vert): Usage autorisé
+ * - Niveau 2 (Orange): Usage avec précautions
+ * - Niveau 3 (Rouge): Usage interdit
  */
 export const softwareList: Software[] = [
   {
-    id: "1",
-    name: "Kahoot!",
+    id: "18ca251f-af65-4f2c-9c3c-3a7518b2a855",
+    name: "ADOBE ACROBAT",
     logo: null,
-    icon: "i-simple-icons-kahoot",
-    shortDescription:
-      "Plateforme de quiz interactifs pour évaluations formatives et gamification de l'apprentissage en temps réel.",
-    lgpd: {
-      hosting: 1,
-      rgpd: 1,
-      dataCollection: 1
-    },
-    personalData: true,
-    supportedByCEJEF: true,
-    campusTraining: true,
-    platforms: ["web", "smartphone"],
-    cost: "Freemium",
-    category: "quiz",
-    disciplines: ["transversal"],
-    activity: "evaluation-formative",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en", "de"],
-    licenseType: "Freemium",
-    toolUrl: "https://kahoot.com",
-    integrations: ["Moodle", "Teams"],
-    documentation: "https://support.kahoot.com",
-    certificationLevel: 1
-  },
-  {
-    id: "2",
-    name: "Padlet",
-    logo: null,
-    icon: "i-simple-icons-padlet",
-    shortDescription:
-      "Tableau blanc collaboratif pour brainstorming, collecte d'idées et travaux de groupe asynchrones.",
-    lgpd: {
-      hosting: 1,
-      rgpd: 1,
-      dataCollection: 2
-    },
-    personalData: true,
-    supportedByCEJEF: true,
-    campusTraining: false,
-    platforms: ["web", "smartphone", "tablet"],
-    cost: "Freemium",
-    category: "collaboration",
-    disciplines: ["transversal"],
-    activity: "travail-collaboratif",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en"],
-    licenseType: "Freemium",
-    toolUrl: "https://padlet.com",
-    documentation: "https://help.padlet.com",
-    certificationLevel: 2
-  },
-  {
-    id: "3",
-    name: "Canva",
-    logo: null,
-    icon: "i-simple-icons-canva",
-    shortDescription:
-      "Outil de création graphique pour infographies, présentations et supports visuels professionnels.",
+    icon: "i-simple-icons-adobe",
+    shortDescription: "Logiciel de lecture et création de documents PDF professionnels",
     lgpd: {
       hosting: 2,
       rgpd: 2,
       dataCollection: 2
     },
-    personalData: true,
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
-    platforms: ["web", "windows", "mac"],
-    cost: "Freemium",
-    category: "design",
-    disciplines: ["transversal", "arts"],
-    activity: "creation-contenu",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en", "de"],
-    licenseType: "Freemium",
-    toolUrl: "https://canva.com",
-    certificationLevel: 2
+    cost: "Payant",
+    toolUrl: "https://www.adobe.com/acrobat.html",
+    targetAudience: "tous",
+    categories: [
+      "Bureautique",
+      "PDF",
+      "Documentation"
+    ],
+    pedagogicalActivities: [
+      "Lecture de documents",
+      "Annotation de textes",
+      "Création de formulaires",
+      "Signature électronique"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
   },
   {
-    id: "4",
-    name: "H5P",
-    logo: "h5p",
-    icon: null,
-    shortDescription:
-      "Création de contenus interactifs intégrables dans Moodle : vidéos enrichies, quiz, présentations.",
-    lgpd: {
-      hosting: 1,
-      rgpd: 1,
-      dataCollection: 1
-    },
-    personalData: true,
-    supportedByCEJEF: true,
-    campusTraining: true,
-    platforms: ["web"],
-    cost: "Gratuit",
-    category: "interactif",
-    disciplines: ["transversal"],
-    activity: "creation-contenu",
-    technicalLevel: 2,
-    accountRequired: false,
-    languages: ["fr", "en"],
-    licenseType: "Open source",
-    toolUrl: "https://h5p.org",
-    integrations: ["Moodle"],
-    certificationLevel: 1
-  },
-  {
-    id: "5",
-    name: "TikTok",
+    id: "aa4c7076-00ac-43eb-a4fb-232af8579fc3",
+    name: "ATLASSIAN (JIRA, CONFLUENCE, TRELLO)",
     logo: null,
-    icon: "i-simple-icons-tiktok",
-    shortDescription:
-      "Plateforme de partage vidéo. Hébergement hors-UE avec collecte extensive de données. Non conforme LGPD.",
+    icon: "i-simple-icons-atlassian",
+    shortDescription: "Suite d'outils de gestion de projets et de collaboration",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.atlassian.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Gestion de projet",
+      "Collaboration",
+      "Organisation"
+    ],
+    pedagogicalActivities: [
+      "Gestion de tâches",
+      "Documentation collaborative",
+      "Suivi de projets"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "e113ceed-d8a1-426c-8dd3-e300df4c8abf",
+    name: "AZENDOO (app)",
+    logo: null,
+    icon: "i-lucide-layout-dashboard",
+    shortDescription: "Application de gestion de tâches et projets",
     lgpd: {
       hosting: 3,
       rgpd: 3,
       dataCollection: 3
     },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
     personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
-    platforms: ["smartphone", "tablet"],
-    cost: "Gratuit",
-    category: "video",
-    disciplines: ["arts", "communication"],
-    activity: "creation-contenu",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en"],
-    licenseType: "Gratuit",
-    toolUrl: "https://tiktok.com",
-    certificationLevel: 3
-  },
-  {
-    id: "6",
-    name: "Moodle",
-    logo: null,
-    icon: "i-simple-icons-moodle",
-    shortDescription:
-      "Plateforme d'apprentissage en ligne (LMS) open source. Hébergement CEJEF, données sécurisées localement.",
-    lgpd: {
-      hosting: 1,
-      rgpd: 1,
-      dataCollection: 1
-    },
-    personalData: true,
-    supportedByCEJEF: true,
-    campusTraining: true,
-    platforms: ["web"],
-    cost: "Gratuit",
-    category: "lms",
-    disciplines: ["transversal"],
-    activity: "gestion-cours",
-    technicalLevel: 2,
-    accountRequired: true,
-    languages: ["fr", "en", "de"],
-    licenseType: "Open source",
-    toolUrl: "https://moodle.org",
-    integrations: ["H5P", "BigBlueButton"],
-    documentation: "https://docs.moodle.org",
-    certificationLevel: 1
-  },
-  {
-    id: "7",
-    name: "Microsoft Teams",
-    logo: null,
-    icon: "i-simple-icons-microsoftteams",
-    shortDescription:
-      "Plateforme de communication et collaboration pour classes virtuelles, réunions et travail d'équipe.",
-    lgpd: {
-      hosting: 1,
-      rgpd: 1,
-      dataCollection: 2
-    },
-    personalData: true,
-    supportedByCEJEF: true,
-    campusTraining: true,
-    platforms: ["web", "windows", "mac", "smartphone", "tablet"],
     cost: "Freemium",
-    category: "communication",
-    disciplines: ["transversal"],
-    activity: "communication",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en", "de"],
-    licenseType: "Freemium",
-    toolUrl: "https://teams.microsoft.com",
-    integrations: ["Office 365", "OneDrive"],
-    documentation: "https://support.microsoft.com/teams",
-    certificationLevel: 1
+    toolUrl: "https://www.azendoo.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Gestion de projet",
+      "Organisation"
+    ],
+    pedagogicalActivities: [
+      "Gestion de tâches",
+      "Collaboration"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
   },
   {
-    id: "8",
-    name: "Notion",
+    id: "ec266878-5ca5-4cac-9b91-4a27a3649ff8",
+    name: "BABBEL",
     logo: null,
-    icon: "i-simple-icons-notion",
-    shortDescription:
-      "Espace de travail tout-en-un pour notes, documentation, bases de données et gestion de projets collaboratifs.",
+    icon: "i-lucide-languages",
+    shortDescription: "Plateforme d'apprentissage des langues en ligne",
     lgpd: {
-      hosting: 2,
-      rgpd: 2,
-      dataCollection: 2
-    },
-    personalData: true,
-    supportedByCEJEF: false,
-    campusTraining: false,
-    platforms: ["web", "windows", "mac", "smartphone", "tablet"],
-    cost: "Freemium",
-    category: "productivite",
-    disciplines: ["transversal"],
-    activity: "organisation",
-    technicalLevel: 2,
-    accountRequired: true,
-    languages: ["fr", "en"],
-    licenseType: "Freemium",
-    toolUrl: "https://notion.so",
-    documentation: "https://notion.so/help",
-    certificationLevel: 2
-  },
-  {
-    id: "9",
-    name: "Figma",
-    logo: null,
-    icon: "i-simple-icons-figma",
-    shortDescription:
-      "Outil de design collaboratif pour maquettes, prototypes et interfaces utilisateur en temps réel.",
-    lgpd: {
-      hosting: 2,
-      rgpd: 2,
-      dataCollection: 2
-    },
-    personalData: true,
-    supportedByCEJEF: false,
-    campusTraining: false,
-    platforms: ["web", "windows", "mac"],
-    cost: "Freemium",
-    category: "design",
-    disciplines: ["arts", "informatique"],
-    activity: "creation-contenu",
-    technicalLevel: 2,
-    accountRequired: true,
-    languages: ["en"],
-    licenseType: "Freemium",
-    toolUrl: "https://figma.com",
-    documentation: "https://help.figma.com",
-    certificationLevel: 2
-  },
-  {
-    id: "10",
-    name: "Quizlet",
-    logo: null,
-    icon: "i-simple-icons-quizlet",
-    shortDescription:
-      "Plateforme de cartes mémoire (flashcards) pour révisions et mémorisation active avec jeux éducatifs.",
-    lgpd: {
-      hosting: 2,
-      rgpd: 2,
-      dataCollection: 2
-    },
-    personalData: true,
-    supportedByCEJEF: false,
-    campusTraining: false,
-    platforms: ["web", "smartphone", "tablet"],
-    cost: "Freemium",
-    category: "quiz",
-    disciplines: ["transversal"],
-    activity: "revision",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en", "de"],
-    licenseType: "Freemium",
-    toolUrl: "https://quizlet.com",
-    certificationLevel: 2
-  },
-  {
-    id: "11",
-    name: "Genially",
-    logo: null,
-    icon: null,
-    shortDescription:
-      "Création de présentations interactives, infographies animées et contenus visuels engageants.",
-    lgpd: {
-      hosting: 1,
-      rgpd: 1,
-      dataCollection: 1
-    },
-    personalData: true,
-    supportedByCEJEF: false,
-    campusTraining: false,
-    platforms: ["web"],
-    cost: "Freemium",
-    category: "presentation",
-    disciplines: ["transversal"],
-    activity: "creation-contenu",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en", "de"],
-    licenseType: "Freemium",
-    toolUrl: "https://genial.ly",
-    documentation: "https://help.genial.ly",
-    certificationLevel: 1
-  },
-  {
-    id: "12",
-    name: "Wooclap",
-    logo: null,
-    icon: null,
-    shortDescription:
-      "Outil d'interaction en classe pour sondages, quiz et questions en temps réel durant les cours.",
-    lgpd: {
-      hosting: 1,
-      rgpd: 1,
-      dataCollection: 1
-    },
-    personalData: true,
-    supportedByCEJEF: true,
-    campusTraining: true,
-    platforms: ["web", "smartphone"],
-    cost: "Freemium",
-    category: "interaction",
-    disciplines: ["transversal"],
-    activity: "evaluation-formative",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en", "de"],
-    licenseType: "Freemium",
-    toolUrl: "https://wooclap.com",
-    integrations: ["Moodle", "Teams", "PowerPoint"],
-    documentation: "https://wooclap.com/help",
-    certificationLevel: 1
-  },
-  {
-    id: "13",
-    name: "Mentimeter",
-    logo: null,
-    icon: null,
-    shortDescription:
-      "Présentations interactives avec sondages en direct, nuages de mots et quiz pour engager l'audience.",
-    lgpd: {
-      hosting: 1,
-      rgpd: 1,
-      dataCollection: 1
-    },
-    personalData: true,
-    supportedByCEJEF: false,
-    campusTraining: false,
-    platforms: ["web", "smartphone"],
-    cost: "Freemium",
-    category: "interaction",
-    disciplines: ["transversal"],
-    activity: "evaluation-formative",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en", "de"],
-    licenseType: "Freemium",
-    toolUrl: "https://mentimeter.com",
-    documentation: "https://help.mentimeter.com",
-    certificationLevel: 1
-  },
-  {
-    id: "14",
-    name: "Edpuzzle",
-    logo: null,
-    icon: null,
-    shortDescription:
-      "Enrichissement de vidéos avec questions intégrées pour l'apprentissage actif et le suivi des élèves.",
-    lgpd: {
-      hosting: 2,
-      rgpd: 2,
-      dataCollection: 2
-    },
-    personalData: true,
-    supportedByCEJEF: false,
-    campusTraining: false,
-    platforms: ["web", "smartphone", "tablet"],
-    cost: "Freemium",
-    category: "video",
-    disciplines: ["transversal"],
-    activity: "apprentissage-actif",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en", "de"],
-    licenseType: "Freemium",
-    toolUrl: "https://edpuzzle.com",
-    integrations: ["Google Classroom", "Teams"],
-    documentation: "https://support.edpuzzle.com",
-    certificationLevel: 2
-  },
-  {
-    id: "15",
-    name: "Google Workspace",
-    logo: null,
-    icon: "i-simple-icons-google",
-    shortDescription:
-      "Suite bureautique collaborative : Docs, Sheets, Slides, Drive pour travail en ligne et partage.",
-    lgpd: {
-      hosting: 2,
-      rgpd: 2,
-      dataCollection: 3
-    },
-    personalData: true,
-    supportedByCEJEF: false,
-    campusTraining: false,
-    platforms: ["web", "smartphone", "tablet"],
-    cost: "Freemium",
-    category: "bureautique",
-    disciplines: ["transversal"],
-    activity: "travail-collaboratif",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en", "de"],
-    licenseType: "Freemium",
-    toolUrl: "https://workspace.google.com",
-    integrations: ["Classroom", "Meet"],
-    documentation: "https://support.google.com/workspace",
-    certificationLevel: 3
-  },
-  {
-    id: "16",
-    name: "Framapad",
-    logo: null,
-    icon: null,
-    shortDescription:
-      "Éditeur de texte collaboratif en temps réel, open source, respectueux de la vie privée. Hébergement FR.",
-    lgpd: {
-      hosting: 1,
-      rgpd: 1,
-      dataCollection: 1
-    },
-    personalData: true,
-    supportedByCEJEF: false,
-    campusTraining: false,
-    platforms: ["web"],
-    cost: "Gratuit",
-    category: "collaboration",
-    disciplines: ["transversal"],
-    activity: "travail-collaboratif",
-    technicalLevel: 1,
-    accountRequired: false,
-    languages: ["fr", "en"],
-    licenseType: "Open source",
-    toolUrl: "https://framapad.org",
-    documentation: "https://framapad.org/abc/fr/",
-    certificationLevel: 1
-  },
-  {
-    id: "17",
-    name: "ChatGPT",
-    logo: null,
-    icon: "i-simple-icons-openai",
-    shortDescription:
-      "Assistant IA conversationnel pour aide à la rédaction, brainstorming et apprentissage personnalisé.",
-    lgpd: {
-      hosting: 2,
+      hosting: 3,
       rgpd: 3,
       dataCollection: 3
     },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
     personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
-    platforms: ["web", "smartphone"],
+    cost: "Payant",
+    toolUrl: "https://www.babbel.com",
+    targetAudience: "tous",
+    categories: [
+      "Langues",
+      "Apprentissage",
+      "E-learning"
+    ],
+    pedagogicalActivities: [
+      "Exercices de vocabulaire",
+      "Compréhension orale",
+      "Expression écrite"
+    ],
+    disciplines: [
+      "Langues"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "0fa52ff2-e168-43b0-8616-1aca1931d6b3",
+    name: "BDnF (Application)",
+    logo: null,
+    icon: "i-lucide-book-open",
+    shortDescription: "Bibliothèque numérique francophone - BnF",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Union Européenne",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://bdnf.bnf.fr",
+    targetAudience: "tous",
+    categories: [
+      "Lecture",
+      "Ressources pédagogiques",
+      "Culture"
+    ],
+    pedagogicalActivities: [
+      "Lecture numérique",
+      "Recherche documentaire"
+    ],
+    disciplines: [
+      "Français",
+      "Culture générale"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "834621e9-e59c-47eb-88d9-93b015f03210",
+    name: "BLINKLEARNING",
+    logo: null,
+    icon: "i-lucide-book-open-text",
+    shortDescription: "Plateforme de manuels scolaires numériques",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://www.blinklearning.com",
+    targetAudience: "tous",
+    categories: [
+      "Manuels numériques",
+      "E-learning",
+      "Ressources pédagogiques"
+    ],
+    pedagogicalActivities: [
+      "Lecture de manuels",
+      "Exercices interactifs"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "d76a40b1-9759-4515-ae81-0c99c08ba0f2",
+    name: "BLUEMAIL",
+    logo: null,
+    icon: "i-lucide-mail",
+    shortDescription: "Client de messagerie multicompte",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://www.bluemail.me",
+    targetAudience: "enseignants",
+    categories: [
+      "Communication",
+      "Messagerie",
+      "Bureautique"
+    ],
+    pedagogicalActivities: [
+      "Gestion d'emails",
+      "Organisation"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "37706271-2113-4c98-95f2-14fa657e4632",
+    name: "BOOK CREATOR",
+    logo: null,
+    icon: "i-lucide-book-plus",
+    shortDescription: "Outil de création de livres numériques interactifs",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
     cost: "Freemium",
-    category: "ia",
-    disciplines: ["transversal"],
-    activity: "assistance",
-    technicalLevel: 1,
-    accountRequired: true,
-    languages: ["fr", "en", "de"],
-    licenseType: "Freemium",
-    toolUrl: "https://chat.openai.com",
-    documentation: "https://help.openai.com",
-    certificationLevel: 3
+    toolUrl: "https://bookcreator.com",
+    targetAudience: "tous",
+    categories: [
+      "Création de contenu",
+      "Livres numériques",
+      "Multimédia"
+    ],
+    pedagogicalActivities: [
+      "Création de livres",
+      "Écriture créative",
+      "Publication numérique"
+    ],
+    disciplines: [
+      "Français",
+      "Arts",
+      "Langues"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "6ac7cdb5-ddc5-4ff7-8690-1a37fd45d4d0",
+    name: "BOOKILI",
+    logo: null,
+    icon: "i-lucide-library",
+    shortDescription: "Bibliothèque numérique pour l'apprentissage de la lecture",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://www.bookili.com",
+    targetAudience: "élèves",
+    categories: [
+      "Lecture",
+      "Apprentissage",
+      "Français"
+    ],
+    pedagogicalActivities: [
+      "Lecture guidée",
+      "Compréhension de textes"
+    ],
+    disciplines: [
+      "Français"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "2144076e-5baf-48ab-9800-12a94ccf9a6e",
+    name: "CALENDLY",
+    logo: null,
+    icon: "i-lucide-calendar-check",
+    shortDescription: "Outil de planification de rendez-vous",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://calendly.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Organisation",
+      "Planification",
+      "Communication"
+    ],
+    pedagogicalActivities: [
+      "Gestion d'agenda",
+      "Prise de rendez-vous"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "667a2870-5dc1-40ec-90ec-4ae2a4a830e6",
+    name: "CALENGOO",
+    logo: null,
+    icon: "i-lucide-calendar",
+    shortDescription: "Application de calendrier et gestion d'agenda",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://calengoo.com",
+    targetAudience: "tous",
+    categories: [
+      "Organisation",
+      "Calendrier",
+      "Productivité"
+    ],
+    pedagogicalActivities: [
+      "Gestion d'agenda",
+      "Planification"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "440e0fb1-b020-48b2-9564-6335952216f7",
+    name: "CANVA",
+    logo: null,
+    icon: "i-simple-icons-canva",
+    shortDescription: "Outil de création graphique et design en ligne",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: null,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.canva.com",
+    targetAudience: "tous",
+    categories: [
+      "Design",
+      "Création de contenu",
+      "Multimédia"
+    ],
+    pedagogicalActivities: [
+      "Création de présentations",
+      "Design de documents",
+      "Création d'affiches"
+    ],
+    disciplines: [
+      "Arts",
+      "Communication",
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "3a7e831b-e2e5-436a-8961-5223912fbfbe",
+    name: "CAPCUT",
+    logo: null,
+    icon: "i-lucide-film",
+    shortDescription: "Éditeur vidéo mobile et desktop",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://www.capcut.com",
+    targetAudience: "tous",
+    categories: [
+      "Montage vidéo",
+      "Multimédia",
+      "Création de contenu"
+    ],
+    pedagogicalActivities: [
+      "Édition vidéo",
+      "Création de contenus multimédias"
+    ],
+    disciplines: [
+      "Arts",
+      "Communication"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "ca2f13c1-67e2-485a-a3d8-f2613cec0fb2",
+    name: "CARD2BRAIN",
+    logo: null,
+    icon: "i-lucide-brain",
+    shortDescription: "Plateforme de cartes mémo (flashcards) pour l'apprentissage",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://card2brain.ch",
+    targetAudience: "tous",
+    categories: [
+      "Mémorisation",
+      "Apprentissage",
+      "Révision"
+    ],
+    pedagogicalActivities: [
+      "Création de flashcards",
+      "Révision",
+      "Mémorisation"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "6735e3fc-91c1-4eb9-8330-097e9e27479f",
+    name: "CLARO SPEAK PLUS iOS et CLARO PDF PRO iOS",
+    logo: null,
+    icon: "i-lucide-ear",
+    shortDescription: "Outils d'accessibilité pour la lecture et l'écriture",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://www.clarosoftware.com",
+    targetAudience: "élèves",
+    categories: [
+      "Accessibilité",
+      "Lecture",
+      "Aide à l'apprentissage"
+    ],
+    pedagogicalActivities: [
+      "Lecture assistée",
+      "Aide à la compréhension"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "2de92a52-37df-4db4-9351-fedd06c34ae9",
+    name: "CLASSCRAFT",
+    logo: null,
+    icon: "i-lucide-gamepad-2",
+    shortDescription: "Plateforme de gamification de la classe",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.classcraft.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Gamification",
+      "Gestion de classe",
+      "Motivation"
+    ],
+    pedagogicalActivities: [
+      "Gestion de comportement",
+      "Motivation des élèves"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "9908a75e-d308-4906-a1a1-0ecd7198a106",
+    name: "CLASSROOMSCREEN",
+    logo: null,
+    icon: "i-lucide-presentation",
+    shortDescription: "Tableau de bord numérique pour la gestion de classe",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.classroomscreen.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Gestion de classe",
+      "Outils de présentation"
+    ],
+    pedagogicalActivities: [
+      "Gestion du temps",
+      "Affichage d'informations",
+      "Organisation de classe"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "cbe3ff10-47f4-4ea2-b2b7-f9ff2d9f46b2",
+    name: "CLASSTIME",
+    logo: null,
+    icon: "i-lucide-school",
+    shortDescription: "Plateforme d'évaluation formative en temps réel",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Suisse",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.classtime.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Évaluation",
+      "Quiz",
+      "Feedback"
+    ],
+    pedagogicalActivities: [
+      "Création de quiz",
+      "Évaluation formative",
+      "Suivi des progrès"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "75c98a49-1412-43f9-8289-796d5a721094",
+    name: "CODE.ORG",
+    logo: null,
+    icon: "i-lucide-code",
+    shortDescription: "Plateforme d'apprentissage de la programmation",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://code.org",
+    targetAudience: "élèves",
+    categories: [
+      "Programmation",
+      "Informatique",
+      "STEM"
+    ],
+    pedagogicalActivities: [
+      "Initiation au code",
+      "Programmation par blocs",
+      "Création de jeux"
+    ],
+    disciplines: [
+      "Informatique",
+      "Mathématiques"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "5397c8ab-98e5-4036-b2a2-f794e8f4f3ab",
+    name: "DICTALY",
+    logo: null,
+    icon: "i-lucide-pen-tool",
+    shortDescription: "Plateforme de dictées en ligne interactives",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://dictaly.com",
+    targetAudience: "tous",
+    categories: [
+      "Orthographe",
+      "Français",
+      "Évaluation"
+    ],
+    pedagogicalActivities: [
+      "Dictées en ligne",
+      "Entraînement orthographique"
+    ],
+    disciplines: [
+      "Français"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "b34a34cb-3c48-432b-9c25-964656c2e78c",
+    name: "DOODLE",
+    logo: null,
+    icon: "i-lucide-calendar-days",
+    shortDescription: "Outil de planification collaborative de réunions",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://doodle.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Organisation",
+      "Planification",
+      "Collaboration"
+    ],
+    pedagogicalActivities: [
+      "Sondages de disponibilité",
+      "Planification de réunions"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "8aef2c08-7f58-40e9-85b2-1d5e971d8feb",
+    name: "DRIVE INFOMANIAK",
+    logo: null,
+    icon: "i-lucide-hard-drive",
+    shortDescription: "Solution de stockage cloud suisse sécurisée",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: true,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.infomaniak.com/kdrive",
+    targetAudience: "tous",
+    categories: [
+      "Stockage cloud",
+      "Collaboration",
+      "Bureautique"
+    ],
+    pedagogicalActivities: [
+      "Stockage de fichiers",
+      "Partage de documents",
+      "Collaboration"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "c2fb036a-44ae-4eb5-a408-5e10ce96f873",
+    name: "DRUIDE, ANTIDOTE",
+    logo: null,
+    icon: "i-lucide-spell-check",
+    shortDescription: "Correcteur orthographique et grammatical avancé",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: true,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://www.antidote.info",
+    targetAudience: "tous",
+    categories: [
+      "Orthographe",
+      "Grammaire",
+      "Rédaction"
+    ],
+    pedagogicalActivities: [
+      "Correction de textes",
+      "Aide à la rédaction",
+      "Enrichissement du vocabulaire"
+    ],
+    disciplines: [
+      "Français",
+      "Langues"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "c2c9f76d-0d3f-42a4-8f7a-13d977d9e109",
+    name: "DUOLINGO",
+    logo: null,
+    icon: "i-simple-icons-duolingo",
+    shortDescription: "Application d'apprentissage des langues gamifiée",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.duolingo.com",
+    targetAudience: "tous",
+    categories: [
+      "Langues",
+      "Apprentissage",
+      "Gamification"
+    ],
+    pedagogicalActivities: [
+      "Exercices de vocabulaire",
+      "Grammaire",
+      "Compréhension orale"
+    ],
+    disciplines: [
+      "Langues"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "9f704229-c096-45d1-a6d4-dae9f8bed6ab",
+    name: "DYNAMILIS",
+    logo: null,
+    icon: "i-lucide-activity",
+    shortDescription: "Plateforme d'exercices physiques et sportifs",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Suisse",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://dynamilis.ch",
+    targetAudience: "tous",
+    categories: [
+      "Sport",
+      "Santé",
+      "Activité physique"
+    ],
+    pedagogicalActivities: [
+      "Exercices physiques",
+      "Programmes d'entraînement"
+    ],
+    disciplines: [
+      "Éducation physique"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "ead0a533-ba2f-4e64-bed4-d4b2d67ab68f",
+    name: "EDPUZZLE",
+    logo: null,
+    icon: "i-lucide-video",
+    shortDescription: "Plateforme de création de vidéos pédagogiques interactives",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://edpuzzle.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Vidéo pédagogique",
+      "Évaluation",
+      "Multimédia"
+    ],
+    pedagogicalActivities: [
+      "Création de vidéos interactives",
+      "Intégration de quiz",
+      "Suivi des visionnages"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "4ca0efb8-353c-4f7a-81e9-9ce86b81a93f",
+    name: "EDUBASE READER",
+    logo: null,
+    icon: "i-lucide-book-open",
+    shortDescription: "Lecteur de manuels scolaires numériques",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://www.edubase.ch",
+    targetAudience: "élèves",
+    categories: [
+      "Manuels numériques",
+      "Lecture",
+      "Ressources pédagogiques"
+    ],
+    pedagogicalActivities: [
+      "Lecture de manuels",
+      "Consultation de ressources"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "0535552d-2bb8-4bad-a687-9b99319e2eab",
+    name: "EDUCAPLAY",
+    logo: null,
+    icon: "i-lucide-puzzle",
+    shortDescription: "Plateforme de création d'activités éducatives ludiques",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.educaplay.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Jeux éducatifs",
+      "Activités interactives",
+      "Quiz"
+    ],
+    pedagogicalActivities: [
+      "Création de jeux",
+      "Mots croisés",
+      "Quiz interactifs"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "bda6272e-a729-4a10-9a5f-3bbaf6b3f616",
+    name: "EXAM.NET",
+    logo: null,
+    icon: "i-lucide-file-edit",
+    shortDescription: "Plateforme d'examens en ligne sécurisés",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://exam.net",
+    targetAudience: "enseignants",
+    categories: [
+      "Évaluation",
+      "Examens",
+      "Sécurité"
+    ],
+    pedagogicalActivities: [
+      "Création d'examens",
+      "Passation sécurisée",
+      "Correction automatique"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "52d6620a-11ed-442a-a087-adc6744d9b45",
+    name: "FIZZIQ",
+    logo: null,
+    icon: "i-lucide-flask-conical",
+    shortDescription: "Application de laboratoire scientifique mobile",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://www.fizziq.org",
+    targetAudience: "élèves",
+    categories: [
+      "Sciences",
+      "Expérimentation",
+      "Mesure"
+    ],
+    pedagogicalActivities: [
+      "Expériences scientifiques",
+      "Mesures physiques",
+      "Collecte de données"
+    ],
+    disciplines: [
+      "Sciences",
+      "Physique",
+      "Chimie"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "f5dbc3c8-47ff-419b-ae01-6b9beabbd2cd",
+    name: "FLORA INCOGNITA (app)",
+    logo: null,
+    icon: "i-lucide-flower",
+    shortDescription: "Application d'identification de plantes par photo",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Union Européenne",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://floraincognita.com",
+    targetAudience: "tous",
+    categories: [
+      "Biologie",
+      "Nature",
+      "Identification"
+    ],
+    pedagogicalActivities: [
+      "Identification de plantes",
+      "Apprentissage botanique"
+    ],
+    disciplines: [
+      "Sciences naturelles",
+      "Biologie"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "6d523ce7-dcba-4c55-a5c6-3cc413bcc64d",
+    name: "FOXIT READER",
+    logo: null,
+    icon: "i-lucide-file-text",
+    shortDescription: "Lecteur et éditeur de fichiers PDF",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.foxit.com",
+    targetAudience: "tous",
+    categories: [
+      "PDF",
+      "Bureautique",
+      "Lecture"
+    ],
+    pedagogicalActivities: [
+      "Lecture de PDF",
+      "Annotation",
+      "Édition"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "897235a8-d36c-48d6-b00a-57bf70da09c3",
+    name: "FRAMASOFT",
+    logo: null,
+    icon: "i-lucide-cloud",
+    shortDescription: "Suite d'outils libres et éthiques (Framapad, Framaforms, etc.)",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Union Européenne",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://framasoft.org",
+    targetAudience: "tous",
+    categories: [
+      "Collaboration",
+      "Open source",
+      "Bureautique"
+    ],
+    pedagogicalActivities: [
+      "Écriture collaborative",
+      "Formulaires",
+      "Partage de documents"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "727a3776-d452-4ec7-992e-3e15d2acbe3a",
+    name: "GARMIN CONNECT",
+    logo: null,
+    icon: "i-lucide-watch",
+    shortDescription: "Plateforme de suivi d'activité sportive",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://connect.garmin.com",
+    targetAudience: "tous",
+    categories: [
+      "Sport",
+      "Santé",
+      "Suivi d'activité"
+    ],
+    pedagogicalActivities: [
+      "Suivi sportif",
+      "Analyse de performance"
+    ],
+    disciplines: [
+      "Éducation physique"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "5e2fd0b8-1cfd-4c37-a9c2-103cb7ce234e",
+    name: "GENIALLY",
+    logo: null,
+    icon: "i-simple-icons-genially",
+    shortDescription: "Outil de création de présentations et contenus interactifs",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://genial.ly",
+    targetAudience: "enseignants",
+    categories: [
+      "Présentation",
+      "Création de contenu",
+      "Interactivité"
+    ],
+    pedagogicalActivities: [
+      "Création de présentations",
+      "Infographies",
+      "Images interactives"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "1f197f6d-3e6d-41df-9a5b-405fd6b1cf92",
+    name: "GEOGEBRA",
+    logo: null,
+    icon: "i-lucide-ruler",
+    shortDescription: "Logiciel de mathématiques dynamiques gratuit",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://www.geogebra.org",
+    targetAudience: "tous",
+    categories: [
+      "Mathématiques",
+      "Géométrie",
+      "Graphiques"
+    ],
+    pedagogicalActivities: [
+      "Géométrie dynamique",
+      "Algèbre",
+      "Graphiques de fonctions"
+    ],
+    disciplines: [
+      "Mathématiques"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "a42cdfc3-f096-4282-9806-25cb6eb9de56",
+    name: "GIMKIT",
+    logo: null,
+    icon: "i-lucide-trophy",
+    shortDescription: "Plateforme de quiz gamifiés en temps réel",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.gimkit.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Quiz",
+      "Gamification",
+      "Évaluation"
+    ],
+    pedagogicalActivities: [
+      "Quiz interactifs",
+      "Révision",
+      "Évaluation formative"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "4cd7236c-1281-487e-b744-cf2b3a3e3928",
+    name: "GLOSE",
+    logo: null,
+    icon: "i-lucide-book-marked",
+    shortDescription: "Application de lecture sociale et collaborative",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.glose.com",
+    targetAudience: "tous",
+    categories: [
+      "Lecture",
+      "Réseau social",
+      "Annotation"
+    ],
+    pedagogicalActivities: [
+      "Lecture numérique",
+      "Annotation collaborative",
+      "Discussion littéraire"
+    ],
+    disciplines: [
+      "Français",
+      "Littérature"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "6c189a07-d2c0-477d-9f3f-cc6ee4577d96",
+    name: "JSTOR",
+    logo: null,
+    icon: "i-lucide-graduation-cap",
+    shortDescription: "Bibliothèque numérique académique",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://www.jstor.org",
+    targetAudience: "enseignants",
+    categories: [
+      "Recherche",
+      "Documentation",
+      "Ressources académiques"
+    ],
+    pedagogicalActivities: [
+      "Recherche documentaire",
+      "Consultation d'articles"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "1770792d-3e5a-4982-9bb1-e7dd39d1534a",
+    name: "JUNGLEAI",
+    logo: null,
+    icon: "i-lucide-bot",
+    shortDescription: "Assistant IA pour l'apprentissage",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.jungleai.com",
+    targetAudience: "tous",
+    categories: [
+      "Intelligence artificielle",
+      "Aide à l'apprentissage"
+    ],
+    pedagogicalActivities: [
+      "Assistance IA",
+      "Génération de contenu"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "324ada3e-f73e-46e2-b389-e7fa27583044",
+    name: "KAHOOT",
+    logo: null,
+    icon: "i-simple-icons-kahoot",
+    shortDescription: "Plateforme de quiz interactifs et gamifiés",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://kahoot.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Quiz",
+      "Gamification",
+      "Évaluation"
+    ],
+    pedagogicalActivities: [
+      "Quiz en temps réel",
+      "Révision ludique",
+      "Évaluation formative"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "21cec86c-2626-4530-b0a5-0cdc51eb0cd6",
+    name: "KIALO EDU",
+    logo: null,
+    icon: "i-lucide-message-square-text",
+    shortDescription: "Plateforme de débats structurés et argumentation",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://www.kialo-edu.com",
+    targetAudience: "tous",
+    categories: [
+      "Débat",
+      "Argumentation",
+      "Pensée critique"
+    ],
+    pedagogicalActivities: [
+      "Débats structurés",
+      "Développement d'arguments",
+      "Analyse critique"
+    ],
+    disciplines: [
+      "Philosophie",
+      "Langues",
+      "Sciences humaines"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "8b453628-953a-4e08-b049-05ebef12881e",
+    name: "KNOWT",
+    logo: null,
+    icon: "i-lucide-lightbulb",
+    shortDescription: "Plateforme de création de flashcards et quiz",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://knowt.com",
+    targetAudience: "tous",
+    categories: [
+      "Mémorisation",
+      "Quiz",
+      "Révision"
+    ],
+    pedagogicalActivities: [
+      "Création de flashcards",
+      "Quiz",
+      "Révision"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "a83fc036-6df6-417f-ac05-1762dbaaf471",
+    name: "LEARNINGAPPS",
+    logo: null,
+    icon: "i-lucide-blocks",
+    shortDescription: "Plateforme de création d'exercices interactifs",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://learningapps.org",
+    targetAudience: "enseignants",
+    categories: [
+      "Exercices interactifs",
+      "Jeux éducatifs",
+      "Apprentissage"
+    ],
+    pedagogicalActivities: [
+      "Création d'exercices",
+      "Jeux de correspondance",
+      "Quiz"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "ba424f3b-af66-4830-8dd6-5cc19c834946",
+    name: "LEARNINGVIEW.ORG",
+    logo: null,
+    icon: "i-lucide-eye",
+    shortDescription: "Plateforme d'apprentissage personnalisé",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Union Européenne",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://learningview.org",
+    targetAudience: "enseignants",
+    categories: [
+      "Apprentissage personnalisé",
+      "Suivi de progression"
+    ],
+    pedagogicalActivities: [
+      "Parcours d'apprentissage",
+      "Évaluation",
+      "Suivi des élèves"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "62e1f335-55a3-41d3-a707-f646742d724f",
+    name: "LINGODEER",
+    logo: null,
+    icon: "i-lucide-languages",
+    shortDescription: "Application d'apprentissage des langues",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.lingodeer.com",
+    targetAudience: "tous",
+    categories: [
+      "Langues",
+      "Apprentissage",
+      "Gamification"
+    ],
+    pedagogicalActivities: [
+      "Vocabulaire",
+      "Grammaire",
+      "Compréhension orale"
+    ],
+    disciplines: [
+      "Langues"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "a3b8ae8b-937c-4847-9df8-936b66bcf699",
+    name: "LINKEDIN",
+    logo: null,
+    icon: "i-simple-icons-linkedin",
+    shortDescription: "Réseau social professionnel",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.linkedin.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Réseau social",
+      "Professionnel",
+      "Carrière"
+    ],
+    pedagogicalActivities: [
+      "Networking",
+      "Recherche d'emploi",
+      "Développement professionnel"
+    ],
+    disciplines: [
+      "Orientation professionnelle"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "bcec3170-6db6-44f0-a404-e7da13ec8422",
+    name: "LOCKEE.FR",
+    logo: null,
+    icon: "i-lucide-lock",
+    shortDescription: "Outil de création d'énigmes et escape games pédagogiques",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://lockee.fr",
+    targetAudience: "enseignants",
+    categories: [
+      "Jeux éducatifs",
+      "Énigmes",
+      "Gamification"
+    ],
+    pedagogicalActivities: [
+      "Création d'escape games",
+      "Énigmes",
+      "Activités ludiques"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "65172ac6-13e1-4912-a68e-19d44cd411c7",
+    name: "LUCID",
+    logo: null,
+    icon: "i-lucide-layout-template",
+    shortDescription: "Suite d'outils de diagrammes et cartes mentales (Lucidchart, Lucidspark)",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://lucid.app",
+    targetAudience: "tous",
+    categories: [
+      "Diagrammes",
+      "Cartes mentales",
+      "Collaboration"
+    ],
+    pedagogicalActivities: [
+      "Création de diagrammes",
+      "Organigrammes",
+      "Brainstorming visuel"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "d229656f-7cb8-48cd-8def-30ed9f852bc4",
+    name: "LYRICSTRAINING",
+    logo: null,
+    icon: "i-lucide-music",
+    shortDescription: "Apprentissage des langues par la musique",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://lyricstraining.com",
+    targetAudience: "tous",
+    categories: [
+      "Langues",
+      "Musique",
+      "Compréhension orale"
+    ],
+    pedagogicalActivities: [
+      "Exercices avec chansons",
+      "Complétion de paroles",
+      "Compréhension orale"
+    ],
+    disciplines: [
+      "Langues"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "f869a356-5f0e-44d1-b381-499f985d0fa2",
+    name: "MAGICSCHOOL.AI",
+    logo: null,
+    icon: "i-lucide-wand-sparkles",
+    shortDescription: "Assistant IA pour enseignants",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.magicschool.ai",
+    targetAudience: "enseignants",
+    categories: [
+      "Intelligence artificielle",
+      "Planification",
+      "Aide à l'enseignement"
+    ],
+    pedagogicalActivities: [
+      "Génération de contenu pédagogique",
+      "Planification de cours"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "7a3be341-0769-4703-8c49-cfcec178ba13",
+    name: "MEMRISE",
+    logo: null,
+    icon: "i-lucide-brain-circuit",
+    shortDescription: "Application d'apprentissage des langues par mémorisation",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.memrise.com",
+    targetAudience: "tous",
+    categories: [
+      "Langues",
+      "Mémorisation",
+      "Apprentissage"
+    ],
+    pedagogicalActivities: [
+      "Vocabulaire",
+      "Mémorisation espacée",
+      "Révision"
+    ],
+    disciplines: [
+      "Langues"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "8b7250b0-c497-4996-af5a-084986629600",
+    name: "MINDMEISTER",
+    logo: null,
+    icon: "i-lucide-network",
+    shortDescription: "Outil de création de cartes mentales collaboratives",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.mindmeister.com",
+    targetAudience: "tous",
+    categories: [
+      "Cartes mentales",
+      "Brainstorming",
+      "Organisation"
+    ],
+    pedagogicalActivities: [
+      "Création de mindmaps",
+      "Brainstorming",
+      "Organisation d'idées"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "73de275b-c8ca-4fe6-b145-fadb8ee318e8",
+    name: "MINE",
+    logo: null,
+    icon: "i-lucide-pickaxe",
+    shortDescription: "Outil de gestion de données personnelles",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://www.mine.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Confidentialité",
+      "Données personnelles"
+    ],
+    pedagogicalActivities: [
+      "Gestion de données",
+      "Confidentialité"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "7bfc94f9-e08c-4a88-93a1-83d68e4d2d44",
+    name: "MINECRAFT : EDUCATION EDITION",
+    logo: null,
+    icon: "i-lucide-package",
+    shortDescription: "Logiciel éducatif - MINECRAFT : EDUCATION EDITION",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: null,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "",
+    targetAudience: "tous",
+    categories: [
+      "Éducation",
+      "Outils numériques"
+    ],
+    pedagogicalActivities: [
+      "Activités pédagogiques",
+      "Apprentissage numérique"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "0ec8c9fa-8cc5-44c5-b200-b50c7b8788bc",
+    name: "MIRO",
+    logo: null,
+    icon: "i-lucide-panel-top",
+    shortDescription: "Tableau blanc collaboratif en ligne",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://miro.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Collaboration",
+      "Tableau blanc",
+      "Brainstorming"
+    ],
+    pedagogicalActivities: [
+      "Brainstorming",
+      "Planification collaborative",
+      "Ateliers"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "7119dd31-391e-4aaf-be35-96047675ec72",
+    name: "MURAL",
+    logo: null,
+    icon: "i-lucide-layers",
+    shortDescription: "Plateforme de collaboration visuelle",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://www.mural.co",
+    targetAudience: "enseignants",
+    categories: [
+      "Collaboration",
+      "Tableau blanc",
+      "Design thinking"
+    ],
+    pedagogicalActivities: [
+      "Brainstorming visuel",
+      "Ateliers collaboratifs"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "dc65942d-8905-4c1a-a984-da04061071d2",
+    name: "NOTEBOOKLM",
+    logo: null,
+    icon: "i-lucide-notebook-pen",
+    shortDescription: "Assistant de recherche et prise de notes IA de Google",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://notebooklm.google.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Intelligence artificielle",
+      "Prise de notes",
+      "Recherche"
+    ],
+    pedagogicalActivities: [
+      "Prise de notes",
+      "Synthèse",
+      "Recherche assistée"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "d90eb9d4-6fa4-48d9-9b0d-ed787d77fbac",
+    name: "ONE CALENDAR",
+    logo: null,
+    icon: "i-lucide-calendar-range",
+    shortDescription: "Application de gestion de calendrier unifié",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: null,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.onecalendar.nl",
+    targetAudience: "tous",
+    categories: [
+      "Calendrier",
+      "Organisation",
+      "Productivité"
+    ],
+    pedagogicalActivities: [
+      "Gestion d'agenda",
+      "Synchronisation de calendriers"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "86770c88-ad25-4c6a-9035-f567b320c209",
+    name: "ORTHOHPHORE",
+    logo: null,
+    icon: "i-lucide-spellcheck",
+    shortDescription: "Plateforme de dictées en ligne automatisées",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Union Européenne",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://orthophore.ac-lille.fr",
+    targetAudience: "élèves",
+    categories: [
+      "Orthographe",
+      "Français",
+      "Évaluation"
+    ],
+    pedagogicalActivities: [
+      "Dictées automatisées",
+      "Entraînement orthographique"
+    ],
+    disciplines: [
+      "Français"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "1bfd75f2-8023-4620-9bef-cf9ada3c055e",
+    name: "PADLET",
+    logo: null,
+    icon: "i-lucide-sticky-note",
+    shortDescription: "Tableau d'affichage collaboratif en ligne",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://padlet.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Collaboration",
+      "Partage",
+      "Mur virtuel"
+    ],
+    pedagogicalActivities: [
+      "Création de murs collaboratifs",
+      "Partage de ressources",
+      "Brainstorming"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "3bf5251b-54f5-46ec-b151-22f36510f4cc",
+    name: "PCLOUD",
+    logo: null,
+    icon: "i-lucide-cloud",
+    shortDescription: "Solution de stockage cloud sécurisé",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Suisse",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.pcloud.com",
+    targetAudience: "tous",
+    categories: [
+      "Stockage cloud",
+      "Sauvegarde",
+      "Partage"
+    ],
+    pedagogicalActivities: [
+      "Stockage de fichiers",
+      "Partage de documents"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "11933e2e-6d1e-4067-985b-dd58030df5f4",
+    name: "PDF EXPERT",
+    logo: null,
+    icon: "i-lucide-file-text",
+    shortDescription: "Éditeur PDF professionnel pour Mac et iOS",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://pdfexpert.com",
+    targetAudience: "tous",
+    categories: [
+      "PDF",
+      "Édition",
+      "Annotation"
+    ],
+    pedagogicalActivities: [
+      "Édition de PDF",
+      "Annotation",
+      "Formulaires"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "57d1c18a-9657-4333-8cd7-9f44866c83d7",
+    name: "PHONOWRITER",
+    logo: null,
+    icon: "i-lucide-mic",
+    shortDescription: "Outil de transcription phonétique",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://phonowriter.com",
+    targetAudience: "tous",
+    categories: [
+      "Phonétique",
+      "Langues",
+      "Transcription"
+    ],
+    pedagogicalActivities: [
+      "Transcription phonétique",
+      "Apprentissage de la prononciation"
+    ],
+    disciplines: [
+      "Langues"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "74612035-bb49-44ef-8c24-56d2a7dec860",
+    name: "PHOTOPEA",
+    logo: null,
+    icon: "i-lucide-image",
+    shortDescription: "Éditeur d'images en ligne (alternative à Photoshop)",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://www.photopea.com",
+    targetAudience: "tous",
+    categories: [
+      "Édition d'images",
+      "Design",
+      "Graphisme"
+    ],
+    pedagogicalActivities: [
+      "Retouche photo",
+      "Création graphique"
+    ],
+    disciplines: [
+      "Arts",
+      "Multimédia"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "079b1f46-7634-4595-952b-93f2c6ac572d",
+    name: "PHYPHOX",
+    logo: null,
+    icon: "i-lucide-activity",
+    shortDescription: "Application d'expérimentation physique utilisant les capteurs du smartphone",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Union Européenne",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://phyphox.org",
+    targetAudience: "élèves",
+    categories: [
+      "Sciences",
+      "Physique",
+      "Expérimentation"
+    ],
+    pedagogicalActivities: [
+      "Expériences physiques",
+      "Mesures scientifiques",
+      "Collecte de données"
+    ],
+    disciplines: [
+      "Physique",
+      "Sciences"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "cedc5a08-68fb-4a4e-beeb-216cf75422c5",
+    name: "PIXTON",
+    logo: null,
+    icon: "i-lucide-panels-top-left",
+    shortDescription: "Outil de création de bandes dessinées",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.pixton.com",
+    targetAudience: "tous",
+    categories: [
+      "Création de contenu",
+      "BD",
+      "Expression écrite"
+    ],
+    pedagogicalActivities: [
+      "Création de BD",
+      "Storytelling",
+      "Expression créative"
+    ],
+    disciplines: [
+      "Français",
+      "Arts",
+      "Langues"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "b7ad33d0-ed5b-45c6-acdb-3e02467aa617",
+    name: "PLANDECLASSE.CA",
+    logo: null,
+    icon: "i-lucide-layout-grid",
+    shortDescription: "Outil de création de plans de classe",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://www.plandeclasse.ca",
+    targetAudience: "enseignants",
+    categories: [
+      "Gestion de classe",
+      "Organisation"
+    ],
+    pedagogicalActivities: [
+      "Création de plans de classe",
+      "Organisation spatiale"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "98e93055-2231-46ff-a3ac-52e004221c73",
+    name: "PLICKERS",
+    logo: null,
+    icon: "i-lucide-qr-code",
+    shortDescription: "Système de quiz avec cartes QR code",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.plickers.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Quiz",
+      "Évaluation",
+      "QR code"
+    ],
+    pedagogicalActivities: [
+      "Quiz instantanés",
+      "Évaluation formative",
+      "Sondages"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "27e34e97-f530-4d0a-a03e-8993aa889f0f",
+    name: "PREZI",
+    logo: null,
+    icon: "i-simple-icons-prezi",
+    shortDescription: "Outil de présentation dynamique et non linéaire",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://prezi.com",
+    targetAudience: "tous",
+    categories: [
+      "Présentation",
+      "Storytelling",
+      "Visuel"
+    ],
+    pedagogicalActivities: [
+      "Création de présentations",
+      "Storytelling visuel"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "a8b9d9f0-de1b-4c17-8149-996b36cb5259",
+    name: "PROJET VOLTAIRE",
+    logo: null,
+    icon: "i-lucide-pencil",
+    shortDescription: "Plateforme d'entraînement en orthographe",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Union Européenne",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://www.projet-voltaire.fr",
+    targetAudience: "tous",
+    categories: [
+      "Orthographe",
+      "Français",
+      "Certification"
+    ],
+    pedagogicalActivities: [
+      "Entraînement orthographique",
+      "Certification Voltaire"
+    ],
+    disciplines: [
+      "Français"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "e418dbc4-b163-436e-b1d3-3297228edd1b",
+    name: "QUIZLET",
+    logo: null,
+    icon: "i-lucide-layers",
+    shortDescription: "Plateforme de création de flashcards et quiz",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://quizlet.com",
+    targetAudience: "tous",
+    categories: [
+      "Flashcards",
+      "Mémorisation",
+      "Quiz"
+    ],
+    pedagogicalActivities: [
+      "Création de flashcards",
+      "Révision",
+      "Jeux de mémorisation"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "d88b5139-b85d-4939-8e97-22847344215c",
+    name: "REMARKABLE INTEGRATION ONEDRIVE",
+    logo: null,
+    icon: "i-lucide-tablet",
+    shortDescription: "Intégration reMarkable avec OneDrive",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://remarkable.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Prise de notes",
+      "Synchronisation",
+      "Productivité"
+    ],
+    pedagogicalActivities: [
+      "Prise de notes manuscrites",
+      "Synchronisation cloud"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "67bbb3d8-c316-440c-9c44-dea7bd6632f6",
+    name: "SAMSUNG EMAIL",
+    logo: null,
+    icon: "i-lucide-mail",
+    shortDescription: "Application de messagerie Samsung",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://www.samsung.com",
+    targetAudience: "tous",
+    categories: [
+      "Messagerie",
+      "Communication"
+    ],
+    pedagogicalActivities: [
+      "Gestion d'emails"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "01547f52-1912-4c84-ae3b-f99a33e2eff9",
+    name: "SAMSUNG NOTES",
+    logo: null,
+    icon: "i-lucide-sticky-note",
+    shortDescription: "Application de prise de notes Samsung",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://www.samsung.com",
+    targetAudience: "tous",
+    categories: [
+      "Prise de notes",
+      "Productivité"
+    ],
+    pedagogicalActivities: [
+      "Prise de notes",
+      "Dessins",
+      "Mémos"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "44e00cfb-1b43-4218-aae2-9370f1b4e4ae",
+    name: "SCHOLARVOX",
+    logo: null,
+    icon: "i-lucide-book-open",
+    shortDescription: "Bibliothèque numérique académique",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://www.scholarvox.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Bibliothèque numérique",
+      "Ressources académiques"
+    ],
+    pedagogicalActivities: [
+      "Lecture d'ouvrages",
+      "Recherche documentaire"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "6386a9d5-4254-434a-9a30-9fe63497ea09",
+    name: "SCHOOL AI",
+    logo: null,
+    icon: "i-lucide-school",
+    shortDescription: "Assistant IA pour l'éducation",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.schoolai.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Intelligence artificielle",
+      "Aide à l'enseignement"
+    ],
+    pedagogicalActivities: [
+      "Assistance IA",
+      "Génération de contenu pédagogique"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "eef53d57-f8e3-4a2e-9347-01bd02278734",
+    name: "SMART TECH : LUMIO",
+    logo: null,
+    icon: "i-lucide-monitor",
+    shortDescription: "Logiciel de leçons interactives pour écrans interactifs",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://lumio.smarttech.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Écran interactif",
+      "Leçons interactives"
+    ],
+    pedagogicalActivities: [
+      "Création de leçons",
+      "Activités interactives"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "59d55d49-cb3b-42e7-a351-efe141939bd7",
+    name: "SODA PDF",
+    logo: null,
+    icon: "i-lucide-file-text",
+    shortDescription: "Suite complète d'outils PDF",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.sodapdf.com",
+    targetAudience: "tous",
+    categories: [
+      "PDF",
+      "Édition",
+      "Conversion"
+    ],
+    pedagogicalActivities: [
+      "Édition de PDF",
+      "Conversion de formats",
+      "Fusion de documents"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "6e7fea78-c1fc-4c26-88ec-3746ceb71e13",
+    name: "SOUNDTRAP EDUCATION",
+    logo: null,
+    icon: "i-lucide-music",
+    shortDescription: "Studio d'enregistrement et de création musicale en ligne",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://www.soundtrap.com/edu",
+    targetAudience: "tous",
+    categories: [
+      "Musique",
+      "Création audio",
+      "Podcast"
+    ],
+    pedagogicalActivities: [
+      "Création musicale",
+      "Enregistrement audio",
+      "Podcasts"
+    ],
+    disciplines: [
+      "Musique",
+      "Arts"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "d577976b-1adb-42ef-8b34-82f228b80c44",
+    name: "SPARK",
+    logo: null,
+    icon: "i-lucide-mail",
+    shortDescription: "Client de messagerie intelligent",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://sparkmailapp.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Messagerie",
+      "Productivité"
+    ],
+    pedagogicalActivities: [
+      "Gestion d'emails",
+      "Tri intelligent"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "62d21095-2982-4ca3-85eb-1b28a0cd9f56",
+    name: "SUNO.AI",
+    logo: null,
+    icon: "i-lucide-music",
+    shortDescription: "Génération de musique par IA",
+    lgpd: {
+      hosting: 3,
+      rgpd: 3,
+      dataCollection: 3
+    },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://suno.ai",
+    targetAudience: "tous",
+    categories: [
+      "Intelligence artificielle",
+      "Musique",
+      "Création"
+    ],
+    pedagogicalActivities: [
+      "Création musicale par IA"
+    ],
+    disciplines: [
+      "Musique",
+      "Arts"
+    ],
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+  },
+  {
+    id: "23d425ac-29fd-4013-b995-a5072f6ba920",
+    name: "TAPTOUCHE",
+    logo: null,
+    icon: "i-lucide-keyboard",
+    shortDescription: "Logiciel d'apprentissage de la dactylographie",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: true,
+    campusTraining: false,
+    cost: "Financé CEJEF",
+    toolUrl: "https://www.taptouche.com",
+    targetAudience: "élèves",
+    categories: [
+      "Dactylographie",
+      "Informatique",
+      "Compétences transversales"
+    ],
+    pedagogicalActivities: [
+      "Apprentissage du clavier",
+      "Exercices de frappe"
+    ],
+    disciplines: [
+      "Informatique"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "2e312dcf-ad29-47e8-8e22-0a2c0091b8c2",
+    name: "TEAMVIEWER",
+    logo: null,
+    icon: "i-lucide-monitor-smartphone",
+    shortDescription: "Logiciel de prise de contrôle à distance",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: null,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.teamviewer.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Support technique",
+      "Accès distant"
+    ],
+    pedagogicalActivities: [
+      "Prise de contrôle à distance",
+      "Support technique"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "3480da50-548b-4cef-88d8-193656569cb1",
+    name: "THREEMA EDUCATION",
+    logo: null,
+    icon: "i-lucide-message-circle",
+    shortDescription: "Messagerie sécurisée suisse pour l'éducation",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Suisse",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://threema.ch/en/education",
+    targetAudience: "tous",
+    categories: [
+      "Messagerie",
+      "Communication",
+      "Sécurité"
+    ],
+    pedagogicalActivities: [
+      "Messagerie sécurisée",
+      "Communication"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "5b46800b-124b-4bfd-b8bd-6fd10ae05202",
+    name: "THUNDERBIRD",
+    logo: null,
+    icon: "i-simple-icons-thunderbird",
+    shortDescription: "Client de messagerie open source",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Hors UE",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://www.thunderbird.net",
+    targetAudience: "tous",
+    categories: [
+      "Messagerie",
+      "Open source",
+      "Bureautique"
+    ],
+    pedagogicalActivities: [
+      "Gestion d'emails",
+      "Calendrier"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "a0be678f-4a3a-4a7a-96d9-343786b93bf6",
+    name: "TRIMBLE INC.",
+    logo: null,
+    icon: "i-lucide-map",
+    shortDescription: "Solutions de géolocalisation et cartographie",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://www.trimble.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Géographie",
+      "Cartographie",
+      "GPS"
+    ],
+    pedagogicalActivities: [
+      "Cartographie",
+      "Géolocalisation"
+    ],
+    disciplines: [
+      "Géographie",
+      "Sciences"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "9d01b167-6471-4487-8ba0-f4a9af752a6e",
+    name: "VOKAPI (app)",
+    logo: null,
+    icon: "i-lucide-book-a",
+    shortDescription: "Application d'apprentissage de vocabulaire",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://vokapi.com",
+    targetAudience: "élèves",
+    categories: [
+      "Vocabulaire",
+      "Langues",
+      "Mémorisation"
+    ],
+    pedagogicalActivities: [
+      "Apprentissage de vocabulaire",
+      "Révision"
+    ],
+    disciplines: [
+      "Langues"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "f9af22cc-36a0-4396-abc9-ba9bf737800f",
+    name: "WAKELET",
+    logo: null,
+    icon: "i-lucide-bookmark",
+    shortDescription: "Plateforme de curation et partage de ressources",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Gratuit",
+    toolUrl: "https://wakelet.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Curation",
+      "Partage",
+      "Organisation"
+    ],
+    pedagogicalActivities: [
+      "Organisation de ressources",
+      "Partage de collections"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "29be1ce5-35d2-463e-a287-48b8f19e4ed1",
+    name: "WAYGROUND (anc. QUIZIZZ)",
+    logo: null,
+    icon: "i-lucide-gamepad",
+    shortDescription: "Plateforme de quiz gamifiés (anciennement Quizizz)",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://quizizz.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Quiz",
+      "Gamification",
+      "Évaluation"
+    ],
+    pedagogicalActivities: [
+      "Quiz interactifs",
+      "Devoirs gamifiés",
+      "Évaluation"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "4a9e711f-5a8f-4658-a001-cee48ba0ee43",
+    name: "WOOCLAP",
+    logo: null,
+    icon: "i-lucide-presentation",
+    shortDescription: "Plateforme d'interaction en temps réel avec le public",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.wooclap.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Interaction",
+      "Sondages",
+      "Quiz"
+    ],
+    pedagogicalActivities: [
+      "Sondages en direct",
+      "Quiz interactifs",
+      "Nuages de mots"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "d1007e0f-842c-4303-92b8-973d3bf6e401",
+    name: "WOOFLASH",
+    logo: null,
+    icon: "i-lucide-zap",
+    shortDescription: "Plateforme d'apprentissage adaptatif par questions",
+    lgpd: {
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
+    },
+    certificationLevel: 1,
+    dataLocation: "Union Européenne",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.wooflash.com",
+    targetAudience: "tous",
+    categories: [
+      "Apprentissage adaptatif",
+      "Quiz",
+      "Mémorisation"
+    ],
+    pedagogicalActivities: [
+      "Questions adaptatives",
+      "Révision espacée"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
+  },
+  {
+    id: "582ce878-095c-490d-985a-0faf57d51d15",
+    name: "WORDWALL",
+    logo: null,
+    icon: "i-lucide-grid-3x3",
+    shortDescription: "Création d'activités interactives et jeux pédagogiques",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://wordwall.net",
+    targetAudience: "enseignants",
+    categories: [
+      "Jeux éducatifs",
+      "Activités interactives"
+    ],
+    pedagogicalActivities: [
+      "Création de jeux",
+      "Roue de la fortune",
+      "Quiz",
+      "Cartes à associer"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+  },
+  {
+    id: "fee16798-8574-405d-9269-ce97473e3957",
+    name: "ZAPIER Et ZAPIER OUTLOOK",
+    logo: null,
+    icon: "i-lucide-workflow",
+    shortDescription: "Automatisation de workflows entre applications",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: null,
+    dataLocation: "Hors UE",
+    personalData: false,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://zapier.com",
+    targetAudience: "enseignants",
+    categories: [
+      "Automatisation",
+      "Productivité",
+      "Intégration"
+    ],
+    pedagogicalActivities: [
+      "Automatisation de tâches",
+      "Connexion d'applications"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Usage autorisé"
   }
 ]
