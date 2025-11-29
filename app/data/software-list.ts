@@ -2,10 +2,6 @@ import type { Software } from "~~/types/software"
 
 /**
  * Liste des logiciels pédagogiques du référentiel CEJEF
- *
- * Note: Les données category, disciplines et activity font référence aux IDs
- * des fichiers categories.ts, disciplines.ts et activities.ts
- * Ces données seront migrées vers Directus
  */
 export const softwareList: Software[] = [
   {
@@ -20,13 +16,18 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
+    certificationLevel: 1,
+    dataLocation: "Suisse",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
-    cost: "Freemium",
+    cost: "Gratuit",
     toolUrl: "https://kahoot.com",
     documentation: "https://support.kahoot.com",
-    certificationLevel: 1
+    targetAudience: "tous",
+    categories: ["Quiz", "Évaluation", "Gamification"],
+    pedagogicalActivities: ["Quiz interactif", "Évaluation formative"],
+    disciplines: ["Transversal"]
   },
   {
     id: "2",
@@ -40,13 +41,19 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 2
     },
+    certificationLevel: 2,
+    dataLocation: "Suisse",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: false,
-    cost: "Freemium",
+    cost: "Payant",
     toolUrl: "https://padlet.com",
     documentation: "https://help.padlet.com",
-    certificationLevel: 2
+    targetAudience: "tous",
+    greenAlternatives: ["4", "16"],
+    categories: ["Collaboration", "Brainstorming"],
+    pedagogicalActivities: ["Tableau blanc", "Travail de groupe"],
+    disciplines: ["Transversal"]
   },
   {
     id: "3",
@@ -60,12 +67,18 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
-    cost: "Freemium",
+    cost: "Payant",
     toolUrl: "https://canva.com",
-    certificationLevel: 2
+    targetAudience: "tous",
+    greenAlternatives: ["11"],
+    categories: ["Création graphique", "Design"],
+    pedagogicalActivities: ["Infographie", "Présentation"],
+    disciplines: ["Arts visuels", "Communication", "Transversal"]
   },
   {
     id: "4",
@@ -79,12 +92,17 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
+    certificationLevel: 1,
+    dataLocation: "CEJEF",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
     cost: "Gratuit",
     toolUrl: "https://h5p.org",
-    certificationLevel: 1
+    targetAudience: "tous",
+    categories: ["Quiz", "Création de contenu", "Évaluation"],
+    pedagogicalActivities: ["Vidéo interactive", "Quiz", "Présentation"],
+    disciplines: ["Transversal"]
   },
   {
     id: "5",
@@ -98,12 +116,20 @@ export const softwareList: Software[] = [
       rgpd: 3,
       dataCollection: 3
     },
+    certificationLevel: 3,
+    dataLocation: "Hors UE",
     personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://tiktok.com",
-    certificationLevel: 3
+    targetAudience: "tous",
+    ageRestriction: 13,
+    usageNotes: "Interdit pour usage pédagogique (données élèves). Usage personnel enseignant déconseillé.",
+    greenAlternatives: ["6"],
+    categories: ["Vidéo", "Réseaux sociaux"],
+    pedagogicalActivities: ["Partage vidéo"],
+    disciplines: ["Communication", "Médias"]
   },
   {
     id: "6",
@@ -117,13 +143,18 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
+    certificationLevel: 1,
+    dataLocation: "CEJEF",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
-    cost: "Gratuit",
+    cost: "Financé CEJEF",
     toolUrl: "https://moodle.org",
     documentation: "https://docs.moodle.org",
-    certificationLevel: 1
+    targetAudience: "tous",
+    categories: ["LMS", "Plateforme d'apprentissage"],
+    pedagogicalActivities: ["Cours en ligne", "Évaluation", "Collaboration"],
+    disciplines: ["Transversal"]
   },
   {
     id: "7",
@@ -137,13 +168,18 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 2
     },
+    certificationLevel: 1,
+    dataLocation: "Suisse",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
-    cost: "Freemium",
+    cost: "Financé CEJEF",
     toolUrl: "https://teams.microsoft.com",
     documentation: "https://support.microsoft.com/teams",
-    certificationLevel: 1
+    targetAudience: "tous",
+    categories: ["Communication", "Collaboration"],
+    pedagogicalActivities: ["Classe virtuelle", "Réunion", "Travail d'équipe"],
+    disciplines: ["Transversal"]
   },
   {
     id: "8",
@@ -157,13 +193,19 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
-    cost: "Freemium",
+    cost: "Payant",
     toolUrl: "https://notion.so",
     documentation: "https://notion.so/help",
-    certificationLevel: 2
+    targetAudience: "tous",
+    greenAlternatives: ["6"],
+    categories: ["Documentation", "Collaboration"],
+    pedagogicalActivities: ["Prise de notes", "Gestion de projet"],
+    disciplines: ["Transversal"]
   },
   {
     id: "9",
@@ -177,13 +219,18 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
-    cost: "Freemium",
+    cost: "Payant",
     toolUrl: "https://figma.com",
     documentation: "https://help.figma.com",
-    certificationLevel: 2
+    targetAudience: "tous",
+    categories: ["Design", "Prototypage"],
+    pedagogicalActivities: ["Maquette", "Design UI/UX"],
+    disciplines: ["Arts visuels", "Informatique", "Design"]
   },
   {
     id: "10",
@@ -197,12 +244,18 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
-    cost: "Freemium",
+    cost: "Payant",
     toolUrl: "https://quizlet.com",
-    certificationLevel: 2
+    targetAudience: "tous",
+    greenAlternatives: ["1", "4"],
+    categories: ["Quiz", "Évaluation", "Mémorisation"],
+    pedagogicalActivities: ["Flashcards", "Révision", "Quiz"],
+    disciplines: ["Transversal"]
   },
   {
     id: "11",
@@ -216,13 +269,18 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
+    certificationLevel: 1,
+    dataLocation: "Suisse",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
-    cost: "Freemium",
+    cost: "Payant",
     toolUrl: "https://genial.ly",
     documentation: "https://help.genial.ly",
-    certificationLevel: 1
+    targetAudience: "tous",
+    categories: ["Création de contenu", "Présentation"],
+    pedagogicalActivities: ["Présentation interactive", "Infographie"],
+    disciplines: ["Transversal"]
   },
   {
     id: "12",
@@ -236,13 +294,18 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
+    certificationLevel: 1,
+    dataLocation: "Suisse",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
-    cost: "Freemium",
+    cost: "Payant",
     toolUrl: "https://wooclap.com",
     documentation: "https://wooclap.com/help",
-    certificationLevel: 1
+    targetAudience: "tous",
+    categories: ["Quiz", "Interaction", "Évaluation"],
+    pedagogicalActivities: ["Sondage", "Quiz en direct", "Nuage de mots"],
+    disciplines: ["Transversal"]
   },
   {
     id: "13",
@@ -256,13 +319,18 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
+    certificationLevel: 1,
+    dataLocation: "Suisse",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
-    cost: "Freemium",
+    cost: "Payant",
     toolUrl: "https://mentimeter.com",
     documentation: "https://help.mentimeter.com",
-    certificationLevel: 1
+    targetAudience: "tous",
+    categories: ["Quiz", "Présentation", "Interaction"],
+    pedagogicalActivities: ["Sondage en direct", "Quiz", "Nuage de mots"],
+    disciplines: ["Transversal"]
   },
   {
     id: "14",
@@ -276,13 +344,19 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
+    certificationLevel: 2,
+    dataLocation: "Union Européenne",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
-    cost: "Freemium",
+    cost: "Payant",
     toolUrl: "https://edpuzzle.com",
     documentation: "https://support.edpuzzle.com",
-    certificationLevel: 2
+    targetAudience: "tous",
+    greenAlternatives: ["4"],
+    categories: ["Quiz", "Vidéo", "Évaluation"],
+    pedagogicalActivities: ["Vidéo interactive", "Quiz vidéo"],
+    disciplines: ["Transversal"]
   },
   {
     id: "15",
@@ -296,13 +370,20 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 3
     },
+    certificationLevel: 3,
+    dataLocation: "Union Européenne",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
-    cost: "Freemium",
+    cost: "Payant",
     toolUrl: "https://workspace.google.com",
     documentation: "https://support.google.com/workspace",
-    certificationLevel: 3
+    targetAudience: "enseignants",
+    usageNotes: "Interdit pour données élèves (collecte extensive). Usage personnel enseignant autorisé.",
+    greenAlternatives: ["6", "7"],
+    categories: ["Bureautique", "Collaboration"],
+    pedagogicalActivities: ["Traitement de texte", "Tableur", "Présentation"],
+    disciplines: ["Transversal"]
   },
   {
     id: "16",
@@ -316,13 +397,18 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
+    certificationLevel: 1,
+    dataLocation: "Union Européenne",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://framapad.org",
     documentation: "https://framapad.org/abc/fr/",
-    certificationLevel: 1
+    targetAudience: "tous",
+    categories: ["Collaboration", "Écriture"],
+    pedagogicalActivities: ["Écriture collaborative", "Brainstorming"],
+    disciplines: ["Transversal"]
   },
   {
     id: "17",
@@ -336,12 +422,20 @@ export const softwareList: Software[] = [
       rgpd: 3,
       dataCollection: 3
     },
+    certificationLevel: 3,
+    dataLocation: "Union Européenne",
     personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
-    cost: "Freemium",
+    cost: "Payant",
     toolUrl: "https://chat.openai.com",
     documentation: "https://help.openai.com",
-    certificationLevel: 3
+    targetAudience: "tous",
+    ageRestriction: 13,
+    usageNotes: "Interdit pour données élèves (non-conformité RGPD, collecte extensive). Usage personnel enseignant autorisé sans données élèves.",
+    greenAlternatives: ["4", "6"],
+    categories: ["IA", "Rédaction"],
+    pedagogicalActivities: ["Brainstorming", "Aide à la rédaction"],
+    disciplines: ["Transversal"]
   }
 ]

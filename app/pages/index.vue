@@ -9,12 +9,19 @@ const softwareList = getSoftwareList()
 
 // Search functionality
 const searchQuery = ref("")
+const selectedCategory = ref<string | null>(null)
 
 // Filter functionality
 const selectedCosts = ref<CostType[]>([])
 const selectedCertifications = ref<CertificationLevel[]>([])
 const selectedPopularFilters = ref<string[]>([])
 const isFiltersSlideoverOpen = ref(false)
+
+// Handle category filter from search bar
+const handleCategoryFilter = (category: string) => {
+  selectedCategory.value = category
+  searchQuery.value = ""
+}
 
 const certificationLevelLabels = computed(() =>
   Object.fromEntries(
@@ -130,10 +137,18 @@ const clearAllFilters = () => {
   selectedCosts.value = []
   selectedCertifications.value = []
   selectedPopularFilters.value = []
+  selectedCategory.value = null
 }
 
 const filteredSoftwareList = computed(() => {
   let filtered = [...softwareList]
+
+  // Apply category filter
+  if (selectedCategory.value) {
+    filtered = filtered.filter(software =>
+      software.categories?.includes(selectedCategory.value!)
+    )
+  }
 
   // Apply search query
   if (searchQuery.value.trim()) {
@@ -207,21 +222,27 @@ const certificationCounts = computed(() => {
 
 <template>
   <UContainer class="py-8 sm:py-12">
-    <!-- Hero Section -->
-    <div class="mb-8 sm:mb-12 text-center">
-      <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">
-        Référentiel Logiciels CEJEF
-      </h1>
-      <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-        Catalogue de logiciels pédagogiques avec classification LGPD pour l'enseignement et la formation
-      </p>
-    </div>
-
     <!-- Search and Filters Section -->
     <div class="mb-8 space-y-6">
-      <!-- Search Bar (visible on small screens, hidden on lg+ where it's in header) -->
-      <div class="lg:hidden">
-        <SearchBar v-model:search="searchQuery" />
+      <!-- Search Bar -->
+      <SearchBar
+        v-model:search="searchQuery"
+        @filter-by-category="handleCategoryFilter"
+      />
+
+      <!-- Active Category Filter -->
+      <div v-if="selectedCategory" class="flex items-center gap-2 p-4 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg">
+        <UIcon name="i-lucide-tag" class="w-5 h-5 text-primary-600 dark:text-primary-400" />
+        <span class="font-semibold text-primary-900 dark:text-primary-100">
+          Catégorie : {{ selectedCategory }}
+        </span>
+        <button
+          type="button"
+          class="ml-auto p-1 hover:bg-primary-100 dark:hover:bg-primary-800 rounded-full transition-colors"
+          @click="selectedCategory = null"
+        >
+          <UIcon name="i-lucide-x" class="w-4 h-4 text-primary-600 dark:text-primary-400" />
+        </button>
       </div>
 
       <!-- Popular Filters -->
@@ -231,7 +252,7 @@ const certificationCounts = computed(() => {
             Filtres rapides
           </h2>
           <UButton
-            v-if="hasActiveFilters"
+            v-if="hasActiveFilters || selectedCategory"
             color="neutral"
             variant="ghost"
             size="sm"

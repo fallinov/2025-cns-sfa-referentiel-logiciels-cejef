@@ -207,6 +207,35 @@ useSeoMeta({
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Left Column - Main Info -->
         <div class="lg:col-span-2 space-y-6">
+          <!-- Green Alternatives (if software is not green) -->
+          <UCard v-if="software.greenAlternatives && software.greenAlternatives.length > 0">
+            <template #header>
+              <div class="flex items-center gap-2">
+                <UIcon name="i-lucide-check-circle" class="w-5 h-5 text-green-600" />
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                  Alternatives autorisées
+                </h2>
+              </div>
+            </template>
+
+            <div class="space-y-3">
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Ces logiciels certifiés niveau 1 (autorisés) sont recommandés comme alternatives :
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <UButton
+                  v-for="altId in software.greenAlternatives"
+                  :key="altId"
+                  :to="`/logiciels/${altId}`"
+                  color="success"
+                  variant="outline"
+                  size="md"
+                >
+                  {{ getSoftwareById(altId)?.name || altId }}
+                </UButton>
+              </div>
+            </div>
+          </UCard>
           <!-- LGPD Classification -->
           <UCard>
             <template #header>
@@ -302,6 +331,126 @@ useSeoMeta({
               </p>
             </div>
           </UCard>
+
+          <!-- Data Location -->
+          <UCard>
+            <template #header>
+              <div class="flex items-center gap-2">
+                <UIcon name="i-lucide-map-pin" class="w-5 h-5 text-primary-600" />
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                  Localisation des données
+                </h2>
+              </div>
+            </template>
+
+            <div class="flex items-center gap-3">
+              <UIcon
+                name="i-lucide-server"
+                class="w-6 h-6 text-primary-600"
+              />
+              <p class="text-gray-900 dark:text-white text-lg font-semibold">
+                {{ software.dataLocation }}
+              </p>
+            </div>
+          </UCard>
+
+          <!-- Usage Notes (if present) -->
+          <UCard v-if="software.usageNotes">
+            <template #header>
+              <div class="flex items-center gap-2">
+                <UIcon name="i-lucide-alert-circle" class="w-5 h-5 text-orange-600" />
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                  Remarques importantes
+                </h2>
+              </div>
+            </template>
+
+            <div class="space-y-2">
+              <p class="text-gray-900 dark:text-white leading-relaxed">
+                {{ software.usageNotes }}
+              </p>
+              <div v-if="software.targetAudience" class="flex items-center gap-2 pt-3 border-t border-gray-200 dark:border-gray-700">
+                <UIcon name="i-lucide-users" class="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                <span class="text-sm text-gray-600 dark:text-gray-400">
+                  Public cible : <strong class="text-gray-900 dark:text-white">{{ software.targetAudience }}</strong>
+                </span>
+              </div>
+              <div v-if="software.ageRestriction" class="flex items-center gap-2 pt-2">
+                <UIcon name="i-lucide-calendar" class="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                <span class="text-sm text-gray-600 dark:text-gray-400">
+                  Âge minimum : <strong class="text-gray-900 dark:text-white">{{ software.ageRestriction }} ans</strong>
+                </span>
+              </div>
+            </div>
+          </UCard>
+
+          <!-- Categories & Disciplines (if present) -->
+          <UCard v-if="software.categories || software.disciplines || software.pedagogicalActivities">
+            <template #header>
+              <div class="flex items-center gap-2">
+                <UIcon name="i-lucide-tags" class="w-5 h-5 text-primary-600" />
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                  Classification pédagogique
+                </h2>
+              </div>
+            </template>
+
+            <div class="space-y-4">
+              <!-- Categories -->
+              <div v-if="software.categories && software.categories.length > 0">
+                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  Catégories
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                  <UBadge
+                    v-for="category in software.categories"
+                    :key="category"
+                    color="primary"
+                    variant="outline"
+                    size="md"
+                  >
+                    {{ category }}
+                  </UBadge>
+                </div>
+              </div>
+
+              <!-- Pedagogical Activities -->
+              <div v-if="software.pedagogicalActivities && software.pedagogicalActivities.length > 0">
+                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  Activités pédagogiques
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                  <UBadge
+                    v-for="activity in software.pedagogicalActivities"
+                    :key="activity"
+                    color="neutral"
+                    variant="outline"
+                    size="md"
+                  >
+                    {{ activity }}
+                  </UBadge>
+                </div>
+              </div>
+
+              <!-- Disciplines -->
+              <div v-if="software.disciplines && software.disciplines.length > 0">
+                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  Disciplines
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                  <UBadge
+                    v-for="discipline in software.disciplines"
+                    :key="discipline"
+                    color="neutral"
+                    variant="soft"
+                    size="md"
+                  >
+                    {{ discipline }}
+                  </UBadge>
+                </div>
+              </div>
+            </div>
+          </UCard>
         </div>
 
         <!-- Right Column - Additional Info -->
@@ -320,9 +469,6 @@ useSeoMeta({
             <div>
               <p class="text-2xl font-bold text-gray-900 dark:text-white mb-1">
                 {{ software.cost }}
-              </p>
-              <p v-if="software.price" class="text-sm text-gray-600 dark:text-gray-400">
-                {{ software.price }}
               </p>
             </div>
           </UCard>

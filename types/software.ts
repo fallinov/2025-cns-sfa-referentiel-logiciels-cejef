@@ -2,7 +2,11 @@
  * Types pour le référentiel logiciels CEJEF (source unique)
  */
 
-export type CostType = "Gratuit" | "Freemium" | "Payant"
+export type CostType = "Gratuit" | "Payant" | "Financé CEJEF"
+
+export type DataLocation = "Suisse" | "Union Européenne" | "Hors UE" | "CEJEF"
+
+export type TargetAudience = "élèves" | "enseignants" | "tous"
 
 /**
  * Classification LGPD (Loi sur la protection des données)
@@ -35,22 +39,44 @@ export function getCertificationLevel(lgpd?: LgpdClassification): CertificationL
  * Interface principale d'un logiciel pédagogique
  */
 export interface Software {
+  // IDENTIFICATION
   id: string
   name: string
   logo: string | null
   icon?: string | null
+
+  // DESCRIPTION
   shortDescription: string
 
+  // CLASSIFICATION & LOCALISATION
   lgpd: LgpdClassification
+  certificationLevel?: CertificationLevel
+  dataLocation: DataLocation
+
+  // DONNÉES PERSONNELLES
   personalData: boolean
 
+  // SUPPORT CEJEF
   supportedByCEJEF: boolean
   campusTraining: boolean
+
+  // COÛT
   cost: CostType
-  price?: string
+
+  // LIENS
   toolUrl: string
   documentation?: string
 
-  // certificationLevel : null = pas évalué, 1 = ok, 2 = Attention, 3 = Interdit
-  certificationLevel?: CertificationLevel
+  // USAGE
+  targetAudience?: TargetAudience
+  ageRestriction?: number
+  usageNotes?: string
+
+  // ALTERNATIVES VERTES (pour logiciels niveau 2 ou 3)
+  greenAlternatives?: string[]
+
+  // CLASSIFICATION PÉDAGOGIQUE
+  categories?: string[]
+  pedagogicalActivities?: string[]
+  disciplines?: string[]
 }

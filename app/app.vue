@@ -42,15 +42,6 @@ const searchQuery = ref("")
         </NuxtLink>
       </template>
 
-      <template #center>
-        <div class="hidden lg:block w-full max-w-2xl">
-          <SearchBar
-            v-model:search="searchQuery"
-            compact
-          />
-        </div>
-      </template>
-
       <template #right>
         <UColorModeButton />
       </template>
