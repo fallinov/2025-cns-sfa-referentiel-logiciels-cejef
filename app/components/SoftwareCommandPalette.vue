@@ -10,8 +10,9 @@
  *
  * @see https://ui.nuxt.com/docs/components/modal
  */
-const { getSoftwareList, openDetail } = useSoftware()
+const { getSoftwareList } = useSoftware()
 const softwareList = getSoftwareList()
+const router = useRouter()
 
 const isOpen = ref(false)
 
@@ -39,7 +40,7 @@ const groups = computed(() => [
       suffix: software.category,
       icon: "i-lucide-package",
       onSelect: () => {
-        openDetail(software)
+        router.push(`/logiciels/${software.id}`)
         isOpen.value = false
       }
     }))

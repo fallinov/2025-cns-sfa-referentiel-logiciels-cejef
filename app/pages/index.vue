@@ -7,9 +7,13 @@ import { activities as activityData } from "~/data/activities"
 import { CERTIFICATION_LEVELS } from "~/constants/certification-levels"
 
 const { getSoftwareList } = useSoftware()
+const { setFilteredList } = useSoftwareNavigation()
 const softwareList = getSoftwareList()
 
-// Filter functionality (search is handled by global CommandPalette)
+// Search functionality
+const searchQuery = ref("")
+
+// Filter functionality
 const selectedCategories = ref<string[]>([])
 const selectedDisciplines = ref<string[]>([])
 const selectedActivities = ref<string[]>([])
@@ -18,48 +22,6 @@ const selectedCosts = ref<CostType[]>([])
 const selectedCertifications = ref<CertificationLevel[]>([])
 const selectedPopularFilters = ref<string[]>([])
 const isFiltersSlideoverOpen = ref(false)
-
-// Scroll functionality for popular filters
-const filtersScrollContainer = ref<HTMLElement | null>(null)
-const canScrollLeft = ref(false)
-const canScrollRight = ref(false)
-
-const updateScrollButtons = () => {
-  if (!filtersScrollContainer.value) return
-  const { scrollLeft, scrollWidth, clientWidth } = filtersScrollContainer.value
-  canScrollLeft.value = scrollLeft > 0
-  canScrollRight.value = scrollLeft < scrollWidth - clientWidth - 1
-}
-
-const scrollFilters = (direction: "left" | "right") => {
-  if (!filtersScrollContainer.value) return
-  const scrollAmount = 300
-  filtersScrollContainer.value.scrollBy({
-    left: direction === "left" ? -scrollAmount : scrollAmount,
-    behavior: "smooth"
-  })
-}
-
-onMounted(() => {
-  if (filtersScrollContainer.value) {
-    updateScrollButtons()
-    filtersScrollContainer.value.addEventListener(
-      "scroll",
-      updateScrollButtons
-    )
-    window.addEventListener("resize", updateScrollButtons)
-  }
-})
-
-onUnmounted(() => {
-  if (filtersScrollContainer.value) {
-    filtersScrollContainer.value.removeEventListener(
-      "scroll",
-      updateScrollButtons
-    )
-    window.removeEventListener("resize", updateScrollButtons)
-  }
-})
 
 // Options for select menus - memoized to avoid recalculation
 const usedCategoryIds = computed(
@@ -202,10 +164,6 @@ const togglePopularFilter = (filterId: string) => {
   }
 }
 
-const resetPopularFilters = () => {
-  selectedPopularFilters.value = []
-}
-
 const appliedFilters = computed(() => {
   const filters: Array<{ id: string, label: string }> = []
 
@@ -327,9 +285,19 @@ const removeFilter = (filterId: string) => {
   }
 }
 
-// Filtered software list based on filters (search is handled by global CommandPalette)
+// Filtered software list based on filters and search
 const filteredSoftwareList = computed(() => {
   let filtered = softwareList
+
+  // Filter by search query
+  if (searchQuery.value.trim()) {
+    const query = searchQuery.value.toLowerCase().trim()
+    filtered = filtered.filter(software =>
+      software.name.toLowerCase().includes(query)
+      || software.shortDescription.toLowerCase().includes(query)
+      || software.category.toLowerCase().includes(query)
+    )
+  }
 
   // Filter by categories
   if (selectedCategories.value.length) {
@@ -394,8 +362,14 @@ const filteredSoftwareList = computed(() => {
   return filtered
 })
 
+// Synchroniser la liste filtrée avec le composable de navigation
+watch(filteredSoftwareList, (newList) => {
+  setFilteredList(newList)
+}, { immediate: true })
+
 // Clear all filters
 const clearFilters = () => {
+  searchQuery.value = ""
   selectedCategories.value = []
   selectedDisciplines.value = []
   selectedActivities.value = []
@@ -404,6 +378,9 @@ const clearFilters = () => {
   selectedCertifications.value = []
   selectedPopularFilters.value = []
 }
+
+// Compact mode toggle
+const isCompactMode = ref(false)
 
 useSeoMeta({
   title: "Référentiel Logiciels CEJEF",
@@ -418,118 +395,113 @@ useSeoMeta({
     <BackgroundAurora />
 
     <!-- Content Wrapper -->
-    <div class="relative z-10">
-      <!-- Hero Section -->
-      <UPageHero
-        title="Référentiel Logiciels CEJEF"
-        description="Découvrez les logiciels pédagogiques avec leur classification selon la Loi sur la protection des données (LGPD)"
-        class="mb-8"
-        :ui="{
-          title: 'text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl'
-        }"
-      >
-        <template #links>
-          <div class="flex flex-col sm:flex-row gap-3">
-            <LiquidBadge size="lg">
-              <template #leading>
-                <UIcon name="i-lucide-graduation-cap" class="w-4 h-4 text-gray-900 dark:text-white" />
-              </template>
-              {{ softwareList.length }} logiciels disponibles
-            </LiquidBadge>
-            <LiquidBadge size="lg">
-              <template #leading>
-                <UIcon name="i-lucide-shield-check" class="w-4 h-4 text-gray-900 dark:text-white" />
-              </template>
-              Classification LGPD
-            </LiquidBadge>
-          </div>
-        </template>
-      </UPageHero>
-
-      <!-- Filter Section -->
+    <main class="relative z-10">
+      <!-- Main Content Section -->
       <UPageSection>
+        <!-- Page Header -->
+        <header class="text-center mb-8">
+          <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+            Référentiel Logiciels CEJEF
+          </h1>
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-2">
+            {{ softwareList.length }} logiciels pédagogiques avec classification LGPD
+          </p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="mb-8">
+          <SearchBar
+            v-model:search="searchQuery"
+            @select-category="(id) => selectedCategories = [id]"
+            @select-discipline="(id) => selectedDisciplines = [id]"
+          />
+        </div>
+
+        <!-- Filters and Results -->
         <div class="space-y-6">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <div>
-                <div class="text-lg font-semibold text-gray-900 dark:text-white">
-                  Filtres populaires
-                </div>
-                <p class="text-base text-gray-500 dark:text-gray-400">
-                  Sélection rapide des critères les plus utilisés
-                </p>
-              </div>
+          <!-- Filters Header -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
+                Filtres
+              </h2>
               <UButton
-                color="primary"
-                variant="link"
-                size="lg"
-                icon="i-lucide-refresh-cw"
-                :disabled="!selectedPopularFilters.length"
-                @click="resetPopularFilters"
+                v-if="hasActiveFilters"
+                color="neutral"
+                variant="ghost"
+                size="sm"
+                icon="i-lucide-x"
+                @click="clearFilters"
               >
-                Réinitialiser
+                Tout effacer
               </UButton>
             </div>
-            <div class="relative -mx-4 px-4 sm:mx-0 sm:px-0">
-              <!-- Left scroll button -->
-              <button
-                v-if="canScrollLeft"
-                class="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/30 dark:border-gray-800/30 shadow-xl hover:bg-white/70 dark:hover:bg-gray-900/70 transition-all"
-                @click="scrollFilters('left')"
-              >
-                <UIcon
-                  name="i-lucide-chevron-left"
-                  class="w-6 h-6 text-gray-900 dark:text-white"
-                />
-              </button>
+            <UButton
+              color="neutral"
+              variant="soft"
+              size="md"
+              :icon="isCompactMode ? 'i-lucide-layout-grid' : 'i-lucide-layout-list'"
+              @click="isCompactMode = !isCompactMode"
+            >
+              {{ isCompactMode ? "Vue normale" : "Vue compacte" }}
+            </UButton>
+          </div>
 
-              <!-- Scroll container -->
-              <div
-                ref="filtersScrollContainer"
-                class="flex gap-2.5 overflow-x-auto scrollbar-hide pb-2"
+          <!-- Quick Filters (simplified - only main ones) -->
+          <div class="flex flex-wrap gap-2.5">
+            <UButton
+              color="neutral"
+              variant="outline"
+              size="lg"
+              icon="i-lucide-sliders-horizontal"
+              class="font-semibold rounded-full"
+              :aria-label="`Ouvrir les filtres avancés${hasActiveFilters ? ` (${appliedFilters.length} actifs)` : ''}`"
+              @click="isFiltersSlideoverOpen = true"
+            >
+              Filtres avancés
+              <UBadge
+                v-if="hasActiveFilters"
+                color="primary"
+                variant="solid"
+                size="sm"
+                class="ml-2"
               >
-                <UButton
-                  color="neutral"
-                  variant="outline"
-                  size="xl"
-                  icon="i-lucide-sliders-horizontal"
-                  class="shrink-0 font-bold rounded-full"
-                  @click="isFiltersSlideoverOpen = true"
-                >
-                  Filtres
-                </UButton>
-                <UButton
-                  v-for="filter in popularFilters"
-                  :key="filter.id"
-                  :color="
-                    selectedPopularFilters.includes(filter.id)
-                      ? 'primary'
-                      : 'neutral'
-                  "
-                  :variant="
-                    selectedPopularFilters.includes(filter.id) ? 'solid' : 'soft'
-                  "
-                  :icon="filter.icon"
-                  size="xl"
-                  class="shrink-0 font-bold rounded-full"
-                  @click="togglePopularFilter(filter.id)"
-                >
-                  {{ filter.label }}
-                </UButton>
-              </div>
-
-              <!-- Right scroll button -->
-              <button
-                v-if="canScrollRight"
-                class="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-14 h-14 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/30 dark:border-gray-800/30 shadow-xl hover:bg-white/70 dark:hover:bg-gray-900/70 transition-all"
-                @click="scrollFilters('right')"
-              >
-                <UIcon
-                  name="i-lucide-chevron-right"
-                  class="w-6 h-6 text-gray-900 dark:text-white"
-                />
-              </button>
-            </div>
+                {{ appliedFilters.length }}
+              </UBadge>
+            </UButton>
+            <UButton
+              :color="selectedPopularFilters.includes('certified-level-1') ? 'primary' : 'neutral'"
+              :variant="selectedPopularFilters.includes('certified-level-1') ? 'solid' : 'soft'"
+              icon="i-lucide-shield-check"
+              size="lg"
+              class="font-semibold rounded-full"
+              :aria-pressed="selectedPopularFilters.includes('certified-level-1')"
+              @click="togglePopularFilter('certified-level-1')"
+            >
+              Certifié CEJEF
+            </UButton>
+            <UButton
+              :color="selectedPopularFilters.includes('personal-data') ? 'primary' : 'neutral'"
+              :variant="selectedPopularFilters.includes('personal-data') ? 'solid' : 'soft'"
+              icon="i-lucide-user-check"
+              size="lg"
+              class="font-semibold rounded-full"
+              :aria-pressed="selectedPopularFilters.includes('personal-data')"
+              @click="togglePopularFilter('personal-data')"
+            >
+              Données élèves autorisées
+            </UButton>
+            <UButton
+              :color="selectedPopularFilters.includes('free') ? 'primary' : 'neutral'"
+              :variant="selectedPopularFilters.includes('free') ? 'solid' : 'soft'"
+              icon="i-lucide-coins"
+              size="lg"
+              class="font-semibold rounded-full"
+              :aria-pressed="selectedPopularFilters.includes('free')"
+              @click="togglePopularFilter('free')"
+            >
+              100% gratuit
+            </UButton>
           </div>
 
           <!-- Applied filters summary -->
@@ -596,18 +568,23 @@ useSeoMeta({
         </div>
 
         <!-- Software Grid -->
-        <div
+        <section
           v-if="filteredSoftwareList.length > 0"
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center mt-6"
+          aria-label="Liste des logiciels"
         >
           <div
-            v-for="software in filteredSoftwareList"
-            :key="software.id"
-            class="w-full max-w-[450px] h-full"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center mt-6"
+            :class="{ 'gap-4': isCompactMode }"
           >
-            <CardLiquidGlass :software="software" shape="curve" />
+            <div
+              v-for="software in filteredSoftwareList"
+              :key="software.id"
+              class="w-full max-w-[450px] h-full"
+            >
+              <CardLiquidGlass :software="software" shape="curve" :compact="isCompactMode" />
+            </div>
           </div>
-        </div>
+        </section>
 
         <!-- No results message -->
         <div v-else class="text-center py-12">
@@ -631,25 +608,24 @@ useSeoMeta({
           </UButton>
         </div>
       </UPageSection>
+    </main>
 
-      <!-- Detail Slideover -->
-      <SoftwareDetail />
+    <!-- Filters Slideover -->
+    <FiltersSlideover
+      v-model:open="isFiltersSlideoverOpen"
+      v-model:selected-categories="selectedCategories"
+      v-model:selected-disciplines="selectedDisciplines"
+      v-model:selected-activities="selectedActivities"
+      v-model:selected-platforms="selectedPlatforms"
+      v-model:selected-costs="selectedCosts"
+      v-model:selected-certifications="selectedCertifications"
+      :software-list="softwareList"
+      :filtered-count="filteredSoftwareList.length"
+      @clear-filters="clearFilters"
+    />
 
-      <!-- Filters Slideover -->
-      <FiltersSlideover
-        v-model:open="isFiltersSlideoverOpen"
-        v-model:selected-categories="selectedCategories"
-        v-model:selected-disciplines="selectedDisciplines"
-        v-model:selected-activities="selectedActivities"
-        v-model:selected-platforms="selectedPlatforms"
-        v-model:selected-costs="selectedCosts"
-        v-model:selected-certifications="selectedCertifications"
-        :software-list="softwareList"
-        :filtered-count="filteredSoftwareList.length"
-        @clear-filters="clearFilters"
-      />
-
-      <!-- Info Section -->
+    <!-- Info Section -->
+    <section class="relative z-10">
       <UPageSection class="mt-16">
         <UPageCTA
           title="À propos de la classification LGPD"
@@ -710,6 +686,6 @@ useSeoMeta({
           </template>
         </UPageCTA>
       </UPageSection>
-    </div>
+    </section>
   </div>
 </template>
