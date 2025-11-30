@@ -9,6 +9,7 @@ import { getCertificationLevel } from "~~/types/software"
 const route = useRoute()
 const { getSoftwareById } = useSoftware()
 const { getPreviousSoftware, getNextSoftware } = useSoftwareNavigation()
+const { getSimilarSoftware } = useSimilarSoftware()
 
 // Récupérer le logiciel via l'ID dans l'URL
 const softwareId = computed(() => route.params.id as string)
@@ -49,6 +50,11 @@ const certificationLevel = computed(() =>
   software.value
     ? software.value.certificationLevel ?? getCertificationLevel(software.value.lgpd)
     : null
+)
+
+// Logiciels similaires
+const similarSoftwareList = computed(() => 
+  software.value ? getSimilarSoftware(software.value) : []
 )
 
 // Configuration des couleurs selon le niveau
@@ -107,6 +113,25 @@ useSeoMeta({
   ogTitle: `${software.value.name} - Référentiel Logiciels CEJEF`,
   ogDescription: software.value.shortDescription
 })
+
+// Helpers pour l'affichage des niveaux dans la liste similaire
+const getLevelColor = (level: number | null) => {
+  switch (level) {
+    case 1: return { bg: 'bg-green-500', bgLight: 'bg-green-50 dark:bg-green-900/20', text: 'text-green-600 dark:text-green-400' }
+    case 2: return { bg: 'bg-orange-500', bgLight: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' }
+    case 3: return { bg: 'bg-red-500', bgLight: 'bg-red-50 dark:bg-red-900/20', text: 'text-red-600 dark:text-red-400' }
+    default: return { bg: 'bg-gray-500', bgLight: 'bg-gray-50 dark:bg-gray-800', text: 'text-gray-600 dark:text-gray-400' }
+  }
+}
+
+const getLevelIcon = (level: number | null) => {
+  switch (level) {
+    case 1: return 'i-lucide-check'
+    case 2: return 'i-lucide-alert-triangle'
+    case 3: return 'i-lucide-x'
+    default: return 'i-lucide-help-circle'
+  }
+}
 </script>
 
 <template>
@@ -231,6 +256,81 @@ useSeoMeta({
                   size="md"
                 >
                   {{ getSoftwareById(altId)?.name || altId }}
+                </UButton>
+              </div>
+            </div>
+          </UCard>
+
+          <!-- Similar Software (computed) -->
+          <UCard v-if="similarSoftwareList && similarSoftwareList.length > 0">
+            <template #header>
+              <div class="flex items-center gap-2">
+                <UIcon name="i-lucide-sparkles" class="w-5 h-5 text-yellow-500" />
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                  Logiciels similaires
+                </h2>
+              </div>
+            </template>
+
+            <div class="space-y-3">
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                D'autres logiciels partageant les mêmes catégories ou activités :
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <UButton
+                  v-for="sim in similarSoftwareList"
+                  :key="sim.id"
+                  :to="`/logiciels/${sim.id}`"
+                  color="neutral"
+                  variant="ghost"
+                  class="justify-start h-auto py-3 relative overflow-hidden group bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800 hover:ring-2 hover:ring-primary-500 dark:hover:ring-primary-400 transition-all"
+                >
+                  <div class="flex items-center gap-3 text-left w-full">
+                    <div class="shrink-0 relative">
+                      <div 
+                        class="w-10 h-10 rounded-lg flex items-center justify-center shadow-sm"
+                        :class="getLevelColor(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bgLight"
+                      >
+                        <img
+                          v-if="sim.logo"
+                          :src="`/logos/${sim.logo}.svg`"
+                          :alt="sim.name"
+                          class="w-6 h-6 object-contain"
+                        />
+                        <UIcon
+                          v-else-if="sim.icon"
+                          :name="sim.icon"
+                          class="w-6 h-6"
+                          :class="getLevelColor(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).text"
+                        />
+                        <div 
+                          v-else 
+                          class="text-xs font-bold"
+                          :class="getLevelColor(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).text"
+                        >
+                          {{ sim.name.substring(0, 2).toUpperCase() }}
+                        </div>
+                      </div>
+                      
+                      <!-- Mini Badge -->
+                      <div 
+                        class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center ring-2 ring-white dark:ring-gray-900"
+                        :class="getLevelColor(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
+                      >
+                        <UIcon 
+                          :name="getLevelIcon(sim.certificationLevel ?? getCertificationLevel(sim.lgpd))" 
+                          class="w-2.5 h-2.5 text-white" 
+                        />
+                      </div>
+                    </div>
+
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center gap-2">
+                        <div class="font-semibold truncate text-gray-900 dark:text-white">{{ sim.name }}</div>
+                      </div>
+                      <div class="text-xs text-gray-500 truncate">{{ sim.shortDescription }}</div>
+                    </div>
+                  </div>
                 </UButton>
               </div>
             </div>

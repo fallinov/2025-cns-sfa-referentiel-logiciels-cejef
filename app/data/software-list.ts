@@ -31,7 +31,6 @@ export const softwareList: Software[] = [
     targetAudience: "tous",
     categories: [
       "Bureautique",
-      "PDF",
       "Documentation"
     ],
     pedagogicalActivities: [
@@ -72,9 +71,8 @@ export const softwareList: Software[] = [
       "Organisation"
     ],
     pedagogicalActivities: [
-      "Gestion de tâches",
-      "Documentation collaborative",
-      "Suivi de projets"
+      "Gestion de projet",
+      "Documentation collaborative"
     ],
     disciplines: [
       "Transversal"
@@ -107,7 +105,7 @@ export const softwareList: Software[] = [
       "Organisation"
     ],
     pedagogicalActivities: [
-      "Gestion de tâches",
+      "Gestion de projet",
       "Collaboration"
     ],
     disciplines: [
@@ -179,7 +177,7 @@ export const softwareList: Software[] = [
     ],
     pedagogicalActivities: [
       "Lecture numérique",
-      "Recherche documentaire"
+      "Recherche d'information"
     ],
     disciplines: [
       "Français",
@@ -245,7 +243,6 @@ export const softwareList: Software[] = [
     targetAudience: "enseignants",
     categories: [
       "Communication",
-      "Messagerie",
       "Bureautique"
     ],
     pedagogicalActivities: [
@@ -318,8 +315,7 @@ export const softwareList: Software[] = [
     targetAudience: "élèves",
     categories: [
       "Lecture",
-      "Apprentissage",
-      "Français"
+      "Apprentissage"
     ],
     pedagogicalActivities: [
       "Lecture guidée",
@@ -353,12 +349,10 @@ export const softwareList: Software[] = [
     targetAudience: "enseignants",
     categories: [
       "Organisation",
-      "Planification",
       "Communication"
     ],
     pedagogicalActivities: [
-      "Gestion d'agenda",
-      "Prise de rendez-vous"
+      "Organisation"
     ],
     disciplines: [
       "Transversal"
@@ -388,11 +382,10 @@ export const softwareList: Software[] = [
     targetAudience: "tous",
     categories: [
       "Organisation",
-      "Calendrier",
       "Productivité"
     ],
     pedagogicalActivities: [
-      "Gestion d'agenda",
+      "Organisation",
       "Planification"
     ],
     disciplines: [
@@ -674,7 +667,6 @@ export const softwareList: Software[] = [
     targetAudience: "élèves",
     categories: [
       "Programmation",
-      "Informatique",
       "STEM"
     ],
     pedagogicalActivities: [
@@ -711,7 +703,6 @@ export const softwareList: Software[] = [
     targetAudience: "tous",
     categories: [
       "Orthographe",
-      "Français",
       "Évaluation"
     ],
     pedagogicalActivities: [
@@ -746,12 +737,11 @@ export const softwareList: Software[] = [
     targetAudience: "enseignants",
     categories: [
       "Organisation",
-      "Planification",
       "Collaboration"
     ],
     pedagogicalActivities: [
-      "Sondages de disponibilité",
-      "Planification de réunions"
+      "Sondages",
+      "Organisation"
     ],
     disciplines: [
       "Transversal"
@@ -1002,7 +992,7 @@ export const softwareList: Software[] = [
     pedagogicalActivities: [
       "Création de jeux",
       "Mots croisés",
-      "Quiz interactifs"
+      "Quiz"
     ],
     disciplines: [
       "Transversal"
@@ -1067,7 +1057,6 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.fizziq.org",
     targetAudience: "élèves",
     categories: [
-      "Sciences",
       "Expérimentation",
       "Mesure"
     ],
@@ -1077,9 +1066,7 @@ export const softwareList: Software[] = [
       "Collecte de données"
     ],
     disciplines: [
-      "Sciences",
-      "Physique",
-      "Chimie"
+      "Sciences"
     ],
     usageNotes: "Usage autorisé",
     createdAt: 1679843952000,
@@ -1115,7 +1102,7 @@ export const softwareList: Software[] = [
     ],
     disciplines: [
       "Sciences naturelles",
-      "Biologie"
+      "Sciences"
     ],
     usageNotes: "Usage autorisé",
     createdAt: 1680096240000,
@@ -1141,7 +1128,6 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.foxit.com",
     targetAudience: "tous",
     categories: [
-      "PDF",
       "Bureautique",
       "Lecture"
     ],
@@ -1284,7 +1270,6 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.geogebra.org",
     targetAudience: "tous",
     categories: [
-      "Mathématiques",
       "Géométrie",
       "Graphiques"
     ],
@@ -1325,7 +1310,7 @@ export const softwareList: Software[] = [
       "Évaluation"
     ],
     pedagogicalActivities: [
-      "Quiz interactifs",
+      "Quiz",
       "Révision",
       "Évaluation formative"
     ],
@@ -1398,7 +1383,7 @@ export const softwareList: Software[] = [
       "Ressources académiques"
     ],
     pedagogicalActivities: [
-      "Recherche documentaire",
+      "Recherche d'information",
       "Consultation d'articles"
     ],
     disciplines: [
@@ -1467,7 +1452,7 @@ export const softwareList: Software[] = [
       "Évaluation"
     ],
     pedagogicalActivities: [
-      "Quiz en temps réel",
+      "Quiz",
       "Révision ludique",
       "Évaluation formative"
     ],
@@ -1685,7 +1670,7 @@ export const softwareList: Software[] = [
     ],
     pedagogicalActivities: [
       "Networking",
-      "Recherche d'emploi",
+      "Recherche d'information",
       "Développement professionnel"
     ],
     disciplines: [
@@ -1824,7 +1809,7 @@ export const softwareList: Software[] = [
     targetAudience: "enseignants",
     categories: [
       "Intelligence artificielle",
-      "Planification",
+      "Organisation",
       "Aide à l'enseignement"
     ],
     pedagogicalActivities: [
@@ -2076,7 +2061,7 @@ export const softwareList: Software[] = [
     pedagogicalActivities: [
       "Prise de notes",
       "Synthèse",
-      "Recherche assistée"
+      "Recherche d'information"
     ],
     disciplines: [
       "Transversal"
@@ -2105,12 +2090,11 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.onecalendar.nl",
     targetAudience: "tous",
     categories: [
-      "Calendrier",
       "Organisation",
       "Productivité"
     ],
     pedagogicalActivities: [
-      "Gestion d'agenda",
+      "Organisation",
       "Synchronisation de calendriers"
     ],
     disciplines: [
@@ -2141,7 +2125,6 @@ export const softwareList: Software[] = [
     targetAudience: "élèves",
     categories: [
       "Orthographe",
-      "Français",
       "Évaluation"
     ],
     pedagogicalActivities: [
@@ -2246,7 +2229,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://pdfexpert.com",
     targetAudience: "tous",
     categories: [
-      "PDF",
+      "Bureautique",
       "Édition",
       "Annotation"
     ],
@@ -2353,7 +2336,6 @@ export const softwareList: Software[] = [
     toolUrl: "https://phyphox.org",
     targetAudience: "élèves",
     categories: [
-      "Sciences",
       "Physique",
       "Expérimentation"
     ],
@@ -2363,7 +2345,6 @@ export const softwareList: Software[] = [
       "Collecte de données"
     ],
     disciplines: [
-      "Physique",
       "Sciences"
     ],
     usageNotes: "Usage autorisé",
@@ -2467,7 +2448,7 @@ export const softwareList: Software[] = [
       "QR code"
     ],
     pedagogicalActivities: [
-      "Quiz instantanés",
+      "Quiz",
       "Évaluation formative",
       "Sondages"
     ],
@@ -2534,7 +2515,6 @@ export const softwareList: Software[] = [
     targetAudience: "tous",
     categories: [
       "Orthographe",
-      "Français",
       "Certification"
     ],
     pedagogicalActivities: [
@@ -2639,7 +2619,6 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.samsung.com",
     targetAudience: "tous",
     categories: [
-      "Messagerie",
       "Communication"
     ],
     pedagogicalActivities: [
@@ -2712,7 +2691,7 @@ export const softwareList: Software[] = [
     ],
     pedagogicalActivities: [
       "Lecture d'ouvrages",
-      "Recherche documentaire"
+      "Recherche d'information"
     ],
     disciplines: [
       "Transversal"
@@ -2809,7 +2788,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.sodapdf.com",
     targetAudience: "tous",
     categories: [
-      "PDF",
+      "Bureautique",
       "Édition",
       "Conversion"
     ],
@@ -2882,7 +2861,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://sparkmailapp.com",
     targetAudience: "enseignants",
     categories: [
-      "Messagerie",
+      "Communication",
       "Productivité"
     ],
     pedagogicalActivities: [
@@ -2952,7 +2931,6 @@ export const softwareList: Software[] = [
     targetAudience: "élèves",
     categories: [
       "Dactylographie",
-      "Informatique",
       "Compétences transversales"
     ],
     pedagogicalActivities: [
@@ -3020,7 +2998,6 @@ export const softwareList: Software[] = [
     toolUrl: "https://threema.ch/en/education",
     targetAudience: "tous",
     categories: [
-      "Messagerie",
       "Communication",
       "Sécurité"
     ],
@@ -3055,7 +3032,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.thunderbird.net",
     targetAudience: "tous",
     categories: [
-      "Messagerie",
+      "Communication",
       "Open source",
       "Bureautique"
     ],
@@ -3201,7 +3178,7 @@ export const softwareList: Software[] = [
       "Évaluation"
     ],
     pedagogicalActivities: [
-      "Quiz interactifs",
+      "Quiz",
       "Devoirs gamifiés",
       "Évaluation"
     ],
@@ -3237,8 +3214,8 @@ export const softwareList: Software[] = [
       "Quiz"
     ],
     pedagogicalActivities: [
-      "Sondages en direct",
-      "Quiz interactifs",
+      "Sondages",
+      "Quiz",
       "Nuages de mots"
     ],
     disciplines: [
@@ -3408,8 +3385,7 @@ export const softwareList: Software[] = [
     targetAudience: "tous",
     categories: [
       "Bureautique",
-      "Productivité",
-      "Mathématiques"
+      "Productivité"
     ],
     disciplines: [
       "Toutes",
@@ -3514,7 +3490,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://portal.office.com/onedrive",
     targetAudience: "tous",
     categories: [
-      "Stockage",
+      "Stockage cloud",
       "Productivité"
     ],
     disciplines: [
@@ -3589,7 +3565,7 @@ export const softwareList: Software[] = [
     ],
     pedagogicalActivities: [
       "Quiz",
-      "Sondage",
+      "Sondages",
       "Évaluation formative"
     ],
     createdAt: 1697756400000,
@@ -3871,7 +3847,7 @@ export const softwareList: Software[] = [
     ],
     pedagogicalActivities: [
       "Planification",
-      "Gestion de tâches"
+      "Gestion de projet"
     ],
     usageNotes: "Données hébergées hors UE.",
     createdAt: 1699774704000,
@@ -3967,8 +3943,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.mongodb.com/atlas",
     targetAudience: "élèves",
     categories: [
-      "Développement",
-      "Informatique",
+      "Programmation",
       "Base de données"
     ],
     disciplines: [
@@ -4002,8 +3977,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.jetbrains.com/webstorm",
     targetAudience: "élèves",
     categories: [
-      "Développement",
-      "Informatique",
+      "Programmation",
       "IDE"
     ],
     disciplines: [
@@ -4037,8 +4011,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.jetbrains.com/phpstorm",
     targetAudience: "élèves",
     categories: [
-      "Développement",
-      "Informatique",
+      "Programmation",
       "IDE"
     ],
     disciplines: [
@@ -4072,8 +4045,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://zed.dev",
     targetAudience: "élèves",
     categories: [
-      "Développement",
-      "Informatique",
+      "Programmation",
       "IDE"
     ],
     disciplines: [
@@ -4107,7 +4079,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.sublimetext.com",
     targetAudience: "tous",
     categories: [
-      "Développement",
+      "Programmation",
       "Productivité",
       "IDE"
     ],
@@ -4143,7 +4115,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://cursor.sh",
     targetAudience: "élèves",
     categories: [
-      "Développement",
+      "Programmation",
       "Intelligence artificielle (IA)",
       "IDE"
     ],
@@ -4179,7 +4151,7 @@ export const softwareList: Software[] = [
     targetAudience: "tous",
     categories: [
       "Intelligence artificielle (IA)",
-      "Développement",
+      "Programmation",
       "Productivité"
     ],
     disciplines: [
@@ -4215,8 +4187,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://mitchellh.com/ghostty",
     targetAudience: "élèves",
     categories: [
-      "Développement",
-      "Informatique",
+      "Programmation",
       "Terminal"
     ],
     disciplines: [
@@ -4250,8 +4221,7 @@ export const softwareList: Software[] = [
     toolUrl: "https://www.usebruno.com",
     targetAudience: "élèves",
     categories: [
-      "Développement",
-      "Informatique",
+      "Programmation",
       "API"
     ],
     disciplines: [
@@ -4364,7 +4334,7 @@ export const softwareList: Software[] = [
       "Toutes"
     ],
     pedagogicalActivities: [
-      "Recherche",
+      "Recherche d'information",
       "Création de contenu"
     ],
     usageNotes: "Collecte de données Google. À utiliser avec discernement.",
@@ -4433,7 +4403,7 @@ export const softwareList: Software[] = [
       "Toutes"
     ],
     pedagogicalActivities: [
-      "Recherche documentaire",
+      "Recherche d'information",
       "Vérification de faits"
     ],
     usageNotes: "Excellent pour la recherche sourcée, mais hébergement US.",
