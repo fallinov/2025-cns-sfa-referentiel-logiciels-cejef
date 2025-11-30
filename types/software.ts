@@ -81,6 +81,6 @@ export interface Software {
   disciplines?: string[]
 
   // DATES
-  createdAt: number
-  updatedAt: number
+  createdAt?: number
+  updatedAt?: number
 }

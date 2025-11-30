@@ -413,19 +413,19 @@ onUnmounted(() => {
           type="search"
           autocomplete="off"
           :placeholder="placeholderText"
-          class="w-full h-12 pl-4 pr-24 text-base font-bold tracking-wide text-slate-900 dark:text-slate-100 rounded-[24px] focus:outline-none transition-all placeholder-slate-900/50 dark:placeholder-slate-100/50 [&::-webkit-search-cancel-button]:appearance-none bg-gradient-to-b from-white/90 via-white/80 to-white/70 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-gray-900/70 backdrop-blur-2xl ring-2 ring-inset ring-slate-900 dark:ring-slate-100 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] focus:ring-2 focus:ring-primary-500/50"
+          class="w-full h-14 pl-6 pr-24 text-lg font-medium tracking-wide text-slate-900 dark:text-slate-100 rounded-[28px] focus:outline-none transition-all placeholder-slate-900/50 dark:placeholder-slate-100/50 [&::-webkit-search-cancel-button]:appearance-none bg-gradient-to-b from-white/90 via-white/80 to-white/70 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-gray-900/70 backdrop-blur-2xl ring-2 ring-inset ring-slate-900 dark:ring-slate-100 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] focus:ring-2 focus:ring-primary-500/50"
           @focus="handleFocus"
           @blur="handleBlur"
           @keydown="handleKeyDown"
         />
 
         <!-- Right Actions -->
-        <div class="absolute inset-y-0 right-0 flex items-center pr-3 gap-2">
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3 gap-4">
           <!-- Clear Button -->
           <button
             v-if="search"
             type="button"
-            class="flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors focus:outline-none"
+            class="flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors focus:outline-none"
             aria-label="Effacer la recherche"
             @click="handleClear"
           >
@@ -436,11 +436,11 @@ onUnmounted(() => {
           <button
             type="button"
             :disabled="!search"
-            class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-900 text-white transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800 disabled:hover:bg-slate-900"
+            class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-white transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800 disabled:hover:bg-slate-900"
             aria-label="Rechercher"
             @click="handleSearchSubmit"
           >
-            <UIcon name="i-lucide-search" class="w-4 h-4" />
+            <UIcon name="i-lucide-search" class="w-5 h-5" />
           </button>
         </div>
       </div>

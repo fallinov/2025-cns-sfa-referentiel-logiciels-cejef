@@ -9,20 +9,23 @@ export const useSoftware = () => {
    * Récupère la liste de tous les logiciels
    */
   const getSoftwareList = (): Software[] => {
-    // Generate deterministic random dates based on ID to keep hydration consistent
-    return softwareList.map(software => {
-      // Simple hash function for deterministic seed
-      const hash = software.id.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)
+    // Generate deterministic dates based on index to keep order consistent
+    // Last items in the list will be the most recent
+    const startDate = new Date(2023, 0, 1).getTime()
+    const endDate = new Date().getTime() // Today
+    const totalDuration = endDate - startDate
+    const step = totalDuration / Math.max(softwareList.length - 1, 1)
 
-      // Random date between 2021 and 2025
-      const start = new Date(2021, 0, 1).getTime()
-      const end = new Date(2025, 11, 31).getTime()
-      const randomTime = start + (hash % (end - start))
+    return softwareList.map((software, index) => {
+      // Calculate date based on index
+      // index 0 = startDate
+      // last index = endDate
+      const date = startDate + (index * step)
 
       return {
         ...software,
-        createdAt: randomTime,
-        updatedAt: randomTime
+        createdAt: date,
+        updatedAt: date
       }
     })
   }

@@ -17,7 +17,7 @@
 
 interface Props {
   /** Taille du badge */
-  size?: "sm" | "md" | "lg" | "xl"
+  size?: "xs" | "sm" | "md" | "lg" | "xl"
   /** Force le texte blanc (utile pour badges d'entête sur fond coloré) */
   forceWhite?: boolean
 }
@@ -29,6 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 // Tailles avec padding réduit et tailles de texte >= 16px
 const sizeClasses = {
+  xs: "px-2 py-0.5 text-xs gap-1", // Très petit
   sm: "px-2.5 py-1 text-sm gap-1.5", // Plus petit mais toujours lisible
   md: "px-3 py-1.5 text-base gap-2", // Taille par défaut - 16px avec padding réduit
   lg: "px-4 py-2 text-lg gap-2.5", // Plus grand

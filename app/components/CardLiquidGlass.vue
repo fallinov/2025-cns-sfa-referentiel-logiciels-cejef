@@ -64,7 +64,7 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
       'group relative flex flex-col h-full transition-all duration-500 block',
       compact ? 'hover:-translate-y-1' : 'hover:-translate-y-2',
       'outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 focus-visible:ring-offset-2',
-      compact ? 'rounded-lg' : 'rounded-xl',
+      compact ? 'rounded-[calc(var(--ui-radius)*0.75)]' : 'rounded-[var(--ui-radius)]',
       'overflow-hidden',
       config.bg,
       'bg-gradient-to-b from-white/40 via-white/15 to-transparent dark:from-white/10 dark:via-white/5 dark:to-transparent',
@@ -79,7 +79,7 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
       :class="[
         'absolute top-0 left-0 w-full z-0 flex flex-col transition-all duration-700 ease-in-out',
         config.fill,
-        compact ? 'h-[80px] group-hover:h-[120%] group-focus:h-[120%]' : 'h-[140px] group-hover:h-[140%] group-focus:h-[140%]'
+        compact ? 'h-[70px] group-hover:h-[120%] group-focus:h-[120%]' : 'h-[90px] group-hover:h-[140%] group-focus:h-[140%]'
       ]"
     >
       <!-- Solid Top Part -->
@@ -100,32 +100,32 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
 
     <!-- Header Badge -->
     <div :class="compact ? 'absolute top-3 right-4 z-20' : 'absolute top-5 right-6 z-20'">
-      <LiquidBadge force-white :size="compact ? 'sm' : 'md'">
+      <LiquidBadge force-white :size="compact ? 'xs' : 'sm'">
         <template #leading>
-          <UIcon :name="config.icon" :class="compact ? 'w-4 h-4' : 'w-5 h-5'" />
+          <UIcon :name="config.icon" :class="compact ? 'w-3.5 h-3.5' : 'w-4 h-4'" />
         </template>
         {{ config.label }}
       </LiquidBadge>
     </div>
 
     <!-- Large Icon/Logo in Header -->
-    <div :class="compact ? 'absolute top-3 left-4 z-20' : 'absolute top-6 left-6 z-20'">
-      <div :class="compact ? 'w-10 h-10' : 'w-16 h-16'" class="flex items-center justify-start">
+    <div :class="compact ? 'absolute top-4 left-4 z-20' : 'absolute top-5 left-5 z-20'">
+      <div :class="compact ? 'w-8 h-8' : 'w-10 h-10'" class="flex items-center justify-start">
         <img
           v-if="software.logo"
           :src="`/logos/${software.logo}.svg`"
-          :alt="software.name"
+          :class="compact ? 'w-8 h-8' : 'w-10 h-10'"
           class="max-w-full max-h-full object-contain drop-shadow-lg opacity-100 group-hover:scale-110 transition-all duration-300"
         />
         <UIcon
           v-else-if="software.icon"
           :name="software.icon"
-          :class="compact ? 'w-10 h-10' : 'w-16 h-16'"
+          :class="compact ? 'w-8 h-8' : 'w-10 h-10'"
           class="text-white drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
         />
         <span
           v-else
-          :class="compact ? 'text-2xl' : 'text-4xl'"
+          :class="compact ? 'text-2xl' : 'text-3xl'"
           class="text-white font-black drop-shadow-sm opacity-100 group-hover:scale-110 transition-transform duration-300"
         >
           {{ initials }}
@@ -133,13 +133,13 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
       </div>
     </div>
 
-    <div :class="compact ? 'p-4' : 'p-7'" class="flex flex-col h-full relative z-10">
+    <div :class="compact ? 'p-4' : 'p-5'" class="flex flex-col h-full relative z-10">
       <!-- Title Section -->
-      <div :class="compact ? 'mb-3 mt-14' : 'mb-6 mt-28'" class="flex flex-col gap-1">
+      <div :class="compact ? 'mb-3 mt-12' : 'mb-4 mt-16'" class="flex flex-col gap-1">
         <h3
           :class="[
             'font-bold tracking-tight transition-colors duration-300',
-            compact ? 'text-lg' : 'text-2xl'
+            compact ? 'text-lg' : 'text-xl'
           ]"
           class="text-gray-900 dark:text-white group-hover:text-white group-focus:text-white drop-shadow-sm"
         >
@@ -158,25 +158,25 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
       <!-- Footer items -->
       <div :class="compact ? 'mt-auto flex flex-wrap gap-2' : 'mt-auto flex flex-wrap gap-3'">
         <!-- Badge Coût -->
-        <LiquidBadge :size="compact ? 'sm' : 'md'">
+        <LiquidBadge :size="compact ? 'xs' : 'sm'">
           <template #leading>
-            <UIcon :class="compact ? 'w-4 h-4' : 'w-5 h-5'" name="i-lucide-wallet" />
+            <UIcon :class="compact ? 'w-3.5 h-3.5' : 'w-4 h-4'" name="i-lucide-wallet" />
           </template>
           {{ software.cost }}
         </LiquidBadge>
 
         <!-- Badge Support CEJEF -->
-        <LiquidBadge v-if="software.supportedByCEJEF && !compact" :size="compact ? 'sm' : 'md'">
+        <LiquidBadge v-if="software.supportedByCEJEF && !compact" :size="compact ? 'xs' : 'sm'">
           <template #leading>
-            <UIcon :class="compact ? 'w-4 h-4' : 'w-5 h-5'" name="i-lucide-headphones" />
+            <UIcon :class="compact ? 'w-3.5 h-3.5' : 'w-4 h-4'" name="i-lucide-headphones" />
           </template>
           Support
         </LiquidBadge>
 
         <!-- Badge Formation -->
-        <LiquidBadge v-if="software.campusTraining && !compact" :size="compact ? 'sm' : 'md'">
+        <LiquidBadge v-if="software.campusTraining && !compact" :size="compact ? 'xs' : 'sm'">
           <template #leading>
-            <UIcon :class="compact ? 'w-4 h-4' : 'w-5 h-5'" name="i-lucide-graduation-cap" />
+            <UIcon :class="compact ? 'w-3.5 h-3.5' : 'w-4 h-4'" name="i-lucide-graduation-cap" />
           </template>
           Formation
         </LiquidBadge>
