@@ -3397,7 +3397,7 @@ export const softwareList: Software[] = [
     disciplines: ["Toutes"],
     pedagogicalActivities: ["Recherche d'information", "Navigation web"],
     usageNotes: "Collecte de données importante. Privilégier Firefox pour les données sensibles.",
-    greenAlternatives: ["Mozilla Firefox", "Brave"]
+    greenAlternatives: ["mozilla-firefox", "brave-browser"]
   },
   {
     id: "microsoft-edge",
@@ -3422,7 +3422,7 @@ export const softwareList: Software[] = [
     disciplines: ["Toutes"],
     pedagogicalActivities: ["Recherche d'information", "Navigation web"],
     usageNotes: "Collecte de données similaire à Chrome. Privilégier Firefox.",
-    greenAlternatives: ["Mozilla Firefox", "Brave"]
+    greenAlternatives: ["mozilla-firefox", "brave-browser"]
   },
   {
     id: "apple-safari",
