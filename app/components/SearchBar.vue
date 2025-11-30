@@ -6,10 +6,12 @@
 
 interface Props {
   compact?: boolean
+  hero?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
-  compact: false
+  compact: false,
+  hero: false
 })
 
 const search = defineModel<string>("search", { default: "" })
@@ -24,12 +26,16 @@ const showSuggestions = ref(false)
 // Selected category filter (emitted to parent)
 const emit = defineEmits<{
   filterByCategory: [category: string]
+  filterByDiscipline: [discipline: string]
+  filterByActivity: [activity: string]
 }>()
 
 // Keyboard navigation
 const selectedIndex = ref(-1)
-const selectedType = ref<"search" | "category" | "software">("search")
+const selectedType = ref<"search" | "category" | "discipline" | "activity" | "software">("search")
 const maxCategoryIndex = computed(() => suggestions.value.categories.length - 1)
+const maxDisciplineIndex = computed(() => suggestions.value.disciplines.length - 1)
+const maxActivityIndex = computed(() => suggestions.value.activities.length - 1)
 const maxSoftwareIndex = computed(() => suggestions.value.software.length - 1)
 
 // Normaliser le texte (enlever les accents et mettre en minuscules)
@@ -47,6 +53,8 @@ const suggestions = computed(() => {
       query: "",
       totalResults: 0,
       categories: [],
+      disciplines: [],
+      activities: [],
       software: []
     }
   }
@@ -62,23 +70,29 @@ const suggestions = computed(() => {
     || s.pedagogicalActivities?.some(act => normalizeText(act).includes(query))
   )
 
-  // Extraire les catégories uniques des logiciels correspondants
-  // Filtrer seulement celles qui contiennent le texte recherché
+  // Extraire les catégories uniques
   const categoriesSet = new Set<string>()
+  const disciplinesSet = new Set<string>()
+  const activitiesSet = new Set<string>()
+
   matchingSoftware.forEach((s) => {
     s.categories?.forEach((cat) => {
-      if (normalizeText(cat).includes(query)) {
-        categoriesSet.add(cat)
-      }
+      if (normalizeText(cat).includes(query)) categoriesSet.add(cat)
+    })
+    s.disciplines?.forEach((disc) => {
+      if (normalizeText(disc).includes(query)) disciplinesSet.add(disc)
+    })
+    s.pedagogicalActivities?.forEach((act) => {
+      if (normalizeText(act).includes(query)) activitiesSet.add(act)
     })
   })
-
-  const matchingCategories = Array.from(categoriesSet).slice(0, 5)
 
   return {
     query: search.value,
     totalResults: matchingSoftware.length,
-    categories: matchingCategories,
+    categories: Array.from(categoriesSet).slice(0, 3),
+    disciplines: Array.from(disciplinesSet).slice(0, 3),
+    activities: Array.from(activitiesSet).slice(0, 3),
     software: matchingSoftware.slice(0, 6)
   }
 })
@@ -95,6 +109,20 @@ const handleSoftwareClick = (softwareId: string) => {
 
 const handleCategoryClick = (category: string) => {
   emit("filterByCategory", category)
+  showSuggestions.value = false
+  search.value = ""
+  selectedIndex.value = -1
+}
+
+const handleDisciplineClick = (discipline: string) => {
+  emit("filterByDiscipline", discipline)
+  showSuggestions.value = false
+  search.value = ""
+  selectedIndex.value = -1
+}
+
+const handleActivityClick = (activity: string) => {
+  emit("filterByActivity", activity)
   showSuggestions.value = false
   search.value = ""
   selectedIndex.value = -1
@@ -122,17 +150,24 @@ const handleKeyDown = (event: KeyboardEvent) => {
   if (!showSuggestions.value) return
 
   const hasCategories = suggestions.value.categories.length > 0
+  const hasDisciplines = suggestions.value.disciplines.length > 0
+  const hasActivities = suggestions.value.activities.length > 0
   const hasSoftware = suggestions.value.software.length > 0
 
-  if (!hasCategories && !hasSoftware) return
+  if (!hasCategories && !hasDisciplines && !hasActivities && !hasSoftware) return
 
   switch (event.key) {
     case "ArrowDown":
       event.preventDefault()
       if (selectedType.value === "search") {
-        // Depuis la recherche globale
         if (hasCategories) {
           selectedType.value = "category"
+          selectedIndex.value = 0
+        } else if (hasDisciplines) {
+          selectedType.value = "discipline"
+          selectedIndex.value = 0
+        } else if (hasActivities) {
+          selectedType.value = "activity"
           selectedIndex.value = 0
         } else if (hasSoftware) {
           selectedType.value = "software"
@@ -141,13 +176,42 @@ const handleKeyDown = (event: KeyboardEvent) => {
       } else if (selectedType.value === "category") {
         if (selectedIndex.value < maxCategoryIndex.value) {
           selectedIndex.value++
-        } else if (hasSoftware) {
-          // Passer aux logiciels
-          selectedType.value = "software"
-          selectedIndex.value = 0
+        } else {
+          // Try next sections
+          if (hasDisciplines) {
+            selectedType.value = "discipline"
+            selectedIndex.value = 0
+          } else if (hasActivities) {
+            selectedType.value = "activity"
+            selectedIndex.value = 0
+          } else if (hasSoftware) {
+            selectedType.value = "software"
+            selectedIndex.value = 0
+          }
+        }
+      } else if (selectedType.value === "discipline") {
+        if (selectedIndex.value < maxDisciplineIndex.value) {
+          selectedIndex.value++
+        } else {
+          if (hasActivities) {
+            selectedType.value = "activity"
+            selectedIndex.value = 0
+          } else if (hasSoftware) {
+            selectedType.value = "software"
+            selectedIndex.value = 0
+          }
+        }
+      } else if (selectedType.value === "activity") {
+        if (selectedIndex.value < maxActivityIndex.value) {
+          selectedIndex.value++
+        } else {
+          if (hasSoftware) {
+            selectedType.value = "software"
+            selectedIndex.value = 0
+          }
         }
       } else {
-        // Dans les logiciels
+        // Software
         if (selectedIndex.value < maxSoftwareIndex.value) {
           selectedIndex.value++
         }
@@ -159,21 +223,53 @@ const handleKeyDown = (event: KeyboardEvent) => {
       if (selectedType.value === "software") {
         if (selectedIndex.value > 0) {
           selectedIndex.value--
-        } else if (hasCategories) {
-          // Revenir aux catégories
-          selectedType.value = "category"
-          selectedIndex.value = maxCategoryIndex.value
         } else {
-          // Revenir à la recherche globale
-          selectedType.value = "search"
-          selectedIndex.value = -1
+          // Go back to previous sections
+          if (hasActivities) {
+            selectedType.value = "activity"
+            selectedIndex.value = maxActivityIndex.value
+          } else if (hasDisciplines) {
+            selectedType.value = "discipline"
+            selectedIndex.value = maxDisciplineIndex.value
+          } else if (hasCategories) {
+            selectedType.value = "category"
+            selectedIndex.value = maxCategoryIndex.value
+          } else {
+            selectedType.value = "search"
+            selectedIndex.value = -1
+          }
         }
-      } else if (selectedType.value === "category") {
-        // Dans les catégories
+      } else if (selectedType.value === "activity") {
         if (selectedIndex.value > 0) {
           selectedIndex.value--
         } else {
-          // Revenir à la recherche globale
+          if (hasDisciplines) {
+            selectedType.value = "discipline"
+            selectedIndex.value = maxDisciplineIndex.value
+          } else if (hasCategories) {
+            selectedType.value = "category"
+            selectedIndex.value = maxCategoryIndex.value
+          } else {
+            selectedType.value = "search"
+            selectedIndex.value = -1
+          }
+        }
+      } else if (selectedType.value === "discipline") {
+        if (selectedIndex.value > 0) {
+          selectedIndex.value--
+        } else {
+          if (hasCategories) {
+            selectedType.value = "category"
+            selectedIndex.value = maxCategoryIndex.value
+          } else {
+            selectedType.value = "search"
+            selectedIndex.value = -1
+          }
+        }
+      } else if (selectedType.value === "category") {
+        if (selectedIndex.value > 0) {
+          selectedIndex.value--
+        } else {
           selectedType.value = "search"
           selectedIndex.value = -1
         }
@@ -182,15 +278,24 @@ const handleKeyDown = (event: KeyboardEvent) => {
 
     case "Enter":
       event.preventDefault()
-      if (selectedType.value === "search") {
-        // Appliquer la recherche (ne rien faire, le filtre est déjà actif)
+      if (selectedIndex.value === -1) {
+        // Si aucun élément n'est sélectionné, on valide la recherche textuelle
         showSuggestions.value = false
-      } else if (selectedType.value === "category" && selectedIndex.value >= 0) {
+        // Le filtre est déjà appliqué via v-model, on enlève juste le focus pour masquer le clavier sur mobile
+        const input = document.getElementById("software-search")
+        if (input) input.blur()
+      } else if (selectedType.value === "category") {
         const category = suggestions.value.categories[selectedIndex.value]
         if (category) {
           handleCategoryClick(category)
         }
-      } else if (selectedType.value === "software" && selectedIndex.value >= 0) {
+      } else if (selectedType.value === "discipline") {
+        const discipline = suggestions.value.disciplines[selectedIndex.value]
+        if (discipline) handleDisciplineClick(discipline)
+      } else if (selectedType.value === "activity") {
+        const activity = suggestions.value.activities[selectedIndex.value]
+        if (activity) handleActivityClick(activity)
+      } else if (selectedType.value === "software") {
         const software = suggestions.value.software[selectedIndex.value]
         if (software) {
           handleSoftwareClick(software.id)
@@ -210,7 +315,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
 watch(search, (newValue) => {
   showSuggestions.value = newValue.length >= 2 && isFocused.value
   selectedIndex.value = -1
-  selectedType.value = "category"
+  selectedType.value = "category" // Reset to first potential section, logic in render will handle empty sections
 })
 </script>
 
@@ -222,130 +327,168 @@ watch(search, (newValue) => {
     >
       Rechercher un logiciel
     </label>
-    <div class="relative">
-      <div :class="compact ? 'pl-3' : 'pl-4'" class="absolute inset-y-0 left-0 flex items-center pointer-events-none z-10">
-        <UIcon
-          name="i-lucide-search"
-          :class="compact ? 'w-5 h-5' : 'w-6 h-6'"
-          class="text-gray-400 dark:text-gray-500"
+    <div class="relative group flex items-stretch">
+      <div class="relative flex-1">
+        <!-- Search Icon -->
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <UIcon name="i-lucide-search" class="w-5 h-5 text-gray-400 group-focus-within:text-primary-500 transition-colors" />
+        </div>
+
+        <input
+          id="software-search"
+          v-model="search"
+          type="search"
+          autocomplete="off"
+          placeholder="Rechercher un logiciel, une catégorie..."
+          class="w-full h-12 pl-10 pr-10 text-base bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all shadow-sm placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @keydown="handleKeyDown"
         />
+
+        <!-- Clear Button -->
+        <button
+          v-if="search"
+          type="button"
+          class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors focus:outline-none"
+          aria-label="Effacer la recherche"
+          @click="search = ''"
+        >
+          <UIcon name="i-lucide-x" class="w-5 h-5" />
+        </button>
       </div>
-      <input
-        id="software-search"
-        v-model="search"
-        type="search"
-        autocomplete="off"
-        :placeholder="compact ? 'Rechercher…' : 'Rechercher un logiciel, une catégorie, une discipline…'"
-        :class="[
-          'w-full pr-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none transition-all relative z-10',
-          '[&::-webkit-search-cancel-button]:appearance-none',
-          compact
-            ? 'pl-10 py-2 text-base rounded-lg border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500'
-            : 'pl-12 py-4 text-lg rounded-2xl border-2 border-gray-300 dark:border-gray-700 focus:ring-4 focus:ring-primary-500/40 focus:border-primary-500',
-          {
-            'ring-2 ring-primary-500/40 border-primary-500': isFocused && compact,
-            'ring-4 ring-primary-500/40 border-primary-500': isFocused && !compact,
-            'rounded-b-none': showSuggestions && hasSuggestions
-          }
-        ]"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @keydown="handleKeyDown"
-      />
-      <button
-        v-if="search"
-        type="button"
-        :class="compact ? 'pr-3' : 'pr-4'"
-        class="absolute inset-y-0 right-0 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full z-10"
-        aria-label="Effacer la recherche"
-        @click="search = ''"
-      >
-        <UIcon :class="compact ? 'w-5 h-5' : 'w-6 h-6'" name="i-lucide-x" />
-      </button>
 
       <!-- Suggestions dropdown -->
-      <div
-        v-if="showSuggestions && hasSuggestions"
-        class="absolute top-full left-0 right-0 -mt-2 bg-white dark:bg-gray-900 border-2 border-t-0 border-gray-300 dark:border-gray-700 rounded-b-2xl shadow-xl max-h-96 overflow-y-auto z-20"
+      <Transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="transform scale-95 opacity-0 translate-y-2"
+        enter-to-class="transform scale-100 opacity-100 translate-y-0"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="transform scale-100 opacity-100 translate-y-0"
+        leave-to-class="transform scale-95 opacity-0 translate-y-2"
       >
-        <div class="p-2 space-y-2">
-          <!-- Search query avec nombre de résultats -->
-          <div class="px-3 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <UIcon name="i-lucide-search" class="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                <span class="font-semibold text-gray-900 dark:text-white">
-                  {{ suggestions.query }}
-                </span>
+        <div
+          v-if="showSuggestions && hasSuggestions"
+          class="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl max-h-96 overflow-y-auto z-20 ring-1 ring-gray-200 dark:ring-gray-800"
+        >
+          <div class="p-2 space-y-2">
+            <!-- Catégories correspondantes -->
+            <div v-if="suggestions.categories.length > 0">
+              <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                Filtrer par catégorie
               </div>
-              <UBadge color="primary" variant="soft" size="sm">
-                {{ suggestions.totalResults }} résultat{{ suggestions.totalResults > 1 ? 's' : '' }}
-              </UBadge>
-            </div>
-          </div>
-
-          <!-- Catégories correspondantes -->
-          <div v-if="suggestions.categories.length > 0">
-            <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-              Filtrer par catégorie
-            </div>
-            <div class="space-y-1">
-              <button
-                v-for="(category, index) in suggestions.categories"
-                :key="category"
-                type="button"
-                :class="[
-                  'w-full text-left px-3 py-2 rounded-lg transition-colors flex items-center justify-between group',
-                  selectedType === 'category' && index === selectedIndex
-                    ? 'bg-primary-100 dark:bg-primary-900/30 ring-2 ring-primary-500'
-                    : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-                ]"
-                @click="handleCategoryClick(category)"
-              >
-                <div class="flex items-center gap-2">
-                  <UIcon name="i-lucide-tag" class="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                  <span class="font-medium text-gray-900 dark:text-white">{{ category }}</span>
-                </div>
-                <UIcon name="i-lucide-arrow-right" class="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </button>
-            </div>
-          </div>
-
-          <!-- Logiciels correspondants -->
-          <div v-if="suggestions.software.length > 0">
-            <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-              Logiciels
-            </div>
-            <div class="space-y-1">
-              <button
-                v-for="(software, index) in suggestions.software"
-                :key="software.id"
-                type="button"
-                :class="[
-                  'w-full text-left px-3 py-2.5 rounded-lg transition-colors flex items-start gap-3',
-                  selectedType === 'software' && index === selectedIndex
-                    ? 'bg-primary-100 dark:bg-primary-900/30 ring-2 ring-primary-500'
-                    : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-                ]"
-                @click="handleSoftwareClick(software.id)"
-              >
-                <UIcon
-                  :name="software.icon || 'i-lucide-package'"
-                  class="w-5 h-5 text-gray-600 dark:text-gray-400 shrink-0 mt-0.5"
-                />
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-gray-900 dark:text-white truncate">
-                    {{ software.name }}
+              <div class="space-y-1">
+                <button
+                  v-for="(category, index) in suggestions.categories"
+                  :key="category"
+                  type="button"
+                  :class="[
+                    'w-full text-left px-3 py-2 rounded-lg transition-colors flex items-center justify-between group',
+                    selectedType === 'category' && index === selectedIndex
+                      ? 'bg-primary-100 dark:bg-primary-900/30 ring-2 ring-primary-500'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                  ]"
+                  @click="handleCategoryClick(category)"
+                >
+                  <div class="flex items-center gap-2">
+                    <UIcon name="i-lucide-tag" class="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                    <span class="font-medium text-gray-900 dark:text-white">{{ category }}</span>
                   </div>
-                  <div class="text-sm text-gray-600 dark:text-gray-400 line-clamp-1">
-                    {{ software.shortDescription }}
+                  <UIcon name="i-lucide-arrow-right" class="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              </div>
+            </div>
+
+            <!-- Disciplines correspondantes -->
+            <div v-if="suggestions.disciplines.length > 0">
+              <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                Filtrer par discipline
+              </div>
+              <div class="space-y-1">
+                <button
+                  v-for="(discipline, index) in suggestions.disciplines"
+                  :key="discipline"
+                  type="button"
+                  :class="[
+                    'w-full text-left px-3 py-2 rounded-lg transition-colors flex items-center justify-between group',
+                    selectedType === 'discipline' && index === selectedIndex
+                      ? 'bg-primary-100 dark:bg-primary-900/30 ring-2 ring-primary-500'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                  ]"
+                  @click="handleDisciplineClick(discipline)"
+                >
+                  <div class="flex items-center gap-2">
+                    <UIcon name="i-lucide-book-open" class="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                    <span class="font-medium text-gray-900 dark:text-white">{{ discipline }}</span>
                   </div>
-                </div>
-              </button>
+                  <UIcon name="i-lucide-arrow-right" class="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              </div>
+            </div>
+
+            <!-- Activités pédagogiques correspondantes -->
+            <div v-if="suggestions.activities.length > 0">
+              <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                Filtrer par activité
+              </div>
+              <div class="space-y-1">
+                <button
+                  v-for="(activity, index) in suggestions.activities"
+                  :key="activity"
+                  type="button"
+                  :class="[
+                    'w-full text-left px-3 py-2 rounded-lg transition-colors flex items-center justify-between group',
+                    selectedType === 'activity' && index === selectedIndex
+                      ? 'bg-primary-100 dark:bg-primary-900/30 ring-2 ring-primary-500'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                  ]"
+                  @click="handleActivityClick(activity)"
+                >
+                  <div class="flex items-center gap-2">
+                    <UIcon name="i-lucide-graduation-cap" class="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                    <span class="font-medium text-gray-900 dark:text-white">{{ activity }}</span>
+                  </div>
+                  <UIcon name="i-lucide-arrow-right" class="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              </div>
+            </div>
+
+            <!-- Logiciels correspondants -->
+            <div v-if="suggestions.software.length > 0">
+              <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                Logiciels
+              </div>
+              <div class="space-y-1">
+                <button
+                  v-for="(software, index) in suggestions.software"
+                  :key="software.id"
+                  type="button"
+                  :class="[
+                    'w-full text-left px-3 py-2.5 rounded-lg transition-colors flex items-start gap-3',
+                    selectedType === 'software' && index === selectedIndex
+                      ? 'bg-primary-100 dark:bg-primary-900/30 ring-2 ring-primary-500'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                  ]"
+                  @click="handleSoftwareClick(software.id)"
+                >
+                  <UIcon
+                    :name="software.icon || 'i-lucide-package'"
+                    class="w-5 h-5 text-gray-600 dark:text-gray-400 shrink-0 mt-0.5"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-gray-900 dark:text-white truncate">
+                      {{ software.name }}
+                    </div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400 line-clamp-1">
+                      {{ software.shortDescription }}
+                    </div>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Transition>
     </div>
   </div>
 </template>

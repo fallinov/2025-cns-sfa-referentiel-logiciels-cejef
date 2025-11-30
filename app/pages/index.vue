@@ -10,6 +10,8 @@ const softwareList = getSoftwareList()
 // Search functionality
 const searchQuery = ref("")
 const selectedCategory = ref<string | null>(null)
+const selectedDiscipline = ref<string | null>(null)
+const selectedActivity = ref<string | null>(null)
 
 // Filter functionality
 const selectedCosts = ref<CostType[]>([])
@@ -20,6 +22,22 @@ const isFiltersSlideoverOpen = ref(false)
 // Handle category filter from search bar
 const handleCategoryFilter = (category: string) => {
   selectedCategory.value = category
+  selectedDiscipline.value = null
+  selectedActivity.value = null
+  searchQuery.value = ""
+}
+
+const handleDisciplineFilter = (discipline: string) => {
+  selectedDiscipline.value = discipline
+  selectedCategory.value = null
+  selectedActivity.value = null
+  searchQuery.value = ""
+}
+
+const handleActivityFilter = (activity: string) => {
+  selectedActivity.value = activity
+  selectedCategory.value = null
+  selectedDiscipline.value = null
   searchQuery.value = ""
 }
 
@@ -138,6 +156,8 @@ const clearAllFilters = () => {
   selectedCertifications.value = []
   selectedPopularFilters.value = []
   selectedCategory.value = null
+  selectedDiscipline.value = null
+  selectedActivity.value = null
 }
 
 const filteredSoftwareList = computed(() => {
@@ -147,6 +167,20 @@ const filteredSoftwareList = computed(() => {
   if (selectedCategory.value) {
     filtered = filtered.filter(software =>
       software.categories?.includes(selectedCategory.value!)
+    )
+  }
+
+  // Apply discipline filter
+  if (selectedDiscipline.value) {
+    filtered = filtered.filter(software =>
+      software.disciplines?.includes(selectedDiscipline.value!)
+    )
+  }
+
+  // Apply activity filter
+  if (selectedActivity.value) {
+    filtered = filtered.filter(software =>
+      software.pedagogicalActivities?.includes(selectedActivity.value!)
     )
   }
 
@@ -227,108 +261,146 @@ const certificationCounts = computed(() => {
 
     <!-- Content with higher z-index -->
     <UContainer class="relative z-10 py-8 sm:py-12">
-      <!-- Search and Filters Section -->
-      <div class="mb-8 space-y-6">
-        <!-- Search Bar -->
-        <SearchBar
-          v-model:search="searchQuery"
-          @filter-by-category="handleCategoryFilter"
-        />
-
-        <!-- Active Category Filter -->
-        <div v-if="selectedCategory" class="flex items-center gap-2 p-4 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-lg">
-          <UIcon name="i-lucide-tag" class="w-5 h-5 text-primary-600 dark:text-primary-400" />
-          <span class="font-semibold text-primary-900 dark:text-primary-100">
-            Catégorie : {{ selectedCategory }}
-          </span>
-          <button
-            type="button"
-            class="ml-auto p-1 hover:bg-primary-100 dark:hover:bg-primary-800 rounded-full transition-colors"
-            @click="selectedCategory = null"
-          >
-            <UIcon name="i-lucide-x" class="w-4 h-4 text-primary-600 dark:text-primary-400" />
-          </button>
+      <!-- Ricardo Style Search & Filters -->
+      <div class="mb-8">
+        <!-- Search Bar Area -->
+        <div class="mb-4">
+          <SearchBar
+            v-model:search="searchQuery"
+            @filter-by-category="handleCategoryFilter"
+            @filter-by-discipline="handleDisciplineFilter"
+            @filter-by-activity="handleActivityFilter"
+          />
         </div>
 
-        <!-- Popular Filters -->
-        <div class="flex flex-col gap-4">
-          <div class="flex items-center justify-between">
-            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
-              Filtres rapides
-            </h2>
-            <UButton
-              v-if="hasActiveFilters || selectedCategory"
-              color="neutral"
-              variant="ghost"
-              size="sm"
-              @click="clearAllFilters"
-            >
-              <template #leading>
-                <UIcon name="i-lucide-x" class="w-4 h-4" />
-              </template>
-              Tout effacer
-            </UButton>
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            <UButton
-              v-for="filter in popularFilters"
-              :key="filter.id"
-              :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
-              :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
-              size="md"
-              @click="togglePopularFilter(filter.id)"
-            >
-              <template #leading>
-                <UIcon :name="filter.icon" class="w-4 h-4" />
-              </template>
-              {{ filter.label }}
-            </UButton>
-
-            <!-- Advanced Filters Button -->
-            <UButton
-              color="neutral"
-              variant="outline"
-              size="md"
-              @click="isFiltersSlideoverOpen = true"
-            >
-              <template #leading>
-                <UIcon name="i-lucide-sliders-horizontal" class="w-4 h-4" />
-              </template>
-              Plus de filtres
-              <UBadge
-                v-if="activeFiltersCount > 0"
-                color="primary"
-                size="xs"
-                class="ml-2"
-              >
-                {{ activeFiltersCount }}
-              </UBadge>
-            </UButton>
-          </div>
-        </div>
-
-        <!-- Applied Filters -->
-        <div v-if="appliedFilters.length > 0" class="flex flex-wrap gap-2">
-          <UBadge
-            v-for="filter in appliedFilters"
+        <!-- Horizontal Filter Bar -->
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Filter Buttons -->
+          <UButton
+            v-for="filter in popularFilters"
             :key="filter.id"
-            color="neutral"
-            variant="outline"
+            :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
+            :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
+            class="rounded-sm"
             size="md"
+            @click="togglePopularFilter(filter.id)"
           >
             {{ filter.label }}
-            <template #trailing>
-              <button
-                type="button"
-                class="ml-1 hover:text-red-600 dark:hover:text-red-400"
-                @click="removeFilter(filter.id)"
-              >
-                <UIcon name="i-lucide-x" class="w-3 h-3" />
-              </button>
+          </UButton>
+
+          <!-- Advanced Filters Toggle -->
+          <UButton
+            color="neutral"
+            variant="outline"
+            class="rounded-sm"
+            size="md"
+            @click="isFiltersSlideoverOpen = true"
+          >
+            <template #leading>
+              <UIcon name="i-lucide-sliders-horizontal" class="w-4 h-4" />
             </template>
+            Plus de filtres
+            <span
+              v-if="activeFiltersCount > 0"
+              class="ml-1 px-1.5 py-0.5 text-xs rounded-full bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300"
+            >
+              {{ activeFiltersCount }}
+            </span>
+          </UButton>
+
+          <!-- Clear Filters -->
+          <UButton
+            v-if="hasActiveFilters || selectedCategory"
+            color="neutral"
+            variant="ghost"
+            size="sm"
+            class="ml-auto"
+            @click="clearAllFilters"
+          >
+            Tout effacer
+          </UButton>
+        </div>
+
+        <!-- Active Filters Display -->
+        <div v-if="selectedCategory || selectedDiscipline || selectedActivity" class="mt-4 flex flex-wrap items-center gap-2">
+          <span class="text-sm text-gray-500 dark:text-gray-400">Filtres actifs :</span>
+
+          <!-- Category Badge -->
+          <UBadge
+            v-if="selectedCategory"
+            color="primary"
+            variant="subtle"
+            size="md"
+            class="flex items-center gap-1 pl-2 pr-1 py-1"
+          >
+            {{ selectedCategory }}
+            <button
+              type="button"
+              class="ml-1 hover:bg-primary-200 dark:hover:bg-primary-800 rounded-full p-0.5 transition-colors"
+              @click="selectedCategory = null"
+            >
+              <UIcon name="i-lucide-x" class="w-3 h-3" />
+            </button>
+          </UBadge>
+
+          <!-- Discipline Badge -->
+          <UBadge
+            v-if="selectedDiscipline"
+            color="blue"
+            variant="subtle"
+            size="md"
+            class="flex items-center gap-1 pl-2 pr-1 py-1"
+          >
+            {{ selectedDiscipline }}
+            <button
+              type="button"
+              class="ml-1 hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full p-0.5 transition-colors"
+              @click="selectedDiscipline = null"
+            >
+              <UIcon name="i-lucide-x" class="w-3 h-3" />
+            </button>
+          </UBadge>
+
+          <!-- Activity Badge -->
+          <UBadge
+            v-if="selectedActivity"
+            color="green"
+            variant="subtle"
+            size="md"
+            class="flex items-center gap-1 pl-2 pr-1 py-1"
+          >
+            {{ selectedActivity }}
+            <button
+              type="button"
+              class="ml-1 hover:bg-green-200 dark:hover:bg-green-800 rounded-full p-0.5 transition-colors"
+              @click="selectedActivity = null"
+            >
+              <UIcon name="i-lucide-x" class="w-3 h-3" />
+            </button>
           </UBadge>
         </div>
+      </div>
+
+      <!-- Applied Filters -->
+      <div v-if="appliedFilters.length > 0" class="flex flex-wrap gap-2">
+        <UBadge
+          v-for="filter in appliedFilters"
+          :key="filter.id"
+          color="neutral"
+          variant="outline"
+          size="md"
+        >
+          {{ filter.label }}
+          <template #trailing>
+            <button
+              type="button"
+              class="ml-1 hover:text-red-600 dark:hover:text-red-400"
+              @click="removeFilter(filter.id)"
+            >
+              <UIcon name="i-lucide-x" class="w-3 h-3" />
+            </button>
+          </template>
+        </UBadge>
       </div>
 
       <!-- Results Count -->
