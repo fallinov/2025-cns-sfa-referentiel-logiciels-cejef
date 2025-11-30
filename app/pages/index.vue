@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { getCertificationLevel } from "~~/types/software"
 import type { CostType, Software, CertificationLevel } from "~~/types/software"
-import { CERTIFICATION_LEVELS } from "~/constants/certification-levels"
+import { CERTIFICATION_LEVELS } from "../constants/certification-levels"
 
 const { getSoftwareList } = useSoftware()
 const { setFilteredList } = useSoftwareNavigation()
@@ -10,54 +10,57 @@ const softwareList = getSoftwareList()
 // Search functionality
 const searchQuery = ref("")
 const selectedCategory = ref<string | null>(null)
-const selectedDiscipline = ref<string | null>(null)
-const selectedActivity = ref<string | null>(null)
 
 // Filter functionality
 const selectedCosts = ref<CostType[]>([])
-const selectedCertifications = ref<CertificationLevel[]>([])
+const selectedCertifications = ref<Exclude<CertificationLevel, null>[]>([])
+const selectedCategories = ref<string[]>([])
+const selectedDisciplines = ref<string[]>([])
+const selectedActivities = ref<string[]>([])
 const selectedPopularFilters = ref<string[]>([])
-const isFiltersSlideoverOpen = ref(false)
 
 // Handle category filter from search bar
 const handleCategoryFilter = (category: string) => {
-  selectedCategory.value = category
-  selectedDiscipline.value = null
-  selectedActivity.value = null
+  selectedCategories.value = [category]
+  selectedDisciplines.value = []
+  selectedActivities.value = []
   searchQuery.value = ""
 }
 
 const handleDisciplineFilter = (discipline: string) => {
-  selectedDiscipline.value = discipline
-  selectedCategory.value = null
-  selectedActivity.value = null
+  selectedDisciplines.value = [discipline]
+  selectedCategories.value = []
+  selectedActivities.value = []
   searchQuery.value = ""
 }
 
 const handleActivityFilter = (activity: string) => {
-  selectedActivity.value = activity
-  selectedCategory.value = null
-  selectedDiscipline.value = null
+  selectedActivities.value = [activity]
+  selectedCategories.value = []
+  selectedDisciplines.value = []
   searchQuery.value = ""
 }
 
-const certificationLevelLabels = computed(() =>
-  Object.fromEntries(
-    CERTIFICATION_LEVELS.map(level => [level.value, level.label])
-  )
-)
+// Extract unique values for dropdowns
+const uniqueCategories = computed(() => {
+  const categories = new Set<string>()
+  softwareList.forEach(s => s.categories?.forEach(c => categories.add(c)))
+  return Array.from(categories).sort()
+})
+
+const uniqueDisciplines = computed(() => {
+  const disciplines = new Set<string>()
+  softwareList.forEach(s => s.disciplines?.forEach(d => disciplines.add(d)))
+  return Array.from(disciplines).sort()
+})
+
+const uniqueActivities = computed(() => {
+  const activities = new Set<string>()
+  softwareList.forEach(s => s.pedagogicalActivities?.forEach(a => activities.add(a)))
+  return Array.from(activities).sort()
+})
 
 const popularFilters = [
-  {
-    id: "certified-level-1",
-    label: "Certifié CEJEF",
-    icon: "i-lucide-shield-check",
-    predicate: (software: Software) => {
-      const level
-        = software.certificationLevel ?? getCertificationLevel(software.lgpd)
-      return level === 1
-    }
-  },
   {
     id: "personal-data",
     label: "Données élèves autorisées",
@@ -102,85 +105,36 @@ const togglePopularFilter = (filterId: string) => {
   }
 }
 
-const appliedFilters = computed(() => {
-  const filters: Array<{ id: string, label: string }> = []
-
-  selectedPopularFilters.value.forEach((filterId) => {
-    const filter = popularFilterMap[filterId]
-    if (filter) {
-      filters.push({
-        id: `popular-${filter.id}`,
-        label: filter.label
-      })
-    }
-  })
-
-  selectedCosts.value.forEach((cost) => {
-    filters.push({
-      id: `cost-${cost}`,
-      label: cost
-    })
-  })
-
-  selectedCertifications.value.forEach((level) => {
-    if (level !== null) {
-      filters.push({
-        id: `cert-${level}`,
-        label: `Certification : ${certificationLevelLabels.value[level] ?? level}`
-      })
-    }
-  })
-
-  return filters
-})
-
-const removeFilter = (filterId: string) => {
-  if (filterId.startsWith("popular-")) {
-    const popularFilterId = filterId.replace("popular-", "")
-    selectedPopularFilters.value = selectedPopularFilters.value.filter(
-      id => id !== popularFilterId
-    )
-  } else if (filterId.startsWith("cost-")) {
-    const cost = filterId.replace("cost-", "") as CostType
-    selectedCosts.value = selectedCosts.value.filter(c => c !== cost)
-  } else if (filterId.startsWith("cert-")) {
-    const level = Number.parseInt(filterId.replace("cert-", "")) as CertificationLevel
-    selectedCertifications.value = selectedCertifications.value.filter(
-      l => l !== level
-    )
-  }
-}
-
 const clearAllFilters = () => {
   selectedCosts.value = []
   selectedCertifications.value = []
   selectedPopularFilters.value = []
-  selectedCategory.value = null
-  selectedDiscipline.value = null
-  selectedActivity.value = null
+  selectedCategories.value = []
+  selectedDisciplines.value = []
+  selectedActivities.value = []
 }
 
 const filteredSoftwareList = computed(() => {
   let filtered = [...softwareList]
 
   // Apply category filter
-  if (selectedCategory.value) {
+  if (selectedCategories.value.length > 0) {
     filtered = filtered.filter(software =>
-      software.categories?.includes(selectedCategory.value!)
+      software.categories?.some(c => selectedCategories.value.includes(c))
     )
   }
 
   // Apply discipline filter
-  if (selectedDiscipline.value) {
+  if (selectedDisciplines.value.length > 0) {
     filtered = filtered.filter(software =>
-      software.disciplines?.includes(selectedDiscipline.value!)
+      software.disciplines?.some(d => selectedDisciplines.value.includes(d))
     )
   }
 
   // Apply activity filter
-  if (selectedActivity.value) {
+  if (selectedActivities.value.length > 0) {
     filtered = filtered.filter(software =>
-      software.pedagogicalActivities?.includes(selectedActivity.value!)
+      software.pedagogicalActivities?.some(a => selectedActivities.value.includes(a))
     )
   }
 
@@ -213,10 +167,11 @@ const filteredSoftwareList = computed(() => {
 
   // Apply certification filters
   if (selectedCertifications.value.length > 0) {
+    const selectedValues = selectedCertifications.value.map((c: any) => c.value ?? c)
     filtered = filtered.filter((software) => {
       const level
         = software.certificationLevel ?? getCertificationLevel(software.lgpd)
-      return selectedCertifications.value.includes(level)
+      return level !== null && selectedValues.includes(level)
     })
   }
 
@@ -237,21 +192,22 @@ const activeFiltersCount = computed(
     selectedCosts.value.length
     + selectedCertifications.value.length
     + selectedPopularFilters.value.length
+    + selectedCategories.value.length
+    + selectedDisciplines.value.length
+    + selectedActivities.value.length
 )
 
 const hasActiveFilters = computed(() => activeFiltersCount.value > 0)
 
 // Compute counts for each certification level
-const certificationCounts = computed(() => {
-  const counts: Record<number | "null", number> = { 1: 0, 2: 0, 3: 0, null: 0 }
-  softwareList.forEach((software) => {
-    const level
-      = software.certificationLevel ?? getCertificationLevel(software.lgpd)
-    const key = level ?? "null"
-    counts[key]++
-  })
-  return counts
-})
+
+const certificationDropdownItems = computed(() =>
+  CERTIFICATION_LEVELS.map(level => ({
+    label: level.label,
+    value: level.value,
+    icon: level.icon
+  }))
+)
 </script>
 
 <template>
@@ -275,132 +231,146 @@ const certificationCounts = computed(() => {
 
         <!-- Horizontal Filter Bar -->
         <div class="flex flex-wrap items-center justify-center gap-2">
+          <!-- Categories Dropdown -->
+          <USelectMenu
+            v-model="selectedCategories"
+            :items="uniqueCategories"
+            multiple
+            :searchable="false"
+            icon="i-lucide-layout-grid"
+            trailing-icon="i-lucide-chevron-down"
+            :ui="{
+              base: 'hover:bg-transparent dark:hover:bg-transparent',
+              leadingIcon: 'text-inherit dark:text-inherit',
+              trailingIcon: 'text-inherit dark:text-inherit',
+              input: 'hidden'
+            }"
+            :class="[
+              'ring-0 shadow-none inline-flex items-center px-3 py-1.5 text-base gap-2 rounded-full transition-all duration-300 backdrop-blur-md font-bold uppercase tracking-widest',
+              selectedCategories.length > 0
+                ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
+                : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
+            ]"
+            :popper="{ placement: 'bottom-start', strategy: 'fixed' }"
+          >
+            <template #default>
+              <span class="truncate">Catégories</span>
+              <span v-if="selectedCategories.length > 0" class="ml-0.5">({{ selectedCategories.length }})</span>
+            </template>
+          </USelectMenu>
+
+          <!-- Disciplines Dropdown -->
+          <USelectMenu
+            v-model="selectedDisciplines"
+            :items="uniqueDisciplines"
+            multiple
+            :searchable="false"
+            icon="i-lucide-book-open"
+            trailing-icon="i-lucide-chevron-down"
+            :ui="{
+              base: 'hover:bg-transparent dark:hover:bg-transparent',
+              leadingIcon: 'text-inherit dark:text-inherit',
+              trailingIcon: 'text-inherit dark:text-inherit',
+              input: 'hidden'
+            }"
+            :class="[
+              'ring-0 shadow-none inline-flex items-center px-3 py-1.5 text-base gap-2 rounded-full transition-all duration-300 backdrop-blur-md font-bold uppercase tracking-widest',
+              selectedDisciplines.length > 0
+                ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
+                : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
+            ]"
+            :popper="{ placement: 'bottom-start', strategy: 'fixed' }"
+          >
+            <template #default>
+              <span class="truncate">Disciplines</span>
+              <span v-if="selectedDisciplines.length > 0" class="ml-0.5">({{ selectedDisciplines.length }})</span>
+            </template>
+          </USelectMenu>
+
+          <!-- Activities Dropdown -->
+          <USelectMenu
+            v-model="selectedActivities"
+            :items="uniqueActivities"
+            multiple
+            :searchable="false"
+            icon="i-lucide-shapes"
+            trailing-icon="i-lucide-chevron-down"
+            :ui="{
+              base: 'hover:bg-transparent dark:hover:bg-transparent',
+              leadingIcon: 'text-inherit dark:text-inherit',
+              trailingIcon: 'text-inherit dark:text-inherit',
+              input: 'hidden'
+            }"
+            :class="[
+              'ring-0 shadow-none inline-flex items-center px-3 py-1.5 text-base gap-2 rounded-full transition-all duration-300 backdrop-blur-md font-bold uppercase tracking-widest',
+              selectedActivities.length > 0
+                ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
+                : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
+            ]"
+            :popper="{ placement: 'bottom-start', strategy: 'fixed' }"
+          >
+            <template #default>
+              <span class="truncate">Activités</span>
+              <span v-if="selectedActivities.length > 0" class="ml-0.5">({{ selectedActivities.length }})</span>
+            </template>
+          </USelectMenu>
+          <!-- Certification Dropdown -->
+          <USelectMenu
+            v-model="(selectedCertifications as any)"
+            :items="certificationDropdownItems"
+            multiple
+            :searchable="false"
+            icon="i-lucide-shield-check"
+            trailing-icon="i-lucide-chevron-down"
+            :ui="{
+              base: 'hover:bg-transparent dark:hover:bg-transparent',
+              leadingIcon: 'text-inherit dark:text-inherit',
+              trailingIcon: 'text-inherit dark:text-inherit',
+              input: 'hidden'
+            }"
+            :class="[
+              'ring-0 shadow-none inline-flex items-center px-3 py-1.5 text-base gap-2 rounded-full transition-all duration-300 backdrop-blur-md font-bold uppercase tracking-widest',
+              selectedCertifications.length > 0
+                ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
+                : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
+            ]"
+            :popper="{ placement: 'bottom-start', strategy: 'fixed' }"
+            value-attribute="value"
+          >
+            <template #default>
+              <span class="truncate">Certification</span>
+              <span v-if="selectedCertifications.length > 0" class="ml-0.5">({{ selectedCertifications.length }})</span>
+            </template>
+          </USelectMenu>
+
           <!-- Filter Buttons -->
-          <UButton
+          <button
             v-for="filter in popularFilters"
             :key="filter.id"
-            :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
-            :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
-            class="rounded-full transition-all duration-300"
-            size="md"
+            type="button"
+            :class="[
+              'inline-flex items-center px-3 py-1.5 text-base gap-2 rounded-full transition-all duration-300 backdrop-blur-md shadow-sm font-bold uppercase tracking-widest',
+              selectedPopularFilters.includes(filter.id)
+                ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
+                : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
+            ]"
             @click="togglePopularFilter(filter.id)"
           >
             {{ filter.label }}
-          </UButton>
+          </button>
 
-          <!-- Advanced Filters Toggle -->
-          <UButton
-            color="neutral"
-            variant="outline"
-            class="rounded-full transition-all duration-300"
-            size="md"
-            @click="isFiltersSlideoverOpen = true"
-          >
-            <template #leading>
-              <UIcon name="i-lucide-sliders-horizontal" class="w-4 h-4" />
-            </template>
-            Plus de filtres
-            <span
-              v-if="activeFiltersCount > 0"
-              class="ml-1 px-1.5 py-0.5 text-xs rounded-full bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300"
-            >
-              {{ activeFiltersCount }}
-            </span>
-          </UButton>
-
-          <!-- Clear Filters -->
-          <UButton
+          <button
             v-if="hasActiveFilters || selectedCategory"
-            color="neutral"
-            variant="ghost"
-            size="sm"
-            class="ml-auto"
+            type="button"
+            :class="[
+              'ml-auto inline-flex items-center px-3 py-1.5 text-sm gap-2 rounded-full transition-all duration-300 backdrop-blur-md shadow-sm font-bold uppercase tracking-widest',
+              'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-red-500/10 hover:text-red-600 hover:border-red-200 dark:hover:bg-red-500/20 dark:hover:text-red-400'
+            ]"
             @click="clearAllFilters"
           >
             Tout effacer
-          </UButton>
+          </button>
         </div>
-
-        <!-- Active Filters Display -->
-        <div v-if="selectedCategory || selectedDiscipline || selectedActivity" class="mt-4 flex flex-wrap items-center justify-center gap-2">
-          <span class="text-sm text-gray-500 dark:text-gray-400">Filtres actifs :</span>
-
-          <!-- Category Badge -->
-          <UBadge
-            v-if="selectedCategory"
-            color="primary"
-            variant="subtle"
-            size="md"
-            class="flex items-center gap-1 pl-2 pr-1 py-1"
-          >
-            {{ selectedCategory }}
-            <button
-              type="button"
-              class="ml-1 hover:bg-primary-200 dark:hover:bg-primary-800 rounded-full p-0.5 transition-colors"
-              @click="selectedCategory = null"
-            >
-              <UIcon name="i-lucide-x" class="w-3 h-3" />
-            </button>
-          </UBadge>
-
-          <!-- Discipline Badge -->
-          <UBadge
-            v-if="selectedDiscipline"
-            color="blue"
-            variant="subtle"
-            size="md"
-            class="flex items-center gap-1 pl-2 pr-1 py-1"
-          >
-            {{ selectedDiscipline }}
-            <button
-              type="button"
-              class="ml-1 hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full p-0.5 transition-colors"
-              @click="selectedDiscipline = null"
-            >
-              <UIcon name="i-lucide-x" class="w-3 h-3" />
-            </button>
-          </UBadge>
-
-          <!-- Activity Badge -->
-          <UBadge
-            v-if="selectedActivity"
-            color="green"
-            variant="subtle"
-            size="md"
-            class="flex items-center gap-1 pl-2 pr-1 py-1"
-          >
-            {{ selectedActivity }}
-            <button
-              type="button"
-              class="ml-1 hover:bg-green-200 dark:hover:bg-green-800 rounded-full p-0.5 transition-colors"
-              @click="selectedActivity = null"
-            >
-              <UIcon name="i-lucide-x" class="w-3 h-3" />
-            </button>
-          </UBadge>
-        </div>
-      </div>
-
-      <!-- Applied Filters -->
-      <div v-if="appliedFilters.length > 0" class="flex flex-wrap gap-2">
-        <UBadge
-          v-for="filter in appliedFilters"
-          :key="filter.id"
-          color="neutral"
-          variant="outline"
-          size="md"
-        >
-          {{ filter.label }}
-          <template #trailing>
-            <button
-              type="button"
-              class="ml-1 hover:text-red-600 dark:hover:text-red-400"
-              @click="removeFilter(filter.id)"
-            >
-              <UIcon name="i-lucide-x" class="w-3 h-3" />
-            </button>
-          </template>
-        </UBadge>
       </div>
 
       <!-- Results Count -->
@@ -443,91 +413,6 @@ const certificationCounts = computed(() => {
       </div>
 
       <!-- Filters Slideover -->
-      <USlideover v-model:open="isFiltersSlideoverOpen" side="right">
-        <template #body>
-          <div class="p-6 space-y-6">
-            <div class="flex items-center justify-between mb-6">
-              <h2 class="text-xl font-bold text-gray-900 dark:text-white">
-                Filtres avancés
-              </h2>
-              <UButton
-                v-if="hasActiveFilters"
-                color="neutral"
-                variant="ghost"
-                size="sm"
-                @click="clearAllFilters"
-              >
-                <template #leading>
-                  <UIcon name="i-lucide-x" class="w-4 h-4" />
-                </template>
-                Tout effacer
-              </UButton>
-            </div>
-
-            <!-- Cost Filter -->
-            <div>
-              <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                Coût
-              </label>
-              <div class="space-y-2">
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input
-                    v-model="selectedCosts"
-                    type="checkbox"
-                    value="Gratuit"
-                    class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                  />
-                  <span class="text-sm text-gray-900 dark:text-white">Gratuit</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input
-                    v-model="selectedCosts"
-                    type="checkbox"
-                    value="Freemium"
-                    class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                  />
-                  <span class="text-sm text-gray-900 dark:text-white">Freemium</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input
-                    v-model="selectedCosts"
-                    type="checkbox"
-                    value="Payant"
-                    class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                  />
-                  <span class="text-sm text-gray-900 dark:text-white">Payant</span>
-                </label>
-              </div>
-            </div>
-
-            <USeparator />
-
-            <!-- Certification Level Filter -->
-            <div>
-              <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                Niveau de certification
-              </label>
-              <div class="space-y-2">
-                <label
-                  v-for="level in CERTIFICATION_LEVELS"
-                  :key="level.value ?? 'null'"
-                  class="flex items-center gap-2 cursor-pointer"
-                >
-                  <input
-                    v-model="selectedCertifications"
-                    type="checkbox"
-                    :value="level.value"
-                    class="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                  />
-                  <span class="text-sm text-gray-900 dark:text-white">
-                    {{ level.label }} ({{ level.value !== null ? certificationCounts[level.value] : 0 }})
-                  </span>
-                </label>
-              </div>
-            </div>
-          </div>
-        </template>
-      </USlideover>
     </UContainer>
   </div>
 </template>
