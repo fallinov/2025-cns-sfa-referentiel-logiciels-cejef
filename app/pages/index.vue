@@ -274,14 +274,14 @@ const certificationCounts = computed(() => {
         </div>
 
         <!-- Horizontal Filter Bar -->
-        <div class="flex flex-wrap items-center gap-2">
+        <div class="flex flex-wrap items-center justify-center gap-2">
           <!-- Filter Buttons -->
           <UButton
             v-for="filter in popularFilters"
             :key="filter.id"
             :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
             :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
-            class="rounded-sm"
+            class="rounded-full transition-all duration-300"
             size="md"
             @click="togglePopularFilter(filter.id)"
           >
@@ -292,7 +292,7 @@ const certificationCounts = computed(() => {
           <UButton
             color="neutral"
             variant="outline"
-            class="rounded-sm"
+            class="rounded-full transition-all duration-300"
             size="md"
             @click="isFiltersSlideoverOpen = true"
           >
@@ -322,7 +322,7 @@ const certificationCounts = computed(() => {
         </div>
 
         <!-- Active Filters Display -->
-        <div v-if="selectedCategory || selectedDiscipline || selectedActivity" class="mt-4 flex flex-wrap items-center gap-2">
+        <div v-if="selectedCategory || selectedDiscipline || selectedActivity" class="mt-4 flex flex-wrap items-center justify-center gap-2">
           <span class="text-sm text-gray-500 dark:text-gray-400">Filtres actifs :</span>
 
           <!-- Category Badge -->

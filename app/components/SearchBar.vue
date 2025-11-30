@@ -340,7 +340,7 @@ watch(search, (newValue) => {
           type="search"
           autocomplete="off"
           placeholder="Rechercher un logiciel, une catégorie..."
-          class="w-full h-12 pl-10 pr-10 text-base bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all shadow-sm placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none"
+          class="w-full h-12 pl-10 pr-10 text-base text-gray-900 dark:text-white rounded-[24px] focus:outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-gradient-to-b from-white/40 via-white/15 to-transparent dark:from-white/10 dark:via-white/5 dark:to-transparent backdrop-blur-2xl ring-1 ring-inset ring-white/50 dark:ring-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] focus:ring-2 focus:ring-primary-500/50"
           @focus="handleFocus"
           @blur="handleBlur"
           @keydown="handleKeyDown"
@@ -369,9 +369,11 @@ watch(search, (newValue) => {
       >
         <div
           v-if="showSuggestions && hasSuggestions"
-          class="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl max-h-96 overflow-y-auto z-20 ring-1 ring-gray-200 dark:ring-gray-800"
+          class="absolute top-full left-0 right-0 mt-2 rounded-[24px] overflow-hidden z-20 bg-gradient-to-b from-white/90 via-white/80 to-white/60 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-gray-900/60 backdrop-blur-2xl ring-1 ring-inset ring-white/50 dark:ring-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
         >
-          <div class="p-2 space-y-2">
+          <div class="p-2 space-y-2 max-h-96 overflow-y-auto">
+            <!-- Search query avec nombre de résultats -->
+            <div class="px-3 py-3 bg-white/50 dark:bg-gray-800/50 rounded-xl backdrop-blur-sm"></div>
             <!-- Catégories correspondantes -->
             <div v-if="suggestions.categories.length > 0">
               <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
