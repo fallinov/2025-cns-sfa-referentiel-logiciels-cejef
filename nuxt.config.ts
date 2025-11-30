@@ -13,7 +13,9 @@ export default defineNuxtConfig({
     // Bibliothèque de composants UI pré-stylés
     "@nuxt/ui",
     // Optimisation et chargement automatique des polices web
-    "@nuxt/fonts"
+    "@nuxt/fonts",
+    // Gestion de l'état global
+    "@pinia/nuxt"
   ],
 
   // ========================================

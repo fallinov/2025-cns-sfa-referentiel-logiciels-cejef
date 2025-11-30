@@ -1,190 +1,34 @@
 <script setup lang="ts">
-import { getCertificationLevel } from "~~/types/software"
-import type { CostType, Software } from "~~/types/software"
 import { CERTIFICATION_LEVELS } from "../constants/certification-levels"
+import { useSoftwareStore } from "~/stores/software"
+import { storeToRefs } from "pinia"
 
-const { getSoftwareList } = useSoftware()
 const { setFilteredList } = useSoftwareNavigation()
-const softwareList = getSoftwareList()
 
-// Search functionality
-const searchQuery = ref("")
-const selectedCategory = ref<string | null>(null)
+const store = useSoftwareStore()
+const {
+  searchQuery,
+  selectedCategory,
+  selectedCertifications,
+  selectedCategories,
+  selectedDisciplines,
+  selectedActivities,
+  selectedPopularFilters,
+  popularFilters,
+  uniqueCategories,
+  uniqueDisciplines,
+  uniqueActivities,
+  filteredSoftwareList,
+  hasActiveFilters
+} = storeToRefs(store)
 
-// Filter functionality
-const selectedCosts = ref<CostType[]>([])
-const selectedCertifications = ref<any[]>([])
-const selectedCategories = ref<string[]>([])
-const selectedDisciplines = ref<string[]>([])
-const selectedActivities = ref<string[]>([])
-const selectedPopularFilters = ref<string[]>([])
-
-// Handle category filter from search bar
-const handleCategoryFilter = (category: string) => {
-  selectedCategories.value = [category]
-  selectedDisciplines.value = []
-  selectedActivities.value = []
-  searchQuery.value = ""
-}
-
-const handleDisciplineFilter = (discipline: string) => {
-  selectedDisciplines.value = [discipline]
-  selectedCategories.value = []
-  selectedActivities.value = []
-  searchQuery.value = ""
-}
-
-const handleActivityFilter = (activity: string) => {
-  selectedActivities.value = [activity]
-  selectedCategories.value = []
-  selectedDisciplines.value = []
-  searchQuery.value = ""
-}
-
-// Extract unique values for dropdowns
-const uniqueCategories = computed(() => {
-  const categories = new Set<string>()
-  softwareList.forEach(s => s.categories?.forEach(c => categories.add(c)))
-  return Array.from(categories).sort()
-})
-
-const uniqueDisciplines = computed(() => {
-  const disciplines = new Set<string>()
-  softwareList.forEach(s => s.disciplines?.forEach(d => disciplines.add(d)))
-  return Array.from(disciplines).sort()
-})
-
-const uniqueActivities = computed(() => {
-  const activities = new Set<string>()
-  softwareList.forEach(s => s.pedagogicalActivities?.forEach(a => activities.add(a)))
-  return Array.from(activities).sort()
-})
-
-const popularFilters = [
-  {
-    id: "personal-data",
-    label: "Données élèves autorisées",
-    icon: "i-lucide-user-check",
-    predicate: (software: Software) => software.personalData
-  },
-  {
-    id: "supported-cejef",
-    label: "Support CEJEF",
-    icon: "i-lucide-headset",
-    predicate: (software: Software) => software.supportedByCEJEF
-  },
-  {
-    id: "campus-training",
-    label: "Formation disponible",
-    icon: "i-lucide-graduation-cap",
-    predicate: (software: Software) => software.campusTraining
-  },
-  {
-    id: "free",
-    label: "100% gratuit",
-    icon: "i-lucide-coins",
-    predicate: (software: Software) => software.cost === "Gratuit"
-  }
-] as const
-
-const popularFilterMap = popularFilters.reduce(
-  (acc, filter) => {
-    acc[filter.id] = filter
-    return acc
-  },
-  {} as Record<string, (typeof popularFilters)[number]>
-)
-
-const togglePopularFilter = (filterId: string) => {
-  if (selectedPopularFilters.value.includes(filterId)) {
-    selectedPopularFilters.value = selectedPopularFilters.value.filter(
-      id => id !== filterId
-    )
-  } else {
-    selectedPopularFilters.value = [...selectedPopularFilters.value, filterId]
-  }
-}
-
-const clearAllFilters = () => {
-  selectedCosts.value = []
-  selectedCertifications.value = []
-  selectedPopularFilters.value = []
-  selectedCategories.value = []
-  selectedDisciplines.value = []
-  selectedActivities.value = []
-}
-
-const filteredSoftwareList = computed(() => {
-  let filtered = [...softwareList]
-
-  // Apply category filter
-  if (selectedCategories.value.length > 0) {
-    filtered = filtered.filter(software =>
-      software.categories?.some(c => selectedCategories.value.includes(c))
-    )
-  }
-
-  // Apply discipline filter
-  if (selectedDisciplines.value.length > 0) {
-    filtered = filtered.filter(software =>
-      software.disciplines?.some(d => selectedDisciplines.value.includes(d))
-    )
-  }
-
-  // Apply activity filter
-  if (selectedActivities.value.length > 0) {
-    filtered = filtered.filter(software =>
-      software.pedagogicalActivities?.some(a => selectedActivities.value.includes(a))
-    )
-  }
-
-  // Apply certification filter
-  if (selectedCertifications.value.length > 0) {
-    filtered = filtered.filter((software) => {
-      const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
-      return level !== null && selectedCertifications.value.includes(level)
-    })
-  }
-
-  // Apply search query
-  if (searchQuery.value.trim()) {
-    const query = searchQuery.value.toLowerCase().trim()
-    filtered = filtered.filter(
-      software =>
-        software.name.toLowerCase().includes(query)
-        || software.shortDescription.toLowerCase().includes(query)
-    )
-  }
-
-  // Apply popular filters
-  if (selectedPopularFilters.value.length > 0) {
-    filtered = filtered.filter((software) => {
-      return selectedPopularFilters.value.every((filterId) => {
-        const filter = popularFilterMap[filterId]
-        return filter ? filter.predicate(software) : true
-      })
-    })
-  }
-
-  // Apply cost filters
-  if (selectedCosts.value.length > 0) {
-    filtered = filtered.filter(software =>
-      selectedCosts.value.includes(software.cost)
-    )
-  }
-
-  // Apply certification filters
-  if (selectedCertifications.value.length > 0) {
-    const selectedValues = selectedCertifications.value.map((c: any) => c.value ?? c)
-    filtered = filtered.filter((software) => {
-      const level
-        = software.certificationLevel ?? getCertificationLevel(software.lgpd)
-      return level !== null && selectedValues.includes(level)
-    })
-  }
-
-  return filtered
-})
+const {
+  togglePopularFilter,
+  clearAllFilters,
+  handleCategoryFilter,
+  handleDisciplineFilter,
+  handleActivityFilter
+} = store
 
 // Watch filteredSoftwareList and update navigation composable
 watch(
@@ -194,18 +38,6 @@ watch(
   },
   { immediate: true }
 )
-
-const activeFiltersCount = computed(
-  () =>
-    selectedCosts.value.length
-    + selectedCertifications.value.length
-    + selectedPopularFilters.value.length
-    + selectedCategories.value.length
-    + selectedDisciplines.value.length
-    + selectedActivities.value.length
-)
-
-const hasActiveFilters = computed(() => activeFiltersCount.value > 0)
 
 // Compute counts for each certification level
 
@@ -240,132 +72,47 @@ const certificationDropdownItems = computed(() =>
         <!-- Horizontal Filter Bar -->
         <div class="flex flex-wrap items-center justify-center gap-2">
           <!-- Categories Dropdown -->
-          <USelectMenu
+          <FilterDropdown
             v-model="selectedCategories"
             :items="uniqueCategories"
-            multiple
-            :searchable="false"
+            label="Catégories"
             icon="i-lucide-layout-grid"
-            trailing-icon="i-lucide-chevron-down"
-            :ui="{
-              base: 'hover:bg-transparent dark:hover:bg-transparent',
-              leadingIcon: 'text-inherit dark:text-inherit',
-              trailingIcon: 'text-inherit dark:text-inherit',
-              input: 'hidden'
-            }"
-            :class="[
-              'ring-0 shadow-none inline-flex items-center px-3 py-1.5 text-base gap-2 rounded-full transition-all duration-300 backdrop-blur-md font-bold uppercase tracking-widest',
-              selectedCategories.length > 0
-                ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
-                : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
-            ]"
-            :popper="{ placement: 'bottom-start', strategy: 'fixed' }"
-          >
-            <template #default>
-              <span class="truncate">Catégories</span>
-              <span v-if="selectedCategories.length > 0" class="ml-0.5">({{ selectedCategories.length }})</span>
-            </template>
-          </USelectMenu>
+          />
 
           <!-- Disciplines Dropdown -->
-          <USelectMenu
+          <FilterDropdown
             v-model="selectedDisciplines"
             :items="uniqueDisciplines"
-            multiple
-            :searchable="false"
+            label="Disciplines"
             icon="i-lucide-book-open"
-            trailing-icon="i-lucide-chevron-down"
-            :ui="{
-              base: 'hover:bg-transparent dark:hover:bg-transparent',
-              leadingIcon: 'text-inherit dark:text-inherit',
-              trailingIcon: 'text-inherit dark:text-inherit',
-              input: 'hidden'
-            }"
-            :class="[
-              'ring-0 shadow-none inline-flex items-center px-3 py-1.5 text-base gap-2 rounded-full transition-all duration-300 backdrop-blur-md font-bold uppercase tracking-widest',
-              selectedDisciplines.length > 0
-                ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
-                : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
-            ]"
-            :popper="{ placement: 'bottom-start', strategy: 'fixed' }"
-          >
-            <template #default>
-              <span class="truncate">Disciplines</span>
-              <span v-if="selectedDisciplines.length > 0" class="ml-0.5">({{ selectedDisciplines.length }})</span>
-            </template>
-          </USelectMenu>
+          />
 
           <!-- Activities Dropdown -->
-          <USelectMenu
+          <FilterDropdown
             v-model="selectedActivities"
             :items="uniqueActivities"
-            multiple
-            :searchable="false"
+            label="Activités"
             icon="i-lucide-shapes"
-            trailing-icon="i-lucide-chevron-down"
-            :ui="{
-              base: 'hover:bg-transparent dark:hover:bg-transparent',
-              leadingIcon: 'text-inherit dark:text-inherit',
-              trailingIcon: 'text-inherit dark:text-inherit',
-              input: 'hidden'
-            }"
-            :class="[
-              'ring-0 shadow-none inline-flex items-center px-3 py-1.5 text-base gap-2 rounded-full transition-all duration-300 backdrop-blur-md font-bold uppercase tracking-widest',
-              selectedActivities.length > 0
-                ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
-                : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
-            ]"
-            :popper="{ placement: 'bottom-start', strategy: 'fixed' }"
-          >
-            <template #default>
-              <span class="truncate">Activités</span>
-              <span v-if="selectedActivities.length > 0" class="ml-0.5">({{ selectedActivities.length }})</span>
-            </template>
-          </USelectMenu>
+          />
+
           <!-- Certification Dropdown -->
-          <USelectMenu
+          <FilterDropdown
             v-model="selectedCertifications"
             :items="certificationDropdownItems"
-            multiple
-            :searchable="false"
+            label="Certification"
             icon="i-lucide-shield-check"
-            trailing-icon="i-lucide-chevron-down"
-            :ui="{
-              base: 'hover:bg-transparent dark:hover:bg-transparent',
-              leadingIcon: 'text-inherit dark:text-inherit',
-              trailingIcon: 'text-inherit dark:text-inherit',
-              input: 'hidden'
-            }"
-            :class="[
-              'ring-0 shadow-none inline-flex items-center px-3 py-1.5 text-base gap-2 rounded-full transition-all duration-300 backdrop-blur-md font-bold uppercase tracking-widest',
-              selectedCertifications.length > 0
-                ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
-                : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
-            ]"
-            :popper="{ placement: 'bottom-start', strategy: 'fixed' }"
             value-attribute="value"
-          >
-            <template #default>
-              <span class="truncate">Certification</span>
-              <span v-if="selectedCertifications.length > 0" class="ml-0.5">({{ selectedCertifications.length }})</span>
-            </template>
-          </USelectMenu>
+          />
 
           <!-- Filter Buttons -->
-          <button
+          <FilterButton
             v-for="filter in popularFilters"
             :key="filter.id"
-            type="button"
-            :class="[
-              'inline-flex items-center px-3 py-1.5 text-base gap-2 rounded-full transition-all duration-300 backdrop-blur-md shadow-sm font-bold uppercase tracking-widest',
-              selectedPopularFilters.includes(filter.id)
-                ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
-                : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
-            ]"
+            :label="filter.label"
+            :icon="filter.icon"
+            :active="selectedPopularFilters.includes(filter.id)"
             @click="togglePopularFilter(filter.id)"
-          >
-            {{ filter.label }}
-          </button>
+          />
 
           <button
             v-if="hasActiveFilters || selectedCategory"
