@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Software } from "~~/types/software"
 
+import { getCertificationConfig } from "~/utils/certification"
+
 interface Props {
   software: Software
   shape?: "slant" | "curve" | "arrow"
@@ -11,8 +13,6 @@ const props = withDefaults(defineProps<Props>(), {
   shape: "curve",
   compact: false
 })
-
-import { getCertificationConfig } from "~/utils/certification"
 
 const config = computed(() => {
   return getCertificationConfig(props.software.certificationLevel)

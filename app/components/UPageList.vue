@@ -6,6 +6,6 @@ defineProps<{
 
 <template>
   <div class="relative flex flex-col" :class="{ 'divide-y divide-gray-200 dark:divide-gray-800': divide }">
-    <slot />
+    <slot></slot>
   </div>
 </template>

@@ -16,9 +16,6 @@ withDefaults(defineProps<Props>(), {
 
 const search = defineModel<string>("search", { default: "" })
 
-const { getSoftwareList } = useSoftware()
-const softwareList = getSoftwareList()
-
 // Focus state
 const isFocused = ref(false)
 const showSuggestions = ref(false)
@@ -40,60 +37,8 @@ const maxDisciplineIndex = computed(() => suggestions.value.disciplines.length -
 const maxActivityIndex = computed(() => suggestions.value.activities.length - 1)
 const maxSoftwareIndex = computed(() => suggestions.value.software.length - 1)
 
-import { normalizeText } from "~/utils/search"
-
-// Suggestions calculées avec catégories
-const suggestions = computed(() => {
-  if (!search.value || search.value.length < 2) {
-    return {
-      query: "",
-      totalResults: 0,
-      categories: [],
-      disciplines: [],
-      activities: [],
-      software: []
-    }
-  }
-
-  const query = normalizeText(search.value.trim())
-
-  // Filtrer les logiciels correspondants
-  const matchingSoftware = softwareList.filter(s =>
-    normalizeText(s.name).includes(query)
-    || normalizeText(s.shortDescription).includes(query)
-    || s.categories?.some(cat => normalizeText(cat).includes(query))
-    || s.disciplines?.some(disc => normalizeText(disc).includes(query))
-    || s.pedagogicalActivities?.some(act => normalizeText(act).includes(query))
-  )
-
-  // Extraire les catégories uniques
-  const categoriesSet = new Set<string>()
-  const disciplinesSet = new Set<string>()
-  const activitiesSet = new Set<string>()
-
-  matchingSoftware.forEach((s) => {
-    s.categories?.forEach((cat) => {
-      if (normalizeText(cat).includes(query)) categoriesSet.add(cat)
-    })
-    s.disciplines?.forEach((disc) => {
-      if (normalizeText(disc).includes(query)) disciplinesSet.add(disc)
-    })
-    s.pedagogicalActivities?.forEach((act) => {
-      if (normalizeText(act).includes(query)) activitiesSet.add(act)
-    })
-  })
-
-  return {
-    query: search.value,
-    totalResults: matchingSoftware.length,
-    categories: Array.from(categoriesSet).slice(0, 3),
-    disciplines: Array.from(disciplinesSet).slice(0, 3),
-    activities: Array.from(activitiesSet).slice(0, 3),
-    software: matchingSoftware.slice(0, 6)
-  }
-})
-
-const hasSuggestions = computed(() => suggestions.value.totalResults > 0)
+// Suggestions calculées via composable
+const { suggestions, hasSuggestions } = useSearchSuggestions(search)
 
 // Gestion des clics
 const handleSoftwareClick = (softwareId: string) => {
@@ -363,8 +308,8 @@ onMounted(() => {
     <div class="relative group flex items-stretch">
       <div class="relative flex-1">
         <input
-          ref="searchInput"
           id="software-search"
+          ref="searchInput"
           v-model="search"
           type="search"
           autocomplete="off"

@@ -43,7 +43,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1672527600000,
+    updatedAt: 1672527600000
   },
   {
     id: "aa4c7076-00ac-43eb-a4fb-232af8579fc3",
@@ -77,7 +79,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1672779888000,
+    updatedAt: 1672779888000
   },
   {
     id: "e113ceed-d8a1-426c-8dd3-e300df4c8abf",
@@ -109,7 +113,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1673032176000,
+    updatedAt: 1673032176000
   },
   {
     id: "ec266878-5ca5-4cac-9b91-4a27a3649ff8",
@@ -143,7 +149,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1673284464000,
+    updatedAt: 1673284464000
   },
   {
     id: "0fa52ff2-e168-43b0-8616-1aca1931d6b3",
@@ -177,7 +185,9 @@ export const softwareList: Software[] = [
       "Français",
       "Culture générale"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1673536752000,
+    updatedAt: 1673536752000
   },
   {
     id: "834621e9-e59c-47eb-88d9-93b015f03210",
@@ -210,7 +220,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1673789040000,
+    updatedAt: 1673789040000
   },
   {
     id: "d76a40b1-9759-4515-ae81-0c99c08ba0f2",
@@ -243,7 +255,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1674041328000,
+    updatedAt: 1674041328000
   },
   {
     id: "37706271-2113-4c98-95f2-14fa657e4632",
@@ -279,7 +293,9 @@ export const softwareList: Software[] = [
       "Arts",
       "Langues"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1674293616000,
+    updatedAt: 1674293616000
   },
   {
     id: "6ac7cdb5-ddc5-4ff7-8690-1a37fd45d4d0",
@@ -312,7 +328,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Français"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1674545904000,
+    updatedAt: 1674545904000
   },
   {
     id: "2144076e-5baf-48ab-9800-12a94ccf9a6e",
@@ -345,7 +363,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1674798192000,
+    updatedAt: 1674798192000
   },
   {
     id: "667a2870-5dc1-40ec-90ec-4ae2a4a830e6",
@@ -378,7 +398,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1675050480000,
+    updatedAt: 1675050480000
   },
   {
     id: "440e0fb1-b020-48b2-9564-6335952216f7",
@@ -391,7 +413,7 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: null,
+    certificationLevel: 2,
     dataLocation: "Hors UE",
     personalData: false,
     supportedByCEJEF: false,
@@ -414,7 +436,9 @@ export const softwareList: Software[] = [
       "Communication",
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1675302768000,
+    updatedAt: 1675302768000
   },
   {
     id: "3a7e831b-e2e5-436a-8961-5223912fbfbe",
@@ -448,7 +472,9 @@ export const softwareList: Software[] = [
       "Arts",
       "Communication"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1675555056000,
+    updatedAt: 1675555056000
   },
   {
     id: "ca2f13c1-67e2-485a-a3d8-f2613cec0fb2",
@@ -482,7 +508,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1675807344000,
+    updatedAt: 1675807344000
   },
   {
     id: "6735e3fc-91c1-4eb9-8330-097e9e27479f",
@@ -515,7 +543,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1676059632000,
+    updatedAt: 1676059632000
   },
   {
     id: "2de92a52-37df-4db4-9351-fedd06c34ae9",
@@ -548,7 +578,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1676311920000,
+    updatedAt: 1676311920000
   },
   {
     id: "9908a75e-d308-4906-a1a1-0ecd7198a106",
@@ -581,7 +613,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1676564208000,
+    updatedAt: 1676564208000
   },
   {
     id: "cbe3ff10-47f4-4ea2-b2b7-f9ff2d9f46b2",
@@ -615,7 +649,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1676816496000,
+    updatedAt: 1676816496000
   },
   {
     id: "75c98a49-1412-43f9-8289-796d5a721094",
@@ -650,7 +686,9 @@ export const softwareList: Software[] = [
       "Informatique",
       "Mathématiques"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1677068784000,
+    updatedAt: 1677068784000
   },
   {
     id: "5397c8ab-98e5-4036-b2a2-f794e8f4f3ab",
@@ -683,7 +721,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Français"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1677321072000,
+    updatedAt: 1677321072000
   },
   {
     id: "b34a34cb-3c48-432b-9c25-964656c2e78c",
@@ -716,7 +756,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1677573360000,
+    updatedAt: 1677573360000
   },
   {
     id: "8aef2c08-7f58-40e9-85b2-1d5e971d8feb",
@@ -750,7 +792,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1677825648000,
+    updatedAt: 1677825648000
   },
   {
     id: "c2fb036a-44ae-4eb5-a408-5e10ce96f873",
@@ -785,7 +829,9 @@ export const softwareList: Software[] = [
       "Français",
       "Langues"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1678077936000,
+    updatedAt: 1678077936000
   },
   {
     id: "c2c9f76d-0d3f-42a4-8f7a-13d977d9e109",
@@ -819,7 +865,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1678330224000,
+    updatedAt: 1678330224000
   },
   {
     id: "9f704229-c096-45d1-a6d4-dae9f8bed6ab",
@@ -852,7 +900,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Éducation physique"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1678582512000,
+    updatedAt: 1678582512000
   },
   {
     id: "ead0a533-ba2f-4e64-bed4-d4b2d67ab68f",
@@ -886,7 +936,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1678834800000,
+    updatedAt: 1678834800000
   },
   {
     id: "4ca0efb8-353c-4f7a-81e9-9ce86b81a93f",
@@ -919,7 +971,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1679087088000,
+    updatedAt: 1679087088000
   },
   {
     id: "0535552d-2bb8-4bad-a687-9b99319e2eab",
@@ -953,7 +1007,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1679339376000,
+    updatedAt: 1679339376000
   },
   {
     id: "bda6272e-a729-4a10-9a5f-3bbaf6b3f616",
@@ -987,7 +1043,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1679591664000,
+    updatedAt: 1679591664000
   },
   {
     id: "52d6620a-11ed-442a-a087-adc6744d9b45",
@@ -1023,7 +1081,9 @@ export const softwareList: Software[] = [
       "Physique",
       "Chimie"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1679843952000,
+    updatedAt: 1679843952000
   },
   {
     id: "f5dbc3c8-47ff-419b-ae01-6b9beabbd2cd",
@@ -1057,7 +1117,9 @@ export const softwareList: Software[] = [
       "Sciences naturelles",
       "Biologie"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1680096240000,
+    updatedAt: 1680096240000
   },
   {
     id: "6d523ce7-dcba-4c55-a5c6-3cc413bcc64d",
@@ -1091,7 +1153,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1680348528000,
+    updatedAt: 1680348528000
   },
   {
     id: "897235a8-d36c-48d6-b00a-57bf70da09c3",
@@ -1125,7 +1189,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1680600816000,
+    updatedAt: 1680600816000
   },
   {
     id: "727a3776-d452-4ec7-992e-3e15d2acbe3a",
@@ -1158,7 +1224,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Éducation physique"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1680853104000,
+    updatedAt: 1680853104000
   },
   {
     id: "5e2fd0b8-1cfd-4c37-a9c2-103cb7ce234e",
@@ -1192,7 +1260,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1681105392000,
+    updatedAt: 1681105392000
   },
   {
     id: "1f197f6d-3e6d-41df-9a5b-405fd6b1cf92",
@@ -1226,7 +1296,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Mathématiques"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1681357680000,
+    updatedAt: 1681357680000
   },
   {
     id: "a42cdfc3-f096-4282-9806-25cb6eb9de56",
@@ -1260,7 +1332,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1681609968000,
+    updatedAt: 1681609968000
   },
   {
     id: "4cd7236c-1281-487e-b744-cf2b3a3e3928",
@@ -1295,7 +1369,9 @@ export const softwareList: Software[] = [
       "Français",
       "Littérature"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1681862256000,
+    updatedAt: 1681862256000
   },
   {
     id: "6c189a07-d2c0-477d-9f3f-cc6ee4577d96",
@@ -1328,7 +1404,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1682114544000,
+    updatedAt: 1682114544000
   },
   {
     id: "1770792d-3e5a-4982-9bb1-e7dd39d1534a",
@@ -1360,7 +1438,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1682366832000,
+    updatedAt: 1682366832000
   },
   {
     id: "324ada3e-f73e-46e2-b389-e7fa27583044",
@@ -1394,7 +1474,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1682619120000,
+    updatedAt: 1682619120000
   },
   {
     id: "21cec86c-2626-4530-b0a5-0cdc51eb0cd6",
@@ -1430,7 +1512,9 @@ export const softwareList: Software[] = [
       "Langues",
       "Sciences humaines"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1682871408000,
+    updatedAt: 1682871408000
   },
   {
     id: "8b453628-953a-4e08-b049-05ebef12881e",
@@ -1464,7 +1548,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1683123696000,
+    updatedAt: 1683123696000
   },
   {
     id: "a83fc036-6df6-417f-ac05-1762dbaaf471",
@@ -1498,7 +1584,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1683375984000,
+    updatedAt: 1683375984000
   },
   {
     id: "ba424f3b-af66-4830-8dd6-5cc19c834946",
@@ -1531,7 +1619,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1683628272000,
+    updatedAt: 1683628272000
   },
   {
     id: "62e1f335-55a3-41d3-a707-f646742d724f",
@@ -1565,7 +1655,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1683880560000,
+    updatedAt: 1683880560000
   },
   {
     id: "a3b8ae8b-937c-4847-9df8-936b66bcf699",
@@ -1599,7 +1691,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Orientation professionnelle"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1684132848000,
+    updatedAt: 1684132848000
   },
   {
     id: "bcec3170-6db6-44f0-a404-e7da13ec8422",
@@ -1633,7 +1727,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1684385136000,
+    updatedAt: 1684385136000
   },
   {
     id: "65172ac6-13e1-4912-a68e-19d44cd411c7",
@@ -1667,7 +1763,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1684637424000,
+    updatedAt: 1684637424000
   },
   {
     id: "d229656f-7cb8-48cd-8def-30ed9f852bc4",
@@ -1701,7 +1799,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1684889712000,
+    updatedAt: 1684889712000
   },
   {
     id: "f869a356-5f0e-44d1-b381-499f985d0fa2",
@@ -1734,7 +1834,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1685142000000,
+    updatedAt: 1685142000000
   },
   {
     id: "7a3be341-0769-4703-8c49-cfcec178ba13",
@@ -1768,7 +1870,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1685394288000,
+    updatedAt: 1685394288000
   },
   {
     id: "8b7250b0-c497-4996-af5a-084986629600",
@@ -1802,7 +1906,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1685646576000,
+    updatedAt: 1685646576000
   },
   {
     id: "73de275b-c8ca-4fe6-b145-fadb8ee318e8",
@@ -1834,7 +1940,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1685898864000,
+    updatedAt: 1685898864000
   },
   {
     id: "7bfc94f9-e08c-4a88-93a1-83d68e4d2d44",
@@ -1847,7 +1955,7 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: null,
+    certificationLevel: 2,
     dataLocation: "Hors UE",
     personalData: false,
     supportedByCEJEF: false,
@@ -1866,7 +1974,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1686151152000,
+    updatedAt: 1686151152000
   },
   {
     id: "0ec8c9fa-8cc5-44c5-b200-b50c7b8788bc",
@@ -1900,7 +2010,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1686403440000,
+    updatedAt: 1686403440000
   },
   {
     id: "7119dd31-391e-4aaf-be35-96047675ec72",
@@ -1933,7 +2045,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1686655728000,
+    updatedAt: 1686655728000
   },
   {
     id: "dc65942d-8905-4c1a-a984-da04061071d2",
@@ -1967,7 +2081,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1686908016000,
+    updatedAt: 1686908016000
   },
   {
     id: "d90eb9d4-6fa4-48d9-9b0d-ed787d77fbac",
@@ -1980,7 +2096,7 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: null,
+    certificationLevel: 2,
     dataLocation: "Hors UE",
     personalData: false,
     supportedByCEJEF: false,
@@ -2000,7 +2116,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1687160304000,
+    updatedAt: 1687160304000
   },
   {
     id: "86770c88-ad25-4c6a-9035-f567b320c209",
@@ -2033,7 +2151,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Français"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1687412592000,
+    updatedAt: 1687412592000
   },
   {
     id: "1bfd75f2-8023-4620-9bef-cf9ada3c055e",
@@ -2067,7 +2187,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1687664880000,
+    updatedAt: 1687664880000
   },
   {
     id: "3bf5251b-54f5-46ec-b151-22f36510f4cc",
@@ -2100,7 +2222,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1687917168000,
+    updatedAt: 1687917168000
   },
   {
     id: "11933e2e-6d1e-4067-985b-dd58030df5f4",
@@ -2134,7 +2258,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1688169456000,
+    updatedAt: 1688169456000
   },
   {
     id: "57d1c18a-9657-4333-8cd7-9f44866c83d7",
@@ -2167,7 +2293,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1688421744000,
+    updatedAt: 1688421744000
   },
   {
     id: "74612035-bb49-44ef-8c24-56d2a7dec860",
@@ -2201,7 +2329,9 @@ export const softwareList: Software[] = [
       "Arts",
       "Multimédia"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1688674032000,
+    updatedAt: 1688674032000
   },
   {
     id: "079b1f46-7634-4595-952b-93f2c6ac572d",
@@ -2236,7 +2366,9 @@ export const softwareList: Software[] = [
       "Physique",
       "Sciences"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1688926320000,
+    updatedAt: 1688926320000
   },
   {
     id: "cedc5a08-68fb-4a4e-beeb-216cf75422c5",
@@ -2272,7 +2404,9 @@ export const softwareList: Software[] = [
       "Arts",
       "Langues"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1689178608000,
+    updatedAt: 1689178608000
   },
   {
     id: "b7ad33d0-ed5b-45c6-acdb-3e02467aa617",
@@ -2304,7 +2438,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1689430896000,
+    updatedAt: 1689430896000
   },
   {
     id: "98e93055-2231-46ff-a3ac-52e004221c73",
@@ -2338,7 +2474,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1689683184000,
+    updatedAt: 1689683184000
   },
   {
     id: "27e34e97-f530-4d0a-a03e-8993aa889f0f",
@@ -2371,7 +2509,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1689935472000,
+    updatedAt: 1689935472000
   },
   {
     id: "a8b9d9f0-de1b-4c17-8149-996b36cb5259",
@@ -2404,7 +2544,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Français"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1690187760000,
+    updatedAt: 1690187760000
   },
   {
     id: "e418dbc4-b163-436e-b1d3-3297228edd1b",
@@ -2438,7 +2580,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1690440048000,
+    updatedAt: 1690440048000
   },
   {
     id: "d88b5139-b85d-4939-8e97-22847344215c",
@@ -2471,7 +2615,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1690692336000,
+    updatedAt: 1690692336000
   },
   {
     id: "67bbb3d8-c316-440c-9c44-dea7bd6632f6",
@@ -2502,7 +2648,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1690944624000,
+    updatedAt: 1690944624000
   },
   {
     id: "01547f52-1912-4c84-ae3b-f99a33e2eff9",
@@ -2535,7 +2683,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1691196912000,
+    updatedAt: 1691196912000
   },
   {
     id: "44e00cfb-1b43-4218-aae2-9370f1b4e4ae",
@@ -2567,7 +2717,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1691449200000,
+    updatedAt: 1691449200000
   },
   {
     id: "6386a9d5-4254-434a-9a30-9fe63497ea09",
@@ -2599,7 +2751,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1691701488000,
+    updatedAt: 1691701488000
   },
   {
     id: "eef53d57-f8e3-4a2e-9347-01bd02278734",
@@ -2631,7 +2785,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1691953776000,
+    updatedAt: 1691953776000
   },
   {
     id: "59d55d49-cb3b-42e7-a351-efe141939bd7",
@@ -2665,7 +2821,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1692206064000,
+    updatedAt: 1692206064000
   },
   {
     id: "6e7fea78-c1fc-4c26-88ec-3746ceb71e13",
@@ -2700,7 +2858,9 @@ export const softwareList: Software[] = [
       "Musique",
       "Arts"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1692458352000,
+    updatedAt: 1692458352000
   },
   {
     id: "d577976b-1adb-42ef-8b34-82f228b80c44",
@@ -2732,7 +2892,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1692710640000,
+    updatedAt: 1692710640000
   },
   {
     id: "62d21095-2982-4ca3-85eb-1b28a0cd9f56",
@@ -2765,7 +2927,9 @@ export const softwareList: Software[] = [
       "Musique",
       "Arts"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données"
+    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    createdAt: 1692962928000,
+    updatedAt: 1692962928000
   },
   {
     id: "23d425ac-29fd-4013-b995-a5072f6ba920",
@@ -2798,7 +2962,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Informatique"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1693215216000,
+    updatedAt: 1693215216000
   },
   {
     id: "2e312dcf-ad29-47e8-8e22-0a2c0091b8c2",
@@ -2811,7 +2977,7 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: null,
+    certificationLevel: 2,
     dataLocation: "Hors UE",
     personalData: false,
     supportedByCEJEF: false,
@@ -2830,7 +2996,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1693467504000,
+    updatedAt: 1693467504000
   },
   {
     id: "3480da50-548b-4cef-88d8-193656569cb1",
@@ -2863,7 +3031,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1693719792000,
+    updatedAt: 1693719792000
   },
   {
     id: "5b46800b-124b-4bfd-b8bd-6fd10ae05202",
@@ -2896,7 +3066,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1693972080000,
+    updatedAt: 1693972080000
   },
   {
     id: "a0be678f-4a3a-4a7a-96d9-343786b93bf6",
@@ -2930,7 +3102,9 @@ export const softwareList: Software[] = [
       "Géographie",
       "Sciences"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1694224368000,
+    updatedAt: 1694224368000
   },
   {
     id: "9d01b167-6471-4487-8ba0-f4a9af752a6e",
@@ -2963,7 +3137,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1694476656000,
+    updatedAt: 1694476656000
   },
   {
     id: "f9af22cc-36a0-4396-abc9-ba9bf737800f",
@@ -2996,7 +3172,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1694728944000,
+    updatedAt: 1694728944000
   },
   {
     id: "29be1ce5-35d2-463e-a287-48b8f19e4ed1",
@@ -3030,7 +3208,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1694981232000,
+    updatedAt: 1694981232000
   },
   {
     id: "4a9e711f-5a8f-4658-a001-cee48ba0ee43",
@@ -3064,7 +3244,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1695233520000,
+    updatedAt: 1695233520000
   },
   {
     id: "d1007e0f-842c-4303-92b8-973d3bf6e401",
@@ -3097,7 +3279,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1695485808000,
+    updatedAt: 1695485808000
   },
   {
     id: "582ce878-095c-490d-985a-0faf57d51d15",
@@ -3131,7 +3315,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD"
+    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    createdAt: 1695738096000,
+    updatedAt: 1695738096000
   },
   {
     id: "fee16798-8574-405d-9269-ce97473e3957",
@@ -3144,7 +3330,7 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: null,
+    certificationLevel: 2,
     dataLocation: "Hors UE",
     personalData: false,
     supportedByCEJEF: false,
@@ -3164,7 +3350,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé"
+    usageNotes: "Usage autorisé",
+    createdAt: 1695990384000,
+    updatedAt: 1695990384000
   },
   {
     id: "microsoft-word",
@@ -3185,9 +3373,19 @@ export const softwareList: Software[] = [
     cost: "Payant",
     toolUrl: "https://www.office.com/launch/word",
     targetAudience: "tous",
-    categories: ["Bureautique", "Productivité"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Rédaction", "Collaboration"]
+    categories: [
+      "Bureautique",
+      "Productivité"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Rédaction",
+      "Collaboration"
+    ],
+    createdAt: 1696242672000,
+    updatedAt: 1696242672000
   },
   {
     id: "microsoft-excel",
@@ -3208,9 +3406,23 @@ export const softwareList: Software[] = [
     cost: "Payant",
     toolUrl: "https://www.office.com/launch/excel",
     targetAudience: "tous",
-    categories: ["Bureautique", "Productivité", "Mathématiques"],
-    disciplines: ["Toutes", "Mathématiques", "Sciences"],
-    pedagogicalActivities: ["Calcul", "Analyse de données", "Graphiques"]
+    categories: [
+      "Bureautique",
+      "Productivité",
+      "Mathématiques"
+    ],
+    disciplines: [
+      "Toutes",
+      "Mathématiques",
+      "Sciences"
+    ],
+    pedagogicalActivities: [
+      "Calcul",
+      "Analyse de données",
+      "Graphiques"
+    ],
+    createdAt: 1696494960000,
+    updatedAt: 1696494960000
   },
   {
     id: "microsoft-powerpoint",
@@ -3231,9 +3443,21 @@ export const softwareList: Software[] = [
     cost: "Payant",
     toolUrl: "https://www.office.com/launch/powerpoint",
     targetAudience: "tous",
-    categories: ["Bureautique", "Présentation", "Design"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Présentation", "Exposé", "Création visuelle"]
+    categories: [
+      "Bureautique",
+      "Présentation",
+      "Design"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Présentation",
+      "Exposé",
+      "Création visuelle"
+    ],
+    createdAt: 1696747248000,
+    updatedAt: 1696747248000
   },
   {
     id: "microsoft-teams",
@@ -3254,9 +3478,21 @@ export const softwareList: Software[] = [
     cost: "Payant",
     toolUrl: "https://teams.microsoft.com",
     targetAudience: "tous",
-    categories: ["Communication", "Collaboration", "Visioconférence"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Travail de groupe", "Communication", "Classe virtuelle"]
+    categories: [
+      "Communication",
+      "Collaboration",
+      "Visioconférence"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Travail de groupe",
+      "Communication",
+      "Classe virtuelle"
+    ],
+    createdAt: 1696999536000,
+    updatedAt: 1696999536000
   },
   {
     id: "microsoft-onedrive",
@@ -3277,9 +3513,19 @@ export const softwareList: Software[] = [
     cost: "Payant",
     toolUrl: "https://portal.office.com/onedrive",
     targetAudience: "tous",
-    categories: ["Stockage", "Productivité"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Archivage", "Partage de ressources"]
+    categories: [
+      "Stockage",
+      "Productivité"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Archivage",
+      "Partage de ressources"
+    ],
+    createdAt: 1697251824000,
+    updatedAt: 1697251824000
   },
   {
     id: "microsoft-onenote",
@@ -3300,9 +3546,20 @@ export const softwareList: Software[] = [
     cost: "Payant",
     toolUrl: "https://www.onenote.com/notebooks",
     targetAudience: "tous",
-    categories: ["Productivité", "Organisation"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Prise de notes", "Portfolio", "Organisation"]
+    categories: [
+      "Productivité",
+      "Organisation"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Prise de notes",
+      "Portfolio",
+      "Organisation"
+    ],
+    createdAt: 1697504112000,
+    updatedAt: 1697504112000
   },
   {
     id: "microsoft-forms",
@@ -3323,9 +3580,20 @@ export const softwareList: Software[] = [
     cost: "Payant",
     toolUrl: "https://forms.office.com",
     targetAudience: "tous",
-    categories: ["Évaluation", "Sondage"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Quiz", "Sondage", "Évaluation formative"]
+    categories: [
+      "Évaluation",
+      "Sondage"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Quiz",
+      "Sondage",
+      "Évaluation formative"
+    ],
+    createdAt: 1697756400000,
+    updatedAt: 1697756400000
   },
   {
     id: "microsoft-outlook",
@@ -3346,9 +3614,19 @@ export const softwareList: Software[] = [
     cost: "Payant",
     toolUrl: "https://outlook.office.com",
     targetAudience: "tous",
-    categories: ["Communication", "Organisation"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Communication", "Planification"]
+    categories: [
+      "Communication",
+      "Organisation"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Communication",
+      "Planification"
+    ],
+    createdAt: 1698008688000,
+    updatedAt: 1698008688000
   },
   {
     id: "mozilla-firefox",
@@ -3369,10 +3647,20 @@ export const softwareList: Software[] = [
     cost: "Gratuit",
     toolUrl: "https://www.mozilla.org/firefox",
     targetAudience: "tous",
-    categories: ["Navigateurs", "Productivité"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Recherche d'information", "Navigation web"],
-    usageNotes: "Navigateur recommandé par le CEJEF pour sa protection des données."
+    categories: [
+      "Navigateurs",
+      "Productivité"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Recherche d'information",
+      "Navigation web"
+    ],
+    usageNotes: "Navigateur recommandé par le CEJEF pour sa protection des données.",
+    createdAt: 1698260976000,
+    updatedAt: 1698260976000
   },
   {
     id: "google-chrome",
@@ -3387,17 +3675,30 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: true,
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.google.com/chrome",
     targetAudience: "tous",
-    categories: ["Navigateurs", "Productivité"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Recherche d'information", "Navigation web"],
+    categories: [
+      "Navigateurs",
+      "Productivité"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Recherche d'information",
+      "Navigation web"
+    ],
     usageNotes: "Collecte de données importante. Privilégier Firefox pour les données sensibles.",
-    greenAlternatives: ["mozilla-firefox", "brave-browser"]
+    greenAlternatives: [
+      "mozilla-firefox",
+      "brave-browser"
+    ],
+    createdAt: 1698513264000,
+    updatedAt: 1698513264000
   },
   {
     id: "microsoft-edge",
@@ -3412,17 +3713,30 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: true,
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.microsoft.com/edge",
     targetAudience: "tous",
-    categories: ["Navigateurs", "Productivité"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Recherche d'information", "Navigation web"],
+    categories: [
+      "Navigateurs",
+      "Productivité"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Recherche d'information",
+      "Navigation web"
+    ],
     usageNotes: "Collecte de données similaire à Chrome. Privilégier Firefox.",
-    greenAlternatives: ["mozilla-firefox", "brave-browser"]
+    greenAlternatives: [
+      "mozilla-firefox",
+      "brave-browser"
+    ],
+    createdAt: 1698765552000,
+    updatedAt: 1698765552000
   },
   {
     id: "apple-safari",
@@ -3443,10 +3757,20 @@ export const softwareList: Software[] = [
     cost: "Gratuit",
     toolUrl: "https://www.apple.com/safari",
     targetAudience: "tous",
-    categories: ["Navigateurs", "Productivité"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Recherche d'information", "Navigation web"],
-    usageNotes: "Bonne protection de la vie privée par défaut."
+    categories: [
+      "Navigateurs",
+      "Productivité"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Recherche d'information",
+      "Navigation web"
+    ],
+    usageNotes: "Bonne protection de la vie privée par défaut.",
+    createdAt: 1699017840000,
+    updatedAt: 1699017840000
   },
   {
     id: "brave-browser",
@@ -3467,10 +3791,20 @@ export const softwareList: Software[] = [
     cost: "Gratuit",
     toolUrl: "https://brave.com",
     targetAudience: "tous",
-    categories: ["Navigateurs", "Productivité"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Recherche d'information", "Navigation web"],
-    usageNotes: "Excellent pour la protection contre le pistage."
+    categories: [
+      "Navigateurs",
+      "Productivité"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Recherche d'information",
+      "Navigation web"
+    ],
+    usageNotes: "Excellent pour la protection contre le pistage.",
+    createdAt: 1699270128000,
+    updatedAt: 1699270128000
   },
   {
     id: "notion-app",
@@ -3485,16 +3819,28 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.notion.so",
     targetAudience: "tous",
-    categories: ["Productivité", "Organisation", "Gestion de projet"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Prise de notes", "Gestion de projet", "Portfolio"],
-    usageNotes: "Hébergement aux USA. Ne pas y stocker de données sensibles (noms d'élèves, notes)."
+    categories: [
+      "Productivité",
+      "Organisation",
+      "Gestion de projet"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Prise de notes",
+      "Gestion de projet",
+      "Portfolio"
+    ],
+    usageNotes: "Hébergement aux USA. Ne pas y stocker de données sensibles (noms d'élèves, notes).",
+    createdAt: 1699522416000,
+    updatedAt: 1699522416000
   },
   {
     id: "todoist-app",
@@ -3509,16 +3855,27 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://todoist.com",
     targetAudience: "tous",
-    categories: ["Productivité", "Organisation", "Gestion de projet"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Planification", "Gestion de tâches"],
-    usageNotes: "Données hébergées hors UE."
+    categories: [
+      "Productivité",
+      "Organisation",
+      "Gestion de projet"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Planification",
+      "Gestion de tâches"
+    ],
+    usageNotes: "Données hébergées hors UE.",
+    createdAt: 1699774704000,
+    updatedAt: 1699774704000
   },
   {
     id: "dia-diagram",
@@ -3539,10 +3896,21 @@ export const softwareList: Software[] = [
     cost: "Gratuit",
     toolUrl: "http://dia-installer.de",
     targetAudience: "tous",
-    categories: ["Bureautique", "Design"],
-    disciplines: ["Informatique", "Sciences"],
-    pedagogicalActivities: ["Schématisation", "Modélisation"],
-    usageNotes: "Logiciel open-source fonctionnant en local."
+    categories: [
+      "Bureautique",
+      "Design"
+    ],
+    disciplines: [
+      "Informatique",
+      "Sciences"
+    ],
+    pedagogicalActivities: [
+      "Schématisation",
+      "Modélisation"
+    ],
+    usageNotes: "Logiciel open-source fonctionnant en local.",
+    createdAt: 1700026992000,
+    updatedAt: 1700026992000
   },
   {
     id: "gravity-designer",
@@ -3557,16 +3925,27 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.designer.io",
     targetAudience: "tous",
-    categories: ["Design", "Graphisme"],
-    disciplines: ["Arts", "Informatique"],
-    pedagogicalActivities: ["Création graphique", "Illustration"],
-    usageNotes: "Version web nécessite un compte."
+    categories: [
+      "Design",
+      "Graphisme"
+    ],
+    disciplines: [
+      "Arts",
+      "Informatique"
+    ],
+    pedagogicalActivities: [
+      "Création graphique",
+      "Illustration"
+    ],
+    usageNotes: "Version web nécessite un compte.",
+    createdAt: 1700279280000,
+    updatedAt: 1700279280000
   },
   {
     id: "mongodb-atlas",
@@ -3581,16 +3960,27 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.mongodb.com/atlas",
     targetAudience: "élèves",
-    categories: ["Développement", "Informatique", "Base de données"],
-    disciplines: ["Informatique"],
-    pedagogicalActivities: ["Base de données", "Développement web"],
-    usageNotes: "Choisir une région UE si possible. Attention aux données stockées."
+    categories: [
+      "Développement",
+      "Informatique",
+      "Base de données"
+    ],
+    disciplines: [
+      "Informatique"
+    ],
+    pedagogicalActivities: [
+      "Base de données",
+      "Développement web"
+    ],
+    usageNotes: "Choisir une région UE si possible. Attention aux données stockées.",
+    createdAt: 1700531568000,
+    updatedAt: 1700531568000
   },
   {
     id: "jetbrains-webstorm",
@@ -3611,10 +4001,21 @@ export const softwareList: Software[] = [
     cost: "Payant",
     toolUrl: "https://www.jetbrains.com/webstorm",
     targetAudience: "élèves",
-    categories: ["Développement", "Informatique", "IDE"],
-    disciplines: ["Informatique"],
-    pedagogicalActivities: ["Programmation", "Développement web"],
-    usageNotes: "Licence éducative gratuite disponible."
+    categories: [
+      "Développement",
+      "Informatique",
+      "IDE"
+    ],
+    disciplines: [
+      "Informatique"
+    ],
+    pedagogicalActivities: [
+      "Programmation",
+      "Développement web"
+    ],
+    usageNotes: "Licence éducative gratuite disponible.",
+    createdAt: 1700783856000,
+    updatedAt: 1700783856000
   },
   {
     id: "jetbrains-phpstorm",
@@ -3635,10 +4036,21 @@ export const softwareList: Software[] = [
     cost: "Payant",
     toolUrl: "https://www.jetbrains.com/phpstorm",
     targetAudience: "élèves",
-    categories: ["Développement", "Informatique", "IDE"],
-    disciplines: ["Informatique"],
-    pedagogicalActivities: ["Programmation", "Développement web"],
-    usageNotes: "Licence éducative gratuite disponible."
+    categories: [
+      "Développement",
+      "Informatique",
+      "IDE"
+    ],
+    disciplines: [
+      "Informatique"
+    ],
+    pedagogicalActivities: [
+      "Programmation",
+      "Développement web"
+    ],
+    usageNotes: "Licence éducative gratuite disponible.",
+    createdAt: 1701036144000,
+    updatedAt: 1701036144000
   },
   {
     id: "zed-editor",
@@ -3659,10 +4071,21 @@ export const softwareList: Software[] = [
     cost: "Gratuit",
     toolUrl: "https://zed.dev",
     targetAudience: "élèves",
-    categories: ["Développement", "Informatique", "IDE"],
-    disciplines: ["Informatique"],
-    pedagogicalActivities: ["Programmation", "Collaboration"],
-    usageNotes: "Fonctionne en local. Collaboration via serveur (chiffré)."
+    categories: [
+      "Développement",
+      "Informatique",
+      "IDE"
+    ],
+    disciplines: [
+      "Informatique"
+    ],
+    pedagogicalActivities: [
+      "Programmation",
+      "Collaboration"
+    ],
+    usageNotes: "Fonctionne en local. Collaboration via serveur (chiffré).",
+    createdAt: 1701288432000,
+    updatedAt: 1701288432000
   },
   {
     id: "sublime-text",
@@ -3683,10 +4106,22 @@ export const softwareList: Software[] = [
     cost: "Payant",
     toolUrl: "https://www.sublimetext.com",
     targetAudience: "tous",
-    categories: ["Développement", "Productivité", "IDE"],
-    disciplines: ["Informatique", "Toutes"],
-    pedagogicalActivities: ["Programmation", "Édition de texte"],
-    usageNotes: "Version d'évaluation illimitée."
+    categories: [
+      "Développement",
+      "Productivité",
+      "IDE"
+    ],
+    disciplines: [
+      "Informatique",
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Programmation",
+      "Édition de texte"
+    ],
+    usageNotes: "Version d'évaluation illimitée.",
+    createdAt: 1701540720000,
+    updatedAt: 1701540720000
   },
   {
     id: "cursor-editor",
@@ -3701,16 +4136,27 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://cursor.sh",
     targetAudience: "élèves",
-    categories: ["Développement", "Intelligence artificielle (IA)", "IDE"],
-    disciplines: ["Informatique"],
-    pedagogicalActivities: ["Programmation", "Assistance IA"],
-    usageNotes: "Envoie des extraits de code aux serveurs pour l'IA. Attention aux données sensibles."
+    categories: [
+      "Développement",
+      "Intelligence artificielle (IA)",
+      "IDE"
+    ],
+    disciplines: [
+      "Informatique"
+    ],
+    pedagogicalActivities: [
+      "Programmation",
+      "Assistance IA"
+    ],
+    usageNotes: "Envoie des extraits de code aux serveurs pour l'IA. Attention aux données sensibles.",
+    createdAt: 1701793008000,
+    updatedAt: 1701793008000
   },
   {
     id: "antigravity-agent",
@@ -3731,10 +4177,23 @@ export const softwareList: Software[] = [
     cost: "Gratuit",
     toolUrl: "#",
     targetAudience: "tous",
-    categories: ["Intelligence artificielle (IA)", "Développement", "Productivité"],
-    disciplines: ["Informatique", "Transversal"],
-    pedagogicalActivities: ["Assistance", "Génération de code", "Analyse"],
-    usageNotes: "L'outil que vous utilisez actuellement !"
+    categories: [
+      "Intelligence artificielle (IA)",
+      "Développement",
+      "Productivité"
+    ],
+    disciplines: [
+      "Informatique",
+      "Transversal"
+    ],
+    pedagogicalActivities: [
+      "Assistance",
+      "Génération de code",
+      "Analyse"
+    ],
+    usageNotes: "L'outil que vous utilisez actuellement !",
+    createdAt: 1702045296000,
+    updatedAt: 1702045296000
   },
   {
     id: "ghostty-terminal",
@@ -3755,10 +4214,21 @@ export const softwareList: Software[] = [
     cost: "Gratuit",
     toolUrl: "https://mitchellh.com/ghostty",
     targetAudience: "élèves",
-    categories: ["Développement", "Informatique", "Terminal"],
-    disciplines: ["Informatique"],
-    pedagogicalActivities: ["Ligne de commande", "Administration système"],
-    usageNotes: "Application locale."
+    categories: [
+      "Développement",
+      "Informatique",
+      "Terminal"
+    ],
+    disciplines: [
+      "Informatique"
+    ],
+    pedagogicalActivities: [
+      "Ligne de commande",
+      "Administration système"
+    ],
+    usageNotes: "Application locale.",
+    createdAt: 1702297584000,
+    updatedAt: 1702297584000
   },
   {
     id: "bruno-api",
@@ -3779,10 +4249,21 @@ export const softwareList: Software[] = [
     cost: "Gratuit",
     toolUrl: "https://www.usebruno.com",
     targetAudience: "élèves",
-    categories: ["Développement", "Informatique", "API"],
-    disciplines: ["Informatique"],
-    pedagogicalActivities: ["Test API", "Développement web"],
-    usageNotes: "Stocke les collections en local (Git-friendly). Pas de cloud obligatoire."
+    categories: [
+      "Développement",
+      "Informatique",
+      "API"
+    ],
+    disciplines: [
+      "Informatique"
+    ],
+    pedagogicalActivities: [
+      "Test API",
+      "Développement web"
+    ],
+    usageNotes: "Stocke les collections en local (Git-friendly). Pas de cloud obligatoire.",
+    createdAt: 1702549872000,
+    updatedAt: 1702549872000
   },
   {
     id: "openai-chatgpt",
@@ -3797,16 +4278,28 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://chat.openai.com",
     targetAudience: "tous",
-    categories: ["Intelligence artificielle (IA)", "Productivité", "Rédaction"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Assistance", "Génération de texte", "Correction"],
-    usageNotes: "Attention aux données personnelles. Ne pas soumettre de travaux d'élèves non anonymisés."
+    categories: [
+      "Intelligence artificielle (IA)",
+      "Productivité",
+      "Rédaction"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Assistance",
+      "Génération de texte",
+      "Correction"
+    ],
+    usageNotes: "Attention aux données personnelles. Ne pas soumettre de travaux d'élèves non anonymisés.",
+    createdAt: 1702802160000,
+    updatedAt: 1702802160000
   },
   {
     id: "anthropic-claude",
@@ -3821,16 +4314,28 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://claude.ai",
     targetAudience: "tous",
-    categories: ["Intelligence artificielle (IA)", "Productivité", "Analyse"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Analyse de documents", "Synthèse", "Rédaction"],
-    usageNotes: "Hébergé aux USA. Prudence avec les données sensibles."
+    categories: [
+      "Intelligence artificielle (IA)",
+      "Productivité",
+      "Analyse"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Analyse de documents",
+      "Synthèse",
+      "Rédaction"
+    ],
+    usageNotes: "Hébergé aux USA. Prudence avec les données sensibles.",
+    createdAt: 1703054448000,
+    updatedAt: 1703054448000
   },
   {
     id: "google-gemini",
@@ -3845,16 +4350,26 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://gemini.google.com",
     targetAudience: "tous",
-    categories: ["Intelligence artificielle (IA)", "Productivité"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Recherche", "Création de contenu"],
-    usageNotes: "Collecte de données Google. À utiliser avec discernement."
+    categories: [
+      "Intelligence artificielle (IA)",
+      "Productivité"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Recherche",
+      "Création de contenu"
+    ],
+    usageNotes: "Collecte de données Google. À utiliser avec discernement.",
+    createdAt: 1703306736000,
+    updatedAt: 1703306736000
   },
   {
     id: "mistral-ai",
@@ -3875,10 +4390,21 @@ export const softwareList: Software[] = [
     cost: "Gratuit",
     toolUrl: "https://chat.mistral.ai",
     targetAudience: "tous",
-    categories: ["Intelligence artificielle (IA)", "Productivité"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Assistance", "Rédaction", "Code"],
-    usageNotes: "Alternative européenne recommandée. Hébergement en UE."
+    categories: [
+      "Intelligence artificielle (IA)",
+      "Productivité"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Assistance",
+      "Rédaction",
+      "Code"
+    ],
+    usageNotes: "Alternative européenne recommandée. Hébergement en UE.",
+    createdAt: 1703559024000,
+    updatedAt: 1703559024000
   },
   {
     id: "perplexity-ai",
@@ -3893,16 +4419,26 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.perplexity.ai",
     targetAudience: "tous",
-    categories: ["Intelligence artificielle (IA)", "Recherche"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Recherche documentaire", "Vérification de faits"],
-    usageNotes: "Excellent pour la recherche sourcée, mais hébergement US."
+    categories: [
+      "Intelligence artificielle (IA)",
+      "Recherche"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Recherche documentaire",
+      "Vérification de faits"
+    ],
+    usageNotes: "Excellent pour la recherche sourcée, mais hébergement US.",
+    createdAt: 1703811312000,
+    updatedAt: 1703811312000
   },
   {
     id: "microsoft-copilot",
@@ -3917,15 +4453,26 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Hors UE",
-    personalData: true,
+    personalData: false,
     supportedByCEJEF: true,
     campusTraining: true,
     cost: "Freemium",
     toolUrl: "https://copilot.microsoft.com",
     targetAudience: "tous",
-    categories: ["Intelligence artificielle (IA)", "Productivité"],
-    disciplines: ["Toutes"],
-    pedagogicalActivities: ["Assistance", "Création", "Code"],
-    usageNotes: "Utiliser avec un compte professionnel pour une meilleure protection (si disponible)."
+    categories: [
+      "Intelligence artificielle (IA)",
+      "Productivité"
+    ],
+    disciplines: [
+      "Toutes"
+    ],
+    pedagogicalActivities: [
+      "Assistance",
+      "Création",
+      "Code"
+    ],
+    usageNotes: "Utiliser avec un compte professionnel pour une meilleure protection (si disponible).",
+    createdAt: 1704063600000,
+    updatedAt: 1704063600000
   }
 ]

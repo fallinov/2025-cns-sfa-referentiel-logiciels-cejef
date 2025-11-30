@@ -11,7 +11,7 @@ export const useSoftwareStore = defineStore("software", () => {
   const searchQuery = ref("")
   const selectedCategory = ref<string | null>(null)
   const selectedCosts = ref<CostType[]>([])
-  const selectedCertifications = ref<any[]>([])
+  const selectedCertifications = ref<number[]>([])
   const selectedCategories = ref<string[]>([])
   const selectedDisciplines = ref<string[]>([])
   const selectedActivities = ref<string[]>([])
@@ -99,20 +99,23 @@ export const useSoftwareStore = defineStore("software", () => {
 
     // Apply certification filter
     if (selectedCertifications.value.length > 0) {
-      // Normalize selected values to handle both primitives and objects
-      const selectedValues = selectedCertifications.value.map((c: any) => (typeof c === "object" && c !== null && "value" in c) ? c.value : c)
-
       filtered = filtered.filter((software) => {
         const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
-        return level !== null && selectedValues.includes(level)
+        return level !== null && selectedCertifications.value.includes(level)
       })
     }
 
     // Apply text search
-    if (searchQuery.value) {
+    // Only apply if the search query is NOT one of the active filters (to avoid double filtering)
+    const isExactFilterMatch
+      = (selectedCategories.value.length === 1 && selectedCategories.value[0] === searchQuery.value)
+        || (selectedDisciplines.value.length === 1 && selectedDisciplines.value[0] === searchQuery.value)
+        || (selectedActivities.value.length === 1 && selectedActivities.value[0] === searchQuery.value)
+
+    if (searchQuery.value && !isExactFilterMatch) {
       const searchTerms = expandSearchQuery(searchQuery.value)
 
-      filtered = filtered.filter(software => {
+      filtered = filtered.filter((software) => {
         const searchableText = [
           software.name,
           software.shortDescription,
