@@ -35,7 +35,7 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
               v-if="software.certificationLevel"
               :color="software.certificationLevel === 1 ? 'success' : software.certificationLevel === 2 ? 'warning' : 'error'"
               variant="solid"
-              size="xs"
+              size="lg"
             >
               <template #leading>
                 <UIcon
