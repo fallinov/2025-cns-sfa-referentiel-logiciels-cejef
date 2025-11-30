@@ -1,12 +1,10 @@
 <template>
   <div class="flex items-center gap-3">
-    <!-- Light Mode Logo -->
     <img
       src="/logos/logo-edujura.svg"
       alt="Logo EduJura"
       class="h-10 w-auto object-contain dark:hidden"
     />
-    <!-- Dark Mode Logo -->
     <img
       src="/logos/logo-edujura-light.svg"
       alt="Logo EduJura"

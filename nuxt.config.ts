@@ -50,11 +50,11 @@ export default defineNuxtConfig({
         { name: "apple-mobile-web-app-title", content: "EduJura" }
       ],
       link: [
-        { rel: "icon", type: "image/png", href: "/favicon-96x96.png", sizes: "96x96" },
-        { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-        { rel: "shortcut icon", href: "/favicon.ico" },
-        { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
-        { rel: "manifest", href: "/site.webmanifest" }
+        { rel: "icon", type: "image/png", href: `${process.env.NUXT_APP_BASE_URL || "/"}favicon-96x96.png`.replace(/\/+/g, "/") },
+        { rel: "icon", type: "image/svg+xml", href: `${process.env.NUXT_APP_BASE_URL || "/"}favicon.svg`.replace(/\/+/g, "/") },
+        { rel: "shortcut icon", href: `${process.env.NUXT_APP_BASE_URL || "/"}favicon.ico`.replace(/\/+/g, "/") },
+        { rel: "apple-touch-icon", sizes: "180x180", href: `${process.env.NUXT_APP_BASE_URL || "/"}apple-touch-icon.png`.replace(/\/+/g, "/") },
+        { rel: "manifest", href: `${process.env.NUXT_APP_BASE_URL || "/"}site.webmanifest`.replace(/\/+/g, "/") }
       ]
     }
   },
