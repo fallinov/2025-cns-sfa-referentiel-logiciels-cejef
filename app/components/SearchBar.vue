@@ -28,6 +28,8 @@ const emit = defineEmits<{
   filterByCategory: [category: string]
   filterByDiscipline: [discipline: string]
   filterByActivity: [activity: string]
+  search: [query: string]
+  clear: []
 }>()
 
 // Keyboard navigation
@@ -110,21 +112,21 @@ const handleSoftwareClick = (softwareId: string) => {
 const handleCategoryClick = (category: string) => {
   emit("filterByCategory", category)
   showSuggestions.value = false
-  search.value = ""
+  search.value = category
   selectedIndex.value = -1
 }
 
 const handleDisciplineClick = (discipline: string) => {
   emit("filterByDiscipline", discipline)
   showSuggestions.value = false
-  search.value = ""
+  search.value = discipline
   selectedIndex.value = -1
 }
 
 const handleActivityClick = (activity: string) => {
   emit("filterByActivity", activity)
   showSuggestions.value = false
-  search.value = ""
+  search.value = activity
   selectedIndex.value = -1
 }
 
@@ -317,6 +319,81 @@ watch(search, (newValue) => {
   selectedIndex.value = -1
   selectedType.value = "category" // Reset to first potential section, logic in render will handle empty sections
 })
+
+// Typewriter Effect
+const placeholderText = ref("")
+const phrases = [
+  "Que cherchez-vous ?",
+  "Bureautique...",
+  "Gestion de projet...",
+  "Langues...",
+  "Programmation...",
+  "Canva...",
+  "Code.org...",
+  "Antidote...",
+  "Taptouche..."
+]
+
+let phraseIndex = 0
+let charIndex = 0
+let isDeleting = false
+let typeTimeout: NodeJS.Timeout | null = null
+
+const type = () => {
+  const currentPhrase = phrases[phraseIndex] || ""
+
+  if (isDeleting) {
+    placeholderText.value = currentPhrase.substring(0, charIndex - 1)
+    charIndex--
+  } else {
+    placeholderText.value = currentPhrase.substring(0, charIndex + 1)
+    charIndex++
+  }
+
+  let typeSpeed = 100
+
+  if (isDeleting) {
+    typeSpeed /= 2
+  }
+
+  if (!isDeleting && charIndex === currentPhrase.length) {
+    isDeleting = true
+    typeSpeed = 2000 // Pause at end of phrase
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false
+    phraseIndex = (phraseIndex + 1) % phrases.length
+    typeSpeed = 500 // Pause before typing next phrase
+  }
+
+  typeTimeout = setTimeout(type, typeSpeed)
+}
+
+const handleSearchSubmit = () => {
+  if (!search.value) return
+  showSuggestions.value = false
+  const input = document.getElementById("software-search")
+  if (input) input.blur()
+  emit("search", search.value)
+}
+
+const handleClear = () => {
+  search.value = ""
+  emit("clear")
+}
+
+const searchInput = ref<HTMLInputElement | null>(null)
+
+onMounted(() => {
+  type()
+  // Focus input on mount
+  setTimeout(() => {
+    searchInput.value?.focus()
+  }, 100)
+})
+
+onUnmounted(() => {
+  if (typeTimeout) clearTimeout(typeTimeout)
+})
 </script>
 
 <template>
@@ -329,33 +406,43 @@ watch(search, (newValue) => {
     </label>
     <div class="relative group flex items-stretch">
       <div class="relative flex-1">
-        <!-- Search Icon -->
-        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <UIcon name="i-lucide-search" class="w-5 h-5 text-gray-400 group-focus-within:text-primary-500 transition-colors" />
-        </div>
-
         <input
+          ref="searchInput"
           id="software-search"
           v-model="search"
           type="search"
           autocomplete="off"
-          placeholder="Rechercher un logiciel, une catégorie..."
-          class="w-full h-12 pl-10 pr-10 text-base text-gray-900 dark:text-white rounded-[24px] focus:outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-gradient-to-b from-white/40 via-white/15 to-transparent dark:from-white/10 dark:via-white/5 dark:to-transparent backdrop-blur-2xl ring-1 ring-inset ring-white/50 dark:ring-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] focus:ring-2 focus:ring-primary-500/50"
+          :placeholder="placeholderText"
+          class="w-full h-12 pl-4 pr-24 text-base font-bold tracking-wide text-slate-900 dark:text-slate-100 rounded-[24px] focus:outline-none transition-all placeholder-slate-900/50 dark:placeholder-slate-100/50 [&::-webkit-search-cancel-button]:appearance-none bg-gradient-to-b from-white/90 via-white/80 to-white/70 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-gray-900/70 backdrop-blur-2xl ring-2 ring-inset ring-slate-900 dark:ring-slate-100 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] focus:ring-2 focus:ring-primary-500/50"
           @focus="handleFocus"
           @blur="handleBlur"
           @keydown="handleKeyDown"
         />
 
-        <!-- Clear Button -->
-        <button
-          v-if="search"
-          type="button"
-          class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors focus:outline-none"
-          aria-label="Effacer la recherche"
-          @click="search = ''"
-        >
-          <UIcon name="i-lucide-x" class="w-5 h-5" />
-        </button>
+        <!-- Right Actions -->
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3 gap-2">
+          <!-- Clear Button -->
+          <button
+            v-if="search"
+            type="button"
+            class="flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors focus:outline-none"
+            aria-label="Effacer la recherche"
+            @click="handleClear"
+          >
+            <UIcon name="i-lucide-x" class="w-5 h-5" />
+          </button>
+
+          <!-- Search Button -->
+          <button
+            type="button"
+            :disabled="!search"
+            class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-900 text-white transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800 disabled:hover:bg-slate-900"
+            aria-label="Rechercher"
+            @click="handleSearchSubmit"
+          >
+            <UIcon name="i-lucide-search" class="w-4 h-4" />
+          </button>
+        </div>
       </div>
 
       <!-- Suggestions dropdown -->

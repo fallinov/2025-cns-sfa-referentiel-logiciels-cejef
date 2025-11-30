@@ -83,14 +83,22 @@
   --color-rose-800: #9f1239;
   --color-rose-900: #881337;
   --color-rose-950: #4c0519;
+  --color-rose-900: #881337;
+  --color-rose-950: #4c0519;
+
+  /* Global Radius Configuration */
+  --ui-radius: 0.75rem;
 }
 
 /* Classe utilitaire pour masquer les scrollbars horizontales */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  display: none;
+  /* Chrome, Safari and Opera */
 }

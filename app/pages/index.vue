@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { CERTIFICATION_LEVELS } from "../constants/certification-levels"
 import { useSoftwareStore } from "~/stores/software"
 import { storeToRefs } from "pinia"
 
@@ -9,26 +8,37 @@ const store = useSoftwareStore()
 const {
   searchQuery,
   selectedCategory,
-  selectedCertifications,
   selectedCategories,
   selectedDisciplines,
   selectedActivities,
   selectedPopularFilters,
+  sortBy,
   popularFilters,
-  uniqueCategories,
-  uniqueDisciplines,
-  uniqueActivities,
   filteredSoftwareList,
   hasActiveFilters
 } = storeToRefs(store)
 
+const pageTitle = computed(() => {
+  if (selectedCategories.value.length > 0) return `Catégorie «${selectedCategories.value[0]}»`
+  if (selectedDisciplines.value.length > 0) return `Discipline «${selectedDisciplines.value[0]}»`
+  if (selectedActivities.value.length > 0) return `Activité «${selectedActivities.value[0]}»`
+  if (searchQuery.value) return `Résultats pour «${searchQuery.value}»`
+  return ""
+})
+
 const {
   togglePopularFilter,
   clearAllFilters,
+  resetFilters,
   handleCategoryFilter,
   handleDisciplineFilter,
   handleActivityFilter
 } = store
+
+const handleGlobalSearch = (query: string) => {
+  resetFilters()
+  searchQuery.value = query
+}
 
 // Watch filteredSoftwareList and update navigation composable
 watch(
@@ -39,15 +49,7 @@ watch(
   { immediate: true }
 )
 
-// Compute counts for each certification level
-
-const certificationDropdownItems = computed(() =>
-  CERTIFICATION_LEVELS.map(level => ({
-    label: level.label,
-    value: level.value,
-    icon: level.icon
-  }))
-)
+const viewMode = ref<"grid" | "list">("grid")
 </script>
 
 <template>
@@ -66,82 +68,113 @@ const certificationDropdownItems = computed(() =>
             @filter-by-category="handleCategoryFilter"
             @filter-by-discipline="handleDisciplineFilter"
             @filter-by-activity="handleActivityFilter"
+            @search="handleGlobalSearch"
+            @clear="clearAllFilters"
           />
         </div>
+      </div>
 
-        <!-- Horizontal Filter Bar -->
-        <div class="flex flex-wrap items-center justify-center gap-2">
-          <!-- Categories Dropdown -->
-          <FilterDropdown
-            v-model="selectedCategories"
-            :items="uniqueCategories"
-            label="Catégories"
-            icon="i-lucide-layout-grid"
-          />
+      <!-- Search Results Title -->
+        <div v-if="pageTitle" class="mb-6">
+          <h1 class="text-3xl font-bold text-slate-900 dark:text-white">
+            {{ pageTitle }}
+          </h1>
+        </div>
 
-          <!-- Disciplines Dropdown -->
-          <FilterDropdown
-            v-model="selectedDisciplines"
-            :items="uniqueDisciplines"
-            label="Disciplines"
-            icon="i-lucide-book-open"
-          />
-
-          <!-- Activities Dropdown -->
-          <FilterDropdown
-            v-model="selectedActivities"
-            :items="uniqueActivities"
-            label="Activités"
-            icon="i-lucide-shapes"
-          />
-
-          <!-- Certification Dropdown -->
-          <FilterDropdown
-            v-model="selectedCertifications"
-            :items="certificationDropdownItems"
-            label="Certification"
-            icon="i-lucide-shield-check"
-            value-attribute="value"
-          />
-
-          <!-- Filter Buttons -->
-          <FilterButton
-            v-for="filter in popularFilters"
-            :key="filter.id"
-            :label="filter.label"
-            :icon="filter.icon"
-            :active="selectedPopularFilters.includes(filter.id)"
-            @click="togglePopularFilter(filter.id)"
-          />
+        <!-- Header Row: Count & Reset -->
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+            {{ filteredSoftwareList.length }} logiciel{{ filteredSoftwareList.length > 1 ? "s" : "" }}
+          </h2>
 
           <button
-            v-if="hasActiveFilters || selectedCategory"
+            v-if="hasActiveFilters"
             type="button"
-            :class="[
-              'ml-auto inline-flex items-center px-3 py-1.5 text-sm gap-2 rounded-full transition-all duration-300 backdrop-blur-md shadow-sm font-bold uppercase tracking-widest',
-              'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-red-500/10 hover:text-red-600 hover:border-red-200 dark:hover:bg-red-500/20 dark:hover:text-red-400'
-            ]"
+            class="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 font-medium transition-colors"
             @click="clearAllFilters"
           >
-            Tout effacer
+            <UIcon name="i-lucide-rotate-ccw" class="w-4 h-4" />
+            Réinitialiser le filtre
           </button>
         </div>
-      </div>
 
-      <!-- Results Count -->
-      <div class="mb-6 text-sm text-gray-600 dark:text-gray-400">
-        {{ filteredSoftwareList.length }} logiciel{{ filteredSoftwareList.length > 1 ? "s" : "" }} trouvé{{ filteredSoftwareList.length > 1 ? "s" : "" }}
-      </div>
+        <!-- Filter Bar -->
+        <div class="mb-8">
+          <div class="flex flex-nowrap items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
+            <FilterButton
+              v-for="filter in store.popularFilters"
+              :key="filter.id"
+              :label="filter.label"
+              :icon="filter.icon"
+              :active="selectedPopularFilters.includes(filter.id)"
+              @click="store.togglePopularFilter(filter.id)"
+            />
+          </div>
+        </div>
 
-      <!-- Software Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <CardLiquidGlass
-          v-for="software in filteredSoftwareList"
-          :key="software.id"
-          :software="software"
-          shape="curve"
-        />
-      </div>
+        <!-- Sort & View Options -->
+        <div class="flex items-center justify-between mb-6 border-b border-gray-200 dark:border-gray-800 pb-4">
+          <!-- Sort -->
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-gray-600 dark:text-gray-400">Trier par:</span>
+            <USelect
+              v-model="sortBy"
+              :items="[
+                { label: 'Classification (Meilleur)', value: 'certification-asc' },
+                { label: 'Classification (Moins bon)', value: 'certification-desc' },
+                { label: 'Nom (A-Z)', value: 'name-asc' },
+                { label: 'Nom (Z-A)', value: 'name-desc' },
+                { label: 'Date (Plus récent)', value: 'date-desc' },
+                { label: 'Date (Plus ancien)', value: 'date-asc' }
+              ]"
+              option-attribute="label"
+              value-attribute="value"
+              size="xl"
+              class="w-56"
+            />
+          </div>
+
+          <!-- View Toggle -->
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              :class="[
+                'inline-flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 backdrop-blur-md shadow-sm',
+                viewMode === 'grid'
+                  ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
+                  : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
+              ]"
+              aria-label="Vue grille"
+              @click="viewMode = 'grid'"
+            >
+              <UIcon name="i-lucide-layout-grid" class="w-5 h-5" />
+            </button>
+            <button
+              type="button"
+              :class="[
+                'inline-flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 backdrop-blur-md shadow-sm',
+                viewMode === 'list'
+                  ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
+                  : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
+              ]"
+              aria-label="Vue liste"
+              @click="viewMode = 'list'"
+            >
+              <UIcon name="i-lucide-list" class="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        <!-- Software Grid/List -->
+        <div :class="viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'">
+          <CardLiquidGlass
+            v-for="software in filteredSoftwareList"
+            :key="software.id"
+            :software="software"
+            shape="curve"
+            :horizontal="viewMode === 'list'"
+          />
+        </div>
 
       <!-- Empty State -->
       <div

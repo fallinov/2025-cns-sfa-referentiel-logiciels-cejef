@@ -16,13 +16,13 @@ const props = withDefaults(defineProps<Props>(), {
 const levelConfig = {
   1: {
     fill: "text-green-500 dark:text-green-600",
-    label: "Autorisé",
+    label: "Validé",
     icon: "i-lucide-circle-check-big",
     bg: "bg-green-50/10 dark:bg-green-950/10"
   },
   2: {
     fill: "text-orange-500 dark:text-orange-600",
-    label: "Attention",
+    label: "Restreint",
     icon: "i-lucide-triangle-alert",
     bg: "bg-orange-50/10 dark:bg-orange-950/10"
   },
@@ -64,7 +64,7 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
       'group relative flex flex-col h-full transition-all duration-500 block',
       compact ? 'hover:-translate-y-1' : 'hover:-translate-y-2',
       'outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 focus-visible:ring-offset-2',
-      compact ? 'rounded-xl' : 'rounded-[24px]',
+      compact ? 'rounded-lg' : 'rounded-xl',
       'overflow-hidden',
       config.bg,
       'bg-gradient-to-b from-white/40 via-white/15 to-transparent dark:from-white/10 dark:via-white/5 dark:to-transparent',

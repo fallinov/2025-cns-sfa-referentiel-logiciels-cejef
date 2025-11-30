@@ -38,9 +38,7 @@ const links = [{
     <UHeader :links="links" :ui="{ wrapper: 'border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900' }">
       <template #left>
         <NuxtLink to="/" class="flex items-center gap-2">
-          <span class="font-bold text-2xl text-primary-600 dark:text-primary-500 tracking-tight">
-            Edu<span class="text-gray-900 dark:text-white">Jura</span>
-          </span>
+          <EdujuraLogo class="h-8 w-auto" />
         </NuxtLink>
       </template>
 

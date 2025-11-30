@@ -79,4 +79,8 @@ export interface Software {
   categories?: string[]
   pedagogicalActivities?: string[]
   disciplines?: string[]
+
+  // DATES
+  createdAt: number
+  updatedAt: number
 }

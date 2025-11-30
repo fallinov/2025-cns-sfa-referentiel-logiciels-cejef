@@ -15,6 +15,7 @@ export const useSoftwareStore = defineStore("software", () => {
   const selectedDisciplines = ref<string[]>([])
   const selectedActivities = ref<string[]>([])
   const selectedPopularFilters = ref<string[]>([])
+  const sortBy = ref("certification-asc")
 
   // Popular Filters Configuration
   const popularFilters = [
@@ -97,20 +98,31 @@ export const useSoftwareStore = defineStore("software", () => {
 
     // Apply certification filter
     if (selectedCertifications.value.length > 0) {
+      // Normalize selected values to handle both primitives and objects
+      const selectedValues = selectedCertifications.value.map((c: any) => (typeof c === "object" && c !== null && "value" in c) ? c.value : c)
+
       filtered = filtered.filter((software) => {
         const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
-        return level !== null && selectedCertifications.value.includes(level)
+        return level !== null && selectedValues.includes(level)
       })
     }
 
     // Apply search query
     if (searchQuery.value.trim()) {
       const query = searchQuery.value.toLowerCase().trim()
-      filtered = filtered.filter(
-        software =>
-          software.name.toLowerCase().includes(query)
-          || software.shortDescription.toLowerCase().includes(query)
-      )
+
+      // Check if query matches active filter (to avoid double filtering if we display category name in search bar)
+      const isCategoryMatch = selectedCategories.value.some(c => c.toLowerCase() === query)
+      const isDisciplineMatch = selectedDisciplines.value.some(d => d.toLowerCase() === query)
+      const isActivityMatch = selectedActivities.value.some(a => a.toLowerCase() === query)
+
+      if (!isCategoryMatch && !isDisciplineMatch && !isActivityMatch) {
+        filtered = filtered.filter(
+          software =>
+            software.name.toLowerCase().includes(query)
+            || software.shortDescription.toLowerCase().includes(query)
+        )
+      }
     }
 
     // Apply popular filters
@@ -122,6 +134,31 @@ export const useSoftwareStore = defineStore("software", () => {
         })
       })
     }
+
+    // Apply sorting
+    filtered.sort((a, b) => {
+      const levelA = a.certificationLevel ?? getCertificationLevel(a.lgpd) ?? 99
+      const levelB = b.certificationLevel ?? getCertificationLevel(b.lgpd) ?? 99
+
+      switch (sortBy.value) {
+        case "certification-asc":
+          // Meilleur niveau (1) d'abord, donc ordre croissant
+          return levelA - levelB
+        case "certification-desc":
+          // Moins bon niveau d'abord
+          return levelB - levelA
+        case "name-asc":
+          return a.name.localeCompare(b.name)
+        case "name-desc":
+          return b.name.localeCompare(a.name)
+        case "date-desc":
+          return b.createdAt - a.createdAt
+        case "date-asc":
+          return a.createdAt - b.createdAt
+        default:
+          return 0
+      }
+    })
 
     return filtered
   })
@@ -159,25 +196,35 @@ export const useSoftwareStore = defineStore("software", () => {
     searchQuery.value = ""
   }
 
+  const resetFilters = () => {
+    selectedCosts.value = []
+    selectedCertifications.value = []
+    selectedPopularFilters.value = []
+    selectedCategories.value = []
+    selectedDisciplines.value = []
+    selectedActivities.value = []
+    // Keep searchQuery
+  }
+
   const handleCategoryFilter = (category: string) => {
     selectedCategories.value = [category]
     selectedDisciplines.value = []
     selectedActivities.value = []
-    searchQuery.value = ""
+    searchQuery.value = category
   }
 
   const handleDisciplineFilter = (discipline: string) => {
     selectedDisciplines.value = [discipline]
     selectedCategories.value = []
     selectedActivities.value = []
-    searchQuery.value = ""
+    searchQuery.value = discipline
   }
 
   const handleActivityFilter = (activity: string) => {
     selectedActivities.value = [activity]
     selectedCategories.value = []
     selectedDisciplines.value = []
-    searchQuery.value = ""
+    searchQuery.value = activity
   }
 
   return {
@@ -190,6 +237,7 @@ export const useSoftwareStore = defineStore("software", () => {
     selectedDisciplines,
     selectedActivities,
     selectedPopularFilters,
+    sortBy,
     popularFilters,
 
     // Getters
@@ -203,6 +251,7 @@ export const useSoftwareStore = defineStore("software", () => {
     // Actions
     togglePopularFilter,
     clearAllFilters,
+    resetFilters,
     handleCategoryFilter,
     handleDisciplineFilter,
     handleActivityFilter

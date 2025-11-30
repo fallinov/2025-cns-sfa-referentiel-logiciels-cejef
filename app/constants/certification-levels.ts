@@ -17,25 +17,25 @@ export interface CertificationLevelConfig {
 export const CERTIFICATION_LEVELS: readonly CertificationLevelConfig[] = [
   {
     value: 1,
-    label: "Niveau 1 Conforme",
-    description: "Hébergement CEJEF/CH et collecte limitée",
-    badgeLabel: "Faible risque",
+    label: "Validé",
+    description: "Usage autorisé sans restriction particulière",
+    badgeLabel: "Validé",
     badgeColor: "success",
     icon: "i-lucide-shield-check"
   },
   {
     value: 2,
-    label: "Niveau 2 Vigilance",
-    description: "Conformité partielle ou collecte modérée",
-    badgeLabel: "Point d'attention",
+    label: "Restreint",
+    description: "Usage sous conditions (données sensibles à éviter)",
+    badgeLabel: "Restreint",
     badgeColor: "warning",
     icon: "i-lucide-alert-triangle"
   },
   {
     value: 3,
-    label: "Niveau 3 À éviter",
-    description: "Hébergement hors UE / collecte extensive",
-    badgeLabel: "Risque élevé",
+    label: "Interdit",
+    description: "Usage non autorisé pour les données personnelles",
+    badgeLabel: "Interdit",
     badgeColor: "error",
     icon: "i-lucide-shield-off"
   }
