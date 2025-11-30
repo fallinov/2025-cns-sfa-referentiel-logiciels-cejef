@@ -46,19 +46,15 @@ export default defineNuxtConfig({
           content:
             "Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD"
         },
-        { name: "author", content: "CEJEF" }
+        { name: "author", content: "CEJEF" },
+        { name: "apple-mobile-web-app-title", content: "EduJura" }
       ],
       link: [
-        {
-          rel: "icon", // Type de lien : icône
-          type: "image/x-icon", // Format du fichier
-          // Chemin du favicon avec gestion du baseURL
-          // Le .replace(/\/+/g, '/') évite les doubles slashes (//)
-          href: `${process.env.NUXT_APP_BASE_URL || ""}/favicon.ico`.replace(
-            /\/+/g,
-            "/"
-          )
-        }
+        { rel: "icon", type: "image/png", href: "/favicon-96x96.png", sizes: "96x96" },
+        { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+        { rel: "shortcut icon", href: "/favicon.ico" },
+        { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+        { rel: "manifest", href: "/site.webmanifest" }
       ]
     }
   },

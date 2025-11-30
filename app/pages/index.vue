@@ -178,77 +178,11 @@ const viewMode = ref<"grid" | "list">("grid")
 
         <div v-else class="bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl rounded-none sm:rounded-[var(--ui-radius)] border-y sm:border border-white/20 dark:border-white/10 overflow-hidden">
           <UPageList divide>
-            <UPageCard
+            <SoftwareListItem
               v-for="software in filteredSoftwareList"
               :key="software.id"
-              :to="`/logiciels/${software.id}`"
-            >
-              <template #body>
-                <div class="flex items-center gap-4">
-                  <!-- Icon -->
-                  <div
-                    class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg shadow-sm ring-1 ring-inset transition-colors duration-300"
-                    :class="[
-                      software.certificationLevel === 1 ? 'bg-green-50 dark:bg-green-950/30 ring-green-500/20 text-green-600 dark:text-green-400' :
-                      software.certificationLevel === 2 ? 'bg-orange-50 dark:bg-orange-950/30 ring-orange-500/20 text-orange-600 dark:text-orange-400' :
-                      software.certificationLevel === 3 ? 'bg-red-50 dark:bg-red-950/30 ring-red-500/20 text-red-600 dark:text-red-400' :
-                      'bg-gray-50 dark:bg-gray-800 ring-gray-200 dark:ring-gray-700 text-gray-500 dark:text-gray-400'
-                    ]"
-                  >
-                    <UIcon :name="software.icon || 'i-lucide-package'" class="w-6 h-6" />
-                  </div>
-
-                  <!-- Content -->
-                  <div class="min-w-0 flex-1">
-                    <div class="flex items-center gap-2 mb-0.5">
-                      <h3 class="text-lg font-semibold text-gray-900 dark:text-white truncate">
-                        {{ software.name }}
-                      </h3>
-                      <LiquidBadge
-                        v-if="software.certificationLevel"
-                        size="xs"
-                        :class="[
-                          software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400' :
-                          software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400' :
-                          software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400' : ''
-                        ]"
-                      >
-                        <template #leading>
-                          <UIcon
-                            :name="
-                              software.certificationLevel === 1 ? 'i-lucide-circle-check-big' :
-                              software.certificationLevel === 2 ? 'i-lucide-triangle-alert' :
-                              'i-lucide-circle-x'
-                            "
-                            class="w-3.5 h-3.5"
-                          />
-                        </template>
-                        {{
-                          software.certificationLevel === 1 ? 'Validé' :
-                          software.certificationLevel === 2 ? 'Restreint' :
-                          'Interdit'
-                        }}
-                      </LiquidBadge>
-                    </div>
-                    <p class="text-base text-gray-500 dark:text-gray-400 truncate">
-                      {{ software.shortDescription }}
-                    </p>
-                  </div>
-
-                  <!-- Meta -->
-                  <div class="hidden sm:flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-                    <div v-if="software.categories?.length" class="flex items-center gap-1">
-                      <UIcon name="i-lucide-tag" class="w-3 h-3" />
-                      <span>{{ software.categories[0] }}</span>
-                    </div>
-                    <div class="flex items-center gap-1">
-                      <UIcon name="i-lucide-coins" class="w-3 h-3" />
-                      <span>{{ software.cost }}</span>
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </UPageCard>
+              :software="software"
+            />
           </UPageList>
         </div>
 

@@ -40,13 +40,7 @@ const maxDisciplineIndex = computed(() => suggestions.value.disciplines.length -
 const maxActivityIndex = computed(() => suggestions.value.activities.length - 1)
 const maxSoftwareIndex = computed(() => suggestions.value.software.length - 1)
 
-// Normaliser le texte (enlever les accents et mettre en minuscules)
-const normalizeText = (text: string): string => {
-  return text
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036F]/g, "")
-}
+import { normalizeText } from "~/utils/search"
 
 // Suggestions calculées avec catégories
 const suggestions = computed(() => {
@@ -321,7 +315,6 @@ watch(search, (newValue) => {
 })
 
 // Typewriter Effect
-const placeholderText = ref("")
 const phrases = [
   "Que cherchez-vous ?",
   "Bureautique...",
@@ -334,39 +327,7 @@ const phrases = [
   "Taptouche..."
 ]
 
-let phraseIndex = 0
-let charIndex = 0
-let isDeleting = false
-let typeTimeout: NodeJS.Timeout | null = null
-
-const type = () => {
-  const currentPhrase = phrases[phraseIndex] || ""
-
-  if (isDeleting) {
-    placeholderText.value = currentPhrase.substring(0, charIndex - 1)
-    charIndex--
-  } else {
-    placeholderText.value = currentPhrase.substring(0, charIndex + 1)
-    charIndex++
-  }
-
-  let typeSpeed = 100
-
-  if (isDeleting) {
-    typeSpeed /= 2
-  }
-
-  if (!isDeleting && charIndex === currentPhrase.length) {
-    isDeleting = true
-    typeSpeed = 2000 // Pause at end of phrase
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting = false
-    phraseIndex = (phraseIndex + 1) % phrases.length
-    typeSpeed = 500 // Pause before typing next phrase
-  }
-
-  typeTimeout = setTimeout(type, typeSpeed)
-}
+const { placeholderText } = useTypewriter(phrases)
 
 const handleSearchSubmit = () => {
   if (!search.value) return
@@ -384,15 +345,10 @@ const handleClear = () => {
 const searchInput = ref<HTMLInputElement | null>(null)
 
 onMounted(() => {
-  type()
   // Focus input on mount
   setTimeout(() => {
     searchInput.value?.focus()
   }, 100)
-})
-
-onUnmounted(() => {
-  if (typeTimeout) clearTimeout(typeTimeout)
 })
 </script>
 

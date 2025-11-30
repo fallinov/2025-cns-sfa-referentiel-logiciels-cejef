@@ -12,31 +12,10 @@ const props = withDefaults(defineProps<Props>(), {
   compact: false
 })
 
-// Configuration des couleurs et labels selon le niveau de certification
-const levelConfig = {
-  1: {
-    fill: "text-green-500 dark:text-green-600",
-    label: "Validé",
-    icon: "i-lucide-circle-check-big",
-    bg: "bg-green-50/10 dark:bg-green-950/10"
-  },
-  2: {
-    fill: "text-orange-500 dark:text-orange-600",
-    label: "Restreint",
-    icon: "i-lucide-triangle-alert",
-    bg: "bg-orange-50/10 dark:bg-orange-950/10"
-  },
-  3: {
-    fill: "text-red-500 dark:text-red-600",
-    label: "Interdit",
-    icon: "i-lucide-circle-x",
-    bg: "bg-red-50/10 dark:bg-red-950/10"
-  }
-}
+import { getCertificationConfig } from "~/utils/certification"
 
 const config = computed(() => {
-  const level = props.software.certificationLevel || 2
-  return levelConfig[level]
+  return getCertificationConfig(props.software.certificationLevel)
 })
 
 // SVG paths pour les différentes formes

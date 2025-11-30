@@ -1,6 +1,7 @@
 import { defineStore } from "pinia"
 import type { CostType, Software } from "~~/types/software"
 import { getCertificationLevel } from "~~/types/software"
+import { expandSearchQuery, matchesSearch } from "~/utils/search"
 
 export const useSoftwareStore = defineStore("software", () => {
   const { getSoftwareList } = useSoftware()
@@ -109,33 +110,7 @@ export const useSoftwareStore = defineStore("software", () => {
 
     // Apply text search
     if (searchQuery.value) {
-      const query = searchQuery.value.toLowerCase()
-
-      // Synonym map
-      const synonyms: Record<string, string[]> = {
-        "ia": ["intelligence artificielle", "ai", "artificial intelligence"],
-        "intelligence artificielle": ["ia", "ai"],
-        "ai": ["ia", "intelligence artificielle"],
-        "visio": ["visioconférence", "video"],
-        "texte": ["traitement de texte", "word"],
-        "tableur": ["excel", "feuille de calcul"],
-        "presentation": ["powerpoint", "diaporama"]
-      }
-
-      // Expand query with synonyms
-      const searchTerms = [query]
-      Object.entries(synonyms).forEach(([key, values]) => {
-        if (query.includes(key)) {
-          values.forEach(v => searchTerms.push(v))
-        }
-      })
-
-      // Check if any filter is active (to skip search if needed, but here we combine)
-      // If we have active filters (category, discipline, etc.) AND a search query, we want to intersect.
-      // But the current logic applies filters sequentially.
-
-      // Special case: if query matches a category name exactly, it might be handled by the filter logic 
-      // but here we just want text search.
+      const searchTerms = expandSearchQuery(searchQuery.value)
 
       filtered = filtered.filter(software => {
         const searchableText = [
@@ -144,9 +119,9 @@ export const useSoftwareStore = defineStore("software", () => {
           ...(software.categories || []),
           ...(software.pedagogicalActivities || []),
           ...(software.disciplines || [])
-        ].join(" ").toLowerCase()
+        ].join(" ")
 
-        return searchTerms.some(term => searchableText.includes(term))
+        return matchesSearch(searchableText, searchTerms)
       })
     }
 
