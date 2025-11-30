@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getCertificationLevel } from "~~/types/software"
-import type { CostType, Software, CertificationLevel } from "~~/types/software"
+import type { CostType, Software } from "~~/types/software"
 import { CERTIFICATION_LEVELS } from "../constants/certification-levels"
 
 const { getSoftwareList } = useSoftware()
@@ -13,7 +13,7 @@ const selectedCategory = ref<string | null>(null)
 
 // Filter functionality
 const selectedCosts = ref<CostType[]>([])
-const selectedCertifications = ref<Exclude<CertificationLevel, null>[]>([])
+const selectedCertifications = ref<any[]>([])
 const selectedCategories = ref<string[]>([])
 const selectedDisciplines = ref<string[]>([])
 const selectedActivities = ref<string[]>([])
@@ -136,6 +136,14 @@ const filteredSoftwareList = computed(() => {
     filtered = filtered.filter(software =>
       software.pedagogicalActivities?.some(a => selectedActivities.value.includes(a))
     )
+  }
+
+  // Apply certification filter
+  if (selectedCertifications.value.length > 0) {
+    filtered = filtered.filter((software) => {
+      const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
+      return level !== null && selectedCertifications.value.includes(level)
+    })
   }
 
   // Apply search query
@@ -316,7 +324,7 @@ const certificationDropdownItems = computed(() =>
           </USelectMenu>
           <!-- Certification Dropdown -->
           <USelectMenu
-            v-model="(selectedCertifications as any)"
+            v-model="selectedCertifications"
             :items="certificationDropdownItems"
             multiple
             :searchable="false"
