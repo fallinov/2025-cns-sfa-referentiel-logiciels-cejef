@@ -139,7 +139,7 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
         <h3
           :class="[
             'font-bold tracking-tight transition-colors duration-300',
-            compact ? 'text-lg' : 'text-xl'
+            'text-lg'
           ]"
           class="text-gray-900 dark:text-white group-hover:text-white group-focus:text-white drop-shadow-sm"
         >

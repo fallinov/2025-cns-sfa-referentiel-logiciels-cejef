@@ -15,7 +15,7 @@ export const useSoftwareStore = defineStore("software", () => {
   const selectedDisciplines = ref<string[]>([])
   const selectedActivities = ref<string[]>([])
   const selectedPopularFilters = ref<string[]>([])
-  const sortBy = ref("certification-asc")
+  const sortBy = ref("name-asc")
 
   // Popular Filters Configuration
   const popularFilters = [
