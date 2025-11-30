@@ -31,10 +31,11 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white truncate">
               {{ software.name }}
             </h3>
-            <LiquidBadge
+            <UBadge
               v-if="software.certificationLevel"
+              :color="software.certificationLevel === 1 ? 'success' : software.certificationLevel === 2 ? 'warning' : 'error'"
+              variant="solid"
               size="xs"
-              :class="[config.solidBg, 'text-white', 'border-none']"
             >
               <template #leading>
                 <UIcon
@@ -43,7 +44,7 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
                 />
               </template>
               {{ config.label }}
-            </LiquidBadge>
+            </UBadge>
           </div>
           <p class="text-base text-gray-500 dark:text-gray-400 truncate">
             {{ software.shortDescription }}
