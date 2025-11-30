@@ -1164,7 +1164,7 @@ export const softwareList: Software[] = [
     id: "5e2fd0b8-1cfd-4c37-a9c2-103cb7ce234e",
     name: "GENIALLY",
     logo: null,
-    icon: "i-simple-icons-genially",
+    icon: "i-lucide-presentation",
     shortDescription: "Outil de création de présentations et contenus interactifs",
     lgpd: {
       hosting: 2,
@@ -2006,7 +2006,7 @@ export const softwareList: Software[] = [
     id: "86770c88-ad25-4c6a-9035-f567b320c209",
     name: "ORTHOHPHORE",
     logo: null,
-    icon: "i-lucide-spellcheck",
+    icon: "i-lucide-spell-check",
     shortDescription: "Plateforme de dictées en ligne automatisées",
     lgpd: {
       hosting: 1,
@@ -3548,7 +3548,7 @@ export const softwareList: Software[] = [
     id: "gravity-designer",
     name: "Gravity Designer",
     logo: null,
-    icon: "i-simple-icons-gravity",
+    icon: "i-lucide-pen-tool",
     shortDescription: "Outil de design vectoriel complet",
     lgpd: {
       hosting: 2,
@@ -3860,7 +3860,7 @@ export const softwareList: Software[] = [
     id: "mistral-ai",
     name: "Mistral Le Chat",
     logo: null,
-    icon: "i-simple-icons-mistral",
+    icon: "i-lucide-brain",
     shortDescription: "Assistant IA français performant et open-weights",
     lgpd: {
       hosting: 1,
