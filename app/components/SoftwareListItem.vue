@@ -34,7 +34,7 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
             <LiquidBadge
               v-if="software.certificationLevel"
               size="xs"
-              :class="config.text"
+              :class="[config.bg, config.text, 'border-none']"
             >
               <template #leading>
                 <UIcon
