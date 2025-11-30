@@ -3,6 +3,7 @@ export interface CertificationConfig {
     label: string
     icon: string
     bg: string
+    solidBg: string
     ring: string
     text: string
 }
@@ -13,6 +14,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
         label: "Validé",
         icon: "i-lucide-circle-check-big",
         bg: "bg-green-50/10 dark:bg-green-950/10",
+        solidBg: "bg-green-500 dark:bg-green-600",
         ring: "ring-green-500/20",
         text: "text-green-600 dark:text-green-400"
     },
@@ -21,6 +23,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
         label: "Restreint",
         icon: "i-lucide-triangle-alert",
         bg: "bg-orange-50/10 dark:bg-orange-950/10",
+        solidBg: "bg-orange-500 dark:bg-orange-600",
         ring: "ring-orange-500/20",
         text: "text-orange-600 dark:text-orange-400"
     },
@@ -29,6 +32,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
         label: "Interdit",
         icon: "i-lucide-circle-x",
         bg: "bg-red-50/10 dark:bg-red-950/10",
+        solidBg: "bg-red-500 dark:bg-red-600",
         ring: "ring-red-500/20",
         text: "text-red-600 dark:text-red-400"
     }
@@ -39,6 +43,7 @@ export const DEFAULT_CERTIFICATION: CertificationConfig = {
     label: "Inconnu",
     icon: "i-lucide-help-circle",
     bg: "bg-gray-50/10 dark:bg-gray-950/10",
+    solidBg: "bg-gray-500 dark:bg-gray-600",
     ring: "ring-gray-200 dark:ring-gray-700",
     text: "text-gray-500 dark:text-gray-400"
 }

@@ -17,9 +17,9 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
         <div
           class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg shadow-sm ring-1 ring-inset transition-colors duration-300"
           :class="[
-            config.bg,
+            config.solidBg,
             config.ring,
-            config.text
+            'text-white'
           ]"
         >
           <UIcon :name="software.icon || 'i-lucide-package'" class="w-6 h-6" />
