@@ -120,7 +120,8 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
             'font-bold tracking-tight transition-colors duration-300',
             'text-lg'
           ]"
-          class="text-gray-900 dark:text-white group-hover:text-white group-focus:text-white drop-shadow-sm"
+          class="text-gray-900 dark:text-white group-hover:text-white group-focus:text-white"
+          style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)"
         >
           {{ software.name }}
         </h3>
@@ -129,7 +130,8 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
       <!-- Description (hidden in compact mode) -->
       <p
         v-if="!compact"
-        class="text-base font-normal mb-8 leading-relaxed flex-grow transition-colors duration-300 text-gray-800 dark:text-gray-200 group-hover:text-white/95 group-focus:text-white/95"
+        class="text-base font-normal mb-8 leading-relaxed flex-grow transition-colors duration-300 text-gray-800 dark:text-gray-200 group-hover:text-white/95 group-focus:text-white/95 line-clamp-3"
+        style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)"
       >
         {{ software.shortDescription }}
       </p>

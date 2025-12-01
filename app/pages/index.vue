@@ -47,6 +47,31 @@ watch(
 )
 
 const viewMode = useState<"grid" | "list">("viewMode", () => "grid")
+const isFiltersDrawerOpen = ref(false)
+
+// Pagination pour améliorer les performances (126 logiciels)
+const itemsPerPage = 24
+const displayedItems = ref(itemsPerPage)
+
+// Liste paginée
+const paginatedSoftwareList = computed(() => {
+  return filteredSoftwareList.value.slice(0, displayedItems.value)
+})
+
+// Y a-t-il plus d'items à charger ?
+const hasMoreItems = computed(() => {
+  return displayedItems.value < filteredSoftwareList.value.length
+})
+
+// Charger plus d'items
+const loadMore = () => {
+  displayedItems.value += itemsPerPage
+}
+
+// Réinitialiser la pagination quand les filtres changent
+watch(filteredSoftwareList, () => {
+  displayedItems.value = itemsPerPage
+})
 </script>
 
 <template>
@@ -97,7 +122,32 @@ const viewMode = useState<"grid" | "list">("viewMode", () => "grid")
 
       <!-- Filter Bar -->
       <div class="mb-8 px-4 sm:px-0">
-        <div class="flex flex-nowrap items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
+        <!-- Mobile: Bouton d'ouverture du drawer -->
+        <div class="sm:hidden">
+          <UButton
+            color="primary"
+            variant="outline"
+            size="lg"
+            block
+            @click="isFiltersDrawerOpen = true"
+          >
+            <template #leading>
+              <UIcon name="i-lucide-filter" class="w-5 h-5" />
+            </template>
+            Filtres rapides
+            <UBadge
+              v-if="selectedPopularFilters.length > 0"
+              color="primary"
+              size="sm"
+              class="ml-2"
+            >
+              {{ selectedPopularFilters.length }}
+            </UBadge>
+          </UButton>
+        </div>
+
+        <!-- Desktop/Tablet: Filtres visibles en ligne -->
+        <div class="hidden sm:flex flex-wrap items-center gap-2">
           <FilterButton
             v-for="filter in store.popularFilters"
             :key="filter.id"
@@ -107,6 +157,49 @@ const viewMode = useState<"grid" | "list">("viewMode", () => "grid")
             @click="store.togglePopularFilter(filter.id)"
           />
         </div>
+
+        <!-- Mobile: Drawer avec filtres -->
+        <UDrawer
+          v-model:open="isFiltersDrawerOpen"
+          title="Filtres rapides"
+          description="Sélectionnez un ou plusieurs filtres pour affiner votre recherche"
+        >
+          <template #content>
+            <div class="flex flex-col gap-3 p-4">
+              <UButton
+                v-for="filter in store.popularFilters"
+                :key="filter.id"
+                :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
+                :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
+                size="lg"
+                block
+                class="justify-start min-h-[44px]"
+                @click="store.togglePopularFilter(filter.id)"
+              >
+                <template #leading>
+                  <UIcon :name="filter.icon" class="w-5 h-5" />
+                </template>
+                {{ filter.label }}
+              </UButton>
+
+              <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-800">
+                <UButton
+                  v-if="selectedPopularFilters.length > 0"
+                  color="neutral"
+                  variant="ghost"
+                  size="lg"
+                  block
+                  @click="selectedPopularFilters = []"
+                >
+                  <template #leading>
+                    <UIcon name="i-lucide-x" class="w-5 h-5" />
+                  </template>
+                  Effacer les filtres
+                </UButton>
+              </div>
+            </div>
+          </template>
+        </UDrawer>
       </div>
 
       <!-- Sort & View Options -->
@@ -117,7 +210,7 @@ const viewMode = useState<"grid" | "list">("viewMode", () => "grid")
 
       <div v-if="viewMode === 'grid'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-0">
         <CardLiquidGlass
-          v-for="software in filteredSoftwareList"
+          v-for="software in paginatedSoftwareList"
           :key="software.id"
           :software="software"
           shape="curve"
@@ -127,11 +220,26 @@ const viewMode = useState<"grid" | "list">("viewMode", () => "grid")
       <div v-else class="bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl rounded-none sm:rounded-[var(--ui-radius)] border-y sm:border border-white/20 dark:border-white/10 overflow-hidden">
         <UPageList divide>
           <SoftwareListItem
-            v-for="software in filteredSoftwareList"
+            v-for="software in paginatedSoftwareList"
             :key="software.id"
             :software="software"
           />
         </UPageList>
+      </div>
+
+      <!-- Load More Button -->
+      <div v-if="hasMoreItems && filteredSoftwareList.length > 0" class="mt-12 flex justify-center px-4 sm:px-0">
+        <UButton
+          color="primary"
+          size="xl"
+          variant="solid"
+          @click="loadMore"
+        >
+          <template #leading>
+            <UIcon name="i-lucide-chevron-down" class="w-5 h-5" />
+          </template>
+          Charger plus ({{ filteredSoftwareList.length - displayedItems }} restants)
+        </UButton>
       </div>
 
       <SoftwareListEmpty
