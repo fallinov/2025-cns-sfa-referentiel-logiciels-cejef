@@ -43,7 +43,7 @@ const initials = computed(() => props.software.name.substring(0, 2).toUpperCase(
       'group relative flex flex-col h-full transition-all duration-500 block',
       compact ? 'hover:-translate-y-1' : 'hover:-translate-y-2',
       'outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 focus-visible:ring-offset-2',
-      compact ? 'rounded-[calc(var(--ui-radius)*0.75)]' : 'rounded-[var(--ui-radius)]',
+      compact ? 'rounded-md' : 'rounded-lg',
       'overflow-hidden',
       config.bg,
       'bg-gradient-to-b from-white/40 via-white/15 to-transparent dark:from-white/10 dark:via-white/5 dark:to-transparent',

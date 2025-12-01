@@ -87,7 +87,7 @@
   --color-rose-950: #4c0519;
 
   /* Global Radius Configuration */
-  --ui-radius: 0.75rem;
+  --ui-radius: 0.5rem;
 }
 
 /* Classe utilitaire pour masquer les scrollbars horizontales */

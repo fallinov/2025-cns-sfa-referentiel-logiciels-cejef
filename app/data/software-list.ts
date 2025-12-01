@@ -42,7 +42,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1672527600000,
     updatedAt: 1672527600000
   },
@@ -77,7 +77,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1672779888000,
     updatedAt: 1672779888000
   },
@@ -218,7 +218,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1673789040000,
     updatedAt: 1673789040000
   },
@@ -252,7 +252,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1674041328000,
     updatedAt: 1674041328000
   },
@@ -290,7 +290,7 @@ export const softwareList: Software[] = [
       "Arts",
       "Langues"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1674293616000,
     updatedAt: 1674293616000
   },
@@ -324,7 +324,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Français"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1674545904000,
     updatedAt: 1674545904000
   },
@@ -357,7 +357,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1674798192000,
     updatedAt: 1674798192000
   },
@@ -501,7 +501,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1675807344000,
     updatedAt: 1675807344000
   },
@@ -606,7 +606,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1676564208000,
     updatedAt: 1676564208000
   },
@@ -712,7 +712,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Français"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1677321072000,
     updatedAt: 1677321072000
   },
@@ -746,7 +746,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1677573360000,
     updatedAt: 1677573360000
   },
@@ -926,7 +926,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1678834800000,
     updatedAt: 1678834800000
   },
@@ -997,7 +997,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1679339376000,
     updatedAt: 1679339376000
   },
@@ -1033,7 +1033,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1679591664000,
     updatedAt: 1679591664000
   },
@@ -1139,7 +1139,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1680348528000,
     updatedAt: 1680348528000
   },
@@ -1246,7 +1246,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1681105392000,
     updatedAt: 1681105392000
   },
@@ -1317,7 +1317,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1681609968000,
     updatedAt: 1681609968000
   },
@@ -1389,7 +1389,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1682114544000,
     updatedAt: 1682114544000
   },
@@ -1459,7 +1459,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1682619120000,
     updatedAt: 1682619120000
   },
@@ -1533,7 +1533,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1683123696000,
     updatedAt: 1683123696000
   },
@@ -1569,7 +1569,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1683375984000,
     updatedAt: 1683375984000
   },
@@ -1712,7 +1712,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1684385136000,
     updatedAt: 1684385136000
   },
@@ -1784,7 +1784,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1684889712000,
     updatedAt: 1684889712000
   },
@@ -1819,7 +1819,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1685142000000,
     updatedAt: 1685142000000
   },
@@ -1891,7 +1891,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1685646576000,
     updatedAt: 1685646576000
   },
@@ -1995,7 +1995,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1686403440000,
     updatedAt: 1686403440000
   },
@@ -2066,7 +2066,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1686908016000,
     updatedAt: 1686908016000
   },
@@ -2170,7 +2170,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1687664880000,
     updatedAt: 1687664880000
   },
@@ -2312,7 +2312,7 @@ export const softwareList: Software[] = [
       "Arts",
       "Multimédia"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1688674032000,
     updatedAt: 1688674032000
   },
@@ -2385,7 +2385,7 @@ export const softwareList: Software[] = [
       "Arts",
       "Langues"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1689178608000,
     updatedAt: 1689178608000
   },
@@ -2419,7 +2419,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1689430896000,
     updatedAt: 1689430896000
   },
@@ -2455,7 +2455,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1689683184000,
     updatedAt: 1689683184000
   },
@@ -2560,7 +2560,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1690440048000,
     updatedAt: 1690440048000
   },
@@ -2595,7 +2595,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1690692336000,
     updatedAt: 1690692336000
   },
@@ -2627,7 +2627,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1690944624000,
     updatedAt: 1690944624000
   },
@@ -2662,7 +2662,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1691196912000,
     updatedAt: 1691196912000
   },
@@ -2696,7 +2696,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1691449200000,
     updatedAt: 1691449200000
   },
@@ -2730,7 +2730,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1691701488000,
     updatedAt: 1691701488000
   },
@@ -2764,7 +2764,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1691953776000,
     updatedAt: 1691953776000
   },
@@ -2800,7 +2800,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1692206064000,
     updatedAt: 1692206064000
   },
@@ -3079,7 +3079,7 @@ export const softwareList: Software[] = [
       "Géographie",
       "Sciences"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1694224368000,
     updatedAt: 1694224368000
   },
@@ -3114,7 +3114,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1694476656000,
     updatedAt: 1694476656000
   },
@@ -3149,7 +3149,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1694728944000,
     updatedAt: 1694728944000
   },
@@ -3185,7 +3185,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1694981232000,
     updatedAt: 1694981232000
   },
@@ -3221,7 +3221,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1695233520000,
     updatedAt: 1695233520000
   },
@@ -3292,7 +3292,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé avec précautions - consulter les remarques LGPD",
+    usageNotes: null,
     createdAt: 1695738096000,
     updatedAt: 1695738096000
   },
