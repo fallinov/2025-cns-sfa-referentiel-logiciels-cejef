@@ -145,7 +145,7 @@ const selectedTab = ref("overview")
           <!-- Logo/Icon -->
           <div class="shrink-0">
             <div
-              :class="[config.fill, 'w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg']"
+              :class="[config.solidBg, 'w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg']"
             >
               <img
                 v-if="software.logo"
