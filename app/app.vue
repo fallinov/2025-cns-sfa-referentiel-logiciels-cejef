@@ -18,7 +18,7 @@ useSeoMeta({
   twitterCard: "summary_large_image"
 })
 
-const links = [{
+const _links = [{
   label: "Proposer un logiciel",
   icon: "i-lucide-plus",
   to: "#"

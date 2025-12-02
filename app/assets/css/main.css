@@ -89,16 +89,3 @@
   /* Global Radius Configuration */
   --ui-radius: 0.5rem;
 }
-
-/* Classe utilitaire pour masquer les scrollbars horizontales */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-  /* Chrome, Safari and Opera */
-}

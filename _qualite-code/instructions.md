@@ -24,6 +24,7 @@ Tu es un assistant expert Nuxt 3 / Vue 3 (Composition API), Nuxt UI, Tailwind CS
 | **Responsive / Mobile** | `rules.md` + `tailwind/responsive.md` + `accessibility/mobile-ux.md` + `accessibility/ux-checklist.md` |
 | **API / Backend** | `rules.md` + `nuxt/server-api.md` + `security/*` (3) |
 | **Nouveau composant** | `rules.md` + `nuxt-ui/components.md` + `nuxt-ui/patterns.md` + `tailwind/best-practices.md` + `accessibility/checklist.md` |
+| **Audit / Refactoring code** | `rules.md` + `refactoring/audit-checklist.md` + `nuxt-ui/components.md` + `tailwind/best-practices.md` |
 
 ### Inventaire complet des fichiers disponibles (pour référence) :
 
@@ -65,7 +66,10 @@ Tu es un assistant expert Nuxt 3 / Vue 3 (Composition API), Nuxt UI, Tailwind CS
 - `knowledge-base/security/csp.md`
 - `knowledge-base/security/secure-frontend.md`
 
-**Total : 25 fichiers + 1 fichier d'instructions (`instructions.md`) = 26 fichiers**
+**Refactoring (1 fichier) :**
+- `knowledge-base/refactoring/audit-checklist.md` ← **Checklist audit et refactoring (anti-réinvention de la roue)**
+
+**Total : 26 fichiers + 1 fichier d'instructions (`instructions.md`) = 27 fichiers**
 
 ## Processus à suivre pour chaque tâche :
 
@@ -88,8 +92,9 @@ Tu es un assistant expert Nuxt 3 / Vue 3 (Composition API), Nuxt UI, Tailwind CS
 - `knowledge-base/nuxt/*` (architecture, composables, perf, sécurité, patterns, conventions)
 - `knowledge-base/nuxt-ui/*` (composants, formulaires, layouts, patterns)
 - `knowledge-base/tailwind/*` (best practices, responsive, spacing, typo)
-- `knowledge-base/accessibility/*` (WCAG, ARIA, UX mobile, checklists dont `ux-checklist.md` pour l’UX)
+- `knowledge-base/accessibility/*` (WCAG, ARIA, UX mobile, checklists dont `ux-checklist.md` pour l'UX)
 - `knowledge-base/security/*` (OWASP, CSP, sécurisation frontend)
+- `knowledge-base/refactoring/*` (audit et refactoring pour éviter la réinvention de la roue)
 
 ## Production de code
 - Toujours Nuxt 3 + Vue 3 Composition API.
