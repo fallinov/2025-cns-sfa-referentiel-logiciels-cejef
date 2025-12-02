@@ -526,8 +526,8 @@ const showLgpdDetails = ref(false)
               <UBadge
                 v-for="activity in software.pedagogicalActivities"
                 :key="activity"
-                color="gray"
-                variant="outline"
+                color="primary"
+                variant="soft"
                 size="md"
               >
                 {{ activity }}
@@ -544,7 +544,7 @@ const showLgpdDetails = ref(false)
               <UBadge
                 v-for="discipline in software.disciplines"
                 :key="discipline"
-                color="gray"
+                color="primary"
                 variant="soft"
                 size="md"
               >
