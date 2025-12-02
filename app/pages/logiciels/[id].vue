@@ -96,7 +96,7 @@ const showLgpdDetails = ref(false)
 
 <template>
   <div v-if="software" class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <UContainer class="py-8 max-w-[1000px]">
+    <UContainer class="py-8 max-w-[600px] lg:max-w-[1000px]">
       <!-- Navigation Bar -->
       <div class="mb-8 flex items-center justify-between">
         <UButton
@@ -154,7 +154,7 @@ const showLgpdDetails = ref(false)
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <!-- Main Content (Left Column) -->
-        <div class="lg:col-span-8 space-y-8 max-w-[600px]">
+        <div class="lg:col-span-8 space-y-8">
           <!-- Header Section -->
           <div class="flex items-start gap-6">
             <!-- Logo/Icon -->
