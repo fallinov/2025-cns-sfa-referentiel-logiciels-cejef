@@ -35,60 +35,7 @@ const links = [{
 
 <template>
   <UApp>
-    <UHeader :links="links" :ui="{ wrapper: 'border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900' }">
-      <template #left>
-        <NuxtLink to="/" class="flex items-center gap-2">
-          <EdujuraLogo class="h-8 w-auto" />
-        </NuxtLink>
-      </template>
-
-      <template #right>
-        <div class="flex items-center gap-1 sm:gap-4">
-          <!-- Proposer un logiciel -->
-          <UButton
-            to="#"
-            variant="ghost"
-            color="gray"
-            class="hidden sm:flex"
-          >
-            <template #leading>
-              <UIcon name="i-lucide-plus" class="w-5 h-5" />
-            </template>
-            Proposer un logiciel
-          </UButton>
-
-          <!-- Favoris -->
-          <UButton
-            to="#"
-            variant="ghost"
-            color="gray"
-            class="hidden sm:flex"
-          >
-            <template #leading>
-              <UIcon name="i-lucide-heart" class="w-5 h-5" />
-            </template>
-            Favoris
-          </UButton>
-
-          <!-- Connexion -->
-          <UButton
-            to="#"
-            variant="ghost"
-            color="gray"
-          >
-            <template #leading>
-              <UIcon name="i-lucide-user" class="w-5 h-5" />
-            </template>
-            <span class="hidden sm:inline">Se connecter</span>
-          </UButton>
-
-          <UColorModeButton />
-        </div>
-      </template>
-      <template #panel>
-        <UVerticalNavigation :links="links" />
-      </template>
-    </UHeader>
+    <AppHeader />
 
     <UMain>
       <NuxtPage />

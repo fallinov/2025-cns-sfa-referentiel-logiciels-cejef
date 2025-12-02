@@ -109,9 +109,6 @@ const showLgpdDetails = ref(false)
             <UIcon name="i-lucide-arrow-left" class="w-5 h-5" />
           </template>
           Retour
-          <template #trailing>
-            <UKbd>Esc</UKbd>
-          </template>
         </UButton>
 
         <div class="flex gap-2">
@@ -347,7 +344,7 @@ const showLgpdDetails = ref(false)
                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                    <!-- Hosting -->
                    <div class="flex items-center gap-3">
-                     <UIIcon 
+                     <UIcon 
                        :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
                        class="w-5 h-5"
                        :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
@@ -364,7 +361,7 @@ const showLgpdDetails = ref(false)
 
                    <!-- RGPD -->
                    <div class="flex items-center gap-3">
-                     <UIIcon 
+                     <UIcon 
                        :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
                        class="w-5 h-5"
                        :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
@@ -381,7 +378,7 @@ const showLgpdDetails = ref(false)
 
                    <!-- Data Collection -->
                    <div class="flex items-center gap-3">
-                     <UIIcon 
+                     <UIcon 
                        :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
                        class="w-5 h-5"
                        :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
