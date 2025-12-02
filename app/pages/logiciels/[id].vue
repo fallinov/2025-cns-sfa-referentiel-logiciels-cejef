@@ -515,84 +515,88 @@ const showLgpdDetails = ref(false)
 
       <!-- Pedagogical Classification -->
       <div v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length">
-        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-          <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
-          Classification Pédagogique
-        </h3>
+        <UCard :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
+          <template #header>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
+              Classification Pédagogique
+            </h3>
+          </template>
         
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 ring-1 ring-gray-200 dark:ring-gray-800 space-y-6">
-          <!-- Categories -->
-          <div v-if="software.categories?.length">
-            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
-              Catégories
-            </h4>
-            <div class="flex flex-wrap gap-2">
-              <NuxtLink
-                v-for="category in software.categories"
-                :key="category"
-                :to="{ path: '/', query: { category } }"
-                class="hover:scale-105 transition-transform cursor-pointer"
-              >
-                <UBadge
-                  color="primary"
-                  variant="soft"
-                  size="md"
-                  class="cursor-pointer"
+          <div class="space-y-6">
+            <!-- Categories -->
+            <div v-if="software.categories?.length">
+              <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                Catégories
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <NuxtLink
+                  v-for="category in software.categories"
+                  :key="category"
+                  :to="{ path: '/', query: { category } }"
+                  class="hover:scale-105 transition-transform cursor-pointer"
                 >
-                  {{ category }}
-                </UBadge>
-              </NuxtLink>
+                  <UBadge
+                    color="primary"
+                    variant="soft"
+                    size="md"
+                    class="cursor-pointer"
+                  >
+                    {{ category }}
+                  </UBadge>
+                </NuxtLink>
+              </div>
             </div>
-          </div>
 
-          <!-- Activities -->
-          <div v-if="software.pedagogicalActivities?.length">
-            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
-              Activités
-            </h4>
-            <div class="flex flex-wrap gap-2">
-              <NuxtLink
-                v-for="activity in software.pedagogicalActivities"
-                :key="activity"
-                :to="{ path: '/', query: { activity } }"
-                class="hover:scale-105 transition-transform cursor-pointer"
-              >
-                <UBadge
-                  color="primary"
-                  variant="soft"
-                  size="md"
-                  class="cursor-pointer"
+            <!-- Activities -->
+            <div v-if="software.pedagogicalActivities?.length">
+              <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                Activités
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <NuxtLink
+                  v-for="activity in software.pedagogicalActivities"
+                  :key="activity"
+                  :to="{ path: '/', query: { activity } }"
+                  class="hover:scale-105 transition-transform cursor-pointer"
                 >
-                  {{ activity }}
-                </UBadge>
-              </NuxtLink>
+                  <UBadge
+                    color="primary"
+                    variant="soft"
+                    size="md"
+                    class="cursor-pointer"
+                  >
+                    {{ activity }}
+                  </UBadge>
+                </NuxtLink>
+              </div>
             </div>
-          </div>
 
-          <!-- Disciplines -->
-          <div v-if="software.disciplines?.length">
-            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
-              Disciplines
-            </h4>
-            <div class="flex flex-wrap gap-2">
-              <NuxtLink
-                v-for="discipline in software.disciplines"
-                :key="discipline"
-                :to="{ path: '/', query: { discipline } }"
-                class="hover:scale-105 transition-transform cursor-pointer"
-              >
-                <UBadge
-                  color="primary"
-                  variant="soft"
-                  size="md"
-                  class="cursor-pointer"
+            <!-- Disciplines -->
+            <div v-if="software.disciplines?.length">
+              <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                Disciplines
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <NuxtLink
+                  v-for="discipline in software.disciplines"
+                  :key="discipline"
+                  :to="{ path: '/', query: { discipline } }"
+                  class="hover:scale-105 transition-transform cursor-pointer"
                 >
-                  {{ discipline }}
-                </UBadge>
-              </NuxtLink>
+                  <UBadge
+                    color="primary"
+                    variant="soft"
+                    size="md"
+                    class="cursor-pointer"
+                  >
+                    {{ discipline }}
+                  </UBadge>
+                </NuxtLink>
+              </div>
             </div>
           </div>
-        </div>
+        </UCard>
       </div>
     </div>
 
@@ -705,11 +709,14 @@ const showLgpdDetails = ref(false)
       </UCard>
 
       <!-- Similar Software -->
-      <div v-if="similarSoftwareList?.length" class="bg-white dark:bg-gray-800 rounded-lg p-6 ring-1 ring-gray-200 dark:ring-gray-800">
-        <h3 class="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-          <UIcon name="i-lucide-sparkles" class="w-5 h-5 text-yellow-500" />
-          Logiciels similaires
-        </h3>
+      <UCard v-if="similarSoftwareList?.length" :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
+        <template #header>
+          <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <UIcon name="i-lucide-sparkles" class="w-5 h-5 text-yellow-500" />
+            Logiciels similaires
+          </h3>
+        </template>
+
         <div class="space-y-3">
            <NuxtLink
             v-for="sim in similarSoftwareList.slice(0, 3)"
@@ -730,7 +737,7 @@ const showLgpdDetails = ref(false)
             </div>
           </NuxtLink>
         </div>
-      </div>
+      </UCard>
     </div>
       </div>
     </UContainer>
