@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import scrollbarHide from "tailwind-scrollbar-hide"
 
 /**
  * Configuration Tailwind CSS pour le Référentiel Logiciels CEJEF
@@ -36,6 +37,7 @@ import type { Config } from "tailwindcss"
  * @see https://ui.nuxt.com/getting-started/theme/design-system
  */
 export default {
+  plugins: [scrollbarHide],
   theme: {
     extend: {
       fontFamily: {

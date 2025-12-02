@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getCertificationLevel } from "~~/types/software"
-import { getCertificationConfig, getCertificationColors, getCertificationIcon } from "~/utils/certification"
+import { getCertificationConfig } from "~/utils/certification"
 
 /**
  * Page de détail d'un logiciel (version simplifiée)
@@ -61,6 +61,32 @@ const similarSoftwareList = computed(() =>
 // Configuration via utils centralisé
 const config = computed(() => getCertificationConfig(certificationLevel.value))
 
+// Helper pour obtenir les classes de style Info Pratique pour un niveau de certification
+const getInfoPracticalStyle = (level: number | null | undefined) => {
+  switch (level) {
+    case 1:
+      return {
+        bg: "bg-green-50 dark:bg-green-900/20",
+        iconColor: "text-green-500"
+      }
+    case 2:
+      return {
+        bg: "bg-orange-50 dark:bg-orange-900/20",
+        iconColor: "text-orange-500"
+      }
+    case 3:
+      return {
+        bg: "bg-red-50 dark:bg-red-900/20",
+        iconColor: "text-red-500"
+      }
+    default:
+      return {
+        bg: "bg-gray-50 dark:bg-gray-900/20",
+        iconColor: "text-gray-500"
+      }
+  }
+}
+
 // LGPD labels
 const lgpdLabels = {
   hosting: {
@@ -120,12 +146,9 @@ const showLgpdDetails = ref(false)
             size="md"
           >
             <template #leading>
-              <div class="flex items-center gap-1">
-                <UIcon name="i-lucide-chevron-left" class="w-4 h-4" />
-                <UKbd>
-                  <UIcon name="i-lucide-arrow-left" class="w-3 h-3" />
-                </UKbd>
-              </div>
+              <UKbd>
+                <UIcon name="i-lucide-arrow-left" class="w-3 h-3" />
+              </UKbd>
             </template>
             Précédent
           </UButton>
@@ -138,12 +161,9 @@ const showLgpdDetails = ref(false)
           >
             Suivant
             <template #trailing>
-              <div class="flex items-center gap-1">
-                <UKbd>
-                  <UIcon name="i-lucide-arrow-right" class="w-3 h-3" />
-                </UKbd>
-                <UIcon name="i-lucide-chevron-right" class="w-4 h-4" />
-              </div>
+              <UKbd>
+                <UIcon name="i-lucide-arrow-right" class="w-3 h-3" />
+              </UKbd>
             </template>
           </UButton>
         </div>
@@ -155,7 +175,7 @@ const showLgpdDetails = ref(false)
           <!-- Header Section -->
           <div class="flex items-start gap-6">
             <!-- Logo/Icon -->
-            <div class="shrink-0">
+            <div class="shrink-0 relative">
               <div
                 :class="[config.solidBg, 'w-20 h-20 rounded-lg flex items-center justify-center shadow-lg']"
               >
@@ -177,21 +197,23 @@ const showLgpdDetails = ref(false)
                   {{ software.name.substring(0, 2).toUpperCase() }}
                 </span>
               </div>
+              <!-- Certification Badge -->
+              <div
+                class="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center shadow-md ring-2 ring-white dark:ring-gray-900"
+                :class="config.solidBg"
+              >
+                <UIcon
+                  :name="getCertificationIcon(certificationLevel)"
+                  class="w-4 h-4 text-white"
+                />
+              </div>
             </div>
 
             <!-- Title and Info -->
             <div class="flex-1">
-              <div class="flex items-center gap-3 mb-2">
-                <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white">
-                  {{ software.name }}
-                </h1>
-                <UBadge :color="certificationLevel === 1 ? 'success' : certificationLevel === 2 ? 'warning' : 'error'" size="lg">
-                  <template #leading>
-                    <UIcon :name="config.icon" class="w-4 h-4" />
-                  </template>
-                  {{ config.label }}
-                </UBadge>
-              </div>
+              <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-2">
+                {{ software.name }}
+              </h1>
               <p class="text-xl text-gray-600 dark:text-gray-400">
                 {{ software.shortDescription }}
               </p>
@@ -200,549 +222,285 @@ const showLgpdDetails = ref(false)
 
           <!-- About Section -->
           <div v-if="software.description" class="prose dark:prose-invert max-w-none">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">À propos</h2>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              À propos
+            </h2>
             <div class="text-gray-600 dark:text-gray-300 whitespace-pre-line">
               {{ software.description }}
             </div>
           </div>
 
-
-      <!-- Main Status Card (Traffic Light System) - Simplified Design -->
-      <div class="mb-8">
-        <!-- Level 1: Green - Authorized -->
-        <UCard
-          v-if="certificationLevel === 1"
-          class="ring-2 ring-green-500/50 bg-green-50 dark:bg-green-900/10"
-          :ui="{ body: { padding: 'p-6' } }"
-        >
-          <div class="flex gap-5">
-            <div class="shrink-0">
-              <UIcon name="i-lucide-check-circle" class="w-8 h-8 text-green-600 dark:text-green-400" />
-            </div>
-            <div class="flex-1">
-              <h2 class="text-base font-bold text-green-800 dark:text-green-300 mb-1">
-                Usage Autorisé avec Élèves
-              </h2>
-              <p class="text-green-800 dark:text-green-200 text-sm leading-relaxed">
-                Vous pouvez utiliser ce logiciel librement avec vos élèves.
-                <strong class="font-semibold">La création de comptes et l'utilisation de données personnelles sont autorisées.</strong>
-              </p>
-              
-              <!-- Toggle Details -->
-              <div class="mt-4">
-                <UButton
-                  color="success"
-                  variant="ghost"
-                  size="sm"
-                  class="p-0 hover:bg-transparent text-green-700 dark:text-green-300"
-                  :icon="showLgpdDetails ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'"
-                  @click="showLgpdDetails = !showLgpdDetails"
-                >
-                  {{ showLgpdDetails ? 'Masquer les détails techniques' : 'Voir les détails techniques' }}
-                </UButton>
-              </div>
-
-              <!-- Technical Details (Inside Card) -->
-              <div v-if="showLgpdDetails" class="mt-4 pt-4 border-t border-green-200 dark:border-green-800/50">
-                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                   <!-- Hosting -->
-                   <div class="flex items-center gap-3">
-                     <UIcon 
-                       :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
-                       class="w-5 h-5 text-green-600 dark:text-green-400"
-                     />
-                     <div>
-                       <div class="text-sm text-gray-500 dark:text-gray-400">
-                         Hébergement
-                       </div>
-                       <div class="text-sm font-medium text-green-900 dark:text-green-100">
-                         {{ lgpdLabels.hosting[software.lgpd.hosting] }}
-                       </div>
-                     </div>
-                   </div>
-
-                   <!-- RGPD -->
-                   <div class="flex items-center gap-3">
-                     <UIcon 
-                       :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
-                       class="w-5 h-5 text-green-600 dark:text-green-400"
-                     />
-                     <div>
-                       <div class="text-sm text-gray-500 dark:text-gray-400">
-                         Conformité RGPD
-                       </div>
-                       <div class="text-sm font-medium text-green-900 dark:text-green-100">
-                         {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
-                       </div>
-                     </div>
-                   </div>
-
-                   <!-- Data Collection -->
-                   <div class="flex items-center gap-3">
-                     <UIcon 
-                       :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
-                       class="w-5 h-5 text-green-600 dark:text-green-400"
-                     />
-                     <div>
-                       <div class="text-sm text-gray-500 dark:text-gray-400">
-                         Collecte Données
-                       </div>
-                       <div class="text-sm font-medium text-green-900 dark:text-green-100">
-                         {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-              </div>
-            </div>
+          <!-- Main Status Card (Traffic Light System) - Simplified Design -->
+          <div class="mb-8">
+            <SoftwareCertificationCard
+              v-model:show-details="showLgpdDetails"
+              :software="software"
+              :certification-level="certificationLevel"
+              :lgpd-labels="lgpdLabels"
+            />
           </div>
-        </UCard>
 
-        <!-- Level 2: Orange - Restricted -->
-        <UCard
-          v-else-if="certificationLevel === 2"
-          class="ring-2 ring-orange-500/50 bg-orange-50 dark:bg-orange-900/10"
-          :ui="{ body: { padding: 'p-6' } }"
-        >
-          <div class="flex gap-5">
-            <div class="shrink-0">
-              <UIcon name="i-lucide-alert-triangle" class="w-8 h-8 text-orange-600 dark:text-orange-400" />
-            </div>
-            <div class="flex-1">
-              <h2 class="text-base font-bold text-orange-800 dark:text-orange-300 mb-1">
-                Usage Pédagogique Uniquement
-              </h2>
-              <p class="text-orange-800 dark:text-orange-200 text-sm leading-relaxed mb-2">
-                Vous pouvez utiliser cet outil pour votre préparation.
-                <strong class="block mt-1 font-semibold">Interdiction formelle de saisir des données d'élèves (noms, emails).</strong>
-              </p>
-              <p class="text-orange-800/80 dark:text-orange-300/80 text-sm mb-3">
-                Si les élèves doivent utiliser l'outil, cela doit être fait de manière strictement anonyme.
-              </p>
+          <!-- Pedagogical Classification -->
+          <div v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length">
+            <UCard :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
+              <template #header>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                  <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
+                  Classification Pédagogique
+                </h3>
+              </template>
 
-              <!-- Usage Notes -->
-              <div v-if="software.usageNotes" class="mb-4 p-3 bg-white/50 dark:bg-black/20 rounded border border-orange-200 dark:border-orange-800/50 text-sm text-orange-900 dark:text-orange-100 italic">
-                 Note : {{ software.usageNotes }}
+              <div class="space-y-6">
+                <!-- Categories -->
+                <div v-if="software.categories?.length">
+                  <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-3">
+                    Catégories
+                  </h4>
+                  <div class="flex flex-wrap gap-2">
+                    <NuxtLink
+                      v-for="category in software.categories"
+                      :key="category"
+                      :to="{ path: '/', query: { category } }"
+                      class="hover:scale-105 transition-transform cursor-pointer"
+                    >
+                      <UBadge
+                        color="primary"
+                        variant="soft"
+                        size="lg"
+                        class="cursor-pointer"
+                      >
+                        {{ category }}
+                      </UBadge>
+                    </NuxtLink>
+                  </div>
+                </div>
+
+                <!-- Activities -->
+                <div v-if="software.pedagogicalActivities?.length">
+                  <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-3">
+                    Activités
+                  </h4>
+                  <div class="flex flex-wrap gap-2">
+                    <NuxtLink
+                      v-for="activity in software.pedagogicalActivities"
+                      :key="activity"
+                      :to="{ path: '/', query: { activity } }"
+                      class="hover:scale-105 transition-transform cursor-pointer"
+                    >
+                      <UBadge
+                        color="primary"
+                        variant="soft"
+                        size="lg"
+                        class="cursor-pointer"
+                      >
+                        {{ activity }}
+                      </UBadge>
+                    </NuxtLink>
+                  </div>
+                </div>
+
+                <!-- Disciplines -->
+                <div v-if="software.disciplines?.length">
+                  <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-3">
+                    Disciplines
+                  </h4>
+                  <div class="flex flex-wrap gap-2">
+                    <NuxtLink
+                      v-for="discipline in software.disciplines"
+                      :key="discipline"
+                      :to="{ path: '/', query: { discipline } }"
+                      class="hover:scale-105 transition-transform cursor-pointer"
+                    >
+                      <UBadge
+                        color="primary"
+                        variant="soft"
+                        size="lg"
+                        class="cursor-pointer"
+                      >
+                        {{ discipline }}
+                      </UBadge>
+                    </NuxtLink>
+                  </div>
+                </div>
               </div>
-
-              <!-- Toggle Details -->
-              <div>
-                <UButton
-                  color="warning"
-                  variant="ghost"
-                  size="sm"
-                  class="p-0 hover:bg-transparent text-orange-700 dark:text-orange-300"
-                  :icon="showLgpdDetails ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'"
-                  @click="showLgpdDetails = !showLgpdDetails"
-                >
-                  {{ showLgpdDetails ? 'Masquer les détails techniques' : 'Voir les détails techniques' }}
-                </UButton>
-              </div>
-
-              <!-- Technical Details (Inside Card) -->
-              <div v-if="showLgpdDetails" class="mt-4 pt-4 border-t border-orange-200 dark:border-orange-800/50">
-                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                   <!-- Hosting -->
-                   <div class="flex items-center gap-3">
-                     <UIcon 
-                       :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
-                       class="w-5 h-5"
-                       :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
-                     />
-                     <div>
-                       <div class="text-sm text-gray-500 dark:text-gray-400">
-                         Hébergement
-                       </div>
-                       <div class="text-sm font-medium text-orange-900 dark:text-orange-100">
-                         {{ lgpdLabels.hosting[software.lgpd.hosting] }}
-                       </div>
-                     </div>
-                   </div>
-
-                   <!-- RGPD -->
-                   <div class="flex items-center gap-3">
-                     <UIcon 
-                       :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
-                       class="w-5 h-5"
-                       :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
-                     />
-                     <div>
-                       <div class="text-sm text-gray-500 dark:text-gray-400">
-                         Conformité RGPD
-                       </div>
-                       <div class="text-sm font-medium text-orange-900 dark:text-orange-100">
-                         {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
-                       </div>
-                     </div>
-                   </div>
-
-                   <!-- Data Collection -->
-                   <div class="flex items-center gap-3">
-                     <UIcon 
-                       :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
-                       class="w-5 h-5"
-                       :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
-                     />
-                     <div>
-                       <div class="text-sm text-gray-500 dark:text-gray-400">
-                         Collecte Données
-                       </div>
-                       <div class="text-sm font-medium text-orange-900 dark:text-orange-100">
-                         {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-              </div>
-            </div>
+            </UCard>
           </div>
-        </UCard>
+        </div>
 
-        <!-- Level 3: Red - Forbidden -->
-        <UCard
-          v-else-if="certificationLevel === 3"
-          class="ring-2 ring-red-500/50 bg-red-50 dark:bg-red-900/10"
-          :ui="{ body: { padding: 'p-6' } }"
-        >
-          <div class="flex gap-5">
-            <div class="shrink-0">
-              <UIcon name="i-lucide-ban" class="w-8 h-8 text-red-600 dark:text-red-400" />
-            </div>
-            <div class="flex-1">
-              <h2 class="text-base font-bold text-red-800 dark:text-red-300 mb-1">
-                Usage Interdit
-              </h2>
-              <p class="text-red-800 dark:text-red-200 text-sm leading-relaxed mb-3">
-                Ce logiciel ne respecte pas les normes de sécurité.
-                <strong class="font-semibold">Il ne doit être utilisé ni par les enseignants ni par les élèves.</strong>
-              </p>
+        <!-- Sidebar (Right Column) -->
+        <div class="lg:col-span-4 space-y-6">
+          <!-- Quick Actions -->
+          <div class="space-y-3">
+            <UButton
+              :to="software.toolUrl"
+              target="_blank"
+              color="primary"
+              variant="solid"
+              size="xl"
+              block
+              class="rounded-lg"
+            >
+              <template #leading>
+                <UIcon name="i-lucide-external-link" class="w-5 h-5" />
+              </template>
+              Accéder
+            </UButton>
 
-              <!-- Alternatives -->
-              <div v-if="software.greenAlternatives?.length" class="mb-4">
-                <p class="font-semibold text-red-900 dark:text-red-100 text-sm mb-2">
-                  Alternatives recommandées :
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <UButton
-                    v-for="altId in software.greenAlternatives"
-                    :key="altId"
-                    :to="`/logiciels/${altId}`"
-                    color="success"
-                    variant="soft"
-                    icon="i-lucide-arrow-right"
-                  >
-                    {{ getSoftwareById(altId)?.name || 'Alternative' }}
-                  </UButton>
+            <UButton
+              v-if="software.documentation"
+              :to="software.documentation"
+              target="_blank"
+              color="neutral"
+              variant="outline"
+              size="xl"
+              block
+              class="rounded-lg"
+            >
+              <template #leading>
+                <UIcon name="i-lucide-book-open" class="w-5 h-5" />
+              </template>
+              Documentation
+            </UButton>
+          </div>
+
+          <!-- Practical Info Card -->
+          <!-- Practical Info Card -->
+          <UCard :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
+            <template #header>
+              <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <UIcon name="i-lucide-info" class="w-5 h-5 text-primary-600" />
+                Infos Pratiques
+              </h3>
+            </template>
+
+            <div class="space-y-6">
+              <!-- Cost -->
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
+                  <UIcon name="i-lucide-wallet" class="w-5 h-5 text-primary-600" />
+                </div>
+                <div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">
+                    Coût
+                  </div>
+                  <div class="font-semibold text-gray-900 dark:text-white">
+                    {{ software.cost }}
+                  </div>
                 </div>
               </div>
 
-              <!-- Toggle Details -->
-              <div>
-                <UButton
-                  color="error"
-                  variant="ghost"
-                  size="sm"
-                  class="p-0 hover:bg-transparent text-red-700 dark:text-red-300"
-                  :icon="showLgpdDetails ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'"
-                  @click="showLgpdDetails = !showLgpdDetails"
-                >
-                  {{ showLgpdDetails ? 'Masquer les détails techniques' : 'Voir les détails techniques' }}
-                </UButton>
+              <!-- Support -->
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
+                  <UIcon name="i-lucide-headphones" class="w-5 h-5 text-primary-600" />
+                </div>
+                <div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">
+                    Support CEJEF
+                  </div>
+                  <div class="font-semibold text-gray-900 dark:text-white">
+                    {{ software.supportedByCEJEF ? "Oui" : "Non" }}
+                  </div>
+                </div>
               </div>
 
-              <!-- Technical Details (Inside Card) -->
-              <div v-if="showLgpdDetails" class="mt-4 pt-4 border-t border-red-200 dark:border-red-800/50">
-                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                   <!-- Hosting -->
-                   <div class="flex items-center gap-3">
-                     <UIcon 
-                       :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
-                       class="w-5 h-5"
-                       :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
-                     />
-                     <div>
-                       <div class="text-sm text-gray-500 dark:text-gray-400">
-                         Hébergement
-                       </div>
-                       <div class="text-sm font-medium text-red-900 dark:text-red-100">
-                         {{ lgpdLabels.hosting[software.lgpd.hosting] }}
-                       </div>
-                     </div>
-                   </div>
+              <!-- Training -->
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
+                  <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
+                </div>
+                <div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">
+                    Formation
+                  </div>
+                  <div class="font-semibold text-gray-900 dark:text-white">
+                    {{ software.campusTraining ? "Disponible" : "Non disponible" }}
+                  </div>
+                </div>
+              </div>
 
-                   <!-- RGPD -->
-                   <div class="flex items-center gap-3">
-                     <UIcon 
-                       :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
-                       class="w-5 h-5"
-                       :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
-                     />
-                     <div>
-                       <div class="text-sm text-gray-500 dark:text-gray-400">
-                         Conformité RGPD
-                       </div>
-                       <div class="text-sm font-medium text-red-900 dark:text-red-100">
-                         {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
-                       </div>
-                     </div>
-                   </div>
+              <!-- Target Audience -->
+              <div v-if="software.targetAudience" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
+                  <UIcon name="i-lucide-users" class="w-5 h-5 text-primary-600" />
+                </div>
+                <div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">
+                    Public cible
+                  </div>
+                  <div class="font-semibold text-gray-900 dark:text-white capitalize">
+                    {{ software.targetAudience }}
+                  </div>
+                </div>
+              </div>
 
-                   <!-- Data Collection -->
-                   <div class="flex items-center gap-3">
-                     <UIcon 
-                       :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
-                       class="w-5 h-5"
-                       :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
-                     />
-                     <div>
-                       <div class="text-sm text-gray-500 dark:text-gray-400">
-                         Collecte Données
-                       </div>
-                       <div class="text-sm font-medium text-red-900 dark:text-red-100">
-                         {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
-                       </div>
-                     </div>
-                   </div>
-                 </div>
+              <!-- Age Restriction -->
+              <div v-if="software.ageRestriction" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
+                  <UIcon name="i-lucide-calendar" class="w-5 h-5 text-primary-600" />
+                </div>
+                <div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">
+                    Âge minimum
+                  </div>
+                  <div class="font-semibold text-gray-900 dark:text-white">
+                    {{ software.ageRestriction }} ans
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </UCard>
-      </div>
+          </UCard>
 
-      <!-- Pedagogical Classification -->
-      <div v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length">
-        <UCard :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
-          <template #header>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-              <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
-              Classification Pédagogique
-            </h3>
-          </template>
-        
-          <div class="space-y-6">
-            <!-- Categories -->
-            <div v-if="software.categories?.length">
-              <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
-                Catégories
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <NuxtLink
-                  v-for="category in software.categories"
-                  :key="category"
-                  :to="{ path: '/', query: { category } }"
-                  class="hover:scale-105 transition-transform cursor-pointer"
-                >
-                  <UBadge
-                    color="primary"
-                    variant="soft"
-                    size="md"
-                    class="cursor-pointer"
+          <!-- Similar Software -->
+          <UCard v-if="similarSoftwareList?.length" :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
+            <template #header>
+              <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <UIcon name="i-lucide-sparkles" class="w-5 h-5 text-primary-600" />
+                Logiciels similaires
+              </h3>
+            </template>
+
+            <div class="space-y-3">
+              <NuxtLink
+                v-for="sim in similarSoftwareList.slice(0, 3)"
+                :key="sim.id"
+                :to="`/logiciels/${sim.id}`"
+                class="flex items-center gap-3 group"
+              >
+                <div class="relative">
+                  <div
+                    class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                    :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
                   >
-                    {{ category }}
-                  </UBadge>
-                </NuxtLink>
-              </div>
-            </div>
-
-            <!-- Activities -->
-            <div v-if="software.pedagogicalActivities?.length">
-              <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
-                Activités
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <NuxtLink
-                  v-for="activity in software.pedagogicalActivities"
-                  :key="activity"
-                  :to="{ path: '/', query: { activity } }"
-                  class="hover:scale-105 transition-transform cursor-pointer"
-                >
-                  <UBadge
-                    color="primary"
-                    variant="soft"
-                    size="md"
-                    class="cursor-pointer"
+                    <UIcon
+                      :name="sim.icon || 'i-lucide-box'"
+                      class="w-5 h-5"
+                      :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).iconColor"
+                    />
+                  </div>
+                  <!-- Certification Badge -->
+                  <div
+                    class="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center"
+                    :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).solidBg"
                   >
-                    {{ activity }}
-                  </UBadge>
-                </NuxtLink>
-              </div>
+                    <UIcon
+                      :name="getCertificationIcon(sim.certificationLevel ?? getCertificationLevel(sim.lgpd))"
+                      class="w-3 h-3 text-white"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">
+                    {{ sim.name }}
+                  </div>
+                  <div class="text-xs text-gray-500 truncate max-w-[150px]">
+                    {{ sim.shortDescription }}
+                  </div>
+                </div>
+              </NuxtLink>
             </div>
-
-            <!-- Disciplines -->
-            <div v-if="software.disciplines?.length">
-              <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
-                Disciplines
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <NuxtLink
-                  v-for="discipline in software.disciplines"
-                  :key="discipline"
-                  :to="{ path: '/', query: { discipline } }"
-                  class="hover:scale-105 transition-transform cursor-pointer"
-                >
-                  <UBadge
-                    color="primary"
-                    variant="soft"
-                    size="md"
-                    class="cursor-pointer"
-                  >
-                    {{ discipline }}
-                  </UBadge>
-                </NuxtLink>
-              </div>
-            </div>
-          </div>
-        </UCard>
-      </div>
-    </div>
-
-    <!-- Sidebar (Right Column) -->
-    <div class="lg:col-span-4 space-y-6">
-      <!-- Quick Actions -->
-      <div class="space-y-3">
-        <UButton
-          :to="software.toolUrl"
-          target="_blank"
-          color="primary"
-          variant="solid"
-          size="xl"
-          block
-          class="rounded-lg"
-        >
-          <template #leading>
-            <UIcon name="i-lucide-external-link" class="w-5 h-5" />
-          </template>
-          Accéder
-        </UButton>
-
-        <UButton
-          v-if="software.documentation"
-          :to="software.documentation"
-          target="_blank"
-          color="neutral"
-          variant="outline"
-          size="xl"
-          block
-          class="rounded-lg"
-        >
-          <template #leading>
-            <UIcon name="i-lucide-book-open" class="w-5 h-5" />
-          </template>
-          Documentation
-        </UButton>
-      </div>
-
-      <!-- Practical Info Card -->
-      <!-- Practical Info Card -->
-      <UCard :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
-        <template #header>
-          <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-            <UIcon name="i-lucide-info" class="w-5 h-5 text-primary-600" />
-            Infos Pratiques
-          </h3>
-        </template>
-
-        <div class="space-y-6">
-          <!-- Cost -->
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
-              <UIcon name="i-lucide-wallet" class="w-5 h-5 text-primary-600" />
-            </div>
-            <div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">Coût</div>
-              <div class="font-semibold text-gray-900 dark:text-white">{{ software.cost }}</div>
-            </div>
-          </div>
-
-          <!-- Support -->
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
-              <UIcon name="i-lucide-headphones" class="w-5 h-5 text-primary-600" />
-            </div>
-            <div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">Support CEJEF</div>
-              <div class="font-semibold text-gray-900 dark:text-white">
-                {{ software.supportedByCEJEF ? "Oui" : "Non" }}
-              </div>
-            </div>
-          </div>
-
-          <!-- Training -->
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
-              <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
-            </div>
-            <div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">Formation</div>
-              <div class="font-semibold text-gray-900 dark:text-white">
-                {{ software.campusTraining ? "Disponible" : "Non disponible" }}
-              </div>
-            </div>
-          </div>
-
-          <!-- Target Audience -->
-          <div v-if="software.targetAudience" class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
-              <UIcon name="i-lucide-users" class="w-5 h-5 text-primary-600" />
-            </div>
-            <div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">Public cible</div>
-              <div class="font-semibold text-gray-900 dark:text-white capitalize">{{ software.targetAudience }}</div>
-            </div>
-          </div>
-
-          <!-- Age Restriction -->
-          <div v-if="software.ageRestriction" class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
-              <UIcon name="i-lucide-calendar" class="w-5 h-5 text-primary-600" />
-            </div>
-            <div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">Âge minimum</div>
-              <div class="font-semibold text-gray-900 dark:text-white">{{ software.ageRestriction }} ans</div>
-            </div>
-          </div>
+          </UCard>
         </div>
-      </UCard>
-
-      <!-- Similar Software -->
-      <UCard v-if="similarSoftwareList?.length" :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
-        <template #header>
-          <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-            <UIcon name="i-lucide-sparkles" class="w-5 h-5 text-yellow-500" />
-            Logiciels similaires
-          </h3>
-        </template>
-
-        <div class="space-y-3">
-           <NuxtLink
-            v-for="sim in similarSoftwareList.slice(0, 3)"
-            :key="sim.id"
-            :to="`/logiciels/${sim.id}`"
-            class="flex items-center gap-3 group"
-          >
-            <div 
-              class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors"
-              :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
-            >
-               <UIcon 
-                 :name="sim.icon || 'i-lucide-box'" 
-                 class="w-5 h-5"
-                 :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).text"
-               />
-            </div>
-            <div>
-              <div class="font-medium text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">
-                {{ sim.name }}
-              </div>
-              <div class="text-xs text-gray-500 truncate max-w-[150px]">
-                {{ sim.shortDescription }}
-              </div>
-            </div>
-          </NuxtLink>
-        </div>
-      </UCard>
-    </div>
       </div>
     </UContainer>
   </div>

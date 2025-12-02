@@ -291,8 +291,6 @@ const handleClear = () => {
 }
 
 const searchInput = ref<HTMLInputElement | null>(null)
-
-
 </script>
 
 <template>

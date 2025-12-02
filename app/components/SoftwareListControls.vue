@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-between mb-6 border-b border-gray-200 dark:border-gray-800 pb-4 px-4 sm:px-0">
+  <div class="flex items-center justify-between mb-6 px-4 sm:px-0">
     <!-- Sort -->
     <div class="flex items-center gap-2">
       <UIcon name="i-lucide-arrow-up-down" class="w-5 h-5 text-gray-400 dark:text-gray-500" />
