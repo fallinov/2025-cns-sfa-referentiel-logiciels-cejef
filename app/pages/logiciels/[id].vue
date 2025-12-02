@@ -296,19 +296,19 @@ const showLgpdDetails = ref(false)
                   <UIcon name="i-lucide-alert-triangle" class="w-8 h-8 text-orange-600 dark:text-orange-400" />
                 </div>
                 <div class="flex-1">
-                  <h2 class="text-base font-bold text-orange-800 dark:text-orange-300 mb-1">
+                  <h2 class="text-base font-bold text-orange-800 dark:text-orange-200 mb-2">
                     Usage Pédagogique Uniquement
                   </h2>
-                  <p class="text-orange-800 dark:text-orange-200 text-sm leading-relaxed mb-2">
+                  <p class="text-base text-orange-800 dark:text-orange-200 leading-relaxed mb-2">
                     Vous pouvez utiliser cet outil pour votre préparation.
-                    <strong class="block mt-1 font-semibold">Interdiction formelle de saisir des données d'élèves (noms, emails).</strong>
+                    <strong class="block mt-1 font-bold">Interdiction formelle de saisir des données d'élèves (noms, emails).</strong>
                   </p>
-                  <p class="text-orange-800/80 dark:text-orange-300/80 text-sm mb-3">
+                  <p class="text-base text-orange-800 dark:text-orange-200 leading-relaxed mb-3">
                     Si les élèves doivent utiliser l'outil, cela doit être fait de manière strictement anonyme.
                   </p>
 
                   <!-- Usage Notes -->
-                  <div v-if="software.usageNotes" class="mb-4 p-3 bg-white/50 dark:bg-black/20 rounded border border-orange-200 dark:border-orange-800/50 text-sm text-orange-900 dark:text-orange-100 italic">
+                  <div v-if="software.usageNotes" class="mb-4 p-3 bg-white/50 dark:bg-black/20 rounded border border-orange-200 dark:border-orange-800/50 text-base text-orange-900 dark:text-orange-100 italic">
                     Note : {{ software.usageNotes }}
                   </div>
 
@@ -337,10 +337,10 @@ const showLgpdDetails = ref(false)
                           :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
                         />
                         <div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">
+                          <div class="text-base text-orange-900 dark:text-orange-100">
                             Hébergement
                           </div>
-                          <div class="text-sm font-medium text-orange-900 dark:text-orange-100">
+                          <div class="text-base font-bold text-orange-700 dark:text-orange-400">
                             {{ lgpdLabels.hosting[software.lgpd.hosting] }}
                           </div>
                         </div>
@@ -354,10 +354,10 @@ const showLgpdDetails = ref(false)
                           :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
                         />
                         <div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">
+                          <div class="text-base text-orange-900 dark:text-orange-100">
                             Conformité RGPD
                           </div>
-                          <div class="text-sm font-medium text-orange-900 dark:text-orange-100">
+                          <div class="text-base font-bold text-orange-700 dark:text-orange-400">
                             {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
                           </div>
                         </div>
@@ -371,10 +371,10 @@ const showLgpdDetails = ref(false)
                           :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
                         />
                         <div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">
+                          <div class="text-base text-orange-900 dark:text-orange-100">
                             Collecte Données
                           </div>
-                          <div class="text-sm font-medium text-orange-900 dark:text-orange-100">
+                          <div class="text-base font-bold text-orange-700 dark:text-orange-400">
                             {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
                           </div>
                         </div>
@@ -396,17 +396,17 @@ const showLgpdDetails = ref(false)
                   <UIcon name="i-lucide-ban" class="w-8 h-8 text-red-600 dark:text-red-400" />
                 </div>
                 <div class="flex-1">
-                  <h2 class="text-base font-bold text-red-800 dark:text-red-300 mb-1">
+                  <h2 class="text-base font-bold text-red-800 dark:text-red-200 mb-2">
                     Usage Interdit
                   </h2>
-                  <p class="text-red-800 dark:text-red-200 text-sm leading-relaxed mb-3">
+                  <p class="text-base text-red-800 dark:text-red-200 leading-relaxed mb-3">
                     Ce logiciel ne respecte pas les normes de sécurité.
-                    <strong class="font-semibold">Il ne doit être utilisé ni par les enseignants ni par les élèves.</strong>
+                    <strong class="font-bold">Il ne doit être utilisé ni par les enseignants ni par les élèves.</strong>
                   </p>
 
                   <!-- Alternatives -->
                   <div v-if="software.greenAlternatives?.length" class="mb-4">
-                    <p class="font-semibold text-red-900 dark:text-red-100 text-sm mb-2">
+                    <p class="font-bold text-red-900 dark:text-red-100 text-base mb-2">
                       Alternatives recommandées :
                     </p>
                     <div class="flex flex-wrap gap-2">
@@ -448,10 +448,10 @@ const showLgpdDetails = ref(false)
                           :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
                         />
                         <div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">
+                          <div class="text-base text-red-900 dark:text-red-100">
                             Hébergement
                           </div>
-                          <div class="text-sm font-medium text-red-900 dark:text-red-100">
+                          <div class="text-base font-bold text-orange-700 dark:text-orange-400">
                             {{ lgpdLabels.hosting[software.lgpd.hosting] }}
                           </div>
                         </div>
@@ -465,10 +465,10 @@ const showLgpdDetails = ref(false)
                           :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
                         />
                         <div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">
+                          <div class="text-base text-red-900 dark:text-red-100">
                             Conformité RGPD
                           </div>
-                          <div class="text-sm font-medium text-red-900 dark:text-red-100">
+                          <div class="text-base font-bold text-orange-700 dark:text-orange-400">
                             {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
                           </div>
                         </div>
@@ -482,10 +482,10 @@ const showLgpdDetails = ref(false)
                           :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
                         />
                         <div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">
+                          <div class="text-base text-red-900 dark:text-red-100">
                             Collecte Données
                           </div>
-                          <div class="text-sm font-medium text-red-900 dark:text-red-100">
+                          <div class="text-base font-bold text-orange-700 dark:text-orange-400">
                             {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
                           </div>
                         </div>
