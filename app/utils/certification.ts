@@ -10,31 +10,31 @@ export interface CertificationConfig {
 
 export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   1: {
-    fill: "text-green-600 dark:text-green-600",
+    fill: "text-green-500 dark:text-green-500",
     label: "Validé",
     icon: "i-lucide-circle-check-big",
     bg: "bg-green-50/10 dark:bg-green-950/10",
-    solidBg: "bg-green-600 dark:bg-green-600",
+    solidBg: "bg-green-500 dark:bg-green-500",
     ring: "ring-green-500/20",
-    text: "text-green-600 dark:text-green-400"
+    text: "text-green-500 dark:text-green-400"
   },
   2: {
-    fill: "text-orange-600 dark:text-orange-600",
+    fill: "text-orange-500 dark:text-orange-500",
     label: "Restreint",
     icon: "i-lucide-triangle-alert",
     bg: "bg-orange-50/10 dark:bg-orange-950/10",
-    solidBg: "bg-orange-600 dark:bg-orange-600",
+    solidBg: "bg-orange-500 dark:bg-orange-500",
     ring: "ring-orange-500/20",
-    text: "text-orange-600 dark:text-orange-400"
+    text: "text-orange-500 dark:text-orange-400"
   },
   3: {
-    fill: "text-red-600 dark:text-red-600",
+    fill: "text-red-500 dark:text-red-500",
     label: "Interdit",
     icon: "i-lucide-circle-x",
     bg: "bg-red-50/10 dark:bg-red-950/10",
-    solidBg: "bg-red-600 dark:bg-red-600",
+    solidBg: "bg-red-500 dark:bg-red-500",
     ring: "ring-red-500/20",
-    text: "text-red-600 dark:text-red-400"
+    text: "text-red-500 dark:text-red-400"
   }
 }
 

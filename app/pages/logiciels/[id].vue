@@ -67,22 +67,22 @@ const getInfoPracticalStyle = (level: number | null | undefined) => {
     case 1:
       return {
         bg: "bg-green-50 dark:bg-green-900/20",
-        iconColor: "text-green-600"
+        iconColor: "text-green-500"
       }
     case 2:
       return {
         bg: "bg-orange-50 dark:bg-orange-900/20",
-        iconColor: "text-orange-600"
+        iconColor: "text-orange-500"
       }
     case 3:
       return {
         bg: "bg-red-50 dark:bg-red-900/20",
-        iconColor: "text-red-600"
+        iconColor: "text-red-500"
       }
     default:
       return {
         bg: "bg-gray-50 dark:bg-gray-900/20",
-        iconColor: "text-gray-600"
+        iconColor: "text-gray-500"
       }
   }
 }

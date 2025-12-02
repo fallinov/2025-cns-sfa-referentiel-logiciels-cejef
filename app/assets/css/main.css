@@ -7,46 +7,46 @@
   /* https://coolors.co/121212-f7f7f7-2e7d32-e98325-c62828 */
 
   /* Rouge CEJEF - Remplace la couleur 'red' de Tailwind */
-  /* Palette générée à partir de #b12726 (600) */
+  /* Palette générée à partir de #b12726 (500 - couleur de base) */
   --color-red-50: #fee7e7;
   --color-red-100: #fccfce;
   --color-red-200: #f99f9d;
   --color-red-300: #f56f6c;
-  --color-red-400: #e84644;
-  --color-red-500: #d63330;
-  --color-red-600: #b12726;
-  --color-red-700: #8e1f1e;
-  --color-red-800: #671716;
-  --color-red-900: #45100f;
-  --color-red-950: #260908;
+  --color-red-400: #dd3a38;
+  --color-red-500: #b12726;
+  --color-red-600: #9a211f;
+  --color-red-700: #7d1b19;
+  --color-red-800: #5e1413;
+  --color-red-900: #3f0e0d;
+  --color-red-950: #200707;
 
   /* Vert CEJEF - Remplace la couleur 'green' de Tailwind */
-  /* Palette générée à partir de #2e7633 (600) */
+  /* Palette générée à partir de #2e7633 (500 - couleur de base) */
   --color-green-50: #e8f5e9;
   --color-green-100: #c8e6c9;
   --color-green-200: #a5d6a7;
   --color-green-300: #81c784;
-  --color-green-400: #66bb6a;
-  --color-green-500: #4caf50;
-  --color-green-600: #2e7633;
-  --color-green-700: #256029;
-  --color-green-800: #1b4620;
-  --color-green-900: #123016;
-  --color-green-950: #0a1a0c;
+  --color-green-400: #52a158;
+  --color-green-500: #2e7633;
+  --color-green-600: #26632c;
+  --color-green-700: #1f5024;
+  --color-green-800: #173c1b;
+  --color-green-900: #102812;
+  --color-green-950: #081409;
 
   /* Orange CEJEF - Remplace la couleur 'orange' de Tailwind */
-  /* Palette générée à partir de #ba691e (600) */
+  /* Palette générée à partir de #ba691e (500 - couleur de base) */
   --color-orange-50: #fef4e6;
   --color-orange-100: #fde8cc;
   --color-orange-200: #fcd1a3;
   --color-orange-300: #faba7a;
-  --color-orange-400: #e59347;
-  --color-orange-500: #d07b2a;
-  --color-orange-600: #ba691e;
-  --color-orange-700: #975318;
-  --color-orange-800: #6e3d12;
-  --color-orange-900: #4a280c;
-  --color-orange-950: #2a1607;
+  --color-orange-400: #dd9044;
+  --color-orange-500: #ba691e;
+  --color-orange-600: #9f5a1a;
+  --color-orange-700: #804915;
+  --color-orange-800: #603710;
+  --color-orange-900: #40250b;
+  --color-orange-950: #201206;
 
   /* Émeraude - Pour niveau 1 "Autorisé" */
   --color-emerald-50: #ecfdf5;
