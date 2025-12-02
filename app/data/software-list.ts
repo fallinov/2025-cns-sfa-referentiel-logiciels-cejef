@@ -4148,6 +4148,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Gratuit",
     toolUrl: "#",
+    documentation: "#",
     targetAudience: "tous",
     categories: [
       "Intelligence artificielle (IA)",
