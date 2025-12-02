@@ -28,6 +28,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.adobe.com/acrobat.html",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Bureautique",
@@ -64,6 +65,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.atlassian.com",
+    documentation: "https://support.atlassian.com/",
     targetAudience: "enseignants",
     categories: [
       "Gestion de projet",
@@ -99,6 +101,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.azendoo.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Gestion de projet",
@@ -133,6 +136,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.babbel.com",
+    documentation: "https://support.babbel.com/",
     targetAudience: "tous",
     categories: [
       "Langues",
@@ -169,6 +173,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://bdnf.bnf.fr",
+    documentation: "https://bdnf.bnf.fr/fr/tutoriels",
     targetAudience: "tous",
     categories: [
       "Lecture",
@@ -205,6 +210,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.blinklearning.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Manuels numériques",
@@ -240,6 +246,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.bluemail.me",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Communication",
@@ -274,6 +281,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://bookcreator.com",
+    documentation: "https://bookcreator.com/resources/",
     targetAudience: "tous",
     categories: [
       "Création de contenu",
@@ -312,6 +320,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.bookili.com",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Lecture",
@@ -346,6 +355,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://calendly.com",
+    documentation: "https://help.calendly.com/",
     targetAudience: "enseignants",
     categories: [
       "Organisation",
@@ -379,6 +389,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://calengoo.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Organisation",
@@ -413,6 +424,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.canva.com",
+    documentation: "https://www.canva.com/help/",
     targetAudience: "tous",
     categories: [
       "Design",
@@ -451,6 +463,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.capcut.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Montage vidéo",
@@ -487,6 +500,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://card2brain.ch",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Mémorisation",
@@ -523,6 +537,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.clarosoftware.com",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Accessibilité",
@@ -558,6 +573,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.classcraft.com",
+    documentation: "https://help.classcraft.com/",
     targetAudience: "enseignants",
     categories: [
       "Gamification",
@@ -593,6 +609,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.classroomscreen.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Gestion de classe",
@@ -628,6 +645,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.classtime.com",
+    documentation: "https://www.classtime.com/fr/blog/",
     targetAudience: "enseignants",
     categories: [
       "Évaluation",
@@ -664,6 +682,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://code.org",
+    documentation: "https://code.org/docs",
     targetAudience: "élèves",
     categories: [
       "Programmation",
@@ -700,6 +719,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://dictaly.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Orthographe",
@@ -734,6 +754,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://doodle.com",
+    documentation: "https://help.doodle.com/",
     targetAudience: "enseignants",
     categories: [
       "Organisation",
@@ -768,6 +789,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.infomaniak.com/kdrive",
+    documentation: "https://www.infomaniak.com/fr/support/faq",
     targetAudience: "tous",
     categories: [
       "Stockage cloud",
@@ -804,6 +826,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.antidote.info",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Orthographe",
@@ -841,6 +864,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.duolingo.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Langues",
@@ -877,6 +901,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://dynamilis.ch",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Sport",
@@ -912,6 +937,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://edpuzzle.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Vidéo pédagogique",
@@ -948,6 +974,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.edubase.ch",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Manuels numériques",
@@ -983,6 +1010,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.educaplay.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Jeux éducatifs",
@@ -1019,6 +1047,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://exam.net",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Évaluation",
@@ -1055,6 +1084,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.fizziq.org",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Expérimentation",
@@ -1090,6 +1120,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://floraincognita.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Biologie",
@@ -1126,6 +1157,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.foxit.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Bureautique",
@@ -1161,6 +1193,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://framasoft.org",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Collaboration",
@@ -1197,6 +1230,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://connect.garmin.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Sport",
@@ -1232,6 +1266,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://genial.ly",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Présentation",
@@ -1268,6 +1303,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.geogebra.org",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Géométrie",
@@ -1303,6 +1339,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.gimkit.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Quiz",
@@ -1339,6 +1376,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.glose.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Lecture",
@@ -1376,6 +1414,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.jstor.org",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Recherche",
@@ -1411,6 +1450,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.jungleai.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Intelligence artificielle",
@@ -1445,6 +1485,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://kahoot.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Quiz",
@@ -1481,6 +1522,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.kialo-edu.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Débat",
@@ -1519,6 +1561,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://knowt.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Mémorisation",
@@ -1555,6 +1598,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://learningapps.org",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Exercices interactifs",
@@ -1591,6 +1635,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://learningview.org",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Apprentissage personnalisé",
@@ -1626,6 +1671,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.lingodeer.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Langues",
@@ -1662,6 +1708,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.linkedin.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Réseau social",
@@ -1698,6 +1745,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://lockee.fr",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Jeux éducatifs",
@@ -1734,6 +1782,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://lucid.app",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Diagrammes",
@@ -1770,6 +1819,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://lyricstraining.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Langues",
@@ -1806,6 +1856,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.magicschool.ai",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Intelligence artificielle",
@@ -1841,6 +1892,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.memrise.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Langues",
@@ -1877,6 +1929,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.mindmeister.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Cartes mentales",
@@ -1913,6 +1966,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.mine.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Confidentialité",
@@ -1947,6 +2001,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Éducation",
@@ -1981,6 +2036,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://miro.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Collaboration",
@@ -2017,6 +2073,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.mural.co",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Collaboration",
@@ -2052,6 +2109,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://notebooklm.google.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Intelligence artificielle",
@@ -2088,6 +2146,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.onecalendar.nl",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Organisation",
@@ -2122,6 +2181,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://orthophore.ac-lille.fr",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Orthographe",
@@ -2156,6 +2216,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://padlet.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Collaboration",
@@ -2192,6 +2253,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.pcloud.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Stockage cloud",
@@ -2227,6 +2289,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://pdfexpert.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Bureautique",
@@ -2263,6 +2326,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://phonowriter.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Phonétique",
@@ -2298,6 +2362,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.photopea.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Édition d'images",
@@ -2334,6 +2399,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://phyphox.org",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Physique",
@@ -2369,6 +2435,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.pixton.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Création de contenu",
@@ -2407,6 +2474,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.plandeclasse.ca",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Gestion de classe",
@@ -2441,6 +2509,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.plickers.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Quiz",
@@ -2477,6 +2546,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://prezi.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Présentation",
@@ -2512,6 +2582,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.projet-voltaire.fr",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Orthographe",
@@ -2546,6 +2617,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://quizlet.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Flashcards",
@@ -2582,6 +2654,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://remarkable.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Prise de notes",
@@ -2617,6 +2690,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.samsung.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Communication"
@@ -2649,6 +2723,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.samsung.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Prise de notes",
@@ -2684,6 +2759,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.scholarvox.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Bibliothèque numérique",
@@ -2718,6 +2794,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.schoolai.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Intelligence artificielle",
@@ -2752,6 +2829,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://lumio.smarttech.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Écran interactif",
@@ -2786,6 +2864,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.sodapdf.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Bureautique",
@@ -2822,6 +2901,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.soundtrap.com/edu",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Musique",
@@ -2859,6 +2939,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://sparkmailapp.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Communication",
@@ -2893,6 +2974,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://suno.ai",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Intelligence artificielle",
@@ -2928,6 +3010,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Financé CEJEF",
     toolUrl: "https://www.taptouche.com",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Dactylographie",
@@ -2962,6 +3045,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.teamviewer.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Support technique",
@@ -2996,6 +3080,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://threema.ch/en/education",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Communication",
@@ -3030,6 +3115,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.thunderbird.net",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Communication",
@@ -3065,6 +3151,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.trimble.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Géographie",
@@ -3101,6 +3188,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://vokapi.com",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Vocabulaire",
@@ -3136,6 +3224,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://wakelet.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Curation",
@@ -3171,6 +3260,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://quizizz.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Quiz",
@@ -3207,6 +3297,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.wooclap.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Interaction",
@@ -3243,6 +3334,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.wooflash.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Apprentissage adaptatif",
@@ -3278,6 +3370,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://wordwall.net",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Jeux éducatifs",
@@ -3314,6 +3407,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://zapier.com",
+    documentation: null,
     targetAudience: "enseignants",
     categories: [
       "Automatisation",
@@ -3349,6 +3443,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Payant",
     toolUrl: "https://www.office.com/launch/word",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Bureautique",
@@ -3382,6 +3477,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Payant",
     toolUrl: "https://www.office.com/launch/excel",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Bureautique",
@@ -3418,6 +3514,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Payant",
     toolUrl: "https://www.office.com/launch/powerpoint",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Bureautique",
@@ -3453,6 +3550,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Payant",
     toolUrl: "https://teams.microsoft.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Communication",
@@ -3488,6 +3586,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Payant",
     toolUrl: "https://portal.office.com/onedrive",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Stockage cloud",
@@ -3521,6 +3620,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Payant",
     toolUrl: "https://www.onenote.com/notebooks",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Productivité",
@@ -3555,6 +3655,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Payant",
     toolUrl: "https://forms.office.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Évaluation",
@@ -3589,6 +3690,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Payant",
     toolUrl: "https://outlook.office.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Communication",
@@ -3622,6 +3724,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.mozilla.org/firefox",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Navigateurs",
@@ -3656,6 +3759,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.google.com/chrome",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Navigateurs",
@@ -3694,6 +3798,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.microsoft.com/edge",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Navigateurs",
@@ -3732,6 +3837,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.apple.com/safari",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Navigateurs",
@@ -3766,6 +3872,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://brave.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Navigateurs",
@@ -3800,6 +3907,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.notion.so",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Productivité",
@@ -3836,6 +3944,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://todoist.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Productivité",
@@ -3871,6 +3980,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "http://dia-installer.de",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Bureautique",
@@ -3906,6 +4016,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.designer.io",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Design",
@@ -3941,6 +4052,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.mongodb.com/atlas",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Programmation",
@@ -3975,6 +4087,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Payant",
     toolUrl: "https://www.jetbrains.com/webstorm",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Programmation",
@@ -4009,6 +4122,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Payant",
     toolUrl: "https://www.jetbrains.com/phpstorm",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Programmation",
@@ -4043,6 +4157,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://zed.dev",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Programmation",
@@ -4077,6 +4192,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Payant",
     toolUrl: "https://www.sublimetext.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Programmation",
@@ -4113,6 +4229,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://cursor.sh",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Programmation",
@@ -4186,6 +4303,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://mitchellh.com/ghostty",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Programmation",
@@ -4220,6 +4338,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://www.usebruno.com",
+    documentation: null,
     targetAudience: "élèves",
     categories: [
       "Programmation",
@@ -4254,6 +4373,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://chat.openai.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Intelligence artificielle (IA)",
@@ -4290,6 +4410,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://claude.ai",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Intelligence artificielle (IA)",
@@ -4326,6 +4447,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://gemini.google.com",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Intelligence artificielle (IA)",
@@ -4360,6 +4482,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Gratuit",
     toolUrl: "https://chat.mistral.ai",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Intelligence artificielle (IA)",
@@ -4395,6 +4518,7 @@ export const softwareList: Software[] = [
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.perplexity.ai",
+    documentation: null,
     targetAudience: "tous",
     categories: [
       "Intelligence artificielle (IA)",
@@ -4429,6 +4553,7 @@ export const softwareList: Software[] = [
     campusTraining: true,
     cost: "Freemium",
     toolUrl: "https://copilot.microsoft.com",
+    documentation: "https://learn.microsoft.com/copilot",
     targetAudience: "tous",
     categories: [
       "Intelligence artificielle (IA)",

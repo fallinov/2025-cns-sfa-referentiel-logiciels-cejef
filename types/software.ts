@@ -65,7 +65,7 @@ export interface Software {
 
   // LIENS
   toolUrl: string
-  documentation?: string
+  documentation?: string | null
 
   // USAGE
   targetAudience?: TargetAudience
