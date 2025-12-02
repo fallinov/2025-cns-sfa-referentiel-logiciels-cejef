@@ -633,71 +633,76 @@ const showLgpdDetails = ref(false)
       </div>
 
       <!-- Practical Info Card -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 ring-1 ring-gray-200 dark:ring-gray-800 space-y-6">
-        <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-          <UIcon name="i-lucide-info" class="w-5 h-5 text-primary-600" />
-          Infos Pratiques
-        </h3>
+      <!-- Practical Info Card -->
+      <UCard :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
+        <template #header>
+          <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <UIcon name="i-lucide-info" class="w-5 h-5 text-primary-600" />
+            Infos Pratiques
+          </h3>
+        </template>
 
-        <!-- Cost -->
-        <div class="flex items-center gap-3">
-          <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
-            <UIcon name="i-lucide-wallet" class="w-5 h-5 text-primary-600" />
+        <div class="space-y-6">
+          <!-- Cost -->
+          <div class="flex items-center gap-3">
+            <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+              <UIcon name="i-lucide-wallet" class="w-5 h-5 text-primary-600" />
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">Coût</div>
+              <div class="font-semibold text-gray-900 dark:text-white">{{ software.cost }}</div>
+            </div>
           </div>
-          <div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">Coût</div>
-            <div class="font-semibold text-gray-900 dark:text-white">{{ software.cost }}</div>
-          </div>
-        </div>
 
-        <!-- Support -->
-        <div class="flex items-center gap-3">
-          <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
-            <UIcon name="i-lucide-headphones" class="w-5 h-5 text-primary-600" />
+          <!-- Support -->
+          <div class="flex items-center gap-3">
+            <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+              <UIcon name="i-lucide-headphones" class="w-5 h-5 text-primary-600" />
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">Support CEJEF</div>
+              <div class="font-semibold text-gray-900 dark:text-white">
+                {{ software.supportedByCEJEF ? "Oui" : "Non" }}
+              </div>
+            </div>
           </div>
-          <div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">Support CEJEF</div>
-            <div class="font-semibold text-gray-900 dark:text-white">
-              {{ software.supportedByCEJEF ? "Oui" : "Non" }}
+
+          <!-- Training -->
+          <div class="flex items-center gap-3">
+            <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+              <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">Formation</div>
+              <div class="font-semibold text-gray-900 dark:text-white">
+                {{ software.campusTraining ? "Disponible" : "Non disponible" }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Target Audience -->
+          <div v-if="software.targetAudience" class="flex items-center gap-3">
+            <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+              <UIcon name="i-lucide-users" class="w-5 h-5 text-primary-600" />
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">Public cible</div>
+              <div class="font-semibold text-gray-900 dark:text-white capitalize">{{ software.targetAudience }}</div>
+            </div>
+          </div>
+
+          <!-- Age Restriction -->
+          <div v-if="software.ageRestriction" class="flex items-center gap-3">
+            <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+              <UIcon name="i-lucide-calendar" class="w-5 h-5 text-primary-600" />
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">Âge minimum</div>
+              <div class="font-semibold text-gray-900 dark:text-white">{{ software.ageRestriction }} ans</div>
             </div>
           </div>
         </div>
-
-        <!-- Training -->
-        <div class="flex items-center gap-3">
-          <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
-            <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
-          </div>
-          <div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">Formation</div>
-            <div class="font-semibold text-gray-900 dark:text-white">
-              {{ software.campusTraining ? "Disponible" : "Non disponible" }}
-            </div>
-          </div>
-        </div>
-
-        <!-- Target Audience -->
-        <div v-if="software.targetAudience" class="flex items-center gap-3">
-          <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
-            <UIcon name="i-lucide-users" class="w-5 h-5 text-primary-600" />
-          </div>
-          <div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">Public cible</div>
-            <div class="font-semibold text-gray-900 dark:text-white capitalize">{{ software.targetAudience }}</div>
-          </div>
-        </div>
-
-        <!-- Age Restriction -->
-        <div v-if="software.ageRestriction" class="flex items-center gap-3">
-          <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
-            <UIcon name="i-lucide-calendar" class="w-5 h-5 text-primary-600" />
-          </div>
-          <div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">Âge minimum</div>
-            <div class="font-semibold text-gray-900 dark:text-white">{{ software.ageRestriction }} ans</div>
-          </div>
-        </div>
-      </div>
+      </UCard>
 
       <!-- Similar Software -->
       <div v-if="similarSoftwareList?.length" class="bg-white dark:bg-gray-800 rounded-lg p-6 ring-1 ring-gray-200 dark:ring-gray-800">
