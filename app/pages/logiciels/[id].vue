@@ -175,7 +175,7 @@ const showLgpdDetails = ref(false)
           <!-- Header Section -->
           <div class="flex items-start gap-6">
             <!-- Logo/Icon -->
-            <div class="shrink-0">
+            <div class="shrink-0 relative">
               <div
                 :class="[config.solidBg, 'w-20 h-20 rounded-lg flex items-center justify-center shadow-lg']"
               >
@@ -196,6 +196,16 @@ const showLgpdDetails = ref(false)
                 >
                   {{ software.name.substring(0, 2).toUpperCase() }}
                 </span>
+              </div>
+              <!-- Certification Badge -->
+              <div
+                class="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center shadow-md ring-2 ring-white dark:ring-gray-900"
+                :class="config.solidBg"
+              >
+                <UIcon
+                  :name="getCertificationIcon(certificationLevel)"
+                  class="w-4 h-4 text-white"
+                />
               </div>
             </div>
 
