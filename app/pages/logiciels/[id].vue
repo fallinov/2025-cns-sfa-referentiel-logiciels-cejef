@@ -120,12 +120,9 @@ const showLgpdDetails = ref(false)
             size="md"
           >
             <template #leading>
-              <div class="flex items-center gap-1">
-                <UIcon name="i-lucide-chevron-left" class="w-4 h-4" />
-                <UKbd>
-                  <UIcon name="i-lucide-arrow-left" class="w-3 h-3" />
-                </UKbd>
-              </div>
+              <UKbd>
+                <UIcon name="i-lucide-arrow-left" class="w-3 h-3" />
+              </UKbd>
             </template>
             Précédent
           </UButton>
@@ -138,12 +135,9 @@ const showLgpdDetails = ref(false)
           >
             Suivant
             <template #trailing>
-              <div class="flex items-center gap-1">
-                <UKbd>
-                  <UIcon name="i-lucide-arrow-right" class="w-3 h-3" />
-                </UKbd>
-                <UIcon name="i-lucide-chevron-right" class="w-4 h-4" />
-              </div>
+              <UKbd>
+                <UIcon name="i-lucide-arrow-right" class="w-3 h-3" />
+              </UKbd>
             </template>
           </UButton>
         </div>
@@ -181,17 +175,9 @@ const showLgpdDetails = ref(false)
 
             <!-- Title and Info -->
             <div class="flex-1">
-              <div class="flex items-center gap-3 mb-2">
-                <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white">
-                  {{ software.name }}
-                </h1>
-                <UBadge :color="certificationLevel === 1 ? 'success' : certificationLevel === 2 ? 'warning' : 'error'" size="lg">
-                  <template #leading>
-                    <UIcon :name="config.icon" class="w-4 h-4" />
-                  </template>
-                  {{ config.label }}
-                </UBadge>
-              </div>
+              <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-2">
+                {{ software.name }}
+              </h1>
               <p class="text-xl text-gray-600 dark:text-gray-400">
                 {{ software.shortDescription }}
               </p>
@@ -537,7 +523,7 @@ const showLgpdDetails = ref(false)
                       <UBadge
                         color="primary"
                         variant="soft"
-                        size="md"
+                        size="lg"
                         class="cursor-pointer"
                       >
                         {{ category }}
@@ -561,7 +547,7 @@ const showLgpdDetails = ref(false)
                       <UBadge
                         color="primary"
                         variant="soft"
-                        size="md"
+                        size="lg"
                         class="cursor-pointer"
                       >
                         {{ activity }}
@@ -585,7 +571,7 @@ const showLgpdDetails = ref(false)
                       <UBadge
                         color="primary"
                         variant="soft"
-                        size="md"
+                        size="lg"
                         class="cursor-pointer"
                       >
                         {{ discipline }}
@@ -739,13 +725,11 @@ const showLgpdDetails = ref(false)
                 class="flex items-center gap-3 group"
               >
                 <div
-                  class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors"
-                  :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
+                  class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors bg-primary-100 dark:bg-primary-900/30"
                 >
                   <UIcon
                     :name="sim.icon || 'i-lucide-box'"
-                    class="w-5 h-5"
-                    :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).text"
+                    class="w-5 h-5 text-primary-600 dark:text-primary-400"
                   />
                 </div>
                 <div>

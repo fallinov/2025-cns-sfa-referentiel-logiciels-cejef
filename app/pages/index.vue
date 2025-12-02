@@ -229,7 +229,7 @@ onMounted(() => {
         />
       </div>
 
-      <div v-else class="bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl rounded-none sm:rounded-[var(--ui-radius)] border-y sm:border border-white/20 dark:border-white/10 overflow-hidden">
+      <div v-else class="bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl rounded-none sm:rounded-[var(--ui-radius)] overflow-hidden">
         <div class="relative flex flex-col divide-y divide-gray-200 dark:divide-gray-800">
           <SoftwareListItem
             v-for="software in paginatedSoftwareList"
