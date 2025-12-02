@@ -32,20 +32,17 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white truncate">
           {{ software.name }}
         </h3>
-        <UBadge
+        <div
           v-if="software.certificationLevel"
-          :color="software.certificationLevel === 1 ? 'success' : software.certificationLevel === 2 ? 'warning' : 'error'"
-          variant="solid"
-          size="md"
+          class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-semibold"
+          :class="config.solidBg + ' text-white'"
         >
-          <template #leading>
-            <UIcon
-              :name="config.icon"
-              class="w-3.5 h-3.5"
-            />
-          </template>
+          <UIcon
+            :name="config.icon"
+            class="w-3.5 h-3.5"
+          />
           {{ config.label }}
-        </UBadge>
+        </div>
       </div>
       <p class="text-base text-gray-500 dark:text-gray-400 truncate">
         {{ software.shortDescription }}
