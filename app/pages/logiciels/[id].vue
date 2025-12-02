@@ -96,7 +96,7 @@ const showLgpdDetails = ref(false)
 
 <template>
   <div v-if="software" class="min-h-screen bg-gray-50 dark:bg-gray-900">
-    <UContainer class="py-8">
+    <UContainer class="py-8 max-w-[1000px]">
       <!-- Navigation Bar -->
       <div class="mb-8 flex items-center justify-between">
         <UButton
