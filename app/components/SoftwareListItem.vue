@@ -12,8 +12,7 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
 <template>
   <NuxtLink
     :to="`/logiciels/${software.id}`"
-    class="group relative flex items-start gap-4 p-4 pl-3 border-l-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
-    :class="software.certificationLevel === 1 ? 'border-green-500' : software.certificationLevel === 2 ? 'border-orange-500' : software.certificationLevel === 3 ? 'border-red-500' : 'border-gray-300'"
+    class="group relative flex items-start gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
   >
     <!-- Icon -->
     <div class="flex-shrink-0">
