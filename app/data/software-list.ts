@@ -16,6 +16,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-adobe",
     shortDescription: "Logiciel de lecture et création de documents PDF professionnels",
+    description: "Adobe Acrobat est la référence mondiale pour la création, l'édition et la gestion de documents PDF. Il permet aux enseignants de créer des supports de cours inaltérables, de corriger des copies numérisées avec des outils d'annotation avancés, et de sécuriser des documents administratifs. Ses fonctionnalités incluent la conversion de fichiers, la signature électronique et la reconnaissance de texte (OCR).",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -53,6 +54,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-atlassian",
     shortDescription: "Suite d'outils de gestion de projets et de collaboration",
+    description: "La suite Atlassian offre des outils puissants pour la gestion de projet et la collaboration. Trello est idéal pour organiser des tâches visuellement (Kanban), Jira pour le suivi de projets complexes, et Confluence pour créer une base de connaissances collaborative. Ces outils favorisent le travail d'équipe et l'organisation pédagogique.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -89,6 +91,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-layout-dashboard",
     shortDescription: "Application de gestion de tâches et projets",
+    description: "Application de gestion de tâches et projets. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -124,6 +127,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-languages",
     shortDescription: "Plateforme d'apprentissage des langues en ligne",
+    description: "Plateforme d'apprentissage des langues en ligne. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -161,6 +165,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-book-open",
     shortDescription: "Bibliothèque numérique francophone - BnF",
+    description: "Bibliothèque numérique francophone - BnF. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -198,6 +203,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-book-open-text",
     shortDescription: "Plateforme de manuels scolaires numériques",
+    description: "Plateforme de manuels scolaires numériques. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -234,6 +240,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-mail",
     shortDescription: "Client de messagerie multicompte",
+    description: "Client de messagerie multicompte. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -269,6 +276,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-book-plus",
     shortDescription: "Outil de création de livres numériques interactifs",
+    description: "Outil de création de livres numériques interactifs. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -308,6 +316,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-library",
     shortDescription: "Bibliothèque numérique pour l'apprentissage de la lecture",
+    description: "Bibliothèque numérique pour l'apprentissage de la lecture. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -343,6 +352,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-calendar-check",
     shortDescription: "Outil de planification de rendez-vous",
+    description: "Outil de planification de rendez-vous. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -377,6 +387,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-calendar",
     shortDescription: "Application de calendrier et gestion d'agenda",
+    description: "Application de calendrier et gestion d'agenda. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -412,6 +423,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-canva",
     shortDescription: "Outil de création graphique et design en ligne",
+    description: "Canva est un outil de design graphique en ligne extrêmement intuitif. Il permet aux enseignants et aux élèves de créer facilement des présentations, des affiches, des infographies et des vidéos éducatives. Avec sa vaste bibliothèque de modèles et d'images, il stimule la créativité sans nécessiter de compétences techniques avancées.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -451,6 +463,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-film",
     shortDescription: "Éditeur vidéo mobile et desktop",
+    description: "Éditeur vidéo mobile et desktop. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -488,6 +501,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-brain",
     shortDescription: "Plateforme de cartes mémo (flashcards) pour l'apprentissage",
+    description: "Plateforme de cartes mémo (flashcards) pour l'apprentissage. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -525,6 +539,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-ear",
     shortDescription: "Outils d'accessibilité pour la lecture et l'écriture",
+    description: "Outils d'accessibilité pour la lecture et l'écriture. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -561,6 +576,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-gamepad-2",
     shortDescription: "Plateforme de gamification de la classe",
+    description: "Plateforme de gamification de la classe. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -597,6 +613,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-presentation",
     shortDescription: "Tableau de bord numérique pour la gestion de classe",
+    description: "Tableau de bord numérique pour la gestion de classe. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -633,6 +650,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-school",
     shortDescription: "Plateforme d'évaluation formative en temps réel",
+    description: "Plateforme d'évaluation formative en temps réel. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -670,6 +688,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-code",
     shortDescription: "Plateforme d'apprentissage de la programmation",
+    description: "Code.org est une plateforme éducative dédiée à l'apprentissage de l'informatique pour tous les âges. Elle propose des cours interactifs, des activités ludiques (comme l'Heure de Code) et des ressources pour les enseignants. C'est l'outil idéal pour initier les élèves à la logique de programmation de manière engageante.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -707,6 +726,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-pen-tool",
     shortDescription: "Plateforme de dictées en ligne interactives",
+    description: "Plateforme de dictées en ligne interactives. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -742,6 +762,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-calendar-days",
     shortDescription: "Outil de planification collaborative de réunions",
+    description: "Outil de planification collaborative de réunions. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -777,6 +798,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-hard-drive",
     shortDescription: "Solution de stockage cloud suisse sécurisée",
+    description: "Solution de stockage cloud suisse sécurisée. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -814,6 +836,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-spell-check",
     shortDescription: "Correcteur orthographique et grammatical avancé",
+    description: "Correcteur orthographique et grammatical avancé. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -852,6 +875,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-duolingo",
     shortDescription: "Application d'apprentissage des langues gamifiée",
+    description: "Application d'apprentissage des langues gamifiée. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -889,6 +913,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-activity",
     shortDescription: "Plateforme d'exercices physiques et sportifs",
+    description: "Plateforme d'exercices physiques et sportifs. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -925,6 +950,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-video",
     shortDescription: "Plateforme de création de vidéos pédagogiques interactives",
+    description: "Plateforme de création de vidéos pédagogiques interactives. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -962,6 +988,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-book-open",
     shortDescription: "Lecteur de manuels scolaires numériques",
+    description: "Lecteur de manuels scolaires numériques. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -998,6 +1025,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-puzzle",
     shortDescription: "Plateforme de création d'activités éducatives ludiques",
+    description: "Plateforme de création d'activités éducatives ludiques. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1035,6 +1063,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-file-edit",
     shortDescription: "Plateforme d'examens en ligne sécurisés",
+    description: "Plateforme d'examens en ligne sécurisés. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1072,6 +1101,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-flask-conical",
     shortDescription: "Application de laboratoire scientifique mobile",
+    description: "Application de laboratoire scientifique mobile. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -1108,6 +1138,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-flower",
     shortDescription: "Application d'identification de plantes par photo",
+    description: "Application d'identification de plantes par photo. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -1145,6 +1176,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-file-text",
     shortDescription: "Lecteur et éditeur de fichiers PDF",
+    description: "Lecteur et éditeur de fichiers PDF. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1181,6 +1213,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-cloud",
     shortDescription: "Suite d'outils libres et éthiques (Framapad, Framaforms, etc.)",
+    description: "Suite d'outils libres et éthiques (Framapad, Framaforms, etc.). Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -1218,6 +1251,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-watch",
     shortDescription: "Plateforme de suivi d'activité sportive",
+    description: "Plateforme de suivi d'activité sportive. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -1254,6 +1288,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-presentation",
     shortDescription: "Outil de création de présentations et contenus interactifs",
+    description: "Genially permet de créer des contenus interactifs et animés : présentations, infographies, dossiers, jeux d'évasion (escape games), etc. Contrairement à un diaporama classique, Genially encourage l'exploration active du contenu par l'élève, rendant l'apprentissage plus dynamique et visuel.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1291,6 +1326,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-ruler",
     shortDescription: "Logiciel de mathématiques dynamiques gratuit",
+    description: "Logiciel de mathématiques dynamiques gratuit. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -1327,6 +1363,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-trophy",
     shortDescription: "Plateforme de quiz gamifiés en temps réel",
+    description: "Plateforme de quiz gamifiés en temps réel. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1364,6 +1401,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-book-marked",
     shortDescription: "Application de lecture sociale et collaborative",
+    description: "Application de lecture sociale et collaborative. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -1402,6 +1440,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-graduation-cap",
     shortDescription: "Bibliothèque numérique académique",
+    description: "Bibliothèque numérique académique. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1438,6 +1477,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-bot",
     shortDescription: "Assistant IA pour l'apprentissage",
+    description: "Assistant IA pour l'apprentissage. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -1473,6 +1513,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-kahoot",
     shortDescription: "Plateforme de quiz interactifs et gamifiés",
+    description: "Plateforme de quiz interactifs et gamifiés. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1510,6 +1551,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-message-square-text",
     shortDescription: "Plateforme de débats structurés et argumentation",
+    description: "Plateforme de débats structurés et argumentation. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -1549,6 +1591,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-lightbulb",
     shortDescription: "Plateforme de création de flashcards et quiz",
+    description: "Plateforme de création de flashcards et quiz. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1586,6 +1629,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-blocks",
     shortDescription: "Plateforme de création d'exercices interactifs",
+    description: "Plateforme de création d'exercices interactifs. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1623,6 +1667,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-eye",
     shortDescription: "Plateforme d'apprentissage personnalisé",
+    description: "Plateforme d'apprentissage personnalisé. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -1659,6 +1704,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-languages",
     shortDescription: "Application d'apprentissage des langues",
+    description: "Application d'apprentissage des langues. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -1696,6 +1742,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-linkedin",
     shortDescription: "Réseau social professionnel",
+    description: "Réseau social professionnel. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -1733,6 +1780,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-lock",
     shortDescription: "Outil de création d'énigmes et escape games pédagogiques",
+    description: "Outil de création d'énigmes et escape games pédagogiques. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1770,6 +1818,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-layout-template",
     shortDescription: "Suite d'outils de diagrammes et cartes mentales (Lucidchart, Lucidspark)",
+    description: "Suite d'outils de diagrammes et cartes mentales (Lucidchart, Lucidspark). Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -1807,6 +1856,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-music",
     shortDescription: "Apprentissage des langues par la musique",
+    description: "Apprentissage des langues par la musique. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1844,6 +1894,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-wand-sparkles",
     shortDescription: "Assistant IA pour enseignants",
+    description: "Assistant IA pour enseignants. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1880,6 +1931,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-brain-circuit",
     shortDescription: "Application d'apprentissage des langues par mémorisation",
+    description: "Application d'apprentissage des langues par mémorisation. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -1917,6 +1969,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-network",
     shortDescription: "Outil de création de cartes mentales collaboratives",
+    description: "Outil de création de cartes mentales collaboratives. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -1954,6 +2007,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-pickaxe",
     shortDescription: "Outil de gestion de données personnelles",
+    description: "Outil de gestion de données personnelles. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -1989,6 +2043,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-package",
     shortDescription: "Logiciel éducatif - MINECRAFT : EDUCATION EDITION",
+    description: "Logiciel éducatif - MINECRAFT : EDUCATION EDITION. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2024,6 +2079,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-panel-top",
     shortDescription: "Tableau blanc collaboratif en ligne",
+    description: "Tableau blanc collaboratif en ligne. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2061,6 +2117,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-layers",
     shortDescription: "Plateforme de collaboration visuelle",
+    description: "Plateforme de collaboration visuelle. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -2097,6 +2154,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-notebook-pen",
     shortDescription: "Assistant de recherche et prise de notes IA de Google",
+    description: "Assistant de recherche et prise de notes IA de Google. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2134,6 +2192,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-calendar-range",
     shortDescription: "Application de gestion de calendrier unifié",
+    description: "Application de gestion de calendrier unifié. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2169,6 +2228,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-spell-check",
     shortDescription: "Plateforme de dictées en ligne automatisées",
+    description: "Plateforme de dictées en ligne automatisées. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -2204,6 +2264,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-sticky-note",
     shortDescription: "Tableau d'affichage collaboratif en ligne",
+    description: "Padlet est un mur virtuel collaboratif où l'on peut épingler des textes, images, vidéos et liens. C'est un outil polyvalent pour le brainstorming, la collecte de ressources, la présentation de travaux d'élèves ou la création de portfolios numériques. Sa simplicité d'utilisation en fait un incontournable de la classe numérique.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2241,6 +2302,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-cloud",
     shortDescription: "Solution de stockage cloud sécurisé",
+    description: "Solution de stockage cloud sécurisé. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -2277,6 +2339,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-file-text",
     shortDescription: "Éditeur PDF professionnel pour Mac et iOS",
+    description: "Éditeur PDF professionnel pour Mac et iOS. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -2314,6 +2377,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-mic",
     shortDescription: "Outil de transcription phonétique",
+    description: "Outil de transcription phonétique. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -2350,6 +2414,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-image",
     shortDescription: "Éditeur d'images en ligne (alternative à Photoshop)",
+    description: "Éditeur d'images en ligne (alternative à Photoshop). Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2387,6 +2452,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-activity",
     shortDescription: "Application d'expérimentation physique utilisant les capteurs du smartphone",
+    description: "Application d'expérimentation physique utilisant les capteurs du smartphone. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -2423,6 +2489,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-panels-top-left",
     shortDescription: "Outil de création de bandes dessinées",
+    description: "Outil de création de bandes dessinées. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2462,6 +2529,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-layout-grid",
     shortDescription: "Outil de création de plans de classe",
+    description: "Outil de création de plans de classe. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2497,6 +2565,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-qr-code",
     shortDescription: "Système de quiz avec cartes QR code",
+    description: "Système de quiz avec cartes QR code. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2534,6 +2603,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-prezi",
     shortDescription: "Outil de présentation dynamique et non linéaire",
+    description: "Outil de présentation dynamique et non linéaire. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -2570,6 +2640,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-pencil",
     shortDescription: "Plateforme d'entraînement en orthographe",
+    description: "Plateforme d'entraînement en orthographe. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -2605,6 +2676,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-layers",
     shortDescription: "Plateforme de création de flashcards et quiz",
+    description: "Quizlet est un outil d'étude mondialement connu pour ses cartes mémo (flashcards). Il permet aux élèves de mémoriser du vocabulaire, des dates ou des concepts clés grâce à divers modes d'apprentissage (jeux, tests, écriture). Les enseignants peuvent créer leurs propres listes ou utiliser celles partagées par la communauté.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2642,6 +2714,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-tablet",
     shortDescription: "Intégration reMarkable avec OneDrive",
+    description: "Intégration reMarkable avec OneDrive. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2678,6 +2751,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-mail",
     shortDescription: "Application de messagerie Samsung",
+    description: "Application de messagerie Samsung. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2711,6 +2785,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-sticky-note",
     shortDescription: "Application de prise de notes Samsung",
+    description: "Application de prise de notes Samsung. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2747,6 +2822,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-book-open",
     shortDescription: "Bibliothèque numérique académique",
+    description: "Bibliothèque numérique académique. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2782,6 +2858,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-school",
     shortDescription: "Assistant IA pour l'éducation",
+    description: "Assistant IA pour l'éducation. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2817,6 +2894,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-monitor",
     shortDescription: "Logiciel de leçons interactives pour écrans interactifs",
+    description: "Logiciel de leçons interactives pour écrans interactifs. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2852,6 +2930,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-file-text",
     shortDescription: "Suite complète d'outils PDF",
+    description: "Suite complète d'outils PDF. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -2889,6 +2968,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-music",
     shortDescription: "Studio d'enregistrement et de création musicale en ligne",
+    description: "Studio d'enregistrement et de création musicale en ligne. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -2927,6 +3007,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-mail",
     shortDescription: "Client de messagerie intelligent",
+    description: "Client de messagerie intelligent. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -2962,6 +3043,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-music",
     shortDescription: "Génération de musique par IA",
+    description: "Génération de musique par IA. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 3,
       rgpd: 3,
@@ -2998,6 +3080,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-keyboard",
     shortDescription: "Logiciel d'apprentissage de la dactylographie",
+    description: "Logiciel d'apprentissage de la dactylographie. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3033,6 +3116,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-monitor-smartphone",
     shortDescription: "Logiciel de prise de contrôle à distance",
+    description: "Logiciel de prise de contrôle à distance. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3068,6 +3152,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-message-circle",
     shortDescription: "Messagerie sécurisée suisse pour l'éducation",
+    description: "Messagerie sécurisée suisse pour l'éducation. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3103,6 +3188,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-thunderbird",
     shortDescription: "Client de messagerie open source",
+    description: "Client de messagerie open source. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3139,6 +3225,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-map",
     shortDescription: "Solutions de géolocalisation et cartographie",
+    description: "Solutions de géolocalisation et cartographie. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3176,6 +3263,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-book-a",
     shortDescription: "Application d'apprentissage de vocabulaire",
+    description: "Application d'apprentissage de vocabulaire. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3212,6 +3300,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-bookmark",
     shortDescription: "Plateforme de curation et partage de ressources",
+    description: "Plateforme de curation et partage de ressources. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3248,6 +3337,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-gamepad",
     shortDescription: "Plateforme de quiz gamifiés (anciennement Quizizz)",
+    description: "Plateforme de quiz gamifiés (anciennement Quizizz). Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3285,6 +3375,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-presentation",
     shortDescription: "Plateforme d'interaction en temps réel avec le public",
+    description: "Plateforme d'interaction en temps réel avec le public. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3322,6 +3413,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-zap",
     shortDescription: "Plateforme d'apprentissage adaptatif par questions",
+    description: "Plateforme d'apprentissage adaptatif par questions. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3358,6 +3450,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-grid-3x3",
     shortDescription: "Création d'activités interactives et jeux pédagogiques",
+    description: "Création d'activités interactives et jeux pédagogiques. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3395,6 +3488,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-workflow",
     shortDescription: "Automatisation de workflows entre applications",
+    description: "Automatisation de workflows entre applications. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3431,6 +3525,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-microsoftword",
     shortDescription: "Traitement de texte de la suite Office 365",
+    description: "Traitement de texte de la suite Office 365. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3465,6 +3560,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-microsoftexcel",
     shortDescription: "Tableur de la suite Office 365",
+    description: "Tableur de la suite Office 365. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3502,6 +3598,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-microsoftpowerpoint",
     shortDescription: "Outil de présentation de la suite Office 365",
+    description: "Outil de présentation de la suite Office 365. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3538,6 +3635,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-microsoftteams",
     shortDescription: "Plateforme de communication et collaboration",
+    description: "Plateforme de communication et collaboration. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3574,6 +3672,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-microsoftonedrive",
     shortDescription: "Stockage cloud personnel et partage de fichiers",
+    description: "Stockage cloud personnel et partage de fichiers. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3608,6 +3707,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-microsoftonenote",
     shortDescription: "Prise de notes numérique organisée",
+    description: "Prise de notes numérique organisée. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3643,6 +3743,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-microsoft",
     shortDescription: "Création de formulaires et questionnaires",
+    description: "Création de formulaires et questionnaires. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3678,6 +3779,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-microsoftoutlook",
     shortDescription: "Gestionnaire de courrier électronique et calendrier",
+    description: "Gestionnaire de courrier électronique et calendrier. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3712,6 +3814,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-firefox",
     shortDescription: "Navigateur web open-source respectueux de la vie privée",
+    description: "Navigateur web open-source respectueux de la vie privée. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3747,6 +3850,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-googlechrome",
     shortDescription: "Navigateur web rapide développé par Google",
+    description: "Navigateur web rapide développé par Google. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3786,6 +3890,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-microsoftedge",
     shortDescription: "Navigateur web intégré à Windows",
+    description: "Navigateur web intégré à Windows. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3825,6 +3930,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-safari",
     shortDescription: "Navigateur web par défaut sur macOS et iOS",
+    description: "Navigateur web par défaut sur macOS et iOS. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3860,6 +3966,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-brave",
     shortDescription: "Navigateur axé sur la confidentialité et le blocage de publicités",
+    description: "Navigateur axé sur la confidentialité et le blocage de publicités. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -3895,6 +4002,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-notion",
     shortDescription: "Espace de travail tout-en-un (notes, tâches, wikis)",
+    description: "Espace de travail tout-en-un (notes, tâches, wikis). Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3932,6 +4040,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-todoist",
     shortDescription: "Gestionnaire de tâches et to-do lists",
+    description: "Gestionnaire de tâches et to-do lists. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -3968,6 +4077,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-network",
     shortDescription: "Logiciel de création de diagrammes (alternative à Visio)",
+    description: "Logiciel de création de diagrammes (alternative à Visio). Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -4004,6 +4114,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-pen-tool",
     shortDescription: "Outil de design vectoriel complet",
+    description: "Outil de design vectoriel complet. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -4040,6 +4151,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-mongodb",
     shortDescription: "Service de base de données cloud",
+    description: "Service de base de données cloud. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -4075,6 +4187,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-webstorm",
     shortDescription: "IDE puissant pour le développement JavaScript/TypeScript",
+    description: "IDE puissant pour le développement JavaScript/TypeScript. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -4110,6 +4223,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-phpstorm",
     shortDescription: "IDE professionnel pour PHP",
+    description: "IDE professionnel pour PHP. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -4145,6 +4259,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-zap",
     shortDescription: "Éditeur de code haute performance collaboratif",
+    description: "Éditeur de code haute performance collaboratif. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -4180,6 +4295,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-sublimetext",
     shortDescription: "Éditeur de texte sophistiqué pour le code",
+    description: "Éditeur de texte sophistiqué pour le code. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -4217,6 +4333,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-mouse-pointer-2",
     shortDescription: "Éditeur de code boosté à l'IA (basé sur VS Code)",
+    description: "Éditeur de code boosté à l'IA (basé sur VS Code). Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -4253,6 +4370,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-rocket",
     shortDescription: "Assistant IA avancé pour le développement",
+    description: "Assistant IA avancé pour le développement. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -4291,6 +4409,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-terminal",
     shortDescription: "Émulateur de terminal rapide et moderne",
+    description: "Émulateur de terminal rapide et moderne. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -4326,6 +4445,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-send",
     shortDescription: "Client API open-source (alternative à Postman)",
+    description: "Client API open-source (alternative à Postman). Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -4361,6 +4481,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-openai",
     shortDescription: "Assistant IA conversationnel polyvalent",
+    description: "Assistant IA conversationnel polyvalent. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -4398,6 +4519,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-anthropic",
     shortDescription: "Assistant IA performant pour l'analyse et la rédaction",
+    description: "Assistant IA performant pour l'analyse et la rédaction. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -4435,6 +4557,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-googlegemini",
     shortDescription: "IA multimodale de Google intégrée à l'écosystème",
+    description: "IA multimodale de Google intégrée à l'écosystème. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -4470,6 +4593,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-lucide-brain",
     shortDescription: "Assistant IA français performant et open-weights",
+    description: "Assistant IA français performant et open-weights. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 1,
       rgpd: 1,
@@ -4506,6 +4630,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-perplexity",
     shortDescription: "Moteur de réponse IA citant ses sources",
+    description: "Moteur de réponse IA citant ses sources. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,
@@ -4541,6 +4666,7 @@ export const softwareList: Software[] = [
     logo: null,
     icon: "i-simple-icons-microsoft",
     shortDescription: "Assistant IA intégré à l'écosystème Microsoft",
+    description: "Assistant IA intégré à l'écosystème Microsoft. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
       hosting: 2,
       rgpd: 2,

@@ -47,6 +47,7 @@ export interface Software {
 
   // DESCRIPTION
   shortDescription: string
+  description?: string
 
   // CLASSIFICATION & LOCALISATION
   lgpd: LgpdClassification

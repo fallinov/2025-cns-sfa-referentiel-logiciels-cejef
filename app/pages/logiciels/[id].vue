@@ -201,13 +201,21 @@ const showLgpdDetails = ref(false)
             </div>
           </div>
 
+          <!-- About Section -->
+          <div v-if="software.description" class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">À propos</h2>
+            <div class="text-gray-600 dark:text-gray-300 whitespace-pre-line">
+              {{ software.description }}
+            </div>
+          </div>
+
+
       <!-- Main Status Card (Traffic Light System) - Simplified Design -->
       <div class="mb-8">
         <!-- Level 1: Green - Authorized -->
         <UCard
           v-if="certificationLevel === 1"
-          class="ring-2 ring-green-500/50 bg-green-50 dark:bg-green-900/10"
-          :ui="{ body: { padding: 'p-6' } }"
+          class="ring-2 ring-green-500/50 bg-green-50 dark:bg-green-900/10 p-6"
         >
           <div class="flex gap-5">
             <div class="shrink-0">
@@ -225,7 +233,7 @@ const showLgpdDetails = ref(false)
               <!-- Toggle Details -->
               <div class="mt-4">
                 <UButton
-                  color="green"
+                  color="success"
                   variant="ghost"
                   size="sm"
                   class="p-0 hover:bg-transparent text-green-700 dark:text-green-300"
@@ -295,12 +303,10 @@ const showLgpdDetails = ref(false)
         <!-- Level 2: Orange - Restricted -->
         <UCard
           v-else-if="certificationLevel === 2"
-          class="ring-2 ring-orange-500/50 bg-orange-50 dark:bg-orange-900/10"
-          :ui="{ body: { padding: 'p-6' } }"
-        >
+          class="ring-2 ring-orange-500/50 bg-orange-50 dark:bg-orange-900/10 p-6">
           <div class="flex gap-5">
             <div class="shrink-0">
-              <UIcon name="i-lucide-alert-triangle" class="w-8 h-8 text-orange-600 dark:text-orange-400" />
+              <UIicon name="i-lucide-alert-triangle" class="w-8 h-8 text-orange-600 dark:text-orange-400" />
             </div>
             <div class="flex-1">
               <h2 class="text-base font-bold text-orange-800 dark:text-orange-300 mb-1">
@@ -322,7 +328,7 @@ const showLgpdDetails = ref(false)
               <!-- Toggle Details -->
               <div>
                 <UButton
-                  color="orange"
+                  color="warning"
                   variant="ghost"
                   size="sm"
                   class="p-0 hover:bg-transparent text-orange-700 dark:text-orange-300"
@@ -338,7 +344,7 @@ const showLgpdDetails = ref(false)
                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                    <!-- Hosting -->
                    <div class="flex items-center gap-3">
-                     <UIcon 
+                     <UIIcon 
                        :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
                        class="w-5 h-5"
                        :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
@@ -355,7 +361,7 @@ const showLgpdDetails = ref(false)
 
                    <!-- RGPD -->
                    <div class="flex items-center gap-3">
-                     <UIcon 
+                     <UIIcon 
                        :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
                        class="w-5 h-5"
                        :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
@@ -372,7 +378,7 @@ const showLgpdDetails = ref(false)
 
                    <!-- Data Collection -->
                    <div class="flex items-center gap-3">
-                     <UIcon 
+                     <UIIcon 
                        :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
                        class="w-5 h-5"
                        :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
@@ -395,12 +401,10 @@ const showLgpdDetails = ref(false)
         <!-- Level 3: Red - Forbidden -->
         <UCard
           v-else-if="certificationLevel === 3"
-          class="ring-2 ring-red-500/50 bg-red-50 dark:bg-red-900/10"
-          :ui="{ body: { padding: 'p-6' } }"
-        >
+          class="ring-2 ring-red-500/50 bg-red-50 dark:bg-red-900/10 p-6">
           <div class="flex gap-5">
             <div class="shrink-0">
-              <UIcon name="i-lucide-ban" class="w-8 h-8 text-red-600 dark:text-red-400" />
+              <UIIcon name="i-lucide-ban" class="w-8 h-8 text-red-600 dark:text-red-400" />
             </div>
             <div class="flex-1">
               <h2 class="text-base font-bold text-red-800 dark:text-red-300 mb-1">
@@ -421,7 +425,7 @@ const showLgpdDetails = ref(false)
                     v-for="altId in software.greenAlternatives"
                     :key="altId"
                     :to="`/logiciels/${altId}`"
-                    color="green"
+                    color="success"
                     variant="soft"
                     icon="i-lucide-arrow-right"
                   >
@@ -433,7 +437,7 @@ const showLgpdDetails = ref(false)
               <!-- Toggle Details -->
               <div>
                 <UButton
-                  color="red"
+                  color="error"
                   variant="ghost"
                   size="sm"
                   class="p-0 hover:bg-transparent text-red-700 dark:text-red-300"
