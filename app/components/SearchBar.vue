@@ -275,7 +275,10 @@ const phrases = [
 const { placeholderText } = useTypewriter(phrases)
 
 const handleSearchSubmit = () => {
-  if (!search.value) return
+  if (!search.value) {
+    searchInput.value?.focus()
+    return
+  }
   showSuggestions.value = false
   const input = document.getElementById("software-search")
   if (input) input.blur()
@@ -336,8 +339,7 @@ onMounted(() => {
           <!-- Search Button -->
           <button
             type="button"
-            :disabled="!search"
-            class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-white transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800 disabled:hover:bg-slate-900"
+            class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-white transition-all shadow-sm hover:bg-slate-800"
             aria-label="Rechercher"
             @click="handleSearchSubmit"
           >
