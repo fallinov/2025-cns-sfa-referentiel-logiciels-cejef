@@ -40,9 +40,24 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
 
     <!-- Content -->
     <div class="min-w-0 flex-1">
-      <h3 class="text-lg font-semibold text-gray-900 dark:text-white truncate mb-0.5">
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white truncate mb-1">
         {{ software.name }}
       </h3>
+      <UBadge
+        v-if="software.certificationLevel"
+        :color="software.certificationLevel === 1 ? 'success' : software.certificationLevel === 2 ? 'warning' : 'error'"
+        variant="solid"
+        size="md"
+        class="mb-1"
+      >
+        <template #leading>
+          <UIcon
+            :name="config.icon"
+            class="w-3.5 h-3.5"
+          />
+        </template>
+        {{ config.label }}
+      </UBadge>
       <p class="text-base text-gray-500 dark:text-gray-400 truncate">
         {{ software.shortDescription }}
       </p>
