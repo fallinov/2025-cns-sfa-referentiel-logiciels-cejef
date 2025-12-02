@@ -339,7 +339,7 @@ onMounted(() => {
           <!-- Search Button -->
           <button
             type="button"
-            class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-white transition-all shadow-sm hover:bg-slate-800"
+            class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-white transition-all shadow-sm hover:bg-slate-800 cursor-pointer"
             aria-label="Rechercher"
             @click="handleSearchSubmit"
           >
