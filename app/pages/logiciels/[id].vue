@@ -207,12 +207,12 @@ const showLgpdDetails = ref(false)
                   <UIcon name="i-lucide-check-circle" class="w-8 h-8 text-green-600 dark:text-green-400" />
                 </div>
                 <div class="flex-1">
-                  <h2 class="text-base font-bold text-green-800 dark:text-green-300 mb-1">
+                  <h2 class="text-base font-bold text-green-800 dark:text-green-200 mb-2">
                     Usage Autorisé avec Élèves
                   </h2>
-                  <p class="text-green-800 dark:text-green-200 text-sm leading-relaxed">
+                  <p class="text-base text-green-800 dark:text-green-200 leading-relaxed">
                     Vous pouvez utiliser ce logiciel librement avec vos élèves.
-                    <strong class="font-semibold">La création de comptes et l'utilisation de données personnelles sont autorisées.</strong>
+                    <strong class="font-bold">La création de comptes et l'utilisation de données personnelles sont autorisées.</strong>
                   </p>
 
                   <!-- Toggle Details -->
@@ -239,10 +239,10 @@ const showLgpdDetails = ref(false)
                           class="w-5 h-5 text-green-600 dark:text-green-400"
                         />
                         <div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">
+                          <div class="text-base text-green-900 dark:text-green-100">
                             Hébergement
                           </div>
-                          <div class="text-sm font-medium text-green-900 dark:text-green-100">
+                          <div class="text-base font-bold text-orange-700 dark:text-orange-400">
                             {{ lgpdLabels.hosting[software.lgpd.hosting] }}
                           </div>
                         </div>
@@ -255,10 +255,10 @@ const showLgpdDetails = ref(false)
                           class="w-5 h-5 text-green-600 dark:text-green-400"
                         />
                         <div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">
+                          <div class="text-base text-green-900 dark:text-green-100">
                             Conformité RGPD
                           </div>
-                          <div class="text-sm font-medium text-green-900 dark:text-green-100">
+                          <div class="text-base font-bold text-orange-700 dark:text-orange-400">
                             {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
                           </div>
                         </div>
@@ -271,10 +271,10 @@ const showLgpdDetails = ref(false)
                           class="w-5 h-5 text-green-600 dark:text-green-400"
                         />
                         <div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">
+                          <div class="text-base text-green-900 dark:text-green-100">
                             Collecte Données
                           </div>
-                          <div class="text-sm font-medium text-green-900 dark:text-green-100">
+                          <div class="text-base font-bold text-orange-700 dark:text-orange-400">
                             {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
                           </div>
                         </div>
@@ -510,7 +510,7 @@ const showLgpdDetails = ref(false)
               <div class="space-y-6">
                 <!-- Categories -->
                 <div v-if="software.categories?.length">
-                  <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                  <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-3">
                     Catégories
                   </h4>
                   <div class="flex flex-wrap gap-2">
@@ -534,7 +534,7 @@ const showLgpdDetails = ref(false)
 
                 <!-- Activities -->
                 <div v-if="software.pedagogicalActivities?.length">
-                  <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                  <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-3">
                     Activités
                   </h4>
                   <div class="flex flex-wrap gap-2">
@@ -558,7 +558,7 @@ const showLgpdDetails = ref(false)
 
                 <!-- Disciplines -->
                 <div v-if="software.disciplines?.length">
-                  <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                  <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-3">
                     Disciplines
                   </h4>
                   <div class="flex flex-wrap gap-2">
@@ -712,7 +712,7 @@ const showLgpdDetails = ref(false)
           <UCard v-if="similarSoftwareList?.length" :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
             <template #header>
               <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <UIcon name="i-lucide-sparkles" class="w-5 h-5 text-yellow-500" />
+                <UIcon name="i-lucide-sparkles" class="w-5 h-5 text-primary-600" />
                 Logiciels similaires
               </h3>
             </template>
@@ -725,11 +725,13 @@ const showLgpdDetails = ref(false)
                 class="flex items-center gap-3 group"
               >
                 <div
-                  class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors bg-primary-100 dark:bg-primary-900/30"
+                  class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors"
+                  :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
                 >
                   <UIcon
                     :name="sim.icon || 'i-lucide-box'"
-                    class="w-5 h-5 text-primary-600 dark:text-primary-400"
+                    class="w-5 h-5"
+                    :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).text"
                   />
                 </div>
                 <div>
