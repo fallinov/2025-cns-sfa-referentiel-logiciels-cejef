@@ -292,12 +292,7 @@ const handleClear = () => {
 
 const searchInput = ref<HTMLInputElement | null>(null)
 
-onMounted(() => {
-  // Focus input on mount
-  setTimeout(() => {
-    searchInput.value?.focus()
-  }, 100)
-})
+
 </script>
 
 <template>
