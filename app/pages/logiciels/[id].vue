@@ -61,6 +61,32 @@ const similarSoftwareList = computed(() =>
 // Configuration via utils centralisé
 const config = computed(() => getCertificationConfig(certificationLevel.value))
 
+// Helper pour obtenir les classes de style Info Pratique pour un niveau de certification
+const getInfoPracticalStyle = (level: number | null | undefined) => {
+  switch (level) {
+    case 1:
+      return {
+        bg: "bg-green-50 dark:bg-green-900/20",
+        iconColor: "text-green-600"
+      }
+    case 2:
+      return {
+        bg: "bg-orange-50 dark:bg-orange-900/20",
+        iconColor: "text-orange-600"
+      }
+    case 3:
+      return {
+        bg: "bg-red-50 dark:bg-red-900/20",
+        iconColor: "text-red-600"
+      }
+    default:
+      return {
+        bg: "bg-gray-50 dark:bg-gray-900/20",
+        iconColor: "text-gray-600"
+      }
+  }
+}
+
 // LGPD labels
 const lgpdLabels = {
   hosting: {
@@ -432,13 +458,13 @@ const showLgpdDetails = ref(false)
                 class="flex items-center gap-3 group"
               >
                 <div
-                  class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors"
-                  :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
+                  class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                  :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
                 >
                   <UIcon
                     :name="sim.icon || 'i-lucide-box'"
                     class="w-5 h-5"
-                    :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).text"
+                    :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).iconColor"
                   />
                 </div>
                 <div>
