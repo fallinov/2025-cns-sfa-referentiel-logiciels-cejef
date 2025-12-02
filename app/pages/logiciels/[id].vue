@@ -154,7 +154,7 @@ const showLgpdDetails = ref(false)
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <!-- Main Content (Left Column) -->
-        <div class="lg:col-span-8 space-y-8">
+        <div class="lg:col-span-8 space-y-8 max-w-[600px]">
           <!-- Header Section -->
           <div class="flex items-start gap-6">
             <!-- Logo/Icon -->
