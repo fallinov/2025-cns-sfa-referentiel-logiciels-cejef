@@ -139,117 +139,54 @@ const showLgpdDetails = ref(false)
         </div>
       </div>
 
-      <!-- Header Section -->
-      <div class="mb-8">
-        <div class="flex items-start gap-6 mb-6">
-          <!-- Logo/Icon -->
-          <div class="shrink-0">
-            <div
-              :class="[config.solidBg, 'w-20 h-20 rounded-lg flex items-center justify-center shadow-lg']"
-            >
-              <img
-                v-if="software.logo"
-                :src="`/logos/${software.logo}.svg`"
-                :alt="software.name"
-                class="w-16 h-16 object-contain"
-              />
-              <UIcon
-                v-else-if="software.icon"
-                :name="software.icon"
-                class="w-12 h-12 text-white"
-              />
-              <span
-                v-else
-                class="text-3xl font-black text-white"
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Main Content (Left Column) -->
+        <div class="lg:col-span-8 space-y-8">
+          <!-- Header Section -->
+          <div class="flex items-start gap-6">
+            <!-- Logo/Icon -->
+            <div class="shrink-0">
+              <div
+                :class="[config.solidBg, 'w-20 h-20 rounded-lg flex items-center justify-center shadow-lg']"
               >
-                {{ software.name.substring(0, 2).toUpperCase() }}
-              </span>
-            </div>
-          </div>
-
-          <!-- Title and Info -->
-          <div class="flex-1">
-            <div class="flex items-center gap-3 mb-2">
-              <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white">
-                {{ software.name }}
-              </h1>
-              <UBadge :color="certificationLevel === 1 ? 'success' : certificationLevel === 2 ? 'warning' : 'error'" size="lg">
-                <template #leading>
-                  <UIcon :name="config.icon" class="w-4 h-4" />
-                </template>
-                {{ config.label }}
-              </UBadge>
-            </div>
-            <p class="text-xl text-gray-600 dark:text-gray-400 mb-4">
-              {{ software.shortDescription }}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quick Actions -->
-      <div class="mb-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <!-- Access Software -->
-          <UButton
-            :to="software.toolUrl"
-            target="_blank"
-            color="primary"
-            variant="solid"
-            size="xl"
-            block
-            class="rounded-lg"
-          >
-            <template #leading>
-              <UIcon name="i-lucide-external-link" class="w-5 h-5" />
-            </template>
-            Accéder
-          </UButton>
-
-          <!-- Documentation -->
-          <UButton
-            v-if="software.documentation"
-            :to="software.documentation"
-            target="_blank"
-            color="neutral"
-            variant="outline"
-            size="xl"
-            block
-            class="rounded-lg"
-          >
-            <template #leading>
-              <UIcon name="i-lucide-book-open" class="w-5 h-5" />
-            </template>
-            Documentation
-          </UButton>
-
-          <!-- Cost -->
-          <div class="bg-white dark:bg-gray-800 rounded-lg ring-1 ring-gray-200 dark:ring-gray-700 p-4 flex items-center gap-3">
-            <UIcon name="i-lucide-wallet" class="w-5 h-5 text-primary-600" />
-            <div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
-                Coût
-              </div>
-              <div class="font-bold text-gray-900 dark:text-white">
-                {{ software.cost }}
+                <img
+                  v-if="software.logo"
+                  :src="`/logos/${software.logo}.svg`"
+                  :alt="software.name"
+                  class="w-16 h-16 object-contain"
+                />
+                <UIcon
+                  v-else-if="software.icon"
+                  :name="software.icon"
+                  class="w-12 h-12 text-white"
+                />
+                <span
+                  v-else
+                  class="text-3xl font-black text-white"
+                >
+                  {{ software.name.substring(0, 2).toUpperCase() }}
+                </span>
               </div>
             </div>
-          </div>
 
-          <!-- Support -->
-          <div class="bg-white dark:bg-gray-800 rounded-lg ring-1 ring-gray-200 dark:ring-gray-700 p-4 flex items-center gap-3">
-            <UIcon name="i-lucide-headphones" class="w-5 h-5 text-primary-600" />
-            <div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
-                Support CEJEF
+            <!-- Title and Info -->
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-2">
+                <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white">
+                  {{ software.name }}
+                </h1>
+                <UBadge :color="certificationLevel === 1 ? 'success' : certificationLevel === 2 ? 'warning' : 'error'" size="lg">
+                  <template #leading>
+                    <UIcon :name="config.icon" class="w-4 h-4" />
+                  </template>
+                  {{ config.label }}
+                </UBadge>
               </div>
-              <div class="font-bold text-gray-900 dark:text-white">
-                {{ software.supportedByCEJEF ? "Oui" : "Non" }}
-              </div>
+              <p class="text-xl text-gray-600 dark:text-gray-400">
+                {{ software.shortDescription }}
+              </p>
             </div>
           </div>
-        </div>
-      </div>
 
       <!-- Main Status Card (Traffic Light System) - Simplified Design -->
       <div class="mb-8">
@@ -264,12 +201,12 @@ const showLgpdDetails = ref(false)
               <UIcon name="i-lucide-check-circle" class="w-8 h-8 text-green-600 dark:text-green-400" />
             </div>
             <div class="flex-1">
-              <h2 class="text-xl font-bold text-green-800 dark:text-green-300 mb-2">
+              <h2 class="text-lg font-bold text-green-800 dark:text-green-300 mb-1">
                 Usage Autorisé avec Élèves
               </h2>
-              <p class="text-green-800 dark:text-green-200 leading-relaxed text-lg">
+              <p class="text-green-800 dark:text-green-200 text-base leading-relaxed">
                 Vous pouvez utiliser ce logiciel librement avec vos élèves.
-                <strong>La création de comptes et l'utilisation de données personnelles sont autorisées.</strong>
+                <strong class="font-semibold">La création de comptes et l'utilisation de données personnelles sont autorisées.</strong>
               </p>
               
               <!-- Toggle Details -->
@@ -296,10 +233,10 @@ const showLgpdDetails = ref(false)
                        class="w-5 h-5 text-green-600 dark:text-green-400"
                      />
                      <div>
-                       <div class="text-xs font-medium text-green-700/70 dark:text-green-300/70 uppercase tracking-wider">
+                       <div class="text-sm text-gray-500 dark:text-gray-400">
                          Hébergement
                        </div>
-                       <div class="font-semibold text-green-900 dark:text-green-100">
+                       <div class="text-sm font-medium text-green-900 dark:text-green-100">
                          {{ lgpdLabels.hosting[software.lgpd.hosting] }}
                        </div>
                      </div>
@@ -312,10 +249,10 @@ const showLgpdDetails = ref(false)
                        class="w-5 h-5 text-green-600 dark:text-green-400"
                      />
                      <div>
-                       <div class="text-xs font-medium text-green-700/70 dark:text-green-300/70 uppercase tracking-wider">
+                       <div class="text-sm text-gray-500 dark:text-gray-400">
                          Conformité RGPD
                        </div>
-                       <div class="font-semibold text-green-900 dark:text-green-100">
+                       <div class="text-sm font-medium text-green-900 dark:text-green-100">
                          {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
                        </div>
                      </div>
@@ -328,10 +265,10 @@ const showLgpdDetails = ref(false)
                        class="w-5 h-5 text-green-600 dark:text-green-400"
                      />
                      <div>
-                       <div class="text-xs font-medium text-green-700/70 dark:text-green-300/70 uppercase tracking-wider">
+                       <div class="text-sm text-gray-500 dark:text-gray-400">
                          Collecte Données
                        </div>
-                       <div class="font-semibold text-green-900 dark:text-green-100">
+                       <div class="text-sm font-medium text-green-900 dark:text-green-100">
                          {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
                        </div>
                      </div>
@@ -353,14 +290,14 @@ const showLgpdDetails = ref(false)
               <UIcon name="i-lucide-alert-triangle" class="w-8 h-8 text-orange-600 dark:text-orange-400" />
             </div>
             <div class="flex-1">
-              <h2 class="text-xl font-bold text-orange-800 dark:text-orange-300 mb-2">
+              <h2 class="text-lg font-bold text-orange-800 dark:text-orange-300 mb-1">
                 Usage Pédagogique Uniquement
               </h2>
-              <p class="text-orange-800 dark:text-orange-200 leading-relaxed text-lg mb-3">
+              <p class="text-orange-800 dark:text-orange-200 text-base leading-relaxed mb-2">
                 Vous pouvez utiliser cet outil pour votre préparation.
-                <strong class="block mt-1 font-extrabold">Interdiction formelle de saisir des données d'élèves (noms, emails).</strong>
+                <strong class="block mt-1 font-semibold">Interdiction formelle de saisir des données d'élèves (noms, emails).</strong>
               </p>
-              <p class="text-orange-800/80 dark:text-orange-300/80 text-sm mb-4">
+              <p class="text-orange-800/80 dark:text-orange-300/80 text-sm mb-3">
                 Si les élèves doivent utiliser l'outil, cela doit être fait de manière strictement anonyme.
               </p>
 
@@ -394,10 +331,10 @@ const showLgpdDetails = ref(false)
                        :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
                      />
                      <div>
-                       <div class="text-xs font-medium text-orange-700/70 dark:text-orange-300/70 uppercase tracking-wider">
+                       <div class="text-sm text-gray-500 dark:text-gray-400">
                          Hébergement
                        </div>
-                       <div class="font-semibold text-orange-900 dark:text-orange-100">
+                       <div class="text-sm font-medium text-orange-900 dark:text-orange-100">
                          {{ lgpdLabels.hosting[software.lgpd.hosting] }}
                        </div>
                      </div>
@@ -411,10 +348,10 @@ const showLgpdDetails = ref(false)
                        :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
                      />
                      <div>
-                       <div class="text-xs font-medium text-orange-700/70 dark:text-orange-300/70 uppercase tracking-wider">
+                       <div class="text-sm text-gray-500 dark:text-gray-400">
                          Conformité RGPD
                        </div>
-                       <div class="font-semibold text-orange-900 dark:text-orange-100">
+                       <div class="text-sm font-medium text-orange-900 dark:text-orange-100">
                          {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
                        </div>
                      </div>
@@ -428,10 +365,10 @@ const showLgpdDetails = ref(false)
                        :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
                      />
                      <div>
-                       <div class="text-xs font-medium text-orange-700/70 dark:text-orange-300/70 uppercase tracking-wider">
+                       <div class="text-sm text-gray-500 dark:text-gray-400">
                          Collecte Données
                        </div>
-                       <div class="font-semibold text-orange-900 dark:text-orange-100">
+                       <div class="text-sm font-medium text-orange-900 dark:text-orange-100">
                          {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
                        </div>
                      </div>
@@ -453,12 +390,12 @@ const showLgpdDetails = ref(false)
               <UIcon name="i-lucide-ban" class="w-8 h-8 text-red-600 dark:text-red-400" />
             </div>
             <div class="flex-1">
-              <h2 class="text-xl font-bold text-red-800 dark:text-red-300 mb-2">
+              <h2 class="text-lg font-bold text-red-800 dark:text-red-300 mb-1">
                 Usage Interdit
               </h2>
-              <p class="text-red-800 dark:text-red-200 leading-relaxed text-lg mb-4">
+              <p class="text-red-800 dark:text-red-200 text-base leading-relaxed mb-3">
                 Ce logiciel ne respecte pas les normes de sécurité.
-                <strong>Il ne doit être utilisé ni par les enseignants ni par les élèves.</strong>
+                <strong class="font-semibold">Il ne doit être utilisé ni par les enseignants ni par les élèves.</strong>
               </p>
 
               <!-- Alternatives -->
@@ -505,10 +442,10 @@ const showLgpdDetails = ref(false)
                        :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
                      />
                      <div>
-                       <div class="text-xs font-medium text-red-700/70 dark:text-red-300/70 uppercase tracking-wider">
+                       <div class="text-sm text-gray-500 dark:text-gray-400">
                          Hébergement
                        </div>
-                       <div class="font-semibold text-red-900 dark:text-red-100">
+                       <div class="text-sm font-medium text-red-900 dark:text-red-100">
                          {{ lgpdLabels.hosting[software.lgpd.hosting] }}
                        </div>
                      </div>
@@ -522,10 +459,10 @@ const showLgpdDetails = ref(false)
                        :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
                      />
                      <div>
-                       <div class="text-xs font-medium text-red-700/70 dark:text-red-300/70 uppercase tracking-wider">
+                       <div class="text-sm text-gray-500 dark:text-gray-400">
                          Conformité RGPD
                        </div>
-                       <div class="font-semibold text-red-900 dark:text-red-100">
+                       <div class="text-sm font-medium text-red-900 dark:text-red-100">
                          {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
                        </div>
                      </div>
@@ -539,10 +476,10 @@ const showLgpdDetails = ref(false)
                        :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
                      />
                      <div>
-                       <div class="text-xs font-medium text-red-700/70 dark:text-red-300/70 uppercase tracking-wider">
+                       <div class="text-sm text-gray-500 dark:text-gray-400">
                          Collecte Données
                        </div>
-                       <div class="font-semibold text-red-900 dark:text-red-100">
+                       <div class="text-sm font-medium text-red-900 dark:text-red-100">
                          {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
                        </div>
                      </div>
@@ -554,157 +491,203 @@ const showLgpdDetails = ref(false)
         </UCard>
       </div>
 
-      <!-- Pedagogical & Practical Info (No Tabs) -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Left Column: Classification -->
-        <div class="lg:col-span-2 space-y-6">
-          
-          <!-- Categories & Disciplines -->
-          <div v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length">
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
-              Classification Pédagogique
-            </h3>
-            
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 ring-1 ring-gray-200 dark:ring-gray-800 space-y-6">
-              <!-- Categories -->
-              <div v-if="software.categories?.length">
-                <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
-                  Catégories
-                </h4>
-                <div class="flex flex-wrap gap-2">
-                  <UBadge
-                    v-for="category in software.categories"
-                    :key="category"
-                    color="primary"
-                    variant="soft"
-                    size="md"
-                  >
-                    {{ category }}
-                  </UBadge>
-                </div>
-              </div>
-
-              <!-- Activities -->
-              <div v-if="software.pedagogicalActivities?.length">
-                <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
-                  Activités
-                </h4>
-                <div class="flex flex-wrap gap-2">
-                  <UBadge
-                    v-for="activity in software.pedagogicalActivities"
-                    :key="activity"
-                    color="gray"
-                    variant="outline"
-                    size="md"
-                  >
-                    {{ activity }}
-                  </UBadge>
-                </div>
-              </div>
-
-              <!-- Disciplines -->
-              <div v-if="software.disciplines?.length">
-                <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
-                  Disciplines
-                </h4>
-                <div class="flex flex-wrap gap-2">
-                  <UBadge
-                    v-for="discipline in software.disciplines"
-                    :key="discipline"
-                    color="gray"
-                    variant="soft"
-                    size="md"
-                  >
-                    {{ discipline }}
-                  </UBadge>
-                </div>
-              </div>
+      <!-- Pedagogical Classification -->
+      <div v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+          <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
+          Classification Pédagogique
+        </h3>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 ring-1 ring-gray-200 dark:ring-gray-800 space-y-6">
+          <!-- Categories -->
+          <div v-if="software.categories?.length">
+            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+              Catégories
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <UBadge
+                v-for="category in software.categories"
+                :key="category"
+                color="primary"
+                variant="soft"
+                size="md"
+              >
+                {{ category }}
+              </UBadge>
             </div>
           </div>
 
-          <!-- Target Audience -->
-          <div v-if="software.targetAudience || software.ageRestriction">
-             <div class="bg-white dark:bg-gray-800 rounded-lg p-6 ring-1 ring-gray-200 dark:ring-gray-800 flex flex-wrap gap-6">
-                <div v-if="software.targetAudience" class="flex items-center gap-3">
-                  <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
-                    <UIcon name="i-lucide-users" class="w-5 h-5 text-primary-600" />
-                  </div>
-                  <div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">Public cible</div>
-                    <div class="font-semibold text-gray-900 dark:text-white capitalize">{{ software.targetAudience }}</div>
-                  </div>
-                </div>
-                
-                <div v-if="software.ageRestriction" class="flex items-center gap-3">
-                  <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
-                    <UIcon name="i-lucide-calendar" class="w-5 h-5 text-primary-600" />
-                  </div>
-                  <div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">Âge minimum</div>
-                    <div class="font-semibold text-gray-900 dark:text-white">{{ software.ageRestriction }} ans</div>
-                  </div>
-                </div>
-             </div>
+          <!-- Activities -->
+          <div v-if="software.pedagogicalActivities?.length">
+            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+              Activités
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <UBadge
+                v-for="activity in software.pedagogicalActivities"
+                :key="activity"
+                color="gray"
+                variant="outline"
+                size="md"
+              >
+                {{ activity }}
+              </UBadge>
+            </div>
+          </div>
+
+          <!-- Disciplines -->
+          <div v-if="software.disciplines?.length">
+            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+              Disciplines
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <UBadge
+                v-for="discipline in software.disciplines"
+                :key="discipline"
+                color="gray"
+                variant="soft"
+                size="md"
+              >
+                {{ discipline }}
+              </UBadge>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar (Right Column) -->
+    <div class="lg:col-span-4 space-y-6">
+      <!-- Quick Actions -->
+      <div class="space-y-3">
+        <UButton
+          :to="software.toolUrl"
+          target="_blank"
+          color="primary"
+          variant="solid"
+          size="xl"
+          block
+          class="rounded-lg"
+        >
+          <template #leading>
+            <UIcon name="i-lucide-external-link" class="w-5 h-5" />
+          </template>
+          Accéder
+        </UButton>
+
+        <UButton
+          v-if="software.documentation"
+          :to="software.documentation"
+          target="_blank"
+          color="neutral"
+          variant="outline"
+          size="xl"
+          block
+          class="rounded-lg"
+        >
+          <template #leading>
+            <UIcon name="i-lucide-book-open" class="w-5 h-5" />
+          </template>
+          Documentation
+        </UButton>
+      </div>
+
+      <!-- Practical Info Card -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 ring-1 ring-gray-200 dark:ring-gray-800 space-y-6">
+        <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+          <UIcon name="i-lucide-info" class="w-5 h-5 text-primary-600" />
+          Infos Pratiques
+        </h3>
+
+        <!-- Cost -->
+        <div class="flex items-center gap-3">
+          <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+            <UIcon name="i-lucide-wallet" class="w-5 h-5 text-primary-600" />
+          </div>
+          <div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">Coût</div>
+            <div class="font-semibold text-gray-900 dark:text-white">{{ software.cost }}</div>
           </div>
         </div>
 
-        <!-- Right Column: Practical Info -->
-        <div class="space-y-6">
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <UIcon name="i-lucide-info" class="w-5 h-5 text-primary-600" />
-            Infos Pratiques
-          </h3>
-
-          <!-- Services CEJEF -->
-          <div class="bg-white dark:bg-gray-800 rounded-lg p-5 ring-1 ring-gray-200 dark:ring-gray-800 space-y-4">
-            <div class="flex items-center gap-3">
-              <UIcon
-                :name="software.supportedByCEJEF ? 'i-lucide-check-circle' : 'i-lucide-x-circle'"
-                class="w-5 h-5"
-                :class="software.supportedByCEJEF ? 'text-green-600' : 'text-gray-400'"
-              />
-              <span class="text-sm" :class="software.supportedByCEJEF ? 'text-gray-900 dark:text-white font-medium' : 'text-gray-500'">
-                Support Technique CEJEF
-              </span>
-            </div>
-            <div class="flex items-center gap-3">
-              <UIcon
-                :name="software.campusTraining ? 'i-lucide-graduation-cap' : 'i-lucide-x-circle'"
-                class="w-5 h-5"
-                :class="software.campusTraining ? 'text-green-600' : 'text-gray-400'"
-              />
-              <span class="text-sm" :class="software.campusTraining ? 'text-gray-900 dark:text-white font-medium' : 'text-gray-500'">
-                Formation au Campus
-              </span>
+        <!-- Support -->
+        <div class="flex items-center gap-3">
+          <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+            <UIcon name="i-lucide-headphones" class="w-5 h-5 text-primary-600" />
+          </div>
+          <div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">Support CEJEF</div>
+            <div class="font-semibold text-gray-900 dark:text-white">
+              {{ software.supportedByCEJEF ? "Oui" : "Non" }}
             </div>
           </div>
+        </div>
 
-          <!-- Similar Software -->
-          <div v-if="similarSoftwareList?.length">
-            <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 mt-2">
-              Logiciels similaires
-            </h4>
-            <div class="space-y-2">
-               <UButton
-                v-for="sim in similarSoftwareList.slice(0, 3)"
-                :key="sim.id"
-                :to="`/logiciels/${sim.id}`"
-                color="white"
-                variant="solid"
-                class="w-full justify-start"
-              >
-                <template #leading>
-                   <UIcon :name="sim.icon || 'i-lucide-box'" class="w-4 h-4 text-gray-500" />
-                </template>
-                <span class="truncate">{{ sim.name }}</span>
-              </UButton>
+        <!-- Training -->
+        <div class="flex items-center gap-3">
+          <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+            <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
+          </div>
+          <div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">Formation</div>
+            <div class="font-semibold text-gray-900 dark:text-white">
+              {{ software.campusTraining ? "Disponible" : "Non disponible" }}
             </div>
           </div>
+        </div>
 
+        <!-- Target Audience -->
+        <div v-if="software.targetAudience" class="flex items-center gap-3">
+          <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+            <UIcon name="i-lucide-users" class="w-5 h-5 text-primary-600" />
+          </div>
+          <div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">Public cible</div>
+            <div class="font-semibold text-gray-900 dark:text-white capitalize">{{ software.targetAudience }}</div>
+          </div>
+        </div>
+
+        <!-- Age Restriction -->
+        <div v-if="software.ageRestriction" class="flex items-center gap-3">
+          <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+            <UIcon name="i-lucide-calendar" class="w-5 h-5 text-primary-600" />
+          </div>
+          <div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">Âge minimum</div>
+            <div class="font-semibold text-gray-900 dark:text-white">{{ software.ageRestriction }} ans</div>
+          </div>
         </div>
       </div>
 
+      <!-- Similar Software -->
+      <div v-if="similarSoftwareList?.length" class="bg-white dark:bg-gray-800 rounded-lg p-6 ring-1 ring-gray-200 dark:ring-gray-800">
+        <h3 class="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+          <UIcon name="i-lucide-sparkles" class="w-5 h-5 text-yellow-500" />
+          Logiciels similaires
+        </h3>
+        <div class="space-y-3">
+           <NuxtLink
+            v-for="sim in similarSoftwareList.slice(0, 3)"
+            :key="sim.id"
+            :to="`/logiciels/${sim.id}`"
+            class="flex items-center gap-3 group"
+          >
+            <div class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center shrink-0 group-hover:bg-primary-50 dark:group-hover:bg-primary-900/20 transition-colors">
+               <UIcon :name="sim.icon || 'i-lucide-box'" class="w-5 h-5 text-gray-500 group-hover:text-primary-600" />
+            </div>
+            <div>
+              <div class="font-medium text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">
+                {{ sim.name }}
+              </div>
+              <div class="text-xs text-gray-500 truncate max-w-[150px]">
+                {{ sim.shortDescription }}
+              </div>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+    </div>
+      </div>
     </UContainer>
   </div>
 </template>
