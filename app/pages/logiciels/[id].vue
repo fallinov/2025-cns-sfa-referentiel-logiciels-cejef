@@ -215,7 +215,8 @@ const showLgpdDetails = ref(false)
         <!-- Level 1: Green - Authorized -->
         <UCard
           v-if="certificationLevel === 1"
-          class="ring-2 ring-green-500/50 bg-green-50 dark:bg-green-900/10 p-6"
+          class="ring-2 ring-green-500/50 bg-green-50 dark:bg-green-900/10"
+          :ui="{ body: { padding: 'p-6' } }"
         >
           <div class="flex gap-5">
             <div class="shrink-0">
@@ -303,10 +304,12 @@ const showLgpdDetails = ref(false)
         <!-- Level 2: Orange - Restricted -->
         <UCard
           v-else-if="certificationLevel === 2"
-          class="ring-2 ring-orange-500/50 bg-orange-50 dark:bg-orange-900/10 p-6">
+          class="ring-2 ring-orange-500/50 bg-orange-50 dark:bg-orange-900/10"
+          :ui="{ body: { padding: 'p-6' } }"
+        >
           <div class="flex gap-5">
             <div class="shrink-0">
-              <UIicon name="i-lucide-alert-triangle" class="w-8 h-8 text-orange-600 dark:text-orange-400" />
+              <UIcon name="i-lucide-alert-triangle" class="w-8 h-8 text-orange-600 dark:text-orange-400" />
             </div>
             <div class="flex-1">
               <h2 class="text-base font-bold text-orange-800 dark:text-orange-300 mb-1">
@@ -401,10 +404,12 @@ const showLgpdDetails = ref(false)
         <!-- Level 3: Red - Forbidden -->
         <UCard
           v-else-if="certificationLevel === 3"
-          class="ring-2 ring-red-500/50 bg-red-50 dark:bg-red-900/10 p-6">
+          class="ring-2 ring-red-500/50 bg-red-50 dark:bg-red-900/10"
+          :ui="{ body: { padding: 'p-6' } }"
+        >
           <div class="flex gap-5">
             <div class="shrink-0">
-              <UIIcon name="i-lucide-ban" class="w-8 h-8 text-red-600 dark:text-red-400" />
+              <UIcon name="i-lucide-ban" class="w-8 h-8 text-red-600 dark:text-red-400" />
             </div>
             <div class="flex-1">
               <h2 class="text-base font-bold text-red-800 dark:text-red-300 mb-1">
