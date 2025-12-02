@@ -649,7 +649,7 @@ const showLgpdDetails = ref(false)
         <div class="space-y-6">
           <!-- Cost -->
           <div class="flex items-center gap-3">
-            <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
               <UIcon name="i-lucide-wallet" class="w-5 h-5 text-primary-600" />
             </div>
             <div>
@@ -660,7 +660,7 @@ const showLgpdDetails = ref(false)
 
           <!-- Support -->
           <div class="flex items-center gap-3">
-            <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
               <UIcon name="i-lucide-headphones" class="w-5 h-5 text-primary-600" />
             </div>
             <div>
@@ -673,7 +673,7 @@ const showLgpdDetails = ref(false)
 
           <!-- Training -->
           <div class="flex items-center gap-3">
-            <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
               <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
             </div>
             <div>
@@ -686,7 +686,7 @@ const showLgpdDetails = ref(false)
 
           <!-- Target Audience -->
           <div v-if="software.targetAudience" class="flex items-center gap-3">
-            <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
               <UIcon name="i-lucide-users" class="w-5 h-5 text-primary-600" />
             </div>
             <div>
@@ -697,7 +697,7 @@ const showLgpdDetails = ref(false)
 
           <!-- Age Restriction -->
           <div v-if="software.ageRestriction" class="flex items-center gap-3">
-            <div class="bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg">
+            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
               <UIcon name="i-lucide-calendar" class="w-5 h-5 text-primary-600" />
             </div>
             <div>
@@ -724,8 +724,15 @@ const showLgpdDetails = ref(false)
             :to="`/logiciels/${sim.id}`"
             class="flex items-center gap-3 group"
           >
-            <div class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center shrink-0 group-hover:bg-primary-50 dark:group-hover:bg-primary-900/20 transition-colors">
-               <UIcon :name="sim.icon || 'i-lucide-box'" class="w-5 h-5 text-gray-500 group-hover:text-primary-600" />
+            <div 
+              class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors"
+              :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
+            >
+               <UIcon 
+                 :name="sim.icon || 'i-lucide-box'" 
+                 class="w-5 h-5"
+                 :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).text"
+               />
             </div>
             <div>
               <div class="font-medium text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">
