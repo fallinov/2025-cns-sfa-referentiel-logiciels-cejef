@@ -17,7 +17,7 @@
 
     <!-- Grille subtile pour le côté technique -->
     <div
-      class="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100px_100px]"
+      class="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.03)_2px,transparent_2px)] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_2px,transparent_2px),linear-gradient(90deg,rgba(255,255,255,0.03)_2px,transparent_2px)] bg-[size:160px_160px]"
     ></div>
 
     <!-- Vignette légère -->
