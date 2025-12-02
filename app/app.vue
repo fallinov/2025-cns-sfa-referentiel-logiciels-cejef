@@ -86,17 +86,7 @@ const links = [{
         </div>
       </template>
       <template #panel>
-        <nav class="p-4 space-y-2">
-          <NuxtLink
-            v-for="link in links"
-            :key="link.label"
-            :to="link.to"
-            class="flex items-center gap-3 px-4 py-3 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
-          >
-            <UIcon :name="link.icon" class="w-5 h-5 text-gray-500 dark:text-gray-400" />
-            <span class="font-medium">{{ link.label }}</span>
-          </NuxtLink>
-        </nav>
+        <UVerticalNavigation :links="links" />
       </template>
     </UHeader>
 
