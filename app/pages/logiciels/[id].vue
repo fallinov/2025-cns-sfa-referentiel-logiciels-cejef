@@ -109,6 +109,9 @@ const showLgpdDetails = ref(false)
             <UIcon name="i-lucide-arrow-left" class="w-5 h-5" />
           </template>
           Retour
+          <template #trailing>
+            <UKbd>Esc</UKbd>
+          </template>
         </UButton>
 
         <div class="flex gap-2">
@@ -120,7 +123,12 @@ const showLgpdDetails = ref(false)
             size="md"
           >
             <template #leading>
-              <UIcon name="i-lucide-chevron-left" class="w-4 h-4" />
+              <div class="flex items-center gap-1">
+                <UIcon name="i-lucide-chevron-left" class="w-4 h-4" />
+                <UKbd>
+                  <UIcon name="i-lucide-arrow-left" class="w-3 h-3" />
+                </UKbd>
+              </div>
             </template>
             Précédent
           </UButton>
@@ -133,7 +141,12 @@ const showLgpdDetails = ref(false)
           >
             Suivant
             <template #trailing>
-              <UIcon name="i-lucide-chevron-right" class="w-4 h-4" />
+              <div class="flex items-center gap-1">
+                <UKbd>
+                  <UIcon name="i-lucide-arrow-right" class="w-3 h-3" />
+                </UKbd>
+                <UIcon name="i-lucide-chevron-right" class="w-4 h-4" />
+              </div>
             </template>
           </UButton>
         </div>
@@ -505,15 +518,21 @@ const showLgpdDetails = ref(false)
               Catégories
             </h4>
             <div class="flex flex-wrap gap-2">
-              <UBadge
+              <NuxtLink
                 v-for="category in software.categories"
                 :key="category"
-                color="primary"
-                variant="soft"
-                size="md"
+                :to="{ path: '/', query: { category } }"
+                class="hover:scale-105 transition-transform cursor-pointer"
               >
-                {{ category }}
-              </UBadge>
+                <UBadge
+                  color="primary"
+                  variant="soft"
+                  size="md"
+                  class="cursor-pointer"
+                >
+                  {{ category }}
+                </UBadge>
+              </NuxtLink>
             </div>
           </div>
 
@@ -523,15 +542,21 @@ const showLgpdDetails = ref(false)
               Activités
             </h4>
             <div class="flex flex-wrap gap-2">
-              <UBadge
+              <NuxtLink
                 v-for="activity in software.pedagogicalActivities"
                 :key="activity"
-                color="primary"
-                variant="soft"
-                size="md"
+                :to="{ path: '/', query: { activity } }"
+                class="hover:scale-105 transition-transform cursor-pointer"
               >
-                {{ activity }}
-              </UBadge>
+                <UBadge
+                  color="primary"
+                  variant="soft"
+                  size="md"
+                  class="cursor-pointer"
+                >
+                  {{ activity }}
+                </UBadge>
+              </NuxtLink>
             </div>
           </div>
 
@@ -541,15 +566,21 @@ const showLgpdDetails = ref(false)
               Disciplines
             </h4>
             <div class="flex flex-wrap gap-2">
-              <UBadge
+              <NuxtLink
                 v-for="discipline in software.disciplines"
                 :key="discipline"
-                color="primary"
-                variant="soft"
-                size="md"
+                :to="{ path: '/', query: { discipline } }"
+                class="hover:scale-105 transition-transform cursor-pointer"
               >
-                {{ discipline }}
-              </UBadge>
+                <UBadge
+                  color="primary"
+                  variant="soft"
+                  size="md"
+                  class="cursor-pointer"
+                >
+                  {{ discipline }}
+                </UBadge>
+              </NuxtLink>
             </div>
           </div>
         </div>

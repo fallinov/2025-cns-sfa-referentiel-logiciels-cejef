@@ -72,6 +72,18 @@ const loadMore = () => {
 watch(filteredSoftwareList, () => {
   displayedItems.value = itemsPerPage
 })
+
+// Handle URL Query Parameters for filtering
+const route = useRoute()
+onMounted(() => {
+  if (route.query.category) {
+    handleCategoryFilter(route.query.category as string)
+  } else if (route.query.discipline) {
+    handleDisciplineFilter(route.query.discipline as string)
+  } else if (route.query.activity) {
+    handleActivityFilter(route.query.activity as string)
+  }
+})
 </script>
 
 <template>
