@@ -201,10 +201,10 @@ const showLgpdDetails = ref(false)
               <UIcon name="i-lucide-check-circle" class="w-8 h-8 text-green-600 dark:text-green-400" />
             </div>
             <div class="flex-1">
-              <h2 class="text-lg font-bold text-green-800 dark:text-green-300 mb-1">
+              <h2 class="text-base font-bold text-green-800 dark:text-green-300 mb-1">
                 Usage Autorisé avec Élèves
               </h2>
-              <p class="text-green-800 dark:text-green-200 text-base leading-relaxed">
+              <p class="text-green-800 dark:text-green-200 text-sm leading-relaxed">
                 Vous pouvez utiliser ce logiciel librement avec vos élèves.
                 <strong class="font-semibold">La création de comptes et l'utilisation de données personnelles sont autorisées.</strong>
               </p>
@@ -290,10 +290,10 @@ const showLgpdDetails = ref(false)
               <UIcon name="i-lucide-alert-triangle" class="w-8 h-8 text-orange-600 dark:text-orange-400" />
             </div>
             <div class="flex-1">
-              <h2 class="text-lg font-bold text-orange-800 dark:text-orange-300 mb-1">
+              <h2 class="text-base font-bold text-orange-800 dark:text-orange-300 mb-1">
                 Usage Pédagogique Uniquement
               </h2>
-              <p class="text-orange-800 dark:text-orange-200 text-base leading-relaxed mb-2">
+              <p class="text-orange-800 dark:text-orange-200 text-sm leading-relaxed mb-2">
                 Vous pouvez utiliser cet outil pour votre préparation.
                 <strong class="block mt-1 font-semibold">Interdiction formelle de saisir des données d'élèves (noms, emails).</strong>
               </p>
@@ -390,10 +390,10 @@ const showLgpdDetails = ref(false)
               <UIcon name="i-lucide-ban" class="w-8 h-8 text-red-600 dark:text-red-400" />
             </div>
             <div class="flex-1">
-              <h2 class="text-lg font-bold text-red-800 dark:text-red-300 mb-1">
+              <h2 class="text-base font-bold text-red-800 dark:text-red-300 mb-1">
                 Usage Interdit
               </h2>
-              <p class="text-red-800 dark:text-red-200 text-base leading-relaxed mb-3">
+              <p class="text-red-800 dark:text-red-200 text-sm leading-relaxed mb-3">
                 Ce logiciel ne respecte pas les normes de sécurité.
                 <strong class="font-semibold">Il ne doit être utilisé ni par les enseignants ni par les élèves.</strong>
               </p>
