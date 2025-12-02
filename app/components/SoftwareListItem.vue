@@ -12,7 +12,7 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
 <template>
   <NuxtLink
     :to="`/logiciels/${software.id}`"
-    class="group relative flex items-center gap-4 p-4 pl-3 border-l-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
+    class="group relative flex items-start gap-4 p-4 pl-3 border-l-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
     :class="software.certificationLevel === 1 ? 'border-green-500' : software.certificationLevel === 2 ? 'border-orange-500' : software.certificationLevel === 3 ? 'border-red-500' : 'border-gray-300'"
   >
     <!-- Icon -->
@@ -34,12 +34,18 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
       <h3 class="text-lg font-semibold text-gray-900 dark:text-white truncate mb-1">
         {{ software.name }}
       </h3>
+      <p class="text-base text-gray-500 dark:text-gray-400 truncate">
+        {{ software.shortDescription }}
+      </p>
+    </div>
+
+    <!-- Certification Badge -->
+    <div class="flex-shrink-0">
       <UBadge
         v-if="software.certificationLevel"
         :color="software.certificationLevel === 1 ? 'success' : software.certificationLevel === 2 ? 'warning' : 'error'"
         variant="solid"
         size="md"
-        class="mb-1"
       >
         <template #leading>
           <UIcon
@@ -49,9 +55,6 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
         </template>
         {{ config.label }}
       </UBadge>
-      <p class="text-base text-gray-500 dark:text-gray-400 truncate">
-        {{ software.shortDescription }}
-      </p>
     </div>
 
     <!-- Meta -->
