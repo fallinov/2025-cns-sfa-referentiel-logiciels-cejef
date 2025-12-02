@@ -457,15 +457,27 @@ const showLgpdDetails = ref(false)
                 :to="`/logiciels/${sim.id}`"
                 class="flex items-center gap-3 group"
               >
-                <div
-                  class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-                  :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
-                >
-                  <UIcon
-                    :name="sim.icon || 'i-lucide-box'"
-                    class="w-5 h-5"
-                    :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).iconColor"
-                  />
+                <div class="relative">
+                  <div
+                    class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                    :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
+                  >
+                    <UIcon
+                      :name="sim.icon || 'i-lucide-box'"
+                      class="w-5 h-5"
+                      :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).iconColor"
+                    />
+                  </div>
+                  <!-- Certification Badge -->
+                  <div
+                    class="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center"
+                    :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).solidBg"
+                  >
+                    <UIcon
+                      :name="getCertificationIcon(sim.certificationLevel ?? getCertificationLevel(sim.lgpd))"
+                      class="w-3 h-3 text-white"
+                    />
+                  </div>
                 </div>
                 <div>
                   <div class="font-medium text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">
