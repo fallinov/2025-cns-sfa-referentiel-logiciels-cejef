@@ -29,14 +29,6 @@ const emit = defineEmits<{
   clear: []
 }>()
 
-// Keyboard navigation
-const selectedIndex = ref(-1)
-const selectedType = ref<"search" | "category" | "discipline" | "activity" | "software">("search")
-const maxCategoryIndex = computed(() => suggestions.value.categories.length - 1)
-const maxDisciplineIndex = computed(() => suggestions.value.disciplines.length - 1)
-const maxActivityIndex = computed(() => suggestions.value.activities.length - 1)
-const maxSoftwareIndex = computed(() => suggestions.value.software.length - 1)
-
 // Suggestions calculées via composable
 const { suggestions, hasSuggestions } = useSearchSuggestions(search)
 
@@ -45,29 +37,40 @@ const handleSoftwareClick = (softwareId: string) => {
   navigateTo(`/logiciels/${softwareId}`)
   showSuggestions.value = false
   search.value = ""
-  selectedIndex.value = -1
 }
 
 const handleCategoryClick = (category: string) => {
   emit("filterByCategory", category)
   showSuggestions.value = false
   search.value = category
-  selectedIndex.value = -1
 }
 
 const handleDisciplineClick = (discipline: string) => {
   emit("filterByDiscipline", discipline)
   showSuggestions.value = false
   search.value = discipline
-  selectedIndex.value = -1
 }
 
 const handleActivityClick = (activity: string) => {
   emit("filterByActivity", activity)
   showSuggestions.value = false
   search.value = activity
-  selectedIndex.value = -1
 }
+
+// Keyboard navigation avec composable (doit être après les handlers)
+const { selectedIndex, selectedType, handleKeyDown, resetSelection } = useKeyboardNavigation(
+  suggestions,
+  handleCategoryClick,
+  handleDisciplineClick,
+  handleActivityClick,
+  handleSoftwareClick,
+  () => {
+    // Si aucun élément n'est sélectionné, on valide la recherche textuelle
+    showSuggestions.value = false
+    const input = document.getElementById("software-search")
+    if (input) input.blur()
+  }
+)
 
 // Gestion du focus
 const handleFocus = () => {
@@ -86,177 +89,22 @@ const handleBlur = () => {
   }, 200)
 }
 
-// Navigation au clavier
-const handleKeyDown = (event: KeyboardEvent) => {
+// Navigation au clavier (gérée par le composable)
+// Wrapper pour ajouter la logique de showSuggestions
+const handleKeyDownWrapper = (event: KeyboardEvent) => {
   if (!showSuggestions.value) return
+  handleKeyDown(event)
 
-  const hasCategories = suggestions.value.categories.length > 0
-  const hasDisciplines = suggestions.value.disciplines.length > 0
-  const hasActivities = suggestions.value.activities.length > 0
-  const hasSoftware = suggestions.value.software.length > 0
-
-  if (!hasCategories && !hasDisciplines && !hasActivities && !hasSoftware) return
-
-  switch (event.key) {
-    case "ArrowDown":
-      event.preventDefault()
-      if (selectedType.value === "search") {
-        if (hasCategories) {
-          selectedType.value = "category"
-          selectedIndex.value = 0
-        } else if (hasDisciplines) {
-          selectedType.value = "discipline"
-          selectedIndex.value = 0
-        } else if (hasActivities) {
-          selectedType.value = "activity"
-          selectedIndex.value = 0
-        } else if (hasSoftware) {
-          selectedType.value = "software"
-          selectedIndex.value = 0
-        }
-      } else if (selectedType.value === "category") {
-        if (selectedIndex.value < maxCategoryIndex.value) {
-          selectedIndex.value++
-        } else {
-          // Try next sections
-          if (hasDisciplines) {
-            selectedType.value = "discipline"
-            selectedIndex.value = 0
-          } else if (hasActivities) {
-            selectedType.value = "activity"
-            selectedIndex.value = 0
-          } else if (hasSoftware) {
-            selectedType.value = "software"
-            selectedIndex.value = 0
-          }
-        }
-      } else if (selectedType.value === "discipline") {
-        if (selectedIndex.value < maxDisciplineIndex.value) {
-          selectedIndex.value++
-        } else {
-          if (hasActivities) {
-            selectedType.value = "activity"
-            selectedIndex.value = 0
-          } else if (hasSoftware) {
-            selectedType.value = "software"
-            selectedIndex.value = 0
-          }
-        }
-      } else if (selectedType.value === "activity") {
-        if (selectedIndex.value < maxActivityIndex.value) {
-          selectedIndex.value++
-        } else {
-          if (hasSoftware) {
-            selectedType.value = "software"
-            selectedIndex.value = 0
-          }
-        }
-      } else {
-        // Software
-        if (selectedIndex.value < maxSoftwareIndex.value) {
-          selectedIndex.value++
-        }
-      }
-      break
-
-    case "ArrowUp":
-      event.preventDefault()
-      if (selectedType.value === "software") {
-        if (selectedIndex.value > 0) {
-          selectedIndex.value--
-        } else {
-          // Go back to previous sections
-          if (hasActivities) {
-            selectedType.value = "activity"
-            selectedIndex.value = maxActivityIndex.value
-          } else if (hasDisciplines) {
-            selectedType.value = "discipline"
-            selectedIndex.value = maxDisciplineIndex.value
-          } else if (hasCategories) {
-            selectedType.value = "category"
-            selectedIndex.value = maxCategoryIndex.value
-          } else {
-            selectedType.value = "search"
-            selectedIndex.value = -1
-          }
-        }
-      } else if (selectedType.value === "activity") {
-        if (selectedIndex.value > 0) {
-          selectedIndex.value--
-        } else {
-          if (hasDisciplines) {
-            selectedType.value = "discipline"
-            selectedIndex.value = maxDisciplineIndex.value
-          } else if (hasCategories) {
-            selectedType.value = "category"
-            selectedIndex.value = maxCategoryIndex.value
-          } else {
-            selectedType.value = "search"
-            selectedIndex.value = -1
-          }
-        }
-      } else if (selectedType.value === "discipline") {
-        if (selectedIndex.value > 0) {
-          selectedIndex.value--
-        } else {
-          if (hasCategories) {
-            selectedType.value = "category"
-            selectedIndex.value = maxCategoryIndex.value
-          } else {
-            selectedType.value = "search"
-            selectedIndex.value = -1
-          }
-        }
-      } else if (selectedType.value === "category") {
-        if (selectedIndex.value > 0) {
-          selectedIndex.value--
-        } else {
-          selectedType.value = "search"
-          selectedIndex.value = -1
-        }
-      }
-      break
-
-    case "Enter":
-      event.preventDefault()
-      if (selectedIndex.value === -1) {
-        // Si aucun élément n'est sélectionné, on valide la recherche textuelle
-        showSuggestions.value = false
-        // Le filtre est déjà appliqué via v-model, on enlève juste le focus pour masquer le clavier sur mobile
-        const input = document.getElementById("software-search")
-        if (input) input.blur()
-      } else if (selectedType.value === "category") {
-        const category = suggestions.value.categories[selectedIndex.value]
-        if (category) {
-          handleCategoryClick(category)
-        }
-      } else if (selectedType.value === "discipline") {
-        const discipline = suggestions.value.disciplines[selectedIndex.value]
-        if (discipline) handleDisciplineClick(discipline)
-      } else if (selectedType.value === "activity") {
-        const activity = suggestions.value.activities[selectedIndex.value]
-        if (activity) handleActivityClick(activity)
-      } else if (selectedType.value === "software") {
-        const software = suggestions.value.software[selectedIndex.value]
-        if (software) {
-          handleSoftwareClick(software.id)
-        }
-      }
-      break
-
-    case "Escape":
-      showSuggestions.value = false
-      selectedIndex.value = -1
-      selectedType.value = "search"
-      break
+  // Gestion de l'Escape pour fermer les suggestions
+  if (event.key === "Escape") {
+    showSuggestions.value = false
   }
 }
 
 // Afficher les suggestions quand la recherche change
 watch(search, (newValue) => {
   showSuggestions.value = newValue.length >= 2 && isFocused.value
-  selectedIndex.value = -1
-  selectedType.value = "category" // Reset to first potential section, logic in render will handle empty sections
+  resetSelection()
 })
 
 // Typewriter Effect
@@ -310,10 +158,10 @@ const searchInput = ref<HTMLInputElement | null>(null)
           type="search"
           autocomplete="off"
           :placeholder="placeholderText"
-          class="w-full h-14 pl-6 pr-24 text-lg font-medium tracking-wide text-slate-900 dark:text-slate-100 rounded-[28px] focus:outline-none transition-all placeholder-slate-900/50 dark:placeholder-slate-100/50 [&::-webkit-search-cancel-button]:appearance-none bg-gradient-to-b from-white/90 via-white/80 to-white/70 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-gray-900/70 backdrop-blur-2xl ring-2 ring-inset ring-slate-900 dark:ring-slate-100 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] focus:ring-2 focus:ring-primary-500/50"
+          class="w-full h-14 pl-6 pr-24 text-lg font-medium tracking-wide text-slate-900 dark:text-slate-100 rounded-[28px] focus:outline-none transition-all placeholder-slate-400 dark:placeholder-slate-500 [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 ring-2 ring-black dark:ring-white shadow-sm focus:ring-2 focus:ring-primary-500"
           @focus="handleFocus"
           @blur="handleBlur"
-          @keydown="handleKeyDown"
+          @keydown="handleKeyDownWrapper"
         />
 
         <!-- Right Actions -->
@@ -352,11 +200,11 @@ const searchInput = ref<HTMLInputElement | null>(null)
       >
         <div
           v-if="showSuggestions && hasSuggestions"
-          class="absolute top-full left-0 right-0 mt-2 rounded-[24px] overflow-hidden z-20 bg-gradient-to-b from-white/90 via-white/80 to-white/60 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-gray-900/60 backdrop-blur-2xl ring-1 ring-inset ring-white/50 dark:ring-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_8px_32px_0_rgba(31,38,135,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
+          class="absolute top-full left-0 right-0 mt-2 rounded-[24px] overflow-hidden z-20 bg-white dark:bg-gray-800 ring-1 ring-gray-200 dark:ring-gray-700 shadow-lg"
         >
           <div class="p-2 space-y-2 max-h-96 overflow-y-auto">
             <!-- Search query avec nombre de résultats -->
-            <div class="px-3 py-3 bg-white/50 dark:bg-gray-800/50 rounded-xl backdrop-blur-sm"></div>
+            <div class="px-3 py-3 bg-gray-50 dark:bg-gray-700 rounded-xl"></div>
             <!-- Catégories correspondantes -->
             <div v-if="suggestions.categories.length > 0">
               <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">

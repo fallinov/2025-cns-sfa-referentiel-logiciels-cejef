@@ -102,13 +102,12 @@ const config = computed(() => {
 
 <template>
   <UCard
-    :class="['ring-2', config.ringClass, config.bgClass]"
-    :ui="{ body: { padding: 'p-6' } }"
+    :class="['ring-2', config.ringClass, config.bgClass, '[&>div]:!p-4']"
   >
     <div class="flex gap-5">
       <!-- Icon -->
       <div class="shrink-0">
-        <UIcon :name="config.icon" :class="['w-8 h-8', config.iconClass]" />
+        <CertificationBadge :level="certificationLevel" size="xl" />
       </div>
 
       <div class="flex-1">

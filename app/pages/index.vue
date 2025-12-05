@@ -87,12 +87,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative min-h-screen">
-    <!-- Background gradient with blobs -->
-    <BackgroundGradient />
-
-    <!-- Content with higher z-index -->
-    <UContainer class="relative z-10 py-8 sm:py-12 px-0 sm:px-6 lg:px-8">
+  <div class="min-h-screen">
+    <!-- Content -->
+    <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8">
       <!-- Ricardo Style Search & Filters -->
       <div class="mb-8 px-4 sm:px-0">
         <!-- Search Bar Area -->
@@ -160,14 +157,20 @@ onMounted(() => {
 
         <!-- Desktop/Tablet: Filtres visibles en ligne -->
         <div class="hidden sm:flex flex-wrap items-center gap-2">
-          <FilterButton
+          <UButton
             v-for="filter in store.popularFilters"
             :key="filter.id"
-            :label="filter.label"
-            :icon="filter.icon"
-            :active="selectedPopularFilters.includes(filter.id)"
+            :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
+            :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
+            size="xl"
+            :class="!selectedPopularFilters.includes(filter.id) ? 'text-black dark:text-white' : ''"
             @click="store.togglePopularFilter(filter.id)"
-          />
+          >
+            <template v-if="filter.icon" #leading>
+              <UIcon :name="filter.icon" />
+            </template>
+            {{ filter.label }}
+          </UButton>
         </div>
 
         <!-- Mobile: Drawer avec filtres -->
@@ -183,7 +186,7 @@ onMounted(() => {
                 :key="filter.id"
                 :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
                 :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
-                size="lg"
+                size="xl"
                 block
                 class="justify-start min-h-[44px]"
                 @click="store.togglePopularFilter(filter.id)"
@@ -221,15 +224,14 @@ onMounted(() => {
       />
 
       <div v-if="viewMode === 'grid'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-0">
-        <CardLiquidGlass
+        <SoftwareCard
           v-for="software in paginatedSoftwareList"
           :key="software.id"
           :software="software"
-          shape="curve"
         />
       </div>
 
-      <div v-else class="bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl rounded-none sm:rounded-[var(--ui-radius)] overflow-hidden">
+      <div v-else class="bg-white dark:bg-gray-800 rounded-none sm:rounded-[var(--ui-radius)] overflow-hidden shadow-md">
         <div class="relative flex flex-col divide-y divide-gray-200 dark:divide-gray-800">
           <SoftwareListItem
             v-for="software in paginatedSoftwareList"

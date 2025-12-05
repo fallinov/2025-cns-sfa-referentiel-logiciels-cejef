@@ -58,7 +58,7 @@ const demoSoftware = softwareList.slice(0, 6)
             :key="software.id"
             class="w-full max-w-[450px] h-full"
           >
-            <CardLiquidGlass :software="software" shape="curve" />
+            <SoftwareCard :software="software" />
           </div>
         </div>
       </main>

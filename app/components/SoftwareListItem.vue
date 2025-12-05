@@ -14,16 +14,25 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
     :to="`/logiciels/${software.id}`"
     class="group relative flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
   >
-    <!-- Icon -->
-    <div
-      class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg shadow-sm ring-1 ring-inset transition-colors duration-300"
-      :class="[
-        config.solidBg,
-        config.ring,
-        'text-white'
-      ]"
-    >
-      <UIcon :name="software.icon || 'i-lucide-package'" class="w-6 h-6" />
+    <!-- Logo/Icon -->
+    <div class="flex-shrink-0 w-16 h-16 flex items-center justify-center">
+      <img
+        v-if="software.logo"
+        :src="`/logos/${software.logo}.svg`"
+        :alt="`${software.name} logo`"
+        class="w-full h-full object-contain"
+      />
+      <UIcon
+        v-else-if="software.icon"
+        :name="software.icon"
+        class="w-full h-full"
+      />
+      <span
+        v-else
+        class="text-2xl font-black"
+      >
+        {{ software.name.substring(0, 2).toUpperCase() }}
+      </span>
     </div>
 
     <!-- Content -->
@@ -37,9 +46,9 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
           class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-semibold"
           :class="config.solidBg + ' text-white'"
         >
-          <UIcon
-            :name="config.icon"
-            class="w-3.5 h-3.5"
+          <CertificationBadge
+            :level="software.certificationLevel"
+            size="sm"
           />
           {{ config.label }}
         </div>

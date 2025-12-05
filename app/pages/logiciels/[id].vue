@@ -173,52 +173,7 @@ const showLgpdDetails = ref(false)
         <!-- Main Content (Left Column) -->
         <div class="lg:col-span-8 space-y-8">
           <!-- Header Section -->
-          <div class="flex items-start gap-6">
-            <!-- Logo/Icon -->
-            <div class="shrink-0 relative">
-              <div
-                :class="[config.solidBg, 'w-20 h-20 rounded-lg flex items-center justify-center shadow-lg']"
-              >
-                <img
-                  v-if="software.logo"
-                  :src="`/logos/${software.logo}.svg`"
-                  :alt="software.name"
-                  class="w-16 h-16 object-contain"
-                />
-                <UIcon
-                  v-else-if="software.icon"
-                  :name="software.icon"
-                  class="w-12 h-12 text-white"
-                />
-                <span
-                  v-else
-                  class="text-3xl font-black text-white"
-                >
-                  {{ software.name.substring(0, 2).toUpperCase() }}
-                </span>
-              </div>
-              <!-- Certification Badge -->
-              <div
-                class="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center shadow-md ring-2 ring-white dark:ring-gray-900"
-                :class="config.solidBg"
-              >
-                <UIcon
-                  :name="getCertificationIcon(certificationLevel)"
-                  class="w-4 h-4 text-white"
-                />
-              </div>
-            </div>
-
-            <!-- Title and Info -->
-            <div class="flex-1">
-              <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-2">
-                {{ software.name }}
-              </h1>
-              <p class="text-xl text-gray-600 dark:text-gray-400">
-                {{ software.shortDescription }}
-              </p>
-            </div>
-          </div>
+          <SoftwareDetailHeader :software="software" :config="config" />
 
           <!-- About Section -->
           <div v-if="software.description" class="prose dark:prose-invert max-w-none">
@@ -235,14 +190,14 @@ const showLgpdDetails = ref(false)
             <SoftwareCertificationCard
               v-model:show-details="showLgpdDetails"
               :software="software"
-              :certification-level="certificationLevel"
+              :certification-level="certificationLevel ?? 0"
               :lgpd-labels="lgpdLabels"
             />
           </div>
 
           <!-- Pedagogical Classification -->
           <div v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length">
-            <UCard :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
+            <UCard :ui="{ body: 'p-6', header: 'p-4 sm:p-6' }">
               <template #header>
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
                   <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
@@ -364,142 +319,14 @@ const showLgpdDetails = ref(false)
           </div>
 
           <!-- Practical Info Card -->
-          <!-- Practical Info Card -->
-          <UCard :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
-            <template #header>
-              <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <UIcon name="i-lucide-info" class="w-5 h-5 text-primary-600" />
-                Infos Pratiques
-              </h3>
-            </template>
-
-            <div class="space-y-6">
-              <!-- Cost -->
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
-                  <UIcon name="i-lucide-wallet" class="w-5 h-5 text-primary-600" />
-                </div>
-                <div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">
-                    Coût
-                  </div>
-                  <div class="font-semibold text-gray-900 dark:text-white">
-                    {{ software.cost }}
-                  </div>
-                </div>
-              </div>
-
-              <!-- Support -->
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
-                  <UIcon name="i-lucide-headphones" class="w-5 h-5 text-primary-600" />
-                </div>
-                <div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">
-                    Support CEJEF
-                  </div>
-                  <div class="font-semibold text-gray-900 dark:text-white">
-                    {{ software.supportedByCEJEF ? "Oui" : "Non" }}
-                  </div>
-                </div>
-              </div>
-
-              <!-- Training -->
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
-                  <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
-                </div>
-                <div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">
-                    Formation
-                  </div>
-                  <div class="font-semibold text-gray-900 dark:text-white">
-                    {{ software.campusTraining ? "Disponible" : "Non disponible" }}
-                  </div>
-                </div>
-              </div>
-
-              <!-- Target Audience -->
-              <div v-if="software.targetAudience" class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
-                  <UIcon name="i-lucide-users" class="w-5 h-5 text-primary-600" />
-                </div>
-                <div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">
-                    Public cible
-                  </div>
-                  <div class="font-semibold text-gray-900 dark:text-white capitalize">
-                    {{ software.targetAudience }}
-                  </div>
-                </div>
-              </div>
-
-              <!-- Age Restriction -->
-              <div v-if="software.ageRestriction" class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center shrink-0">
-                  <UIcon name="i-lucide-calendar" class="w-5 h-5 text-primary-600" />
-                </div>
-                <div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">
-                    Âge minimum
-                  </div>
-                  <div class="font-semibold text-gray-900 dark:text-white">
-                    {{ software.ageRestriction }} ans
-                  </div>
-                </div>
-              </div>
-            </div>
-          </UCard>
+          <SoftwareDetailPracticalInfo
+            :software="software"
+            :bg-color="getInfoPracticalStyle(certificationLevel).bg"
+            :icon-color="getInfoPracticalStyle(certificationLevel).iconColor"
+          />
 
           <!-- Similar Software -->
-          <UCard v-if="similarSoftwareList?.length" :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
-            <template #header>
-              <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <UIcon name="i-lucide-sparkles" class="w-5 h-5 text-primary-600" />
-                Logiciels similaires
-              </h3>
-            </template>
-
-            <div class="space-y-3">
-              <NuxtLink
-                v-for="sim in similarSoftwareList.slice(0, 3)"
-                :key="sim.id"
-                :to="`/logiciels/${sim.id}`"
-                class="flex items-center gap-3 group"
-              >
-                <div class="relative">
-                  <div
-                    class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-                    :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
-                  >
-                    <UIcon
-                      :name="sim.icon || 'i-lucide-box'"
-                      class="w-5 h-5"
-                      :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).iconColor"
-                    />
-                  </div>
-                  <!-- Certification Badge -->
-                  <div
-                    class="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center"
-                    :class="getCertificationConfig(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).solidBg"
-                  >
-                    <UIcon
-                      :name="getCertificationIcon(sim.certificationLevel ?? getCertificationLevel(sim.lgpd))"
-                      class="w-3 h-3 text-white"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div class="font-medium text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">
-                    {{ sim.name }}
-                  </div>
-                  <div class="text-xs text-gray-500 truncate max-w-[150px]">
-                    {{ sim.shortDescription }}
-                  </div>
-                </div>
-              </NuxtLink>
-            </div>
-          </UCard>
+          <SoftwareDetailSimilar :similar-software="similarSoftwareList.slice(0, 3)" />
         </div>
       </div>
     </UContainer>

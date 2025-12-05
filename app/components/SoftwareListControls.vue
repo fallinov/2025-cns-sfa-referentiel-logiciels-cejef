@@ -14,33 +14,23 @@
     </div>
 
     <!-- View Toggle -->
-    <div class="flex items-center gap-2">
-      <button
-        type="button"
-        :class="[
-          'inline-flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 backdrop-blur-md shadow-sm',
-          viewMode === 'grid'
-            ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
-            : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
-        ]"
+    <div class="flex gap-4">
+      <UButton
+        :variant="viewMode === 'grid' ? 'solid' : 'outline'"
+        :color="viewMode === 'grid' ? 'primary' : 'neutral'"
+        icon="i-lucide-layout-grid"
+        size="xl"
         aria-label="Vue grille"
         @click="viewMode = 'grid'"
-      >
-        <UIcon name="i-lucide-layout-grid" class="w-5 h-5" />
-      </button>
-      <button
-        type="button"
-        :class="[
-          'inline-flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 backdrop-blur-md shadow-sm',
-          viewMode === 'list'
-            ? 'bg-primary-500/90 text-white border border-primary-400 hover:bg-primary-500'
-            : 'bg-white/30 dark:bg-white/10 text-slate-900 dark:text-slate-100 border border-white/40 dark:border-white/20 hover:bg-white/50 hover:border-white/60 dark:hover:bg-white/20'
-        ]"
+      />
+      <UButton
+        :variant="viewMode === 'list' ? 'solid' : 'outline'"
+        :color="viewMode === 'list' ? 'primary' : 'neutral'"
+        icon="i-lucide-list"
+        size="xl"
         aria-label="Vue liste"
         @click="viewMode = 'list'"
-      >
-        <UIcon name="i-lucide-list" class="w-5 h-5" />
-      </button>
+      />
     </div>
   </div>
 </template>
