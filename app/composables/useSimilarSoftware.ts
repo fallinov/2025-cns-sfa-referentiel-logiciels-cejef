@@ -1,4 +1,4 @@
-import type { Software } from "~~/types/software"
+import { type Software, getCertificationLevel } from "~~/types/software"
 
 export const useSimilarSoftware = () => {
   const { getSoftwareList } = useSoftware()
@@ -6,8 +6,12 @@ export const useSimilarSoftware = () => {
   const getSimilarSoftware = (software: Software, limit: number = 3): Software[] => {
     const allSoftware = getSoftwareList()
 
-    // Filter out the current software
-    const candidates = allSoftware.filter(s => s.id !== software.id)
+    // Filter out the current software AND forbidden software (Level 3)
+    const candidates = allSoftware.filter(s => {
+      if (s.id === software.id) return false
+      const level = s.certificationLevel ?? getCertificationLevel(s.lgpd)
+      return level !== 3
+    })
 
     const scoredCandidates = candidates.map((candidate) => {
       let score = 0

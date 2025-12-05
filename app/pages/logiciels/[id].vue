@@ -175,16 +175,6 @@ const showLgpdDetails = ref(false)
           <!-- Header Section -->
           <SoftwareDetailHeader :software="software" :config="config" />
 
-          <!-- About Section -->
-          <div v-if="software.description" class="prose dark:prose-invert max-w-none">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              À propos
-            </h2>
-            <div class="text-gray-600 dark:text-gray-300 whitespace-pre-line">
-              {{ software.description }}
-            </div>
-          </div>
-
           <!-- Main Status Card (Traffic Light System) - Simplified Design -->
           <div class="mb-8">
             <SoftwareCertificationCard
@@ -193,6 +183,16 @@ const showLgpdDetails = ref(false)
               :certification-level="certificationLevel ?? 0"
               :lgpd-labels="lgpdLabels"
             />
+          </div>
+
+          <!-- About Section -->
+          <div v-if="software.description" class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              À propos
+            </h2>
+            <div class="text-gray-600 dark:text-gray-300 whitespace-pre-line">
+              {{ software.description }}
+            </div>
           </div>
 
           <!-- Pedagogical Classification -->
