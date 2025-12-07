@@ -121,7 +121,7 @@ onMounted(() => {
         <button
           v-if="hasActiveFilters"
           type="button"
-          class="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 font-medium transition-colors"
+          class="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 font-medium transition-colors cursor-pointer"
           @click="clearAllFilters"
         >
           <UIcon name="i-lucide-rotate-ccw" class="w-4 h-4" />
@@ -163,7 +163,7 @@ onMounted(() => {
             :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
             :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
             size="xl"
-            :class="!selectedPopularFilters.includes(filter.id) ? 'text-black dark:text-white' : ''"
+            :class="[!selectedPopularFilters.includes(filter.id) ? 'text-black dark:text-white' : '', 'cursor-pointer']"
             @click="store.togglePopularFilter(filter.id)"
           >
             <template v-if="filter.icon" #leading>
@@ -188,7 +188,7 @@ onMounted(() => {
                 :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
                 size="xl"
                 block
-                class="justify-start min-h-[44px]"
+                class="justify-start min-h-[44px] cursor-pointer"
                 @click="store.togglePopularFilter(filter.id)"
               >
                 <template #leading>
@@ -223,7 +223,7 @@ onMounted(() => {
         v-model:view-mode="viewMode"
       />
 
-      <div v-if="viewMode === 'grid'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-0">
+      <div v-if="viewMode === 'grid'" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 px-4 sm:px-0">
         <SoftwareCard
           v-for="software in paginatedSoftwareList"
           :key="software.id"

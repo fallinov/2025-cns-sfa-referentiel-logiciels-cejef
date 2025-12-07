@@ -17,90 +17,89 @@ const config = computed(() => {
 </script>
 
 <template>
-  <UPageCard
-    as="NuxtLink"
+  <NuxtLink
     :to="`/logiciels/${software.id}`"
-    spotlight
-    :spotlight-color="config.color"
-    class="relative overflow-hidden [&>div]:!p-4"
+    class="group relative w-full aspect-[3/4] overflow-hidden bg-white dark:bg-gray-800 rounded-[10px] shadow-md hover:shadow-xl hover:scale-[1.05] transition-all duration-[700ms] ease-in-out p-8 flex flex-col items-start gap-6 isolate"
   >
-    <!-- Certification badge overlay (top right corner) -->
-    <div class="absolute top-2 right-2 z-20 pointer-events-none">
-      <CertificationBadge :level="software.certificationLevel" size="2xl" />
+    <!-- Expanding Background Circle -->
+    <!-- Positioned top-right to mimic the reference 'number' blob -->
+    <div
+      class="absolute -top-12 -right-12 w-32 h-32 rounded-full transition-transform duration-[700ms] ease-in-out group-hover:scale-[25] -z-10"
+      :class="config.solidBg"
+    ></div>
+
+    <!-- Certification Icon (Fixed in corner) -->
+    <div class="absolute top-5 right-5 z-20">
+      <UIcon
+        :name="config.icon"
+        class="w-6 h-6 text-white transition-all duration-[700ms]"
+      />
     </div>
 
-    <!-- Logo and Content Container -->
-    <div class="flex gap-4 mb-4 relative z-10 pointer-events-none">
-      <!-- Logo -->
-      <div class="flex-shrink-0">
-        <div class="w-12 h-12 flex items-center justify-center">
-          <img
-            v-if="software.logo"
-            :src="`/logos/${software.logo}.svg`"
-            :alt="`${software.name} logo`"
-            class="w-full h-full object-contain"
-          />
-          <UIcon
-            v-else-if="software.icon"
-            :name="software.icon"
-            class="w-full h-full"
-          />
-          <span
-            v-else
-            class="text-xl font-black"
-          >
-            {{ software.name.substring(0, 2).toUpperCase() }}
-          </span>
-        </div>
-      </div>
-
-      <!-- Title and Description -->
-      <div class="flex-1 min-w-0 space-y-2">
-        <h3 class="text-2xl font-bold">
-          {{ software.name }}
-        </h3>
-
-        <p v-if="!compact" class="text-base text-slate-900 dark:text-slate-100">
-          {{ software.shortDescription }}
-        </p>
-      </div>
-    </div>
-
-    <!-- Filter badges at bottom -->
-    <div class="flex flex-wrap gap-2 mt-auto relative z-10 pointer-events-none">
-      <!-- Cost Badge -->
-      <UBadge variant="outline" color="neutral" :size="compact ? 'sm' : 'md'">
-        <template #leading>
-          <UIcon :class="compact ? 'w-4 h-4' : 'w-5 h-5'" name="i-lucide-wallet" />
-        </template>
-        {{ software.cost }}
-      </UBadge>
-
-      <!-- Support CEJEF Badge -->
-      <UBadge
-        v-if="software.supportedByCEJEF"
-        variant="outline"
-        color="neutral"
-        :size="compact ? 'sm' : 'md'"
+    <!-- Logo -->
+    <div class="relative z-10 w-12 h-12 transition-colors duration-[700ms]">
+      <img
+        v-if="software.logo"
+        :src="`/logos/${software.logo}.svg`"
+        :alt="`${software.name} logo`"
+        class="w-full h-full object-contain brightness-100 group-hover:brightness-0 group-hover:invert transition-all duration-[700ms]"
+      />
+      <UIcon
+        v-else-if="software.icon"
+        :name="software.icon"
+        class="w-full h-full group-hover:text-white transition-colors duration-[700ms]"
+        :class="config.text"
+      />
+      <span
+        v-else
+        class="text-xl font-black group-hover:text-white transition-colors duration-[700ms]"
+        :class="config.text"
       >
-        <template #leading>
-          <UIcon :class="compact ? 'w-4 h-4' : 'w-5 h-5'" name="i-lucide-headphones" />
-        </template>
+        {{ software.name.substring(0, 2).toUpperCase() }}
+      </span>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 flex-1 w-full">
+      <h3 class="text-xl font-extrabold mb-3 text-gray-900 dark:text-white group-hover:text-white transition-colors duration-500">
+        {{ software.name }}
+      </h3>
+
+      <p
+        v-if="!compact"
+        class="text-sm leading-relaxed text-gray-600 dark:text-gray-300 group-hover:text-white/90 transition-colors duration-500 line-clamp-3"
+      >
+        {{ software.shortDescription }}
+      </p>
+    </div>
+
+    <!-- Badges / Categories -->
+    <div class="relative z-10 mt-auto flex flex-wrap gap-2">
+      <!-- Cost Badge -->
+      <span
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium border transition-colors duration-500 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 group-hover:border-white/30 group-hover:text-white"
+      >
+        <UIcon name="i-lucide-wallet" class="w-3.5 h-3.5" />
+        {{ software.cost }}
+      </span>
+
+      <!-- Support Badge -->
+      <span
+        v-if="software.supportedByCEJEF"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium border transition-colors duration-500 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 group-hover:border-white/30 group-hover:text-white"
+      >
+        <UIcon name="i-lucide-headphones" class="w-3.5 h-3.5" />
         Support
-      </UBadge>
+      </span>
 
       <!-- Training Badge -->
-      <UBadge
+      <span
         v-if="software.campusTraining"
-        variant="outline"
-        color="neutral"
-        :size="compact ? 'sm' : 'md'"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium border transition-colors duration-500 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 group-hover:border-white/30 group-hover:text-white"
       >
-        <template #leading>
-          <UIcon :class="compact ? 'w-4 h-4' : 'w-5 h-5'" name="i-lucide-graduation-cap" />
-        </template>
+        <UIcon name="i-lucide-graduation-cap" class="w-3.5 h-3.5" />
         Formation
-      </UBadge>
+      </span>
     </div>
-  </UPageCard>
+  </NuxtLink>
 </template>

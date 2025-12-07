@@ -92,3 +92,17 @@
   /* Global Radius Configuration */
   --ui-radius: 0.5rem;
 }
+
+/* Force cursor pointer on interactive elements */
+button,
+a,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+[role="button"] {
+  cursor: pointer;
+}
+
+body {
+  background-color: #F5F5F5;
+}
