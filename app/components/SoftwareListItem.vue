@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Software } from "~~/types/software"
-import { getCertificationConfig } from "~/utils/certification"
+import { getCertificationConfig, getCertificationIcon } from "~/utils/certification"
 
 const props = defineProps<{
   software: Software
@@ -14,8 +14,10 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
     :to="`/logiciels/${software.id}`"
     class="group relative flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
   >
+
+
     <!-- Logo/Icon -->
-    <div class="flex-shrink-0 w-16 h-16 flex items-center justify-center">
+    <div class="relative flex-shrink-0 w-12 h-12 flex items-center justify-center">
       <img
         v-if="software.logo"
         :src="`/logos/${software.logo}.svg`"
@@ -25,14 +27,25 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
       <UIcon
         v-else-if="software.icon"
         :name="software.icon"
-        class="w-full h-full"
+        class="w-full h-full transition-colors duration-500 text-gray-900 dark:text-white"
       />
       <span
         v-else
-        class="text-2xl font-black"
+        class="text-lg font-black transition-colors duration-500 text-gray-900 dark:text-white"
       >
         {{ software.name.substring(0, 2).toUpperCase() }}
       </span>
+
+      <!-- Certification Badge (Floating Top Left of Logo) -->
+      <div
+        class="absolute -top-3 -left-3 w-8 h-8 flex items-center justify-center rounded-full shadow-sm ring-2 transition-colors duration-500 z-20"
+        :class="[config.solidBg, config.ringSolid]"
+      >
+        <UIcon
+          :name="getCertificationIcon(software.certificationLevel)"
+          class="w-6 h-6 text-white"
+        />
+      </div>
     </div>
 
     <!-- Content -->
@@ -41,33 +54,49 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white truncate">
           {{ software.name }}
         </h3>
-        <div
-          v-if="software.certificationLevel"
-          class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-semibold"
-          :class="config.solidBg + ' text-white'"
-        >
-          <CertificationBadge
-            :level="software.certificationLevel"
-            size="sm"
-          />
-          {{ config.label }}
-        </div>
       </div>
-      <p class="text-base text-gray-500 dark:text-gray-400 truncate">
+      <p class="text-base text-gray-600 dark:text-gray-300 truncate">
         {{ software.shortDescription }}
       </p>
     </div>
 
-    <!-- Meta -->
-    <div class="hidden sm:flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-      <div v-if="software.categories?.length" class="flex items-center gap-1">
-        <UIcon name="i-lucide-tag" class="w-3 h-3" />
-        <span>{{ software.categories[0] }}</span>
-      </div>
-      <div class="flex items-center gap-1">
-        <UIcon name="i-lucide-coins" class="w-3 h-3" />
-        <span>{{ software.cost }}</span>
-      </div>
+    <!-- Meta / Badges -->
+    <div class="hidden sm:flex items-center gap-2">
+      <!-- Student Data Allowed -->
+      <span
+        v-if="software.personalData"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-medium border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800"
+      >
+        <UIcon name="i-lucide-user-check" class="w-3.5 h-3.5" />
+        <span class="hidden lg:inline">Données élèves</span>
+      </span>
+
+      <!-- Support CEJEF -->
+      <span
+        v-if="software.supportedByCEJEF"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-medium border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800"
+      >
+        <UIcon name="i-lucide-headset" class="w-3.5 h-3.5" />
+        <span class="hidden lg:inline">Support CEJEF</span>
+      </span>
+
+      <!-- Training Available -->
+      <span
+        v-if="software.campusTraining"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-medium border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800"
+      >
+        <UIcon name="i-lucide-graduation-cap" class="w-3.5 h-3.5" />
+        <span class="hidden lg:inline">Formation</span>
+      </span>
+
+      <!-- 100% Free -->
+      <span
+        v-if="software.cost === 'Gratuit'"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-medium border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800"
+      >
+        <UIcon name="i-lucide-coins" class="w-3.5 h-3.5" />
+        <span class="hidden lg:inline">100% gratuit</span>
+      </span>
     </div>
 
     <!-- Chevron indicator -->

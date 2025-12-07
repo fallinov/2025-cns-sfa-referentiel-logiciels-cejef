@@ -32,7 +32,7 @@ const config = computed(() => {
     <div class="absolute top-5 right-5 z-20">
       <UIcon
         :name="config.icon"
-        class="w-6 h-6 text-white transition-all duration-[700ms]"
+        class="w-8 h-8 text-white transition-all duration-[700ms]"
       />
     </div>
 

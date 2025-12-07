@@ -295,15 +295,19 @@ npm install
 
 # 3. Lancer le serveur de développement
 npm run dev
+
+# Ou pour exposer sur le réseau local
+npm run dev:public
 ```
 
-Le site est accessible sur **http://localhost:3000**
+Le site est accessible sur **http://localhost:3000** (ou votre IP locale)
 
 ### Commandes disponibles
 
 ```bash
 # Développement
 npm run dev              # Serveur de développement avec hot-reload
+npm run dev:public       # Serveur de développement accessible sur le réseau
 npm run build            # Compilation pour production (SSR)
 npm run generate         # Génération du site statique
 npm run preview          # Prévisualiser le site généré

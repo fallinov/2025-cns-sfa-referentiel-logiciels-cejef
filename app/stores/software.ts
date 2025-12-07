@@ -21,6 +21,24 @@ export const useSoftwareStore = defineStore("software", () => {
   // Popular Filters Configuration
   const popularFilters = [
     {
+      id: "cert-level-1",
+      label: "Validé",
+      icon: "i-lucide-check",
+      predicate: (software: Software) => (software.certificationLevel ?? getCertificationLevel(software.lgpd)) === 1
+    },
+    {
+      id: "cert-level-2",
+      label: "Restreint",
+      icon: "i-lucide-alert-triangle",
+      predicate: (software: Software) => (software.certificationLevel ?? getCertificationLevel(software.lgpd)) === 2
+    },
+    {
+      id: "cert-level-3",
+      label: "Interdit",
+      icon: "i-lucide-x",
+      predicate: (software: Software) => (software.certificationLevel ?? getCertificationLevel(software.lgpd)) === 3
+    },
+    {
       id: "personal-data",
       label: "Données élèves autorisées",
       icon: "i-lucide-user-check",
@@ -109,8 +127,8 @@ export const useSoftwareStore = defineStore("software", () => {
     // Only apply if the search query is NOT one of the active filters (to avoid double filtering)
     const isExactFilterMatch
       = (selectedCategories.value.length === 1 && selectedCategories.value[0] === searchQuery.value)
-        || (selectedDisciplines.value.length === 1 && selectedDisciplines.value[0] === searchQuery.value)
-        || (selectedActivities.value.length === 1 && selectedActivities.value[0] === searchQuery.value)
+      || (selectedDisciplines.value.length === 1 && selectedDisciplines.value[0] === searchQuery.value)
+      || (selectedActivities.value.length === 1 && selectedActivities.value[0] === searchQuery.value)
 
     if (searchQuery.value && !isExactFilterMatch) {
       const searchTerms = expandSearchQuery(searchQuery.value)
@@ -180,12 +198,29 @@ export const useSoftwareStore = defineStore("software", () => {
 
   // Actions
   const togglePopularFilter = (filterId: string) => {
-    if (selectedPopularFilters.value.includes(filterId)) {
-      selectedPopularFilters.value = selectedPopularFilters.value.filter(
-        id => id !== filterId
-      )
+    const certFilters = ["cert-level-1", "cert-level-2", "cert-level-3"]
+
+    // Handle mutual exclusivity for certification filters
+    if (certFilters.includes(filterId)) {
+      if (selectedPopularFilters.value.includes(filterId)) {
+        // Deselect if already selected
+        selectedPopularFilters.value = selectedPopularFilters.value.filter(id => id !== filterId)
+      } else {
+        // Select new one and deselect other cert filters
+        selectedPopularFilters.value = [
+          ...selectedPopularFilters.value.filter(id => !certFilters.includes(id)),
+          filterId
+        ]
+      }
     } else {
-      selectedPopularFilters.value = [...selectedPopularFilters.value, filterId]
+      // Standard toggle for other filters
+      if (selectedPopularFilters.value.includes(filterId)) {
+        selectedPopularFilters.value = selectedPopularFilters.value.filter(
+          id => id !== filterId
+        )
+      } else {
+        selectedPopularFilters.value = [...selectedPopularFilters.value, filterId]
+      }
     }
   }
 

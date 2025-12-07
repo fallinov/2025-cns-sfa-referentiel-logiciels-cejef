@@ -5,6 +5,7 @@ export interface CertificationConfig {
   bg: string
   solidBg: string
   ring: string
+  ringSolid: string
   text: string
   color: "error" | "info" | "primary" | "secondary" | "success" | "warning" | "neutral"
 }
@@ -17,6 +18,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
     bg: "bg-green-50/10 dark:bg-green-950/10",
     solidBg: "bg-green-500 dark:bg-green-500",
     ring: "ring-green-500/20",
+    ringSolid: "ring-green-500 dark:ring-green-500",
     text: "text-green-500 dark:text-green-400",
     color: "success"
   },
@@ -27,6 +29,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
     bg: "bg-orange-50/10 dark:bg-orange-950/10",
     solidBg: "bg-orange-500 dark:bg-orange-500",
     ring: "ring-orange-500/20",
+    ringSolid: "ring-orange-500 dark:ring-orange-500",
     text: "text-orange-500 dark:text-orange-400",
     color: "warning"
   },
@@ -37,6 +40,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
     bg: "bg-red-50/10 dark:bg-red-950/10",
     solidBg: "bg-red-500 dark:bg-red-500",
     ring: "ring-red-500/20",
+    ringSolid: "ring-red-500 dark:ring-red-500",
     text: "text-red-500 dark:text-red-400",
     color: "error"
   }
@@ -49,6 +53,7 @@ export const DEFAULT_CERTIFICATION: CertificationConfig = {
   bg: "bg-gray-50/10 dark:bg-gray-950/10",
   solidBg: "bg-gray-500 dark:bg-gray-600",
   ring: "ring-gray-200 dark:ring-gray-700",
+  ringSolid: "ring-gray-500 dark:ring-gray-600",
   text: "text-gray-500 dark:text-gray-400",
   color: "neutral"
 }
