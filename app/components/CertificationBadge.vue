@@ -8,21 +8,24 @@ const props = withDefaults(defineProps<Props>(), {
   size: "md"
 })
 
+const config = useRuntimeConfig()
+const baseURL = config.app.baseURL
+
 const badgeConfig = computed(() => {
   switch (props.level) {
     case 1:
       return {
-        src: "/logos/cejef-badge-valide.svg",
+        src: `${baseURL}logos/cejef-badge-valide.svg`.replace(/\/\/+/g, '/'),
         alt: "Badge Validé"
       }
     case 2:
       return {
-        src: "/logos/cejef-badge-restreint.svg",
+        src: `${baseURL}logos/cejef-badge-restreint.svg`.replace(/\/\/+/g, '/'),
         alt: "Badge Restreint"
       }
     case 3:
       return {
-        src: "/logos/cejef-badge-interdit.svg",
+        src: `${baseURL}logos/cejef-badge-interdit.svg`.replace(/\/\/+/g, '/'),
         alt: "Badge Interdit"
       }
     default:
