@@ -75,6 +75,9 @@ watch(filteredSoftwareList, () => {
 
 // Handle URL Query Parameters for filtering
 const route = useRoute()
+const loadMoreSentinel = ref<HTMLElement | null>(null)
+let observer: IntersectionObserver | null = null
+
 onMounted(() => {
   if (route.query.category) {
     handleCategoryFilter(route.query.category as string)
@@ -83,6 +86,30 @@ onMounted(() => {
   } else if (route.query.activity) {
     handleActivityFilter(route.query.activity as string)
   }
+
+  // Setup Intersection Observer for infinite scroll
+  observer = new IntersectionObserver((entries) => {
+    if (entries[0]?.isIntersecting && hasMoreItems.value) {
+      loadMore()
+    }
+  }, {
+    root: null,
+    rootMargin: "100px",
+    threshold: 0.1
+  })
+
+  // Watch for sentinel element availability
+  watch(loadMoreSentinel, (el) => {
+    if (el && observer) {
+      observer.observe(el)
+    } else {
+      observer?.disconnect()
+    }
+  }, { immediate: true })
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
 })
 </script>
 
@@ -241,19 +268,43 @@ onMounted(() => {
         </div>
       </div>
 
-      <!-- Load More Button -->
-      <div v-if="hasMoreItems && filteredSoftwareList.length > 0" class="mt-12 flex justify-center px-4 sm:px-0">
-        <UButton
-          color="primary"
-          size="xl"
-          variant="solid"
-          @click="loadMore"
+      <!-- Infinite Scroll Sentinel & Skeletons -->
+      <div
+        v-if="hasMoreItems && filteredSoftwareList.length > 0"
+        ref="loadMoreSentinel"
+        class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 px-4 sm:px-0 mt-6"
+      >
+        <div
+          v-for="n in 4"
+          :key="n"
+          class="relative w-full overflow-hidden bg-white dark:bg-gray-800 rounded-[10px] shadow-md p-6 flex flex-col gap-6 isolate"
         >
-          <template #leading>
-            <UIcon name="i-lucide-chevron-down" class="w-5 h-5" />
-          </template>
-          Charger plus ({{ filteredSoftwareList.length - displayedItems }} restants)
-        </UButton>
+          <!-- Certification Icon Skeleton (Absolute Top Right) -->
+          <div class="absolute top-5 right-5 z-20">
+            <USkeleton class="h-6 w-6 rounded-full" />
+          </div>
+
+          <!-- Logo Skeleton -->
+          <div class="relative z-10 w-12 h-12">
+            <USkeleton class="h-full w-full rounded-lg" />
+          </div>
+
+          <!-- Title & Description Skeleton -->
+          <div class="relative z-10 space-y-3 flex-1 w-full">
+            <USkeleton class="h-7 w-3/4 rounded-md" /> <!-- Title -->
+            <div class="space-y-2 pt-1">
+              <USkeleton class="h-4 w-full" />
+              <USkeleton class="h-4 w-5/6" />
+              <USkeleton class="h-4 w-4/6" />
+            </div>
+          </div>
+
+          <!-- Badges Skeleton -->
+          <div class="relative z-10 flex gap-2 mt-auto">
+            <USkeleton class="h-6 w-24 rounded-md" />
+            <USkeleton class="h-6 w-20 rounded-md" />
+          </div>
+        </div>
       </div>
 
       <SoftwareListEmpty
