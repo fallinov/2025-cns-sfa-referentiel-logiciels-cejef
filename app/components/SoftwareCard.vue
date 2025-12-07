@@ -19,7 +19,7 @@ const config = computed(() => {
 <template>
   <NuxtLink
     :to="`/logiciels/${software.id}`"
-    class="group relative w-full aspect-[3/4] overflow-hidden bg-white dark:bg-gray-800 rounded-[10px] shadow-md hover:shadow-xl hover:scale-[1.05] transition-all duration-[700ms] ease-in-out p-8 flex flex-col items-start gap-6 isolate"
+    class="group relative w-full overflow-hidden bg-white dark:bg-gray-800 rounded-[10px] shadow-md hover:shadow-xl hover:scale-[1.05] transition-all duration-[700ms] ease-in-out p-6 flex flex-col items-start gap-6 isolate"
   >
     <!-- Expanding Background Circle -->
     <!-- Positioned top-right to mimic the reference 'number' blob -->
@@ -61,44 +61,54 @@ const config = computed(() => {
 
     <!-- Content -->
     <div class="relative z-10 flex-1 w-full">
-      <h3 class="text-xl font-extrabold mb-3 text-gray-900 dark:text-white group-hover:text-white transition-colors duration-500">
+      <h3 class="text-xl font-extrabold mb-3 leading-[1.1] text-gray-900 dark:text-white group-hover:text-white transition-colors duration-500">
         {{ software.name }}
       </h3>
 
       <p
         v-if="!compact"
-        class="text-sm leading-relaxed text-gray-600 dark:text-gray-300 group-hover:text-white/90 transition-colors duration-500 line-clamp-3"
+        class="text-base leading-relaxed text-gray-600 dark:text-gray-300 group-hover:text-white/90 transition-colors duration-500 line-clamp-3"
       >
         {{ software.shortDescription }}
       </p>
     </div>
 
-    <!-- Badges / Categories -->
+    <!-- Badges (Quick Filters only) -->
     <div class="relative z-10 mt-auto flex flex-wrap gap-2">
-      <!-- Cost Badge -->
+      <!-- Student Data Allowed -->
       <span
-        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium border transition-colors duration-500 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 group-hover:border-white/30 group-hover:text-white"
+        v-if="software.personalData"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-medium border transition-colors duration-500 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 group-hover:border-white/30 group-hover:text-white"
       >
-        <UIcon name="i-lucide-wallet" class="w-3.5 h-3.5" />
-        {{ software.cost }}
+        <UIcon name="i-lucide-user-check" class="w-3.5 h-3.5" />
+        Données élèves
       </span>
 
-      <!-- Support Badge -->
+      <!-- Support CEJEF -->
       <span
         v-if="software.supportedByCEJEF"
-        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium border transition-colors duration-500 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 group-hover:border-white/30 group-hover:text-white"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-medium border transition-colors duration-500 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 group-hover:border-white/30 group-hover:text-white"
       >
-        <UIcon name="i-lucide-headphones" class="w-3.5 h-3.5" />
-        Support
+        <UIcon name="i-lucide-headset" class="w-3.5 h-3.5" />
+        Support CEJEF
       </span>
 
-      <!-- Training Badge -->
+      <!-- Training Available -->
       <span
         v-if="software.campusTraining"
-        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium border transition-colors duration-500 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 group-hover:border-white/30 group-hover:text-white"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-medium border transition-colors duration-500 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 group-hover:border-white/30 group-hover:text-white"
       >
         <UIcon name="i-lucide-graduation-cap" class="w-3.5 h-3.5" />
         Formation
+      </span>
+
+      <!-- 100% Free -->
+      <span
+        v-if="software.cost === 'Gratuit'"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-medium border transition-colors duration-500 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 group-hover:border-white/30 group-hover:text-white"
+      >
+        <UIcon name="i-lucide-coins" class="w-3.5 h-3.5" />
+        100% gratuit
       </span>
     </div>
   </NuxtLink>
