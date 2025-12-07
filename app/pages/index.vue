@@ -108,6 +108,13 @@ onMounted(() => {
   if (loadMoreSentinel.value) {
     observer.observe(loadMoreSentinel.value)
   }
+
+  // Watch for sentinel re-appearance (e.g. after filters hide/show it)
+  watch(loadMoreSentinel, (newEl) => {
+    if (newEl && observer) {
+      observer.observe(newEl)
+    }
+  })
 })
 
 // Re-activate observer when returning to the page
