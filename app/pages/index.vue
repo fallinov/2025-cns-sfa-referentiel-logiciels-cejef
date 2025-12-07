@@ -114,7 +114,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen bg-[#F5F5F5] dark:bg-gray-900">
     <!-- Content -->
     <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8">
       <!-- Ricardo Style Search & Filters -->

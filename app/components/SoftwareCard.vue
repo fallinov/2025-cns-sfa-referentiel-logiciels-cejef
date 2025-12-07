@@ -21,15 +21,17 @@ const config = computed(() => {
     :to="`/logiciels/${software.id}`"
     class="group relative w-full overflow-hidden bg-white dark:bg-gray-800 rounded-[10px] shadow-md hover:shadow-xl hover:scale-[1.05] transition-all duration-[700ms] ease-in-out p-6 flex flex-col items-start gap-6 isolate"
   >
-    <!-- Expanding Background Circle -->
+    <!-- Expanding Background Circle (The Blob) -->
     <!-- Positioned top-right to mimic the reference 'number' blob -->
     <div
-      class="absolute -top-12 -right-12 w-32 h-32 rounded-full transition-transform duration-[700ms] ease-in-out group-hover:scale-[25] -z-10"
+      class="absolute -top-12 -right-12 w-28 h-28 rounded-full transition-transform duration-[700ms] ease-in-out group-hover:scale-[25] -z-10"
       :class="config.solidBg"
     ></div>
 
+
+
     <!-- Certification Icon (Fixed in corner) -->
-    <div class="absolute top-5 right-5 z-20">
+    <div class="absolute top-3 right-3 z-30">
       <UIcon
         :name="config.icon"
         class="w-8 h-8 text-white transition-all duration-[700ms]"
