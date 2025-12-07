@@ -68,15 +68,21 @@ const loadMore = () => {
   displayedItems.value += itemsPerPage
 }
 
-// Réinitialiser la pagination quand les filtres changent
-watch(filteredSoftwareList, () => {
+// Réinitialiser la pagination seulement si les filtres changent explicitement
+watch([searchQuery, selectedCategories, selectedDisciplines, selectedActivities, selectedPopularFilters], () => {
   displayedItems.value = itemsPerPage
 })
 
 // Handle URL Query Parameters for filtering
+// Handle URL Query Parameters for filtering
 const route = useRoute()
 const loadMoreSentinel = ref<HTMLElement | null>(null)
 let observer: IntersectionObserver | null = null
+
+defineOptions({
+  name: 'IndexPage'
+})
+
 
 onMounted(() => {
   if (route.query.category) {
@@ -98,23 +104,32 @@ onMounted(() => {
     threshold: 0.1
   })
 
-  // Watch for sentinel element availability
-  watch(loadMoreSentinel, (el) => {
-    if (el && observer) {
-      observer.observe(el)
-    } else {
-      observer?.disconnect()
-    }
-  }, { immediate: true })
+  // Initial observation
+  if (loadMoreSentinel.value) {
+    observer.observe(loadMoreSentinel.value)
+  }
 })
 
+// Re-activate observer when returning to the page
+onActivated(() => {
+  if (loadMoreSentinel.value && observer) {
+    observer.observe(loadMoreSentinel.value)
+  }
+})
+
+// Disconnect observer when leaving the page (but keep state in memory)
+onDeactivated(() => {
+  observer?.disconnect()
+})
+
+// Clean up completely if component is destroyed
 onUnmounted(() => {
   observer?.disconnect()
 })
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#F5F5F5] dark:bg-gray-900">
+  <div class="min-h-screen">
     <!-- Content -->
     <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8">
       <!-- Ricardo Style Search & Filters -->
@@ -175,7 +190,7 @@ onUnmounted(() => {
               v-if="selectedPopularFilters.length > 0"
               color="primary"
               size="sm"
-              class="ml-2"
+              class="ml-2 rounded-[var(--ui-radius)] ring-2 ring-[#1C293C]"
             >
               {{ selectedPopularFilters.length }}
             </UBadge>
@@ -190,7 +205,7 @@ onUnmounted(() => {
             :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
             :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
             size="xl"
-            :class="[!selectedPopularFilters.includes(filter.id) ? 'text-black dark:text-white' : '', 'cursor-pointer']"
+            :class="[!selectedPopularFilters.includes(filter.id) ? 'text-black dark:text-white !ring-[#1C293C] dark:!ring-gray-700' : '!ring-primary-500 dark:!ring-primary-400', 'rounded-[var(--ui-radius)] cursor-pointer ring-2']"
             @click="store.togglePopularFilter(filter.id)"
           >
             <template v-if="filter.icon" #leading>
@@ -224,7 +239,7 @@ onUnmounted(() => {
                 {{ filter.label }}
               </UButton>
 
-              <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-800">
+              <div class="mt-4 pt-4 border-t dark:border-gray-800">
                 <UButton
                   v-if="selectedPopularFilters.length > 0"
                   color="neutral"
@@ -277,7 +292,7 @@ onUnmounted(() => {
         <div
           v-for="n in 4"
           :key="n"
-          class="relative w-full overflow-hidden bg-white dark:bg-gray-800 rounded-[10px] shadow-md p-6 flex flex-col gap-6 isolate"
+          class="relative w-full overflow-hidden bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-md p-6 flex flex-col gap-6 isolate"
         >
           <!-- Certification Icon Skeleton (Absolute Top Right) -->
           <div class="absolute top-5 right-5 z-20">

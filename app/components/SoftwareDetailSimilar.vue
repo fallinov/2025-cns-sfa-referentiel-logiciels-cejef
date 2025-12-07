@@ -45,7 +45,7 @@ const sortedSimilarSoftware = computed(() => {
 </script>
 
 <template>
-  <UCard v-if="sortedSimilarSoftware.length" :ui="{ body: { padding: 'p-6' }, header: { padding: 'p-4 sm:p-6' } }">
+  <UCard v-if="sortedSimilarSoftware.length" class="ring-2 ring-[#1C293C] rounded-[var(--ui-radius)]" :ui="{ body: 'p-6', header: 'p-4 sm:p-6' }">
     <template #header>
       <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
         <UIcon name="i-lucide-sparkles" class="w-5 h-5 text-primary-600" />
@@ -62,7 +62,7 @@ const sortedSimilarSoftware = computed(() => {
       >
         <div class="relative">
           <div
-            class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+            class="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
             :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
           >
             <UIcon

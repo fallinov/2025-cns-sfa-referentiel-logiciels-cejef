@@ -26,7 +26,7 @@ const config = computed(() => {
         title: "Usage Autorisé avec Élèves",
         description: "Vous pouvez utiliser ce logiciel librement avec vos élèves.",
         emphasis: "La création de comptes et l'utilisation de données personnelles sont autorisées.",
-        ringClass: "ring-green-500/50",
+        ringClass: "ring-[#1C293C]",
         bgClass: "bg-green-50 dark:bg-green-900/10",
         iconClass: "text-green-600 dark:text-green-400",
         titleClass: "text-green-800 dark:text-green-200",
@@ -45,7 +45,7 @@ const config = computed(() => {
         description: "Vous pouvez utiliser cet outil pour votre préparation.",
         emphasis: "Interdiction formelle de saisir des données d'élèves (noms, emails).",
         additionalInfo: "Si les élèves doivent utiliser l'outil, cela doit être fait de manière strictement anonyme.",
-        ringClass: "ring-orange-500/50",
+        ringClass: "ring-[#1C293C]",
         bgClass: "bg-orange-50 dark:bg-orange-900/10",
         iconClass: "text-orange-600 dark:text-orange-400",
         titleClass: "text-orange-800 dark:text-orange-200",
@@ -66,7 +66,7 @@ const config = computed(() => {
         title: "Usage Interdit",
         description: "Ce logiciel ne respecte pas les normes de sécurité.",
         emphasis: "Il ne doit être utilisé ni par les enseignants ni par les élèves.",
-        ringClass: "ring-red-500/50",
+        ringClass: "ring-[#1C293C]",
         bgClass: "bg-red-50 dark:bg-red-900/10",
         iconClass: "text-red-600 dark:text-red-400",
         titleClass: "text-red-800 dark:text-red-200",
@@ -85,12 +85,12 @@ const config = computed(() => {
         title: "Non classifié",
         description: "",
         emphasis: "",
-        ringClass: "ring-gray-500/50",
+        ringClass: "ring-[#1C293C]",
         bgClass: "bg-gray-50 dark:bg-gray-900/10",
         iconClass: "text-gray-600 dark:text-gray-400",
         titleClass: "text-gray-800 dark:text-gray-200",
         textClass: "text-gray-800 dark:text-gray-200",
-        borderClass: "border-gray-200 dark:border-gray-800/50",
+        borderClass: "border dark:border-gray-800/50",
         buttonColor: "neutral" as const,
         buttonClass: "text-gray-700 dark:text-gray-300",
         labelClass: "text-gray-900 dark:text-gray-100",
@@ -102,7 +102,7 @@ const config = computed(() => {
 
 <template>
   <UCard
-    :class="['ring-2', config.ringClass, config.bgClass, '[&>div]:!p-4']"
+    :class="['ring-2 rounded-[var(--ui-radius)]', config.ringClass, config.bgClass, '[&>div]:!p-4']"
   >
     <div class="flex gap-5">
       <!-- Icon -->
@@ -130,7 +130,7 @@ const config = computed(() => {
         <!-- Usage Notes (Level 2 only) -->
         <div
           v-if="certificationLevel === 2 && software.usageNotes"
-          :class="['mb-4 p-3 rounded border text-base italic', config.noteBgClass, config.noteBorderClass, config.noteTextClass]"
+          :class="['mb-4 p-3 rounded-[var(--ui-radius)] border text-base italic', config.noteBgClass, config.noteBorderClass, config.noteTextClass]"
         >
           Note : {{ software.usageNotes }}
         </div>

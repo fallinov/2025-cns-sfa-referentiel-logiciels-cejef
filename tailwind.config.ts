@@ -54,6 +54,12 @@ export default {
         2000: "2s",
         4000: "4s"
       },
+      borderColor: {
+        DEFAULT: "#1C293C"
+      },
+      borderWidth: {
+        DEFAULT: "2px"
+      },
       keyframes: {
         blob: {
           "0%": {

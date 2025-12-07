@@ -8,9 +8,19 @@ import { getCertificationConfig } from "~/utils/certification"
  */
 
 const route = useRoute()
+const router = useRouter()
 const { getSoftwareById } = useSoftware()
 const { getPreviousSoftware, getNextSoftware } = useSoftwareNavigation()
 const { getSimilarSoftware } = useSimilarSoftware()
+
+// Fonction de retour intelligente (historique ou accueil)
+const goBack = () => {
+  if (window.history.state.back) {
+    router.back()
+  } else {
+    navigateTo('/')
+  }
+}
 
 // Récupérer le logiciel via l'ID dans l'URL
 const softwareId = computed(() => route.params.id as string)
@@ -24,12 +34,12 @@ const nextSoftware = computed(() => software.value ? getNextSoftware(software.va
 defineShortcuts({
   arrowleft: () => {
     if (previousSoftware.value) {
-      navigateTo(`/logiciels/${previousSoftware.value.id}`)
+      navigateTo(`/logiciels/${previousSoftware.value.id}`, { replace: true })
     }
   },
   arrowright: () => {
     if (nextSoftware.value) {
-      navigateTo(`/logiciels/${nextSoftware.value.id}`)
+      navigateTo(`/logiciels/${nextSoftware.value.id}`, { replace: true })
     }
   },
   escape: () => {
@@ -121,29 +131,32 @@ const showLgpdDetails = ref(false)
 </script>
 
 <template>
-  <div v-if="software" class="min-h-screen bg-gray-50 dark:bg-gray-900">
+  <div v-if="software" class="min-h-screen bg-white dark:bg-gray-900">
     <UContainer class="py-8 max-w-[600px] lg:max-w-[1000px]">
       <!-- Navigation Bar -->
       <div class="mb-8 flex items-center justify-between">
         <UButton
-          to="/"
           color="neutral"
           variant="ghost"
           size="lg"
+          class="rounded-[var(--ui-radius)]"
+          @click="goBack"
         >
           <template #leading>
             <UIcon name="i-lucide-arrow-left" class="w-5 h-5" />
           </template>
-          Retour
+           Retour
         </UButton>
 
         <div class="flex gap-2">
           <UButton
             :disabled="!previousSoftware"
             :to="previousSoftware ? `/logiciels/${previousSoftware.id}` : undefined"
+            replace
             color="neutral"
-            variant="outline"
+            variant="ghost"
             size="md"
+            class="rounded-[var(--ui-radius)]"
           >
             <template #leading>
               <UKbd>
@@ -155,9 +168,11 @@ const showLgpdDetails = ref(false)
           <UButton
             :disabled="!nextSoftware"
             :to="nextSoftware ? `/logiciels/${nextSoftware.id}` : undefined"
+            replace
             color="neutral"
-            variant="outline"
+            variant="ghost"
             size="md"
+            class="rounded-[var(--ui-radius)]"
           >
             Suivant
             <template #trailing>
@@ -197,7 +212,7 @@ const showLgpdDetails = ref(false)
 
           <!-- Pedagogical Classification -->
           <div v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length">
-            <UCard :ui="{ body: 'p-6', header: 'p-4 sm:p-6' }">
+            <UCard class="ring-2 ring-[#1C293C] rounded-[var(--ui-radius)]" :ui="{ body: 'p-6', header: 'p-4 sm:p-6' }">
               <template #header>
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
                   <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
@@ -293,7 +308,7 @@ const showLgpdDetails = ref(false)
               variant="solid"
               size="xl"
               block
-              class="rounded-lg"
+              class="rounded-[var(--ui-radius)]"
             >
               <template #leading>
                 <UIcon name="i-lucide-external-link" class="w-5 h-5" />
@@ -306,10 +321,10 @@ const showLgpdDetails = ref(false)
               :to="software.documentation"
               target="_blank"
               color="neutral"
-              variant="outline"
-              size="xl"
+              variant="ghost"
+              size="lg"
               block
-              class="rounded-lg"
+              class="rounded-[var(--ui-radius)]"
             >
               <template #leading>
                 <UIcon name="i-lucide-book-open" class="w-5 h-5" />
@@ -321,8 +336,8 @@ const showLgpdDetails = ref(false)
           <!-- Practical Info Card -->
           <SoftwareDetailPracticalInfo
             :software="software"
-            :bg-color="getInfoPracticalStyle(certificationLevel).bg"
-            :icon-color="getInfoPracticalStyle(certificationLevel).iconColor"
+            :bg-color="'bg-gray-50 dark:bg-gray-800'"
+            :icon-color="'text-red-500'"
           />
 
           <!-- Similar Software -->

@@ -9,7 +9,7 @@
         option-attribute="label"
         value-attribute="value"
         size="xl"
-        class="w-56"
+        class="w-56 ring-2 ring-[#1C293C] rounded-[var(--ui-radius)] hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200"
       />
     </div>
 
@@ -20,6 +20,7 @@
         :color="viewMode === 'grid' ? 'primary' : 'neutral'"
         icon="i-lucide-layout-grid"
         size="xl"
+        class="rounded-[var(--ui-radius)] ring-2 ring-[#1C293C]"
         aria-label="Vue grille"
         @click="viewMode = 'grid'"
       />
@@ -28,6 +29,7 @@
         :color="viewMode === 'list' ? 'primary' : 'neutral'"
         icon="i-lucide-list"
         size="xl"
+        class="rounded-[var(--ui-radius)] ring-2 ring-[#1C293C]"
         aria-label="Vue liste"
         @click="viewMode = 'list'"
       />

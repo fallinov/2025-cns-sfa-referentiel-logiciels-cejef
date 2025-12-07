@@ -17,7 +17,7 @@ const getInitials = (name: string) => name.substring(0, 2).toUpperCase()
   <div class="flex flex-col sm:flex-row items-start gap-6 mb-8">
     <!-- Logo/Icon -->
     <div class="flex-shrink-0">
-      <div class="w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
+      <div class="w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center">
         <img
           v-if="software.logo"
           :src="`/logos/${software.logo}.svg`"
@@ -31,7 +31,7 @@ const getInitials = (name: string) => name.substring(0, 2).toUpperCase()
         />
         <span
           v-else
-          class="text-5xl sm:text-6xl font-black"
+          class="text-4xl sm:text-5xl font-black"
         >
           {{ getInitials(software.name) }}
         </span>
@@ -39,19 +39,7 @@ const getInitials = (name: string) => name.substring(0, 2).toUpperCase()
     </div>
 
     <div class="flex-1 min-w-0">
-      <!-- Certification Badge -->
-      <div class="mb-4">
-        <UBadge
-          :color="config.color"
-          variant="soft"
-          size="lg"
-        >
-          <template #leading>
-            <CertificationBadge :level="software.certificationLevel" size="md" />
-          </template>
-          {{ config.label }}
-        </UBadge>
-      </div>
+      <!-- Title and Info -->
 
       <!-- Title and Info -->
       <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">

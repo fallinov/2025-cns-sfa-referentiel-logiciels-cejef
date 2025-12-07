@@ -47,7 +47,7 @@ export interface Software {
 
   // DESCRIPTION
   shortDescription: string
-  description?: string
+  description?: string | null
 
   // CLASSIFICATION & LOCALISATION
   lgpd: LgpdClassification
@@ -69,9 +69,9 @@ export interface Software {
   documentation?: string | null
 
   // USAGE
-  targetAudience?: TargetAudience
-  ageRestriction?: number
-  usageNotes?: string
+  targetAudience?: TargetAudience | null
+  ageRestriction?: number | null
+  usageNotes?: string | null
 
   // ALTERNATIVES VERTES (pour logiciels niveau 2 ou 3)
   greenAlternatives?: string[]

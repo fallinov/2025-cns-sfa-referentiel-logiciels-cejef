@@ -200,7 +200,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
       >
         <div
           v-if="showSuggestions && hasSuggestions"
-          class="absolute top-full left-0 right-0 mt-2 rounded-[24px] overflow-hidden z-20 bg-white dark:bg-gray-800 ring-1 ring-gray-200 dark:ring-gray-700 shadow-lg"
+          class="absolute top-full left-0 right-0 mt-2 rounded-[var(--ui-radius)] overflow-hidden z-20 bg-white dark:bg-gray-800 border-2 border-[#1C293C] dark:border-gray-700 shadow-lg"
         >
           <div class="p-2 space-y-2 max-h-96 overflow-y-auto">
             <!-- Search query avec nombre de résultats -->

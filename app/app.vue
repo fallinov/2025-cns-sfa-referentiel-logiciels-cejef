@@ -34,11 +34,15 @@ const _links = [{
 </script>
 
 <template>
-  <UApp>
+  <UApp class="min-h-screen bg-white dark:bg-gray-950">
     <AppHeader />
 
     <UMain>
-      <NuxtPage />
+      <NuxtPage v-slot="{ Component }">
+        <KeepAlive include="IndexPage" :max="10">
+          <Component :is="Component" />
+        </KeepAlive>
+      </NuxtPage>
     </UMain>
 
     <USeparator />
