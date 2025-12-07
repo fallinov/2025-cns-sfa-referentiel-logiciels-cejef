@@ -34,7 +34,7 @@ const _links = [{
 </script>
 
 <template>
-  <UApp class="min-h-screen bg-white dark:bg-gray-950">
+  <UApp class="min-h-screen bg-[#f5f5f5] dark:bg-gray-950">
     <AppHeader />
 
     <UMain>

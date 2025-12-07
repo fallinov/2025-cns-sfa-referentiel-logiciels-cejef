@@ -102,7 +102,7 @@ const config = computed(() => {
 
 <template>
   <UCard
-    :class="['ring-2 rounded-[var(--ui-radius)]', config.ringClass, config.bgClass, '[&>div]:!p-4']"
+    :class="['rounded-[var(--ui-radius)]', config.bgClass, '[&>div]:!p-4']"
   >
     <div class="flex gap-5">
       <!-- Icon -->
@@ -130,7 +130,7 @@ const config = computed(() => {
         <!-- Usage Notes (Level 2 only) -->
         <div
           v-if="certificationLevel === 2 && software.usageNotes"
-          :class="['mb-4 p-3 rounded-[var(--ui-radius)] border text-base italic', config.noteBgClass, config.noteBorderClass, config.noteTextClass]"
+          :class="['mb-4 p-3 rounded-[var(--ui-radius)] text-base italic', config.noteBgClass, config.noteBorderClass, config.noteTextClass]"
         >
           Note : {{ software.usageNotes }}
         </div>

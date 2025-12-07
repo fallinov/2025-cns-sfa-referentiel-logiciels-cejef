@@ -51,7 +51,7 @@ const isFiltersDrawerOpen = ref(false)
 
 // Pagination pour améliorer les performances (126 logiciels)
 const itemsPerPage = 24
-const displayedItems = ref(itemsPerPage)
+const displayedItems = useState('software-list-pagination', () => itemsPerPage)
 
 // Liste paginée
 const paginatedSoftwareList = computed(() => {
@@ -129,7 +129,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen bg-[#f5f5f5] dark:bg-gray-950">
     <!-- Content -->
     <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8">
       <!-- Ricardo Style Search & Filters -->
@@ -190,7 +190,7 @@ onUnmounted(() => {
               v-if="selectedPopularFilters.length > 0"
               color="primary"
               size="sm"
-              class="ml-2 rounded-[var(--ui-radius)] ring-2 ring-[#1C293C]"
+              class="ml-2 rounded-[var(--ui-radius)] cursor-pointer"
             >
               {{ selectedPopularFilters.length }}
             </UBadge>
@@ -198,6 +198,9 @@ onUnmounted(() => {
         </div>
 
         <!-- Desktop/Tablet: Filtres visibles en ligne -->
+        <div class="hidden sm:block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-200">
+          Filtres populaires
+        </div>
         <div class="hidden sm:flex flex-wrap items-center gap-2">
           <UButton
             v-for="filter in store.popularFilters"
@@ -205,7 +208,7 @@ onUnmounted(() => {
             :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
             :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
             size="xl"
-            :class="[!selectedPopularFilters.includes(filter.id) ? 'text-black dark:text-white !ring-[#1C293C] dark:!ring-gray-700' : '!ring-primary-500 dark:!ring-primary-400', 'rounded-[var(--ui-radius)] cursor-pointer ring-2']"
+            :class="[!selectedPopularFilters.includes(filter.id) ? 'text-black dark:text-white' : '', 'rounded-[var(--ui-radius)] cursor-pointer']"
             @click="store.togglePopularFilter(filter.id)"
           >
             <template v-if="filter.icon" #leading>
@@ -265,7 +268,7 @@ onUnmounted(() => {
         v-model:view-mode="viewMode"
       />
 
-      <div v-if="viewMode === 'grid'" class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 px-4 sm:px-0">
+      <div v-if="viewMode === 'grid'" class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 px-4 sm:px-0 items-stretch">
         <SoftwareCard
           v-for="software in paginatedSoftwareList"
           :key="software.id"

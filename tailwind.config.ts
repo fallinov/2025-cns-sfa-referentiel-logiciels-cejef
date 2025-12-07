@@ -58,7 +58,7 @@ export default {
         DEFAULT: "#1C293C"
       },
       borderWidth: {
-        DEFAULT: "2px"
+        DEFAULT: '1px'
       },
       keyframes: {
         blob: {

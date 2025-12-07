@@ -158,7 +158,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
           type="search"
           autocomplete="off"
           :placeholder="placeholderText"
-          class="w-full h-14 pl-6 pr-24 text-lg font-medium tracking-wide text-slate-900 dark:text-slate-100 rounded-[28px] focus:outline-none transition-all placeholder-slate-400 dark:placeholder-slate-500 [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 ring-2 ring-black dark:ring-white shadow-sm focus:ring-2 focus:ring-primary-500"
+          class="w-full h-14 pl-6 pr-24 text-lg font-medium tracking-wide text-slate-900 dark:text-slate-100 rounded-[28px] focus:outline-none transition-all placeholder-black dark:placeholder-white [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 ring-2 ring-black dark:ring-white shadow-sm focus:ring-2 focus:ring-primary-500"
           @focus="handleFocus"
           @blur="handleBlur"
           @keydown="handleKeyDownWrapper"
@@ -200,7 +200,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
       >
         <div
           v-if="showSuggestions && hasSuggestions"
-          class="absolute top-full left-0 right-0 mt-2 rounded-[var(--ui-radius)] overflow-hidden z-20 bg-white dark:bg-gray-800 border-2 border-[#1C293C] dark:border-gray-700 shadow-lg"
+          class="absolute top-full left-0 right-0 mt-2 rounded-[var(--ui-radius)] overflow-hidden z-20 bg-white dark:bg-gray-800 border border-[#1C293C] dark:border-gray-700 shadow-lg"
         >
           <div class="p-2 space-y-2 max-h-96 overflow-y-auto">
             <!-- Search query avec nombre de résultats -->

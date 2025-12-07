@@ -27,13 +27,13 @@ const handleCardClick = () => {
   <NuxtLink
     :id="`software-${software.id}`"
     :to="`/logiciels/${software.id}`"
-    class="group relative w-full h-full overflow-hidden bg-white dark:bg-gray-800 border-2 border-[#1C293C] dark:border-gray-700 rounded-[var(--ui-radius)] shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-primary-500 transition-all duration-300 ease-out p-6 flex flex-col items-start gap-4 isolate"
+    class="group relative w-full h-full overflow-hidden bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-primary-500 transition-all duration-300 ease-out p-6 flex flex-col items-start gap-4 isolate cursor-pointer"
     @click="handleCardClick"
   >
 
 
     <!-- Certification Badge (Icon + Label) -->
-    <div class="absolute top-4 right-4 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-sm">
+    <div class="absolute top-4 right-4 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700">
       <UIcon
         :name="config.icon"
         class="w-5 h-5"
@@ -47,9 +47,9 @@ const handleCardClick = () => {
       />
       <span class="text-sm font-bold uppercase tracking-wider"
         :class="[
-          software.certificationLevel === 1 ? 'text-green-700 dark:text-green-300' :
-          software.certificationLevel === 2 ? 'text-orange-700 dark:text-orange-300' :
-          software.certificationLevel === 3 ? 'text-red-700 dark:text-red-300' :
+          software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400' :
+          software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400' :
+          software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400' :
           'text-gray-600 dark:text-gray-300'
         ]"
       >
@@ -83,7 +83,7 @@ const handleCardClick = () => {
 
     <!-- Content -->
     <div class="relative z-10 flex-1 w-full">
-      <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+      <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white transition-colors line-clamp-2">
         {{ software.name }}
       </h3>
 
@@ -100,7 +100,7 @@ const handleCardClick = () => {
       <!-- Student Data Allowed -->
       <span
         v-if="software.personalData"
-        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium border-2 border-[#1C293C] dark:border-gray-700 text-gray-700 dark:text-gray-200"
+        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
         aria-label="Données élèves autorisées"
       >
         <UIcon name="i-lucide-user-check" class="w-4 h-4" aria-hidden="true" />
@@ -110,7 +110,7 @@ const handleCardClick = () => {
       <!-- Support CEJEF -->
       <span
         v-if="software.supportedByCEJEF"
-        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium border-2 border-[#1C293C] dark:border-gray-700 text-gray-700 dark:text-gray-200"
+        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
         aria-label="Support assuré par le CEJEF"
       >
         <UIcon name="i-lucide-headset" class="w-4 h-4" aria-hidden="true" />
@@ -120,7 +120,7 @@ const handleCardClick = () => {
       <!-- Training Available -->
       <span
         v-if="software.campusTraining"
-        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium border-2 border-[#1C293C] dark:border-gray-700 text-gray-700 dark:text-gray-200"
+        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
         aria-label="Formation disponible"
       >
         <UIcon name="i-lucide-graduation-cap" class="w-4 h-4" aria-hidden="true" />
@@ -130,7 +130,7 @@ const handleCardClick = () => {
       <!-- 100% Free -->
       <span
         v-if="software.cost === 'Gratuit'"
-        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium border-2 border-[#1C293C] dark:border-gray-700 text-gray-700 dark:text-gray-200"
+        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
         aria-label="Logiciel gratuit"
       >
         <UIcon name="i-lucide-coins" class="w-4 h-4" aria-hidden="true" />

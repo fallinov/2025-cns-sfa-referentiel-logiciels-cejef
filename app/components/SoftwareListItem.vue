@@ -65,7 +65,7 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
       <!-- Student Data Allowed -->
       <span
         v-if="software.personalData"
-        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium border-2 border-[#1C293C] dark:border-gray-700 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
       >
         <UIcon name="i-lucide-user-check" class="w-3.5 h-3.5" />
         <span class="hidden lg:inline">Données élèves</span>
@@ -74,7 +74,7 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
       <!-- Support CEJEF -->
       <span
         v-if="software.supportedByCEJEF"
-        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium border-2 border-[#1C293C] dark:border-gray-700 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
       >
         <UIcon name="i-lucide-headset" class="w-3.5 h-3.5" />
         <span class="hidden lg:inline">Support CEJEF</span>
@@ -83,7 +83,7 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
       <!-- Training Available -->
       <span
         v-if="software.campusTraining"
-        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium border-2 border-[#1C293C] dark:border-gray-700 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
       >
         <UIcon name="i-lucide-graduation-cap" class="w-3.5 h-3.5" />
         <span class="hidden lg:inline">Formation</span>
@@ -92,7 +92,7 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
       <!-- 100% Free -->
       <span
         v-if="software.cost === 'Gratuit'"
-        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium border-2 border-[#1C293C] dark:border-gray-700 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800"
+        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
       >
         <UIcon name="i-lucide-coins" class="w-3.5 h-3.5" />
         <span class="hidden lg:inline">100% gratuit</span>
