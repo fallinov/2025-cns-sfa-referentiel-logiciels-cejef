@@ -293,7 +293,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
           />
 
           <!-- Right Actions -->
-          <div class="absolute inset-y-0 right-0 flex items-center pr-3 gap-3">
+          <div class="absolute top-0 right-0 h-14 flex items-center pr-3 gap-3">
             <!-- Clear Button -->
             <button
               v-if="search"
