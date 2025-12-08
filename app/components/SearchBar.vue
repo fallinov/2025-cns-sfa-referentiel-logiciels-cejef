@@ -260,7 +260,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
     >
       Rechercher un logiciel
     </label>
-    <div class="relative group flex items-stretch z-50">
+    <div class="relative group flex items-stretch">
       <div
         class="relative flex-1 transition-all duration-200"
         :class="isFocused ? 'scale-[1.02]' : 'scale-100'"
@@ -268,7 +268,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
         <!-- Input container -->
         <div
           :class="[
-            'relative z-20 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md',
+            'relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md',
             showSuggestions
               ? 'rounded-t-[24px] border-b-0 shadow-md'
               : 'rounded-full'
@@ -333,7 +333,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
           <div
             v-if="showSuggestions"
             role="listbox"
-            class="absolute z-10 top-full left-0 right-0 bg-white dark:bg-gray-800 border-x border-b border-gray-200 dark:border-gray-700 rounded-b-[24px] shadow-2xl pb-2"
+            class="absolute top-full left-0 right-0 bg-white dark:bg-gray-800 border-x border-b border-gray-200 dark:border-gray-700 rounded-b-[24px] shadow-2xl pb-2"
           >
             <div class="py-2 max-h-96 overflow-y-auto">
               <!-- Popular searches (when search is empty) -->
