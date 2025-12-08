@@ -51,7 +51,7 @@ const isFiltersDrawerOpen = ref(false)
 
 // Pagination pour améliorer les performances (126 logiciels)
 const itemsPerPage = 24
-const displayedItems = useState('software-list-pagination', () => itemsPerPage)
+const displayedItems = useState("software-list-pagination", () => itemsPerPage)
 
 // Liste paginée
 const paginatedSoftwareList = computed(() => {
@@ -80,9 +80,8 @@ const loadMoreSentinel = ref<HTMLElement | null>(null)
 let observer: IntersectionObserver | null = null
 
 defineOptions({
-  name: 'IndexPage'
+  name: "IndexPage"
 })
-
 
 onMounted(() => {
   if (route.query.category) {

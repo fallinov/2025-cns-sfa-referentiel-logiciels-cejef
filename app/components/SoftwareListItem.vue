@@ -15,7 +15,6 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
     class="group relative flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
   >
 
-
     <!-- Logo/Icon -->
     <div class="relative flex-shrink-0 w-12 h-12 flex items-center justify-center">
       <img
@@ -62,41 +61,73 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
 
     <!-- Meta / Badges -->
     <div class="hidden sm:flex items-center gap-2">
-      <!-- Student Data Allowed -->
-      <span
-        v-if="software.personalData"
-        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
-      >
-        <UIcon name="i-lucide-user-check" class="w-3.5 h-3.5" />
-        <span class="hidden lg:inline">Données élèves</span>
-      </span>
+      <!-- Student Data Allowed - Icon only on sm-md, with label on lg+ -->
+      <div v-if="software.personalData" class="inline-flex">
+        <SoftwareFeatureBadge
+          icon="i-lucide-user-check"
+          label="Données élèves"
+          size="sm"
+          hide-label
+          class="lg:hidden"
+        />
+        <SoftwareFeatureBadge
+          icon="i-lucide-user-check"
+          label="Données élèves"
+          size="sm"
+          class="hidden lg:inline-flex"
+        />
+      </div>
 
-      <!-- Support CEJEF -->
-      <span
-        v-if="software.supportedByCEJEF"
-        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
-      >
-        <UIcon name="i-lucide-headset" class="w-3.5 h-3.5" />
-        <span class="hidden lg:inline">Support CEJEF</span>
-      </span>
+      <!-- Support CEJEF - Icon only on sm-md, with label on lg+ -->
+      <div v-if="software.supportedByCEJEF" class="inline-flex">
+        <SoftwareFeatureBadge
+          icon="i-lucide-headset"
+          label="Support CEJEF"
+          size="sm"
+          hide-label
+          class="lg:hidden"
+        />
+        <SoftwareFeatureBadge
+          icon="i-lucide-headset"
+          label="Support CEJEF"
+          size="sm"
+          class="hidden lg:inline-flex"
+        />
+      </div>
 
-      <!-- Training Available -->
-      <span
-        v-if="software.campusTraining"
-        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
-      >
-        <UIcon name="i-lucide-graduation-cap" class="w-3.5 h-3.5" />
-        <span class="hidden lg:inline">Formation</span>
-      </span>
+      <!-- Training Available - Icon only on sm-md, with label on lg+ -->
+      <div v-if="software.campusTraining" class="inline-flex">
+        <SoftwareFeatureBadge
+          icon="i-lucide-graduation-cap"
+          label="Formation"
+          size="sm"
+          hide-label
+          class="lg:hidden"
+        />
+        <SoftwareFeatureBadge
+          icon="i-lucide-graduation-cap"
+          label="Formation"
+          size="sm"
+          class="hidden lg:inline-flex"
+        />
+      </div>
 
-      <!-- 100% Free -->
-      <span
-        v-if="software.cost === 'Gratuit'"
-        class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
-      >
-        <UIcon name="i-lucide-coins" class="w-3.5 h-3.5" />
-        <span class="hidden lg:inline">100% gratuit</span>
-      </span>
+      <!-- 100% Free - Icon only on sm-md, with label on lg+ -->
+      <div v-if="software.cost === 'Gratuit'" class="inline-flex">
+        <SoftwareFeatureBadge
+          icon="i-lucide-coins"
+          label="100% gratuit"
+          size="sm"
+          hide-label
+          class="lg:hidden"
+        />
+        <SoftwareFeatureBadge
+          icon="i-lucide-coins"
+          label="100% gratuit"
+          size="sm"
+          class="hidden lg:inline-flex"
+        />
+      </div>
     </div>
 
     <!-- Chevron indicator -->

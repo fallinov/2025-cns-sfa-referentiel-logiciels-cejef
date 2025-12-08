@@ -7,7 +7,7 @@ export const useSimilarSoftware = () => {
     const allSoftware = getSoftwareList()
 
     // Filter out the current software AND forbidden software (Level 3)
-    const candidates = allSoftware.filter(s => {
+    const candidates = allSoftware.filter((s) => {
       if (s.id === software.id) return false
       const level = s.certificationLevel ?? getCertificationLevel(s.lgpd)
       return level !== 3

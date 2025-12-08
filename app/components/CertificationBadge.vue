@@ -15,17 +15,17 @@ const badgeConfig = computed(() => {
   switch (props.level) {
     case 1:
       return {
-        src: `${baseURL}logos/cejef-badge-valide.svg`.replace(/\/\/+/g, '/'),
+        src: `${baseURL}logos/cejef-badge-valide.svg`.replace(/\/\/+/g, "/"),
         alt: "Badge Validé"
       }
     case 2:
       return {
-        src: `${baseURL}logos/cejef-badge-restreint.svg`.replace(/\/\/+/g, '/'),
+        src: `${baseURL}logos/cejef-badge-restreint.svg`.replace(/\/\/+/g, "/"),
         alt: "Badge Restreint"
       }
     case 3:
       return {
-        src: `${baseURL}logos/cejef-badge-interdit.svg`.replace(/\/\/+/g, '/'),
+        src: `${baseURL}logos/cejef-badge-interdit.svg`.replace(/\/\/+/g, "/"),
         alt: "Badge Interdit"
       }
     default:
