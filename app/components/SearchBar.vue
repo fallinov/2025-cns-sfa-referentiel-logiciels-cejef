@@ -268,7 +268,12 @@ const searchInput = ref<HTMLInputElement | null>(null)
           type="search"
           autocomplete="off"
           :placeholder="displayPlaceholder"
-          class="w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 rounded-full focus:outline-none transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md focus:shadow-md"
+          :class="[
+            'w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 focus:outline-none transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md focus:shadow-md',
+            showSuggestions && (hasSuggestions || search.length === 0)
+              ? 'rounded-t-full border-b-0'
+              : 'rounded-full'
+          ]"
           aria-label="Rechercher un logiciel"
           :aria-expanded="showSuggestions && hasSuggestions"
           aria-autocomplete="list"
@@ -306,16 +311,16 @@ const searchInput = ref<HTMLInputElement | null>(null)
       <!-- Suggestions dropdown -->
       <Transition
         enter-active-class="transition duration-200 ease-out"
-        enter-from-class="transform scale-95 opacity-0 translate-y-2"
-        enter-to-class="transform scale-100 opacity-100 translate-y-0"
+        enter-from-class="transform opacity-0"
+        enter-to-class="transform opacity-100"
         leave-active-class="transition duration-150 ease-in"
-        leave-from-class="transform scale-100 opacity-100 translate-y-0"
-        leave-to-class="transform scale-95 opacity-0 translate-y-2"
+        leave-from-class="transform opacity-100"
+        leave-to-class="transform opacity-0"
       >
         <div
           v-if="showSuggestions && (hasSuggestions || search.length === 0)"
           role="listbox"
-          class="absolute top-full left-0 right-0 mt-2 rounded-[24px] overflow-hidden z-20 bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700"
+          class="absolute top-full left-0 right-0 -mt-3 rounded-b-[24px] pt-3 overflow-hidden z-10 bg-white dark:bg-gray-800 shadow-lg border-x border-b border-gray-100 dark:border-gray-700"
         >
           <div class="py-2 max-h-96 overflow-y-auto">
             <!-- Popular searches (when search is empty) -->
@@ -455,15 +460,15 @@ const searchInput = ref<HTMLInputElement | null>(null)
       <!-- Empty state -->
       <Transition
         enter-active-class="transition duration-200 ease-out"
-        enter-from-class="transform scale-95 opacity-0 translate-y-2"
-        enter-to-class="transform scale-100 opacity-100 translate-y-0"
+        enter-from-class="transform opacity-0"
+        enter-to-class="transform opacity-100"
         leave-active-class="transition duration-150 ease-in"
-        leave-from-class="transform scale-100 opacity-100 translate-y-0"
-        leave-to-class="transform scale-95 opacity-0 translate-y-2"
+        leave-from-class="transform opacity-100"
+        leave-to-class="transform opacity-0"
       >
         <div
           v-if="showSuggestions && !hasSuggestions && search.length >= 2"
-          class="absolute top-full left-0 right-0 mt-2 rounded-[24px] overflow-hidden z-20 bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700"
+          class="absolute top-full left-0 right-0 -mt-3 rounded-b-[24px] pt-3 overflow-hidden z-10 bg-white dark:bg-gray-800 shadow-lg border-x border-b border-gray-100 dark:border-gray-700"
         >
           <div class="p-8 text-center">
             <UIcon
