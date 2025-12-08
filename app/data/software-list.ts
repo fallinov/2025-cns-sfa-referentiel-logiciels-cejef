@@ -945,6 +945,47 @@ export const softwareList: Software[] = [
     updatedAt: 1678582512000
   },
   {
+    id: "9f293022-b3c4-4812-ba5e-fa8ced384c87",
+    name: "ED.AI",
+    logo: null,
+    icon: "i-lucide-brain-circuit",
+    shortDescription: "Assistant IA pour corriger, diagnostiquer et adapter les pratiques pédagogiques",
+    description: "Ed.ai est une plateforme d'intelligence artificielle développée par une startup lyonnaise qui automatise la correction des rendus écrits des élèves et génère des parcours de remédiation personnalisés. L'outil identifie les erreurs, analyse les lacunes individuelles ou collectives, et crée automatiquement des supports de remédiation imprimables ou numériques. Conçu pour les enseignants du secondaire en mathématiques, français et histoire-géographie, Ed.ai libère du temps pédagogique (en moyenne 6h/semaine) pour permettre un accompagnement individualisé des élèves. La solution ne nécessite aucun écran supplémentaire pour les élèves et s'intègre dans les pratiques existantes.",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
+    },
+    certificationLevel: 2,
+    dataLocation: "France",
+    personalData: true,
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Payant",
+    toolUrl: "https://ed.ai/fr",
+    documentation: "https://help.ed.ai/",
+    targetAudience: "enseignants",
+    categories: [
+      "Intelligence artificielle",
+      "Évaluation",
+      "Remédiation pédagogique"
+    ],
+    pedagogicalActivities: [
+      "Correction automatisée",
+      "Analyse des lacunes",
+      "Remédiation personnalisée",
+      "Différenciation pédagogique"
+    ],
+    disciplines: [
+      "Mathématiques",
+      "Français",
+      "Histoire-Géographie"
+    ],
+    usageNotes: "Usage avec précautions - Infrastructure hébergée en France (Microsoft Azure) MAIS soumise au Cloud Act américain. Collecte données d'identité professionnelle et coordonnées des enseignants, conservation 10 ans. Conforme RGPD et validée par le ministère de l'Éducation Nationale (GAR). Privilégier pour usage enseignants uniquement.",
+    createdAt: 1733702400000,
+    updatedAt: 1733702400000
+  },
+  {
     id: "ead0a533-ba2f-4e64-bed4-d4b2d67ab68f",
     name: "EDPUZZLE",
     logo: null,

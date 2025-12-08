@@ -1,4 +1,4 @@
-import { normalizeText } from "~/utils/search"
+import Fuse from "fuse.js"
 import type { Software } from "~~/types/software"
 
 export interface SearchSuggestions {
@@ -14,7 +14,27 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
   const { getSoftwareList } = useSoftware()
   const softwareList = getSoftwareList()
 
+  // Configuration Fuse.js pour fuzzy search
+  const fuseOptions = {
+    includeScore: true,
+    threshold: 0.4, // 0 = exact match, 1 = match anything
+    keys: [
+      { name: "name", weight: 2 },
+      { name: "shortDescription", weight: 1.5 },
+      { name: "categories", weight: 1 },
+      { name: "disciplines", weight: 1 },
+      { name: "pedagogicalActivities", weight: 0.8 }
+    ]
+  }
+
+  // Initialiser Fuse une seule fois
+  const fuse = new Fuse(softwareList, fuseOptions)
+
+  // Debounced search query (300ms) pour éviter trop de calculs
+  const debouncedQuery = refDebounced(searchQuery, 300)
+
   const suggestions = computed<SearchSuggestions>(() => {
+    // Check immédiat pour réactivité UI
     if (!searchQuery.value || searchQuery.value.length < 2) {
       return {
         query: "",
@@ -26,32 +46,34 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
       }
     }
 
-    const query = normalizeText(searchQuery.value.trim())
+    // Utilise la query debounced pour la recherche réelle (évite calculs inutiles)
+    const query = debouncedQuery.value.trim()
 
-    // Filtrer les logiciels correspondants
-    const matchingSoftware = softwareList.filter(s =>
-      normalizeText(s.name).includes(query)
-      || normalizeText(s.shortDescription).includes(query)
-      || s.categories?.some(cat => normalizeText(cat).includes(query))
-      || s.disciplines?.some(disc => normalizeText(disc).includes(query))
-      || s.pedagogicalActivities?.some(act => normalizeText(act).includes(query))
-    )
+    // Si debounced est vide, retourner vide (attente du debounce)
+    if (!query) {
+      return {
+        query: searchQuery.value,
+        totalResults: 0,
+        categories: [],
+        disciplines: [],
+        activities: [],
+        software: []
+      }
+    }
 
-    // Extraire les catégories uniques
+    // Recherche fuzzy avec Fuse.js (seulement après debounce)
+    const results = fuse.search(query)
+    const matchingSoftware = results.map(result => result.item)
+
+    // Extraire les catégories, disciplines et activités uniques
     const categoriesSet = new Set<string>()
     const disciplinesSet = new Set<string>()
     const activitiesSet = new Set<string>()
 
     matchingSoftware.forEach((s) => {
-      s.categories?.forEach((cat) => {
-        if (normalizeText(cat).includes(query)) categoriesSet.add(cat)
-      })
-      s.disciplines?.forEach((disc) => {
-        if (normalizeText(disc).includes(query)) disciplinesSet.add(disc)
-      })
-      s.pedagogicalActivities?.forEach((act) => {
-        if (normalizeText(act).includes(query)) activitiesSet.add(act)
-      })
+      s.categories?.forEach(cat => categoriesSet.add(cat))
+      s.disciplines?.forEach(disc => disciplinesSet.add(disc))
+      s.pedagogicalActivities?.forEach(act => activitiesSet.add(act))
     })
 
     return {

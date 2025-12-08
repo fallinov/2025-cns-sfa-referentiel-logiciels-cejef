@@ -4,7 +4,7 @@
 
 export type CostType = "Gratuit" | "Payant" | "Freemium" | "Financé CEJEF"
 
-export type DataLocation = "Suisse" | "Union Européenne" | "Hors UE" | "CEJEF"
+export type DataLocation = "Suisse" | "France" | "Union Européenne" | "Hors UE" | "CEJEF"
 
 export type TargetAudience = "élèves" | "enseignants" | "tous"
 
