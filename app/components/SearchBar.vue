@@ -206,7 +206,7 @@ watch(search, (newValue) => {
   selectedIndex.value = -1
 })
 
-// Typewriter Effect
+// Typewriter Effect (disabled when focused)
 const phrases = [
   "Que cherchez-vous ?",
   "Bureautique...",
@@ -220,6 +220,11 @@ const phrases = [
 ]
 
 const { placeholderText } = useTypewriter(phrases)
+
+// Show static placeholder when focused, typewriter effect when not
+const displayPlaceholder = computed(() => {
+  return isFocused.value ? "Rechercher..." : placeholderText.value
+})
 
 const handleSearchSubmit = () => {
   if (!search.value) {
@@ -262,7 +267,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
           v-model="search"
           type="search"
           autocomplete="off"
-          :placeholder="placeholderText"
+          :placeholder="displayPlaceholder"
           class="w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 rounded-full focus:outline-none transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md focus:shadow-lg"
           aria-label="Rechercher un logiciel"
           :aria-expanded="showSuggestions && hasSuggestions"
