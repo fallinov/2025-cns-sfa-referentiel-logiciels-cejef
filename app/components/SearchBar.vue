@@ -264,10 +264,10 @@ const searchInput = ref<HTMLInputElement | null>(null)
         <!-- Container with unified border -->
         <div
           :class="[
-            'relative transition-all duration-200',
+            'relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md',
             showSuggestions
-              ? 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-[24px] shadow-md'
-              : ''
+              ? 'rounded-[24px] shadow-md'
+              : 'rounded-full'
           ]"
         >
           <input
@@ -278,10 +278,10 @@ const searchInput = ref<HTMLInputElement | null>(null)
             autocomplete="off"
             :placeholder="displayPlaceholder"
             :class="[
-              'w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 focus:outline-none transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800',
+              'w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-transparent',
               showSuggestions
-                ? 'bg-transparent border-0 rounded-t-[24px]'
-                : 'rounded-full border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md focus:shadow-md'
+                ? 'rounded-t-[24px]'
+                : 'rounded-full'
             ]"
             aria-label="Rechercher un logiciel"
             :aria-expanded="showSuggestions && hasSuggestions"
