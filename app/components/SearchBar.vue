@@ -250,7 +250,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
           type="search"
           autocomplete="off"
           :placeholder="placeholderText"
-          class="w-full h-14 pl-6 pr-28 text-lg font-medium tracking-wide text-slate-900 dark:text-slate-100 rounded-[28px] focus:outline-none transition-all placeholder-black dark:placeholder-white [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 ring-2 ring-black dark:ring-white shadow-sm focus:ring-2 focus:ring-primary-500"
+          class="w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 rounded-3xl focus:outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md focus:shadow-md"
           aria-label="Rechercher un logiciel"
           :aria-expanded="showSuggestions && hasSuggestions"
           aria-autocomplete="list"
@@ -297,148 +297,110 @@ const searchInput = ref<HTMLInputElement | null>(null)
         <div
           v-if="showSuggestions && hasSuggestions"
           role="listbox"
-          class="absolute top-full left-0 right-0 mt-2 rounded-[var(--ui-radius)] overflow-hidden z-20 bg-white dark:bg-gray-800 border border-[#1C293C] dark:border-gray-700 shadow-lg"
+          class="absolute top-full left-0 right-0 mt-2 rounded-3xl overflow-hidden z-20 bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700"
         >
-          <div class="p-2 space-y-2 max-h-96 overflow-y-auto">
+          <div class="py-2 max-h-96 overflow-y-auto">
             <!-- Catégories correspondantes -->
             <div v-if="suggestions.categories.length > 0">
-              <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Filtrer par catégorie
-              </div>
-              <div class="space-y-1">
-                <button
-                  v-for="(category, index) in suggestions.categories"
-                  :key="`category-${category}`"
-                  type="button"
-                  role="option"
-                  :aria-selected="isItemSelected('category', index)"
-                  :class="[
-                    'w-full text-left px-3 py-2 rounded-lg transition-colors flex items-center justify-between group',
-                    isItemSelected('category', index)
-                      ? 'bg-primary-100 dark:bg-primary-900/30 ring-2 ring-primary-500'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-                  ]"
-                  @click="handleCategoryClick(category)"
-                >
-                  <div class="flex items-center gap-2">
-                    <UIcon
-                      name="i-lucide-tag"
-                      class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                    />
-                    <span class="font-medium text-gray-900 dark:text-white">{{ category }}</span>
-                  </div>
-                  <UIcon
-                    name="i-lucide-arrow-right"
-                    class="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity"
-                  />
-                </button>
-              </div>
+              <button
+                v-for="(category, index) in suggestions.categories"
+                :key="`category-${category}`"
+                type="button"
+                role="option"
+                :aria-selected="isItemSelected('category', index)"
+                :class="[
+                  'w-full text-left px-5 py-2.5 transition-colors flex items-center gap-4',
+                  isItemSelected('category', index)
+                    ? 'bg-gray-100 dark:bg-gray-700'
+                    : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                ]"
+                @click="handleCategoryClick(category)"
+              >
+                <UIcon
+                  name="i-lucide-tag"
+                  class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
+                />
+                <span class="text-sm text-gray-900 dark:text-white">{{ category }}</span>
+              </button>
             </div>
 
             <!-- Disciplines correspondantes -->
             <div v-if="suggestions.disciplines.length > 0">
-              <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Filtrer par discipline
-              </div>
-              <div class="space-y-1">
-                <button
-                  v-for="(discipline, index) in suggestions.disciplines"
-                  :key="`discipline-${discipline}`"
-                  type="button"
-                  role="option"
-                  :aria-selected="isItemSelected('discipline', index)"
-                  :class="[
-                    'w-full text-left px-3 py-2 rounded-lg transition-colors flex items-center justify-between group',
-                    isItemSelected('discipline', index)
-                      ? 'bg-primary-100 dark:bg-primary-900/30 ring-2 ring-primary-500'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-                  ]"
-                  @click="handleDisciplineClick(discipline)"
-                >
-                  <div class="flex items-center gap-2">
-                    <UIcon
-                      name="i-lucide-book-open"
-                      class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                    />
-                    <span class="font-medium text-gray-900 dark:text-white">{{ discipline }}</span>
-                  </div>
-                  <UIcon
-                    name="i-lucide-arrow-right"
-                    class="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity"
-                  />
-                </button>
-              </div>
+              <button
+                v-for="(discipline, index) in suggestions.disciplines"
+                :key="`discipline-${discipline}`"
+                type="button"
+                role="option"
+                :aria-selected="isItemSelected('discipline', index)"
+                :class="[
+                  'w-full text-left px-5 py-2.5 transition-colors flex items-center gap-4',
+                  isItemSelected('discipline', index)
+                    ? 'bg-gray-100 dark:bg-gray-700'
+                    : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                ]"
+                @click="handleDisciplineClick(discipline)"
+              >
+                <UIcon
+                  name="i-lucide-book-open"
+                  class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
+                />
+                <span class="text-sm text-gray-900 dark:text-white">{{ discipline }}</span>
+              </button>
             </div>
 
             <!-- Activités pédagogiques correspondantes -->
             <div v-if="suggestions.activities.length > 0">
-              <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Filtrer par activité
-              </div>
-              <div class="space-y-1">
-                <button
-                  v-for="(activity, index) in suggestions.activities"
-                  :key="`activity-${activity}`"
-                  type="button"
-                  role="option"
-                  :aria-selected="isItemSelected('activity', index)"
-                  :class="[
-                    'w-full text-left px-3 py-2 rounded-lg transition-colors flex items-center justify-between group',
-                    isItemSelected('activity', index)
-                      ? 'bg-primary-100 dark:bg-primary-900/30 ring-2 ring-primary-500'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-                  ]"
-                  @click="handleActivityClick(activity)"
-                >
-                  <div class="flex items-center gap-2">
-                    <UIcon
-                      name="i-lucide-graduation-cap"
-                      class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                    />
-                    <span class="font-medium text-gray-900 dark:text-white">{{ activity }}</span>
-                  </div>
-                  <UIcon
-                    name="i-lucide-arrow-right"
-                    class="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity"
-                  />
-                </button>
-              </div>
+              <button
+                v-for="(activity, index) in suggestions.activities"
+                :key="`activity-${activity}`"
+                type="button"
+                role="option"
+                :aria-selected="isItemSelected('activity', index)"
+                :class="[
+                  'w-full text-left px-5 py-2.5 transition-colors flex items-center gap-4',
+                  isItemSelected('activity', index)
+                    ? 'bg-gray-100 dark:bg-gray-700'
+                    : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                ]"
+                @click="handleActivityClick(activity)"
+              >
+                <UIcon
+                  name="i-lucide-graduation-cap"
+                  class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
+                />
+                <span class="text-sm text-gray-900 dark:text-white">{{ activity }}</span>
+              </button>
             </div>
 
             <!-- Logiciels correspondants -->
             <div v-if="suggestions.software.length > 0">
-              <div class="px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Logiciels
-              </div>
-              <div class="space-y-1">
-                <button
-                  v-for="(software, index) in suggestions.software"
-                  :key="`software-${software.id}`"
-                  type="button"
-                  role="option"
-                  :aria-selected="isItemSelected('software', index)"
-                  :class="[
-                    'w-full text-left px-3 py-2.5 rounded-lg transition-colors flex items-start gap-3',
-                    isItemSelected('software', index)
-                      ? 'bg-primary-100 dark:bg-primary-900/30 ring-2 ring-primary-500'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-                  ]"
-                  @click="handleSoftwareClick(software.id)"
-                >
-                  <UIcon
-                    :name="software.icon || 'i-lucide-package'"
-                    class="w-5 h-5 text-gray-600 dark:text-gray-400 shrink-0 mt-0.5"
-                  />
-                  <div class="flex-1 min-w-0">
-                    <div class="font-semibold text-gray-900 dark:text-white truncate">
-                      {{ software.name }}
-                    </div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400 line-clamp-1">
-                      {{ software.shortDescription }}
-                    </div>
+              <button
+                v-for="(software, index) in suggestions.software"
+                :key="`software-${software.id}`"
+                type="button"
+                role="option"
+                :aria-selected="isItemSelected('software', index)"
+                :class="[
+                  'w-full text-left px-5 py-3 transition-colors flex items-start gap-4',
+                  isItemSelected('software', index)
+                    ? 'bg-gray-100 dark:bg-gray-700'
+                    : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                ]"
+                @click="handleSoftwareClick(software.id)"
+              >
+                <UIcon
+                  :name="software.icon || 'i-lucide-package'"
+                  class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0 mt-0.5"
+                />
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm text-gray-900 dark:text-white truncate">
+                    {{ software.name }}
                   </div>
-                </button>
-              </div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 mt-0.5">
+                    {{ software.shortDescription }}
+                  </div>
+                </div>
+              </button>
             </div>
           </div>
         </div>
@@ -455,17 +417,17 @@ const searchInput = ref<HTMLInputElement | null>(null)
       >
         <div
           v-if="showSuggestions && !hasSuggestions && search.length >= 2"
-          class="absolute top-full left-0 right-0 mt-2 rounded-[var(--ui-radius)] overflow-hidden z-20 bg-white dark:bg-gray-800 border border-[#1C293C] dark:border-gray-700 shadow-lg"
+          class="absolute top-full left-0 right-0 mt-2 rounded-3xl overflow-hidden z-20 bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700"
         >
           <div class="p-8 text-center">
             <UIcon
               name="i-lucide-search-x"
-              class="w-12 h-12 mx-auto text-gray-400 dark:text-gray-500 mb-3"
+              class="w-12 h-12 mx-auto text-gray-300 dark:text-gray-600 mb-3"
             />
-            <p class="text-lg font-semibold text-gray-900 dark:text-white">
+            <p class="text-sm text-gray-700 dark:text-gray-300">
               Aucun résultat pour "{{ search }}"
             </p>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
               Essayez avec d'autres mots-clés
             </p>
           </div>
