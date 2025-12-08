@@ -18,7 +18,7 @@ const goBack = () => {
   if (window.history.state.back) {
     router.back()
   } else {
-    navigateTo('/')
+    navigateTo("/")
   }
 }
 
@@ -71,32 +71,6 @@ const similarSoftwareList = computed(() =>
 // Configuration via utils centralisé
 const config = computed(() => getCertificationConfig(certificationLevel.value))
 
-// Helper pour obtenir les classes de style Info Pratique pour un niveau de certification
-const getInfoPracticalStyle = (level: number | null | undefined) => {
-  switch (level) {
-    case 1:
-      return {
-        bg: "bg-green-50 dark:bg-green-900/20",
-        iconColor: "text-green-500"
-      }
-    case 2:
-      return {
-        bg: "bg-orange-50 dark:bg-orange-900/20",
-        iconColor: "text-orange-500"
-      }
-    case 3:
-      return {
-        bg: "bg-red-50 dark:bg-red-900/20",
-        iconColor: "text-red-500"
-      }
-    default:
-      return {
-        bg: "bg-gray-50 dark:bg-gray-900/20",
-        iconColor: "text-gray-500"
-      }
-  }
-}
-
 // LGPD labels
 const lgpdLabels = {
   hosting: {
@@ -145,7 +119,7 @@ const showLgpdDetails = ref(false)
           <template #leading>
             <UIcon name="i-lucide-arrow-left" class="w-5 h-5" />
           </template>
-           Retour
+          Retour
         </UButton>
 
         <div class="flex gap-2">

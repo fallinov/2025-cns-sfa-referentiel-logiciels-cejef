@@ -25,7 +25,6 @@ const links = computed(() => [
         :items="links"
         variant="link"
         class="hidden lg:block"
-        :ui="{ root: { base: 'text-gray-900 dark:text-white' }, label: { base: 'text-gray-900 dark:text-white' }, icon: { base: 'text-gray-500 dark:text-gray-400' } }"
       />
       <UColorModeButton />
     </template>
@@ -35,7 +34,6 @@ const links = computed(() => [
         :items="links"
         orientation="vertical"
         class="-mx-2.5"
-        :ui="{ root: { base: 'text-gray-900 dark:text-white' }, label: { base: 'text-gray-900 dark:text-white' }, icon: { base: 'text-gray-500 dark:text-gray-400' } }"
       />
     </template>
   </UHeader>

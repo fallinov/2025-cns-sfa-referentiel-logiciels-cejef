@@ -109,8 +109,8 @@ export const useSoftwareStore = defineStore("software", () => {
     // Only apply if the search query is NOT one of the active filters (to avoid double filtering)
     const isExactFilterMatch
       = (selectedCategories.value.length === 1 && selectedCategories.value[0] === searchQuery.value)
-      || (selectedDisciplines.value.length === 1 && selectedDisciplines.value[0] === searchQuery.value)
-      || (selectedActivities.value.length === 1 && selectedActivities.value[0] === searchQuery.value)
+        || (selectedDisciplines.value.length === 1 && selectedDisciplines.value[0] === searchQuery.value)
+        || (selectedActivities.value.length === 1 && selectedActivities.value[0] === searchQuery.value)
 
     if (searchQuery.value && !isExactFilterMatch) {
       const searchTerms = expandSearchQuery(searchQuery.value)

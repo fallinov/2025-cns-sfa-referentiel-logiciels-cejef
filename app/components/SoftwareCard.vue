@@ -18,7 +18,7 @@ const handleCardClick = () => {
   if (import.meta.client) {
     const url = new URL(window.location.href)
     url.hash = `software-${props.software.id}`
-    window.history.replaceState(window.history.state, '', url.href)
+    window.history.replaceState(window.history.state, "", url.href)
   }
 }
 </script>
@@ -31,26 +31,26 @@ const handleCardClick = () => {
     @click="handleCardClick"
   >
 
-
     <!-- Certification Badge (Icon + Label) -->
     <div class="absolute top-4 right-4 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700">
       <UIcon
         :name="config.icon"
         class="w-5 h-5"
         :class="[
-          software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400' :
-          software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400' :
-          software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400' :
-          'text-gray-500'
+          software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400'
+          : software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400'
+            : software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400'
+              : 'text-gray-500'
         ]"
         aria-hidden="true"
       />
-      <span class="text-sm font-bold uppercase tracking-wider"
+      <span
+        class="text-sm font-bold uppercase tracking-wider"
         :class="[
-          software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400' :
-          software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400' :
-          software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400' :
-          'text-gray-600 dark:text-gray-300'
+          software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400'
+          : software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400'
+            : software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400'
+              : 'text-gray-600 dark:text-gray-300'
         ]"
       >
         {{ config.label }}
@@ -97,45 +97,26 @@ const handleCardClick = () => {
 
     <!-- Badges (Quick Filters only) -->
     <div class="relative z-10 mt-auto flex flex-wrap gap-2 pt-2">
-      <!-- Student Data Allowed -->
-      <span
+      <SoftwareFeatureBadge
         v-if="software.personalData"
-        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
-        aria-label="Données élèves autorisées"
-      >
-        <UIcon name="i-lucide-user-check" class="w-4 h-4" aria-hidden="true" />
-        Données élèves
-      </span>
-
-      <!-- Support CEJEF -->
-      <span
+        icon="i-lucide-user-check"
+        label="Données élèves"
+      />
+      <SoftwareFeatureBadge
         v-if="software.supportedByCEJEF"
-        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
-        aria-label="Support assuré par le CEJEF"
-      >
-        <UIcon name="i-lucide-headset" class="w-4 h-4" aria-hidden="true" />
-        Support CEJEF
-      </span>
-
-      <!-- Training Available -->
-      <span
+        icon="i-lucide-headset"
+        label="Support CEJEF"
+      />
+      <SoftwareFeatureBadge
         v-if="software.campusTraining"
-        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
-        aria-label="Formation disponible"
-      >
-        <UIcon name="i-lucide-graduation-cap" class="w-4 h-4" aria-hidden="true" />
-        Formation
-      </span>
-
-      <!-- 100% Free -->
-      <span
+        icon="i-lucide-graduation-cap"
+        label="Formation"
+      />
+      <SoftwareFeatureBadge
         v-if="software.cost === 'Gratuit'"
-        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200"
-        aria-label="Logiciel gratuit"
-      >
-        <UIcon name="i-lucide-coins" class="w-4 h-4" aria-hidden="true" />
-        Gratuit
-      </span>
+        icon="i-lucide-coins"
+        label="Gratuit"
+      />
     </div>
   </NuxtLink>
 </template>
