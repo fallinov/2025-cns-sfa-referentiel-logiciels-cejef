@@ -76,18 +76,21 @@ const handleCategoryClick = (category: string) => {
   emit("filterByCategory", category)
   search.value = category
   closeSuggestions()
+  searchInput.value?.blur()
 }
 
 const handleDisciplineClick = (discipline: string) => {
   emit("filterByDiscipline", discipline)
   search.value = discipline
   closeSuggestions()
+  searchInput.value?.blur()
 }
 
 const handleActivityClick = (activity: string) => {
   emit("filterByActivity", activity)
   search.value = activity
   closeSuggestions()
+  searchInput.value?.blur()
 }
 
 const closeSuggestions = () => {
@@ -193,9 +196,9 @@ const handleFocus = () => {
 }
 
 const handleBlur = () => {
-  isFocused.value = false
   // Délai pour permettre le clic sur les suggestions
   setTimeout(() => {
+    isFocused.value = false
     closeSuggestions()
   }, 200)
 }
