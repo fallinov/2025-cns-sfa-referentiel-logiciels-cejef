@@ -250,7 +250,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
           type="search"
           autocomplete="off"
           :placeholder="placeholderText"
-          class="w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 rounded-3xl focus:outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md focus:shadow-md"
+          class="w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 rounded-full focus:outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md focus:shadow-md"
           aria-label="Rechercher un logiciel"
           :aria-expanded="showSuggestions && hasSuggestions"
           aria-autocomplete="list"
@@ -297,7 +297,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
         <div
           v-if="showSuggestions && hasSuggestions"
           role="listbox"
-          class="absolute top-full left-0 right-0 mt-2 rounded-3xl overflow-hidden z-20 bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700"
+          class="absolute top-full left-0 right-0 mt-2 rounded-[24px] overflow-hidden z-20 bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700"
         >
           <div class="py-2 max-h-96 overflow-y-auto">
             <!-- Catégories correspondantes -->
@@ -417,7 +417,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
       >
         <div
           v-if="showSuggestions && !hasSuggestions && search.length >= 2"
-          class="absolute top-full left-0 right-0 mt-2 rounded-3xl overflow-hidden z-20 bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700"
+          class="absolute top-full left-0 right-0 mt-2 rounded-[24px] overflow-hidden z-20 bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700"
         >
           <div class="p-8 text-center">
             <UIcon
