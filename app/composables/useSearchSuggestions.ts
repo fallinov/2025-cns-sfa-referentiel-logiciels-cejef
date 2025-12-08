@@ -1,4 +1,5 @@
 import Fuse from "fuse.js"
+import { refDebounced } from "@vueuse/core"
 import type { Software } from "~~/types/software"
 
 export interface SearchSuggestions {
@@ -30,7 +31,11 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
   // Initialiser Fuse une seule fois
   const fuse = new Fuse(softwareList, fuseOptions)
 
+  // Debounced search query (300ms) pour éviter trop de calculs
+  const debouncedQuery = refDebounced(searchQuery, 300)
+
   const suggestions = computed<SearchSuggestions>(() => {
+    // Check immédiat pour réactivité UI
     if (!searchQuery.value || searchQuery.value.length < 2) {
       return {
         query: "",
@@ -42,9 +47,22 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
       }
     }
 
-    const query = searchQuery.value.trim()
+    // Utilise la query debounced pour la recherche réelle (évite calculs inutiles)
+    const query = debouncedQuery.value.trim()
 
-    // Recherche fuzzy avec Fuse.js
+    // Si debounced est vide, retourner vide (attente du debounce)
+    if (!query) {
+      return {
+        query: searchQuery.value,
+        totalResults: 0,
+        categories: [],
+        disciplines: [],
+        activities: [],
+        software: []
+      }
+    }
+
+    // Recherche fuzzy avec Fuse.js (seulement après debounce)
     const results = fuse.search(query)
     const matchingSoftware = results.map(result => result.item)
 

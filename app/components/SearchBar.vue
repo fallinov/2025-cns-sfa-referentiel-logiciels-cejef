@@ -443,6 +443,34 @@ const searchInput = ref<HTMLInputElement | null>(null)
           </div>
         </div>
       </Transition>
+
+      <!-- Empty state -->
+      <Transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="transform scale-95 opacity-0 translate-y-2"
+        enter-to-class="transform scale-100 opacity-100 translate-y-0"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="transform scale-100 opacity-100 translate-y-0"
+        leave-to-class="transform scale-95 opacity-0 translate-y-2"
+      >
+        <div
+          v-if="showSuggestions && !hasSuggestions && search.length >= 2"
+          class="absolute top-full left-0 right-0 mt-2 rounded-[var(--ui-radius)] overflow-hidden z-20 bg-white dark:bg-gray-800 border border-[#1C293C] dark:border-gray-700 shadow-lg"
+        >
+          <div class="p-8 text-center">
+            <UIcon
+              name="i-lucide-search-x"
+              class="w-12 h-12 mx-auto text-gray-400 dark:text-gray-500 mb-3"
+            />
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">
+              Aucun résultat pour "{{ search }}"
+            </p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              Essayez avec d'autres mots-clés
+            </p>
+          </div>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
