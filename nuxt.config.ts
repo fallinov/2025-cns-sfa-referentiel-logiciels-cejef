@@ -15,7 +15,9 @@ export default defineNuxtConfig({
     // Optimisation et chargement automatique des polices web
     "@nuxt/fonts",
     // Gestion de l'état global
-    "@pinia/nuxt"
+    "@pinia/nuxt",
+    // VueUse composables (debounce, etc.)
+    "@vueuse/nuxt"
   ],
 
   // ========================================

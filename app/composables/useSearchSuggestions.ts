@@ -1,5 +1,4 @@
 import Fuse from "fuse.js"
-import { refDebounced } from "@vueuse/core"
 import type { Software } from "~~/types/software"
 
 export interface SearchSuggestions {
