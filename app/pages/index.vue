@@ -139,7 +139,7 @@ onUnmounted(() => {
     <!-- Content -->
     <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8">
       <!-- Ricardo Style Search & Filters -->
-      <div class="relative z-50 mb-8 px-4 sm:px-0">
+      <div class="relative z-30 mb-8 px-4 sm:px-0">
         <!-- Search Bar Area -->
         <div class="mb-4">
           <SearchBar

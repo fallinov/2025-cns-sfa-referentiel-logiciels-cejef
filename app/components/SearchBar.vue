@@ -260,7 +260,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
     >
       Rechercher un logiciel
     </label>
-    <div class="relative group flex items-stretch z-[100]">
+    <div class="relative group flex items-stretch z-40">
       <div
         class="relative flex-1 transition-all duration-200"
         :class="isFocused ? 'scale-[1.02]' : 'scale-100'"
