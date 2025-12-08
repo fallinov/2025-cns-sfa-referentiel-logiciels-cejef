@@ -127,18 +127,13 @@ defineShortcuts({
   }
 })
 
-// Gestion de la fermeture et du clear
-const handleClose = () => {
-  isOpen.value = false
-}
-
+// Gestion du clear et ouverture du modal
 const handleClear = () => {
   search.value = ""
   searchTerm.value = ""
   emit("clear")
 }
 
-// Ouverture du modal
 const handleOpen = () => {
   isOpen.value = true
   searchTerm.value = search.value
@@ -203,6 +198,8 @@ const { placeholderText } = useTypewriter(phrases)
     <!-- Command Palette Modal -->
     <UModal
       :open="isOpen"
+      title="Rechercher un logiciel"
+      description="Recherchez des logiciels, catégories, disciplines ou activités pédagogiques"
       @update:open="value => isOpen = value"
     >
       <template #content>
@@ -210,15 +207,21 @@ const { placeholderText } = useTypewriter(phrases)
           v-model:search-term="searchTerm"
           :groups="commandPaletteGroups"
           placeholder="Rechercher logiciels, catégories, disciplines..."
-          :empty-state="{
-            icon: 'i-lucide-search-x',
-            label: 'Aucun résultat',
-            description: 'Essayez de modifier votre recherche'
-          }"
           close
           class="min-h-[400px]"
-          @update:open="handleClose"
-        />
+        >
+          <template #empty>
+            <div class="flex flex-col items-center justify-center py-12 text-center">
+              <UIcon name="i-lucide-search-x" class="w-12 h-12 text-gray-400 dark:text-gray-500 mb-4" />
+              <p class="text-lg font-semibold text-gray-900 dark:text-white">
+                Aucun résultat
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                Essayez de modifier votre recherche
+              </p>
+            </div>
+          </template>
+        </UCommandPalette>
       </template>
     </UModal>
   </div>
