@@ -242,7 +242,10 @@ const searchInput = ref<HTMLInputElement | null>(null)
       Rechercher un logiciel
     </label>
     <div class="relative group flex items-stretch">
-      <div class="relative flex-1">
+      <div
+        class="relative flex-1 transition-all duration-200"
+        :class="isFocused ? 'scale-[1.02]' : 'scale-100'"
+      >
         <input
           id="software-search"
           ref="searchInput"
@@ -250,7 +253,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
           type="search"
           autocomplete="off"
           :placeholder="placeholderText"
-          class="w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 rounded-full focus:outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md focus:shadow-md"
+          class="w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 rounded-full focus:outline-none transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md focus:shadow-lg"
           aria-label="Rechercher un logiciel"
           :aria-expanded="showSuggestions && hasSuggestions"
           aria-autocomplete="list"
