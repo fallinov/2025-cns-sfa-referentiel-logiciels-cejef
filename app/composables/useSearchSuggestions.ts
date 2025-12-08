@@ -27,8 +27,9 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
     ]
   }
 
-  // Initialiser Fuse une seule fois
-  const fuse = new Fuse(softwareList, fuseOptions)
+  // Initialiser Fuse une seule fois (avec fallback tableau vide)
+  const safeSoftwareList = softwareList || []
+  const fuse = new Fuse(safeSoftwareList, fuseOptions)
 
   // Debounced search query (300ms) pour éviter trop de calculs
   const debouncedQuery = refDebounced(searchQuery, 300)
