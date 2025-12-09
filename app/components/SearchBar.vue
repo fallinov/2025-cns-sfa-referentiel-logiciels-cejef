@@ -392,7 +392,7 @@ const handleClear = () => {
             v-if="showSuggestions"
             role="listbox"
             class="absolute z-10 left-0 right-0 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl overflow-hidden"
-            :class="isMobileFocused ? 'top-[72px] bottom-0 border-0 rounded-none shadow-none mt-0' : 'top-full mt-2 rounded-2xl pb-2'"
+            :class="isMobileFocused ? 'fixed top-[88px] left-0 right-0 bottom-0 border-0 rounded-none shadow-none mt-0 z-50' : 'absolute top-full mt-2 rounded-2xl pb-2'"
           >
             <div
               ref="suggestionsContainer"
