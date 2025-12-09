@@ -18,13 +18,37 @@ withDefaults(defineProps<Props>(), {
 const search = defineModel<string>("search", { default: "" })
 
 // Refs
+const root = ref<HTMLElement | null>(null)
 const searchInput = ref<HTMLInputElement | null>(null)
 const suggestionsContainer = ref<HTMLElement | null>(null)
 
 // Focus state
 const isFocused = ref(false)
+const isMobileFocused = ref(false)
 const showSuggestions = ref(false)
-const selectedIndex = ref(-1)
+
+// Detect mobile size
+const { width } = useWindowSize()
+const isMobile = computed(() => width.value < 640) // sm breakpoint
+
+// Watch focus and mobile state to trigger fullscreen mode
+watch([isFocused, isMobile], ([focused, mobile]) => {
+  if (focused && mobile) {
+    isMobileFocused.value = true
+    document.body.style.overflow = "hidden" // Prevent background scrolling
+  } else if (!focused) {
+    // Delay slightly to allow click events to register
+    setTimeout(() => {
+      isMobileFocused.value = false
+      document.body.style.overflow = ""
+    }, 200)
+  }
+})
+
+// Clean up on unmount
+onUnmounted(() => {
+  document.body.style.overflow = ""
+})
 
 // Popular searches (suggestions when field is empty)
 const popularSearches = [
@@ -201,6 +225,13 @@ const handleFocus = () => {
   showSuggestions.value = true
 }
 
+const handleMobileBack = () => {
+  isFocused.value = false
+  isMobileFocused.value = false
+  searchInput.value?.blur()
+  document.body.style.overflow = ""
+}
+
 const handleBlur = () => {
   // Délai pour permettre le clic sur les suggestions
   setTimeout(() => {
@@ -267,8 +298,12 @@ const handleClear = () => {
 
 <template>
   <div
-    class="w-full relative"
-    :class="compact ? '' : 'max-w-3xl mx-auto'"
+    ref="root"
+    class="w-full transition-all duration-300 ease-in-out"
+    :class="[
+      compact ? '' : 'max-w-3xl mx-auto',
+      isMobileFocused ? 'fixed inset-0 z-[9999] bg-white dark:bg-gray-900 p-4 max-w-none' : 'relative'
+    ]"
   >
     <label
       for="software-search"
@@ -292,7 +327,8 @@ const handleClear = () => {
             autocomplete="off"
             :placeholder="displayPlaceholder"
             :class="[
-              'w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-transparent rounded-full'
+              'w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-transparent rounded-full',
+              isMobileFocused ? 'pl-10' : ''
             ]"
             aria-label="Rechercher un logiciel"
             :aria-expanded="showSuggestions && hasSuggestions"
@@ -302,6 +338,20 @@ const handleClear = () => {
             @blur="handleBlur"
             @keydown="handleKeyDown"
           />
+
+          <!-- Mobile Back Button (Absolute Left) -->
+          <div
+            v-if="isMobileFocused"
+            class="absolute top-0 left-0 h-14 flex items-center pl-3"
+          >
+            <button
+              type="button"
+              class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              @click="handleMobileBack"
+            >
+              <UIcon name="i-lucide-arrow-left" class="w-6 h-6" />
+            </button>
+          </div>
 
           <!-- Right Actions -->
           <div class="absolute top-0 right-0 h-14 flex items-center pr-3 gap-3">
@@ -337,12 +387,16 @@ const handleClear = () => {
           leave-from-class="transform opacity-100 scale-100"
           leave-to-class="transform opacity-0 scale-95"
         >
-          <div
             v-if="showSuggestions"
             role="listbox"
-            class="absolute z-10 top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl pb-2 overflow-hidden"
+            class="absolute z-10 left-0 right-0 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl overflow-hidden"
+            :class="isMobileFocused ? 'top-[72px] bottom-0 border-0 rounded-none shadow-none mt-0' : 'top-full mt-2 rounded-2xl pb-2'"
           >
-            <div ref="suggestionsContainer" class="py-2 max-h-96 overflow-y-auto custom-scrollbar">
+            <div
+              ref="suggestionsContainer"
+              class="overflow-y-auto custom-scrollbar"
+              :class="isMobileFocused ? 'h-full py-4' : 'max-h-96 py-2'"
+            >
               <!-- Popular searches (when search is empty) -->
               <div v-if="search.length === 0">
                 <button
