@@ -303,7 +303,7 @@ const handleClear = () => {
     class="w-full transition-all duration-300 ease-in-out"
     :class="[
       compact ? '' : 'max-w-3xl mx-auto',
-      isMobileFocused ? 'fixed inset-0 z-[9999] bg-white dark:bg-gray-900 p-4 max-w-none' : 'relative'
+      isMobileFocused ? 'fixed inset-0 z-[9999] bg-gray-50 dark:bg-gray-950/90 backdrop-blur-sm' : 'relative'
     ]"
   >
     <label
@@ -312,12 +312,24 @@ const handleClear = () => {
     >
       Rechercher un logiciel
     </label>
-    <div class="relative group flex items-stretch">
-      <div class="relative flex-1 transition-all duration-200">
-        <!-- Input container -->
+
+    <div
+      class="group"
+      :class="isMobileFocused ? 'flex flex-col h-full' : 'relative flex items-stretch'"
+    >
+
+      <!-- Input Layer -->
+      <div
+        :class="[
+          isMobileFocused ? 'order-2 shrink-0 p-3 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 flex items-center gap-3 pb-[env(safe-area-inset-bottom)]' : 'relative flex-1 transition-all duration-200'
+        ]"
+      >
+        <!-- The Input Pill -->
         <div
+          class="flex-1"
           :class="[
-            'relative z-20 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md rounded-full'
+            'relative z-20 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md rounded-full',
+             isMobileFocused ? 'shadow-none' : ''
           ]"
         >
           <input
@@ -327,10 +339,7 @@ const handleClear = () => {
             type="search"
             autocomplete="off"
             :placeholder="displayPlaceholder"
-            :class="[
-              'w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-transparent rounded-full',
-              isMobileFocused ? 'pl-10' : ''
-            ]"
+            class="w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-transparent rounded-full"
             aria-label="Rechercher un logiciel"
             :aria-expanded="showSuggestions && hasSuggestions"
             aria-autocomplete="list"
@@ -340,21 +349,7 @@ const handleClear = () => {
             @keydown="handleKeyDown"
           />
 
-          <!-- Mobile Back Button (Absolute Left) -->
-          <div
-            v-if="isMobileFocused"
-            class="absolute top-0 left-0 h-14 flex items-center pl-3"
-          >
-            <button
-              type="button"
-              class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-              @click="handleMobileBack"
-            >
-              <UIcon name="i-lucide-arrow-left" class="w-6 h-6" />
-            </button>
-          </div>
-
-          <!-- Right Actions -->
+          <!-- Right Actions (Inside Pill) -->
           <div class="absolute top-0 right-0 h-14 flex items-center pr-3 gap-3">
             <!-- Clear Button -->
             <button
@@ -367,7 +362,7 @@ const handleClear = () => {
               <UIcon name="i-lucide-x" class="w-5 h-5" />
             </button>
 
-            <!-- Search Button -->
+            <!-- Search Button (Icon) -->
             <button
               type="button"
               class="flex items-center justify-center w-11 h-11 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 transition-all shadow-sm hover:bg-slate-800 dark:hover:bg-gray-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
@@ -379,57 +374,73 @@ const handleClear = () => {
           </div>
         </div>
 
-        <!-- Suggestions dropdown (absolute positioned) -->
-        <Transition
-          enter-active-class="transition duration-100 ease-out"
-          enter-from-class="transform opacity-0 scale-95"
-          enter-to-class="transform opacity-100 scale-100"
-          leave-active-class="transition duration-75 ease-in"
-          leave-from-class="transform opacity-100 scale-100"
-          leave-to-class="transform opacity-0 scale-95"
+        <!-- Mobile Close Button (Outside Pill) -->
+        <button
+          v-if="isMobileFocused"
+          type="button"
+          class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+          @click="handleMobileBack"
+        >
+          <UIcon name="i-lucide-x" class="w-6 h-6" />
+        </button>
+      </div>
+
+      <!-- Suggestions Layer -->
+      <Transition
+        enter-active-class="transition duration-100 ease-out"
+        enter-from-class="transform opacity-0 scale-95"
+        enter-to-class="transform opacity-100 scale-100"
+        leave-active-class="transition duration-75 ease-in"
+        leave-from-class="transform opacity-100 scale-100"
+        leave-to-class="transform opacity-0 scale-95"
+      >
+        <div
+          v-if="showSuggestions"
+          role="listbox"
+          :class="[
+            isMobileFocused
+              ? 'order-1 flex-1 overflow-y-auto custom-scrollbar relative w-full h-full bg-white dark:bg-gray-900'
+              : 'absolute z-10 left-0 right-0 top-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl pb-2 overflow-hidden'
+          ]"
         >
           <div
-            v-if="showSuggestions"
-            role="listbox"
-            class="absolute z-10 left-0 right-0 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl overflow-hidden"
-            :class="isMobileFocused ? 'fixed top-[88px] left-0 right-0 bottom-0 border-0 rounded-none shadow-none mt-0 z-50' : 'absolute top-full mt-2 rounded-2xl pb-2'"
+            ref="suggestionsContainer"
+            :class="[
+              'overflow-y-auto custom-scrollbar',
+              isMobileFocused ? 'min-h-full py-4' : 'max-h-96 py-2'
+            ]"
           >
-            <div
-              ref="suggestionsContainer"
-              class="overflow-y-auto custom-scrollbar"
-              :class="isMobileFocused ? 'h-full py-4' : 'max-h-96 py-2'"
-            >
-              <!-- Popular searches (when search is empty) -->
-              <div v-if="search.length === 0">
-                <button
-                  v-for="(item, index) in popularSearches"
-                  :key="`popular-${index}`"
-                  type="button"
-                  role="option"
-                  :aria-selected="selectedIndex === index"
-                  :class="[
-                    'w-full text-left px-5 py-2.5 transition-colors flex items-center gap-4',
-                    selectedIndex === index
-                      ? 'bg-gray-100 dark:bg-gray-700'
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                  ]"
-                  @click="handleCategoryClick(item.label)"
-                >
-                  <UIcon
-                    :name="item.icon"
-                    class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
-                  />
-                  <span class="text-sm text-gray-900 dark:text-white">{{ item.label }}</span>
-                  <span class="ml-auto text-xs text-gray-400">Recherche populaire</span>
-                </button>
-              </div>
+            <!-- Popular searches (when search is empty) -->
+            <div v-if="search.length === 0">
+              <button
+                v-for="(item, index) in popularSearches"
+                :key="`popular-${index}`"
+                type="button"
+                role="option"
+                :aria-selected="selectedIndex === index"
+                :class="[
+                  'w-full text-left px-5 py-2.5 transition-colors flex items-center gap-4',
+                  selectedIndex === index
+                    ? 'bg-gray-100 dark:bg-gray-700'
+                    : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                ]"
+                @click="handleCategoryClick(item.label)"
+              >
+                <UIcon
+                  :name="item.icon"
+                  class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
+                />
+                <span class="text-sm text-gray-900 dark:text-white">{{ item.label }}</span>
+                <span class="ml-auto text-xs text-gray-400">Recherche populaire</span>
+              </button>
+            </div>
 
-              <!-- Regular search results (when typing) -->
-              <div v-else-if="search.length >= 2 && hasSuggestions">
-                <div v-if="suggestions.categories.length > 0">
-                  <div class="px-5 py-2 mt-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Catégories
-                  </div>
+            <!-- Regular search results (when typing) -->
+            <div v-else-if="search.length >= 2 && hasSuggestions">
+              <div v-if="suggestions.categories.length > 0">
+                <div class="px-5 py-2 mt-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  Catégories
+                </div>
                   <button
                     v-for="(category, index) in suggestions.categories"
                     :key="`category-${category}`"
@@ -556,7 +567,6 @@ const handleClear = () => {
             </div>
           </div>
         </Transition>
-      </div>
     </div>
   </div>
 </template>
