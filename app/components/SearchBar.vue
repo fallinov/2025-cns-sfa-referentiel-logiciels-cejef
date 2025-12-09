@@ -321,7 +321,7 @@ const handleClear = () => {
       <!-- Input Layer -->
       <div
         :class="[
-          isMobileFocused ? 'order-2 shrink-0 p-3 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 flex items-center gap-3 pb-[env(safe-area-inset-bottom)]' : 'relative flex-1 transition-all duration-200'
+          isMobileFocused ? 'shrink-0 p-3 bg-white dark:bg-gray-900 flex items-center gap-3' : 'relative flex-1 transition-all duration-200'
         ]"
       >
         <!-- The Input Pill -->
@@ -381,7 +381,7 @@ const handleClear = () => {
           class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
           @click="handleMobileBack"
         >
-          <UIcon name="i-lucide-x" class="w-6 h-6" />
+          <UIcon name="i-lucide-arrow-left" class="w-6 h-6" />
         </button>
       </div>
 
@@ -399,7 +399,7 @@ const handleClear = () => {
           role="listbox"
           :class="[
             isMobileFocused
-              ? 'order-1 flex-1 overflow-y-auto custom-scrollbar relative w-full h-full bg-white dark:bg-gray-900'
+              ? 'flex-1 overflow-y-auto custom-scrollbar relative w-full h-full bg-white dark:bg-gray-900'
               : 'absolute z-10 left-0 right-0 top-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl pb-2 overflow-hidden'
           ]"
         >
