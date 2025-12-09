@@ -26,6 +26,7 @@ const suggestionsContainer = ref<HTMLElement | null>(null)
 const isFocused = ref(false)
 const isMobileFocused = ref(false)
 const showSuggestions = ref(false)
+const selectedIndex = ref(-1)
 
 // Detect mobile size
 const { width } = useWindowSize()
@@ -387,6 +388,7 @@ const handleClear = () => {
           leave-from-class="transform opacity-100 scale-100"
           leave-to-class="transform opacity-0 scale-95"
         >
+          <div
             v-if="showSuggestions"
             role="listbox"
             class="absolute z-10 left-0 right-0 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl overflow-hidden"
