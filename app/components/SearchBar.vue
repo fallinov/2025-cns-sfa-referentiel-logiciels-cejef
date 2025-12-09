@@ -340,9 +340,9 @@ const handleClear = () => {
           <div
             v-if="showSuggestions"
             role="listbox"
-            class="absolute z-10 top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl pb-2"
+            class="absolute z-10 top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl pb-2 overflow-hidden"
           >
-            <div ref="suggestionsContainer" class="py-2 max-h-96 overflow-y-auto">
+            <div ref="suggestionsContainer" class="py-2 max-h-96 overflow-y-auto custom-scrollbar">
               <!-- Popular searches (when search is empty) -->
               <div v-if="search.length === 0">
                 <button
@@ -504,3 +504,35 @@ const handleClear = () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Custom Scrollbar for Webkit (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 8px 0;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e2e8f0; /* gray-200 */
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1; /* gray-300 */
+}
+
+/* Dark mode */
+:global(.dark) .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #374151; /* gray-700 */
+}
+
+:global(.dark) .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: #4b5563; /* gray-600 */
+}
+</style>
