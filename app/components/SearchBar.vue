@@ -206,7 +206,8 @@ const handleBlur = () => {
 
 // Afficher les suggestions quand la recherche change
 watch(search, (newValue) => {
-  showSuggestions.value = newValue.length >= 2 && isFocused.value
+  // Afficher les suggestions si recherche vide (populaires) OU si >= 2 caractères
+  showSuggestions.value = isFocused.value && (newValue.length === 0 || newValue.length >= 2)
   selectedIndex.value = -1
 })
 
