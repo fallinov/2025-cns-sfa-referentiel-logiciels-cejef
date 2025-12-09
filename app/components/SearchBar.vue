@@ -265,10 +265,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
         <!-- Input container -->
         <div
           :class="[
-            'relative z-20 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md',
-            showSuggestions
-              ? 'rounded-t-[24px] border-b-0 shadow-md'
-              : 'rounded-full'
+            'relative z-20 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md rounded-full'
           ]"
         >
           <input
@@ -279,10 +276,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
             autocomplete="off"
             :placeholder="displayPlaceholder"
             :class="[
-              'w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-transparent',
-              showSuggestions
-                ? 'rounded-t-[24px]'
-                : 'rounded-full'
+              'w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-transparent rounded-full'
             ]"
             aria-label="Rechercher un logiciel"
             :aria-expanded="showSuggestions && hasSuggestions"
@@ -320,17 +314,17 @@ const searchInput = ref<HTMLInputElement | null>(null)
 
         <!-- Suggestions dropdown (absolute positioned) -->
         <Transition
-          enter-active-class="transition duration-200 ease-out"
-          enter-from-class="transform opacity-0"
-          enter-to-class="transform opacity-100"
-          leave-active-class="transition duration-150 ease-in"
-          leave-from-class="transform opacity-100"
-          leave-to-class="transform opacity-0"
+          enter-active-class="transition duration-100 ease-out"
+          enter-from-class="transform opacity-0 scale-95"
+          enter-to-class="transform opacity-100 scale-100"
+          leave-active-class="transition duration-75 ease-in"
+          leave-from-class="transform opacity-100 scale-100"
+          leave-to-class="transform opacity-0 scale-95"
         >
           <div
             v-if="showSuggestions"
             role="listbox"
-            class="absolute z-10 top-full left-0 right-0 bg-white dark:bg-gray-800 border-x border-b border-gray-200 dark:border-gray-700 rounded-b-[24px] shadow-2xl pb-2"
+            class="absolute z-10 top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl pb-2"
           >
             <div class="py-2 max-h-96 overflow-y-auto">
               <!-- Popular searches (when search is empty) -->
