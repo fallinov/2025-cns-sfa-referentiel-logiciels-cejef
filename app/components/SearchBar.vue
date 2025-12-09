@@ -14,7 +14,12 @@ withDefaults(defineProps<Props>(), {
   hero: false
 })
 
+
 const search = defineModel<string>("search", { default: "" })
+
+// Refs
+const searchInput = ref<HTMLInputElement | null>(null)
+const suggestionsContainer = ref<HTMLElement | null>(null)
 
 // Focus state
 const isFocused = ref(false)
@@ -211,6 +216,18 @@ watch(search, (newValue) => {
   selectedIndex.value = -1
 })
 
+// Scroll vers l'élément sélectionné
+watch(selectedIndex, async (newIndex) => {
+  if (newIndex === -1 || !suggestionsContainer.value) return
+
+  await nextTick()
+  const selectedElement = suggestionsContainer.value.querySelector(`[aria-selected="true"]`) as HTMLElement
+
+  if (selectedElement) {
+    selectedElement.scrollIntoView({ block: "nearest" })
+  }
+})
+
 // Typewriter Effect (disabled when focused)
 const phrases = [
   "Que cherchez-vous ?",
@@ -246,8 +263,6 @@ const handleClear = () => {
   emit("clear")
   searchInput.value?.focus()
 }
-
-const searchInput = ref<HTMLInputElement | null>(null)
 </script>
 
 <template>
@@ -327,7 +342,7 @@ const searchInput = ref<HTMLInputElement | null>(null)
             role="listbox"
             class="absolute z-10 top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl pb-2"
           >
-            <div class="py-2 max-h-96 overflow-y-auto">
+            <div ref="suggestionsContainer" class="py-2 max-h-96 overflow-y-auto">
               <!-- Popular searches (when search is empty) -->
               <div v-if="search.length === 0">
                 <button
