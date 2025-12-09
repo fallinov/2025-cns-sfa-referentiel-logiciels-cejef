@@ -354,8 +354,10 @@ const searchInput = ref<HTMLInputElement | null>(null)
 
               <!-- Regular search results (when typing) -->
               <div v-else-if="search.length >= 2 && hasSuggestions">
-                <!-- Catégories correspondantes -->
                 <div v-if="suggestions.categories.length > 0">
+                  <div class="px-5 py-2 mt-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    Catégories
+                  </div>
                   <button
                     v-for="(category, index) in suggestions.categories"
                     :key="`category-${category}`"
@@ -378,8 +380,10 @@ const searchInput = ref<HTMLInputElement | null>(null)
                   </button>
                 </div>
 
-                <!-- Disciplines correspondantes -->
                 <div v-if="suggestions.disciplines.length > 0">
+                  <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    Disciplines
+                  </div>
                   <button
                     v-for="(discipline, index) in suggestions.disciplines"
                     :key="`discipline-${discipline}`"
@@ -402,8 +406,10 @@ const searchInput = ref<HTMLInputElement | null>(null)
                   </button>
                 </div>
 
-                <!-- Activités pédagogiques correspondantes -->
                 <div v-if="suggestions.activities.length > 0">
+                  <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    Activités
+                  </div>
                   <button
                     v-for="(activity, index) in suggestions.activities"
                     :key="`activity-${activity}`"
@@ -426,8 +432,10 @@ const searchInput = ref<HTMLInputElement | null>(null)
                   </button>
                 </div>
 
-                <!-- Logiciels correspondants -->
                 <div v-if="suggestions.software.length > 0">
+                  <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    Logiciels
+                  </div>
                   <button
                     v-for="(software, index) in suggestions.software"
                     :key="`software-${software.id}`"
