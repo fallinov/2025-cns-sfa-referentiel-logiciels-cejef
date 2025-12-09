@@ -14,7 +14,6 @@ withDefaults(defineProps<Props>(), {
   hero: false
 })
 
-
 const search = defineModel<string>("search", { default: "" })
 
 // Refs
@@ -253,7 +252,7 @@ watch(selectedIndex, async (newIndex) => {
   if (newIndex === -1 || !suggestionsContainer.value) return
 
   await nextTick()
-  const selectedElement = suggestionsContainer.value.querySelector(`[aria-selected="true"]`) as HTMLElement
+  const selectedElement = suggestionsContainer.value.querySelector("[aria-selected=\"true\"]") as HTMLElement
 
   if (selectedElement) {
     selectedElement.scrollIntoView({ block: "nearest" })
@@ -317,7 +316,6 @@ const handleClear = () => {
       class="group"
       :class="isMobileFocused ? 'flex flex-col h-full' : 'relative flex items-stretch'"
     >
-
       <!-- Input Layer -->
       <div
         :class="[
@@ -329,7 +327,7 @@ const handleClear = () => {
           class="flex-1"
           :class="[
             'relative z-20 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md rounded-full',
-             isMobileFocused ? 'shadow-none' : ''
+            isMobileFocused ? 'shadow-none' : ''
           ]"
         >
           <input
@@ -386,61 +384,63 @@ const handleClear = () => {
       </div>
 
       <!-- Suggestions Layer -->
-      <Transition
-        enter-active-class="transition duration-100 ease-out"
-        enter-from-class="transform opacity-0 scale-95"
-        enter-to-class="transform opacity-100 scale-100"
-        leave-active-class="transition duration-75 ease-in"
-        leave-from-class="transform opacity-100 scale-100"
-        leave-to-class="transform opacity-0 scale-95"
-      >
-        <div
-          v-if="showSuggestions"
-          role="listbox"
-          :class="[
-            isMobileFocused
-              ? 'flex-1 overflow-y-auto custom-scrollbar relative w-full h-full bg-white dark:bg-gray-900'
-              : 'absolute z-10 left-0 right-0 top-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl pb-2 overflow-hidden'
-          ]"
+      <ClientOnly>
+        <Transition
+          enter-active-class="transition duration-100 ease-out"
+          enter-from-class="transform opacity-0 scale-95"
+          enter-to-class="transform opacity-100 scale-100"
+          leave-active-class="transition duration-75 ease-in"
+          leave-from-class="transform opacity-100 scale-100"
+          leave-to-class="transform opacity-0 scale-95"
         >
           <div
-            ref="suggestionsContainer"
+            v-if="showSuggestions"
+            role="listbox"
             :class="[
-              'overflow-y-auto custom-scrollbar',
-              isMobileFocused ? 'min-h-full py-4' : 'max-h-96 py-2'
+              isMobileFocused
+                ? 'flex-1 overflow-y-auto custom-scrollbar relative w-full h-full bg-white dark:bg-gray-900'
+                : 'absolute z-10 left-0 right-0 top-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl pb-2 overflow-hidden'
             ]"
           >
-            <!-- Popular searches (when search is empty) -->
-            <div v-if="search.length === 0">
-              <button
-                v-for="(item, index) in popularSearches"
-                :key="`popular-${index}`"
-                type="button"
-                role="option"
-                :aria-selected="selectedIndex === index"
-                :class="[
-                  'w-full text-left px-5 py-2.5 transition-colors flex items-center gap-4',
-                  selectedIndex === index
-                    ? 'bg-gray-100 dark:bg-gray-700'
-                    : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                ]"
-                @click="handleCategoryClick(item.label)"
-              >
-                <UIcon
-                  :name="item.icon"
-                  class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
-                />
-                <span class="text-sm text-gray-900 dark:text-white">{{ item.label }}</span>
-                <span class="ml-auto text-xs text-gray-400">Recherche populaire</span>
-              </button>
-            </div>
+            <!-- Content -->
+            <div
+              ref="suggestionsContainer"
+              :class="[
+                'overflow-y-auto custom-scrollbar',
+                isMobileFocused ? 'min-h-full py-4' : 'max-h-96 py-2'
+              ]"
+            >
+              <!-- Popular searches (when search is empty) -->
+              <div v-if="search.length === 0">
+                <button
+                  v-for="(item, index) in popularSearches"
+                  :key="`popular-${index}`"
+                  type="button"
+                  role="option"
+                  :aria-selected="selectedIndex === index"
+                  :class="[
+                    'w-full text-left px-5 py-2.5 transition-colors flex items-center gap-4',
+                    selectedIndex === index
+                      ? 'bg-gray-100 dark:bg-gray-700'
+                      : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                  ]"
+                  @click="handleCategoryClick(item.label)"
+                >
+                  <UIcon
+                    :name="item.icon"
+                    class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
+                  />
+                  <span class="text-sm text-gray-900 dark:text-white">{{ item.label }}</span>
+                  <span class="ml-auto text-xs text-gray-400">Recherche populaire</span>
+                </button>
+              </div>
 
-            <!-- Regular search results (when typing) -->
-            <div v-else-if="search.length >= 2 && hasSuggestions">
-              <div v-if="suggestions.categories.length > 0">
-                <div class="px-5 py-2 mt-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  Catégories
-                </div>
+              <!-- Regular search results (when typing) -->
+              <div v-else-if="search.length >= 2 && hasSuggestions">
+                <div v-if="suggestions.categories.length > 0">
+                  <div class="px-5 py-2 mt-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    Catégories
+                  </div>
                   <button
                     v-for="(category, index) in suggestions.categories"
                     :key="`category-${category}`"
@@ -567,6 +567,7 @@ const handleClear = () => {
             </div>
           </div>
         </Transition>
+      </ClientOnly>
     </div>
   </div>
 </template>

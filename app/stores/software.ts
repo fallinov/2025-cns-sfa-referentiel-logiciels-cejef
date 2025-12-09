@@ -21,6 +21,12 @@ export const useSoftwareStore = defineStore("software", () => {
   // Popular Filters Configuration
   const popularFilters = [
     {
+      id: "cejef-favorite",
+      label: "Coup de coeur CEJEF",
+      icon: "i-lucide-heart",
+      predicate: (software: Software) => !!software.cejefFavorite
+    },
+    {
       id: "personal-data",
       label: "Données élèves autorisées",
       icon: "i-lucide-user-check",
@@ -34,7 +40,7 @@ export const useSoftwareStore = defineStore("software", () => {
     },
     {
       id: "campus-training",
-      label: "Formation disponible",
+      label: "Formation CAMPUS",
       icon: "i-lucide-graduation-cap",
       predicate: (software: Software) => software.campusTraining
     },
@@ -109,8 +115,8 @@ export const useSoftwareStore = defineStore("software", () => {
     // Only apply if the search query is NOT one of the active filters (to avoid double filtering)
     const isExactFilterMatch
       = (selectedCategories.value.length === 1 && selectedCategories.value[0] === searchQuery.value)
-        || (selectedDisciplines.value.length === 1 && selectedDisciplines.value[0] === searchQuery.value)
-        || (selectedActivities.value.length === 1 && selectedActivities.value[0] === searchQuery.value)
+      || (selectedDisciplines.value.length === 1 && selectedDisciplines.value[0] === searchQuery.value)
+      || (selectedActivities.value.length === 1 && selectedActivities.value[0] === searchQuery.value)
 
     if (searchQuery.value && !isExactFilterMatch) {
       const searchTerms = expandSearchQuery(searchQuery.value)
@@ -142,6 +148,8 @@ export const useSoftwareStore = defineStore("software", () => {
     filtered.sort((a, b) => {
       const levelA = a.certificationLevel ?? getCertificationLevel(a.lgpd) ?? 99
       const levelB = b.certificationLevel ?? getCertificationLevel(b.lgpd) ?? 99
+      const nameA = a.name || ""
+      const nameB = b.name || ""
 
       switch (sortBy.value) {
         case "certification-asc":
@@ -151,9 +159,9 @@ export const useSoftwareStore = defineStore("software", () => {
           // Moins bon niveau d'abord
           return levelB - levelA
         case "name-asc":
-          return a.name.localeCompare(b.name)
+          return nameA.localeCompare(nameB)
         case "name-desc":
-          return b.name.localeCompare(a.name)
+          return nameB.localeCompare(nameA)
         case "date-desc":
           return (b.createdAt || 0) - (a.createdAt || 0)
         case "date-asc":

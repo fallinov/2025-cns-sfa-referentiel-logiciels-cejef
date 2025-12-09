@@ -45,7 +45,7 @@ export const useSimilarSoftware = () => {
     // Sort by score desc, then by name
     scoredCandidates.sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score
-      return a.software.name.localeCompare(b.software.name)
+      return (a.software.name || "").localeCompare(b.software.name || "")
     })
 
     // Return top N results with score > 0

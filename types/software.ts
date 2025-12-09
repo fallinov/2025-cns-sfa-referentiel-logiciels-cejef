@@ -59,6 +59,7 @@ export interface Software {
 
   // SUPPORT CEJEF
   supportedByCEJEF: boolean
+  cejefFavorite?: boolean
   campusTraining: boolean
 
   // COÛT

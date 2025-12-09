@@ -19,18 +19,18 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const iconSize = computed(() => props.size === "sm" ? "w-3.5 h-3.5" : "w-4 h-4")
-const badgeUi = {
-  root: "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] text-sm font-medium bg-gray-100 dark:bg-gray-700 text-black dark:text-gray-200",
-  label: "text-sm font-medium"
-}
 </script>
 
 <template>
-  <span
-    :class="badgeUi.root"
+  <UBadge
+    color="neutral"
+    variant="soft"
+    :ui="{ base: 'rounded-[var(--ui-radius)]' }"
     :aria-label="label"
   >
-    <UIcon :name="icon" :class="iconSize" aria-hidden="true" />
-    <span v-if="!hideLabel" :class="badgeUi.label">{{ label }}</span>
-  </span>
+    <template #leading>
+      <UIcon :name="icon" :class="iconSize" aria-hidden="true" />
+    </template>
+    <span v-if="!hideLabel">{{ label }}</span>
+  </UBadge>
 </template>

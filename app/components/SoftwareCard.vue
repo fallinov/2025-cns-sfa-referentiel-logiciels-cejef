@@ -32,29 +32,36 @@ const handleCardClick = () => {
   >
 
     <!-- Certification Badge (Icon + Label) -->
-    <div class="absolute top-4 right-4 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700">
-      <UIcon
-        :name="config.icon"
-        class="w-5 h-5"
-        :class="[
-          software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400'
-          : software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400'
-            : software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400'
-              : 'text-gray-500'
-        ]"
-        aria-hidden="true"
-      />
-      <span
-        class="text-sm font-bold uppercase tracking-wider"
-        :class="[
-          software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400'
-          : software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400'
-            : software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400'
-              : 'text-gray-600 dark:text-gray-300'
-        ]"
+    <div class="absolute top-4 right-4 z-30">
+      <UBadge
+        variant="liquid"
+        size="md"
       >
-        {{ config.label }}
-      </span>
+        <template #leading>
+          <UIcon
+            :name="config.icon"
+            class="w-6 h-6"
+            :class="[
+              software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400'
+              : software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400'
+                : software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400'
+                  : 'text-gray-500'
+            ]"
+            aria-hidden="true"
+          />
+        </template>
+        <span
+          class="text-base font-medium"
+          :class="[
+            software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400'
+            : software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400'
+              : software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400'
+                : 'text-gray-600 dark:text-gray-300'
+          ]"
+        >
+          {{ config.label }}
+        </span>
+      </UBadge>
     </div>
 
     <!-- Logo -->
@@ -97,6 +104,12 @@ const handleCardClick = () => {
 
     <!-- Badges (Quick Filters only) -->
     <div class="relative z-10 mt-auto flex flex-wrap gap-2 pt-2">
+      <SoftwareFeatureBadge
+        v-if="software.cejefFavorite"
+        icon="i-lucide-heart"
+        label="Coup de coeur"
+        class="bg-red-500 text-white dark:bg-red-600 dark:text-white border-none"
+      />
       <SoftwareFeatureBadge
         v-if="software.personalData"
         icon="i-lucide-user-check"
