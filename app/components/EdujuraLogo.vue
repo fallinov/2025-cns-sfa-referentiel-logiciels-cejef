@@ -1,12 +1,12 @@
 <template>
   <div class="flex items-center gap-3">
     <img
-      src="/logos/logo-edujura.svg"
+      src="/logos/logo-edujura-light.svg"
       alt="Logo EduJura"
       class="h-10 w-auto object-contain dark:hidden"
     />
     <img
-      src="/logos/logo-edujura-light.svg"
+      src="/logos/logo-edujura-dark.svg"
       alt="Logo EduJura"
       class="h-10 w-auto object-contain hidden dark:block"
     />
