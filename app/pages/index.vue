@@ -48,6 +48,7 @@ watch(
 
 const viewMode = useState<"grid" | "list">("viewMode", () => "grid")
 const isFiltersDrawerOpen = ref(false)
+const isSearchFocused = ref(false)
 
 // Pagination pour améliorer les performances (126 logiciels)
 const itemsPerPage = 24
@@ -139,7 +140,10 @@ onUnmounted(() => {
     <!-- Content -->
     <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8">
       <!-- Ricardo Style Search & Filters -->
-      <div class="relative z-[100] mb-8 px-4 sm:px-0">
+      <div
+        class="relative mb-8 px-4 sm:px-0"
+        :class="isSearchFocused ? 'z-[100]' : 'z-30'"
+      >
         <!-- Search Bar Area -->
         <div class="mb-4">
           <SearchBar
@@ -149,6 +153,7 @@ onUnmounted(() => {
             @filter-by-activity="handleActivityFilter"
             @search="handleGlobalSearch"
             @clear="clearAllFilters"
+            @focus-mode-change="isSearchFocused = $event"
           />
         </div>
       </div>

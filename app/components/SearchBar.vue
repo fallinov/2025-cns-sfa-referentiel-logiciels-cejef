@@ -45,6 +45,10 @@ watch([isFocused, isMobile], ([focused, mobile]) => {
   }
 })
 
+watch(isMobileFocused, (newValue) => {
+  emit("focus-mode-change", newValue)
+})
+
 // Clean up on unmount
 onUnmounted(() => {
   document.body.style.overflow = ""
@@ -67,6 +71,7 @@ const emit = defineEmits<{
   filterByActivity: [activity: string]
   search: [query: string]
   clear: []
+  "focus-mode-change": [isFocused: boolean]
 }>()
 
 // Suggestions calculées via composable avec fuzzy search
