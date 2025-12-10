@@ -37,12 +37,12 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
 
       <!-- Certification Badge (Floating Top Left of Logo) -->
       <div
-        class="absolute -top-3 -left-3 w-8 h-8 flex items-center justify-center rounded-full shadow-sm ring-2 transition-colors duration-500 z-20"
+        class="absolute -top-1.5 -left-1.5 w-6 h-6 flex items-center justify-center rounded-full shadow-sm ring-1 transition-colors duration-500 z-20"
         :class="[config.solidBg, config.ringSolid]"
       >
         <UIcon
           :name="getCertificationIcon(software.certificationLevel)"
-          class="w-6 h-6 text-white"
+          class="w-3.5 h-3.5 text-white"
         />
       </div>
     </div>
@@ -61,6 +61,23 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
 
     <!-- Meta / Badges -->
     <div class="hidden sm:flex items-center gap-2">
+      <!-- Coup de coeur -->
+      <div v-if="software.cejefFavorite" class="inline-flex">
+        <SoftwareFeatureBadge
+          icon="i-lucide-heart"
+          label="Coup de coeur"
+          size="sm"
+          hide-label
+          class="lg:hidden bg-red-500 text-white dark:bg-red-600 dark:text-white border-none"
+        />
+        <SoftwareFeatureBadge
+          icon="i-lucide-heart"
+          label="Coup de coeur"
+          size="sm"
+          class="hidden lg:inline-flex bg-red-500 text-white dark:bg-red-600 dark:text-white border-none"
+        />
+      </div>
+
       <!-- Student Data Allowed - Icon only on sm-md, with label on lg+ -->
       <div v-if="software.personalData" class="inline-flex">
         <SoftwareFeatureBadge

@@ -33,35 +33,7 @@ const handleCardClick = () => {
 
     <!-- Certification Badge (Icon + Label) -->
     <div class="absolute top-4 right-4 z-30">
-      <UBadge
-        variant="liquid"
-        size="md"
-      >
-        <template #leading>
-          <UIcon
-            :name="config.icon"
-            class="w-6 h-6"
-            :class="[
-              software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400'
-              : software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400'
-                : software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400'
-                  : 'text-gray-500'
-            ]"
-            aria-hidden="true"
-          />
-        </template>
-        <span
-          class="text-base font-medium"
-          :class="[
-            software.certificationLevel === 1 ? 'text-green-600 dark:text-green-400'
-            : software.certificationLevel === 2 ? 'text-orange-600 dark:text-orange-400'
-              : software.certificationLevel === 3 ? 'text-red-600 dark:text-red-400'
-                : 'text-gray-600 dark:text-gray-300'
-          ]"
-        >
-          {{ config.label }}
-        </span>
-      </UBadge>
+      <SoftwareCertificationStatus :level="software.certificationLevel" />
     </div>
 
     <!-- Logo -->
