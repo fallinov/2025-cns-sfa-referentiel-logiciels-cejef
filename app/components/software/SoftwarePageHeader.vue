@@ -25,6 +25,10 @@ const handleGlobalSearch = (query: string) => {
   resetFilters()
   searchQuery.value = query
 }
+
+const handleSearchClear = () => {
+  searchQuery.value = ""
+}
 </script>
 
 <template>
@@ -40,7 +44,7 @@ const handleGlobalSearch = (query: string) => {
         @filter-by-discipline="handleDisciplineFilter"
         @filter-by-activity="handleActivityFilter"
         @search="handleGlobalSearch"
-        @clear="clearAllFilters"
+        @clear="handleSearchClear"
         @focus-mode-change="isSearchFocused = $event"
       />
     </div>
