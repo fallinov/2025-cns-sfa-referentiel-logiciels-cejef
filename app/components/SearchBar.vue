@@ -404,7 +404,7 @@ const handleClear = () => {
             :class="[
               isMobileFocused
                 ? 'flex-1 overflow-y-auto custom-scrollbar relative w-full h-full bg-white dark:bg-gray-900'
-                : 'absolute z-10 left-0 right-0 top-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl pb-2 overflow-hidden'
+                : 'absolute z-10 left-0 right-0 top-full mt-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl pb-2 overflow-hidden'
             ]"
           >
             <!-- Content -->
