@@ -12,23 +12,19 @@ defineProps<Props>()
 
 <template>
   <UCard
-    class="ring-2 ring-[#1C293C] rounded-[var(--ui-radius)]"
-    :ui="{
-      body: 'p-6',
-      header: 'p-4 sm:p-6 pb-0'
-    }"
+    class="bg-white dark:bg-gray-800 shadow-sm rounded-[var(--ui-radius)]"
   >
-    <template #header>
-      <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-        <UIcon name="i-lucide-info" class="w-5 h-5 text-primary-600" />
+    <div class="flex items-center gap-3 mb-6">
+      <UIcon name="i-lucide-info" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
         Informations pratiques
       </h3>
-    </template>
+    </div>
 
-    <div class="space-y-6">
+    <div class="space-y-5">
       <!-- Cost -->
       <div class="flex items-start gap-4">
-        <div :class="['w-12 h-12 rounded-[var(--ui-radius)] flex items-center justify-center flex-shrink-0', bgColor]">
+        <div :class="['w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0', bgColor]">
           <UIcon :class="['w-6 h-6', iconColor]" name="i-lucide-wallet" />
         </div>
         <div class="flex-1 min-w-0">
@@ -43,7 +39,7 @@ defineProps<Props>()
 
       <!-- Support -->
       <div class="flex items-start gap-4">
-        <div :class="['w-12 h-12 rounded-[var(--ui-radius)] flex items-center justify-center flex-shrink-0', bgColor]">
+        <div :class="['w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0', bgColor]">
           <UIcon :class="['w-6 h-6', iconColor]" name="i-lucide-headphones" />
         </div>
         <div class="flex-1 min-w-0">
@@ -58,7 +54,7 @@ defineProps<Props>()
 
       <!-- Training -->
       <div class="flex items-start gap-4">
-        <div :class="['w-12 h-12 rounded-[var(--ui-radius)] flex items-center justify-center flex-shrink-0', bgColor]">
+        <div :class="['w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0', bgColor]">
           <UIcon :class="['w-6 h-6', iconColor]" name="i-lucide-graduation-cap" />
         </div>
         <div class="flex-1 min-w-0">
@@ -73,7 +69,7 @@ defineProps<Props>()
 
       <!-- Target Audience -->
       <div class="flex items-start gap-4">
-        <div :class="['w-12 h-12 rounded-[var(--ui-radius)] flex items-center justify-center flex-shrink-0', bgColor]">
+        <div :class="['w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0', bgColor]">
           <UIcon :class="['w-6 h-6', iconColor]" name="i-lucide-users" />
         </div>
         <div class="flex-1 min-w-0">
@@ -88,7 +84,7 @@ defineProps<Props>()
 
       <!-- Age Restriction -->
       <div v-if="software.ageRestriction" class="flex items-start gap-4">
-        <div :class="['w-12 h-12 rounded-[var(--ui-radius)] flex items-center justify-center flex-shrink-0', bgColor]">
+        <div :class="['w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0', bgColor]">
           <UIcon :class="['w-6 h-6', iconColor]" name="i-lucide-shield-alert" />
         </div>
         <div class="flex-1 min-w-0">

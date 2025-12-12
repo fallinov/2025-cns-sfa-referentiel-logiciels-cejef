@@ -105,218 +105,290 @@ const showLgpdDetails = ref(false)
 </script>
 
 <template>
-  <div v-if="software" class="min-h-screen bg-white dark:bg-gray-900">
-    <UContainer class="py-8 max-w-[600px] lg:max-w-[1000px]">
-      <!-- Navigation Bar -->
-      <div class="mb-8 flex items-center justify-between">
-        <UButton
-          color="neutral"
-          variant="ghost"
-          size="lg"
-          class="rounded-[var(--ui-radius)]"
-          @click="goBack"
-        >
-          <template #leading>
+  <div v-if="software" class="min-h-screen bg-[#f5f5f5] dark:bg-gray-950 pb-20">
+    <!-- Top Navigation Bar -->
+    <div class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50 shadow-sm/50">
+      <UContainer class="max-w-[1240px] h-16 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <UButton
+            variant="ghost"
+            color="neutral"
+            class="-ml-2.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            @click="goBack"
+          >
             <UIcon name="i-lucide-arrow-left" class="w-5 h-5" />
-          </template>
-          Retour
-        </UButton>
-
-        <div class="flex gap-2">
-          <UButton
-            :disabled="!previousSoftware"
-            :to="previousSoftware ? `/logiciels/${previousSoftware.id}` : undefined"
-            replace
-            color="neutral"
-            variant="ghost"
-            size="md"
-            class="rounded-[var(--ui-radius)]"
-          >
-            <template #leading>
-              <UKbd>
-                <UIcon name="i-lucide-arrow-left" class="w-3 h-3" />
-              </UKbd>
-            </template>
-            Précédent
-          </UButton>
-          <UButton
-            :disabled="!nextSoftware"
-            :to="nextSoftware ? `/logiciels/${nextSoftware.id}` : undefined"
-            replace
-            color="neutral"
-            variant="ghost"
-            size="md"
-            class="rounded-[var(--ui-radius)]"
-          >
-            Suivant
-            <template #trailing>
-              <UKbd>
-                <UIcon name="i-lucide-arrow-right" class="w-3 h-3" />
-              </UKbd>
-            </template>
+            <span class="hidden sm:inline">Retour au catalogue</span>
           </UButton>
         </div>
+
+        <div class="flex items-center gap-2">
+          <UTooltip text="Logiciel précédent" :shortcuts="['←']">
+            <UButton
+              :disabled="!previousSoftware"
+              :to="previousSoftware ? `/logiciels/${previousSoftware.id}` : undefined"
+              color="neutral"
+              variant="ghost"
+              icon="i-lucide-chevron-left"
+              class="text-gray-500"
+            />
+          </UTooltip>
+          <div class="h-4 w-px bg-gray-200 dark:bg-gray-700 mx-1" />
+          <UTooltip text="Logiciel suivant" :shortcuts="['→']">
+            <UButton
+              :disabled="!nextSoftware"
+              :to="nextSoftware ? `/logiciels/${nextSoftware.id}` : undefined"
+              color="neutral"
+              variant="ghost"
+              icon="i-lucide-chevron-right"
+              class="text-gray-500"
+            />
+          </UTooltip>
+        </div>
+      </UContainer>
+    </div>
+
+    <!-- Hero Section with Background Identity -->
+    <div class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 relative overflow-hidden">
+      <!-- Decorative background element -->
+      <div class="absolute top-0 right-0 p-12 opacity-5 dark:opacity-[0.02] pointer-events-none select-none">
+        <img
+          v-if="software.logo"
+          :src="`/logos/${software.logo}.svg`"
+          class="w-96 h-96 object-contain grayscale transform rotate-12 translate-x-12 -translate-y-12"
+          alt=""
+        />
+        <UIcon
+          v-else
+          :name="software.icon || 'i-lucide-box'"
+          class="w-96 h-96 text-gray-900 dark:text-white transform rotate-12 translate-x-12 -translate-y-12"
+        />
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <!-- Main Content (Left Column) -->
-        <div class="lg:col-span-8 space-y-8">
-          <!-- Header Section -->
-          <SoftwareDetailHeader :software="software" :config="config" />
-
-          <!-- Main Status Card (Traffic Light System) - Simplified Design -->
-          <div class="mb-8">
-            <SoftwareCertificationCard
-              v-model:show-details="showLgpdDetails"
-              :software="software"
-              :certification-level="certificationLevel ?? 0"
-              :lgpd-labels="lgpdLabels"
-            />
-          </div>
-
-          <!-- About Section -->
-          <div v-if="software.description" class="prose dark:prose-invert max-w-none">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              À propos
-            </h2>
-            <div class="text-gray-600 dark:text-gray-300 whitespace-pre-line">
-              {{ software.description }}
+      <UContainer class="max-w-[1240px] py-10 sm:py-14 relative z-10">
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+          <!-- Logo Card -->
+          <div class="shrink-0 ml-1">
+            <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
+              <img
+                v-if="software.logo"
+                :src="`/logos/${software.logo}.svg`"
+                :alt="`${software.name} logo`"
+                class="w-full h-full object-contain"
+              />
+              <UIcon
+                v-else-if="software.icon"
+                :name="software.icon"
+                class="w-full h-full text-black dark:text-white"
+              />
+              <span v-else class="text-4xl font-black text-black dark:text-white">
+                {{ software.name.substring(0, 2).toUpperCase() }}
+              </span>
             </div>
           </div>
 
-          <!-- Pedagogical Classification -->
-          <div v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length">
-            <UCard class="ring-2 ring-[#1C293C] rounded-[var(--ui-radius)]" :ui="{ body: 'p-6', header: 'p-4 sm:p-6' }">
-              <template #header>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                  <UIcon name="i-lucide-graduation-cap" class="w-5 h-5 text-primary-600" />
-                  Classification Pédagogique
-                </h3>
+          <!-- Title & Intro -->
+          <div class="flex-1 min-w-0">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
+              {{ software.name }}
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
+              {{ software.shortDescription }}
+            </p>
+            
+            <!-- Quick Meta -->
+            <div class="flex flex-wrap gap-4 mt-6 text-sm text-gray-500 dark:text-gray-400">
+               <div class="flex items-center gap-1.5 bg-gray-100 dark:bg-gray-800 px-2.5 py-1 rounded-full">
+                 <UIcon name="i-lucide-calendar" class="w-4 h-4" />
+                 <span>Mis à jour le {{ new Date().toLocaleDateString('fr-CH') }}</span>
+               </div>
+            </div>
+          </div>
+          
+          <!-- Primary CTA (Desktop) -->
+          <div class="hidden md:flex md:items-center md:gap-3 shrink-0">
+             <UButton
+              :to="software.toolUrl"
+              target="_blank"
+              color="primary"
+              variant="solid"
+              size="xl"
+              class="rounded-[var(--ui-radius)] px-8 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 transition-all hover:-translate-y-0.5"
+            >
+              Accéder au logiciel
+              <template #trailing>
+                <UIcon name="i-lucide-external-link" class="w-5 h-5" />
               </template>
+            </UButton>
 
-              <div class="space-y-6">
-                <!-- Categories -->
-                <div v-if="software.categories?.length">
-                  <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-3">
-                    Catégories
-                  </h4>
-                  <div class="flex flex-wrap gap-2">
-                    <NuxtLink
-                      v-for="category in software.categories"
-                      :key="category"
-                      :to="{ path: '/', query: { category } }"
-                      class="hover:scale-105 transition-transform cursor-pointer"
-                    >
-                      <UBadge
-                        color="primary"
-                        variant="soft"
-                        size="lg"
-                        class="cursor-pointer"
-                      >
-                        {{ category }}
-                      </UBadge>
-                    </NuxtLink>
-                  </div>
-                </div>
-
-                <!-- Activities -->
-                <div v-if="software.pedagogicalActivities?.length">
-                  <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-3">
-                    Activités
-                  </h4>
-                  <div class="flex flex-wrap gap-2">
-                    <NuxtLink
-                      v-for="activity in software.pedagogicalActivities"
-                      :key="activity"
-                      :to="{ path: '/', query: { activity } }"
-                      class="hover:scale-105 transition-transform cursor-pointer"
-                    >
-                      <UBadge
-                        color="primary"
-                        variant="soft"
-                        size="lg"
-                        class="cursor-pointer"
-                      >
-                        {{ activity }}
-                      </UBadge>
-                    </NuxtLink>
-                  </div>
-                </div>
-
-                <!-- Disciplines -->
-                <div v-if="software.disciplines?.length">
-                  <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-3">
-                    Disciplines
-                  </h4>
-                  <div class="flex flex-wrap gap-2">
-                    <NuxtLink
-                      v-for="discipline in software.disciplines"
-                      :key="discipline"
-                      :to="{ path: '/', query: { discipline } }"
-                      class="hover:scale-105 transition-transform cursor-pointer"
-                    >
-                      <UBadge
-                        color="primary"
-                        variant="soft"
-                        size="lg"
-                        class="cursor-pointer"
-                      >
-                        {{ discipline }}
-                      </UBadge>
-                    </NuxtLink>
-                  </div>
-                </div>
-              </div>
-            </UCard>
           </div>
         </div>
+      </UContainer>
+    </div>
 
-        <!-- Sidebar (Right Column) -->
+    <!-- Two Column Layout -->
+    <UContainer class="max-w-[1240px] mt-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- MAIN COLUMN (Left) -->
+        <div class="lg:col-span-8 space-y-8">
+          
+          <!-- 1. COMPLIANCE STATUS (Top Priority) -->
+           <section aria-label="Statut de conformité">
+              <SoftwareCertificationCard
+                v-model:show-details="showLgpdDetails"
+                :software="software"
+                :certification-level="certificationLevel ?? 0"
+                :lgpd-labels="lgpdLabels"
+              />
+           </section>
+
+          <!-- 2. PEDAGOGICAL CONTEXT (Teacher Focused) -->
+          <section v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length" aria-label="Usage Pédagogique">
+            <div class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700/50 relative overflow-hidden">
+               <div class="flex items-center gap-3 mb-6 relative z-10">
+                 <UIcon name="i-lucide-graduation-cap" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
+                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+                   Usage Pédagogique
+                 </h2>
+               </div>
+               
+               <div class="flex flex-col gap-8 relative z-10">
+                 <!-- Disciplines -->
+                 <div v-if="software.disciplines?.length">
+                   <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                     Disciplines concernées
+                   </h3>
+                   <div class="flex flex-wrap gap-2">
+                     <NuxtLink
+                       v-for="discipline in software.disciplines"
+                       :key="discipline"
+                       :to="{ path: '/', query: { discipline } }"
+                       class="hover:scale-105 transition-transform"
+                     >
+                       <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">
+                         <UIcon name="i-lucide-book-open" class="w-3.5 h-3.5 text-gray-500" />
+                         {{ discipline }}
+                       </span>
+                     </NuxtLink>
+                   </div>
+                 </div>
+
+                 <!-- Activities -->
+                 <div v-if="software.pedagogicalActivities?.length">
+                   <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                     Activités possibles
+                   </h3>
+                   <div class="flex flex-wrap gap-2">
+                     <NuxtLink
+                       v-for="activity in software.pedagogicalActivities"
+                       :key="activity"
+                       :to="{ path: '/', query: { activity } }"
+                       class="hover:scale-105 transition-transform"
+                     >
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">
+                         <UIcon name="i-lucide-puzzle" class="w-3.5 h-3.5 text-gray-500" />
+                         {{ activity }}
+                       </span>
+                     </NuxtLink>
+                   </div>
+                 </div>
+                 
+                 <!-- Categories (Full width if needed) -->
+                 <div v-if="software.categories?.length">
+                   <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                     Catégories
+                   </h3>
+                    <div class="flex flex-wrap gap-2">
+                     <NuxtLink
+                       v-for="category in software.categories"
+                       :key="category"
+                       :to="{ path: '/', query: { category } }"
+                       class="hover:scale-105 transition-transform"
+                     >
+                       <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">
+                         <UIcon name="i-lucide-tag" class="w-3.5 h-3.5 text-gray-500" />
+                         {{ category }}
+                       </span>
+                     </NuxtLink>
+                   </div>
+                 </div>
+               </div>
+            </div>
+          </section>
+           <section aria-label="À propos">
+            <div class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700/50">
+               <div class="flex items-center gap-3 mb-6">
+                 <UIcon name="i-lucide-file-text" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
+                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+                   À propos de {{ software.name }}
+                 </h2>
+               </div>
+              <div class="prose prose-lg dark:prose-invert prose-gray max-w-none bg-transparent">
+               <div class="text-gray-600 dark:text-gray-300 whitespace-pre-line leading-relaxed">
+                 {{ software.description }}
+               </div>
+              </div>
+            </div>
+           </section>
+
+        </div>
+
+        <!-- SIDEBAR (Right) -->
         <div class="lg:col-span-4 space-y-6">
-          <!-- Quick Actions -->
-          <div class="space-y-3">
-            <UButton
+          
+          <!-- Mobile CTA (Only visible on small screens) -->
+          <div class="block md:hidden">
+             <UButton
               :to="software.toolUrl"
               target="_blank"
               color="primary"
               variant="solid"
               size="xl"
               block
-              class="rounded-[var(--ui-radius)]"
+              class="rounded-xl shadow-lg"
             >
-              <template #leading>
+              Accéder au logiciel
+              <template #trailing>
                 <UIcon name="i-lucide-external-link" class="w-5 h-5" />
               </template>
-              Accéder
-            </UButton>
-
-            <UButton
-              v-if="software.documentation"
-              :to="software.documentation"
-              target="_blank"
-              color="neutral"
-              variant="ghost"
-              size="lg"
-              block
-              class="rounded-[var(--ui-radius)]"
-            >
-              <template #leading>
-                <UIcon name="i-lucide-book-open" class="w-5 h-5" />
-              </template>
-              Documentation
             </UButton>
           </div>
 
-          <!-- Practical Info Card -->
+          <!-- Info Card -->
           <SoftwareDetailPracticalInfo
             :software="software"
-            :bg-color="'bg-gray-50 dark:bg-gray-800'"
-            :icon-color="'text-red-500'"
+            :bg-color="'bg-gray-100 dark:bg-gray-800'"
+            :icon-color="'text-gray-900 dark:text-gray-100'"
           />
+          
+          <!-- Documentation Link -->
+          <div v-if="software.documentation" class="bg-gray-50 dark:bg-gray-800/50 rounded-[var(--ui-radius)] p-6 border border-gray-200 dark:border-gray-700/50">
+            <div class="flex items-center gap-3 mb-4">
+               <UIcon name="i-lucide-book-open" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
+               <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
+                 Ressources
+               </h3>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+              Consultez la documentation officielle pour en savoir plus sur l'utilisation.
+            </p>
+            <UButton
+              :to="software.documentation"
+              target="_blank"
+              color="neutral"
+              variant="solid"
+              block
+              icon="i-lucide-external-link"
+              class="rounded-full"
+            >
+              Voir la documentation
+            </UButton>
+          </div>
 
           <!-- Similar Software -->
           <SoftwareDetailSimilar :similar-software="similarSoftwareList.slice(0, 3)" />
         </div>
+
       </div>
     </UContainer>
   </div>

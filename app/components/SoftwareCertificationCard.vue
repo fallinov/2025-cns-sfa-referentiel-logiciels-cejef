@@ -21,123 +21,125 @@ const config = computed(() => {
   switch (props.certificationLevel) {
     case 1:
       return {
+        // Green - Validated
         color: "green",
         icon: "i-lucide-check-circle",
         title: "Usage Autorisé avec Élèves",
         description: "Vous pouvez utiliser ce logiciel librement avec vos élèves.",
         emphasis: "La création de comptes et l'utilisation de données personnelles sont autorisées.",
-        ringClass: "ring-[#1C293C]",
-        bgClass: "bg-green-50 dark:bg-green-900/10",
-        iconClass: "text-green-600 dark:text-green-400",
-        titleClass: "text-green-800 dark:text-green-200",
-        textClass: "text-green-800 dark:text-green-200",
-        borderClass: "border-green-200 dark:border-green-800/50",
-        buttonColor: "success" as const,
-        buttonClass: "text-green-700 dark:text-green-300",
-        labelClass: "text-green-900 dark:text-green-100",
-        valueClass: "text-orange-700 dark:text-orange-400"
+        containerClass: "bg-green-50/50 dark:bg-green-900/10 shadow-sm",
+        iconContainerClass: "bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400",
+        titleClass: "text-gray-900 dark:text-white",
+        textClass: "text-gray-600 dark:text-gray-300",
+        emphasisClass: "text-green-700 dark:text-green-400",
+        // Button/UI
+        buttonColor: "neutral" as const,
+        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200",
       }
     case 2:
       return {
+        // Orange - Restricted
         color: "orange",
         icon: "i-lucide-alert-triangle",
         title: "Usage Pédagogique Uniquement",
-        description: "Vous pouvez utiliser cet outil pour votre préparation.",
-        emphasis: "Interdiction formelle de saisir des données d'élèves (noms, emails).",
-        additionalInfo: "Si les élèves doivent utiliser l'outil, cela doit être fait de manière strictement anonyme.",
-        ringClass: "ring-[#1C293C]",
-        bgClass: "bg-orange-50 dark:bg-orange-900/10",
-        iconClass: "text-orange-600 dark:text-orange-400",
-        titleClass: "text-orange-800 dark:text-orange-200",
-        textClass: "text-orange-800 dark:text-orange-200",
-        borderClass: "border-orange-200 dark:border-orange-800/50",
-        buttonColor: "warning" as const,
-        buttonClass: "text-orange-700 dark:text-orange-300",
-        labelClass: "text-orange-900 dark:text-orange-100",
-        valueClass: "text-orange-700 dark:text-orange-400",
-        noteBgClass: "bg-white/50 dark:bg-black/20",
-        noteBorderClass: "border-orange-200 dark:border-orange-800/50",
-        noteTextClass: "text-orange-900 dark:text-orange-100"
+        description: "Vous pouvez utiliser cet outil pour votre préparation de cours.",
+        emphasis: "Interdiction formelle de saisir des données d'élèves.",
+        additionalInfo: "L'utilisation par les élèves est possible uniquement sans création de compte (anonymement).",
+        containerClass: "bg-orange-50/50 dark:bg-orange-900/10 shadow-sm",
+        iconContainerClass: "bg-orange-100 dark:bg-orange-900/20 text-orange-700 dark:text-orange-400",
+        titleClass: "text-gray-900 dark:text-white",
+        textClass: "text-gray-600 dark:text-gray-300",
+        emphasisClass: "text-orange-700 dark:text-orange-400",
+        // Notes
+        noteClass: "bg-orange-50 dark:bg-orange-900/10 text-orange-800 dark:text-orange-200 border border-orange-100 dark:border-orange-800/30",
+        // Button/UI
+        buttonColor: "neutral" as const,
+        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200",
       }
     case 3:
       return {
+        // Red - Banned
         color: "red",
         icon: "i-lucide-ban",
         title: "Usage Interdit",
-        description: "Ce logiciel ne respecte pas les normes de sécurité.",
+        description: "Ce logiciel ne respecte pas les normes de sécurité en vigueur.",
         emphasis: "Il ne doit être utilisé ni par les enseignants ni par les élèves.",
-        ringClass: "ring-[#1C293C]",
-        bgClass: "bg-red-50 dark:bg-red-900/10",
-        iconClass: "text-red-600 dark:text-red-400",
-        titleClass: "text-red-800 dark:text-red-200",
-        textClass: "text-red-800 dark:text-red-200",
-        borderClass: "border-red-200 dark:border-red-800/50",
-        buttonColor: "error" as const,
-        buttonClass: "text-red-700 dark:text-red-300",
-        labelClass: "text-red-900 dark:text-red-100",
-        valueClass: "text-orange-700 dark:text-orange-400",
-        alternativesTextClass: "text-red-900 dark:text-red-100"
+        containerClass: "bg-red-50/50 dark:bg-red-900/10 shadow-sm",
+        iconContainerClass: "bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-400",
+        titleClass: "text-gray-900 dark:text-white",
+        textClass: "text-gray-600 dark:text-gray-300",
+        emphasisClass: "text-red-700 dark:text-red-400",
+        // UI
+        buttonColor: "neutral" as const,
+        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200",
       }
     default:
       return {
+        // Gray - Unknown
         color: "gray",
         icon: "i-lucide-help-circle",
         title: "Non classifié",
-        description: "",
+        description: "Statut en cours de vérification.",
         emphasis: "",
-        ringClass: "ring-[#1C293C]",
-        bgClass: "bg-gray-50 dark:bg-gray-900/10",
-        iconClass: "text-gray-600 dark:text-gray-400",
-        titleClass: "text-gray-800 dark:text-gray-200",
-        textClass: "text-gray-800 dark:text-gray-200",
-        borderClass: "border dark:border-gray-800/50",
+        containerClass: "bg-gray-50/50 dark:bg-gray-800 shadow-sm",
+        iconContainerClass: "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400",
+        titleClass: "text-gray-900 dark:text-white",
+        textClass: "text-gray-600 dark:text-gray-300",
+        emphasisClass: "text-gray-700 dark:text-gray-300",
         buttonColor: "neutral" as const,
-        buttonClass: "text-gray-700 dark:text-gray-300",
-        labelClass: "text-gray-900 dark:text-gray-100",
-        valueClass: "text-gray-700 dark:text-gray-400"
+        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200",
       }
   }
 })
 </script>
 
 <template>
-  <UCard
-    :class="['rounded-[var(--ui-radius)]', config.bgClass, '[&>div]:!p-4']"
+  <div
+    :class="['rounded-[var(--ui-radius)] p-5 transition-all', config.containerClass]"
   >
-    <div class="flex gap-5">
-      <!-- Icon -->
+    <div class="flex items-center gap-3 mb-4">
+      <!-- Icon with new container style -->
       <div class="shrink-0">
-        <CertificationBadge :level="certificationLevel" size="xl" />
+        <div :class="['w-12 h-12 rounded-full flex items-center justify-center', config.iconContainerClass]">
+          <UIcon :name="config.icon" class="w-6 h-6" />
+        </div>
       </div>
 
-      <div class="flex-1">
-        <!-- Title -->
-        <h2 :class="['text-base font-bold mb-2', config.titleClass]">
-          {{ config.title }}
-        </h2>
+      <!-- Title -->
+      <h2 :class="['text-2xl font-bold', config.titleClass]">
+        {{ config.title }}
+      </h2>
+    </div>
+
+    <div>
 
         <!-- Description -->
-        <p :class="['text-base leading-relaxed mb-2', config.textClass]">
+        <p :class="['text-base leading-relaxed', config.textClass]">
           {{ config.description }}
-          <strong class="block mt-1 font-bold">{{ config.emphasis }}</strong>
+        </p>
+        
+        <!-- Emphasis (Important Rule) -->
+        <p v-if="config.emphasis" :class="['text-base font-semibold mt-1', config.emphasisClass]">
+          {{ config.emphasis }}
         </p>
 
         <!-- Additional Info (Level 2 only) -->
-        <p v-if="config.additionalInfo" :class="['text-base leading-relaxed mb-3', config.textClass]">
+        <p v-if="config.additionalInfo" :class="['text-base leading-relaxed mt-2 text-sm', config.textClass]">
           {{ config.additionalInfo }}
         </p>
 
         <!-- Usage Notes (Level 2 only) -->
         <div
           v-if="certificationLevel === 2 && software.usageNotes"
-          :class="['mb-4 p-3 rounded-[var(--ui-radius)] text-base italic', config.noteBgClass, config.noteBorderClass, config.noteTextClass]"
+          class="mt-3 p-3 rounded-lg text-sm italic"
+          :class="config.noteClass"
         >
-          Note : {{ software.usageNotes }}
+          <span class="font-bold not-italic">Note :</span> {{ software.usageNotes }}
         </div>
 
         <!-- Alternatives (Level 3 only) -->
-        <div v-if="certificationLevel === 3 && software.greenAlternatives?.length" class="mb-4">
-          <p :class="['font-bold text-base mb-2', config.alternativesTextClass]">
+        <div v-if="certificationLevel === 3 && software.greenAlternatives?.length" class="mt-4">
+          <p class="font-bold text-sm text-gray-700 dark:text-gray-300 mb-2">
             Alternatives recommandées :
           </p>
           <div class="flex flex-wrap gap-2">
@@ -146,7 +148,8 @@ const config = computed(() => {
               :key="altId"
               :to="`/logiciels/${altId}`"
               color="success"
-              variant="soft"
+              variant="outline"
+              size="xs"
               icon="i-lucide-arrow-right"
             >
               {{ getSoftwareById(altId)?.name || "Alternative" }}
@@ -155,12 +158,13 @@ const config = computed(() => {
         </div>
 
         <!-- Toggle Details Button -->
-        <div>
+        <div class="mt-4">
           <UButton
             :color="config.buttonColor"
             variant="ghost"
             size="sm"
-            :class="['p-0 hover:bg-transparent', config.buttonClass]"
+            class="p-0 hover:bg-transparent"
+            :class="config.buttonClass"
             :icon="showLgpdDetails ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'"
             @click="showLgpdDetails = !showLgpdDetails"
           >
@@ -169,20 +173,20 @@ const config = computed(() => {
         </div>
 
         <!-- Technical Details -->
-        <div v-if="showLgpdDetails" :class="['mt-4 pt-4 border-t', config.borderClass]">
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div v-if="showLgpdDetails" class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <!-- Hosting -->
             <div class="flex items-center gap-3">
               <UIcon
-                :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
+                :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
                 class="w-5 h-5"
                 :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
               />
               <div>
-                <div :class="['text-base', config.labelClass]">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   Hébergement
                 </div>
-                <div :class="['text-base font-bold', config.valueClass]">
+                <div class="text-sm font-bold text-gray-900 dark:text-white">
                   {{ lgpdLabels.hosting[software.lgpd.hosting] }}
                 </div>
               </div>
@@ -191,15 +195,15 @@ const config = computed(() => {
             <!-- RGPD -->
             <div class="flex items-center gap-3">
               <UIcon
-                :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
+                :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
                 class="w-5 h-5"
                 :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
               />
               <div>
-                <div :class="['text-base', config.labelClass]">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   Conformité RGPD
                 </div>
-                <div :class="['text-base font-bold', config.valueClass]">
+                <div class="text-sm font-bold text-gray-900 dark:text-white">
                   {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
                 </div>
               </div>
@@ -207,23 +211,22 @@ const config = computed(() => {
 
             <!-- Data Collection -->
             <div class="flex items-center gap-3">
-              <UIcon
-                :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x-circle'"
+               <UIcon
+                :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
                 class="w-5 h-5"
                 :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
               />
               <div>
-                <div :class="['text-base', config.labelClass]">
-                  Collecte Données
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  Données
                 </div>
-                <div :class="['text-base font-bold', config.valueClass]">
+                <div class="text-sm font-bold text-gray-900 dark:text-white">
                   {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
                 </div>
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
-  </UCard>
+  </div>
 </template>

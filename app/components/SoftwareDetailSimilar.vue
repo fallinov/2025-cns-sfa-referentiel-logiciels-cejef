@@ -45,29 +45,29 @@ const sortedSimilarSoftware = computed(() => {
 </script>
 
 <template>
-  <UCard v-if="sortedSimilarSoftware.length" class="ring-2 ring-[#1C293C] rounded-[var(--ui-radius)]" :ui="{ body: 'p-6', header: 'p-4 sm:p-6' }">
-    <template #header>
-      <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-        <UIcon name="i-lucide-sparkles" class="w-5 h-5 text-primary-600" />
+  <UCard v-if="sortedSimilarSoftware.length" class="bg-white dark:bg-gray-800 shadow-sm rounded-[var(--ui-radius)]">
+    <div class="flex items-center gap-3 mb-6">
+       <UIcon name="i-lucide-sparkles" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
         Logiciels similaires
       </h3>
-    </template>
+    </div>
 
-    <div class="space-y-3">
+    <div class="space-y-5">
       <NuxtLink
         v-for="sim in sortedSimilarSoftware"
         :key="sim.id"
         :to="`/logiciels/${sim.id}`"
-        class="flex items-center gap-3 group"
+        class="flex items-center gap-4 group"
       >
         <div class="relative">
           <div
-            class="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+            class="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
             :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).bg"
           >
             <UIcon
               :name="sim.icon || 'i-lucide-box'"
-              class="w-5 h-5"
+              class="w-6 h-6"
               :class="getInfoPracticalStyle(sim.certificationLevel ?? getCertificationLevel(sim.lgpd)).iconColor"
             />
           </div>
@@ -83,7 +83,7 @@ const sortedSimilarSoftware = computed(() => {
           </div>
         </div>
         <div>
-          <div class="font-medium text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">
+          <div class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">
             {{ sim.name }}
           </div>
           <div class="text-xs text-gray-500 truncate max-w-[150px]">
