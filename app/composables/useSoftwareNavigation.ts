@@ -6,7 +6,13 @@ import type { Software } from "~~/types/software"
  */
 export const useSoftwareNavigation = () => {
   // Liste filtrée stockée globalement (mise à jour depuis la page index)
-  const filteredList = useState<Software[]>("filteredSoftwareList", () => [])
+  // Initialiser avec la liste complète par défaut pour permettre la navigation directe
+  const filteredList = useState<Software[]>("filteredSoftwareList", () => {
+    const { getSoftwareList } = useSoftware()
+    const list = [...getSoftwareList()]
+    // Tri par défaut (Nom croissant)
+    return list.sort((a, b) => a.name.localeCompare(b.name))
+  })
 
   /**
    * Met à jour la liste filtrée (appelé depuis index.vue)

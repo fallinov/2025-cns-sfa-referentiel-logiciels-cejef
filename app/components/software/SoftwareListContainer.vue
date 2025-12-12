@@ -28,6 +28,7 @@ const pageTitle = computed(() => {
   return ""
 })
 
+
 // Watch filteredSoftwareList and update navigation composable
 watch(
   filteredSoftwareList,
@@ -62,6 +63,57 @@ const loadMore = () => {
 watch([searchQuery, selectedCategories, selectedDisciplines, selectedActivities, selectedPopularFilters], () => {
   displayedItems.value = itemsPerPage
 })
+
+// Initial scroll handling for deep linking (hash or query)
+const route = useRoute()
+const router = useRouter()
+
+const handleInitialScroll = async () => {
+  const hashId = route.hash && route.hash.startsWith("#software-") ? route.hash.replace("#software-", "") : null
+  const queryId = route.query.scrollTo as string
+  const id = queryId || hashId
+
+  if (id) {
+    // Finding the index in the *filtered* list
+    const index = filteredSoftwareList.value.findIndex(s => s.id === id)
+
+    if (index !== -1) {
+      // If the item is beyond the currently displayed limit, expand the list
+      if (index >= displayedItems.value) {
+        const neededItems = Math.ceil((index + 1) / itemsPerPage) * itemsPerPage
+        displayedItems.value = Math.max(displayedItems.value, neededItems)
+        await nextTick()
+      }
+
+      // Force scroll to element
+      setTimeout(() => {
+        const el = document.getElementById(`software-${id}`)
+        if (el) {
+          el.scrollIntoView({ block: "start", behavior: "smooth" })
+           // Clean up query param if used, to avoid sticky behavior
+           if (queryId) {
+             const newQuery = { ...route.query }
+             delete newQuery.scrollTo
+             router.replace({ query: newQuery, hash: route.hash }) // Keep hash if any (though usually one or other)
+           }
+        }
+      }, 100)
+    }
+  }
+}
+
+// Watch filteredSoftwareList to handle scroll once list is populated
+let scrollHandled = false
+watch(filteredSoftwareList, async (newList) => {
+  try {
+    if (!scrollHandled && newList.length > 0 && (route.hash || route.query.scrollTo)) {
+      await handleInitialScroll()
+      scrollHandled = true
+    }
+  } catch (error) {
+    console.warn("Failed to handle initial scroll:", error)
+  }
+}, { immediate: true })
 
 // Load more observer
 const loadMoreSentinel = ref<HTMLElement | null>(null)

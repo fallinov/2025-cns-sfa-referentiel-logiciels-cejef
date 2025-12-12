@@ -14,11 +14,22 @@ const { getPreviousSoftware, getNextSoftware } = useSoftwareNavigation()
 const { getSimilarSoftware } = useSimilarSoftware()
 
 // Fonction de retour intelligente (historique ou accueil)
+// Fonction de retour intelligente (historique ou accueil)
+// Fonction de retour intelligente (historique ou accueil)
 const goBack = () => {
-  if (window.history.state.back) {
+  const backLink = window.history.state.back
+  // Si on vient d'une page qui n'est pas un détail de logiciel (donc probablement le catalogue ou une autre page principale)
+  // on utilise back() pour préserver le scroll.
+  if (backLink && typeof backLink === 'string' && !backLink.includes('/logiciels/')) {
     router.back()
   } else {
-    navigateTo("/")
+    // Sinon (navigation entre logiciels ou accès direct), on retourne à l'accueil
+    // en ciblant le logiciel actuel via un query param pour gérer le scroll manuellement sans erreur du routeur
+    if (software.value) {
+      navigateTo({ path: '/', query: { scrollTo: software.value.id } })
+    } else {
+      navigateTo("/")
+    }
   }
 }
 
@@ -336,23 +347,7 @@ const showLgpdDetails = ref(false)
         <!-- SIDEBAR (Right) -->
         <div class="lg:col-span-4 space-y-6">
           
-          <!-- Mobile CTA (Only visible on small screens) -->
-          <div class="block md:hidden">
-             <UButton
-              :to="software.toolUrl"
-              target="_blank"
-              color="primary"
-              variant="solid"
-              size="xl"
-              block
-              class="rounded-xl shadow-lg"
-            >
-              Accéder au logiciel
-              <template #trailing>
-                <UIcon name="i-lucide-external-link" class="w-5 h-5" />
-              </template>
-            </UButton>
-          </div>
+
 
           <!-- Info Card -->
           <SoftwareDetailPracticalInfo
@@ -391,5 +386,23 @@ const showLgpdDetails = ref(false)
 
       </div>
     </UContainer>
+    
+    <!-- Mobile Fixed Bottom CTA (Floating) -->
+    <div class="fixed bottom-0 left-0 right-0 p-6 z-50 md:hidden flex justify-center pointer-events-none">
+       <UButton
+        :to="software.toolUrl"
+        target="_blank"
+        color="primary"
+        variant="solid"
+        size="xl"
+        block
+        class="rounded-full shadow-2xl pointer-events-auto border border-white/20 dark:border-gray-900/20 backdrop-blur-xl bg-primary-600/90 dark:bg-primary-500/90 hover:bg-primary-700/90 dark:hover:bg-primary-400/90 transition-all"
+      >
+        Accéder au logiciel
+        <template #trailing>
+          <UIcon name="i-lucide-external-link" class="w-5 h-5" />
+        </template>
+      </UButton>
+    </div>
   </div>
 </template>
