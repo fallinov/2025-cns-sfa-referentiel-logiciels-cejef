@@ -187,9 +187,9 @@ const showLgpdDetails = ref(false)
               <UIcon
                 v-else-if="software.icon"
                 :name="software.icon"
-                class="w-full h-full text-black dark:text-white"
+                class="w-full h-full text-gray-900 dark:text-white"
               />
-              <span v-else class="text-4xl font-black text-black dark:text-white">
+              <span v-else class="text-4xl font-black text-gray-900 dark:text-white">
                 {{ software.name.substring(0, 2).toUpperCase() }}
               </span>
             </div>

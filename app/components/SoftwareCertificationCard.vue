@@ -28,7 +28,7 @@ const config = computed(() => {
         description: "Vous pouvez utiliser ce logiciel librement avec vos élèves.",
         emphasis: "La création de comptes et l'utilisation de données personnelles sont autorisées.",
         containerClass: "bg-green-50/50 dark:bg-green-900/10 shadow-sm",
-        iconContainerClass: "bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400",
+        iconContainerClass: "bg-green-500 dark:bg-green-500 ring-2 ring-green-500 dark:ring-green-500 shadow-md",
         titleClass: "text-gray-900 dark:text-white",
         textClass: "text-gray-600 dark:text-gray-300",
         emphasisClass: "text-green-700 dark:text-green-400",
@@ -46,7 +46,7 @@ const config = computed(() => {
         emphasis: "Interdiction formelle de saisir des données d'élèves.",
         additionalInfo: "L'utilisation par les élèves est possible uniquement sans création de compte (anonymement).",
         containerClass: "bg-orange-50/50 dark:bg-orange-900/10 shadow-sm",
-        iconContainerClass: "bg-orange-100 dark:bg-orange-900/20 text-orange-700 dark:text-orange-400",
+        iconContainerClass: "bg-orange-500 dark:bg-orange-500 ring-2 ring-orange-500 dark:ring-orange-500 shadow-md",
         titleClass: "text-gray-900 dark:text-white",
         textClass: "text-gray-600 dark:text-gray-300",
         emphasisClass: "text-orange-700 dark:text-orange-400",
@@ -65,7 +65,7 @@ const config = computed(() => {
         description: "Ce logiciel ne respecte pas les normes de sécurité en vigueur.",
         emphasis: "Il ne doit être utilisé ni par les enseignants ni par les élèves.",
         containerClass: "bg-red-50/50 dark:bg-red-900/10 shadow-sm",
-        iconContainerClass: "bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-400",
+        iconContainerClass: "bg-red-500 dark:bg-red-500 ring-2 ring-red-500 dark:ring-red-500 shadow-md",
         titleClass: "text-gray-900 dark:text-white",
         textClass: "text-gray-600 dark:text-gray-300",
         emphasisClass: "text-red-700 dark:text-red-400",
@@ -100,8 +100,8 @@ const config = computed(() => {
     <div class="flex items-center gap-3 mb-4">
       <!-- Icon with new container style -->
       <div class="shrink-0">
-        <div :class="['w-12 h-12 rounded-full flex items-center justify-center', config.iconContainerClass]">
-          <UIcon :name="config.icon" class="w-6 h-6" />
+        <div :class="['w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-500', config.iconContainerClass]">
+          <UIcon :name="config.icon" class="w-7 h-7 text-white stroke-[3]" />
         </div>
       </div>
 
@@ -123,14 +123,14 @@ const config = computed(() => {
       </p>
 
       <!-- Additional Info (Level 2 only) -->
-      <p v-if="config.additionalInfo" :class="['text-base leading-relaxed mt-2 text-sm', config.textClass]">
+      <p v-if="config.additionalInfo" :class="['text-base leading-relaxed mt-2', config.textClass]">
         {{ config.additionalInfo }}
       </p>
 
       <!-- Usage Notes (Level 2 only) -->
       <div
         v-if="certificationLevel === 2 && software.usageNotes"
-        class="mt-3 p-3 rounded-lg text-sm italic"
+        class="mt-3 p-3 rounded-lg text-base italic"
         :class="config.noteClass"
       >
         <span class="font-bold not-italic">Note :</span> {{ software.usageNotes }}
@@ -176,11 +176,15 @@ const config = computed(() => {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <!-- Hosting -->
           <div class="flex items-center gap-3">
-            <UIcon
-              :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
-              class="w-5 h-5"
-              :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
-            />
+            <div
+              class="w-6 h-6 rounded-full flex items-center justify-center shadow-md ring-2 transition-colors duration-500 shrink-0"
+              :class="software.lgpd.hosting === 1 ? 'bg-green-500 ring-green-500' : software.lgpd.hosting === 2 ? 'bg-orange-500 ring-orange-500' : 'bg-red-500 ring-red-500'"
+            >
+              <UIcon
+                :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
+                class="w-4 h-4 text-white stroke-[3]"
+              />
+            </div>
             <div>
               <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
                 Hébergement
@@ -193,11 +197,15 @@ const config = computed(() => {
 
           <!-- RGPD -->
           <div class="flex items-center gap-3">
-            <UIcon
-              :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
-              class="w-5 h-5"
-              :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
-            />
+            <div
+              class="w-6 h-6 rounded-full flex items-center justify-center shadow-md ring-2 transition-colors duration-500 shrink-0"
+              :class="software.lgpd.rgpd === 1 ? 'bg-green-500 ring-green-500' : software.lgpd.rgpd === 2 ? 'bg-orange-500 ring-orange-500' : 'bg-red-500 ring-red-500'"
+            >
+              <UIcon
+                :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
+                class="w-4 h-4 text-white stroke-[3]"
+              />
+            </div>
             <div>
               <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
                 Conformité RGPD
@@ -210,11 +218,15 @@ const config = computed(() => {
 
           <!-- Data Collection -->
           <div class="flex items-center gap-3">
-            <UIcon
-              :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
-              class="w-5 h-5"
-              :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
-            />
+            <div
+              class="w-6 h-6 rounded-full flex items-center justify-center shadow-md ring-2 transition-colors duration-500 shrink-0"
+              :class="software.lgpd.dataCollection === 1 ? 'bg-green-500 ring-green-500' : software.lgpd.dataCollection === 2 ? 'bg-orange-500 ring-orange-500' : 'bg-red-500 ring-red-500'"
+            >
+              <UIcon
+                :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
+                class="w-4 h-4 text-white stroke-[3]"
+              />
+            </div>
             <div>
               <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
                 Données
