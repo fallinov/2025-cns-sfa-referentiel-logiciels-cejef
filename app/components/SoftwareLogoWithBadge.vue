@@ -46,12 +46,12 @@ const sizeClasses = computed(() => {
       <UIcon
         v-else-if="software.icon"
         :name="software.icon"
-        class="text-gray-900 dark:text-white"
+        class="text-gray-600 dark:text-gray-300"
         :class="sizeClasses.icon"
       />
       <span
         v-else
-        class="text-lg font-black text-gray-900 dark:text-white"
+        class="text-lg font-black text-gray-600 dark:text-gray-300"
       >
         {{ software.name.substring(0, 2).toUpperCase() }}
       </span>

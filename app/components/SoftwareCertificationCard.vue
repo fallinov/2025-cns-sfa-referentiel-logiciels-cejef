@@ -23,7 +23,7 @@ const config = computed(() => {
       return {
         // Green - Validated
         color: "green",
-        icon: "i-lucide-check-circle",
+        icon: "i-lucide-check",
         title: "Usage Autorisé avec Élèves",
         description: "Vous pouvez utiliser ce logiciel librement avec vos élèves.",
         emphasis: "La création de comptes et l'utilisation de données personnelles sont autorisées.",
@@ -60,7 +60,7 @@ const config = computed(() => {
       return {
         // Red - Banned
         color: "red",
-        icon: "i-lucide-ban",
+        icon: "i-lucide-x",
         title: "Usage Interdit",
         description: "Ce logiciel ne respecte pas les normes de sécurité en vigueur.",
         emphasis: "Il ne doit être utilisé ni par les enseignants ni par les élèves.",
