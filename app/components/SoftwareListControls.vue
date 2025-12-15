@@ -9,7 +9,7 @@
         option-attribute="label"
         value-attribute="value"
         size="xl"
-        class="w-56 rounded-[var(--ui-radius)] hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 cursor-pointer"
+        class="w-56 rounded-[var(--ui-radius)] hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 cursor-pointer"
       />
     </div>
 

@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <NuxtLink
     :to="`/logiciels/${software.id}`"
-    class="group relative flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+    class="group relative flex items-center gap-4 p-4 hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors"
   >
 
     <!-- Logo/Icon with Badge -->

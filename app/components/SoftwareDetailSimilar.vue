@@ -30,7 +30,7 @@ const sortedSimilarSoftware = computed(() => {
         v-for="sim in sortedSimilarSoftware"
         :key="sim.id"
         :to="`/logiciels/${sim.id}`"
-        class="flex items-center gap-4 group p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+        class="flex items-center gap-4 group p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors"
       >
         <SoftwareLogoWithBadge :software="sim" size="sm" />
         <div>

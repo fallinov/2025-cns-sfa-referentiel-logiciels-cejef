@@ -112,9 +112,9 @@ const showLgpdDetails = ref(false)
 </script>
 
 <template>
-  <div v-if="software" class="min-h-screen bg-[#f5f5f5] dark:bg-gray-950 pb-20">
+  <div v-if="software" class="min-h-screen bg-gray-100 dark:bg-gray-950 pb-20">
     <!-- Top Navigation Bar -->
-    <div class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50 shadow-sm/50">
+    <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md sticky top-0 z-50">
       <UContainer class="max-w-[1240px] h-16 flex items-center justify-between">
         <div class="flex items-center gap-4">
           <UButton
@@ -157,77 +157,88 @@ const showLgpdDetails = ref(false)
     </div>
 
     <!-- Hero Section with Background Identity -->
-    <div class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 relative overflow-hidden">
-      <!-- Decorative background element -->
-      <div class="absolute top-0 right-0 p-12 opacity-5 dark:opacity-[0.02] pointer-events-none select-none">
-        <img
-          v-if="software.logo"
-          :src="`/logos/${software.logo}.svg`"
-          class="w-96 h-96 object-contain grayscale transform rotate-12 translate-x-12 -translate-y-12"
-          alt=""
-        />
-        <UIcon
-          v-else
-          :name="software.icon || 'i-lucide-box'"
-          class="w-96 h-96 text-gray-900 dark:text-white transform rotate-12 translate-x-12 -translate-y-12"
-        />
-      </div>
+    <div class="bg-white dark:bg-gray-900 relative overflow-hidden">
+      <UContainer class="max-w-[1240px] py-10 sm:py-14 relative">
+        <!-- Decorative background element -->
+        <div class="absolute top-0 right-0 p-12 pointer-events-none select-none">
+          <div
+            v-if="software.logo"
+            class="w-96 h-96 transform rotate-12 translate-x-12 -translate-y-12"
+            :style="{
+              backgroundColor: '#F3F4F6',
+              WebkitMaskImage: `url(/logos/${software.logo}.svg)`,
+              WebkitMaskSize: 'contain',
+              WebkitMaskRepeat: 'no-repeat',
+              WebkitMaskPosition: 'center',
+              maskImage: `url(/logos/${software.logo}.svg)`,
+              maskSize: 'contain',
+              maskRepeat: 'no-repeat',
+              maskPosition: 'center'
+            }"
+          ></div>
+          <UIcon
+            v-else
+            :name="software.icon || 'i-lucide-box'"
+            class="w-96 h-96 text-[#F3F4F6] dark:text-white transform rotate-12 translate-x-12 -translate-y-12"
+          />
+        </div>
 
-      <UContainer class="max-w-[1240px] py-10 sm:py-14 relative z-10">
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <!-- Logo Card -->
-          <div class="shrink-0 ml-1">
-            <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
-              <img
-                v-if="software.logo"
-                :src="`/logos/${software.logo}.svg`"
-                :alt="`${software.name} logo`"
-                class="w-full h-full object-contain"
-              />
-              <UIcon
-                v-else-if="software.icon"
-                :name="software.icon"
-                class="w-full h-full text-gray-900 dark:text-white"
-              />
-              <span v-else class="text-4xl font-black text-gray-900 dark:text-white">
-                {{ software.name.substring(0, 2).toUpperCase() }}
-              </span>
-            </div>
-          </div>
-
-          <!-- Title & Intro -->
-          <div class="flex-1 min-w-0">
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
-              {{ software.name }}
-            </h1>
-            <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
-              {{ software.shortDescription }}
-            </p>
-
-            <!-- Quick Meta -->
-            <div class="flex flex-wrap gap-4 mt-6 text-sm text-gray-600 dark:text-gray-400">
-              <div class="flex items-center gap-1.5 bg-gray-100 dark:bg-gray-800 px-2.5 py-1 rounded-full">
-                <UIcon name="i-lucide-calendar" class="w-4 h-4" />
-                <span>Mis à jour le {{ new Date().toLocaleDateString('fr-CH') }}</span>
+        <div class="relative z-10">
+          <div class="flex flex-col md:flex-row gap-8 items-start">
+            <!-- Logo Card -->
+            <div class="shrink-0 ml-1">
+              <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
+                <img
+                  v-if="software.logo"
+                  :src="`/logos/${software.logo}.svg`"
+                  :alt="`${software.name} logo`"
+                  class="w-full h-full object-contain"
+                />
+                <UIcon
+                  v-else-if="software.icon"
+                  :name="software.icon"
+                  class="w-full h-full text-gray-900 dark:text-white"
+                />
+                <span v-else class="text-4xl font-black text-gray-900 dark:text-white">
+                  {{ software.name.substring(0, 2).toUpperCase() }}
+                </span>
               </div>
             </div>
-          </div>
 
-          <!-- Primary CTA (Desktop) -->
-          <div class="hidden md:flex md:items-center md:gap-3 shrink-0">
-            <UButton
-              :to="software.toolUrl"
-              target="_blank"
-              color="primary"
-              variant="solid"
-              size="xl"
-              class="rounded-[var(--ui-radius)] px-8 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 transition-all hover:-translate-y-0.5"
-            >
-              Accéder au logiciel
-              <template #trailing>
-                <UIcon name="i-lucide-external-link" class="w-5 h-5" />
-              </template>
-            </UButton>
+            <!-- Title & Intro -->
+            <div class="flex-1 min-w-0">
+              <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
+                {{ software.name }}
+              </h1>
+              <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
+                {{ software.shortDescription }}
+              </p>
+
+              <!-- Quick Meta -->
+              <div class="flex flex-wrap gap-4 mt-6 text-sm text-gray-600 dark:text-gray-400">
+                <div class="flex items-center gap-1.5 bg-gray-100 dark:bg-gray-800 px-2.5 py-1 rounded-full">
+                  <UIcon name="i-lucide-calendar" class="w-4 h-4" />
+                  <span>Mis à jour le {{ new Date().toLocaleDateString('fr-CH') }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Primary CTA (Desktop) -->
+            <div class="hidden md:flex md:items-center md:gap-3 shrink-0">
+              <UButton
+                :to="software.toolUrl"
+                target="_blank"
+                color="primary"
+                variant="solid"
+                size="xl"
+                class="rounded-[var(--ui-radius)] px-8 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 transition-all hover:-translate-y-0.5"
+              >
+                Accéder au logiciel
+                <template #trailing>
+                  <UIcon name="i-lucide-external-link" class="w-5 h-5" />
+                </template>
+              </UButton>
+            </div>
           </div>
         </div>
       </UContainer>
@@ -348,7 +359,7 @@ const showLgpdDetails = ref(false)
           />
 
           <!-- Documentation Link -->
-          <div v-if="software.documentation" class="bg-gray-50 dark:bg-gray-800/50 rounded-[var(--ui-radius)] p-6 border border-gray-200 dark:border-gray-700/50">
+          <div v-if="software.documentation" class="bg-gray-100 dark:bg-gray-800/50 rounded-[var(--ui-radius)] p-6 border border-gray-200 dark:border-gray-700/50">
             <div class="flex items-center gap-3 mb-4">
               <UIcon name="i-lucide-book-open" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
               <h3 class="text-2xl font-bold text-gray-900 dark:text-white">

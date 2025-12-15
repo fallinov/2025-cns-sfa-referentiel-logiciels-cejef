@@ -241,7 +241,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
     class="w-full transition-all duration-300 ease-in-out"
     :class="[
       compact ? '' : 'max-w-3xl mx-auto',
-      isMobileFocused ? 'fixed inset-0 z-[9999] bg-gray-50 dark:bg-gray-950/90 backdrop-blur-sm' : 'relative'
+      isMobileFocused ? 'fixed inset-0 z-[9999] bg-gray-100 dark:bg-gray-950/90 backdrop-blur-sm' : 'relative'
     ]"
   >
     <label for="software-search" class="sr-only">

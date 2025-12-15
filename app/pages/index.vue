@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#f5f5f5] dark:bg-gray-950">
+  <div class="min-h-screen bg-gray-100 dark:bg-gray-950">
     <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8">
       <SoftwarePageHeader />
       <SoftwareListContainer />

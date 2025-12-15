@@ -100,7 +100,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
             'w-full text-left px-5 py-4 transition-colors flex items-center gap-4',
             selectedIndex === index
               ? 'bg-gray-100 dark:bg-gray-700'
-              : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+              : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
           ]"
           @click="emit('clickCategory', item.label)"
         >
@@ -130,7 +130,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
               'w-full text-left px-5 py-4 transition-colors flex items-center gap-4',
               isItemSelected('category', index)
                 ? 'bg-gray-100 dark:bg-gray-700'
-                : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
             ]"
             @click="emit('clickCategory', category)"
           >
@@ -157,7 +157,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
               'w-full text-left px-5 py-4 transition-colors flex items-center gap-4',
               isItemSelected('discipline', index)
                 ? 'bg-gray-100 dark:bg-gray-700'
-                : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
             ]"
             @click="emit('clickDiscipline', discipline)"
           >
@@ -184,7 +184,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
               'w-full text-left px-5 py-4 transition-colors flex items-center gap-4',
               isItemSelected('activity', index)
                 ? 'bg-gray-100 dark:bg-gray-700'
-                : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
             ]"
             @click="emit('clickActivity', activity)"
           >
@@ -211,7 +211,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
               'w-full text-left px-5 py-4 transition-colors flex items-start gap-4',
               isItemSelected('software', index)
                 ? 'bg-gray-100 dark:bg-gray-700'
-                : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
             ]"
             @click="emit('clickSoftware', software.id)"
           >
