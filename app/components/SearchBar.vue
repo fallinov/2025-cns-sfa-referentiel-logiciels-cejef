@@ -45,11 +45,11 @@ watch([isFocused, isMobile], ([focused, mobile]) => {
 })
 
 const emit = defineEmits<{
-  filterByCategory: [category: string]
-  filterByDiscipline: [discipline: string]
-  filterByActivity: [activity: string]
-  search: [query: string]
-  clear: []
+  "filterByCategory": [category: string]
+  "filterByDiscipline": [discipline: string]
+  "filterByActivity": [activity: string]
+  "search": [query: string]
+  "clear": []
   "focus-mode-change": [isFocused: boolean]
 }>()
 

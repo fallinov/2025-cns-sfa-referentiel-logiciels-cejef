@@ -34,5 +34,6 @@ onMounted(() => {
       <SoftwarePageHeader />
       <SoftwareListContainer />
     </UContainer>
+    <BackToTop />
   </div>
 </template>

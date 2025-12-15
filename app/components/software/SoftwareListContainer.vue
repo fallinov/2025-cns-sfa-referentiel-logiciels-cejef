@@ -28,7 +28,6 @@ const pageTitle = computed(() => {
   return ""
 })
 
-
 // Watch filteredSoftwareList and update navigation composable
 watch(
   filteredSoftwareList,
@@ -39,6 +38,9 @@ watch(
 )
 
 const viewMode = useState<"grid" | "list">("viewMode", () => "grid")
+
+// Initial loading state (for skeleton display)
+const isInitialLoading = ref(true)
 
 // Pagination pour améliorer les performances (126 logiciels)
 const itemsPerPage = 24
@@ -90,12 +92,12 @@ const handleInitialScroll = async () => {
         const el = document.getElementById(`software-${id}`)
         if (el) {
           el.scrollIntoView({ block: "start", behavior: "smooth" })
-           // Clean up query param if used, to avoid sticky behavior
-           if (queryId) {
-             const newQuery = { ...route.query }
-             delete newQuery.scrollTo
-             router.replace({ query: newQuery, hash: route.hash }) // Keep hash if any (though usually one or other)
-           }
+          // Clean up query param if used, to avoid sticky behavior
+          if (queryId) {
+            const newQuery = { ...route.query }
+            delete newQuery.scrollTo
+            router.replace({ query: newQuery, hash: route.hash }) // Keep hash if any (though usually one or other)
+          }
         }
       }, 100)
     }
@@ -142,7 +144,19 @@ onMounted(() => {
       observer.observe(newEl)
     }
   })
+
+  // Stop initial loading once data is available
+  if (filteredSoftwareList.value.length > 0) {
+    isInitialLoading.value = false
+  }
 })
+
+// Watch for data changes to stop initial loading
+watch(filteredSoftwareList, (newList) => {
+  if (newList.length > 0 && isInitialLoading.value) {
+    isInitialLoading.value = false
+  }
+}, { immediate: true })
 
 onActivated(() => {
   if (loadMoreSentinel.value && observer) {
@@ -194,8 +208,35 @@ onUnmounted(() => {
       v-model:view-mode="viewMode"
     />
 
+    <!-- Initial Loading Skeletons -->
+    <div v-if="isInitialLoading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-0">
+      <div
+        v-for="n in 12"
+        :key="`skeleton-${n}`"
+        class="relative w-full overflow-hidden bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-md p-6 flex flex-col gap-6 isolate"
+      >
+        <div class="absolute top-5 left-5 z-20 flex flex-col gap-1.5">
+          <USkeleton class="h-6 w-6 rounded-full" />
+          <USkeleton class="h-6 w-6 rounded-full" />
+          <USkeleton class="h-6 w-6 rounded-full" />
+        </div>
+        <div class="relative z-10 space-y-3 flex-1 w-full pl-12">
+          <USkeleton class="h-7 w-3/4 rounded-md" />
+          <div class="space-y-2 pt-1">
+            <USkeleton class="h-4 w-full" />
+            <USkeleton class="h-4 w-5/6" />
+            <USkeleton class="h-4 w-4/6" />
+          </div>
+        </div>
+        <div class="relative z-10 flex gap-2 mt-auto">
+          <USkeleton class="h-6 w-24 rounded-md" />
+          <USkeleton class="h-6 w-20 rounded-md" />
+        </div>
+      </div>
+    </div>
+
     <!-- Grid View -->
-    <div v-if="viewMode === 'grid'" class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 px-4 sm:px-0 items-stretch">
+    <div v-else-if="viewMode === 'grid'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-0 items-stretch">
       <SoftwareCard
         v-for="software in paginatedSoftwareList"
         :key="software.id"
@@ -218,7 +259,7 @@ onUnmounted(() => {
     <div
       v-if="hasMoreItems && filteredSoftwareList.length > 0"
       ref="loadMoreSentinel"
-      class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 px-4 sm:px-0 mt-6"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-0 mt-6"
     >
       <div
         v-for="n in 4"

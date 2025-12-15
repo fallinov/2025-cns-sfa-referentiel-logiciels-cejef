@@ -4,18 +4,13 @@ import { storeToRefs } from "pinia"
 
 const store = useSoftwareStore()
 const {
-  searchQuery,
-  selectedCategories,
-  selectedDisciplines,
-  selectedActivities,
-  isFiltersDrawerOpen
+  searchQuery
 } = storeToRefs(store)
 
 const {
   handleCategoryFilter,
   handleDisciplineFilter,
   handleActivityFilter,
-  clearAllFilters,
   resetFilters
 } = store
 

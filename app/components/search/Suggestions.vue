@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Software } from "~/types/software"
+import type { Software } from "~~/types/software"
 
 interface Suggestions {
   categories: string[]
@@ -97,7 +97,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
           role="option"
           :aria-selected="selectedIndex === index"
           :class="[
-            'w-full text-left px-5 py-2.5 transition-colors flex items-center gap-4',
+            'w-full text-left px-5 py-4 transition-colors flex items-center gap-4',
             selectedIndex === index
               ? 'bg-gray-100 dark:bg-gray-700'
               : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
@@ -108,7 +108,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
             :name="item.icon"
             class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
           />
-          <span class="text-sm text-gray-900 dark:text-white">{{ item.label }}</span>
+          <span class="text-base text-gray-900 dark:text-white">{{ item.label }}</span>
           <span class="ml-auto text-xs text-gray-400">Recherche populaire</span>
         </button>
       </div>
@@ -127,7 +127,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
             role="option"
             :aria-selected="isItemSelected('category', index)"
             :class="[
-              'w-full text-left px-5 py-2.5 transition-colors flex items-center gap-4',
+              'w-full text-left px-5 py-4 transition-colors flex items-center gap-4',
               isItemSelected('category', index)
                 ? 'bg-gray-100 dark:bg-gray-700'
                 : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
@@ -138,7 +138,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
               name="i-lucide-tag"
               class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
             />
-            <span class="text-sm text-gray-900 dark:text-white">{{ category }}</span>
+            <span class="text-base text-gray-900 dark:text-white">{{ category }}</span>
           </button>
         </div>
 
@@ -154,7 +154,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
             role="option"
             :aria-selected="isItemSelected('discipline', index)"
             :class="[
-              'w-full text-left px-5 py-2.5 transition-colors flex items-center gap-4',
+              'w-full text-left px-5 py-4 transition-colors flex items-center gap-4',
               isItemSelected('discipline', index)
                 ? 'bg-gray-100 dark:bg-gray-700'
                 : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
@@ -165,7 +165,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
               name="i-lucide-book-open"
               class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
             />
-            <span class="text-sm text-gray-900 dark:text-white">{{ discipline }}</span>
+            <span class="text-base text-gray-900 dark:text-white">{{ discipline }}</span>
           </button>
         </div>
 
@@ -181,7 +181,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
             role="option"
             :aria-selected="isItemSelected('activity', index)"
             :class="[
-              'w-full text-left px-5 py-2.5 transition-colors flex items-center gap-4',
+              'w-full text-left px-5 py-4 transition-colors flex items-center gap-4',
               isItemSelected('activity', index)
                 ? 'bg-gray-100 dark:bg-gray-700'
                 : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
@@ -192,7 +192,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
               name="i-lucide-puzzle"
               class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
             />
-            <span class="text-sm text-gray-900 dark:text-white">{{ activity }}</span>
+            <span class="text-base text-gray-900 dark:text-white">{{ activity }}</span>
           </button>
         </div>
 
@@ -208,7 +208,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
             role="option"
             :aria-selected="isItemSelected('software', index)"
             :class="[
-              'w-full text-left px-5 py-3 transition-colors flex items-start gap-4',
+              'w-full text-left px-5 py-4 transition-colors flex items-start gap-4',
               isItemSelected('software', index)
                 ? 'bg-gray-100 dark:bg-gray-700'
                 : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
@@ -220,7 +220,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
               class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0 mt-0.5"
             />
             <div class="flex-1 min-w-0">
-              <div class="text-sm text-gray-900 dark:text-white truncate">
+              <div class="text-base text-gray-900 dark:text-white truncate">
                 {{ software.name }}
               </div>
               <div class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 mt-0.5">

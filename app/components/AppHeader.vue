@@ -9,6 +9,12 @@ const links = computed(() => [
   { label: "Se connecter", to: "#", icon: "i-lucide-user" }
 ])
 
+// UI customization for mobile menu
+const mobileMenuUi = {
+  item: "text-lg py-4",
+  icon: "w-6 h-6"
+}
+
 // Scrollspy not required for this header; removed related code
 </script>
 
@@ -34,6 +40,7 @@ const links = computed(() => [
         :items="links"
         orientation="vertical"
         class="-mx-2.5"
+        :ui="mobileMenuUi"
       />
     </template>
   </UHeader>

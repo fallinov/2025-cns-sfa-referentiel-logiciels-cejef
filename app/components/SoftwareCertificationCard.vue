@@ -34,7 +34,7 @@ const config = computed(() => {
         emphasisClass: "text-green-700 dark:text-green-400",
         // Button/UI
         buttonColor: "neutral" as const,
-        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200",
+        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
       }
     case 2:
       return {
@@ -54,7 +54,7 @@ const config = computed(() => {
         noteClass: "bg-orange-50 dark:bg-orange-900/10 text-orange-800 dark:text-orange-200 border border-orange-100 dark:border-orange-800/30",
         // Button/UI
         buttonColor: "neutral" as const,
-        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200",
+        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
       }
     case 3:
       return {
@@ -71,7 +71,7 @@ const config = computed(() => {
         emphasisClass: "text-red-700 dark:text-red-400",
         // UI
         buttonColor: "neutral" as const,
-        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200",
+        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
       }
     default:
       return {
@@ -87,7 +87,7 @@ const config = computed(() => {
         textClass: "text-gray-600 dark:text-gray-300",
         emphasisClass: "text-gray-700 dark:text-gray-300",
         buttonColor: "neutral" as const,
-        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200",
+        buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
       }
   }
 })
@@ -112,120 +112,119 @@ const config = computed(() => {
     </div>
 
     <div>
+      <!-- Description -->
+      <p :class="['text-base leading-relaxed', config.textClass]">
+        {{ config.description }}
+      </p>
 
-        <!-- Description -->
-        <p :class="['text-base leading-relaxed', config.textClass]">
-          {{ config.description }}
+      <!-- Emphasis (Important Rule) -->
+      <p v-if="config.emphasis" :class="['text-base font-semibold mt-1', config.emphasisClass]">
+        {{ config.emphasis }}
+      </p>
+
+      <!-- Additional Info (Level 2 only) -->
+      <p v-if="config.additionalInfo" :class="['text-base leading-relaxed mt-2 text-sm', config.textClass]">
+        {{ config.additionalInfo }}
+      </p>
+
+      <!-- Usage Notes (Level 2 only) -->
+      <div
+        v-if="certificationLevel === 2 && software.usageNotes"
+        class="mt-3 p-3 rounded-lg text-sm italic"
+        :class="config.noteClass"
+      >
+        <span class="font-bold not-italic">Note :</span> {{ software.usageNotes }}
+      </div>
+
+      <!-- Alternatives (Level 3 only) -->
+      <div v-if="certificationLevel === 3 && software.greenAlternatives?.length" class="mt-4">
+        <p class="font-bold text-sm text-gray-700 dark:text-gray-300 mb-2">
+          Alternatives recommandées :
         </p>
-        
-        <!-- Emphasis (Important Rule) -->
-        <p v-if="config.emphasis" :class="['text-base font-semibold mt-1', config.emphasisClass]">
-          {{ config.emphasis }}
-        </p>
-
-        <!-- Additional Info (Level 2 only) -->
-        <p v-if="config.additionalInfo" :class="['text-base leading-relaxed mt-2 text-sm', config.textClass]">
-          {{ config.additionalInfo }}
-        </p>
-
-        <!-- Usage Notes (Level 2 only) -->
-        <div
-          v-if="certificationLevel === 2 && software.usageNotes"
-          class="mt-3 p-3 rounded-lg text-sm italic"
-          :class="config.noteClass"
-        >
-          <span class="font-bold not-italic">Note :</span> {{ software.usageNotes }}
-        </div>
-
-        <!-- Alternatives (Level 3 only) -->
-        <div v-if="certificationLevel === 3 && software.greenAlternatives?.length" class="mt-4">
-          <p class="font-bold text-sm text-gray-700 dark:text-gray-300 mb-2">
-            Alternatives recommandées :
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <UButton
-              v-for="altId in software.greenAlternatives"
-              :key="altId"
-              :to="`/logiciels/${altId}`"
-              color="success"
-              variant="outline"
-              size="xs"
-              icon="i-lucide-arrow-right"
-            >
-              {{ getSoftwareById(altId)?.name || "Alternative" }}
-            </UButton>
-          </div>
-        </div>
-
-        <!-- Toggle Details Button -->
-        <div class="mt-4">
+        <div class="flex flex-wrap gap-2">
           <UButton
-            :color="config.buttonColor"
-            variant="ghost"
-            size="sm"
-            class="p-0 hover:bg-transparent"
-            :class="config.buttonClass"
-            :icon="showLgpdDetails ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'"
-            @click="showLgpdDetails = !showLgpdDetails"
+            v-for="altId in software.greenAlternatives"
+            :key="altId"
+            :to="`/logiciels/${altId}`"
+            color="success"
+            variant="outline"
+            size="xs"
+            icon="i-lucide-arrow-right"
           >
-            {{ showLgpdDetails ? 'Masquer les détails techniques' : 'Voir les détails techniques' }}
+            {{ getSoftwareById(altId)?.name || "Alternative" }}
           </UButton>
         </div>
+      </div>
 
-        <!-- Technical Details -->
-        <div v-if="showLgpdDetails" class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <!-- Hosting -->
-            <div class="flex items-center gap-3">
-              <UIcon
-                :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
-                class="w-5 h-5"
-                :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
-              />
-              <div>
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                  Hébergement
-                </div>
-                <div class="text-sm font-bold text-gray-900 dark:text-white">
-                  {{ lgpdLabels.hosting[software.lgpd.hosting] }}
-                </div>
+      <!-- Toggle Details Button -->
+      <div class="mt-4">
+        <UButton
+          :color="config.buttonColor"
+          variant="ghost"
+          size="sm"
+          class="p-0 hover:bg-transparent"
+          :class="config.buttonClass"
+          :icon="showLgpdDetails ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'"
+          @click="showLgpdDetails = !showLgpdDetails"
+        >
+          {{ showLgpdDetails ? 'Masquer les détails techniques' : 'Voir les détails techniques' }}
+        </UButton>
+      </div>
+
+      <!-- Technical Details -->
+      <div v-if="showLgpdDetails" class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Hosting -->
+          <div class="flex items-center gap-3">
+            <UIcon
+              :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
+              class="w-5 h-5"
+              :class="software.lgpd.hosting === 1 ? 'text-green-600' : software.lgpd.hosting === 2 ? 'text-orange-600' : 'text-red-600'"
+            />
+            <div>
+              <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Hébergement
               </div>
-            </div>
-
-            <!-- RGPD -->
-            <div class="flex items-center gap-3">
-              <UIcon
-                :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
-                class="w-5 h-5"
-                :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
-              />
-              <div>
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                  Conformité RGPD
-                </div>
-                <div class="text-sm font-bold text-gray-900 dark:text-white">
-                  {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
-                </div>
-              </div>
-            </div>
-
-            <!-- Data Collection -->
-            <div class="flex items-center gap-3">
-               <UIcon
-                :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
-                class="w-5 h-5"
-                :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
-              />
-              <div>
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                  Données
-                </div>
-                <div class="text-sm font-bold text-gray-900 dark:text-white">
-                  {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
-                </div>
+              <div class="text-sm font-bold text-gray-900 dark:text-white">
+                {{ lgpdLabels.hosting[software.lgpd.hosting] }}
               </div>
             </div>
           </div>
+
+          <!-- RGPD -->
+          <div class="flex items-center gap-3">
+            <UIcon
+              :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
+              class="w-5 h-5"
+              :class="software.lgpd.rgpd === 1 ? 'text-green-600' : software.lgpd.rgpd === 2 ? 'text-orange-600' : 'text-red-600'"
+            />
+            <div>
+              <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Conformité RGPD
+              </div>
+              <div class="text-sm font-bold text-gray-900 dark:text-white">
+                {{ lgpdLabels.rgpd[software.lgpd.rgpd] }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Collection -->
+          <div class="flex items-center gap-3">
+            <UIcon
+              :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
+              class="w-5 h-5"
+              :class="software.lgpd.dataCollection === 1 ? 'text-green-600' : software.lgpd.dataCollection === 2 ? 'text-orange-600' : 'text-red-600'"
+            />
+            <div>
+              <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Données
+              </div>
+              <div class="text-sm font-bold text-gray-900 dark:text-white">
+                {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   modelValue: string
   isMobileFocused: boolean
   showSuggestions: boolean
@@ -8,12 +8,12 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   "update:modelValue": [value: string]
-  focus: []
-  blur: []
-  keydown: [event: KeyboardEvent]
-  clear: []
-  submit: []
-  mobileBack: []
+  "focus": []
+  "blur": []
+  "keydown": [event: KeyboardEvent]
+  "clear": []
+  "submit": []
+  "mobileBack": []
 }>()
 
 const searchInput = ref<HTMLInputElement | null>(null)
@@ -81,7 +81,7 @@ defineExpose({
         type="search"
         autocomplete="off"
         :placeholder="displayPlaceholder"
-        class="w-full h-14 pl-6 pr-28 text-base text-slate-900 dark:text-slate-100 focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-transparent rounded-full"
+        class="w-full h-16 pl-6 pr-28 text-lg text-slate-900 dark:text-slate-100 focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-transparent rounded-full"
         aria-label="Rechercher un logiciel"
         :aria-expanded="showSuggestions && hasSuggestions"
         aria-autocomplete="list"
@@ -93,7 +93,7 @@ defineExpose({
       />
 
       <!-- Right Actions (Inside Pill) -->
-      <div class="absolute top-0 right-0 h-14 flex items-center pr-3 gap-3">
+      <div class="absolute top-0 right-0 h-16 flex items-center pr-3 gap-3">
         <!-- Clear Button -->
         <button
           v-if="modelValue"

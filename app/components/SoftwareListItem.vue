@@ -68,13 +68,13 @@ const config = computed(() => getCertificationConfig(props.software.certificatio
           label="Coup de coeur"
           size="sm"
           hide-label
-          class="lg:hidden bg-red-500 text-white dark:bg-red-600 dark:text-white border-none"
+          class="lg:hidden bg-red-600 text-white dark:bg-red-600 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-heart"
           label="Coup de coeur"
           size="sm"
-          class="hidden lg:inline-flex bg-red-500 text-white dark:bg-red-600 dark:text-white border-none"
+          class="hidden lg:inline-flex bg-red-600 text-white dark:bg-red-600 dark:text-white border-none"
         />
       </div>
 

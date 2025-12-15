@@ -47,7 +47,7 @@ const sortedSimilarSoftware = computed(() => {
 <template>
   <UCard v-if="sortedSimilarSoftware.length" class="bg-white dark:bg-gray-800 shadow-sm rounded-[var(--ui-radius)]">
     <div class="flex items-center gap-3 mb-6">
-       <UIcon name="i-lucide-sparkles" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
+      <UIcon name="i-lucide-sparkles" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
       <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
         Logiciels similaires
       </h3>
