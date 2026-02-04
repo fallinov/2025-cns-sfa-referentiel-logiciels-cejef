@@ -4653,8 +4653,7 @@ export const softwareList: Software[] = [
       "Correction"
     ],
     usageNotes: "Usage avec précautions - OpenAI (USA), certifié DPF, option résidence UE (Enterprise)",
-    remarque: "Niveau 1 : open source (GPL-2.0, projet GNOME), application locale, aucun cloud ni télémétrie",
-    toValidate: true,
+    remarque: "Niveau 2 : OpenAI (USA), certifié DPF, résidence données UE disponible pour Enterprise/API depuis fév 2025",
     createdAt: 1702802160000,
     updatedAt: 1702802160000
   },
