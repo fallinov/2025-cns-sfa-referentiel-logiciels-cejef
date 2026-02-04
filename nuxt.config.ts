@@ -2,6 +2,8 @@
 // Fichier de configuration principal de Nuxt
 // https://nuxt.com/docs/api/nuxt-config
 
+import pkg from "./package.json"
+
 export default defineNuxtConfig({
   // ========================================
   // MODULES NUXT
@@ -66,6 +68,16 @@ export default defineNuxtConfig({
   // ========================================
   // Fichiers CSS appliqués à toutes les pages
   css: ["~/assets/css/main.css"],
+
+  // ========================================
+  // CONFIGURATION RUNTIME
+  // ========================================
+  // Variables accessibles côté client via useRuntimeConfig()
+  runtimeConfig: {
+    public: {
+      appVersion: pkg.version // Version de l'application depuis package.json
+    }
+  },
 
   // ========================================
   // COMPATIBILITÉ

@@ -1,4 +1,6 @@
 <script setup>
+const config = useRuntimeConfig()
+
 useHead({
   meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
   htmlAttrs: {
@@ -53,6 +55,12 @@ const _links = [{
           CEJEF - Centre Jurassien d'Enseignement et de Formation •
           {{ new Date().getFullYear() }}
         </p>
+      </template>
+
+      <template #center>
+        <span class="text-xs text-gray-400 dark:text-gray-500">
+          v{{ config.public.appVersion }}
+        </span>
       </template>
 
       <template #right>
