@@ -23,8 +23,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -44,7 +44,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Adobe Inc. (USA), certifié EU-US DPF",
+    remarque: "Niveau 2 : Adobe Inc. (USA), certifié EU-US DPF, hébergement US, Cloud Act applicable",
     createdAt: 1672527600000,
     updatedAt: 1672527600000
   },
@@ -61,8 +62,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis/Australie",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -81,7 +82,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Atlassian (Australie), certifié DPF",
+    remarque: "Niveau 2 : Atlassian (Australie), certifié EU-US DPF, options hébergement UE disponibles",
     createdAt: 1672779888000,
     updatedAt: 1672779888000
   },
@@ -98,8 +100,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Inconnu",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -117,7 +119,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Service discontinué, politique confidentialité insuffisante",
+    remarque: "Niveau 3 : service apparemment discontinué, aucune politique RGPD claire",
+    toValidate: true,
     createdAt: 1673032176000,
     updatedAt: 1673032176000
   },
@@ -129,13 +133,13 @@ export const softwareList: Software[] = [
     shortDescription: "Plateforme d'apprentissage des langues en ligne",
     description: "Plateforme d'apprentissage des langues en ligne. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
-      hosting: 3,
-      rgpd: 3,
-      dataCollection: 3
+      hosting: 2,
+      rgpd: 1,
+      dataCollection: 1
     },
-    certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    certificationLevel: 2,
+    dataLocation: "Union Européenne (AWS)",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -155,7 +159,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "Usage avec précautions - Entreprise allemande, hébergement AWS (Cloud Act)",
+    remarque: "Niveau 2 : Lesson Nine GmbH (Berlin), conforme RGPD, utilise AWS en UE (soumis au Cloud Act US)",
     createdAt: 1673284464000,
     updatedAt: 1673284464000
   },
@@ -172,8 +177,8 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
-    personalData: true,
+    dataLocation: "France",
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -193,7 +198,8 @@ export const softwareList: Software[] = [
       "Français",
       "Culture générale"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Service public français, hébergement France",
+    remarque: "Niveau 1 : Bibliothèque nationale de France, institution publique, hébergement France",
     createdAt: 1673536752000,
     updatedAt: 1673536752000
   },
@@ -205,13 +211,13 @@ export const softwareList: Software[] = [
     shortDescription: "Plateforme de manuels scolaires numériques",
     description: "Plateforme de manuels scolaires numériques. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
-      hosting: 2,
-      rgpd: 2,
-      dataCollection: 2
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
     },
-    certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    certificationLevel: 1,
+    dataLocation: "Union Européenne",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -230,7 +236,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage autorisé - Entreprise espagnole (Madrid), hébergement UE",
+    remarque: "Niveau 1 : siège à Madrid (Espagne), données hébergées en UE, conforme RGPD",
     createdAt: 1673789040000,
     updatedAt: 1673789040000
   },
@@ -246,9 +253,9 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    certificationLevel: 3,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -266,7 +273,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "INTERDIT - Collecte extensive de données emails, politique confidentialité problématique",
+    remarque: "Niveau 3 : Blix Inc. (USA), historique controverses collecte données, non certifié DPF",
     createdAt: 1674041328000,
     updatedAt: 1674041328000
   },
@@ -283,8 +291,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Royaume-Uni/États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -306,7 +314,8 @@ export const softwareList: Software[] = [
       "Arts",
       "Langues"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise UK, hébergement Google Cloud",
+    remarque: "Niveau 2 : Red Jumper Ltd (UK), conforme RGPD UK, utilise Google Cloud, certifié COPPA",
     createdAt: 1674293616000,
     updatedAt: 1674293616000
   },
@@ -322,9 +331,9 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    certificationLevel: 1,
+    dataLocation: "France",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -342,7 +351,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Français"
     ],
-    usageNotes: null,
+    usageNotes: "Usage autorisé - Éditeur français (Bayard/Milan), hébergement France",
+    remarque: "Niveau 1 : Bayard/Milan Presse (France), données hébergées en France, conforme RGPD",
     createdAt: 1674545904000,
     updatedAt: 1674545904000
   },
@@ -359,8 +369,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -377,7 +387,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise US, certifié DPF",
+    remarque: "Niveau 2 : Calendly LLC (USA), certifié EU-US DPF, SOC 2 Type II, DPA disponible",
     createdAt: 1674798192000,
     updatedAt: 1674798192000
   },
@@ -394,7 +405,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
+    dataLocation: "Allemagne",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -413,7 +424,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - App allemande, synchronise avec calendriers existants",
+    remarque: "Niveau 1 : développeur allemand, app locale sans stockage propre de données",
     createdAt: 1675050480000,
     updatedAt: 1675050480000
   },
@@ -430,10 +442,9 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Australie/États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
-
     campusTraining: false,
     cost: "Freemium",
     toolUrl: "https://www.canva.com",
@@ -454,7 +465,8 @@ export const softwareList: Software[] = [
       "Communication",
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage avec précautions - Entreprise australienne, certifiée DPF",
+    remarque: "Niveau 2 : Canva Pty Ltd (Australie), certifié DPF, SOC 2, Canva for Education conforme COPPA/FERPA",
     createdAt: 1675302768000,
     updatedAt: 1675302768000
   },
@@ -471,8 +483,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Chine",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -492,7 +504,8 @@ export const softwareList: Software[] = [
       "Arts",
       "Communication"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - ByteDance (Chine), amende RGPD 530M€, transfert données vers Chine",
+    remarque: "Niveau 3 : propriété de ByteDance (Chine), condamné pour violations RGPD massives",
     createdAt: 1675555056000,
     updatedAt: 1675555056000
   },
@@ -504,13 +517,13 @@ export const softwareList: Software[] = [
     shortDescription: "Plateforme de cartes mémo (flashcards) pour l'apprentissage",
     description: "Plateforme de cartes mémo (flashcards) pour l'apprentissage. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
-      hosting: 2,
-      rgpd: 2,
-      dataCollection: 2
+      hosting: 1,
+      rgpd: 1,
+      dataCollection: 1
     },
-    certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    certificationLevel: 1,
+    dataLocation: "Suisse",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -530,7 +543,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage autorisé - Entreprise suisse, hébergement Suisse",
+    remarque: "Niveau 1 : entreprise suisse (Zurich), données hébergées en Suisse, conforme LPD/RGPD",
     createdAt: 1675807344000,
     updatedAt: 1675807344000
   },
@@ -547,8 +561,8 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
-    personalData: true,
+    dataLocation: "Royaume-Uni",
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -567,7 +581,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Claro Software (UK), apps accessibilité",
     createdAt: 1676059632000,
     updatedAt: 1676059632000
   },
@@ -584,8 +598,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -604,7 +618,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Collecte données comportementales extensive, acquis par HMH",
     createdAt: 1676311920000,
     updatedAt: 1676311920000
   },
@@ -621,8 +635,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Union Européenne",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -641,7 +655,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise NL, utilise services tiers US",
     createdAt: 1676564208000,
     updatedAt: 1676564208000
   },
@@ -679,7 +693,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Entreprise suisse, hébergement Suisse/UE",
     createdAt: 1676816496000,
     updatedAt: 1676816496000
   },
@@ -696,7 +710,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
+    dataLocation: "États-Unis",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -717,7 +731,7 @@ export const softwareList: Software[] = [
       "Informatique",
       "Mathématiques"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Organisation non-profit, engagement fort vie privée enfants",
     createdAt: 1677068784000,
     updatedAt: 1677068784000
   },
@@ -734,8 +748,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "France",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -753,7 +767,7 @@ export const softwareList: Software[] = [
     disciplines: [
       "Français"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise française, analytics tiers",
     createdAt: 1677321072000,
     updatedAt: 1677321072000
   },
@@ -765,13 +779,13 @@ export const softwareList: Software[] = [
     shortDescription: "Outil de planification collaborative de réunions",
     description: "Outil de planification collaborative de réunions. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
-      hosting: 2,
-      rgpd: 2,
+      hosting: 1,
+      rgpd: 1,
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Suisse",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -789,7 +803,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise suisse, sous-traitants US",
+    remarque: "Niveau 2 : TX Group (Suisse), hébergement CH, mais sous-traitants US",
+    toValidate: true,
     createdAt: 1677573360000,
     updatedAt: 1677573360000
   },
@@ -806,7 +822,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
+    dataLocation: "Suisse",
     personalData: true,
     supportedByCEJEF: true,
     cejefFavorite: true,
@@ -828,7 +844,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Infomaniak (Genève), hébergement exclusivement Suisse",
+    remarque: "Niveau 1 : Infomaniak (Genève), hébergement exclusivement Suisse, conforme LPD/RGPD",
     createdAt: 1677825648000,
     updatedAt: 1677825648000
   },
@@ -845,7 +862,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
+    dataLocation: "Canada",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: false,
@@ -867,7 +884,8 @@ export const softwareList: Software[] = [
       "Français",
       "Langues"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Druide informatique (Québec), hébergement Canada",
+    remarque: "Niveau 1 : Druide informatique (Québec), Canada pays adéquat UE, conforme RGPD",
     createdAt: 1678077936000,
     updatedAt: 1678077936000
   },
@@ -884,8 +902,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -905,7 +923,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Collecte extensive, publicités ciblées, données mineurs",
+    remarque: "Niveau 3 : Duolingo Inc. (USA), collecte extensive, publicités ciblées version gratuite",
     createdAt: 1678330224000,
     updatedAt: 1678330224000
   },
@@ -922,7 +941,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Suisse",
+    dataLocation: "France",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -942,7 +961,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Éducation physique"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Entreprise française, hébergement France",
+    remarque: "Niveau 1 : entreprise française, hébergement France, conforme RGPD",
     createdAt: 1678582512000,
     updatedAt: 1678582512000
   },
@@ -959,7 +979,7 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "France",
+    dataLocation: "États-Unis",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -983,7 +1003,8 @@ export const softwareList: Software[] = [
       "Français",
       "Histoire-Géographie"
     ],
-    usageNotes: "Usage avec précautions - Infrastructure hébergée en France (Microsoft Azure) MAIS soumise au Cloud Act américain. Collecte données d'identité professionnelle et coordonnées des enseignants, conservation 10 ans. Conforme RGPD et validée par le ministère de l'Éducation Nationale (GAR). Privilégier pour usage enseignants uniquement.",
+    usageNotes: "Usage avec précautions - Entreprise US EdTech, certifié DPF",
+    remarque: "Niveau 2 : entreprise US EdTech, certifié EU-US DPF",
     createdAt: 1733702400000,
     updatedAt: 1733702400000
   },
@@ -1000,8 +1021,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1021,7 +1042,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise US, certifiée DPF, COPPA/FERPA",
+    remarque: "Niveau 2 : Edpuzzle Inc. (USA), certifié EU-US DPF, conforme COPPA/FERPA",
     createdAt: 1678834800000,
     updatedAt: 1678834800000
   },
@@ -1038,8 +1060,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Hongrie",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -1058,7 +1080,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Politique confidentialité insuffisante",
+    remarque: "Niveau 3 : entreprise hongroise, politique confidentialité insuffisante",
     createdAt: 1679087088000,
     updatedAt: 1679087088000
   },
@@ -1075,8 +1098,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Union Européenne",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1096,7 +1119,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise espagnole, analytics tiers",
+    remarque: "Niveau 2 : ADR Formación (Espagne), hébergement UE, analytics tiers",
     createdAt: 1679339376000,
     updatedAt: 1679339376000
   },
@@ -1113,8 +1137,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Union Européenne",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1134,7 +1158,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise suédoise, hébergement UE",
+    remarque: "Niveau 2 : Exam.net AB (Suède), hébergement UE, conforme RGPD, quelques services tiers",
     createdAt: 1679591664000,
     updatedAt: 1679591664000
   },
@@ -1151,8 +1176,8 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
-    personalData: true,
+    dataLocation: "France",
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -1171,7 +1196,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Sciences"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Trapèze Digital (France), hébergement UE",
+    remarque: "Niveau 1 : Trapèze Digital (France), hébergement UE, pas de compte requis",
     createdAt: 1679843952000,
     updatedAt: 1679843952000
   },
@@ -1188,8 +1214,8 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
-    personalData: true,
+    dataLocation: "Allemagne",
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -1209,7 +1235,8 @@ export const softwareList: Software[] = [
       "Sciences naturelles",
       "Sciences"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Projet de recherche allemand (TU Ilmenau)",
+    remarque: "Niveau 1 : TU Ilmenau (Allemagne), projet de recherche public, pas de compte requis",
     createdAt: 1680096240000,
     updatedAt: 1680096240000
   },
@@ -1226,8 +1253,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1246,7 +1273,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise US, certifiée DPF",
+    remarque: "Niveau 2 : Foxit Software (USA), certifié EU-US DPF",
     createdAt: 1680348528000,
     updatedAt: 1680348528000
   },
@@ -1263,7 +1291,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "France",
     personalData: true,
     supportedByCEJEF: false,
     cejefFavorite: true,
@@ -1285,7 +1313,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Association française, hébergement France",
+    remarque: "Niveau 1 : Framasoft, association française CHATONS, hébergement France, open source",
     createdAt: 1680600816000,
     updatedAt: 1680600816000
   },
@@ -1302,8 +1331,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -1322,7 +1351,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Éducation physique"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Données santé sensibles, transferts pays tiers",
+    remarque: "Niveau 3 : Garmin Ltd (USA), données santé sensibles, transferts vers pays tiers",
     createdAt: 1680853104000,
     updatedAt: 1680853104000
   },
@@ -1340,7 +1370,7 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Union Européenne",
-    personalData: false,
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1360,7 +1390,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise espagnole, utilise AWS",
+    remarque: "Niveau 2 : Genially Web SL (Espagne), hébergement UE, utilise AWS",
     createdAt: 1681105392000,
     updatedAt: 1681105392000
   },
@@ -1377,7 +1408,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
+    dataLocation: "Union Européenne",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -1397,7 +1428,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Mathématiques"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Entreprise autrichienne (Linz), hébergement UE",
+    remarque: "Niveau 1 : GeoGebra GmbH (Linz, Autriche), hébergement UE, conforme RGPD",
     createdAt: 1681357680000,
     updatedAt: 1681357680000
   },
@@ -1414,8 +1446,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1435,7 +1467,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise US, COPPA/FERPA compliant",
+    remarque: "Niveau 2 : Gimkit Inc. (USA), conforme COPPA/FERPA",
     createdAt: 1681609968000,
     updatedAt: 1681609968000
   },
@@ -1452,8 +1485,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1474,7 +1507,8 @@ export const softwareList: Software[] = [
       "Français",
       "Littérature"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Politique privacy incertaine après acquisition",
+    remarque: "Niveau 3 : Glose Education (France acquis USA), politique privacy incertaine",
     createdAt: 1681862256000,
     updatedAt: 1681862256000
   },
@@ -1491,8 +1525,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -1511,7 +1545,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Organisation non-profit US, DPF",
+    remarque: "Niveau 2 : ITHAKA (USA), organisation à but non lucratif, certifié DPF",
     createdAt: 1682114544000,
     updatedAt: 1682114544000
   },
@@ -1528,8 +1563,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Inconnu",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1547,7 +1582,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Startup IA, politique confidentialité insuffisante",
+    remarque: "Niveau 3 : startup IA, politique confidentialité insuffisante",
+    toValidate: true,
     createdAt: 1682366832000,
     updatedAt: 1682366832000
   },
@@ -1564,8 +1601,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Union Européenne/États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1585,7 +1622,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise norvégienne, hébergement AWS multi-région",
+    remarque: "Niveau 2 : Kahoot ASA (Norvège), hébergement AWS multi-région, certifié COPPA",
     createdAt: 1682619120000,
     updatedAt: 1682619120000
   },
@@ -1602,7 +1640,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
+    dataLocation: "Allemagne",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -1625,7 +1663,8 @@ export const softwareList: Software[] = [
       "Langues",
       "Sciences humaines"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Entreprise allemande (Berlin), hébergement UE",
+    remarque: "Niveau 1 : Kialo GmbH (Berlin), hébergement UE, DPA disponible, conforme RGPD",
     createdAt: 1682871408000,
     updatedAt: 1682871408000
   },
@@ -1642,8 +1681,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1663,7 +1702,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Startup EdTech US",
+    remarque: "Niveau 2 : Knowt Inc. (USA), startup EdTech, politique privacy standard",
     createdAt: 1683123696000,
     updatedAt: 1683123696000
   },
@@ -1680,8 +1720,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Union Européenne",
-    personalData: false,
+    dataLocation: "Suisse",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -1701,7 +1741,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - PH Bern (Suisse), widgets tiers",
+    remarque: "Niveau 2 : PH Bern (Suisse), hébergement Suisse, mais intègre widgets tiers",
     createdAt: 1683375984000,
     updatedAt: 1683375984000
   },
@@ -1718,7 +1759,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Suisse",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -1738,7 +1779,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - PH Schwyz (Suisse), hébergement Suisse",
+    remarque: "Niveau 1 : PH Schwyz (Suisse), hébergement Suisse, conforme LPD",
     createdAt: 1683628272000,
     updatedAt: 1683628272000
   },
@@ -1755,8 +1797,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Chine",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1776,7 +1818,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Entreprise chinoise, transfert données vers Chine",
+    remarque: "Niveau 3 : entreprise chinoise, transfert données vers pays non adéquat",
     createdAt: 1683880560000,
     updatedAt: 1683880560000
   },
@@ -1793,8 +1836,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1814,7 +1857,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Orientation professionnelle"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Collecte extensive, profils professionnels mineurs déconseillés",
+    remarque: "Niveau 3 : Microsoft/LinkedIn (USA), collecte extensive, non adapté aux mineurs",
     createdAt: 1684132848000,
     updatedAt: 1684132848000
   },
@@ -1831,8 +1875,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Union Européenne",
-    personalData: false,
+    dataLocation: "France",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -1852,7 +1896,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Développeur français, analytics tiers",
+    remarque: "Niveau 2 : développeur français, hébergement UE, analytics tiers",
     createdAt: 1684385136000,
     updatedAt: 1684385136000
   },
@@ -1869,8 +1914,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1890,7 +1935,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Collecte analytics extensive, non certifié DPF",
+    remarque: "Niveau 3 : Lucid Software (USA), collecte analytics extensive, non certifié DPF",
     createdAt: 1684637424000,
     updatedAt: 1684637424000
   },
@@ -1908,7 +1954,7 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 2,
     dataLocation: "Union Européenne",
-    personalData: false,
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1928,7 +1974,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise espagnole, publicités tiers",
+    remarque: "Niveau 2 : entreprise espagnole, hébergement UE, publicités tiers",
     createdAt: 1684889712000,
     updatedAt: 1684889712000
   },
@@ -1945,8 +1992,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -1965,7 +2012,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - IA générative US, SOC 2 certifié",
+    remarque: "Niveau 2 : MagicSchool AI (USA), IA générative, SOC 2, FERPA compliant",
     createdAt: 1685142000000,
     updatedAt: 1685142000000
   },
@@ -1982,8 +2030,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -2003,7 +2051,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Publicités invasives, IA controversée",
+    remarque: "Niveau 3 : Memrise Ltd (UK/USA), publicités invasives version gratuite",
     createdAt: 1685394288000,
     updatedAt: 1685394288000
   },
@@ -2020,8 +2069,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Union Européenne",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -2041,7 +2090,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise allemande, utilise AWS UE",
+    remarque: "Niveau 2 : MeisterLabs (Munich), utilise AWS UE, conforme RGPD",
     createdAt: 1685646576000,
     updatedAt: 1685646576000
   },
@@ -2058,8 +2108,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Israël",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -2077,7 +2127,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Pays non adéquat UE, service découverte données",
+    remarque: "Niveau 3 : Mine PrivacyOps (Israël), pays non adéquat UE",
     createdAt: 1685898864000,
     updatedAt: 1685898864000
   },
@@ -2130,8 +2181,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -2151,7 +2202,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise US, certifiée DPF, SOC 2",
+    remarque: "Niveau 2 : Miro Inc. (USA), certifié EU-US DPF, SOC 2, options UE",
     createdAt: 1686403440000,
     updatedAt: 1686403440000
   },
@@ -2168,8 +2220,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -2188,7 +2240,9 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Acquis par Microsoft, changements politique à venir",
+    remarque: "Niveau 3 : Mural (USA), acquis par Microsoft, politique privacy en transition",
+    toValidate: true,
     createdAt: 1686655728000,
     updatedAt: 1686655728000
   },
@@ -2205,8 +2259,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -2226,7 +2280,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Google (USA), certifié DPF",
+    remarque: "Niveau 2 : Google (USA), certifié EU-US DPF, IA générative",
     createdAt: 1686908016000,
     updatedAt: 1686908016000
   },
@@ -2243,8 +2298,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -2262,7 +2317,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage avec précautions - Développeur US, synchronisation calendriers",
+    remarque: "Niveau 2 : développeur US, synchronisation avec services tiers",
     createdAt: 1687160304000,
     updatedAt: 1687160304000
   },
@@ -2279,7 +2335,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "France",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -2298,7 +2354,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Français"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Académie de Lille, service public français",
+    remarque: "Niveau 1 : Académie de Lille (France), service public, hébergement France",
     createdAt: 1687412592000,
     updatedAt: 1687412592000
   },
@@ -2315,8 +2372,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -2336,7 +2393,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise US, certifiée DPF, COPPA",
+    remarque: "Niveau 2 : Padlet Inc. (USA), certifié EU-US DPF, conforme COPPA",
     createdAt: 1687664880000,
     updatedAt: 1687664880000
   },
@@ -2353,7 +2411,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Suisse",
+    dataLocation: "Suisse/Luxembourg",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -2373,7 +2431,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - pCloud AG (Suisse), hébergement Suisse/Luxembourg",
+    remarque: "Niveau 1 : pCloud AG (Suisse), option hébergement Luxembourg ou Suisse",
     createdAt: 1687917168000,
     updatedAt: 1687917168000
   },
@@ -2390,7 +2449,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
+    dataLocation: "Union Européenne",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -2411,7 +2470,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Readdle (Ukraine), hébergement UE",
+    remarque: "Niveau 1 : Readdle (Ukraine/UE), hébergement UE, conforme RGPD",
     createdAt: 1688169456000,
     updatedAt: 1688169456000
   },
@@ -2428,8 +2488,8 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
-    personalData: true,
+    dataLocation: "Suisse",
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -2448,7 +2508,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Développeur suisse, app locale",
+    remarque: "Niveau 1 : développeur suisse, application locale, pas de stockage cloud",
     createdAt: 1688421744000,
     updatedAt: 1688421744000
   },
@@ -2465,8 +2526,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Union Européenne",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -2486,7 +2547,8 @@ export const softwareList: Software[] = [
       "Arts",
       "Multimédia"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Développeur tchèque, publicités Google",
+    remarque: "Niveau 2 : Ivan Kutskir (Tchéquie), hébergement UE, publicités Google",
     createdAt: 1688674032000,
     updatedAt: 1688674032000
   },
@@ -2503,8 +2565,8 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
-    personalData: true,
+    dataLocation: "Allemagne",
+    personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -2523,7 +2585,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Sciences"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - RWTH Aachen, université publique allemande",
+    remarque: "Niveau 1 : RWTH Aachen (Allemagne), université publique, pas de compte requis",
     createdAt: 1688926320000,
     updatedAt: 1688926320000
   },
@@ -2540,8 +2603,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Canada",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -2563,7 +2626,8 @@ export const softwareList: Software[] = [
       "Arts",
       "Langues"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise canadienne, hébergement AWS",
+    remarque: "Niveau 2 : Pixton Comics (Canada), hébergement AWS, COPPA compliant",
     createdAt: 1689178608000,
     updatedAt: 1689178608000
   },
@@ -2580,8 +2644,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Canada",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -2599,7 +2663,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Développeur canadien",
+    remarque: "Niveau 2 : développeur canadien, politique privacy basique",
     createdAt: 1689430896000,
     updatedAt: 1689430896000
   },
@@ -2616,8 +2681,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -2637,7 +2702,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise US, certifiée DPF",
+    remarque: "Niveau 2 : Plickers Inc. (USA), certifié EU-US DPF, COPPA",
     createdAt: 1689683184000,
     updatedAt: 1689683184000
   },
@@ -2654,8 +2720,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -2674,7 +2740,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Collecte analytics extensive, non certifié DPF",
+    remarque: "Niveau 3 : Prezi Inc. (USA), collecte analytics extensive, non certifié DPF",
     createdAt: 1689935472000,
     updatedAt: 1689935472000
   },
@@ -2691,7 +2758,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "France",
     personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -2710,7 +2777,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Français"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Woonoz SAS (France), hébergement France",
+    remarque: "Niveau 1 : Woonoz SAS (France), hébergement France, conforme RGPD",
     createdAt: 1690187760000,
     updatedAt: 1690187760000
   },
@@ -2727,8 +2795,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -2748,7 +2816,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Entreprise US, certifiée DPF, COPPA",
+    remarque: "Niveau 2 : Quizlet Inc. (USA), certifié EU-US DPF, conforme COPPA",
     createdAt: 1690440048000,
     updatedAt: 1690440048000
   },
@@ -2765,8 +2834,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Union Européenne/États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -2785,7 +2854,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - reMarkable (Norvège), intégration cloud",
+    remarque: "Niveau 2 : reMarkable AS (Norvège), intégration OneDrive, hébergement multi-région",
     createdAt: 1690692336000,
     updatedAt: 1690692336000
   },
@@ -2802,8 +2872,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Corée du Sud",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -2819,7 +2889,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Samsung (Corée du Sud), collecte analytics",
+    remarque: "Niveau 2 : Samsung (Corée), pays adéquat UE, mais collecte analytics",
     createdAt: 1690944624000,
     updatedAt: 1690944624000
   },
@@ -2836,8 +2907,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Corée du Sud",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -2856,7 +2927,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Samsung (Corée du Sud), synchronisation cloud",
+    remarque: "Niveau 2 : Samsung (Corée), pays adéquat UE, synchronisation cloud",
     createdAt: 1691196912000,
     updatedAt: 1691196912000
   },
@@ -2873,8 +2945,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Union Européenne",
-    personalData: false,
+    dataLocation: "France",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -2892,7 +2964,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Cyberlibris (France), hébergement France",
+    remarque: "Niveau 2 : Cyberlibris (France), hébergement France, quelques trackers tiers",
     createdAt: 1691449200000,
     updatedAt: 1691449200000
   },
@@ -2909,8 +2982,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -2928,7 +3001,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - IA générative US, FERPA compliant",
+    remarque: "Niveau 2 : SchoolAI (USA), IA générative, conforme FERPA",
     createdAt: 1691701488000,
     updatedAt: 1691701488000
   },
@@ -2945,8 +3019,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Union Européenne",
-    personalData: false,
+    dataLocation: "Canada/États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -2964,7 +3038,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - SMART Technologies (Canada), hébergement AWS",
+    remarque: "Niveau 2 : SMART Technologies (Canada), hébergement AWS, DPA disponible",
     createdAt: 1691953776000,
     updatedAt: 1691953776000
   },
@@ -2981,8 +3056,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Canada",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -3002,7 +3077,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Lulu Software (Canada), hébergement cloud",
+    remarque: "Niveau 2 : Lulu Software (Canada), hébergement cloud, politique privacy standard",
     createdAt: 1692206064000,
     updatedAt: 1692206064000
   },
@@ -3019,8 +3095,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -3041,7 +3117,8 @@ export const softwareList: Software[] = [
       "Musique",
       "Arts"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Spotify/Soundtrap, hébergement US, collecte audio",
+    remarque: "Niveau 3 : Spotify/Soundtrap (Suède), hébergement US, collecte données audio",
     createdAt: 1692458352000,
     updatedAt: 1692458352000
   },
@@ -3058,8 +3135,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Ukraine",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -3077,7 +3154,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - Client email, accès contenu côté serveur",
+    remarque: "Niveau 3 : Readdle/Spark (Ukraine), accès contenu emails côté serveur",
     createdAt: 1692710640000,
     updatedAt: 1692710640000
   },
@@ -3094,8 +3172,8 @@ export const softwareList: Software[] = [
       dataCollection: 3
     },
     certificationLevel: 3,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -3114,7 +3192,8 @@ export const softwareList: Software[] = [
       "Musique",
       "Arts"
     ],
-    usageNotes: "Usage interdit ou fortement déconseillé pour des raisons de protection des données",
+    usageNotes: "INTERDIT - IA générative, droits auteur incertains, politique privacy floue",
+    remarque: "Niveau 3 : Suno AI (USA), IA générative musicale, droits auteur incertains",
     createdAt: 1692962928000,
     updatedAt: 1692962928000
   },
@@ -3131,7 +3210,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
+    dataLocation: "Canada",
     personalData: true,
     supportedByCEJEF: true,
     cejefFavorite: true,
@@ -3151,7 +3230,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Informatique"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - De Marque (Québec), hébergement Canada",
+    remarque: "Niveau 1 : De Marque (Québec), Canada pays adéquat UE, conforme RGPD",
     createdAt: 1693215216000,
     updatedAt: 1693215216000
   },
@@ -3168,8 +3248,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Allemagne",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -3187,7 +3267,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage avec précautions - TeamViewer AG (Allemagne), infrastructure mondiale",
+    remarque: "Niveau 2 : TeamViewer AG (Allemagne), infrastructure mondiale, certifié ISO 27001",
     createdAt: 1693467504000,
     updatedAt: 1693467504000
   },
@@ -3224,7 +3305,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Threema GmbH (Suisse), chiffrement E2E",
+    remarque: "Niveau 1 : Threema GmbH (Pfäffikon, Suisse), chiffrement E2E, hébergement Suisse",
     createdAt: 1693719792000,
     updatedAt: 1693719792000
   },
@@ -3241,8 +3323,8 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Hors UE",
-    personalData: true,
+    dataLocation: "Local",
+    personalData: false,
     supportedByCEJEF: false,
     cejefFavorite: true,
     campusTraining: false,
@@ -3262,7 +3344,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Mozilla Foundation, client email local open source",
+    remarque: "Niveau 1 : Mozilla Foundation, open source, client email local",
     createdAt: 1693972080000,
     updatedAt: 1693972080000
   },
@@ -3279,8 +3362,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Payant",
@@ -3300,7 +3383,8 @@ export const softwareList: Software[] = [
       "Géographie",
       "Sciences"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Trimble Inc. (USA), SketchUp, certifié DPF",
+    remarque: "Niveau 2 : Trimble Inc. (USA), SketchUp, certifié EU-US DPF",
     createdAt: 1694224368000,
     updatedAt: 1694224368000
   },
@@ -3317,8 +3401,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Union Européenne",
-    personalData: false,
+    dataLocation: "Suisse",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -3337,7 +3421,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Langues"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Développeur suisse, synchronisation externe",
+    remarque: "Niveau 2 : développeur suisse, hébergement Suisse, synchronisation services tiers",
     createdAt: 1694476656000,
     updatedAt: 1694476656000
   },
@@ -3354,8 +3439,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Royaume-Uni",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -3374,7 +3459,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Wakelet Ltd (UK), hébergement cloud",
+    remarque: "Niveau 2 : Wakelet Ltd (UK), hébergement cloud, conforme RGPD UK",
     createdAt: 1694728944000,
     updatedAt: 1694728944000
   },
@@ -3391,8 +3477,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -3412,7 +3498,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Quizizz Inc. (USA), certifié DPF, COPPA",
+    remarque: "Niveau 2 : Quizizz Inc. (USA), certifié EU-US DPF, conforme COPPA",
     createdAt: 1694981232000,
     updatedAt: 1694981232000
   },
@@ -3429,8 +3516,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Union Européenne",
+    personalData: true,
     supportedByCEJEF: false,
 
     campusTraining: false,
@@ -3451,7 +3538,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Wooclap SA (Belgique), hébergement UE",
+    remarque: "Niveau 2 : Wooclap SA (Belgique), hébergement UE, quelques services tiers",
     createdAt: 1695233520000,
     updatedAt: 1695233520000
   },
@@ -3489,7 +3577,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage autorisé - Wooclap SA (Belgique), hébergement UE",
+    remarque: "Niveau 1 : Wooclap SA (Belgique), hébergement UE, conforme RGPD",
     createdAt: 1695485808000,
     updatedAt: 1695485808000
   },
@@ -3506,8 +3595,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "Royaume-Uni",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -3527,7 +3616,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: null,
+    usageNotes: "Usage avec précautions - Visual Education Ltd (UK), hébergement UK/US",
+    remarque: "Niveau 2 : Visual Education Ltd (UK), hébergement UK, conforme RGPD UK",
     createdAt: 1695738096000,
     updatedAt: 1695738096000
   },
@@ -3544,8 +3634,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -3564,7 +3654,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Usage autorisé",
+    usageNotes: "Usage avec précautions - Zapier Inc. (USA), certifié DPF, SOC 2",
+    remarque: "Niveau 2 : Zapier Inc. (USA), certifié EU-US DPF, SOC 2 Type II",
     createdAt: 1695990384000,
     updatedAt: 1695990384000
   },
@@ -3581,7 +3672,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Union Européenne (option)",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
@@ -3616,7 +3707,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Union Européenne (option)",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
@@ -3654,7 +3745,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Union Européenne (option)",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
@@ -3691,7 +3782,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Union Européenne (option)",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
@@ -3728,7 +3819,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Union Européenne (option)",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
@@ -3763,7 +3854,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Union Européenne (option)",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
@@ -3799,7 +3890,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Union Européenne (option)",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
@@ -3835,7 +3926,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Union Européenne (option)",
     personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
@@ -3869,9 +3960,9 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
-    certificationLevel: 1,
-    dataLocation: "Union Européenne",
-    personalData: false,
+    certificationLevel: 2,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: true,
     campusTraining: false,
     cost: "Gratuit",
@@ -3889,7 +3980,8 @@ export const softwareList: Software[] = [
       "Recherche d'information",
       "Navigation web"
     ],
-    usageNotes: "Navigateur recommandé par le CEJEF pour sa protection des données.",
+    usageNotes: "Usage avec précautions - Mozilla (USA), non certifié DPF, télémétrie configurable",
+    remarque: "Niveau 2 : Mozilla Corporation (USA), non certifié DPF, protection tracking par défaut mais télémétrie",
     createdAt: 1698260976000,
     updatedAt: 1698260976000
   },
@@ -3906,8 +3998,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: true,
     campusTraining: false,
     cost: "Gratuit",
@@ -3925,7 +4017,7 @@ export const softwareList: Software[] = [
       "Recherche d'information",
       "Navigation web"
     ],
-    usageNotes: "Collecte de données importante. Privilégier Firefox pour les données sensibles.",
+    usageNotes: "Usage avec précautions - Google (USA), certifié DPF, collecte télémétrie",
     greenAlternatives: [
       "mozilla-firefox",
       "brave-browser"
@@ -3946,8 +4038,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: true,
     campusTraining: false,
     cost: "Gratuit",
@@ -3965,7 +4057,7 @@ export const softwareList: Software[] = [
       "Recherche d'information",
       "Navigation web"
     ],
-    usageNotes: "Collecte de données similaire à Chrome. Privilégier Firefox.",
+    usageNotes: "Usage avec précautions - Microsoft (USA), certifié DPF, télémétrie importante",
     greenAlternatives: [
       "mozilla-firefox",
       "brave-browser"
@@ -3985,9 +4077,9 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
-    certificationLevel: 1,
-    dataLocation: "Union Européenne",
-    personalData: false,
+    certificationLevel: 2,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: true,
     campusTraining: false,
     cost: "Gratuit",
@@ -4005,7 +4097,8 @@ export const softwareList: Software[] = [
       "Recherche d'information",
       "Navigation web"
     ],
-    usageNotes: "Bonne protection de la vie privée par défaut.",
+    usageNotes: "Usage avec précautions - Apple Inc. (USA), non certifié DPF, bonnes protections vie privée",
+    remarque: "Niveau 2 : Microsoft (USA), certifié EU-US DPF, télémétrie importante (48 connexions)",
     createdAt: 1699017840000,
     updatedAt: 1699017840000
   },
@@ -4022,7 +4115,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Local/États-Unis",
     personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -4041,7 +4134,8 @@ export const softwareList: Software[] = [
       "Recherche d'information",
       "Navigation web"
     ],
-    usageNotes: "Excellent pour la protection contre le pistage.",
+    usageNotes: "Usage autorisé - Navigateur axé vie privée, pas de stockage historique",
+    remarque: "Niveau 1 : Brave Software Inc. (USA), conforme RGPD, bloque trackers par défaut, pas de stockage historique",
     createdAt: 1699270128000,
     updatedAt: 1699270128000
   },
@@ -4058,8 +4152,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis (UE Enterprise)",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -4079,7 +4173,7 @@ export const softwareList: Software[] = [
       "Gestion de projet",
       "Portfolio"
     ],
-    usageNotes: "Hébergement aux USA. Ne pas y stocker de données sensibles (noms d'élèves, notes).",
+    usageNotes: "Usage avec précautions - Notion Labs (USA), résidence UE uniquement Enterprise",
     createdAt: 1699522416000,
     updatedAt: 1699522416000
   },
@@ -4095,9 +4189,9 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    certificationLevel: 1,
+    dataLocation: "Union Européenne/Global",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -4116,7 +4210,7 @@ export const softwareList: Software[] = [
       "Planification",
       "Gestion de projet"
     ],
-    usageNotes: "Données hébergées hors UE.",
+    usageNotes: "Usage autorisé - Doist (USA), conforme RGPD, SOC 2, hébergement UE disponible",
     createdAt: 1699774704000,
     updatedAt: 1699774704000
   },
@@ -4133,7 +4227,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Local",
     personalData: false,
     supportedByCEJEF: true,
     campusTraining: false,
@@ -4153,7 +4247,7 @@ export const softwareList: Software[] = [
       "Schématisation",
       "Modélisation"
     ],
-    usageNotes: "Logiciel open-source fonctionnant en local.",
+    usageNotes: "Usage autorisé - Open source GNOME, application locale, aucune collecte",
     createdAt: 1700026992000,
     updatedAt: 1700026992000
   },
@@ -4169,9 +4263,9 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    certificationLevel: 3,
+    dataLocation: "Canada/Chine",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -4190,7 +4284,7 @@ export const softwareList: Software[] = [
       "Création graphique",
       "Illustration"
     ],
-    usageNotes: "Version web nécessite un compte.",
+    usageNotes: "INTERDIT - Corel (Canada), transferts données vers Chine mentionnés",
     createdAt: 1700279280000,
     updatedAt: 1700279280000
   },
@@ -4206,9 +4300,9 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    certificationLevel: 1,
+    dataLocation: "Union Européenne (configurable)",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -4226,7 +4320,7 @@ export const softwareList: Software[] = [
       "Base de données",
       "Développement web"
     ],
-    usageNotes: "Choisir une région UE si possible. Attention aux données stockées.",
+    usageNotes: "Usage autorisé - MongoDB Inc. (USA), résidence données UE configurable",
     createdAt: 1700531568000,
     updatedAt: 1700531568000
   },
@@ -4244,7 +4338,7 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 1,
     dataLocation: "Union Européenne",
-    personalData: false,
+    personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
     cost: "Payant",
@@ -4262,7 +4356,7 @@ export const softwareList: Software[] = [
       "Programmation",
       "Développement web"
     ],
-    usageNotes: "Licence éducative gratuite disponible.",
+    usageNotes: "Usage autorisé - JetBrains (Tchéquie), hébergement UE, conforme RGPD",
     createdAt: 1700783856000,
     updatedAt: 1700783856000
   },
@@ -4280,7 +4374,7 @@ export const softwareList: Software[] = [
     },
     certificationLevel: 1,
     dataLocation: "Union Européenne",
-    personalData: false,
+    personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
     cost: "Payant",
@@ -4298,7 +4392,7 @@ export const softwareList: Software[] = [
       "Programmation",
       "Développement web"
     ],
-    usageNotes: "Licence éducative gratuite disponible.",
+    usageNotes: "Usage autorisé - JetBrains (Tchéquie), hébergement UE, conforme RGPD",
     createdAt: 1701036144000,
     updatedAt: 1701036144000
   },
@@ -4314,9 +4408,9 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
-    certificationLevel: 1,
-    dataLocation: "Union Européenne",
-    personalData: false,
+    certificationLevel: 2,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Gratuit",
@@ -4334,7 +4428,7 @@ export const softwareList: Software[] = [
       "Programmation",
       "Collaboration"
     ],
-    usageNotes: "Fonctionne en local. Collaboration via serveur (chiffré).",
+    usageNotes: "Usage avec précautions - Zed Industries (USA), télémétrie opt-in, mode hors-ligne",
     createdAt: 1701288432000,
     updatedAt: 1701288432000
   },
@@ -4350,9 +4444,9 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
-    certificationLevel: 1,
-    dataLocation: "Union Européenne",
-    personalData: false,
+    certificationLevel: 2,
+    dataLocation: "Australie/États-Unis",
+    personalData: true,
     supportedByCEJEF: true,
     campusTraining: false,
     cost: "Payant",
@@ -4372,7 +4466,7 @@ export const softwareList: Software[] = [
       "Programmation",
       "Édition de texte"
     ],
-    usageNotes: "Version d'évaluation illimitée.",
+    usageNotes: "Usage avec précautions - Sublime HQ (Australie), sync cloud optionnel US",
     createdAt: 1701540720000,
     updatedAt: 1701540720000
   },
@@ -4389,8 +4483,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis (SCCs UE)",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -4409,7 +4503,7 @@ export const softwareList: Software[] = [
       "Programmation",
       "Assistance IA"
     ],
-    usageNotes: "Envoie des extraits de code aux serveurs pour l'IA. Attention aux données sensibles.",
+    usageNotes: "Usage avec précautions - Anysphere (USA), SOC 2, Privacy Mode disponible",
     createdAt: 1701793008000,
     updatedAt: 1701793008000
   },
@@ -4425,9 +4519,9 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
-    certificationLevel: 1,
-    dataLocation: "Union Européenne",
-    personalData: false,
+    certificationLevel: 2,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
     cost: "Gratuit",
@@ -4448,7 +4542,7 @@ export const softwareList: Software[] = [
       "Génération de code",
       "Analyse"
     ],
-    usageNotes: "L'outil que vous utilisez actuellement !",
+    usageNotes: "Usage avec précautions - Google (USA), plateforme IA, cadre RGPD Google",
     createdAt: 1702045296000,
     updatedAt: 1702045296000
   },
@@ -4465,7 +4559,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Local",
     personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -4484,7 +4578,7 @@ export const softwareList: Software[] = [
       "Ligne de commande",
       "Administration système"
     ],
-    usageNotes: "Application locale.",
+    usageNotes: "Usage autorisé - Open source, terminal local, aucune collecte données",
     createdAt: 1702297584000,
     updatedAt: 1702297584000
   },
@@ -4501,7 +4595,7 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
+    dataLocation: "Local",
     personalData: false,
     supportedByCEJEF: false,
     campusTraining: false,
@@ -4520,7 +4614,7 @@ export const softwareList: Software[] = [
       "Test API",
       "Développement web"
     ],
-    usageNotes: "Stocke les collections en local (Git-friendly). Pas de cloud obligatoire.",
+    usageNotes: "Usage autorisé - Open source, aucun cloud, données locales uniquement",
     createdAt: 1702549872000,
     updatedAt: 1702549872000
   },
@@ -4537,8 +4631,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis (option UE Enterprise)",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -4558,7 +4652,9 @@ export const softwareList: Software[] = [
       "Génération de texte",
       "Correction"
     ],
-    usageNotes: "Attention aux données personnelles. Ne pas soumettre de travaux d'élèves non anonymisés.",
+    usageNotes: "Usage avec précautions - OpenAI (USA), certifié DPF, option résidence UE (Enterprise)",
+    remarque: "Niveau 1 : open source (GPL-2.0, projet GNOME), application locale, aucun cloud ni télémétrie",
+    toValidate: true,
     createdAt: 1702802160000,
     updatedAt: 1702802160000
   },
@@ -4575,8 +4671,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis/Global",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -4596,7 +4692,8 @@ export const softwareList: Software[] = [
       "Synthèse",
       "Rédaction"
     ],
-    usageNotes: "Hébergé aux USA. Prudence avec les données sensibles.",
+    usageNotes: "Usage avec précautions - Anthropic (USA), SOC 2/ISO 27001, Cloud Act applicable",
+    remarque: "Niveau 2 : Anthropic (USA), certifications SOC 2/ISO 27001/ISO 42001, traitement US/UE/Asie",
     createdAt: 1703054448000,
     updatedAt: 1703054448000
   },
@@ -4613,8 +4710,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis (centres UE disponibles)",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -4632,7 +4729,8 @@ export const softwareList: Software[] = [
       "Recherche d'information",
       "Création de contenu"
     ],
-    usageNotes: "Collecte de données Google. À utiliser avec discernement.",
+    usageNotes: "Usage avec précautions - Google (USA), certifié DPF, centres données UE",
+    remarque: "Niveau 2 : Google (USA), certifié EU-US DPF, conforme RGPD/HIPAA pour Workspace",
     createdAt: 1703306736000,
     updatedAt: 1703306736000
   },
@@ -4649,8 +4747,8 @@ export const softwareList: Software[] = [
       dataCollection: 1
     },
     certificationLevel: 1,
-    dataLocation: "Union Européenne",
-    personalData: false,
+    dataLocation: "France/Union Européenne",
+    personalData: true,
     supportedByCEJEF: true,
     campusTraining: false,
     cost: "Gratuit",
@@ -4669,7 +4767,7 @@ export const softwareList: Software[] = [
       "Rédaction",
       "Code"
     ],
-    usageNotes: "Alternative européenne recommandée. Hébergement en UE.",
+    usageNotes: "Usage autorisé - Mistral AI (France), hébergement UE, conforme RGPD",
     createdAt: 1703559024000,
     updatedAt: 1703559024000
   },
@@ -4686,8 +4784,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis",
+    personalData: true,
     supportedByCEJEF: false,
     campusTraining: false,
     cost: "Freemium",
@@ -4705,7 +4803,7 @@ export const softwareList: Software[] = [
       "Recherche d'information",
       "Vérification de faits"
     ],
-    usageNotes: "Excellent pour la recherche sourcée, mais hébergement US.",
+    usageNotes: "Usage avec précautions - Perplexity AI (USA), conforme DPF, SOC 2",
     createdAt: 1703811312000,
     updatedAt: 1703811312000
   },
@@ -4722,8 +4820,8 @@ export const softwareList: Software[] = [
       dataCollection: 2
     },
     certificationLevel: 2,
-    dataLocation: "Hors UE",
-    personalData: false,
+    dataLocation: "États-Unis (option UE/CH)",
+    personalData: true,
     supportedByCEJEF: true,
     campusTraining: true,
     cost: "Freemium",
@@ -4742,7 +4840,8 @@ export const softwareList: Software[] = [
       "Création",
       "Code"
     ],
-    usageNotes: "Utiliser avec un compte professionnel pour une meilleure protection (si disponible).",
+    usageNotes: "Usage avec précautions - Microsoft (USA), certifié DPF, traitement CH prévu 2026",
+    remarque: "Niveau 2 : Perplexity AI (USA), conforme EU-US DPF, SOC 2, trackers tiers",
     createdAt: 1704063600000,
     updatedAt: 1704063600000
   }

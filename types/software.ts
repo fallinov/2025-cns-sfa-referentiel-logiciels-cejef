@@ -4,7 +4,46 @@
 
 export type CostType = "Gratuit" | "Payant" | "Freemium" | "Financé CEJEF"
 
-export type DataLocation = "Suisse" | "France" | "Union Européenne" | "Hors UE" | "CEJEF"
+export type DataLocation =
+  // Pays adéquats (niveau 1)
+  | "Suisse"
+  | "Suisse/Luxembourg"
+  | "France"
+  | "France/Union Européenne"
+  | "Allemagne"
+  | "Union Européenne"
+  | "Union Européenne (AWS)"
+  | "Union Européenne (option)"
+  | "Union Européenne (configurable)"
+  | "Union Européenne/États-Unis"
+  | "Union Européenne/Global"
+  | "Royaume-Uni"
+  | "Royaume-Uni/États-Unis"
+  | "Canada"
+  | "Canada/États-Unis"
+  | "Corée du Sud"
+  | "Local"
+  | "Local/États-Unis"
+  | "CEJEF"
+  // Pays avec DPF (niveau 2)
+  | "États-Unis"
+  | "États-Unis (option UE)"
+  | "États-Unis (option UE Enterprise)"
+  | "États-Unis (option UE/CH)"
+  | "États-Unis (centres UE disponibles)"
+  | "États-Unis (UE Enterprise)"
+  | "États-Unis (SCCs UE)"
+  | "États-Unis/Australie"
+  | "États-Unis/Global"
+  | "Australie/États-Unis"
+  // Pays non adéquats (niveau 3)
+  | "Chine"
+  | "Canada/Chine"
+  | "Hongrie"
+  | "Israël"
+  | "Ukraine"
+  | "Hors UE"
+  | "Inconnu"
 
 export type TargetAudience = "élèves" | "enseignants" | "tous"
 
@@ -85,4 +124,8 @@ export interface Software {
   // DATES
   createdAt?: number
   updatedAt?: number
+
+  // VALIDATION LGPD
+  toValidate?: boolean
+  remarque?: string
 }
