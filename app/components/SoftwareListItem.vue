@@ -29,20 +29,20 @@ defineProps<{
 
     <!-- Meta / Badges -->
     <div class="hidden sm:flex items-center gap-2">
-      <!-- Coup de coeur -->
-      <div v-if="software.cejefFavorite" class="inline-flex">
+      <!-- Approuvé CEJEF (supportedByCEJEF && campusTraining) -->
+      <div v-if="software.supportedByCEJEF && software.campusTraining" class="inline-flex">
         <SoftwareFeatureBadge
-          icon="i-lucide-heart"
-          label="Coup de coeur"
+          icon="i-lucide-badge-check"
+          label="Approuvé CEJEF"
           size="sm"
           hide-label
-          class="lg:hidden bg-red-600 text-white dark:bg-red-600 dark:text-white border-none"
+          class="lg:hidden bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
-          icon="i-lucide-heart"
-          label="Coup de coeur"
+          icon="i-lucide-badge-check"
+          label="Approuvé CEJEF"
           size="sm"
-          class="hidden lg:inline-flex bg-red-600 text-white dark:bg-red-600 dark:text-white border-none"
+          class="hidden lg:inline-flex bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
         />
       </div>
 
@@ -63,8 +63,8 @@ defineProps<{
         />
       </div>
 
-      <!-- Support CEJEF - Icon only on sm-md, with label on lg+ -->
-      <div v-if="software.supportedByCEJEF" class="inline-flex">
+      <!-- Support CEJEF - Icon only on sm-md, with label on lg+ (seulement si pas déjà Approuvé) -->
+      <div v-if="software.supportedByCEJEF && !software.campusTraining" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-headset"
           label="Support CEJEF"
@@ -80,8 +80,8 @@ defineProps<{
         />
       </div>
 
-      <!-- Training Available - Icon only on sm-md, with label on lg+ -->
-      <div v-if="software.campusTraining" class="inline-flex">
+      <!-- Training Available - Icon only on sm-md, with label on lg+ (seulement si pas déjà Approuvé) -->
+      <div v-if="software.campusTraining && !software.supportedByCEJEF" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-graduation-cap"
           label="Formation"
@@ -92,23 +92,6 @@ defineProps<{
         <SoftwareFeatureBadge
           icon="i-lucide-graduation-cap"
           label="Formation"
-          size="sm"
-          class="hidden lg:inline-flex"
-        />
-      </div>
-
-      <!-- 100% Free - Icon only on sm-md, with label on lg+ -->
-      <div v-if="software.cost === 'Gratuit'" class="inline-flex">
-        <SoftwareFeatureBadge
-          icon="i-lucide-coins"
-          label="100% gratuit"
-          size="sm"
-          hide-label
-          class="lg:hidden"
-        />
-        <SoftwareFeatureBadge
-          icon="i-lucide-coins"
-          label="100% gratuit"
           size="sm"
           class="hidden lg:inline-flex"
         />

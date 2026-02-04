@@ -351,6 +351,9 @@ const showLgpdDetails = ref(false)
 
         <!-- SIDEBAR (Right) -->
         <div class="lg:col-span-4 space-y-6">
+          <!-- Similar Software (en premier) -->
+          <SoftwareDetailSimilar :similar-software="similarSoftwareList.slice(0, 3)" />
+
           <!-- Info Card -->
           <SoftwareDetailPracticalInfo
             :software="software"
@@ -381,9 +384,6 @@ const showLgpdDetails = ref(false)
               Voir la documentation
             </UButton>
           </div>
-
-          <!-- Similar Software -->
-          <SoftwareDetailSimilar :similar-software="similarSoftwareList.slice(0, 3)" />
         </div>
       </div>
     </UContainer>

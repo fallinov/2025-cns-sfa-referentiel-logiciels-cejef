@@ -77,10 +77,10 @@ const handleCardClick = () => {
     <!-- Badges (Quick Filters only) -->
     <div class="relative z-10 mt-auto flex flex-wrap gap-2 pt-2">
       <SoftwareFeatureBadge
-        v-if="software.cejefFavorite"
-        icon="i-lucide-heart"
-        label="Coup de coeur"
-        class="bg-red-600 text-white dark:bg-red-600 dark:text-white border-none"
+        v-if="software.supportedByCEJEF && software.campusTraining"
+        icon="i-lucide-badge-check"
+        label="Approuvé CEJEF"
+        class="bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.personalData"
@@ -88,19 +88,14 @@ const handleCardClick = () => {
         label="Données élèves"
       />
       <SoftwareFeatureBadge
-        v-if="software.supportedByCEJEF"
+        v-if="software.supportedByCEJEF && !software.campusTraining"
         icon="i-lucide-headset"
         label="Support CEJEF"
       />
       <SoftwareFeatureBadge
-        v-if="software.campusTraining"
+        v-if="software.campusTraining && !software.supportedByCEJEF"
         icon="i-lucide-graduation-cap"
         label="Formation"
-      />
-      <SoftwareFeatureBadge
-        v-if="software.cost === 'Gratuit'"
-        icon="i-lucide-coins"
-        label="Gratuit"
       />
     </div>
   </NuxtLink>

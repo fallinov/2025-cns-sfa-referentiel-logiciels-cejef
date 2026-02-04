@@ -16,16 +16,17 @@ export const useSoftwareStore = defineStore("software", () => {
   const selectedDisciplines = ref<string[]>([])
   const selectedActivities = ref<string[]>([])
   const selectedPopularFilters = ref<string[]>([])
-  const sortBy = ref("name-asc")
+  const selectedLgpdLevels = ref<number[]>([])
+  const sortBy = ref("approuve-first")
   const isFiltersDrawerOpen = ref(false)
 
   // Popular Filters Configuration
   const popularFilters = [
     {
-      id: "cejef-favorite",
-      label: "Coup de coeur CEJEF",
-      icon: "i-lucide-heart",
-      predicate: (software: Software) => !!software.cejefFavorite
+      id: "approved-cejef",
+      label: "Approuvé CEJEF",
+      icon: "i-lucide-badge-check",
+      predicate: (software: Software) => software.supportedByCEJEF && software.campusTraining
     },
     {
       id: "personal-data",
@@ -44,12 +45,31 @@ export const useSoftwareStore = defineStore("software", () => {
       label: "Formation CAMPUS",
       icon: "i-lucide-graduation-cap",
       predicate: (software: Software) => software.campusTraining
+    }
+  ] as const
+
+  // LGPD Color Filters Configuration
+  const lgpdColorFilters = [
+    {
+      id: "lgpd-green",
+      label: "Validé",
+      level: 1,
+      color: "success" as const,
+      icon: "i-lucide-circle-check"
     },
     {
-      id: "free",
-      label: "100% gratuit",
-      icon: "i-lucide-coins",
-      predicate: (software: Software) => software.cost === "Gratuit"
+      id: "lgpd-orange",
+      label: "Restreint",
+      level: 2,
+      color: "warning" as const,
+      icon: "i-lucide-circle-alert"
+    },
+    {
+      id: "lgpd-red",
+      label: "Interdit",
+      level: 3,
+      color: "error" as const,
+      icon: "i-lucide-circle-x"
     }
   ] as const
 
@@ -78,6 +98,18 @@ export const useSoftwareStore = defineStore("software", () => {
     const activities = new Set<string>()
     softwareList.forEach(s => s.pedagogicalActivities?.forEach(a => activities.add(a)))
     return Array.from(activities).sort()
+  })
+
+  // LGPD level counts for filter badges
+  const lgpdLevelCounts = computed(() => {
+    const counts = { 1: 0, 2: 0, 3: 0 }
+    softwareList.forEach((software) => {
+      const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
+      if (level && counts[level as keyof typeof counts] !== undefined) {
+        counts[level as keyof typeof counts]++
+      }
+    })
+    return counts
   })
 
   const filteredSoftwareList = computed(() => {
@@ -145,14 +177,31 @@ export const useSoftwareStore = defineStore("software", () => {
       })
     }
 
+    // Apply LGPD level filters
+    if (selectedLgpdLevels.value.length > 0) {
+      filtered = filtered.filter((software) => {
+        const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
+        return level !== null && selectedLgpdLevels.value.includes(level)
+      })
+    }
+
     // Apply sorting
     filtered.sort((a, b) => {
       const levelA = a.certificationLevel ?? getCertificationLevel(a.lgpd) ?? 99
       const levelB = b.certificationLevel ?? getCertificationLevel(b.lgpd) ?? 99
       const nameA = a.name || ""
       const nameB = b.name || ""
+      const isApprovedA = a.supportedByCEJEF && a.campusTraining
+      const isApprovedB = b.supportedByCEJEF && b.campusTraining
 
       switch (sortBy.value) {
+        case "approuve-first":
+          // Approuvé CEJEF en premier
+          if (isApprovedA !== isApprovedB) return isApprovedA ? -1 : 1
+          // Secondaire : par certification (vert d'abord)
+          if (levelA !== levelB) return levelA - levelB
+          // Tertiaire : alphabétique
+          return nameA.localeCompare(nameB)
         case "certification-asc":
           // Meilleur niveau (1) d'abord, donc ordre croissant
           return levelA - levelB
@@ -180,6 +229,7 @@ export const useSoftwareStore = defineStore("software", () => {
       selectedCosts.value.length
       + selectedCertifications.value.length
       + selectedPopularFilters.value.length
+      + selectedLgpdLevels.value.length
       + selectedCategories.value.length
       + selectedDisciplines.value.length
       + selectedActivities.value.length
@@ -199,10 +249,19 @@ export const useSoftwareStore = defineStore("software", () => {
     }
   }
 
+  const toggleLgpdLevel = (level: number) => {
+    if (selectedLgpdLevels.value.includes(level)) {
+      selectedLgpdLevels.value = selectedLgpdLevels.value.filter(l => l !== level)
+    } else {
+      selectedLgpdLevels.value = [...selectedLgpdLevels.value, level]
+    }
+  }
+
   const clearAllFilters = () => {
     selectedCosts.value = []
     selectedCertifications.value = []
     selectedPopularFilters.value = []
+    selectedLgpdLevels.value = []
     selectedCategories.value = []
     selectedDisciplines.value = []
     selectedActivities.value = []
@@ -213,6 +272,7 @@ export const useSoftwareStore = defineStore("software", () => {
     selectedCosts.value = []
     selectedCertifications.value = []
     selectedPopularFilters.value = []
+    selectedLgpdLevels.value = []
     selectedCategories.value = []
     selectedDisciplines.value = []
     selectedActivities.value = []
@@ -250,9 +310,11 @@ export const useSoftwareStore = defineStore("software", () => {
     selectedDisciplines,
     selectedActivities,
     selectedPopularFilters,
+    selectedLgpdLevels,
     sortBy,
     isFiltersDrawerOpen,
     popularFilters,
+    lgpdColorFilters,
 
     // Getters
     uniqueCategories,
@@ -261,9 +323,11 @@ export const useSoftwareStore = defineStore("software", () => {
     filteredSoftwareList,
     activeFiltersCount,
     hasActiveFilters,
+    lgpdLevelCounts,
 
     // Actions
     togglePopularFilter,
+    toggleLgpdLevel,
     clearAllFilters,
     resetFilters,
     handleCategoryFilter,
