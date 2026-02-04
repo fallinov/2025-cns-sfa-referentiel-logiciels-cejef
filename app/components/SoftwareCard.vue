@@ -12,6 +12,13 @@ const config = computed(() => {
   return getCertificationConfig(props.software.certificationLevel)
 })
 
+// "Approuvé CEJEF" requires: level 1 (green) + supportedByCEJEF + campusTraining
+const isApprovedCejef = computed(() => {
+  return props.software.certificationLevel === 1
+    && props.software.supportedByCEJEF
+    && props.software.campusTraining
+})
+
 const handleCardClick = () => {
   if (import.meta.client) {
     const url = new URL(window.location.href)
@@ -77,7 +84,7 @@ const handleCardClick = () => {
     <!-- Badges (Quick Filters only) -->
     <div class="relative z-10 mt-auto flex flex-wrap gap-2 pt-2">
       <SoftwareFeatureBadge
-        v-if="software.supportedByCEJEF && software.campusTraining"
+        v-if="isApprovedCejef"
         icon="i-lucide-badge-check"
         label="Approuvé CEJEF"
         class="bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
@@ -88,12 +95,12 @@ const handleCardClick = () => {
         label="Données élèves"
       />
       <SoftwareFeatureBadge
-        v-if="software.supportedByCEJEF && !software.campusTraining"
+        v-if="software.supportedByCEJEF && !isApprovedCejef"
         icon="i-lucide-headset"
         label="Support CEJEF"
       />
       <SoftwareFeatureBadge
-        v-if="software.campusTraining && !software.supportedByCEJEF"
+        v-if="software.campusTraining && !isApprovedCejef"
         icon="i-lucide-graduation-cap"
         label="Formation"
       />

@@ -39,8 +39,8 @@ export const useSimilarSoftware = () => {
         score += 0.5
       }
 
-      // Boost for "Approuvé CEJEF" (supportedByCEJEF && campusTraining)
-      if (candidate.supportedByCEJEF && candidate.campusTraining) {
+      // Boost for "Approuvé CEJEF" (level 1 + supportedByCEJEF + campusTraining)
+      if (candidate.certificationLevel === 1 && candidate.supportedByCEJEF && candidate.campusTraining) {
         score += 2
       }
 

@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import type { Software } from "~~/types/software"
 
-defineProps<{
+const props = defineProps<{
   software: Software
 }>()
+
+// "Approuvé CEJEF" requires: level 1 (green) + supportedByCEJEF + campusTraining
+const isApprovedCejef = computed(() => {
+  return props.software.certificationLevel === 1
+    && props.software.supportedByCEJEF
+    && props.software.campusTraining
+})
 </script>
 
 <template>
@@ -29,8 +36,8 @@ defineProps<{
 
     <!-- Meta / Badges -->
     <div class="hidden sm:flex items-center gap-2">
-      <!-- Approuvé CEJEF (supportedByCEJEF && campusTraining) -->
-      <div v-if="software.supportedByCEJEF && software.campusTraining" class="inline-flex">
+      <!-- Approuvé CEJEF (level 1 + supportedByCEJEF + campusTraining) -->
+      <div v-if="isApprovedCejef" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé CEJEF"
@@ -64,7 +71,7 @@ defineProps<{
       </div>
 
       <!-- Support CEJEF - Icon only on sm-md, with label on lg+ (seulement si pas déjà Approuvé) -->
-      <div v-if="software.supportedByCEJEF && !software.campusTraining" class="inline-flex">
+      <div v-if="software.supportedByCEJEF && !isApprovedCejef" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-headset"
           label="Support CEJEF"
@@ -81,7 +88,7 @@ defineProps<{
       </div>
 
       <!-- Training Available - Icon only on sm-md, with label on lg+ (seulement si pas déjà Approuvé) -->
-      <div v-if="software.campusTraining && !software.supportedByCEJEF" class="inline-flex">
+      <div v-if="software.campusTraining && !isApprovedCejef" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-graduation-cap"
           label="Formation"

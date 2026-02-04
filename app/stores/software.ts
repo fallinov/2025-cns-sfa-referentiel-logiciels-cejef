@@ -20,13 +20,19 @@ export const useSoftwareStore = defineStore("software", () => {
   const sortBy = ref("approuve-first")
   const isFiltersDrawerOpen = ref(false)
 
+  // Helper function to check if software is "Approuvé CEJEF"
+  const isApprovedCejef = (software: Software): boolean => {
+    const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
+    return software.supportedByCEJEF && software.campusTraining && level === 1
+  }
+
   // Popular Filters Configuration
   const popularFilters = [
     {
       id: "approved-cejef",
       label: "Approuvé CEJEF",
       icon: "i-lucide-badge-check",
-      predicate: (software: Software) => software.supportedByCEJEF && software.campusTraining
+      predicate: (software: Software) => isApprovedCejef(software)
     },
     {
       id: "personal-data",
@@ -191,8 +197,8 @@ export const useSoftwareStore = defineStore("software", () => {
       const levelB = b.certificationLevel ?? getCertificationLevel(b.lgpd) ?? 99
       const nameA = a.name || ""
       const nameB = b.name || ""
-      const isApprovedA = a.supportedByCEJEF && a.campusTraining
-      const isApprovedB = b.supportedByCEJEF && b.campusTraining
+      const isApprovedA = isApprovedCejef(a)
+      const isApprovedB = isApprovedCejef(b)
 
       switch (sortBy.value) {
         case "approuve-first":
