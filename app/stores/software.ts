@@ -35,10 +35,13 @@ export const useSoftwareStore = defineStore("software", () => {
       predicate: (software: Software) => isApprovedCejef(software)
     },
     {
-      id: "personal-data",
+      id: "student-data-allowed",
       label: "Données élèves autorisées",
       icon: "i-lucide-user-check",
-      predicate: (software: Software) => software.personalData
+      predicate: (software: Software) => {
+        const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
+        return level === 1
+      }
     },
     {
       id: "supported-cejef",

@@ -53,8 +53,8 @@ const isApprovedCejef = computed(() => {
         />
       </div>
 
-      <!-- Student Data Allowed - Icon only on sm-md, with label on lg+ -->
-      <div v-if="software.personalData" class="inline-flex">
+      <!-- Student Data Allowed - Only for Level 1 (green) software -->
+      <div v-if="software.certificationLevel === 1 && !isApprovedCejef" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-user-check"
           label="Données élèves"

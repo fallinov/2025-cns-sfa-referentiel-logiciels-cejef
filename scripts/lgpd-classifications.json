@@ -1,0 +1,747 @@
+{
+  "total": 127,
+  "classified": 102,
+  "unclassified": [
+    "ORTHOHPHORE",
+    "Mozilla Firefox",
+    "Google Chrome",
+    "Microsoft Edge",
+    "Apple Safari",
+    "Brave",
+    "Notion",
+    "Todoist",
+    "Dia",
+    "Gravity Designer",
+    "MongoDB Atlas",
+    "WebStorm",
+    "PhpStorm",
+    "Zed",
+    "Sublime Text",
+    "Cursor",
+    "Antigravity",
+    "Ghostty",
+    "Bruno",
+    "ChatGPT",
+    "Claude",
+    "Gemini",
+    "Mistral Le Chat",
+    "Perplexity",
+    "Microsoft Copilot"
+  ],
+  "modifications": [
+    {
+      "name": "BDnF (Application)",
+      "certificationLevel": 1,
+      "dataLocation": "France",
+      "usageNotes": "Usage autorisé - Bibliothèque nationale de France, institution publique française",
+      "remarque": "Niveau 1 : Bibliothèque nationale de France, institution publique française"
+    },
+    {
+      "name": "BLINKLEARNING",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage autorisé - Entreprise espagnole (Madrid), hébergement UE",
+      "remarque": "Niveau 1 : Entreprise espagnole (Madrid), hébergement UE"
+    },
+    {
+      "name": "BOOKILI",
+      "certificationLevel": 1,
+      "dataLocation": "France",
+      "usageNotes": "Usage autorisé - Bayard/Milan Presse, éditeur français",
+      "remarque": "Niveau 1 : Bayard/Milan Presse, éditeur français"
+    },
+    {
+      "name": "CALENGOO",
+      "certificationLevel": 1,
+      "dataLocation": "Allemagne",
+      "usageNotes": "Usage autorisé - Développeur allemand, app locale",
+      "remarque": "Niveau 1 : Développeur allemand, app locale"
+    },
+    {
+      "name": "CARD2BRAIN",
+      "certificationLevel": 1,
+      "dataLocation": "Suisse",
+      "usageNotes": "Usage autorisé - Entreprise suisse (Zurich), hébergement Suisse",
+      "remarque": "Niveau 1 : Entreprise suisse (Zurich), hébergement Suisse"
+    },
+    {
+      "name": "CLARO SPEAK PLUS iOS et CLARO PDF PRO iOS",
+      "certificationLevel": 1,
+      "dataLocation": "Royaume-Uni",
+      "usageNotes": "Usage autorisé - Claro Software (UK), applications accessibilité",
+      "remarque": "Niveau 1 : Claro Software (UK), applications accessibilité"
+    },
+    {
+      "name": "CLASSTIME",
+      "certificationLevel": 1,
+      "dataLocation": "Suisse",
+      "usageNotes": "Usage autorisé - Classtime AG (Zurich), hébergement Suisse/UE",
+      "remarque": "Niveau 1 : Classtime AG (Zurich), hébergement Suisse/UE"
+    },
+    {
+      "name": "CODE.ORG",
+      "certificationLevel": 1,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage autorisé - Organisation à but non lucratif, engagement fort vie privée enfants, COPPA/FERPA",
+      "remarque": "Niveau 1 : Organisation à but non lucratif, engagement fort vie privée enfants, COPPA/FERPA"
+    },
+    {
+      "name": "DRIVE INFOMANIAK",
+      "certificationLevel": 1,
+      "dataLocation": "Suisse",
+      "usageNotes": "Usage autorisé - Infomaniak (Genève), hébergement exclusivement Suisse",
+      "remarque": "Niveau 1 : Infomaniak (Genève), hébergement exclusivement Suisse"
+    },
+    {
+      "name": "DRUIDE, ANTIDOTE",
+      "certificationLevel": 1,
+      "dataLocation": "Canada",
+      "usageNotes": "Usage autorisé - Druide informatique (Québec), hébergement Canada",
+      "remarque": "Niveau 1 : Druide informatique (Québec), hébergement Canada"
+    },
+    {
+      "name": "DYNAMILIS",
+      "certificationLevel": 1,
+      "dataLocation": "France",
+      "usageNotes": "Usage autorisé - Entreprise française, hébergement France",
+      "remarque": "Niveau 1 : Entreprise française, hébergement France"
+    },
+    {
+      "name": "FIZZIQ",
+      "certificationLevel": 1,
+      "dataLocation": "France",
+      "usageNotes": "Usage autorisé - Trapèze Digital (France), hébergement UE",
+      "remarque": "Niveau 1 : Trapèze Digital (France), hébergement UE"
+    },
+    {
+      "name": "FLORA INCOGNITA (app)",
+      "certificationLevel": 1,
+      "dataLocation": "Allemagne",
+      "usageNotes": "Usage autorisé - TU Ilmenau (Allemagne), projet de recherche public",
+      "remarque": "Niveau 1 : TU Ilmenau (Allemagne), projet de recherche public"
+    },
+    {
+      "name": "FRAMASOFT",
+      "certificationLevel": 1,
+      "dataLocation": "France",
+      "usageNotes": "Usage autorisé - Association française CHATONS, hébergement France",
+      "remarque": "Niveau 1 : Association française CHATONS, hébergement France"
+    },
+    {
+      "name": "GEOGEBRA",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage autorisé - GeoGebra GmbH (Linz, Autriche), hébergement UE",
+      "remarque": "Niveau 1 : GeoGebra GmbH (Linz, Autriche), hébergement UE"
+    },
+    {
+      "name": "KIALO EDU",
+      "certificationLevel": 1,
+      "dataLocation": "Allemagne",
+      "usageNotes": "Usage autorisé - Kialo GmbH (Berlin), hébergement UE, DPA disponible",
+      "remarque": "Niveau 1 : Kialo GmbH (Berlin), hébergement UE, DPA disponible"
+    },
+    {
+      "name": "LEARNINGVIEW.ORG",
+      "certificationLevel": 1,
+      "dataLocation": "Suisse",
+      "usageNotes": "Usage autorisé - PH Schwyz (Suisse), hébergement Suisse",
+      "remarque": "Niveau 1 : PH Schwyz (Suisse), hébergement Suisse"
+    },
+    {
+      "name": "PCLOUD",
+      "certificationLevel": 1,
+      "dataLocation": "Suisse",
+      "usageNotes": "Usage autorisé - pCloud AG (Suisse), option hébergement Luxembourg/Suisse",
+      "remarque": "Niveau 1 : pCloud AG (Suisse), option hébergement Luxembourg/Suisse"
+    },
+    {
+      "name": "PDF EXPERT",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage autorisé - Readdle (Ukraine/UE), hébergement UE, conforme RGPD",
+      "remarque": "Niveau 1 : Readdle (Ukraine/UE), hébergement UE, conforme RGPD"
+    },
+    {
+      "name": "PHONOWRITER",
+      "certificationLevel": 1,
+      "dataLocation": "Suisse",
+      "usageNotes": "Usage autorisé - Développeur suisse, app locale",
+      "remarque": "Niveau 1 : Développeur suisse, app locale"
+    },
+    {
+      "name": "PHYPHOX",
+      "certificationLevel": 1,
+      "dataLocation": "Allemagne",
+      "usageNotes": "Usage autorisé - RWTH Aachen (Allemagne), université publique, pas de compte requis",
+      "remarque": "Niveau 1 : RWTH Aachen (Allemagne), université publique, pas de compte requis"
+    },
+    {
+      "name": "PROJET VOLTAIRE",
+      "certificationLevel": 1,
+      "dataLocation": "France",
+      "usageNotes": "Usage autorisé - Woonoz SAS (France), hébergement France",
+      "remarque": "Niveau 1 : Woonoz SAS (France), hébergement France"
+    },
+    {
+      "name": "REMARKABLE INTEGRATION ONEDRIVE",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne (option)",
+      "usageNotes": "Usage autorisé - Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001",
+      "remarque": "Niveau 1 : Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001"
+    },
+    {
+      "name": "TAPTOUCHE",
+      "certificationLevel": 1,
+      "dataLocation": "Canada",
+      "usageNotes": "Usage autorisé - De Marque (Québec), hébergement Canada",
+      "remarque": "Niveau 1 : De Marque (Québec), hébergement Canada"
+    },
+    {
+      "name": "THREEMA EDUCATION",
+      "certificationLevel": 1,
+      "dataLocation": "Suisse",
+      "usageNotes": "Usage autorisé - Threema GmbH (Pfäffikon, Suisse), chiffrement E2E, hébergement Suisse",
+      "remarque": "Niveau 1 : Threema GmbH (Pfäffikon, Suisse), chiffrement E2E, hébergement Suisse"
+    },
+    {
+      "name": "THUNDERBIRD",
+      "certificationLevel": 1,
+      "dataLocation": "Local",
+      "usageNotes": "Usage autorisé - Mozilla Foundation, open source, client email local",
+      "remarque": "Niveau 1 : Mozilla Foundation, open source, client email local"
+    },
+    {
+      "name": "WOOFLASH",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage autorisé - Wooclap SA (Belgique), hébergement UE, conforme RGPD",
+      "remarque": "Niveau 1 : Wooclap SA (Belgique), hébergement UE, conforme RGPD"
+    },
+    {
+      "name": "ZAPIER Et ZAPIER OUTLOOK",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne (option)",
+      "usageNotes": "Usage autorisé - Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001",
+      "remarque": "Niveau 1 : Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001"
+    },
+    {
+      "name": "Microsoft Word",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne (option)",
+      "usageNotes": "Usage autorisé - Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001",
+      "remarque": "Niveau 1 : Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001"
+    },
+    {
+      "name": "Microsoft Excel",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne (option)",
+      "usageNotes": "Usage autorisé - Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001",
+      "remarque": "Niveau 1 : Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001"
+    },
+    {
+      "name": "Microsoft PowerPoint",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne (option)",
+      "usageNotes": "Usage autorisé - Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001",
+      "remarque": "Niveau 1 : Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001"
+    },
+    {
+      "name": "Microsoft Teams",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne (option)",
+      "usageNotes": "Usage autorisé - Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001",
+      "remarque": "Niveau 1 : Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001"
+    },
+    {
+      "name": "Microsoft OneDrive",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne (option)",
+      "usageNotes": "Usage autorisé - Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001",
+      "remarque": "Niveau 1 : Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001"
+    },
+    {
+      "name": "Microsoft OneNote",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne (option)",
+      "usageNotes": "Usage autorisé - Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001",
+      "remarque": "Niveau 1 : Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001"
+    },
+    {
+      "name": "Microsoft Forms",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne (option)",
+      "usageNotes": "Usage autorisé - Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001",
+      "remarque": "Niveau 1 : Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001"
+    },
+    {
+      "name": "Microsoft Outlook",
+      "certificationLevel": 1,
+      "dataLocation": "Union Européenne (option)",
+      "usageNotes": "Usage autorisé - Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001",
+      "remarque": "Niveau 1 : Microsoft (USA), contrat DPA CEJEF, hébergement UE disponible, certifié DPF, ISO 27001"
+    },
+    {
+      "name": "ADOBE ACROBAT",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Adobe Inc. (USA), certifié EU-US DPF, hébergement US",
+      "remarque": "Niveau 2 : Adobe Inc. (USA), certifié EU-US DPF, hébergement US"
+    },
+    {
+      "name": "ATLASSIAN (JIRA, CONFLUENCE, TRELLO)",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis/Australie",
+      "usageNotes": "Usage avec précautions - Atlassian (Australie), certifié DPF, options hébergement UE",
+      "remarque": "Niveau 2 : Atlassian (Australie), certifié DPF, options hébergement UE"
+    },
+    {
+      "name": "BABBEL",
+      "certificationLevel": 2,
+      "dataLocation": "Union Européenne (AWS)",
+      "usageNotes": "Usage avec précautions - Lesson Nine GmbH (Berlin), utilise AWS (Cloud Act)",
+      "remarque": "Niveau 2 : Lesson Nine GmbH (Berlin), utilise AWS (Cloud Act)"
+    },
+    {
+      "name": "BOOK CREATOR",
+      "certificationLevel": 2,
+      "dataLocation": "Royaume-Uni/États-Unis",
+      "usageNotes": "Usage avec précautions - Red Jumper Ltd (UK), utilise Google Cloud",
+      "remarque": "Niveau 2 : Red Jumper Ltd (UK), utilise Google Cloud"
+    },
+    {
+      "name": "CALENDLY",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Calendly LLC (USA), certifié DPF, SOC 2",
+      "remarque": "Niveau 2 : Calendly LLC (USA), certifié DPF, SOC 2"
+    },
+    {
+      "name": "CANVA",
+      "certificationLevel": 2,
+      "dataLocation": "Australie/États-Unis",
+      "usageNotes": "Usage avec précautions - Canva Pty Ltd (Australie), certifié DPF, hébergement AWS",
+      "remarque": "Niveau 2 : Canva Pty Ltd (Australie), certifié DPF, hébergement AWS"
+    },
+    {
+      "name": "CLASSROOMSCREEN",
+      "certificationLevel": 2,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage avec précautions - Classroomscreen BV (NL), utilise services tiers US",
+      "remarque": "Niveau 2 : Classroomscreen BV (NL), utilise services tiers US"
+    },
+    {
+      "name": "DICTALY",
+      "certificationLevel": 2,
+      "dataLocation": "France",
+      "usageNotes": "Usage avec précautions - Entreprise française, mais analytics tiers",
+      "remarque": "Niveau 2 : Entreprise française, mais analytics tiers"
+    },
+    {
+      "name": "DOODLE",
+      "certificationLevel": 2,
+      "dataLocation": "Suisse",
+      "usageNotes": "Usage avec précautions - TX Group (Suisse), mais sous-traitants US",
+      "remarque": "Niveau 2 : TX Group (Suisse), mais sous-traitants US"
+    },
+    {
+      "name": "ED.AI",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Entreprise US EdTech, certifié DPF",
+      "remarque": "Niveau 2 : Entreprise US EdTech, certifié DPF"
+    },
+    {
+      "name": "EDPUZZLE",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Edpuzzle Inc. (USA), certifié DPF, COPPA/FERPA",
+      "remarque": "Niveau 2 : Edpuzzle Inc. (USA), certifié DPF, COPPA/FERPA"
+    },
+    {
+      "name": "EDUCAPLAY",
+      "certificationLevel": 2,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage avec précautions - ADR Formación (Espagne), analytics tiers",
+      "remarque": "Niveau 2 : ADR Formación (Espagne), analytics tiers"
+    },
+    {
+      "name": "EXAM.NET",
+      "certificationLevel": 2,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage avec précautions - Exam.net AB (Suède), hébergement UE, conforme RGPD",
+      "remarque": "Niveau 2 : Exam.net AB (Suède), hébergement UE, conforme RGPD"
+    },
+    {
+      "name": "FOXIT READER",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Foxit Software (USA), certifié DPF",
+      "remarque": "Niveau 2 : Foxit Software (USA), certifié DPF"
+    },
+    {
+      "name": "GENIALLY",
+      "certificationLevel": 2,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage avec précautions - Genially Web SL (Espagne), utilise AWS",
+      "remarque": "Niveau 2 : Genially Web SL (Espagne), utilise AWS"
+    },
+    {
+      "name": "GIMKIT",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Gimkit Inc. (USA), COPPA/FERPA compliant",
+      "remarque": "Niveau 2 : Gimkit Inc. (USA), COPPA/FERPA compliant"
+    },
+    {
+      "name": "JSTOR",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - ITHAKA (USA), organisation à but non lucratif, DPF",
+      "remarque": "Niveau 2 : ITHAKA (USA), organisation à but non lucratif, DPF"
+    },
+    {
+      "name": "KAHOOT",
+      "certificationLevel": 2,
+      "dataLocation": "Union Européenne/États-Unis",
+      "usageNotes": "Usage avec précautions - Kahoot ASA (Norvège), hébergement AWS multi-région",
+      "remarque": "Niveau 2 : Kahoot ASA (Norvège), hébergement AWS multi-région"
+    },
+    {
+      "name": "KNOWT",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Knowt Inc. (USA), startup EdTech",
+      "remarque": "Niveau 2 : Knowt Inc. (USA), startup EdTech"
+    },
+    {
+      "name": "LEARNINGAPPS",
+      "certificationLevel": 2,
+      "dataLocation": "Suisse",
+      "usageNotes": "Usage avec précautions - PH Bern (Suisse), mais widgets tiers",
+      "remarque": "Niveau 2 : PH Bern (Suisse), mais widgets tiers"
+    },
+    {
+      "name": "LOCKEE.FR",
+      "certificationLevel": 2,
+      "dataLocation": "France",
+      "usageNotes": "Usage avec précautions - Développeur français, hébergement UE, analytics",
+      "remarque": "Niveau 2 : Développeur français, hébergement UE, analytics"
+    },
+    {
+      "name": "LYRICSTRAINING",
+      "certificationLevel": 2,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage avec précautions - Empresa espagnole, publicités tiers",
+      "remarque": "Niveau 2 : Empresa espagnole, publicités tiers"
+    },
+    {
+      "name": "MAGICSCHOOL.AI",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - MagicSchool AI (USA), IA générative, SOC 2",
+      "remarque": "Niveau 2 : MagicSchool AI (USA), IA générative, SOC 2"
+    },
+    {
+      "name": "MINDMEISTER",
+      "certificationLevel": 2,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage avec précautions - MeisterLabs (Munich), utilise AWS UE",
+      "remarque": "Niveau 2 : MeisterLabs (Munich), utilise AWS UE"
+    },
+    {
+      "name": "MIRO",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis/Union Européenne",
+      "usageNotes": "Usage avec précautions - Miro Inc. (USA), certifié DPF, SOC 2",
+      "remarque": "Niveau 2 : Miro Inc. (USA), certifié DPF, SOC 2"
+    },
+    {
+      "name": "NOTEBOOKLM",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Google (USA), certifié DPF",
+      "remarque": "Niveau 2 : Google (USA), certifié DPF"
+    },
+    {
+      "name": "ONE CALENDAR",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Développeur US, synchronisation calendriers",
+      "remarque": "Niveau 2 : Développeur US, synchronisation calendriers"
+    },
+    {
+      "name": "PADLET",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Padlet Inc. (USA), certifié DPF, COPPA",
+      "remarque": "Niveau 2 : Padlet Inc. (USA), certifié DPF, COPPA"
+    },
+    {
+      "name": "PHOTOPEA",
+      "certificationLevel": 2,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage avec précautions - Ivan Kutskir (Tchéquie), publicités Google",
+      "remarque": "Niveau 2 : Ivan Kutskir (Tchéquie), publicités Google"
+    },
+    {
+      "name": "PIXTON",
+      "certificationLevel": 2,
+      "dataLocation": "Canada",
+      "usageNotes": "Usage avec précautions - Pixton Comics (Canada), hébergement AWS",
+      "remarque": "Niveau 2 : Pixton Comics (Canada), hébergement AWS"
+    },
+    {
+      "name": "PLANDECLASSE.CA",
+      "certificationLevel": 2,
+      "dataLocation": "Canada",
+      "usageNotes": "Usage avec précautions - Développeur canadien",
+      "remarque": "Niveau 2 : Développeur canadien"
+    },
+    {
+      "name": "PLICKERS",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Plickers Inc. (USA), certifié DPF",
+      "remarque": "Niveau 2 : Plickers Inc. (USA), certifié DPF"
+    },
+    {
+      "name": "QUIZLET",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Quizlet Inc. (USA), certifié DPF, COPPA",
+      "remarque": "Niveau 2 : Quizlet Inc. (USA), certifié DPF, COPPA"
+    },
+    {
+      "name": "SAMSUNG EMAIL",
+      "certificationLevel": 2,
+      "dataLocation": "Corée du Sud",
+      "usageNotes": "Usage avec précautions - Samsung (Corée), pays adéquat, mais collecte analytics",
+      "remarque": "Niveau 2 : Samsung (Corée), pays adéquat, mais collecte analytics"
+    },
+    {
+      "name": "SAMSUNG NOTES",
+      "certificationLevel": 2,
+      "dataLocation": "Corée du Sud",
+      "usageNotes": "Usage avec précautions - Samsung (Corée), synchronisation cloud",
+      "remarque": "Niveau 2 : Samsung (Corée), synchronisation cloud"
+    },
+    {
+      "name": "SCHOLARVOX",
+      "certificationLevel": 2,
+      "dataLocation": "France",
+      "usageNotes": "Usage avec précautions - Cyberlibris (France), hébergement France",
+      "remarque": "Niveau 2 : Cyberlibris (France), hébergement France"
+    },
+    {
+      "name": "SCHOOL AI",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - SchoolAI (USA), IA générative, FERPA",
+      "remarque": "Niveau 2 : SchoolAI (USA), IA générative, FERPA"
+    },
+    {
+      "name": "SMART TECH : LUMIO",
+      "certificationLevel": 2,
+      "dataLocation": "Canada/États-Unis",
+      "usageNotes": "Usage avec précautions - SMART Technologies (Canada), hébergement AWS",
+      "remarque": "Niveau 2 : SMART Technologies (Canada), hébergement AWS"
+    },
+    {
+      "name": "SODA PDF",
+      "certificationLevel": 2,
+      "dataLocation": "Canada",
+      "usageNotes": "Usage avec précautions - Lulu Software (Canada), hébergement cloud",
+      "remarque": "Niveau 2 : Lulu Software (Canada), hébergement cloud"
+    },
+    {
+      "name": "TEAMVIEWER",
+      "certificationLevel": 2,
+      "dataLocation": "Allemagne",
+      "usageNotes": "Usage avec précautions - TeamViewer AG (Allemagne), infrastructure mondiale",
+      "remarque": "Niveau 2 : TeamViewer AG (Allemagne), infrastructure mondiale"
+    },
+    {
+      "name": "TRIMBLE INC.",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Trimble Inc. (USA), SketchUp, certifié DPF",
+      "remarque": "Niveau 2 : Trimble Inc. (USA), SketchUp, certifié DPF"
+    },
+    {
+      "name": "VOKAPI (app)",
+      "certificationLevel": 2,
+      "dataLocation": "Suisse",
+      "usageNotes": "Usage avec précautions - Développeur suisse, synchronisation externe",
+      "remarque": "Niveau 2 : Développeur suisse, synchronisation externe"
+    },
+    {
+      "name": "WAKELET",
+      "certificationLevel": 2,
+      "dataLocation": "Royaume-Uni",
+      "usageNotes": "Usage avec précautions - Wakelet Ltd (UK), hébergement cloud",
+      "remarque": "Niveau 2 : Wakelet Ltd (UK), hébergement cloud"
+    },
+    {
+      "name": "WAYGROUND (anc. QUIZIZZ)",
+      "certificationLevel": 2,
+      "dataLocation": "États-Unis",
+      "usageNotes": "Usage avec précautions - Quizizz Inc. (USA), certifié DPF, COPPA",
+      "remarque": "Niveau 2 : Quizizz Inc. (USA), certifié DPF, COPPA"
+    },
+    {
+      "name": "WOOCLAP",
+      "certificationLevel": 2,
+      "dataLocation": "Union Européenne",
+      "usageNotes": "Usage avec précautions - Wooclap SA (Belgique), hébergement UE",
+      "remarque": "Niveau 2 : Wooclap SA (Belgique), hébergement UE"
+    },
+    {
+      "name": "WORDWALL",
+      "certificationLevel": 2,
+      "dataLocation": "Royaume-Uni",
+      "usageNotes": "Usage avec précautions - Visual Education Ltd (UK), hébergement UK/US",
+      "remarque": "Niveau 2 : Visual Education Ltd (UK), hébergement UK/US"
+    },
+    {
+      "name": "AZENDOO (app)",
+      "certificationLevel": 3,
+      "dataLocation": "Inconnu",
+      "usageNotes": "INTERDIT - Service apparemment discontinué, politique confidentialité insuffisante",
+      "remarque": "Niveau 3 : Service apparemment discontinué, politique confidentialité insuffisante"
+    },
+    {
+      "name": "BLUEMAIL",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Blix Inc. (USA), controverses collecte données emails, non certifié DPF",
+      "remarque": "Niveau 3 : Blix Inc. (USA), controverses collecte données emails, non certifié DPF"
+    },
+    {
+      "name": "CAPCUT",
+      "certificationLevel": 3,
+      "dataLocation": "Chine",
+      "usageNotes": "INTERDIT - ByteDance (Chine), amende RGPD 530M€, transfert données vers Chine",
+      "remarque": "Niveau 3 : ByteDance (Chine), amende RGPD 530M€, transfert données vers Chine"
+    },
+    {
+      "name": "CLASSCRAFT",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Classcraft Studios (Canada), acquis par HMH, collecte données comportementales extensive",
+      "remarque": "Niveau 3 : Classcraft Studios (Canada), acquis par HMH, collecte données comportementales extensive"
+    },
+    {
+      "name": "DUOLINGO",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Duolingo Inc. (USA), collecte extensive, publicités ciblées version gratuite",
+      "remarque": "Niveau 3 : Duolingo Inc. (USA), collecte extensive, publicités ciblées version gratuite"
+    },
+    {
+      "name": "EDUBASE READER",
+      "certificationLevel": 3,
+      "dataLocation": "Hongrie",
+      "usageNotes": "INTERDIT - Entreprise hongroise, politique confidentialité insuffisante",
+      "remarque": "Niveau 3 : Entreprise hongroise, politique confidentialité insuffisante"
+    },
+    {
+      "name": "GARMIN CONNECT",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Garmin Ltd (USA), données santé sensibles, transferts vers pays tiers",
+      "remarque": "Niveau 3 : Garmin Ltd (USA), données santé sensibles, transferts vers pays tiers"
+    },
+    {
+      "name": "GLOSE",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Glose Education (France acquis USA), politique privacy incertaine",
+      "remarque": "Niveau 3 : Glose Education (France acquis USA), politique privacy incertaine"
+    },
+    {
+      "name": "JUNGLEAI",
+      "certificationLevel": 3,
+      "dataLocation": "Inconnu",
+      "usageNotes": "INTERDIT - Startup IA, politique confidentialité insuffisante",
+      "remarque": "Niveau 3 : Startup IA, politique confidentialité insuffisante"
+    },
+    {
+      "name": "LINGODEER",
+      "certificationLevel": 3,
+      "dataLocation": "Chine",
+      "usageNotes": "INTERDIT - Entreprise chinoise, transfert données vers Chine",
+      "remarque": "Niveau 3 : Entreprise chinoise, transfert données vers Chine"
+    },
+    {
+      "name": "LINKEDIN",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Microsoft/LinkedIn (USA), collecte extensive, profils professionnels mineurs déconseillés",
+      "remarque": "Niveau 3 : Microsoft/LinkedIn (USA), collecte extensive, profils professionnels mineurs déconseillés"
+    },
+    {
+      "name": "LUCID",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Lucid Software (USA), collecte analytics extensive",
+      "remarque": "Niveau 3 : Lucid Software (USA), collecte analytics extensive"
+    },
+    {
+      "name": "MEMRISE",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Memrise Ltd (UK), IA controversée, publicités invasives version gratuite",
+      "remarque": "Niveau 3 : Memrise Ltd (UK), IA controversée, publicités invasives version gratuite"
+    },
+    {
+      "name": "MINE",
+      "certificationLevel": 3,
+      "dataLocation": "Israël",
+      "usageNotes": "INTERDIT - Mine PrivacyOps (Israël), service découverte données, pays non adéquat UE",
+      "remarque": "Niveau 3 : Mine PrivacyOps (Israël), service découverte données, pays non adéquat UE"
+    },
+    {
+      "name": "MINECRAFT : EDUCATION EDITION",
+      "certificationLevel": 3,
+      "dataLocation": "Israël",
+      "usageNotes": "INTERDIT - Mine PrivacyOps (Israël), service découverte données, pays non adéquat UE",
+      "remarque": "Niveau 3 : Mine PrivacyOps (Israël), service découverte données, pays non adéquat UE"
+    },
+    {
+      "name": "MURAL",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Mural (USA), acquis par Microsoft, changements politique à venir",
+      "remarque": "Niveau 3 : Mural (USA), acquis par Microsoft, changements politique à venir"
+    },
+    {
+      "name": "PREZI",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Prezi Inc. (USA), collecte analytics extensive, non certifié DPF",
+      "remarque": "Niveau 3 : Prezi Inc. (USA), collecte analytics extensive, non certifié DPF"
+    },
+    {
+      "name": "SOUNDTRAP EDUCATION",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Spotify/Soundtrap (Suède), hébergement US, collecte audio",
+      "remarque": "Niveau 3 : Spotify/Soundtrap (Suède), hébergement US, collecte audio"
+    },
+    {
+      "name": "SPARK",
+      "certificationLevel": 3,
+      "dataLocation": "Ukraine",
+      "usageNotes": "INTERDIT - Readdle (Ukraine), client email, accès contenu emails côté serveur",
+      "remarque": "Niveau 3 : Readdle (Ukraine), client email, accès contenu emails côté serveur"
+    },
+    {
+      "name": "SUNO.AI",
+      "certificationLevel": 3,
+      "dataLocation": "États-Unis",
+      "usageNotes": "INTERDIT - Suno AI (USA), IA générative, droits auteur incertains, politique privacy floue",
+      "remarque": "Niveau 3 : Suno AI (USA), IA générative, droits auteur incertains, politique privacy floue"
+    }
+  ]
+}
