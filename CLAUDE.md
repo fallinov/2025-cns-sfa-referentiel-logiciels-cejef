@@ -374,13 +374,16 @@ interface Software {
   }
   certificationLevel: 1 | 2 | 3 | null  // Niveau global (max des 3)
   dataLocation: DataLocation  // Localisation précise des données
-  personalData: boolean       // Traite des données personnelles
 
   // Validation LGPD
   toValidate?: boolean        // Nécessite révision humaine
   remarque?: string           // Justification de la classification
 }
 ```
+
+**Note** : Le champ `personalData` a été supprimé (v0.6.1). L'autorisation d'utiliser des données élèves est désormais déterminée uniquement par le `certificationLevel` :
+- Niveau 1 → Données élèves autorisées
+- Niveau 2/3 → Données élèves non autorisées via le filtre
 
 #### Localisations de données (`DataLocation`)
 

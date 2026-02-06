@@ -62,51 +62,62 @@ Le **Référentiel Logiciels CEJEF** est une application web destinée aux ensei
 
 ---
 
-## 🔒 Classification LGPD
+## 🔒 Classification LGPD (GCN 2026)
 
-Chaque logiciel est évalué selon 4 critères de protection des données :
+Chaque logiciel est classifié selon les critères GCN 2026 en **3 niveaux** :
 
-### 1. Hébergement des données 🏠
+### Niveaux de certification
 
-Localisation physique des serveurs hébergeant les données :
+| Niveau | Couleur | Description | Données élèves |
+|--------|---------|-------------|----------------|
+| **1** | 🟢 Vert | Usage autorisé | ✅ Autorisées |
+| **2** | 🟠 Orange | Usage avec précautions | ⚠️ Avec précautions |
+| **3** | 🔴 Rouge | Usage interdit | ❌ Interdites |
 
-| Valeur | Description | Niveau de confiance |
-|--------|-------------|---------------------|
-| **CEJEF** | Serveurs internes CEJEF | ⭐⭐⭐⭐⭐ Maximum |
-| **CH** | Suisse | ⭐⭐⭐⭐ Très élevé |
-| **UE** | Union Européenne | ⭐⭐⭐ Élevé |
-| **Hors-UE** | Hors UE (USA, etc.) | ⭐⭐ Modéré |
-| **Chine** | Chine | ⭐ Faible |
+### Critères de classification
 
-### 2. Utilisation des données personnelles 👤
+#### Niveau 1 (Vert) - Critères cumulatifs :
+- Siège social en Suisse, UE, ou pays adéquat (Canada, UK, Corée du Sud, Japon)
+- Hébergement des données en Suisse ou UE
+- Politique de confidentialité conforme RGPD
+- Pas de collecte de données invasive ni tracking publicitaire
+- OU contrat DPA institutionnel CEJEF (ex: Microsoft 365)
 
-Autorisation d'utiliser le logiciel avec des données d'étudiants :
+#### Niveau 2 (Orange) - Un des critères suivants :
+- Entreprise US avec certification EU-US Data Privacy Framework (DPF)
+- Hébergement sur infrastructure US (AWS, Google Cloud) même pour entreprise UE → Cloud Act
+- Utilisation d'analytics tiers (Google Analytics, etc.)
+- Sous-traitants US dans la chaîne de traitement
+- Certifications : SOC 2, ISO 27001, COPPA, FERPA
 
-| Valeur | Description | Recommandation |
-|--------|-------------|----------------|
-| **Autorisées** | Utilisation de données personnelles autorisée | ✅ Recommandé |
-| **Anonymisé** | Uniquement avec données anonymisées | ⚠️ Avec précautions |
-| **Interdites** | Utilisation de données personnelles interdite | ❌ Déconseillé |
+#### Niveau 3 (Rouge) - Un des critères suivants :
+- Hébergement dans pays non adéquat (Chine, Russie, etc.)
+- Entreprise chinoise (ByteDance, Tencent, etc.)
+- Non-conformité RGPD avérée ou amendes RGPD
+- Politique de confidentialité insuffisante ou absente
+- Collecte de données extensive sans consentement
 
-### 3. Conformité RGPD 📜
+### Répartition actuelle (127 logiciels)
 
-Niveau de conformité au Règlement Général sur la Protection des Données :
+| Niveau | Nombre | Exemples |
+|--------|--------|----------|
+| 🟢 1 | 44 | Microsoft 365*, Infomaniak, Card2Brain, Threema |
+| 🟠 2 | 63 | Canva, Kahoot, ChatGPT, Adobe, Padlet |
+| 🔴 3 | 20 | CapCut, Duolingo, TikTok, Prezi |
 
-| Valeur | Description | Statut |
-|--------|-------------|--------|
-| **Conforme** | Totalement conforme RGPD | ✅ Validé |
-| **Partiel** | Conformité partielle ou en cours | ⚠️ Vigilance |
-| **Non conforme** | Non conforme RGPD | ❌ Éviter |
+*Microsoft 365 en vert grâce au contrat DPA institutionnel CEJEF avec hébergement UE garanti.
 
-### 4. Niveau de collecte de données 📊
+### Scripts d'automatisation
 
-Quantité de données collectées par l'outil :
+Des scripts Python sont disponibles pour automatiser les classifications :
 
-| Valeur | Description | Impact |
-|--------|-------------|--------|
-| **Limitée** | Collecte minimale (nom, email) | ✅ Faible impact |
-| **Modérée** | Collecte standard | ⚠️ Impact moyen |
-| **Extensive** | Collecte importante (tracking, analytics) | ❌ Impact élevé |
+```bash
+# Analyser les logiciels
+python3 scripts/classify-lgpd.py
+
+# Appliquer les classifications
+python3 scripts/apply-lgpd-changes.py
+```
 
 ---
 
