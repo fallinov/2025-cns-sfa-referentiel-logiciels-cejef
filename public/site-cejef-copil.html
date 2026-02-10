@@ -436,6 +436,7 @@
                         <div>
                             <p class="text-white font-semibold">Bandeau inscription</p>
                             <p class="text-slate-400 text-xs">Mis en &eacute;vidence pour un acc&egrave;s direct aux d&eacute;marches</p>
+                            <p class="text-slate-400 text-xs">Id&eacute;e de centraliser &agrave; terme les inscriptions</p>
                         </div>
                     </div>
                     <div class="bg-gradient-to-br from-slate-800 to-slate-800/50 p-5 rounded-xl border border-slate-700/50">
@@ -601,8 +602,16 @@
                             <p class="text-slate-400 text-xs">T&eacute;l&eacute;phone, email, adresse, horaires, itin&eacute;raire</p>
                         </div>
                     </div>
+                    <div class="bg-green-500/10 border border-green-500/30 p-4 rounded-xl flex items-center gap-4">
+                        <span class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0 text-sm font-bold text-white">6</span>
+                        <div>
+                            <p class="text-white font-semibold">Bandeau inscription</p>
+                            <p class="text-slate-400 text-xs">Mis en &eacute;vidence pour un acc&egrave;s direct aux d&eacute;marches</p>
+                            <p class="text-slate-400 text-xs">Id&eacute;e de centraliser &agrave; terme les inscriptions</p>
+                        </div>
+                    </div>
                     <div class="bg-slate-800/50 border border-slate-700/30 p-4 rounded-xl flex items-center gap-4">
-                        <span class="w-8 h-8 bg-slate-600 rounded-lg flex items-center justify-center flex-shrink-0 text-sm font-bold text-white">6</span>
+                        <span class="w-8 h-8 bg-slate-600 rounded-lg flex items-center justify-center flex-shrink-0 text-sm font-bold text-white">7</span>
                         <div>
                             <p class="text-slate-300 font-semibold">Direction <span class="text-slate-500 text-xs font-normal">(optionnelle)</span></p>
                             <p class="text-slate-500 text-xs">Directeur/trice et &eacute;quipe &mdash; affich&eacute;e si renseign&eacute;e</p>
@@ -769,6 +778,17 @@
                     </div>
                 </div>
                 <div class="vote-row bg-slate-800/80 backdrop-blur p-5 rounded-xl border border-slate-700/50 flex items-center gap-4 transition">
+                    <p class="text-slate-200 flex-1"><strong class="text-white">Quiz d'aide au choix de formation</strong> &mdash; maintenir l'outil d'orientation en 3 questions</p>
+                    <div class="flex gap-2 flex-shrink-0">
+                        <button class="vote-btn ok w-10 h-10 rounded-full border-2 border-green-500/40 flex items-center justify-center cursor-pointer transition-all hover:border-green-400" onclick="vote(this,'ok')">
+                            <svg class="w-5 h-5 text-green-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </button>
+                        <button class="vote-btn ko w-10 h-10 rounded-full border-2 border-red-500/40 flex items-center justify-center cursor-pointer transition-all hover:border-red-400" onclick="vote(this,'ko')">
+                            <svg class="w-5 h-5 text-red-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="vote-row bg-slate-800/80 backdrop-blur p-5 rounded-xl border border-slate-700/50 flex items-center gap-4 transition">
                     <p class="text-slate-200 flex-1"><strong class="text-white">Section Campus</strong> &mdash; cadre d'&eacute;tude pour se projeter, pas vie scolaire interne</p>
                     <div class="flex gap-2 flex-shrink-0">
                         <button class="vote-btn ok w-10 h-10 rounded-full border-2 border-green-500/40 flex items-center justify-center cursor-pointer transition-all hover:border-green-400" onclick="vote(this,'ok')">
@@ -791,18 +811,7 @@
                     </div>
                 </div>
                 <div class="vote-row bg-slate-800/80 backdrop-blur p-5 rounded-xl border border-slate-700/50 flex items-center gap-4 transition">
-                    <p class="text-slate-200 flex-1"><strong class="text-white">Quiz d'aide au choix de formation</strong> &mdash; maintenir l'outil d'orientation en 3 questions</p>
-                    <div class="flex gap-2 flex-shrink-0">
-                        <button class="vote-btn ok w-10 h-10 rounded-full border-2 border-green-500/40 flex items-center justify-center cursor-pointer transition-all hover:border-green-400" onclick="vote(this,'ok')">
-                            <svg class="w-5 h-5 text-green-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                        </button>
-                        <button class="vote-btn ko w-10 h-10 rounded-full border-2 border-red-500/40 flex items-center justify-center cursor-pointer transition-all hover:border-red-400" onclick="vote(this,'ko')">
-                            <svg class="w-5 h-5 text-red-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="vote-row bg-slate-800/80 backdrop-blur p-5 rounded-xl border border-slate-700/50 flex items-center gap-4 transition">
-                    <p class="text-slate-200 flex-1"><strong class="text-white">Bandeau inscription</strong> &mdash; acc&egrave;s direct aux d&eacute;marches d'inscription. Objectif &agrave; terme : syst&egrave;me d'inscription centralis&eacute; CEJEF</p>
+                    <p class="text-slate-200 flex-1"><strong class="text-white">Centraliser syst&egrave;me d'inscription</strong></p>
                     <div class="flex gap-2 flex-shrink-0">
                         <button class="vote-btn ok w-10 h-10 rounded-full border-2 border-green-500/40 flex items-center justify-center cursor-pointer transition-all hover:border-green-400" onclick="vote(this,'ok')">
                             <svg class="w-5 h-5 text-green-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
