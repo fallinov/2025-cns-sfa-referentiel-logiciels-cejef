@@ -3853,9 +3853,9 @@ export const softwareList: Software[] = [
     shortDescription: "Navigateur web open-source respectueux de la vie privée",
     description: "Navigateur web open-source respectueux de la vie privée. Cet outil est conçu pour faciliter les tâches pédagogiques et administratives, offrant des fonctionnalités adaptées au contexte éducatif.",
     lgpd: {
-      hosting: 1,
-      rgpd: 1,
-      dataCollection: 1
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 2
     },
     certificationLevel: 2,
     dataLocation: "États-Unis",
@@ -3877,7 +3877,7 @@ export const softwareList: Software[] = [
       "Navigation web"
     ],
     usageNotes: "Usage avec précautions - Mozilla (USA), non certifié DPF, télémétrie configurable",
-    remarque: "Niveau 2 : Mozilla Corporation (USA), non certifié DPF, protection tracking par défaut mais télémétrie",
+    remarque: "Niveau 2 : Mozilla Corporation (USA), télémétrie sur Google Cloud Platform (USA, Cloud Act), non certifié DPF, télémétrie opt-out par défaut, plainte RGPD noyb en cours (PPA)",
     createdAt: 1698260976000,
     updatedAt: 1698260976000
   },
