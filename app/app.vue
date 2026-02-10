@@ -58,7 +58,7 @@ const _links = [{
       </template>
 
       <template #center>
-        <span class="text-xs text-gray-400 dark:text-gray-500">
+        <span class="text-xs text-gray-500 dark:text-gray-400">
           v{{ config.public.appVersion }}
         </span>
       </template>

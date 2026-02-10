@@ -13,8 +13,6 @@ const { getPreviousSoftware, getNextSoftware } = useSoftwareNavigation()
 const { getSimilarSoftware } = useSimilarSoftware()
 
 // Fonction de retour intelligente (historique ou accueil)
-// Fonction de retour intelligente (historique ou accueil)
-// Fonction de retour intelligente (historique ou accueil)
 const goBack = () => {
   const backLink = window.history.state.back
   // Si on vient d'une page qui n'est pas un détail de logiciel (donc probablement le catalogue ou une autre page principale)
@@ -112,20 +110,23 @@ const showLgpdDetails = ref(false)
 </script>
 
 <template>
-  <div v-if="software" class="min-h-screen bg-gray-100 dark:bg-gray-950 pb-20">
+  <div v-if="software" class="min-h-screen bg-gray-100 dark:bg-gray-950 pb-24 md:pb-8">
     <!-- Top Navigation Bar -->
     <div class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md sticky top-0 z-50">
       <UContainer class="max-w-[1240px] h-16 flex items-center justify-between">
         <div class="flex items-center gap-4">
-          <UButton
-            variant="ghost"
-            color="neutral"
-            class="-ml-2.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-            @click="goBack"
-          >
-            <UIcon name="i-lucide-arrow-left" class="w-5 h-5" />
-            <span class="hidden sm:inline">Retour au catalogue</span>
-          </UButton>
+          <UTooltip text="Retour au catalogue" :shortcuts="['Esc']">
+            <UButton
+              variant="ghost"
+              color="neutral"
+              aria-label="Retour au catalogue"
+              class="-ml-2.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+              @click="goBack"
+            >
+              <UIcon name="i-lucide-arrow-left" class="w-5 h-5" />
+              <span class="hidden sm:inline">Retour au catalogue</span>
+            </UButton>
+          </UTooltip>
         </div>
 
         <div class="flex items-center gap-2">
@@ -163,9 +164,8 @@ const showLgpdDetails = ref(false)
         <div class="absolute top-0 right-0 p-12 pointer-events-none select-none">
           <div
             v-if="software.logo"
-            class="w-96 h-96 transform rotate-12 translate-x-12 -translate-y-12"
+            class="w-96 h-96 transform rotate-12 translate-x-12 -translate-y-12 bg-gray-200 dark:bg-gray-800"
             :style="{
-              backgroundColor: '#F3F4F6',
               WebkitMaskImage: `url(/logos/${software.logo}.svg)`,
               WebkitMaskSize: 'contain',
               WebkitMaskRepeat: 'no-repeat',
@@ -272,7 +272,7 @@ const showLgpdDetails = ref(false)
               <div class="flex flex-col gap-8 relative z-10">
                 <!-- Disciplines -->
                 <div v-if="software.disciplines?.length">
-                  <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                  <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
                     Disciplines concernées
                   </h3>
                   <div class="flex flex-wrap gap-2">
@@ -280,6 +280,7 @@ const showLgpdDetails = ref(false)
                       v-for="discipline in software.disciplines"
                       :key="discipline"
                       :to="{ path: '/', query: { discipline } }"
+                      :aria-label="`Filtrer par discipline : ${discipline}`"
                       class="hover:scale-105 transition-transform"
                     >
                       <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">
@@ -292,7 +293,7 @@ const showLgpdDetails = ref(false)
 
                 <!-- Activities -->
                 <div v-if="software.pedagogicalActivities?.length">
-                  <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                  <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
                     Activités possibles
                   </h3>
                   <div class="flex flex-wrap gap-2">
@@ -300,6 +301,7 @@ const showLgpdDetails = ref(false)
                       v-for="activity in software.pedagogicalActivities"
                       :key="activity"
                       :to="{ path: '/', query: { activity } }"
+                      :aria-label="`Filtrer par activité : ${activity}`"
                       class="hover:scale-105 transition-transform"
                     >
                       <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">
@@ -312,7 +314,7 @@ const showLgpdDetails = ref(false)
 
                 <!-- Categories (Full width if needed) -->
                 <div v-if="software.categories?.length">
-                  <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                  <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
                     Catégories
                   </h3>
                   <div class="flex flex-wrap gap-2">
@@ -320,6 +322,7 @@ const showLgpdDetails = ref(false)
                       v-for="category in software.categories"
                       :key="category"
                       :to="{ path: '/', query: { category } }"
+                      :aria-label="`Filtrer par catégorie : ${category}`"
                       class="hover:scale-105 transition-transform"
                     >
                       <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">

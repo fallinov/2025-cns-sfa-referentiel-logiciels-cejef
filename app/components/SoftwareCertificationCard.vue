@@ -148,7 +148,7 @@ const config = computed(() => {
             :to="`/logiciels/${altId}`"
             color="success"
             variant="outline"
-            size="xs"
+            size="sm"
             icon="i-lucide-arrow-right"
           >
             {{ getSoftwareById(altId)?.name || "Alternative" }}
@@ -181,12 +181,12 @@ const config = computed(() => {
               :class="software.lgpd.hosting === 1 ? 'bg-green-500 ring-green-500' : software.lgpd.hosting === 2 ? 'bg-orange-500 ring-orange-500' : 'bg-red-500 ring-red-500'"
             >
               <UIcon
-                :name="software.lgpd.hosting === 1 ? 'i-lucide-check-circle' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
+                :name="software.lgpd.hosting === 1 ? 'i-lucide-check' : software.lgpd.hosting === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x'"
                 class="w-4 h-4 text-white stroke-[3]"
               />
             </div>
             <div>
-              <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              <div class="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                 Hébergement
               </div>
               <div class="text-sm font-bold text-gray-900 dark:text-white">
@@ -202,12 +202,12 @@ const config = computed(() => {
               :class="software.lgpd.rgpd === 1 ? 'bg-green-500 ring-green-500' : software.lgpd.rgpd === 2 ? 'bg-orange-500 ring-orange-500' : 'bg-red-500 ring-red-500'"
             >
               <UIcon
-                :name="software.lgpd.rgpd === 1 ? 'i-lucide-check-circle' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
+                :name="software.lgpd.rgpd === 1 ? 'i-lucide-check' : software.lgpd.rgpd === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x'"
                 class="w-4 h-4 text-white stroke-[3]"
               />
             </div>
             <div>
-              <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              <div class="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                 Conformité RGPD
               </div>
               <div class="text-sm font-bold text-gray-900 dark:text-white">
@@ -223,12 +223,12 @@ const config = computed(() => {
               :class="software.lgpd.dataCollection === 1 ? 'bg-green-500 ring-green-500' : software.lgpd.dataCollection === 2 ? 'bg-orange-500 ring-orange-500' : 'bg-red-500 ring-red-500'"
             >
               <UIcon
-                :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check-circle' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-shield-alert'"
+                :name="software.lgpd.dataCollection === 1 ? 'i-lucide-check' : software.lgpd.dataCollection === 2 ? 'i-lucide-alert-triangle' : 'i-lucide-x'"
                 class="w-4 h-4 text-white stroke-[3]"
               />
             </div>
             <div>
-              <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              <div class="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                 Données
               </div>
               <div class="text-sm font-bold text-gray-900 dark:text-white">

@@ -98,7 +98,7 @@ defineExpose({
         <button
           v-if="modelValue"
           type="button"
-          class="flex items-center justify-center w-11 h-11 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-full"
+          class="flex items-center justify-center w-12 h-12 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-full"
           aria-label="Effacer la recherche"
           @click="emit('clear')"
         >
@@ -108,7 +108,7 @@ defineExpose({
         <!-- Search Button (Icon) -->
         <button
           type="button"
-          class="flex items-center justify-center w-11 h-11 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 transition-all shadow-sm hover:bg-slate-800 dark:hover:bg-gray-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+          class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 transition-all shadow-sm hover:bg-slate-800 dark:hover:bg-gray-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
           aria-label="Lancer la recherche"
           @click="emit('submit')"
         >
@@ -122,6 +122,7 @@ defineExpose({
       v-if="isMobileFocused"
       type="button"
       class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+      aria-label="Fermer la recherche"
       @click="emit('mobileBack')"
     >
       <UIcon name="i-lucide-arrow-left" class="w-6 h-6" />

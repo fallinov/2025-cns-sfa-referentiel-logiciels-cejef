@@ -14,7 +14,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   1: {
     fill: "text-green-500 dark:text-green-500",
     label: "Validé",
-    icon: "i-lucide-circle-check-big",
+    icon: "i-lucide-check",
     bg: "bg-green-50 dark:bg-green-950",
     solidBg: "bg-green-500 dark:bg-green-500",
     ring: "ring-green-500/20",
@@ -25,7 +25,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   2: {
     fill: "text-orange-500 dark:text-orange-500",
     label: "Restreint",
-    icon: "i-lucide-triangle-alert",
+    icon: "i-lucide-alert-triangle",
     bg: "bg-orange-50 dark:bg-orange-950",
     solidBg: "bg-orange-500 dark:bg-orange-500",
     ring: "ring-orange-500/20",
@@ -36,7 +36,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   3: {
     fill: "text-red-500 dark:text-red-500",
     label: "Interdit",
-    icon: "i-lucide-circle-x",
+    icon: "i-lucide-x",
     bg: "bg-red-50 dark:bg-red-950",
     solidBg: "bg-red-500 dark:bg-red-500",
     ring: "ring-red-500/20",

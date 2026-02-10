@@ -20,6 +20,27 @@ const search = defineModel<string>("search", { default: "" })
 const root = ref<HTMLElement | null>(null)
 const searchInputComponent = ref<{ focus: () => void, blur: () => void } | null>(null)
 
+// Lightweight focus trap for mobile fullscreen search (a11y)
+const trapFocusHandler = (event: KeyboardEvent) => {
+  if (event.key !== "Tab" || !root.value) return
+  const focusableElements = root.value.querySelectorAll<HTMLElement>(
+    "input, button, [tabindex]:not([tabindex='-1'])"
+  )
+  if (focusableElements.length === 0) return
+  const first = focusableElements[0] as HTMLElement | undefined
+  const last = focusableElements[focusableElements.length - 1] as HTMLElement | undefined
+  if (!first || !last) return
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault()
+    last.focus()
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault()
+    first.focus()
+  }
+}
+const activateFocusTrap = () => document.addEventListener("keydown", trapFocusHandler)
+const deactivateFocusTrap = () => document.removeEventListener("keydown", trapFocusHandler)
+
 // Focus state
 const isFocused = ref(false)
 const isMobileFocused = ref(false)
@@ -35,11 +56,13 @@ watch([isFocused, isMobile], ([focused, mobile]) => {
   if (focused && mobile) {
     isMobileFocused.value = true
     document.body.style.overflow = "hidden" // Prevent background scrolling
+    nextTick(() => activateFocusTrap())
   } else if (!focused) {
     // Delay slightly to allow click events to register
     setTimeout(() => {
       isMobileFocused.value = false
       document.body.style.overflow = ""
+      deactivateFocusTrap()
     }, 200)
   }
 })
@@ -60,6 +83,7 @@ watch(isMobileFocused, (newValue) => {
 // Clean up on unmount
 onUnmounted(() => {
   document.body.style.overflow = ""
+  deactivateFocusTrap()
 })
 
 // Popular searches
@@ -157,9 +181,6 @@ const handleMobileBack = () => {
 // Focus Handlers (received from SearchInput)
 const onInputFocus = () => {
   isFocused.value = true
-  // search.value = "" // Previously we cleared search on focus? Let's check original... yes we did: search.value = "" in handleFocus.
-  // Actually, sometimes user wants to edit query. But original code did `search.value = ""` on focus. I will keep it for consistency.
-  search.value = ""
   showSuggestions.value = true
 }
 
@@ -241,7 +262,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
     class="w-full transition-all duration-300 ease-in-out"
     :class="[
       compact ? '' : 'max-w-3xl mx-auto',
-      isMobileFocused ? 'fixed inset-0 z-[9999] bg-gray-100 dark:bg-gray-950/90 backdrop-blur-sm' : 'relative'
+      isMobileFocused ? 'fixed inset-0 z-50 bg-gray-100 dark:bg-gray-950/90 backdrop-blur-sm' : 'relative'
     ]"
   >
     <label for="software-search" class="sr-only">

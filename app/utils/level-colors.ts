@@ -76,9 +76,9 @@ export function getLevelTailwindColor(level: Level): "green" | "orange" | "red" 
 export function getLevelIcon(level: Level): string {
   if (!level) return ""
   const icons: Record<NonNullable<Level>, string> = {
-    1: "i-lucide-circle-check",
-    2: "i-lucide-triangle-alert",
-    3: "i-lucide-circle-x"
+    1: "i-lucide-check",
+    2: "i-lucide-alert-triangle",
+    3: "i-lucide-x"
   }
   return icons[level]
 }

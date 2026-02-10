@@ -117,7 +117,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
       <div v-else-if="search.length >= 2 && hasSuggestions">
         <!-- Categories -->
         <div v-if="suggestions.categories.length > 0">
-          <div class="px-5 py-2 mt-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+          <div class="px-5 py-2 mt-1 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
             Catégories
           </div>
           <button
@@ -144,7 +144,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
 
         <!-- Disciplines -->
         <div v-if="suggestions.disciplines.length > 0">
-          <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+          <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
             Disciplines
           </div>
           <button
@@ -171,7 +171,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
 
         <!-- Activities -->
         <div v-if="suggestions.activities.length > 0">
-          <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+          <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
             Activités
           </div>
           <button
@@ -198,7 +198,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
 
         <!-- Software -->
         <div v-if="suggestions.software.length > 0">
-          <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+          <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
             Logiciels
           </div>
           <button

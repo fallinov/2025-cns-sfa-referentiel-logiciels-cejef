@@ -42,11 +42,9 @@ const sortBy = defineModel<string>("sortBy", { required: true })
 const viewMode = defineModel<"grid" | "list">("viewMode", { required: true })
 
 const sortOptions = [
-  { label: "Classification (Meilleur)", value: "certification-asc" },
-  { label: "Classification (Moins bon)", value: "certification-desc" },
-  { label: "Nom (A-Z)", value: "name-asc" },
-  { label: "Nom (Z-A)", value: "name-desc" },
-  { label: "Date (Plus récent)", value: "date-desc" },
-  { label: "Date (Plus ancien)", value: "date-asc" }
+  { label: "Recommandés", value: "recommended" },
+  { label: "Validé → Interdit", value: "level-asc" },
+  { label: "Nom A → Z", value: "name-asc" },
+  { label: "Plus récents", value: "date-desc" }
 ]
 </script>

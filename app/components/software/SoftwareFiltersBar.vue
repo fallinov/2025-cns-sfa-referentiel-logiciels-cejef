@@ -5,31 +5,25 @@ import { storeToRefs } from "pinia"
 const store = useSoftwareStore()
 const {
   selectedPopularFilters,
-  selectedLgpdLevels,
-  isFiltersDrawerOpen,
-  lgpdLevelCounts
+  selectedLgpdLevel,
+  isFiltersDrawerOpen
 } = storeToRefs(store)
 
-const {
-  togglePopularFilter,
-  toggleLgpdLevel
-} = store
+const { togglePopularFilter } = store
 
-// Map des couleurs pour les boutons LGPD
-const lgpdButtonColors = {
-  1: {
-    solid: "bg-emerald-600 hover:bg-emerald-700 text-white border-emerald-600",
-    outline: "border-emerald-600 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20"
-  },
-  2: {
-    solid: "bg-amber-500 hover:bg-amber-600 text-white border-amber-500",
-    outline: "border-amber-500 text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20"
-  },
-  3: {
-    solid: "bg-red-600 hover:bg-red-700 text-white border-red-600",
-    outline: "border-red-600 text-red-700 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20"
+const lgpdLevelOptions = [
+  { label: "Tous les niveaux", value: "all" },
+  { label: "Validé", value: "1" },
+  { label: "Restreint", value: "2" },
+  { label: "Interdit", value: "3" }
+]
+
+const lgpdSelectValue = computed({
+  get: () => selectedLgpdLevel.value?.toString() ?? "all",
+  set: (val: string) => {
+    selectedLgpdLevel.value = val === "all" ? null : Number(val)
   }
-}
+})
 </script>
 
 <template>
@@ -46,92 +40,75 @@ const lgpdButtonColors = {
         <template #leading>
           <UIcon name="i-lucide-filter" class="w-5 h-5" />
         </template>
-        Filtres rapides
+        Filtres
         <UBadge
-          v-if="selectedPopularFilters.length > 0 || selectedLgpdLevels.length > 0"
+          v-if="selectedPopularFilters.length > 0 || selectedLgpdLevel !== null"
           color="primary"
           size="sm"
           class="ml-2 rounded-[var(--ui-radius)] cursor-pointer"
         >
-          {{ selectedPopularFilters.length + selectedLgpdLevels.length }}
+          {{ selectedPopularFilters.length + (selectedLgpdLevel !== null ? 1 : 0) }}
         </UBadge>
       </UButton>
     </div>
 
-    <!-- Desktop/Tablet: Filtres visibles en ligne -->
-    <div class="hidden sm:block space-y-4">
-      <!-- Filtres LGPD par couleur -->
-      <div>
-        <div class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-200">
-          Niveau de conformité LGPD
-        </div>
-        <div class="flex flex-wrap items-center gap-2">
-          <button
-            v-for="filter in store.lgpdColorFilters"
-            :key="filter.id"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-[var(--ui-radius)] text-base font-medium border-2 transition-all cursor-pointer"
-            :class="selectedLgpdLevels.includes(filter.level) ? lgpdButtonColors[filter.level].solid : lgpdButtonColors[filter.level].outline"
-            @click="toggleLgpdLevel(filter.level)"
-          >
-            <UIcon :name="filter.icon" class="w-5 h-5" />
-            {{ filter.label }}
-            <span class="ml-1 text-sm opacity-80">({{ lgpdLevelCounts[filter.level] }})</span>
-          </button>
-        </div>
+    <!-- Desktop/Tablet: Filtres sur une seule ligne -->
+    <div class="hidden sm:block">
+      <div class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-200">
+        Filtres
       </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <!-- Dropdown niveau LGPD -->
+        <USelect
+          v-model="lgpdSelectValue"
+          :items="lgpdLevelOptions"
+          option-attribute="label"
+          value-attribute="value"
+          leading-icon="i-lucide-filter"
+          size="xl"
+          class="w-56 rounded-[var(--ui-radius)] cursor-pointer"
+        />
 
-      <!-- Filtres populaires -->
-      <div>
-        <div class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-200">
-          Filtres populaires
-        </div>
-        <div class="flex flex-wrap items-center gap-2">
-          <UButton
-            v-for="filter in store.popularFilters"
-            :key="filter.id"
-            :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
-            :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
-            size="xl"
-            :class="[!selectedPopularFilters.includes(filter.id) ? 'text-black dark:text-white' : '', 'rounded-[var(--ui-radius)] cursor-pointer']"
-            @click="togglePopularFilter(filter.id)"
-          >
-            <template v-if="filter.icon" #leading>
-              <UIcon :name="filter.icon" />
-            </template>
-            {{ filter.label }}
-          </UButton>
-        </div>
+        <!-- Boutons filtres populaires -->
+        <UButton
+          v-for="filter in store.popularFilters"
+          :key="filter.id"
+          :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
+          color="neutral"
+          size="xl"
+          class="rounded-[var(--ui-radius)] cursor-pointer"
+          @click="togglePopularFilter(filter.id)"
+        >
+          <template v-if="filter.icon" #leading>
+            <UIcon :name="filter.icon" class="w-4 h-4" />
+          </template>
+          {{ filter.label }}
+        </UButton>
       </div>
     </div>
 
     <!-- Mobile: Drawer avec filtres -->
     <UDrawer
       v-model:open="isFiltersDrawerOpen"
-      title="Filtres rapides"
-      description="Sélectionnez un ou plusieurs filtres pour affiner votre recherche"
+      title="Filtres"
+      description="Affinez votre recherche"
     >
       <template #content>
         <div class="flex flex-col gap-6 p-4">
-          <!-- Filtres LGPD par couleur (Mobile) -->
+          <!-- Dropdown niveau LGPD (Mobile) -->
           <div>
             <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
-              Niveau de conformité LGPD
+              Niveau de conformité
             </div>
-            <div class="flex flex-col gap-2">
-              <button
-                v-for="filter in store.lgpdColorFilters"
-                :key="filter.id"
-                class="flex items-center justify-between px-4 py-3 rounded-[var(--ui-radius)] text-base font-medium border-2 transition-all cursor-pointer"
-                :class="selectedLgpdLevels.includes(filter.level) ? lgpdButtonColors[filter.level].solid : lgpdButtonColors[filter.level].outline"
-                @click="toggleLgpdLevel(filter.level)"
-              >
-                <span class="flex items-center gap-2">
-                  <UIcon :name="filter.icon" class="w-5 h-5" />
-                  {{ filter.label }}
-                </span>
-                <span class="text-sm opacity-80">{{ lgpdLevelCounts[filter.level] }}</span>
-              </button>
-            </div>
+            <USelect
+              v-model="lgpdSelectValue"
+              :items="lgpdLevelOptions"
+              option-attribute="label"
+              value-attribute="value"
+              leading-icon="i-lucide-filter"
+              size="xl"
+              class="w-full rounded-[var(--ui-radius)] cursor-pointer"
+            />
           </div>
 
           <!-- Filtres populaires (Mobile) -->
@@ -143,11 +120,11 @@ const lgpdButtonColors = {
               <UButton
                 v-for="filter in store.popularFilters"
                 :key="filter.id"
-                :color="selectedPopularFilters.includes(filter.id) ? 'primary' : 'neutral'"
                 :variant="selectedPopularFilters.includes(filter.id) ? 'solid' : 'outline'"
-                size="xl"
+                color="neutral"
+                size="lg"
                 block
-                class="justify-start min-h-[44px] cursor-pointer"
+                class="justify-start rounded-[var(--ui-radius)] cursor-pointer"
                 @click="togglePopularFilter(filter.id)"
               >
                 <template #leading>
@@ -160,12 +137,12 @@ const lgpdButtonColors = {
 
           <div class="mt-2 pt-4 border-t dark:border-gray-800">
             <UButton
-              v-if="selectedPopularFilters.length > 0 || selectedLgpdLevels.length > 0"
+              v-if="selectedPopularFilters.length > 0 || selectedLgpdLevel !== null"
               color="neutral"
               variant="ghost"
               size="lg"
               block
-              @click="selectedPopularFilters = []; selectedLgpdLevels = []"
+              @click="selectedPopularFilters = []; selectedLgpdLevel = null"
             >
               <template #leading>
                 <UIcon name="i-lucide-x" class="w-5 h-5" />

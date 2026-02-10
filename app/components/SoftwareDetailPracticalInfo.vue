@@ -28,7 +28,7 @@ defineProps<Props>()
           <UIcon :class="['w-6 h-6', iconColor]" name="i-lucide-wallet" />
         </div>
         <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
+          <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">
             Coût
           </div>
           <div class="text-base font-semibold text-gray-900 dark:text-white">
@@ -43,7 +43,7 @@ defineProps<Props>()
           <UIcon :class="['w-6 h-6', iconColor]" name="i-lucide-headphones" />
         </div>
         <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
+          <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">
             Support CEJEF
           </div>
           <div class="text-base font-semibold text-gray-900 dark:text-white">
@@ -58,7 +58,7 @@ defineProps<Props>()
           <UIcon :class="['w-6 h-6', iconColor]" name="i-lucide-graduation-cap" />
         </div>
         <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
+          <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">
             Formation
           </div>
           <div class="text-base font-semibold text-gray-900 dark:text-white">
@@ -73,7 +73,7 @@ defineProps<Props>()
           <UIcon :class="['w-6 h-6', iconColor]" name="i-lucide-users" />
         </div>
         <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
+          <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">
             Public cible
           </div>
           <div class="text-base font-semibold text-gray-900 dark:text-white">
@@ -88,7 +88,7 @@ defineProps<Props>()
           <UIcon :class="['w-6 h-6', iconColor]" name="i-lucide-shield-alert" />
         </div>
         <div class="flex-1 min-w-0">
-          <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1">
+          <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">
             Restriction d'âge
           </div>
           <div class="text-base font-semibold text-gray-900 dark:text-white">

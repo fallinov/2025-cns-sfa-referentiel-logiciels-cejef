@@ -36,17 +36,19 @@ const handleCardClick = () => {
     @click="handleCardClick"
   >
     <!-- Certification Badge (Floating Top Right of Card) -->
-    <UTooltip :text="`Certification LGPD: ${config.label}`">
-      <div
-        class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full shadow-md ring-2 transition-colors duration-500 z-20"
-        :class="[config.solidBg, config.ringSolid]"
-      >
-        <UIcon
-          :name="getCertificationIcon(software.certificationLevel)"
-          class="w-7 h-7 text-white stroke-[3]"
-        />
-      </div>
-    </UTooltip>
+    <div
+      class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full shadow-md ring-2 transition-colors duration-500 z-20"
+      :class="[config.solidBg, config.ringSolid]"
+      :aria-label="`Certification LGPD: ${config.label}`"
+      :title="`Certification LGPD: ${config.label}`"
+      role="img"
+    >
+      <UIcon
+        :name="getCertificationIcon(software.certificationLevel)"
+        class="w-7 h-7 text-white stroke-[3]"
+        aria-hidden="true"
+      />
+    </div>
 
     <!-- Logo/Icon -->
     <div class="relative flex-shrink-0 w-16 h-16 flex items-center justify-center mb-2">

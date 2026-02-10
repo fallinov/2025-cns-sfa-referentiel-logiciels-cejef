@@ -21,7 +21,7 @@ export const CERTIFICATION_LEVELS: readonly CertificationLevelConfig[] = [
     description: "Usage autorisé sans restriction particulière",
     badgeLabel: "Validé",
     badgeColor: "success",
-    icon: "i-lucide-shield-check"
+    icon: "i-lucide-check"
   },
   {
     value: 2,
@@ -37,6 +37,6 @@ export const CERTIFICATION_LEVELS: readonly CertificationLevelConfig[] = [
     description: "Usage non autorisé pour les données personnelles",
     badgeLabel: "Interdit",
     badgeColor: "error",
-    icon: "i-lucide-shield-off"
+    icon: "i-lucide-x"
   }
 ] as const
