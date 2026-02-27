@@ -1,10 +1,8 @@
-# CLAUDE.md
+# Référentiel Logiciels CEJEF
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+> Projet lié au CNS : voir `~/CNS/CLAUDE.md`
 
-## Project Overview
-
-**Référentiel Logiciels CEJEF** is a static educational software catalog for CEJEF (Centre Jurassien d'Enseignement et de Formation) that displays software tools with LGPD (data protection law) classifications.
+Catalogue statique de logiciels éducatifs pour le CEJEF avec classifications LGPD (protection des données).
 
 ## Key Commands
 
@@ -39,155 +37,13 @@ git push origin v1.0.0
 - **Nuxt UI v4.1.0** (Tailwind CSS-based component library)
 - **Static Site Generation (SSG)** - no backend required
 
-**CRITICAL: Nuxt UI Component Usage**
+> Conventions Nuxt UI, workflow Git, qualité du code : voir `~/.claude/CLAUDE.md` et `~/.claude/rules/`.
 
-**⚠️ MANDATORY: Always check documentation FIRST before implementing**
-- **BEFORE** writing any code using a Nuxt UI component, consult https://ui.nuxt.com
-- **BEFORE** assuming a component API, verify it in the official documentation
-- **NEVER** use deprecated or non-existent components from older versions
-- **NEVER** reinvent the wheel - Nuxt UI provides most common UI patterns out of the box
-- When in doubt about a component's API (props, slots, events), **STOP and check the documentation**
-
-**Development Best Practices:**
-
-1. **ALWAYS study component documentation and variants BEFORE implementing**
-   - Browse https://ui.nuxt.com/docs/components to find the RIGHT component for your need
-   - Study ALL available variants (color, variant, size props) of the component
-   - Review ALL examples provided in the documentation
-   - Check component props, slots, events, and emits
-   - Copy-paste working examples from docs and adapt them to your use case
-   - **DO NOT** assume how a component works - verify in the documentation
-
-2. **Use Nuxt UI composables and utilities FIRST** before writing custom JavaScript
-   - `defineShortcuts` for keyboard shortcuts
-   - `useTemplateRef` for DOM references
-   - `useColorMode` for dark/light mode
-   - Built-in form validation, modals, overlays, etc.
-   - Check https://ui.nuxt.com/docs/composables for all available utilities
-
-3. **Prioritize Nuxt UI and Tailwind built-in features for ALL customizations**
-   - ✅ **FIRST**: Use `:ui` prop to customize Nuxt UI components (colors, sizes, spacing, variants)
-   - ✅ **SECOND**: Use Tailwind utility classes (spacing, typography, responsive design)
-   - ✅ **THIRD**: Use Tailwind configuration in `tailwind.config.ts` for theme customization
-   - ❌ **ONLY IF NECESSARY**: Write custom CSS/JS for truly unique requirements
-   - **Rule**: NEVER write custom code when Nuxt UI or Tailwind already provides the feature
-   - **Wait for user approval**: Only enhance UX beyond basic implementation when explicitly requested
-
-4. **Avoid custom CSS when Nuxt UI provides the feature**
-   - Use `:ui` prop to customize components instead of custom CSS classes
-   - Use Tailwind utility classes for spacing, colors, typography
-   - Study the `:ui` customization options in component documentation
-   - Only write custom CSS for truly unique design requirements
-
-5. **Leverage existing Nuxt UI patterns**
-   - Check documentation for examples before implementing
-   - Use provided slots (#header, #body, #content, #footer) correctly
-   - Follow established patterns (e.g., `v-model` vs `:open` with `@update:open`)
-   - When multiple components can solve a problem, choose the most appropriate one
-
-**Debugging and Problem-Solving Best Practices:**
-
-1. **When a component doesn't work as expected:**
-   - ❌ DON'T: Try multiple random solutions hoping one will work
-   - ✅ DO: Stop, read the official documentation examples carefully
-   - ✅ DO: Compare your code EXACTLY with working examples from docs
-   - ✅ DO: Check if you're using the correct binding pattern (v-model vs :open/@update:open)
-
-2. **Understanding component patterns before debugging:**
-   - UModal with trigger in default slot: use `v-model`
-   - UModal with #content slot but external trigger: use `:open` + `@update:open`
-   - Always verify the slot structure matches documentation examples
-
-3. **Avoid "console.log debugging" spiral:**
-   - If console shows state changes but UI doesn't update → wrong binding pattern
-   - Re-read documentation for correct usage pattern
-   - Don't add more console.logs, fix the root cause
-
-4. **When stuck after 2-3 failed attempts:**
-   - STOP trying variations
-   - Re-read the documentation from scratch
-   - Look for similar examples in the docs
-   - Check component GitHub issues if behavior is unexpected
-
-**Development Efficiency:**
-
-1. **Copy-paste working examples FIRST:**
-   - Find the exact use case in documentation
-   - Copy the ENTIRE example code
-   - Adapt it to your needs AFTER verifying it works
-   - Don't try to "understand and rewrite" before testing
-
-2. **Avoid premature optimization:**
-   - Get the basic feature working FIRST with documentation examples
-   - Only then customize with :ui props and Tailwind classes
-   - Don't try to make it perfect in the first iteration
-
-**Component-Specific Guidelines:**
-
-- **UModal - CRITICAL: Two Different Binding Patterns**
-
-  **Pattern 1: Trigger inside default slot (recommended)**
-  ```vue
-  <UModal v-model="isOpen">
-    <template #default>
-      <UButton>Open Modal</UButton>
-    </template>
-    <template #content>
-      <!-- Modal content -->
-    </template>
-  </UModal>
-  ```
-
-  **Pattern 2: External trigger (use :open instead of v-model)**
-  ```vue
-  <!-- External button -->
-  <UButton @click="isOpen = true">Open</UButton>
-
-  <!-- Modal elsewhere -->
-  <UModal 
-    :open="isOpen" 
-    @update:open="value => isOpen = value"
-  >
-    <template #content>
-      <!-- Modal content -->
-    </template>
-  </UModal>
-  ```
-
-  **⚠️ WRONG - This will NOT work:**
-  ```vue
-  <UButton @click="isOpen = true">Open</UButton>
-  <UModal v-model="isOpen"> <!-- v-model doesn't work with external trigger -->
-    <template #content>...</template>
-  </UModal>
-  ```
-
-  **Working example in this project:** `app/components/SoftwareCommandPalette.vue`
-  - Shows correct :open/@update:open pattern with external trigger
-  - Demonstrates defineShortcuts usage for keyboard shortcuts
-  - UCommandPalette within UModal #content slot
-
-- **USlideover vs UDrawer** - Both exist in v4.1.0, choose based on use case:
-  - **USlideover**: Dialog overlay panels (forms, details, editing) - Desktop/Modal focused
-  - **UDrawer**: Mobile-optimized panels with gestures and handles - Touch/Mobile focused
-
-- **Common component mistakes to avoid:**
-  - Using `UDivider` (doesn't exist, use `USeparator` instead)
-  - Using wrong prop names - check documentation for each component
-  - Using wrong slot names - USlideover uses `#body`, UDrawer uses `#content`
-
-**Documentation Resources:**
-- Main documentation: https://ui.nuxt.com
-- Composables: https://ui.nuxt.com/docs/composables
-- Components: https://ui.nuxt.com/docs/components
-- When implementing a feature, search the docs for similar examples FIRST
-
-**Working Examples in This Project:**
-- **SoftwareCommandPalette.vue**: UModal with external trigger and keyboard shortcut
-  - Correct :open/@update:open pattern (not v-model)
-  - defineShortcuts composable for ⌘K keyboard shortcut
-  - UCommandPalette within UModal #content slot
-  - Reference this component when implementing similar patterns
+**Nuxt UI — pièges spécifiques :**
+- `UDivider` n'existe pas → utiliser `USeparator`
+- `USlideover` : slot `#body`, prop `side` · `UDrawer` : slot `#content`, prop `direction`
+- `UModal` trigger externe → `:open` + `@update:open` (PAS `v-model`)
+- Exemple de référence : `app/components/SoftwareCommandPalette.vue`
 
 ### Nuxt UI Custom Variants
 
@@ -500,139 +356,11 @@ All components use Nuxt UI components (prefixed with `U`) which are Tailwind CSS
   - Has `handle` prop for drag handle
   - Best for bottom sheets and mobile navigation
 
-### Code Style and Linting
+### Code Style
 
-**IMPORTANT: Always run `npm run lint` after modifying any file.**
+**ESLint** : `@nuxt/eslint` — `npm run lint` après chaque modification, `npm run typecheck` avant chaque commit.
 
-This project follows strict coding standards enforced by ESLint. Configuration is in `eslint.config.mjs` and based on official Nuxt ESLint standards (@nuxt/eslint).
-
-#### Coding Standards
-
-**String Quotes:**
-```typescript
-// ✅ CORRECT - Use double quotes
-const name = "Kahoot!"
-const path = "app/components"
-
-// ❌ WRONG - Don't use single quotes
-const name = 'Kahoot!'
-```
-
-**Trailing Commas:**
-```typescript
-// ✅ CORRECT - No trailing commas
-const array = [1, 2, 3]
-const obj = { a: 1, b: 2 }
-
-// ❌ WRONG - Trailing commas
-const array = [1, 2, 3,]
-const obj = { a: 1, b: 2, }
-```
-
-**Semicolons:**
-```typescript
-// ✅ CORRECT - No semicolons
-const x = 10
-const y = 20
-
-// ❌ WRONG - Semicolons
-const x = 10;
-const y = 20;
-```
-
-**Brace Style (1tbs - One True Brace Style):**
-```typescript
-// ✅ CORRECT
-if (condition) {
-  doSomething()
-} else {
-  doSomethingElse()
-}
-
-// ❌ WRONG
-if (condition)
-{
-  doSomething()
-}
-```
-
-**Indentation (2 spaces):**
-```typescript
-// ✅ CORRECT
-function example() {
-  if (true) {
-    return "ok"
-  }
-}
-
-// ❌ WRONG (4 spaces)
-function example() {
-    if (true) {
-        return "ok"
-    }
-}
-```
-
-**Object Spacing:**
-```typescript
-// ✅ CORRECT
-const obj = { a: 1, b: 2 }
-if (condition) { }
-
-// ❌ WRONG
-const obj = {a:1,b:2}
-if(condition){}
-```
-
-**Vue Component Attribute Order:**
-Attributes must follow this order:
-1. `v-if`, `v-else-if`, `v-else`, `v-show` (conditionals)
-2. `v-for` (list rendering)
-3. `id`, `ref`, `key` (unique identifiers)
-4. `v-model` (two-way binding)
-5. Other attributes
-6. Event handlers (`@click`, etc.)
-
-**TypeScript:**
-```typescript
-// ✅ CORRECT - Prefer interfaces over types
-interface Software {
-  id: string
-  name: string
-}
-
-// ✅ CORRECT - Use const for non-reassigned variables
-const softwareList = []
-
-// ❌ WRONG - Using 'var'
-var softwareList = []
-```
-
-#### Workflow After File Modifications
-
-**MANDATORY STEPS:**
-1. Make your code changes
-2. Run `npm run lint` to check for errors
-3. Fix any linting errors (or run `npm run lint -- --fix` for auto-fix)
-4. Run `npm run typecheck` to verify TypeScript types
-5. Only then commit your changes
-
-**Quick commands:**
-```bash
-# Check linting
-npm run lint
-
-# Auto-fix linting issues
-npm run lint -- --fix
-
-# Check TypeScript types
-npm run typecheck
-
-# Run both checks
-npm run lint && npm run typecheck
-```
-
-See `.eslintrc.md` for complete ESLint rules documentation.
+**Règles spécifiques :** double quotes, pas de trailing commas, pas de semicolons, indentation 2 espaces, 1tbs brace style.
 
 ## Important Notes
 
@@ -640,5 +368,4 @@ See `.eslintrc.md` for complete ESLint rules documentation.
 - **Redeployment required**: Any data changes require regeneration and redeployment.
 - **Base URL handling**: When working on routing or assets, be aware of the dynamic `baseURL` for GitHub Pages.
 - **TypeScript strict mode**: All software objects must match the `Software` interface exactly.
-- **Component library**: Use Nuxt UI v4.1.0 components (see https://ui.nuxt.com) instead of creating custom components when possible.
-- **⚠️ CRITICAL - Component API Verification**: Before implementing or modifying any Nuxt UI component, ALWAYS verify its API in the official documentation at https://ui.nuxt.com. Component APIs may change between versions, and using outdated or incorrect APIs will cause runtime errors.
+- **Component library**: Nuxt UI v4.1.0 — toujours vérifier l'API sur https://ui.nuxt.com avant d'utiliser un composant.
