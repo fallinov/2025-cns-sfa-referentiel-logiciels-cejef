@@ -108,44 +108,7 @@ _qualite-code/
 
 ### Production Code Guidelines
 
-**Framework Usage**:
-- Always use **Nuxt 3** with **Vue 3 Composition API**
-- Always check **Nuxt UI** before creating custom components
-- Always use **Tailwind** before writing custom CSS
-- Business logic in `/composables`, UI in `/components`
-- Follow Nuxt conventions from `nuxt/conventions.md`
-
-**Security Requirements**:
-- Never expose secrets to client
-- Server-side validation for all inputs (`server/api`)
-- Secure cookies (HttpOnly, SameSite Lax/Strict)
-- Strict CSP (see `security/csp.md`)
-- Prevent XSS/CSRF (see `security/owasp-top10.md`)
-- Never use `v-html` without sanitization
-
-**Accessibility Requirements**:
-- Visible focus indicators
-- Logical tab order
-- Associated labels for inputs
-- `aria-live` for dynamic messages
-- AA contrast minimum
-- Touch targets ≥44px
-- No horizontal scroll
-- Mobile-first responsive design
-
-**Maintainability Requirements**:
-- Separate UI/logic/data layers
-- Small, focused components and composables
-- Clear naming (PascalCase for components)
-- No monolithic pages
-- No CSS/JS duplication when Nuxt UI/Tailwind covers it
-
-**Performance Requirements**:
-- Lazy-load heavy components (`defineAsyncComponent`)
-- Code-splitting for large bundles
-- Pagination/infinite scroll for large lists
-- Prefer SSR/SSG when appropriate
-- Monitor Core Web Vitals
+> Les conventions de code (framework, sécurité, accessibilité, performance, langue) sont dans `~/.claude/rules/` (frontend.md, backend.md, code-quality.md). Cette knowledge base les **complète** avec des checklists détaillées dans les fichiers ci-dessus.
 
 ## Language and Documentation
 
