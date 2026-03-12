@@ -364,6 +364,7 @@ All components use Nuxt UI components (prefixed with `U`) which are Tailwind CSS
 
 ## Important Notes
 
+- **Présentations HTML** : Les présentations HTML (GCN, COPIL, SEN) ont été déplacées dans le dépôt centralisé SFA-PRESENTATION : `~/WebstormProjects/SFA-PRESENTATION/referentiel-logiciels/`
 - **No backend**: This is a 100% static site. All data is in TypeScript files.
 - **Redeployment required**: Any data changes require regeneration and redeployment.
 - **Base URL handling**: When working on routing or assets, be aware of the dynamic `baseURL` for GitHub Pages.
