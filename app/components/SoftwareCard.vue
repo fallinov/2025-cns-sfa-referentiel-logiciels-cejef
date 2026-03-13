@@ -108,6 +108,12 @@ const handleCardClick = () => {
         label="Compte @edu.jura.ch"
         class="bg-blue-600 text-white dark:bg-blue-600 dark:text-white border-none"
       />
+      <SoftwareFeatureBadge
+        v-if="software.requiresParentalConsent"
+        icon="i-lucide-shield-alert"
+        label="< 16 ans : accord parents"
+        class="bg-amber-500 text-white dark:bg-amber-500 dark:text-white border-none"
+      />
     </div>
   </NuxtLink>
 </template>

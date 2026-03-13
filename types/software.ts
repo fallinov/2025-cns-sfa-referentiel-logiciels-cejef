@@ -110,6 +110,7 @@ export interface Software {
   // USAGE
   targetAudience?: TargetAudience | null
   ageRestriction?: number | null
+  requiresParentalConsent?: boolean
   usageNotes?: string | null
 
   // ALTERNATIVES VERTES (pour logiciels niveau 2 ou 3)
