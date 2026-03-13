@@ -53,52 +53,18 @@ const isApprovedCejef = computed(() => {
         />
       </div>
 
-      <!-- Student Data Allowed - Only for Level 1 (green) software -->
-      <div v-if="software.certificationLevel === 1 && !isApprovedCejef" class="inline-flex">
-        <SoftwareFeatureBadge
-          icon="i-lucide-user-check"
-          label="Données élèves"
-          size="sm"
-          hide-label
-          class="lg:hidden"
-        />
-        <SoftwareFeatureBadge
-          icon="i-lucide-user-check"
-          label="Données élèves"
-          size="sm"
-          class="hidden lg:inline-flex"
-        />
-      </div>
-
-      <!-- Support CEJEF - Icon only on sm-md, with label on lg+ (seulement si pas déjà Approuvé) -->
-      <div v-if="software.supportedByCEJEF && !isApprovedCejef" class="inline-flex">
-        <SoftwareFeatureBadge
-          icon="i-lucide-headset"
-          label="Support CEJEF"
-          size="sm"
-          hide-label
-          class="lg:hidden"
-        />
-        <SoftwareFeatureBadge
-          icon="i-lucide-headset"
-          label="Support CEJEF"
-          size="sm"
-          class="hidden lg:inline-flex"
-        />
-      </div>
-
       <!-- Training Available - Icon only on sm-md, with label on lg+ (seulement si pas déjà Approuvé) -->
       <div v-if="software.campusTraining && !isApprovedCejef" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-graduation-cap"
-          label="Formation"
+          label="Formation disponible"
           size="sm"
           hide-label
           class="lg:hidden"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-graduation-cap"
-          label="Formation"
+          label="Formation disponible"
           size="sm"
           class="hidden lg:inline-flex"
         />

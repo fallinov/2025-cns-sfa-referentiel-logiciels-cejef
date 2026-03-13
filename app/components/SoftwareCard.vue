@@ -92,19 +92,9 @@ const handleCardClick = () => {
         class="bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
-        v-if="software.certificationLevel === 1 && !isApprovedCejef"
-        icon="i-lucide-user-check"
-        label="Données élèves"
-      />
-      <SoftwareFeatureBadge
-        v-if="software.supportedByCEJEF && !isApprovedCejef"
-        icon="i-lucide-headset"
-        label="Support CEJEF"
-      />
-      <SoftwareFeatureBadge
         v-if="software.campusTraining && !isApprovedCejef"
         icon="i-lucide-graduation-cap"
-        label="Formation"
+        label="Formation disponible"
       />
     </div>
   </NuxtLink>

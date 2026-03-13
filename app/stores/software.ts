@@ -36,7 +36,7 @@ export const useSoftwareStore = defineStore("software", () => {
     },
     {
       id: "student-data-allowed",
-      label: "Données élèves autorisées",
+      label: "Utilisable avec élèves",
       icon: "i-lucide-user-check",
       predicate: (software: Software) => {
         const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
@@ -44,14 +44,8 @@ export const useSoftwareStore = defineStore("software", () => {
       }
     },
     {
-      id: "supported-cejef",
-      label: "Support CEJEF",
-      icon: "i-lucide-headset",
-      predicate: (software: Software) => software.supportedByCEJEF
-    },
-    {
       id: "campus-training",
-      label: "Formation CAMPUS",
+      label: "Formation disponible",
       icon: "i-lucide-graduation-cap",
       predicate: (software: Software) => software.campusTraining
     }

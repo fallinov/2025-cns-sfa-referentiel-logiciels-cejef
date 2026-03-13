@@ -24,9 +24,9 @@ const config = computed(() => {
         // Green - Validated
         color: "green",
         icon: "i-lucide-check",
-        title: "Usage Autorisé avec Élèves",
-        description: "Vous pouvez utiliser ce logiciel librement avec vos élèves.",
-        emphasis: "La création de comptes et l'utilisation de données personnelles sont autorisées.",
+        title: "Utilisable avec vos élèves",
+        description: "Vos élèves peuvent créer un compte et utiliser cet outil avec leurs vraies données (nom, prénom, email scolaire).",
+        emphasis: "",
         containerClass: "bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700/50",
         iconContainerClass: "bg-green-500 dark:bg-green-500 ring-2 ring-green-500 dark:ring-green-500 shadow-md",
         titleClass: "text-gray-900 dark:text-white",
@@ -41,10 +41,10 @@ const config = computed(() => {
         // Orange - Restricted
         color: "orange",
         icon: "i-lucide-alert-triangle",
-        title: "Usage Pédagogique Uniquement",
-        description: "Vous pouvez utiliser cet outil pour votre préparation de cours.",
-        emphasis: "Interdiction formelle de saisir des données d'élèves.",
-        additionalInfo: "L'utilisation par les élèves est possible uniquement sans création de compte (anonymement).",
+        title: "Réservé aux enseignants",
+        description: "Vous pouvez utiliser cet outil pour préparer vos cours.",
+        emphasis: "Pas de données d'élèves : ni noms, ni prénoms, ni emails.",
+        additionalInfo: "Vos élèves peuvent l'utiliser sans créer de compte ou avec un compte anonyme (alias).",
         containerClass: "bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700/50",
         iconContainerClass: "bg-orange-500 dark:bg-orange-500 ring-2 ring-orange-500 dark:ring-orange-500 shadow-md",
         titleClass: "text-gray-900 dark:text-white",
@@ -61,9 +61,9 @@ const config = computed(() => {
         // Red - Banned
         color: "red",
         icon: "i-lucide-x",
-        title: "Usage Interdit",
-        description: "Ce logiciel ne respecte pas les normes de sécurité en vigueur.",
-        emphasis: "Il ne doit être utilisé ni par les enseignants ni par les élèves.",
+        title: "Interdit",
+        description: "Cet outil ne peut pas être utilisé dans le cadre scolaire.",
+        emphasis: "Il ne respecte pas les exigences de protection des données.",
         containerClass: "bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700/50",
         iconContainerClass: "bg-red-500 dark:bg-red-500 ring-2 ring-red-500 dark:ring-red-500 shadow-md",
         titleClass: "text-gray-900 dark:text-white",
@@ -229,7 +229,7 @@ const config = computed(() => {
             </div>
             <div>
               <div class="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                Données
+                Collecte de données
               </div>
               <div class="text-sm font-bold text-gray-900 dark:text-white">
                 {{ lgpdLabels.dataCollection[software.lgpd.dataCollection] }}

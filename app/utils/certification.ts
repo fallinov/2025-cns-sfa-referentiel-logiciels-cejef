@@ -13,7 +13,7 @@ export interface CertificationConfig {
 export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   1: {
     fill: "text-green-500 dark:text-green-500",
-    label: "Validé",
+    label: "Autorisé",
     icon: "i-lucide-check",
     bg: "bg-green-50 dark:bg-green-950",
     solidBg: "bg-green-500 dark:bg-green-500",
