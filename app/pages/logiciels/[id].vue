@@ -220,6 +220,13 @@ const showLgpdDetails = ref(false)
                   <UIcon name="i-lucide-calendar" class="w-4 h-4" />
                   <span>Mis à jour le {{ new Date().toLocaleDateString('fr-CH') }}</span>
                 </div>
+                <div
+                  v-if="software.requiresEduAccount && certificationLevel === 1"
+                  class="flex items-center gap-1.5 bg-blue-600 text-white px-2.5 py-1 rounded-full"
+                >
+                  <UIcon name="i-lucide-key-round" class="w-4 h-4" />
+                  <span>Compte @edu.jura.ch requis</span>
+                </div>
               </div>
             </div>
 

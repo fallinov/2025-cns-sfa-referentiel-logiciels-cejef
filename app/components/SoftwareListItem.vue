@@ -69,6 +69,23 @@ const isApprovedCejef = computed(() => {
           class="hidden lg:inline-flex"
         />
       </div>
+
+      <!-- Compte @edu.jura.ch requis -->
+      <div v-if="software.requiresEduAccount && software.certificationLevel === 1" class="inline-flex">
+        <SoftwareFeatureBadge
+          icon="i-lucide-key-round"
+          label="Compte @edu.jura.ch"
+          size="sm"
+          hide-label
+          class="lg:hidden bg-blue-600 text-white dark:bg-blue-600 dark:text-white border-none"
+        />
+        <SoftwareFeatureBadge
+          icon="i-lucide-key-round"
+          label="Compte @edu.jura.ch"
+          size="sm"
+          class="hidden lg:inline-flex bg-blue-600 text-white dark:bg-blue-600 dark:text-white border-none"
+        />
+      </div>
     </div>
 
     <!-- Chevron indicator -->

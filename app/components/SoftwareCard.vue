@@ -96,6 +96,12 @@ const handleCardClick = () => {
         icon="i-lucide-graduation-cap"
         label="Formation disponible"
       />
+      <SoftwareFeatureBadge
+        v-if="software.requiresEduAccount && software.certificationLevel === 1"
+        icon="i-lucide-key-round"
+        label="Compte @edu.jura.ch"
+        class="bg-blue-600 text-white dark:bg-blue-600 dark:text-white border-none"
+      />
     </div>
   </NuxtLink>
 </template>
