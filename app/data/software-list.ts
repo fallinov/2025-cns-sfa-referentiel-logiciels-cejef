@@ -4517,6 +4517,8 @@ export const softwareList: Software[] = [
     toolUrl: "https://chat.openai.com",
     documentation: null,
     targetAudience: "tous",
+    ageRestriction: 16,
+    requiresParentalConsent: true,
     categories: [
       "Intelligence artificielle (IA)",
       "Productivité",

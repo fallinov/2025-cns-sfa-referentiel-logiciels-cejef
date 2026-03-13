@@ -96,6 +96,12 @@ const handleCardClick = () => {
         icon="i-lucide-graduation-cap"
         label="Formation disponible"
       />
+      <SoftwareFeatureBadge
+        v-if="software.requiresParentalConsent"
+        icon="i-lucide-shield-alert"
+        label="< 16 ans : accord parents"
+        class="bg-amber-500 text-white dark:bg-amber-500 dark:text-white border-none"
+      />
     </div>
   </NuxtLink>
 </template>

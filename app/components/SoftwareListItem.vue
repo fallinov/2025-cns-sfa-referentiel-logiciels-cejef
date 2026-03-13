@@ -69,6 +69,23 @@ const isApprovedCejef = computed(() => {
           class="hidden lg:inline-flex"
         />
       </div>
+
+      <!-- Avertissement mineurs < 16 ans -->
+      <div v-if="software.requiresParentalConsent" class="inline-flex">
+        <SoftwareFeatureBadge
+          icon="i-lucide-shield-alert"
+          label="< 16 ans : accord parents"
+          size="sm"
+          hide-label
+          class="lg:hidden bg-amber-500 text-white dark:bg-amber-500 dark:text-white border-none"
+        />
+        <SoftwareFeatureBadge
+          icon="i-lucide-shield-alert"
+          label="< 16 ans : accord parents"
+          size="sm"
+          class="hidden lg:inline-flex bg-amber-500 text-white dark:bg-amber-500 dark:text-white border-none"
+        />
+      </div>
     </div>
 
     <!-- Chevron indicator -->

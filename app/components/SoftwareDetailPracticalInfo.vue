@@ -84,15 +84,18 @@ defineProps<Props>()
 
       <!-- Age Restriction -->
       <div v-if="software.ageRestriction" class="flex items-start gap-4">
-        <div :class="['w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0', bgColor]">
-          <UIcon :class="['w-6 h-6', iconColor]" name="i-lucide-shield-alert" />
+        <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 bg-amber-100 dark:bg-amber-900/30">
+          <UIcon class="w-6 h-6 text-amber-600 dark:text-amber-400" name="i-lucide-shield-alert" />
         </div>
         <div class="flex-1 min-w-0">
           <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-1">
-            Restriction d'âge
+            Âge minimum
           </div>
-          <div class="text-base font-semibold text-gray-900 dark:text-white">
-            {{ software.ageRestriction }}
+          <div class="text-base font-semibold text-amber-700 dark:text-amber-400">
+            {{ software.ageRestriction }} ans
+            <span v-if="software.requiresParentalConsent" class="text-sm font-normal text-gray-600 dark:text-gray-400">
+              (accord parental requis)
+            </span>
           </div>
         </div>
       </div>

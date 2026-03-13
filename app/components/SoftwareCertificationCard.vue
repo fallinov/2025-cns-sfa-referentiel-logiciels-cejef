@@ -156,6 +156,20 @@ const config = computed(() => {
         </div>
       </div>
 
+      <!-- Avertissement mineurs < 16 ans -->
+      <div
+        v-if="software.requiresParentalConsent"
+        class="mt-3 p-3 rounded-lg text-base bg-amber-50 dark:bg-amber-900/10 text-amber-800 dark:text-amber-200 border border-amber-100 dark:border-amber-800/30"
+      >
+        <div class="flex items-center gap-2">
+          <UIcon name="i-lucide-shield-alert" class="w-5 h-5 shrink-0" />
+          <span class="font-bold">Élèves de moins de 16 ans :</span>
+        </div>
+        <p class="mt-1 ml-7">
+          L'accord des parents ou représentants légaux est obligatoire avant toute utilisation.
+        </p>
+      </div>
+
       <!-- Toggle Details Button -->
       <div class="mt-4">
         <UButton
