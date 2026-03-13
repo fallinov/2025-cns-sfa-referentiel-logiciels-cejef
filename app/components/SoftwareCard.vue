@@ -32,7 +32,10 @@ const handleCardClick = () => {
   <NuxtLink
     :id="`software-${software.id}`"
     :to="`/logiciels/${software.id}`"
-    class="group relative w-full h-full overflow-hidden bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-primary-500 transition-all duration-300 ease-out p-6 flex flex-col items-start gap-4 isolate cursor-pointer scroll-mt-24"
+    :class="[
+      'group relative w-full h-full overflow-hidden bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-primary-500 transition-all duration-300 ease-out p-6 pl-[calc(1.5rem+4px)] flex flex-col items-start gap-4 isolate cursor-pointer scroll-mt-24 border-l-4',
+      software.certificationLevel === 1 ? 'border-l-green-500' : software.certificationLevel === 2 ? 'border-l-orange-500' : software.certificationLevel === 3 ? 'border-l-red-500' : 'border-l-gray-300'
+    ]"
     @click="handleCardClick"
   >
     <!-- Certification Badge (Floating Top Right of Card) -->
@@ -92,19 +95,9 @@ const handleCardClick = () => {
         class="bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
-        v-if="software.certificationLevel === 1 && !isApprovedCejef"
-        icon="i-lucide-user-check"
-        label="Données élèves"
-      />
-      <SoftwareFeatureBadge
-        v-if="software.supportedByCEJEF && !isApprovedCejef"
-        icon="i-lucide-headset"
-        label="Support CEJEF"
-      />
-      <SoftwareFeatureBadge
         v-if="software.campusTraining && !isApprovedCejef"
         icon="i-lucide-graduation-cap"
-        label="Formation"
+        label="Formation disponible"
       />
     </div>
   </NuxtLink>

@@ -85,13 +85,13 @@ const lgpdLabels = {
   },
   rgpd: {
     1: "Conforme",
-    2: "Partiellement conforme",
+    2: "Conformité partielle",
     3: "Non conforme"
   },
   dataCollection: {
-    1: "Limitée",
-    2: "Modérée",
-    3: "Extensive"
+    1: "Minimale",
+    2: "Partagée avec des tiers",
+    3: "Collecte invasive"
   }
 }
 
@@ -223,8 +223,8 @@ const showLgpdDetails = ref(false)
               </div>
             </div>
 
-            <!-- Primary CTA (Desktop) -->
-            <div class="hidden md:flex md:items-center md:gap-3 shrink-0">
+            <!-- Primary CTA (Desktop) - Masqué pour les logiciels interdits -->
+            <div v-if="certificationLevel !== 3" class="hidden md:flex md:items-center md:gap-3 shrink-0">
               <UButton
                 :to="software.toolUrl"
                 target="_blank"
@@ -260,12 +260,12 @@ const showLgpdDetails = ref(false)
           </section>
 
           <!-- 2. PEDAGOGICAL CONTEXT (Teacher Focused) -->
-          <section v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length" aria-label="Usage Pédagogique">
+          <section v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length" aria-label="Pour quels cours ?">
             <div class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700/50 relative overflow-hidden">
               <div class="flex items-center gap-3 mb-6 relative z-10">
                 <UIcon name="i-lucide-graduation-cap" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
-                  Usage Pédagogique
+                  Pour quels cours ?
                 </h2>
               </div>
 
@@ -391,8 +391,8 @@ const showLgpdDetails = ref(false)
       </div>
     </UContainer>
 
-    <!-- Mobile Fixed Bottom CTA (Floating) -->
-    <div class="fixed bottom-0 left-0 right-0 p-6 z-50 md:hidden flex justify-center pointer-events-none">
+    <!-- Mobile Fixed Bottom CTA (Floating) - Masqué pour les logiciels interdits -->
+    <div v-if="certificationLevel !== 3" class="fixed bottom-0 left-0 right-0 p-6 z-50 md:hidden flex justify-center pointer-events-none">
       <UButton
         :to="software.toolUrl"
         target="_blank"
