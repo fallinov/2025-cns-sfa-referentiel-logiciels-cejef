@@ -24,6 +24,9 @@ const sortedSimilarSoftware = computed(() => {
         Logiciels similaires
       </h3>
     </div>
+    <p class="text-sm text-gray-500 dark:text-gray-400 -mt-4 mb-4">
+      Outils de la même catégorie, avec des niveaux de conformité différents.
+    </p>
 
     <div class="space-y-2">
       <NuxtLink
