@@ -33,11 +33,33 @@ const _links = [{
   icon: "i-lucide-user",
   to: "#"
 }]
+
+const showOnboarding = ref(false)
+
+const openOnboarding = () => {
+  showOnboarding.value = true
+}
+
+onMounted(() => {
+  const done = localStorage.getItem("referentiel-onboarding-done")
+  if (!done) {
+    showOnboarding.value = true
+  }
+})
+
+watch(showOnboarding, (newVal, oldVal) => {
+  if (!newVal && oldVal) {
+    localStorage.setItem("referentiel-onboarding-done", "true")
+  }
+})
+
+provide("openOnboarding", openOnboarding)
 </script>
 
 <template>
   <UApp class="min-h-screen bg-gray-100 dark:bg-gray-950">
     <AppHeader />
+    <OnboardingModal v-model="showOnboarding" />
 
     <UMain>
       <NuxtPage v-slot="{ Component }">
