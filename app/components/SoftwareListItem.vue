@@ -53,6 +53,23 @@ const isApprovedCejef = computed(() => {
         />
       </div>
 
+      <!-- Approuvé SEN -->
+      <div v-if="software.approvedBySEN" class="inline-flex">
+        <SoftwareFeatureBadge
+          icon="i-lucide-badge-check"
+          label="Approuvé SEN"
+          size="sm"
+          hide-label
+          class="lg:hidden bg-sky-600 text-white dark:bg-sky-600 dark:text-white border-none"
+        />
+        <SoftwareFeatureBadge
+          icon="i-lucide-badge-check"
+          label="Approuvé SEN"
+          size="sm"
+          class="hidden lg:inline-flex bg-sky-600 text-white dark:bg-sky-600 dark:text-white border-none"
+        />
+      </div>
+
       <!-- Training Available - Icon only on sm-md, with label on lg+ (seulement si pas déjà Approuvé) -->
       <div v-if="software.campusTraining && !isApprovedCejef" class="inline-flex">
         <SoftwareFeatureBadge

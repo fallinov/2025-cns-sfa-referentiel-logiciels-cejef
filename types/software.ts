@@ -98,6 +98,7 @@ export interface Software {
   cejefFavorite?: boolean
   campusTraining: boolean
   requiresEduAccount?: boolean
+  approvedBySEN?: boolean
 
   // COÛT
   cost: CostType
