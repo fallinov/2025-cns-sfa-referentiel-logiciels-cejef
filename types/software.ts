@@ -97,6 +97,7 @@ export interface Software {
   supportedByCEJEF: boolean
   cejefFavorite?: boolean
   campusTraining: boolean
+  approvedBySEN?: boolean
 
   // COÛT
   cost: CostType

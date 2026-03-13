@@ -220,6 +220,13 @@ const showLgpdDetails = ref(false)
                   <UIcon name="i-lucide-calendar" class="w-4 h-4" />
                   <span>Mis à jour le {{ new Date().toLocaleDateString('fr-CH') }}</span>
                 </div>
+                <div
+                  v-if="software.approvedBySEN"
+                  class="flex items-center gap-1.5 bg-sky-600 text-white px-2.5 py-1 rounded-full"
+                >
+                  <UIcon name="i-lucide-badge-check" class="w-4 h-4" />
+                  <span>Approuvé SEN</span>
+                </div>
               </div>
             </div>
 

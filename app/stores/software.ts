@@ -35,6 +35,12 @@ export const useSoftwareStore = defineStore("software", () => {
       predicate: (software: Software) => isApprovedCejef(software)
     },
     {
+      id: "approved-sen",
+      label: "Approuvé SEN",
+      icon: "i-lucide-badge-check",
+      predicate: (software: Software) => !!software.approvedBySEN
+    },
+    {
       id: "student-data-allowed",
       label: "Utilisable avec élèves",
       icon: "i-lucide-user-check",
