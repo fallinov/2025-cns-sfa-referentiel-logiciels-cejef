@@ -125,35 +125,47 @@ When creating new custom variants for Nuxt UI components:
 
 **Static data source**: `app/data/software-list.ts` exports a hardcoded array of software objects. There is no database or CMS.
 
-**Type system**: `app/types/software.ts` defines strict TypeScript interfaces:
-- `Software` - main software object with LGPD classification
-- `LgpdClassification` - 4 criteria: hosting location, personal data usage, RGPD compliance, data collection level
-- Various union types for constrained values (e.g., `HostingLocation`, `Platform`)
+**Type system**: `types/software.ts` defines strict TypeScript interfaces:
+- `Software` - main software object with LGPD classification, badges et métadonnées
+- `LgpdClassification` - 3 critères: hosting, rgpd, dataCollection (chacun 1/2/3)
+- `CertificationLevel` - 1 (vert) | 2 (orange) | 3 (rouge) | null
+- Union types: `DataLocation`, `CostType`, `TargetAudience`
 
-**State management**: `app/composables/useSoftware.ts` provides a shared reactive state using Nuxt's `useState`:
-- Manages selected software and slideover open/close state
-- Provides methods: `getSoftwareList()`, `getSoftwareById(id)`, `openDetail()`, `closeDetail()`
-- No Pinia or Vuex - simple composable pattern
-- **Important**: Do NOT use `readonly()` on state returned from composables when they need to be bound to `v-model` directives
+**Champs de badges** (ajoutés v0.8.0) :
+- `requiresEduAccount?: boolean` — badge bleu "Compte @edu.jura.ch" (M365 level 1)
+- `approvedBySEN?: boolean` — badge sky "Approuvé SEN"
+- `requiresParentalConsent?: boolean` — badge ambre "< 16 ans : accord parents"
+- `ageRestriction?: number` — âge minimum (ex: 16 pour ChatGPT)
+
+**State management**:
+- `app/stores/software.ts` — Pinia store pour filtres, tri, recherche
+- `app/composables/useSoftware.ts` — accès aux données (`getSoftwareList()`, `getSoftwareById()`)
+- `app/composables/useSimilarSoftware.ts` — logiciels similaires par catégorie
+- `app/composables/useSoftwareNavigation.ts` — navigation précédent/suivant
 
 ### Component Structure
 
 ```
-app.vue (root layout with UHeader/UMain/UFooter)
-└── pages/index.vue (homepage)
-    ├── UPageHero (title banner)
-    ├── UPageSection
-    │   └── SoftwareCard.vue (one per software)
-    │       └── LgpdIcons.vue (LGPD indicators)
-    ├── SoftwareDetail.vue (slideover for details)
-    │   └── LgpdIcons.vue
-    └── UPageCTA (LGPD info section)
+app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
+├── pages/index.vue (catalogue)
+│   ├── software/SoftwarePageHeader.vue (titre, recherche, filtres)
+│   └── software/SoftwareListContainer.vue (grille/liste)
+│       ├── SoftwareCard.vue (vue grille)
+│       └── SoftwareListItem.vue (vue liste)
+│           └── SoftwareLogoWithBadge.vue (logo + pastille certification)
+│               └── SoftwareFeatureBadge.vue (badges: Approuvé CEJEF/SEN, edu, mineurs)
+└── pages/logiciels/[id].vue (page détail)
+    ├── SoftwareCertificationCard.vue (statut LGPD + alternatives)
+    ├── SoftwareDetailSimilar.vue (logiciels similaires)
+    └── SoftwareDetailPracticalInfo.vue (coût, support, âge)
 ```
 
-**Key components**:
-- `SoftwareCard.vue` - displays software in a grid with LGPD icons
-- `SoftwareDetail.vue` - slideover (side panel) with full software details using USlideover
-- `LgpdIcons.vue` - reusable LGPD classification indicators (receives `lgpd` prop and `showLabels` prop for compact/detailed display)
+**Composants clés** :
+- `SoftwareCard.vue` / `SoftwareListItem.vue` — cartes catalogue (grille/liste)
+- `SoftwareFeatureBadge.vue` — badge réutilisable (icon + label, tailles sm/md)
+- `SoftwareCertificationCard.vue` — statut LGPD détaillé avec alternatives vertes
+- `OnboardingModal.vue` — popup tricolore LGPD au 1er accès (localStorage)
+- `AppHeader.vue` — header avec bouton "?" pour rouvrir l'onboarding
 
 ### Deployment Strategy
 
@@ -177,10 +189,10 @@ app.vue (root layout with UHeader/UMain/UFooter)
 
 1. Edit `app/data/software-list.ts`
 2. Add new object matching `Software` interface with all required fields:
-   - Ensure `id` is unique
+   - Ensure `id` is unique (slug format)
    - Include complete `lgpd` classification object
-   - Set `supportedBy: 'CEJEF' | null`
-   - Provide all required metadata (platforms, cost, category, etc.)
+   - Set `supportedByCEJEF`, `campusTraining`, et optionnellement `approvedBySEN`, `requiresEduAccount`, `requiresParentalConsent`
+   - Provide all required metadata (cost, categories, disciplines, etc.)
 3. Commit with semantic message: `git commit -m "feat: add [software name]"`
 4. Push to deploy to staging automatically
 5. Test on staging, then tag for production: `git tag v1.x.0 && git push origin v1.x.0`
@@ -224,22 +236,38 @@ app.vue (root layout with UHeader/UMain/UFooter)
 interface Software {
   // Classification LGPD
   lgpd: {
-    hosting: 1 | 2 | 3      // Localisation hébergement
-    rgpd: 1 | 2 | 3         // Conformité RGPD
-    dataCollection: 1 | 2 | 3  // Niveau de collecte
+    hosting: 1 | 2 | 3
+    rgpd: 1 | 2 | 3
+    dataCollection: 1 | 2 | 3
   }
   certificationLevel: 1 | 2 | 3 | null  // Niveau global (max des 3)
-  dataLocation: DataLocation  // Localisation précise des données
+  dataLocation: DataLocation
+
+  // Support CEJEF
+  supportedByCEJEF: boolean
+  campusTraining: boolean
+  requiresEduAccount?: boolean      // Badge bleu "Compte @edu.jura.ch" (v0.8.0)
+  approvedBySEN?: boolean           // Badge sky "Approuvé SEN" (v0.8.0)
+
+  // Usage
+  ageRestriction?: number           // Âge minimum (ex: 16)
+  requiresParentalConsent?: boolean  // Badge ambre mineurs (v0.8.0)
 
   // Validation LGPD
-  toValidate?: boolean        // Nécessite révision humaine
-  remarque?: string           // Justification de la classification
+  toValidate?: boolean
+  remarque?: string
 }
 ```
 
-**Note** : Le champ `personalData` a été supprimé (v0.6.1). L'autorisation d'utiliser des données élèves est désormais déterminée uniquement par le `certificationLevel` :
+**Badges visuels (v0.8.0)** :
+- "Approuvé CEJEF" (emerald) : `supportedByCEJEF && campusTraining && certificationLevel === 1`
+- "Approuvé SEN" (sky) : `approvedBySEN`
+- "Compte @edu.jura.ch" (blue) : `requiresEduAccount && certificationLevel === 1`
+- "< 16 ans : accord parents" (amber) : `requiresParentalConsent`
+
+**Règle** : Le `certificationLevel` détermine l'autorisation d'utiliser des données élèves :
 - Niveau 1 → Données élèves autorisées
-- Niveau 2/3 → Données élèves non autorisées via le filtre
+- Niveau 2/3 → Données élèves non autorisées
 
 #### Localisations de données (`DataLocation`)
 
@@ -328,33 +356,13 @@ Pour modifier une classification, mettre à jour dans `app/data/software-list.ts
 
 ### Modifying UI Components
 
-- **Card appearance**: Edit `app/components/SoftwareCard.vue`
-- **Slideover/detail view**: Edit `app/components/SoftwareDetail.vue` (uses `USlideover` with `v-model:open`, `side="right"`)
-- **LGPD icons**: Edit `app/components/LgpdIcons.vue`
-- **Homepage layout**: Edit `app/pages/index.vue`
-- **Global layout**: Edit `app/app.vue`
-
-All components use Nuxt UI components (prefixed with `U`) which are Tailwind CSS-based.
-
-**Important Nuxt UI v4.1.0 component notes**:
-- **ALWAYS** check https://ui.nuxt.com before using any component
-- Use `USeparator` for dividers (not `UDivider` which doesn't exist in v4.1.0)
-- **USlideover vs UDrawer** - Both exist in v4.1.0, choose wisely:
-  - **USlideover**: For dialog overlays, forms, details - Built on Reka UI Dialog
-  - **UDrawer**: For mobile menus, touch gestures, swipe panels
-- `USlideover` API (used in this project):
-  - Uses `v-model:open` binding (not just `v-model`)
-  - Uses `side` prop with values: `'left' | 'right' | 'top' | 'bottom'`
-  - Uses `#body` slot for the main content (also has `#header` and `#footer`)
-  - Supports `title` and `description` props for automatic header
-  - Width controlled via `:ui="{ content: 'w-full sm:max-w-lg' }"`
-  - Automatically handles overlay, ESC key, and close button
-- `UDrawer` API (alternative for mobile-first):
-  - Uses `v-model:open` binding
-  - Uses `direction` prop (not `side`)
-  - Uses `#content` slot (not `#body`)
-  - Has `handle` prop for drag handle
-  - Best for bottom sheets and mobile navigation
+- **Carte catalogue** : `SoftwareCard.vue` (grille) / `SoftwareListItem.vue` (liste)
+- **Page détail** : `app/pages/logiciels/[id].vue`
+- **Statut LGPD** : `SoftwareCertificationCard.vue`
+- **Badges** : `SoftwareFeatureBadge.vue` (composant réutilisable)
+- **Filtres/recherche** : `app/stores/software.ts` + `software/SoftwareFiltersBar.vue`
+- **Onboarding** : `OnboardingModal.vue` (popup) + `AppHeader.vue` (bouton "?")
+- **Global layout** : `app/app.vue`
 
 ### Code Style
 
