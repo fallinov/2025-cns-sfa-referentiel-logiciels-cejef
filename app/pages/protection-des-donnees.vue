@@ -174,7 +174,7 @@ function focusSidebarButton(index: number) {
                 <!-- Toggle SEN / CEJEF -->
                 <div class="flex gap-1 mb-3 p-1 bg-gray-100 dark:bg-gray-700/50 rounded-[var(--ui-radius)]" role="group" aria-label="Profil">
                   <button
-                    class="flex-1 px-3 py-2 text-sm font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    class="flex-1 px-3 py-2.5 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                     :class="audienceFilter === 'sen'
                       ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
                       : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
@@ -184,7 +184,7 @@ function focusSidebarButton(index: number) {
                     SEN
                   </button>
                   <button
-                    class="flex-1 px-3 py-2 text-sm font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    class="flex-1 px-3 py-2.5 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                     :class="audienceFilter === 'cejef'
                       ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
                       : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"

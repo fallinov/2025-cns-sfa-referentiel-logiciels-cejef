@@ -56,7 +56,7 @@ function copyLink(subThemeId: string) {
           <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
           <h3 class="flex-1 text-lg lg:text-xl font-semibold text-gray-900 dark:text-white" v-html="hl(sub.title)"></h3>
           <button
-            class="flex-shrink-0 p-1.5 rounded-[var(--ui-radius)] text-gray-300 hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            class="flex-shrink-0 p-2.5 -m-1 rounded-[var(--ui-radius)] text-gray-300 hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             :title="`Copier le lien vers ${sub.title}`"
             :aria-label="`Copier le lien vers ${sub.title}`"
             @click="copyLink(sub.id)"
