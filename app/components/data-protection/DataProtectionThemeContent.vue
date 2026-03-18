@@ -41,7 +41,7 @@ function hl(text: string) {
         </div>
 
         <p
-          class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed"
+          class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-prose"
           v-html="hl(sub.description)"
         ></p>
 
