@@ -38,15 +38,11 @@ const handleClear = () => {
 }
 
 const phrases = [
-  "Microsoft 365...",
-  "Sécurité réseau...",
-  "Téléphone portable...",
-  "Droit à l'image...",
   "Intelligence artificielle...",
-  "edu.jura.ch...",
-  "WebUntis...",
-  "Edulog...",
-  "Diagnophish..."
+  "Microsoft 365...",
+  "Droit à l'image...",
+  "Téléphone portable...",
+  "Données des élèves..."
 ]
 
 const { placeholderText } = useTypewriter(phrases)
