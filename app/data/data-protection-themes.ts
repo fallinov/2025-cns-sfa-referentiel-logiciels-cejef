@@ -272,8 +272,8 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
         id: "avenir-formation",
         title: "Avenir Formation",
         icon: "i-lucide-rocket",
-        description: "Programme de formation continue proposé par le SEN pour les enseignants du secondaire obligatoire.",
-        audience: "sen",
+        description: "Programme de formation continue proposé par le CEJEF pour les enseignants de la formation postobligatoire.",
+        audience: "cejef",
         resources: [
           {
             title: "Formations continues CEJEF",
