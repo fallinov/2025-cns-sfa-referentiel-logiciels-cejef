@@ -18,6 +18,26 @@ const {
 } = useDataProtection()
 
 provide("dpSearchQuery", searchQuery)
+
+const activeThemeId = ref<string | null>(null)
+
+const activeTheme = computed(() => {
+  if (!activeThemeId.value) return filteredThemes.value[0] || null
+  return filteredThemes.value.find(t => t.id === activeThemeId.value) || filteredThemes.value[0] || null
+})
+
+watch(filteredThemes, (themes) => {
+  if (themes.length > 0 && !themes.find(t => t.id === activeThemeId.value)) {
+    activeThemeId.value = themes[0]?.id ?? null
+  }
+})
+
+const isMobileSidebarOpen = ref(false)
+
+function selectTheme(id: string) {
+  activeThemeId.value = id
+  isMobileSidebarOpen.value = false
+}
 </script>
 
 <template>
@@ -71,15 +91,55 @@ provide("dpSearchQuery", searchQuery)
           @update:audience-filter="setAudience"
         />
 
-        <div
-          v-if="hasResults"
-          class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 items-start px-4 sm:px-0"
-        >
-          <DataProtectionThemeCard
-            v-for="theme in filteredThemes"
-            :key="theme.id"
-            :theme="theme"
-          />
+        <div v-if="hasResults" class="px-4 sm:px-0">
+          <!-- Bouton mobile sidebar -->
+          <button
+            class="flex items-center gap-2 mb-4 px-4 py-2 bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 lg:hidden"
+            @click="isMobileSidebarOpen = !isMobileSidebarOpen"
+          >
+            <UIcon name="i-lucide-menu" class="w-4 h-4" />
+            {{ activeTheme?.title || "Thèmes" }}
+            <UIcon
+              name="i-lucide-chevron-down"
+              class="w-4 h-4 ml-auto transition-transform"
+              :class="{ 'rotate-180': isMobileSidebarOpen }"
+            />
+          </button>
+
+          <div class="flex gap-6">
+            <!-- Sidebar -->
+            <nav
+              class="w-64 flex-shrink-0"
+              :class="isMobileSidebarOpen ? 'block absolute z-40 left-4 right-4 sm:left-6 sm:right-6 lg:static lg:block' : 'hidden lg:block'"
+            >
+              <div class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm p-3 lg:sticky lg:top-20">
+                <ul class="space-y-0.5">
+                  <li v-for="theme in filteredThemes" :key="theme.id">
+                    <button
+                      class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-sm transition-colors"
+                      :class="activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)
+                        ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 font-semibold'
+                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50'"
+                      @click="selectTheme(theme.id)"
+                    >
+                      <UIcon :name="theme.icon" class="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                      <span class="flex-1">{{ theme.title }}</span>
+                      <span class="text-xs text-gray-400 dark:text-gray-500">{{ theme.subThemes.length }}</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+
+            <!-- Contenu -->
+            <main class="flex-1 min-w-0">
+              <DataProtectionThemeContent
+                v-if="activeTheme"
+                :key="activeTheme.id"
+                :theme="activeTheme"
+              />
+            </main>
+          </div>
         </div>
 
         <!-- État vide -->
