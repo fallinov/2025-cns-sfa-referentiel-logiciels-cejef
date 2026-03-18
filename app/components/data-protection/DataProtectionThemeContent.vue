@@ -19,6 +19,11 @@ const searchQuery = inject<Ref<string>>("dpSearchQuery", ref(""))
 function hl(text: string) {
   return highlightText(text, searchQuery.value)
 }
+
+function copyLink(subThemeId: string) {
+  const url = `${window.location.origin}${window.location.pathname}#${subThemeId}`
+  navigator.clipboard.writeText(url)
+}
 </script>
 
 <template>
@@ -43,10 +48,18 @@ function hl(text: string) {
         :key="sub.id"
         class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] border border-gray-100 dark:border-gray-700/50 p-5 lg:p-6"
       >
-        <div class="flex items-center gap-3 mb-3">
+        <div :id="sub.id" class="flex items-center gap-3 mb-3 scroll-mt-20">
           <UIcon :name="sub.icon" class="w-5 h-5 text-primary-500 flex-shrink-0" aria-hidden="true" />
           <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
-          <h3 class="text-lg lg:text-xl font-semibold text-gray-900 dark:text-white" v-html="hl(sub.title)"></h3>
+          <h3 class="flex-1 text-lg lg:text-xl font-semibold text-gray-900 dark:text-white" v-html="hl(sub.title)"></h3>
+          <button
+            class="flex-shrink-0 p-1.5 rounded-[var(--ui-radius)] text-gray-300 hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            :title="`Copier le lien vers ${sub.title}`"
+            :aria-label="`Copier le lien vers ${sub.title}`"
+            @click="copyLink(sub.id)"
+          >
+            <UIcon name="i-lucide-link" class="w-4 h-4" aria-hidden="true" />
+          </button>
         </div>
 
         <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->

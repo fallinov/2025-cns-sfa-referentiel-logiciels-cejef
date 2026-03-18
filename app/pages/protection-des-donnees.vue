@@ -139,7 +139,7 @@ function focusSidebarButton(index: number) {
         <div v-if="hasResults" class="px-4 sm:px-0">
           <!-- Bouton mobile sidebar -->
           <button
-            class="flex items-center gap-2 mb-4 px-4 h-11 bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            class="flex items-center gap-2 mb-4 px-4 h-11 bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm text-base font-medium text-gray-700 dark:text-gray-200 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             :aria-expanded="isMobileSidebarOpen"
             aria-controls="dp-sidebar"
             @click="isMobileSidebarOpen = !isMobileSidebarOpen"
@@ -174,7 +174,7 @@ function focusSidebarButton(index: number) {
                 <!-- Toggle SEN / CEJEF -->
                 <div class="flex gap-1 mb-3 p-1 bg-gray-100 dark:bg-gray-700/50 rounded-[var(--ui-radius)]" role="group" aria-label="Profil">
                   <button
-                    class="flex-1 px-3 py-1.5 text-xs font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    class="flex-1 px-3 py-2 text-sm font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                     :class="audienceFilter === 'sen'
                       ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
                       : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
@@ -184,7 +184,7 @@ function focusSidebarButton(index: number) {
                     SEN
                   </button>
                   <button
-                    class="flex-1 px-3 py-1.5 text-xs font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    class="flex-1 px-3 py-2 text-sm font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                     :class="audienceFilter === 'cejef'
                       ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
                       : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
@@ -200,7 +200,7 @@ function focusSidebarButton(index: number) {
                 <ul class="space-y-0.5" @keydown="handleSidebarKeydown">
                   <li v-for="theme in filteredThemes" :key="theme.id">
                     <button
-                      class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                      class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-base transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                       :class="activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)
                         ? 'bg-white dark:bg-gray-700 text-primary-700 dark:text-primary-300 font-semibold shadow-sm'
                         : 'text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100 hover:shadow-sm'"
