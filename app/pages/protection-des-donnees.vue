@@ -20,7 +20,6 @@ const {
 } = useDataProtection()
 
 provide("dpSearchQuery", searchQuery)
-provide("dpAudienceFilter", audienceFilter)
 
 const activeThemeId = ref<string | null>(null)
 
@@ -29,6 +28,7 @@ const activeTheme = computed(() => {
   return filteredThemes.value.find(t => t.id === activeThemeId.value) || filteredThemes.value[0] || null
 })
 
+// Point 1 : recherche cross-thèmes — auto-switch au premier thème avec résultats
 watch(filteredThemes, (themes) => {
   if (themes.length > 0 && !themes.find(t => t.id === activeThemeId.value)) {
     activeThemeId.value = themes[0]?.id ?? null
@@ -41,11 +41,51 @@ function selectTheme(id: string) {
   activeThemeId.value = id
   isMobileSidebarOpen.value = false
 }
+
+// Point 3 : support des ancres URL (#theme-id)
+const route = useRoute()
+
+onMounted(() => {
+  const hash = route.hash?.replace("#", "")
+  if (hash) {
+    const matchingTheme = filteredThemes.value.find(t => t.id === hash)
+    if (matchingTheme) {
+      activeThemeId.value = matchingTheme.id
+    }
+  }
+})
+
+// Point 4 : navigation clavier dans la sidebar (flèches haut/bas)
+function handleSidebarKeydown(event: KeyboardEvent) {
+  const ids = filteredThemes.value.map(t => t.id)
+  const currentId = activeThemeId.value || ids[0]
+  const currentIndex = ids.indexOf(currentId ?? "")
+
+  const nextId = ids[currentIndex + 1]
+  const prevId = ids[currentIndex - 1]
+
+  if (event.key === "ArrowDown" && nextId) {
+    event.preventDefault()
+    selectTheme(nextId)
+    focusSidebarButton(currentIndex + 1)
+  } else if (event.key === "ArrowUp" && prevId) {
+    event.preventDefault()
+    selectTheme(prevId)
+    focusSidebarButton(currentIndex - 1)
+  }
+}
+
+function focusSidebarButton(index: number) {
+  nextTick(() => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>("#dp-sidebar ul button")
+    buttons[index]?.focus()
+  })
+}
 </script>
 
 <template>
   <div class="min-h-screen bg-gray-100 dark:bg-gray-950">
-    <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8 max-w-[1240px]">
+    <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8 max-w-5xl">
       <!-- Écran de choix initial -->
       <ClientOnly>
         <div
@@ -66,19 +106,19 @@ function selectTheme(id: string) {
 
           <div class="flex flex-col sm:flex-row gap-4">
             <button
-              class="group flex flex-col items-center gap-3 px-8 py-6 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-[var(--ui-radius)] shadow-sm hover:shadow-lg hover:border-primary-500 dark:hover:border-primary-400 transition-all"
+              class="group flex flex-col items-center gap-3 px-8 py-6 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-[var(--ui-radius)] shadow-sm hover:shadow-lg hover:border-primary-500 dark:hover:border-primary-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               @click="setAudience('sen')"
             >
-              <UIcon name="i-lucide-building-2" class="w-8 h-8 text-gray-400 group-hover:text-primary-500 transition-colors" />
+              <UIcon name="i-lucide-building-2" class="w-8 h-8 text-gray-400 group-hover:text-primary-500 transition-colors" aria-hidden="true" />
               <span class="text-lg font-semibold text-gray-900 dark:text-white">SEN</span>
               <span class="text-sm text-gray-500 dark:text-gray-400">Service de l'enseignement</span>
             </button>
 
             <button
-              class="group flex flex-col items-center gap-3 px-8 py-6 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-[var(--ui-radius)] shadow-sm hover:shadow-lg hover:border-primary-500 dark:hover:border-primary-400 transition-all"
+              class="group flex flex-col items-center gap-3 px-8 py-6 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-[var(--ui-radius)] shadow-sm hover:shadow-lg hover:border-primary-500 dark:hover:border-primary-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               @click="setAudience('cejef')"
             >
-              <UIcon name="i-lucide-school" class="w-8 h-8 text-gray-400 group-hover:text-primary-500 transition-colors" />
+              <UIcon name="i-lucide-school" class="w-8 h-8 text-gray-400 group-hover:text-primary-500 transition-colors" aria-hidden="true" />
               <span class="text-lg font-semibold text-gray-900 dark:text-white">CEJEF</span>
               <span class="text-sm text-gray-500 dark:text-gray-400">Formation postobligatoire</span>
             </button>
@@ -129,7 +169,8 @@ function selectTheme(id: string) {
               aria-label="Navigation des thèmes"
             >
               <div class="bg-gray-50 dark:bg-gray-800/50 rounded-[var(--ui-radius)] shadow-sm p-3 lg:sticky lg:top-20">
-                <ul class="space-y-0.5">
+                <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
+                <ul class="space-y-0.5" @keydown="handleSidebarKeydown">
                   <li v-for="theme in filteredThemes" :key="theme.id">
                     <button
                       class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"

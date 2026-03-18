@@ -23,8 +23,10 @@ function hl(text: string) {
         <UIcon :name="theme.icon" class="w-5 h-5 text-primary-500" aria-hidden="true" />
       </div>
       <div>
+        <!-- eslint-disable vue/no-v-html -- données statiques, highlight uniquement -->
         <h2 class="text-xl font-bold text-gray-900 dark:text-white" v-html="hl(theme.title)"></h2>
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1" v-html="hl(theme.description)"></p>
+        <!-- eslint-enable vue/no-v-html -->
       </div>
     </div>
 
@@ -37,11 +39,13 @@ function hl(text: string) {
       >
         <div class="flex items-center gap-2.5 mb-2">
           <UIcon :name="sub.icon" class="w-4 h-4 text-primary-500 flex-shrink-0" aria-hidden="true" />
+          <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
           <h3 class="text-base font-semibold text-gray-900 dark:text-white" v-html="hl(sub.title)"></h3>
         </div>
 
+        <!-- eslint-disable-next-line vue/no-v-html -- données statiques, pas de risque XSS -->
         <p
-          class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-prose"
+          class="text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-prose"
           v-html="hl(sub.description)"
         ></p>
 
