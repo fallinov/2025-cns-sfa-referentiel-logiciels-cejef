@@ -15,7 +15,8 @@ const {
   setAudience,
   resetAudience,
   filteredThemes,
-  hasResults
+  hasResults,
+  totalSubThemes
 } = useDataProtection()
 
 provide("dpSearchQuery", searchQuery)
@@ -96,7 +97,7 @@ function selectTheme(id: string) {
         <div v-if="hasResults" class="px-4 sm:px-0">
           <!-- Bouton mobile sidebar -->
           <button
-            class="flex items-center gap-2 mb-4 px-4 py-2 bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 lg:hidden"
+            class="flex items-center gap-2 mb-4 px-4 h-11 bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             :aria-expanded="isMobileSidebarOpen"
             aria-controls="dp-sidebar"
             @click="isMobileSidebarOpen = !isMobileSidebarOpen"
@@ -131,7 +132,7 @@ function selectTheme(id: string) {
                 <ul class="space-y-0.5">
                   <li v-for="theme in filteredThemes" :key="theme.id">
                     <button
-                      class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-sm transition-colors"
+                      class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                       :class="activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)
                         ? 'bg-white dark:bg-gray-700 text-primary-700 dark:text-primary-300 font-semibold shadow-sm'
                         : 'text-gray-600 dark:text-gray-400 hover:bg-white/60 dark:hover:bg-gray-700/50'"
@@ -148,7 +149,7 @@ function selectTheme(id: string) {
                 <!-- Changer de profil -->
                 <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
                   <button
-                    class="w-full flex items-center gap-2 px-3 py-2 rounded-[var(--ui-radius)] text-xs text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-white/60 dark:hover:bg-gray-700/50 transition-colors"
+                    class="w-full flex items-center gap-2 px-3 py-2 rounded-[var(--ui-radius)] text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-white/60 dark:hover:bg-gray-700/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                     @click="resetAudience()"
                   >
                     <UIcon name="i-lucide-repeat" class="w-3.5 h-3.5" aria-hidden="true" />
@@ -159,7 +160,15 @@ function selectTheme(id: string) {
             </nav>
 
             <!-- Contenu -->
-            <main class="flex-1 min-w-0">
+            <main class="flex-1 min-w-0" aria-live="polite">
+              <!-- Compteur de résultats (visible uniquement avec recherche active) -->
+              <p
+                v-if="searchQuery.trim()"
+                class="text-xs text-gray-500 dark:text-gray-400 mb-3"
+              >
+                {{ totalSubThemes }} {{ totalSubThemes > 1 ? "résultats" : "résultat" }} dans {{ filteredThemes.length }} {{ filteredThemes.length > 1 ? "thèmes" : "thème" }}
+              </p>
+
               <Transition
                 enter-active-class="transition-opacity duration-200 ease-out"
                 enter-from-class="opacity-0"

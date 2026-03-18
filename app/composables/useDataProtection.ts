@@ -64,6 +64,10 @@ export function useDataProtection() {
 
   const hasResults = computed(() => filteredThemes.value.length > 0)
 
+  const totalSubThemes = computed(() =>
+    filteredThemes.value.reduce((sum, t) => sum + t.subThemes.length, 0)
+  )
+
   return {
     searchQuery,
     audienceFilter,
@@ -71,6 +75,7 @@ export function useDataProtection() {
     setAudience,
     resetAudience,
     filteredThemes,
-    hasResults
+    hasResults,
+    totalSubThemes
   }
 }
