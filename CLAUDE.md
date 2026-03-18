@@ -137,27 +137,38 @@ When creating new custom variants for Nuxt UI components:
 - `requiresParentalConsent?: boolean` — badge ambre "< 16 ans : accord parents"
 - `ageRestriction?: number` — âge minimum (ex: 16 pour ChatGPT)
 
+**Protection des données** (ajouté v0.9.0) :
+- `app/data/data-protection-themes.ts` — 7 thèmes, ~45 sous-thèmes (dupliqués SEN/CEJEF)
+- `types/data-protection.ts` — interfaces `DataProtectionTheme`, `DataProtectionSubTheme`, `ThemeResource`
+- Chaque thème a un `shortTitle` pour la sidebar et un `title` complet pour le contenu
+- Contenus différenciés SEN/CEJEF : sous-thèmes avec `audience: "sen" | "cejef" | "both"`
+
 **State management**:
-- `app/stores/software.ts` — Pinia store pour filtres, tri, recherche
+- `app/stores/software.ts` — Pinia store pour filtres, tri, recherche (catalogue)
 - `app/composables/useSoftware.ts` — accès aux données (`getSoftwareList()`, `getSoftwareById()`)
 - `app/composables/useSimilarSoftware.ts` — logiciels similaires par catégorie
 - `app/composables/useSoftwareNavigation.ts` — navigation précédent/suivant
+- `app/composables/useDataProtection.ts` — filtrage audience SEN/CEJEF, recherche, persistance localStorage
 
 ### Component Structure
 
 ```
 app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
-├── pages/index.vue (catalogue)
+├── pages/index.vue (catalogue logiciels)
 │   ├── software/SoftwarePageHeader.vue (titre, recherche, filtres)
 │   └── software/SoftwareListContainer.vue (grille/liste)
 │       ├── SoftwareCard.vue (vue grille)
 │       └── SoftwareListItem.vue (vue liste)
 │           └── SoftwareLogoWithBadge.vue (logo + pastille certification)
 │               └── SoftwareFeatureBadge.vue (badges: Approuvé CEJEF/SEN, edu, mineurs)
-└── pages/logiciels/[id].vue (page détail)
-    ├── SoftwareCertificationCard.vue (statut LGPD + alternatives)
-    ├── SoftwareDetailSimilar.vue (logiciels similaires)
-    └── SoftwareDetailPracticalInfo.vue (coût, support, âge)
+├── pages/logiciels/[id].vue (page détail logiciel)
+│   ├── SoftwareCertificationCard.vue (statut LGPD + alternatives)
+│   ├── SoftwareDetailSimilar.vue (logiciels similaires)
+│   └── SoftwareDetailPracticalInfo.vue (coût, support, âge)
+└── pages/protection-des-donnees.vue (protection des données)
+    ├── data-protection/DataProtectionPageHeader.vue (titre, recherche typewriter)
+    ├── data-protection/DataProtectionThemeContent.vue (contenu thème + nav prev/next)
+    └── data-protection/DataProtectionLinkList.vue (liens avec source et icône par type)
 ```
 
 **Composants clés** :
@@ -165,7 +176,9 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 - `SoftwareFeatureBadge.vue` — badge réutilisable (icon + label, tailles sm/md)
 - `SoftwareCertificationCard.vue` — statut LGPD détaillé avec alternatives vertes
 - `OnboardingModal.vue` — popup tricolore LGPD au 1er accès (localStorage)
-- `AppHeader.vue` — header avec bouton "?" pour rouvrir l'onboarding
+- `AppHeader.vue` — header avec liens "Référentiel logiciels" et "Protection des données"
+- `DataProtectionThemeContent.vue` — affichage d'un thème avec sous-thèmes et navigation prev/next
+- `DataProtectionPageHeader.vue` — recherche avec animation typewriter
 
 ### Deployment Strategy
 
@@ -362,6 +375,8 @@ Pour modifier une classification, mettre à jour dans `app/data/software-list.ts
 - **Badges** : `SoftwareFeatureBadge.vue` (composant réutilisable)
 - **Filtres/recherche** : `app/stores/software.ts` + `software/SoftwareFiltersBar.vue`
 - **Onboarding** : `OnboardingModal.vue` (popup) + `AppHeader.vue` (bouton "?")
+- **Protection des données** : `app/pages/protection-des-donnees.vue` (page) + composants `data-protection/`
+- **Données protection** : `app/data/data-protection-themes.ts` (contenu statique)
 - **Global layout** : `app/app.vue`
 
 ### Code Style
