@@ -63,7 +63,7 @@ provide("openOnboarding", openOnboarding)
 
     <UMain>
       <NuxtPage v-slot="{ Component }">
-        <KeepAlive include="IndexPage" :max="10">
+        <KeepAlive include="IndexPage,DataProtectionPage" :max="10">
           <Component :is="Component" />
         </KeepAlive>
       </NuxtPage>
