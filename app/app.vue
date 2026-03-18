@@ -74,8 +74,7 @@ provide("openOnboarding", openOnboarding)
     <UFooter>
       <template #left>
         <p class="text-sm text-gray-600 dark:text-gray-400">
-          CEJEF - Centre Jurassien d'Enseignement et de Formation •
-          {{ new Date().getFullYear() }}
+          EduJura • SEN • CEJEF • {{ new Date().getFullYear() }}
           <span class="text-xs text-gray-400 dark:text-gray-500 ml-2">
             v{{ config.public.appVersion }}
           </span>
