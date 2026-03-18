@@ -75,19 +75,13 @@ provide("openOnboarding", openOnboarding)
       <template #left>
         <p class="text-sm text-gray-600 dark:text-gray-400">
           Service de la formation postobligatoire (SFP) • {{ new Date().getFullYear() }}
-          <span class="text-xs text-gray-400 dark:text-gray-500 ml-2">
-            v{{ config.public.appVersion }}
-          </span>
         </p>
       </template>
 
       <template #right>
-        <div
-          class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
-        >
-          <UIcon name="i-lucide-shield-check" class="w-4 h-4" />
-          <span class="hidden sm:inline">Classification LGPD</span>
-        </div>
+        <span class="text-xs text-gray-400 dark:text-gray-500">
+          v{{ config.public.appVersion }}
+        </span>
       </template>
     </UFooter>
   </UApp>
