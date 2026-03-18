@@ -36,7 +36,26 @@ export function matchesSearch(text: string, searchTerms: string[]): boolean {
 export function highlightText(text: string, query: string): string {
   if (!query.trim()) return text
 
-  const escaped = query.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-  const regex = new RegExp(`(${escaped})`, "gi")
-  return text.replace(regex, "<mark class=\"bg-yellow-200 dark:bg-yellow-700/50 rounded-sm px-0.5\">$1</mark>")
+  const normalizedQuery = normalizeText(query.trim())
+  const normalizedText = normalizeText(text)
+  const markClass = "bg-yellow-200 dark:bg-yellow-700/50 rounded-sm px-0.5"
+
+  const indices: [number, number][] = []
+  let pos = 0
+  while ((pos = normalizedText.indexOf(normalizedQuery, pos)) !== -1) {
+    indices.push([pos, pos + normalizedQuery.length])
+    pos += 1
+  }
+
+  if (indices.length === 0) return text
+
+  let result = ""
+  let last = 0
+  for (const [start, end] of indices) {
+    result += text.slice(last, start)
+    result += `<mark class="${markClass}">${text.slice(start, end)}</mark>`
+    last = end
+  }
+  result += text.slice(last)
+  return result
 }
