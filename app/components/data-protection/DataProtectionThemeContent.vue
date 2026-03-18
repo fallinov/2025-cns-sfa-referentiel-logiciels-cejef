@@ -30,8 +30,8 @@ function hl(text: string) {
       </div>
       <div>
         <!-- eslint-disable vue/no-v-html -- données statiques, highlight uniquement -->
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white" v-html="hl(theme.title)"></h2>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1" v-html="hl(theme.description)"></p>
+        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white" v-html="hl(theme.title)"></h2>
+        <p class="text-sm lg:text-base text-gray-500 dark:text-gray-400 mt-1" v-html="hl(theme.description)"></p>
         <!-- eslint-enable vue/no-v-html -->
       </div>
     </div>
@@ -44,14 +44,14 @@ function hl(text: string) {
         class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] border border-gray-100 dark:border-gray-700/50 p-5"
       >
         <div class="flex items-center gap-2.5 mb-2">
-          <UIcon :name="sub.icon" class="w-4 h-4 text-primary-500 flex-shrink-0" aria-hidden="true" />
+          <UIcon :name="sub.icon" class="w-4 h-4 lg:w-5 lg:h-5 text-primary-500 flex-shrink-0" aria-hidden="true" />
           <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
-          <h3 class="text-base font-semibold text-gray-900 dark:text-white" v-html="hl(sub.title)"></h3>
+          <h3 class="text-lg lg:text-xl font-semibold text-gray-900 dark:text-white" v-html="hl(sub.title)"></h3>
         </div>
 
         <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
         <p
-          class="text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-prose"
+          class="text-base lg:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-prose"
           v-html="hl(sub.description)"
         ></p>
 
@@ -70,7 +70,7 @@ function hl(text: string) {
     >
       <button
         v-if="prevTheme"
-        class="group flex items-center gap-2 px-4 py-3 rounded-[var(--ui-radius)] text-sm text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+        class="group flex items-center gap-2 px-4 py-3 rounded-[var(--ui-radius)] text-sm lg:text-base text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
         @click="emit('navigate', prevTheme.id)"
       >
         <UIcon name="i-lucide-arrow-left" class="w-4 h-4" aria-hidden="true" />
@@ -80,7 +80,7 @@ function hl(text: string) {
 
       <button
         v-if="nextTheme"
-        class="group flex items-center gap-2 px-4 py-3 rounded-[var(--ui-radius)] text-sm text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+        class="group flex items-center gap-2 px-4 py-3 rounded-[var(--ui-radius)] text-sm lg:text-base text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
         @click="emit('navigate', nextTheme.id)"
       >
         <span>{{ nextTheme.shortTitle }}</span>

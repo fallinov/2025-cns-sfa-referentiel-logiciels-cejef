@@ -55,10 +55,10 @@ const displayPlaceholder = computed(() => {
 <template>
   <div class="mb-8 px-4 sm:px-0">
     <div class="mb-6">
-      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
         Protection des données
       </h1>
-      <p class="mt-2 text-base text-gray-600 dark:text-gray-400">
+      <p class="mt-2 text-base lg:text-lg text-gray-600 dark:text-gray-400">
         Mesures prises par le Canton du Jura pour la protection des données dans l'enseignement.
       </p>
     </div>
