@@ -145,7 +145,7 @@ function focusSidebarButton(index: number) {
             @click="isMobileSidebarOpen = !isMobileSidebarOpen"
           >
             <UIcon name="i-lucide-menu" class="w-4 h-4" aria-hidden="true" />
-            {{ activeTheme?.title || "Thèmes" }}
+            {{ activeTheme?.shortTitle || "Thèmes" }}
             <UIcon
               name="i-lucide-chevron-down"
               class="w-4 h-4 ml-auto transition-transform"
