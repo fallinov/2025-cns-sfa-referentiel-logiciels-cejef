@@ -35,6 +35,11 @@ function useDebounce() {
   }
 }
 
+const handleClear = () => {
+  localSearch.value = ""
+  emit("update:searchQuery", "")
+}
+
 const audienceOptions = [
   { value: "all" as const, label: "Tous" },
   { value: "sen" as const, label: "SEN" },
@@ -53,23 +58,40 @@ const audienceOptions = [
       </p>
     </div>
 
-    <div class="flex flex-col sm:flex-row gap-3">
-      <UInput
-        v-model="localSearch"
-        icon="i-lucide-search"
-        placeholder="Rechercher un thème..."
-        class="flex-1"
-        :ui="{ root: 'w-full' }"
-      />
+    <div class="flex flex-col sm:flex-row gap-3 max-w-3xl mx-auto">
+      <!-- Search pill (même style que SearchInput de la page d'accueil) -->
+      <div class="relative flex-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md rounded-full transition-shadow">
+        <input
+          v-model="localSearch"
+          type="search"
+          placeholder="Rechercher un thème..."
+          class="w-full h-12 sm:h-14 pl-12 pr-12 text-base text-slate-900 dark:text-slate-100 focus:outline-none placeholder-gray-500 dark:placeholder-gray-400 [&::-webkit-search-cancel-button]:appearance-none bg-transparent rounded-full"
+          aria-label="Rechercher un thème de protection des données"
+        />
+        <div class="absolute top-0 left-0 h-12 sm:h-14 flex items-center pl-4">
+          <UIcon name="i-lucide-search" class="w-5 h-5 text-gray-400" aria-hidden="true" />
+        </div>
+        <div v-if="localSearch" class="absolute top-0 right-0 h-12 sm:h-14 flex items-center pr-3">
+          <button
+            type="button"
+            class="flex items-center justify-center w-8 h-8 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors rounded-full"
+            aria-label="Effacer la recherche"
+            @click="handleClear"
+          >
+            <UIcon name="i-lucide-x" class="w-4 h-4" />
+          </button>
+        </div>
+      </div>
 
-      <div class="flex rounded-[var(--ui-radius)] overflow-hidden border border-gray-200 dark:border-gray-700">
+      <!-- Audience filter pills -->
+      <div class="flex gap-2 justify-center sm:justify-start">
         <button
           v-for="option in audienceOptions"
           :key="option.value"
-          class="px-4 py-2 text-sm font-medium transition-colors"
+          class="px-5 py-2 sm:py-3 text-sm font-medium rounded-full border transition-all"
           :class="audienceFilter === option.value
-            ? 'bg-primary-500 text-white'
-            : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'"
+            ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white shadow-sm'
+            : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600'"
           @click="emit('update:audienceFilter', option.value)"
         >
           {{ option.label }}
