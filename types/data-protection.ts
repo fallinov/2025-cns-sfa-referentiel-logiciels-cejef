@@ -23,6 +23,7 @@ export interface DataProtectionSubTheme {
 export interface DataProtectionTheme {
   id: string
   title: string
+  shortTitle: string
   icon: string
   description: string
   audience: ThemeAudience

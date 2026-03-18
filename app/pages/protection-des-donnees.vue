@@ -173,15 +173,15 @@ function focusSidebarButton(index: number) {
                 <ul class="space-y-0.5" @keydown="handleSidebarKeydown">
                   <li v-for="theme in filteredThemes" :key="theme.id">
                     <button
-                      class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                      class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                       :class="activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)
                         ? 'bg-white dark:bg-gray-700 text-primary-700 dark:text-primary-300 font-semibold shadow-sm'
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-white/60 dark:hover:bg-gray-700/50'"
+                        : 'text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100 hover:shadow-sm'"
                       :aria-current="(activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)) ? 'true' : undefined"
                       @click="selectTheme(theme.id)"
                     >
                       <UIcon :name="theme.icon" class="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                      <span>{{ theme.title }}</span>
+                      <span class="truncate">{{ theme.shortTitle }}</span>
                     </button>
                   </li>
                 </ul>

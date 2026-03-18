@@ -5,6 +5,7 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
   {
     id: "loi-protection-donnees",
     title: "Nouvelle loi fédérale sur la protection des données",
+    shortTitle: "Loi fédérale (nLPD)",
     icon: "i-lucide-scale",
     description: "Bases légales sur le traitement des données scolaires dans le canton du Jura.",
     audience: "both",
@@ -31,6 +32,7 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
   {
     id: "ordonnances-recommandations",
     title: "Ordonnances et recommandations",
+    shortTitle: "Ordonnances",
     icon: "i-lucide-file-text",
     description: "Directives cantonales et règlements pour les pratiques pédagogiques numériques.",
     audience: "both",
@@ -122,6 +124,7 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
   {
     id: "environnement-travail",
     title: "Environnement de travail",
+    shortTitle: "Environnement",
     icon: "i-lucide-monitor",
     description: "Infrastructure, sécurité réseau et gestion des systèmes d'information scolaires.",
     audience: "both",
@@ -257,6 +260,7 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
   {
     id: "services-associes",
     title: "Services associés",
+    shortTitle: "Services",
     icon: "i-lucide-puzzle",
     description: "Applications et plateformes utilisées dans le cadre scolaire.",
     audience: "both",
@@ -337,6 +341,7 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
   {
     id: "formation",
     title: "Formation",
+    shortTitle: "Formation",
     icon: "i-lucide-book-open-check",
     description: "Formation des coordinateurs numériques et sensibilisation à la protection des données.",
     audience: "both",
@@ -393,6 +398,7 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
   {
     id: "enseignants",
     title: "Enseignants",
+    shortTitle: "Enseignants",
     icon: "i-lucide-presentation",
     description: "Ressources et formations pour sensibiliser les enseignants à la protection des données.",
     audience: "both",
@@ -517,6 +523,7 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
   {
     id: "eleves",
     title: "Élèves",
+    shortTitle: "Élèves",
     icon: "i-lucide-backpack",
     description: "Chartes, contrats et informations destinés aux élèves et à leurs parents.",
     audience: "both",
