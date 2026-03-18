@@ -3,14 +3,14 @@ import type { ThemeAudience } from "~~/types/data-protection"
 
 interface Props {
   searchQuery: string
-  audienceFilter: ThemeAudience | "all"
+  audienceFilter: ThemeAudience
 }
 
 const props = defineProps<Props>()
 
 const emit = defineEmits<{
   "update:searchQuery": [value: string]
-  "update:audienceFilter": [value: ThemeAudience | "all"]
+  "update:audienceFilter": [value: ThemeAudience]
 }>()
 
 const localSearch = ref(props.searchQuery)
@@ -40,10 +40,9 @@ const handleClear = () => {
   emit("update:searchQuery", "")
 }
 
-const audienceOptions = [
-  { value: "all" as const, label: "Tous" },
-  { value: "sen" as const, label: "SEN" },
-  { value: "cejef" as const, label: "CEJEF" }
+const audienceOptions: { value: ThemeAudience, label: string }[] = [
+  { value: "sen", label: "SEN" },
+  { value: "cejef", label: "CEJEF" }
 ]
 </script>
 
@@ -59,7 +58,7 @@ const audienceOptions = [
     </div>
 
     <div class="flex flex-col sm:flex-row gap-3 max-w-3xl mx-auto">
-      <!-- Search pill (même style que SearchInput de la page d'accueil) -->
+      <!-- Search pill -->
       <div class="relative flex-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md rounded-full transition-shadow">
         <input
           v-model="localSearch"
@@ -83,7 +82,7 @@ const audienceOptions = [
         </div>
       </div>
 
-      <!-- Audience filter pills -->
+      <!-- Audience toggle pills -->
       <div class="flex gap-2 justify-center sm:justify-start">
         <button
           v-for="option in audienceOptions"
