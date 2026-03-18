@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DataProtectionTheme } from "~~/types/data-protection"
+import { highlightText } from "~/utils/search"
 
 interface Props {
   theme: DataProtectionTheme
@@ -7,11 +8,17 @@ interface Props {
 
 defineProps<Props>()
 
+const searchQuery = inject<Ref<string>>("dpSearchQuery", ref(""))
+
 const isExpanded = ref(false)
 const openSubTheme = ref<string | null>(null)
 
 function toggleSubTheme(id: string) {
   openSubTheme.value = openSubTheme.value === id ? null : id
+}
+
+function hl(text: string) {
+  return highlightText(text, searchQuery.value)
 }
 </script>
 
@@ -28,9 +35,7 @@ function toggleSubTheme(id: string) {
       </div>
 
       <div class="flex-1 min-w-0">
-        <h2 class="text-base font-semibold text-gray-900 dark:text-white">
-          {{ theme.title }}
-        </h2>
+        <h2 class="text-base font-semibold text-gray-900 dark:text-white" v-html="hl(theme.title)"></h2>
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
           {{ theme.subThemes.length }} {{ theme.subThemes.length > 1 ? "sous-thèmes" : "sous-thème" }}
         </p>
@@ -62,9 +67,7 @@ function toggleSubTheme(id: string) {
     <!-- Body avec sous-thèmes -->
     <div v-show="isExpanded" class="border-t border-gray-100 dark:border-gray-700">
       <div class="p-4">
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-          {{ theme.description }}
-        </p>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4" v-html="hl(theme.description)"></p>
 
         <div class="space-y-1">
           <div
@@ -78,9 +81,7 @@ function toggleSubTheme(id: string) {
               @click="toggleSubTheme(sub.id)"
             >
               <UIcon :name="sub.icon" class="w-4 h-4 text-gray-500 flex-shrink-0" aria-hidden="true" />
-              <span class="flex-1 text-sm font-medium text-gray-700 dark:text-gray-200">
-                {{ sub.title }}
-              </span>
+              <span class="flex-1 text-sm font-medium text-gray-700 dark:text-gray-200" v-html="hl(sub.title)"></span>
               <UIcon
                 name="i-lucide-chevron-down"
                 class="w-4 h-4 text-gray-400 transition-transform duration-200"

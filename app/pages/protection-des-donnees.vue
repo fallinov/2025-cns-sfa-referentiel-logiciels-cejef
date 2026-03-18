@@ -14,6 +14,8 @@ const {
   filteredThemes,
   hasResults
 } = useDataProtection()
+
+provide("dpSearchQuery", searchQuery)
 </script>
 
 <template>

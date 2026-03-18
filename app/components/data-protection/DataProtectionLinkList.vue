@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import type { ThemeResource, ResourceType } from "~~/types/data-protection"
+import { highlightText } from "~/utils/search"
 
 interface Props {
   resources: ThemeResource[]
 }
 
 defineProps<Props>()
+
+const searchQuery = inject<Ref<string>>("dpSearchQuery", ref(""))
+
+function hl(text: string) {
+  return highlightText(text, searchQuery.value)
+}
 
 const iconByType: Record<ResourceType, string> = {
   link: "i-lucide-external-link",
@@ -31,9 +38,10 @@ const iconByType: Record<ResourceType, string> = {
           aria-hidden="true"
         />
         <div class="flex-1 min-w-0">
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover/link:text-primary-600 dark:group-hover/link:text-primary-400 transition-colors">
-            {{ resource.title }}
-          </span>
+          <span
+            class="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover/link:text-primary-600 dark:group-hover/link:text-primary-400 transition-colors"
+            v-html="hl(resource.title)"
+          ></span>
           <div class="flex items-center gap-2 mt-0.5">
             <UBadge color="neutral" variant="subtle" size="xs">
               {{ resource.source }}
