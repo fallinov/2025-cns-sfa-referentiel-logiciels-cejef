@@ -3,10 +3,8 @@ import { computed, inject } from "vue"
 import EdujuraLogo from "@/components/EdujuraLogo.vue"
 
 const links = computed(() => [
-  { label: "Protection des données", to: "/protection-des-donnees", icon: "i-lucide-shield" },
-  { label: "Proposer un logiciel", to: "#", icon: "i-lucide-plus" },
-  { label: "Favoris", to: "#", icon: "i-lucide-heart" },
-  { label: "Se connecter", to: "#", icon: "i-lucide-user" }
+  { label: "Référentiel logiciels", to: "/", icon: "i-lucide-layout-grid" },
+  { label: "Protection des données", to: "/protection-des-donnees", icon: "i-lucide-shield" }
 ])
 
 const mobileMenuUi = {

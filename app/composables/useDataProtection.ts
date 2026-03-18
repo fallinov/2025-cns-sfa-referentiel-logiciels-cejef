@@ -23,6 +23,11 @@ export function useDataProtection() {
     localStorage.setItem(STORAGE_KEY, audience)
   }
 
+  function resetAudience() {
+    hasChosenAudience.value = false
+    localStorage.removeItem(STORAGE_KEY)
+  }
+
   const filteredThemes = computed(() => {
     return dataProtectionThemes
       .map((theme) => {
@@ -59,12 +64,18 @@ export function useDataProtection() {
 
   const hasResults = computed(() => filteredThemes.value.length > 0)
 
+  const totalSubThemes = computed(() =>
+    filteredThemes.value.reduce((sum, t) => sum + t.subThemes.length, 0)
+  )
+
   return {
     searchQuery,
     audienceFilter,
     hasChosenAudience,
     setAudience,
+    resetAudience,
     filteredThemes,
-    hasResults
+    hasResults,
+    totalSubThemes
   }
 }
