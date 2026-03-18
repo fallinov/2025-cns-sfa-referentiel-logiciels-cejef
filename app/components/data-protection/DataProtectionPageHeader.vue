@@ -87,7 +87,7 @@ const audienceOptions: { value: ThemeAudience, label: string }[] = [
         <button
           v-for="option in audienceOptions"
           :key="option.value"
-          class="px-5 py-2 sm:py-3 text-sm font-medium rounded-full border transition-all"
+          class="px-5 h-11 sm:h-auto sm:py-3 text-sm font-medium rounded-full border transition-all"
           :class="audienceFilter === option.value
             ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white shadow-sm'
             : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600'"

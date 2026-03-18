@@ -1,167 +1,135 @@
-# Audit UX/UI v1.2 — Page Protection des données
+# Audit UX/UI v2.0 — Page Protection des données
 
-**Date** : 2026-03-18
+**Date** : 2026-03-19
+**Skill** : sfa-audit-ux v2.0 (5 checklists)
 **Page** : `/protection-des-donnees`
 **Version** : 0.9.0 (branche feat/dp-sidebar-layout)
-**Stack** : Nuxt 4, Vue 3, Nuxt UI v4.1.0, Tailwind CSS
-**Skill** : sfa-audit-ux v1.2
 
-## Fichiers de la knowledge base consultés
+## Score global : 92/100
 
-- `_qualite-code/knowledge-base/rules.md`
-- `_qualite-code/knowledge-base/tailwind/typography.md`
-- `_qualite-code/knowledge-base/accessibility/wcag.md`
-- `_qualite-code/knowledge-base/accessibility/checklist.md`
-- `_qualite-code/knowledge-base/accessibility/ux-checklist.md`
-- `checklists/accessibility.md` (skill)
-- `checklists/usability.md` (skill)
-- `checklists/mobile.md` (skill)
-
----
-
-## Score global : 88/100 (+14 vs audit v1)
-
-| Critère | Poids | Score v1 | Score v2 | Détail |
-|---------|-------|----------|----------|--------|
-| Accessibilité | 30% | 68 | 90 | aria-pressed, aria-current, aria-controls, liens externes |
-| Utilisabilité | 25% | 82 | 88 | Sidebar, transition fade, max-w-prose, "Changer de profil" |
-| Cohérence | 15% | 80 | 85 | Sidebar fond distinct, style pill cohérent |
-| Mobile & Responsive | 20% | 72 | 85 | Backdrop mobile, dropdown fonctionnel |
-| Flux UX | 10% | 70 | 88 | Choix initial + reset + persistance localStorage |
+| Critère | Poids | Score | Source |
+|---------|-------|-------|--------|
+| Accessibilité | 30% | 93 | `checklists/accessibility.md` + KB `accessibility/wcag.md` |
+| Utilisabilité | 25% | 90 | `checklists/usability.md` + KB `accessibility/ux-checklist.md` |
+| Typographie | — | 95 | `checklists/typography.md` + KB `tailwind/typography.md` |
+| Design visuel | — | 90 | `checklists/visual-design.md` |
+| Mobile & Responsive | 20% | 88 | `checklists/mobile.md` |
+| Cohérence | 15% | 92 | Atomic Design |
+| Flux UX | 10% | 90 | About Face |
 
 ---
 
-## 1. Accessibilité (90/100)
+## 1. Accessibilité (93/100)
 
-### Corrigé depuis v1
-- [x] `aria-current="true"` sur le thème actif dans la sidebar
-- [x] `aria-pressed` sur les boutons toggle SEN/CEJEF
-- [x] `role="group" aria-label="Filtrer par service"` sur le groupe de filtres
-- [x] `aria-controls="dp-sidebar"` + `aria-expanded` sur le bouton mobile
-- [x] `aria-label="Navigation des thèmes"` sur la nav sidebar
-- [x] `title` avec indication "nouvel onglet" sur les liens externes
-- [x] `aria-hidden="true"` sur les icônes du bouton mobile
-
-### Points positifs confirmés
+### Conforme
+- [x] `aria-pressed` sur toggle SEN/CEJEF
+- [x] `aria-current` sur thème actif sidebar
+- [x] `role="group" aria-label="Filtrer par service"` sur filtres
+- [x] `aria-controls` + `aria-expanded` sur dropdown mobile
+- [x] `aria-label="Navigation des thèmes"` sur nav
+- [x] `aria-live="polite"` sur zone contenu
+- [x] `focus-visible:ring-2` sur tous les boutons
 - [x] Hiérarchie h1 → h2 → h3 correcte
 - [x] Structure sémantique `<banner>`, `<nav>`, `<main>`, `<contentinfo>`
-- [x] `aria-hidden` sur toutes les icônes décoratives
-- [x] `rel="noopener"` sur les liens externes
-- [x] `aria-label` descriptif sur le champ de recherche
-- [x] Console navigateur : 0 erreurs
+- [x] Liens externes avec `title` "nouvel onglet" + `rel="noopener"`
+- [x] Console : 0 erreurs
 
-### Problèmes résiduels
-
+### Reste à faire
 | # | Problème | Sévérité |
 |---|----------|----------|
-| A1 | **Navigation clavier sidebar** : pas de retour visuel du focus quand on Tab entre les thèmes (le `focus-visible` n'est pas ajouté aux boutons sidebar) | Moyenne |
-| A2 | **Recherche sans `aria-live`** : quand les résultats changent en temps réel, le lecteur d'écran n'est pas informé | Basse |
+| A1 | `aria-live` pourrait spécifier `aria-atomic="true"` pour les mises à jour complètes | Basse |
 
 ---
 
-## 2. Utilisabilité (88/100)
+## 2. Utilisabilité (90/100)
 
-### Typographie et lisibilité (Krug, Bringhurst)
-- [x] **Largeur de ligne** : `max-w-prose` (65ch) sur les descriptions — conforme (50-75 car.)
-- [x] **Interligne** : `leading-relaxed` (1.625) — conforme (1.4-1.6x)
-- [x] **Taille texte** : corps `text-sm` (14px) — limite basse mais acceptable pour texte secondaire
-- [x] **Paragraphes** : courts, aérés, pas de pavés denses
-- [x] **Alignement** : texte aligné à gauche partout
+### Conforme
+- [x] Navigation un clic (sidebar → contenu)
+- [x] Recherche cross-thèmes avec auto-switch
+- [x] Compteur de résultats visible pendant la recherche
+- [x] Surbrillance des termes recherchés (accent-insensitive)
+- [x] Choix initial SEN/CEJEF avec persistance localStorage
+- [x] Bouton "Changer de profil" accessible
+- [x] Support ancres URL (#theme-id)
+- [x] Navigation clavier (flèches haut/bas) dans la sidebar
+- [x] Transition fade entre thèmes
 
-### Feedback et visibilité (Norman)
-- [x] Transition fade (200ms) au changement de thème
-- [x] Thème actif clairement surligné (bg-white + shadow-sm dans sidebar grise)
-- [x] Compteur de sous-thèmes visible (text-gray-500, contraste amélioré)
-
-### Problèmes résiduels
-
+### Reste à faire
 | # | Problème | Sévérité |
 |---|----------|----------|
-| U1 | **Titre h2 du thème = titre h3 du sous-thème** pour le thème 1 (qui n'a qu'un sous-thème) — redondance visuelle | Basse |
-| U2 | **Recherche sans compteur de résultats** : "3 sous-thèmes trouvés sur 25" serait utile (cf. checklist usability §8) | Moyenne |
+| U1 | **Pas de navigation précédent/suivant** en bas du contenu — l'utilisateur doit revenir à la sidebar | Moyenne |
 
 ---
 
-## 3. Cohérence (85/100)
+## 3. Typographie (95/100)
 
-### Points positifs
-- [x] Sidebar fond distinct (`bg-gray-50`) vs cartes sous-thèmes (`bg-white`)
-- [x] Barre de recherche pill identique à la page d'accueil
-- [x] Réutilisation de `SoftwareFeatureBadge` et `BackToTop`
-- [x] `rounded-[var(--ui-radius)]` partout — token CSS cohérent
-- [x] Icônes Lucide exclusivement
+### Conforme
+- [x] `max-w-prose` (65ch) sur les descriptions — largeur de ligne OK
+- [x] `leading-relaxed` (1.625) sur le corps de texte
+- [x] Corps `text-base` (16px) — conforme taille minimale
+- [x] Hiérarchie : h2 `text-xl` > h3 `text-base font-semibold` > corps `text-base`
+- [x] Titres sidebar `truncate` — pas de passage à 2 lignes
+- [x] `shortTitle` pour les libellés longs
+- [x] Alignement à gauche partout
+- [x] Pas de texte en majuscules long
 
-### Problèmes résiduels
-
-| # | Problème | Sévérité |
-|---|----------|----------|
-| C1 | **Boutons SEN/CEJEF en HTML custom** au lieu de `UButton` — incohérence avec le design system Nuxt UI | Basse |
+### Reste à faire
+- Rien à signaler
 
 ---
 
-## 4. Mobile & Responsive (85/100)
+## 4. Design visuel (90/100)
 
-### Points positifs
-- [x] Sidebar remplacée par dropdown mobile avec backdrop semi-transparent
-- [x] Backdrop cliquable pour fermer (bonne UX)
+### Conforme
+- [x] Espacement cohérent : `gap-6` entre sections, `p-5` dans les cartes, `space-y-3` entre cartes
+- [x] Palette limitée : primary (rouge), neutral (gray), white
+- [x] Ombres cohérentes : `shadow-sm` partout
+- [x] Bordures cohérentes : `border-gray-100 dark:border-gray-700/50`
+- [x] `rounded-[var(--ui-radius)]` — token design system
+- [x] Sidebar fond distinct (`bg-gray-50`) vs cartes (`bg-white`)
+- [x] Hover sur sidebar : `hover:bg-white hover:shadow-sm hover:text-gray-900`
+- [x] Focus visible sur tous les interactifs
+- [x] Icônes cohérentes : Lucide, `w-4 h-4` (inline) et `w-5 h-5` (headers)
+- [x] Transition `duration-150` ou `duration-200` — pas d'animation excessive
+- [x] Source des liens en texte secondaire (plus de badge trop petit)
+
+### Reste à faire
+| # | Problème | Sévérité |
+|---|----------|----------|
+| V1 | **Bordure + ombre** sur les cartes sous-thèmes — la checklist recommande l'un OU l'autre | Basse |
+
+---
+
+## 5. Mobile & Responsive (88/100)
+
+### Conforme
+- [x] Dropdown mobile avec backdrop semi-transparent
+- [x] `h-11` (44px) sur le dropdown — conforme touch target
 - [x] Contenu pleine largeur sur mobile
-- [x] Filtres SEN/CEJEF compacts
-- [x] `z-index` explicite (z-30 backdrop, z-40 sidebar)
+- [x] `focus-visible:ring-2` sur le bouton dropdown
+- [x] Pas de scroll horizontal
 
-### Problèmes résiduels
-
+### Reste à faire
 | # | Problème | Sévérité |
 |---|----------|----------|
-| M1 | **Bouton dropdown mobile** : hauteur ~32px, en dessous du minimum 44px tactile (cf. checklist mobile §1) | Moyenne |
-| M2 | **Recherche + filtres + dropdown** prennent ~180px avant le contenu sur mobile — beaucoup d'espace perdu | Basse |
+| M1 | Boutons SEN/CEJEF custom — hauteur ~40px, juste en dessous de 44px | Basse |
 
 ---
 
-## 5. Flux UX (88/100)
-
-### Points positifs
-- [x] Choix initial SEN/CEJEF avec explications claires
-- [x] Persistance localStorage
-- [x] Bouton "Changer de profil" en bas de la sidebar — discret mais accessible
-- [x] Navigation directe (1 clic = contenu visible)
-- [x] Transition fluide entre thèmes
-
-### Aucun problème résiduel
-
----
-
-## Contraste WCAG AA — Vérification
-
-| Élément | Couleur texte | Couleur fond | Ratio estimé | Conforme AA ? |
-|---------|--------------|-------------|-------------|---------------|
-| Corps texte light | gray-600 (#4B5563) | white (#FFF) | ~7.5:1 | Oui |
-| Corps texte dark | gray-300 (#D1D5DB) | gray-800 (#1F2937) | ~8.5:1 | Oui |
-| Titres h2/h3 light | gray-900 (#111827) | white (#FFF) | ~17:1 | Oui |
-| Sidebar compteur | gray-500 (#6B7280) | gray-50 (#F9FAFB) | ~5.9:1 | Oui |
-| Placeholder recherche | gray-500 (#6B7280) | white (#FFF) | ~5.9:1 | Oui |
-| Lien Fedlex hover | primary-600 | white | ~4.5:1 | Limite |
-| Bouton "Changer de profil" | gray-400 (#9CA3AF) | gray-50 (#F9FAFB) | ~3.2:1 | Non (trop faible) |
-
-### Action requise
-- Le bouton "Changer de profil" a un contraste de ~3.2:1 (text-gray-400 sur gray-50). Passer à `text-gray-500` pour atteindre ~5.9:1.
-
----
-
-## Résumé des corrections restantes
+## Corrections restantes (3 items)
 
 | # | Correction | Priorité | Effort |
 |---|-----------|----------|--------|
-| 1 | Contraste bouton "Changer de profil" : gray-400 → gray-500 | Haute | 1 min |
-| 2 | Focus visible sur les boutons sidebar (ajouter `focus-visible:ring-2`) | Haute | 5 min |
-| 3 | Hauteur bouton dropdown mobile >= 44px | Moyenne | 2 min |
-| 4 | Compteur de résultats de recherche | Moyenne | 15 min |
-| 5 | `aria-live` sur la zone de contenu pour lecteurs d'écran | Basse | 5 min |
+| 1 | Navigation précédent/suivant en bas du contenu | Moyenne | 15 min |
+| 2 | Choisir bordure OU ombre sur les cartes (pas les deux) | Basse | 2 min |
+| 3 | Touch target boutons SEN/CEJEF : ajouter `h-11` | Basse | 1 min |
 
 ---
 
 ## Évolution du score
 
-| Audit | Date | Score | Principales améliorations |
-|-------|------|-------|--------------------------|
-| v1.0 | 2026-03-18 | 74/100 | Layout carte initial |
-| v1.2 | 2026-03-18 | 88/100 | Sidebar, aria, backdrop, max-w-prose, contraste, transition |
+| Version | Date | Score | Checklists | Améliorations |
+|---------|------|-------|-----------|---------------|
+| v1.0 | 2026-03-18 | 74/100 | 3 | Layout carte initial |
+| v1.2 | 2026-03-18 | 88/100 | 3 | Sidebar, aria, backdrop, max-w-prose |
+| v2.0 | 2026-03-19 | 92/100 | 5 | shortTitle, hover, typo, design visuel, navigation clavier |

@@ -23,10 +23,15 @@ provide("dpSearchQuery", searchQuery)
 
 const activeThemeId = ref<string | null>(null)
 
-const activeTheme = computed(() => {
-  if (!activeThemeId.value) return filteredThemes.value[0] || null
-  return filteredThemes.value.find(t => t.id === activeThemeId.value) || filteredThemes.value[0] || null
+const activeThemeIndex = computed(() => {
+  if (!activeThemeId.value) return 0
+  const idx = filteredThemes.value.findIndex(t => t.id === activeThemeId.value)
+  return idx >= 0 ? idx : 0
 })
+
+const activeTheme = computed(() => filteredThemes.value[activeThemeIndex.value] || null)
+const prevTheme = computed(() => filteredThemes.value[activeThemeIndex.value - 1] || null)
+const nextTheme = computed(() => filteredThemes.value[activeThemeIndex.value + 1] || null)
 
 // Point 1 : recherche cross-thèmes — auto-switch au premier thème avec résultats
 watch(filteredThemes, (themes) => {
@@ -219,6 +224,9 @@ function focusSidebarButton(index: number) {
                   v-if="activeTheme"
                   :key="activeTheme.id"
                   :theme="activeTheme"
+                  :prev-theme="prevTheme"
+                  :next-theme="nextTheme"
+                  @navigate="selectTheme"
                 />
               </Transition>
             </main>

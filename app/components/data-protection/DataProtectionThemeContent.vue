@@ -4,9 +4,15 @@ import { highlightText } from "~/utils/search"
 
 interface Props {
   theme: DataProtectionTheme
+  prevTheme?: DataProtectionTheme | null
+  nextTheme?: DataProtectionTheme | null
 }
 
 defineProps<Props>()
+
+const emit = defineEmits<{
+  navigate: [themeId: string]
+}>()
 
 const searchQuery = inject<Ref<string>>("dpSearchQuery", ref(""))
 
@@ -35,7 +41,7 @@ function hl(text: string) {
       <div
         v-for="sub in theme.subThemes"
         :key="sub.id"
-        class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm p-5 border border-gray-100 dark:border-gray-700/50"
+        class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] border border-gray-100 dark:border-gray-700/50 p-5"
       >
         <div class="flex items-center gap-2.5 mb-2">
           <UIcon :name="sub.icon" class="w-4 h-4 text-primary-500 flex-shrink-0" aria-hidden="true" />
@@ -43,7 +49,7 @@ function hl(text: string) {
           <h3 class="text-base font-semibold text-gray-900 dark:text-white" v-html="hl(sub.title)"></h3>
         </div>
 
-        <!-- eslint-disable-next-line vue/no-v-html -- données statiques, pas de risque XSS -->
+        <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
         <p
           class="text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-prose"
           v-html="hl(sub.description)"
@@ -56,5 +62,31 @@ function hl(text: string) {
         />
       </div>
     </div>
+
+    <!-- Navigation précédent / suivant -->
+    <nav
+      class="flex items-center justify-between mt-8 pt-6 border-t border-gray-200 dark:border-gray-700"
+      aria-label="Navigation entre thèmes"
+    >
+      <button
+        v-if="prevTheme"
+        class="group flex items-center gap-2 px-4 py-3 rounded-[var(--ui-radius)] text-sm text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+        @click="emit('navigate', prevTheme.id)"
+      >
+        <UIcon name="i-lucide-arrow-left" class="w-4 h-4" aria-hidden="true" />
+        <span>{{ prevTheme.shortTitle }}</span>
+      </button>
+      <div v-else></div>
+
+      <button
+        v-if="nextTheme"
+        class="group flex items-center gap-2 px-4 py-3 rounded-[var(--ui-radius)] text-sm text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+        @click="emit('navigate', nextTheme.id)"
+      >
+        <span>{{ nextTheme.shortTitle }}</span>
+        <UIcon name="i-lucide-arrow-right" class="w-4 h-4" aria-hidden="true" />
+      </button>
+      <div v-else></div>
+    </nav>
   </div>
 </template>
