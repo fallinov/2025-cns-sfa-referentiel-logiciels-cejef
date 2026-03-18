@@ -31,6 +31,7 @@ const iconByType: Record<ResourceType, string> = {
         target="_blank"
         rel="noopener"
         class="group/link flex items-start gap-3 p-2.5 rounded-[var(--ui-radius)] hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+        :title="`${resource.title} (ouvre dans un nouvel onglet)`"
       >
         <UIcon
           :name="iconByType[resource.type] || iconByType.link"

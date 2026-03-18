@@ -13,6 +13,7 @@ const {
   audienceFilter,
   hasChosenAudience,
   setAudience,
+  resetAudience,
   filteredThemes,
   hasResults
 } = useDataProtection()
@@ -96,49 +97,81 @@ function selectTheme(id: string) {
           <!-- Bouton mobile sidebar -->
           <button
             class="flex items-center gap-2 mb-4 px-4 py-2 bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 lg:hidden"
+            :aria-expanded="isMobileSidebarOpen"
+            aria-controls="dp-sidebar"
             @click="isMobileSidebarOpen = !isMobileSidebarOpen"
           >
-            <UIcon name="i-lucide-menu" class="w-4 h-4" />
+            <UIcon name="i-lucide-menu" class="w-4 h-4" aria-hidden="true" />
             {{ activeTheme?.title || "Thèmes" }}
             <UIcon
               name="i-lucide-chevron-down"
               class="w-4 h-4 ml-auto transition-transform"
               :class="{ 'rotate-180': isMobileSidebarOpen }"
+              aria-hidden="true"
             />
           </button>
+
+          <!-- Backdrop mobile -->
+          <div
+            v-if="isMobileSidebarOpen"
+            class="fixed inset-0 z-30 bg-black/30 lg:hidden"
+            aria-hidden="true"
+            @click="isMobileSidebarOpen = false"
+          ></div>
 
           <div class="flex gap-6">
             <!-- Sidebar -->
             <nav
+              id="dp-sidebar"
               class="w-64 flex-shrink-0"
               :class="isMobileSidebarOpen ? 'block absolute z-40 left-4 right-4 sm:left-6 sm:right-6 lg:static lg:block' : 'hidden lg:block'"
+              aria-label="Navigation des thèmes"
             >
-              <div class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm p-3 lg:sticky lg:top-20">
+              <div class="bg-gray-50 dark:bg-gray-800/50 rounded-[var(--ui-radius)] shadow-sm p-3 lg:sticky lg:top-20">
                 <ul class="space-y-0.5">
                   <li v-for="theme in filteredThemes" :key="theme.id">
                     <button
                       class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-sm transition-colors"
                       :class="activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)
-                        ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 font-semibold'
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50'"
+                        ? 'bg-white dark:bg-gray-700 text-primary-700 dark:text-primary-300 font-semibold shadow-sm'
+                        : 'text-gray-600 dark:text-gray-400 hover:bg-white/60 dark:hover:bg-gray-700/50'"
+                      :aria-current="(activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)) ? 'true' : undefined"
                       @click="selectTheme(theme.id)"
                     >
                       <UIcon :name="theme.icon" class="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                       <span class="flex-1">{{ theme.title }}</span>
-                      <span class="text-xs text-gray-400 dark:text-gray-500">{{ theme.subThemes.length }}</span>
+                      <span class="text-xs text-gray-500 dark:text-gray-400 tabular-nums">{{ theme.subThemes.length }}</span>
                     </button>
                   </li>
                 </ul>
+
+                <!-- Changer de profil -->
+                <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+                  <button
+                    class="w-full flex items-center gap-2 px-3 py-2 rounded-[var(--ui-radius)] text-xs text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-white/60 dark:hover:bg-gray-700/50 transition-colors"
+                    @click="resetAudience()"
+                  >
+                    <UIcon name="i-lucide-repeat" class="w-3.5 h-3.5" aria-hidden="true" />
+                    Changer de profil ({{ audienceFilter === 'sen' ? 'SEN' : 'CEJEF' }})
+                  </button>
+                </div>
               </div>
             </nav>
 
             <!-- Contenu -->
             <main class="flex-1 min-w-0">
-              <DataProtectionThemeContent
-                v-if="activeTheme"
-                :key="activeTheme.id"
-                :theme="activeTheme"
-              />
+              <Transition
+                enter-active-class="transition-opacity duration-200 ease-out"
+                enter-from-class="opacity-0"
+                enter-to-class="opacity-100"
+                mode="out-in"
+              >
+                <DataProtectionThemeContent
+                  v-if="activeTheme"
+                  :key="activeTheme.id"
+                  :theme="activeTheme"
+                />
+              </Transition>
             </main>
           </div>
         </div>

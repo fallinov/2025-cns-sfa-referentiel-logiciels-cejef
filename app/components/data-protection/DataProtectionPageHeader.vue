@@ -83,7 +83,7 @@ const audienceOptions: { value: ThemeAudience, label: string }[] = [
       </div>
 
       <!-- Audience toggle pills -->
-      <div class="flex gap-2 justify-center sm:justify-start">
+      <div class="flex gap-2 justify-center sm:justify-start" role="group" aria-label="Filtrer par service">
         <button
           v-for="option in audienceOptions"
           :key="option.value"
@@ -91,6 +91,7 @@ const audienceOptions: { value: ThemeAudience, label: string }[] = [
           :class="audienceFilter === option.value
             ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white shadow-sm'
             : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600'"
+          :aria-pressed="audienceFilter === option.value"
           @click="emit('update:audienceFilter', option.value)"
         >
           {{ option.label }}

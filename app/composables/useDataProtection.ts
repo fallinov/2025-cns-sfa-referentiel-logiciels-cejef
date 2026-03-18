@@ -23,6 +23,11 @@ export function useDataProtection() {
     localStorage.setItem(STORAGE_KEY, audience)
   }
 
+  function resetAudience() {
+    hasChosenAudience.value = false
+    localStorage.removeItem(STORAGE_KEY)
+  }
+
   const filteredThemes = computed(() => {
     return dataProtectionThemes
       .map((theme) => {
@@ -64,6 +69,7 @@ export function useDataProtection() {
     audienceFilter,
     hasChosenAudience,
     setAudience,
+    resetAudience,
     filteredThemes,
     hasResults
   }
