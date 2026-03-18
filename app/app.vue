@@ -76,13 +76,10 @@ provide("openOnboarding", openOnboarding)
         <p class="text-sm text-gray-600 dark:text-gray-400">
           CEJEF - Centre Jurassien d'Enseignement et de Formation •
           {{ new Date().getFullYear() }}
+          <span class="text-xs text-gray-400 dark:text-gray-500 ml-2">
+            v{{ config.public.appVersion }}
+          </span>
         </p>
-      </template>
-
-      <template #center>
-        <span class="text-xs text-gray-500 dark:text-gray-400">
-          v{{ config.public.appVersion }}
-        </span>
       </template>
 
       <template #right>
