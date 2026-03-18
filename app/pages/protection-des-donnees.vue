@@ -28,13 +28,12 @@ provide("dpSearchQuery", searchQuery)
 
       <div
         v-if="hasResults"
-        class="columns-1 md:columns-2 xl:columns-3 gap-6 px-4 sm:px-0"
+        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 items-start px-4 sm:px-0"
       >
         <DataProtectionThemeCard
           v-for="theme in filteredThemes"
           :key="theme.id"
           :theme="theme"
-          class="break-inside-avoid mb-6"
         />
       </div>
 
