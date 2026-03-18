@@ -69,28 +69,31 @@ function hl(text: string) {
       <div class="p-4">
         <p class="text-sm text-gray-600 dark:text-gray-300 mb-4" v-html="hl(theme.description)"></p>
 
-        <div class="space-y-1">
+        <div class="divide-y divide-gray-100 dark:divide-gray-700">
           <div
             v-for="sub in theme.subThemes"
             :key="sub.id"
-            class="rounded-[var(--ui-radius)] border border-gray-100 dark:border-gray-700"
           >
             <button
-              class="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+              class="w-full flex items-center gap-3 px-1 py-3 text-left hover:text-primary-600 dark:hover:text-primary-400 transition-colors group/sub"
               :aria-expanded="openSubTheme === sub.id"
               @click="toggleSubTheme(sub.id)"
             >
-              <UIcon :name="sub.icon" class="w-4 h-4 text-gray-500 flex-shrink-0" aria-hidden="true" />
+              <UIcon
+                :name="sub.icon"
+                class="w-4 h-4 text-gray-400 group-hover/sub:text-primary-500 flex-shrink-0 transition-colors"
+                aria-hidden="true"
+              />
               <span class="flex-1 text-sm font-medium text-gray-700 dark:text-gray-200" v-html="hl(sub.title)"></span>
               <UIcon
-                name="i-lucide-chevron-down"
-                class="w-4 h-4 text-gray-400 transition-transform duration-200"
-                :class="{ 'rotate-180': openSubTheme === sub.id }"
+                name="i-lucide-chevron-right"
+                class="w-4 h-4 text-gray-300 transition-transform duration-200"
+                :class="{ 'rotate-90': openSubTheme === sub.id }"
                 aria-hidden="true"
               />
             </button>
 
-            <div v-show="openSubTheme === sub.id" class="px-4 pb-4">
+            <div v-show="openSubTheme === sub.id" class="pl-8 pr-1 pb-3">
               <DataProtectionSubTheme :sub-theme="sub" />
             </div>
           </div>
