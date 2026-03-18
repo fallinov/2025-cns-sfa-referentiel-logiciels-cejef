@@ -181,8 +181,7 @@ function focusSidebarButton(index: number) {
                       @click="selectTheme(theme.id)"
                     >
                       <UIcon :name="theme.icon" class="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                      <span class="flex-1">{{ theme.title }}</span>
-                      <span class="text-xs text-gray-500 dark:text-gray-400 tabular-nums">{{ theme.subThemes.length }}</span>
+                      <span>{{ theme.title }}</span>
                     </button>
                   </li>
                 </ul>
