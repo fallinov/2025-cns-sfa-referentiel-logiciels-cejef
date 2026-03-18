@@ -74,7 +74,7 @@ provide("openOnboarding", openOnboarding)
     <UFooter>
       <template #left>
         <p class="text-sm text-gray-600 dark:text-gray-400">
-          EduJura • SEN • SFP • {{ new Date().getFullYear() }}
+          Service de la formation postobligatoire (SFP) • {{ new Date().getFullYear() }}
           <span class="text-xs text-gray-400 dark:text-gray-500 ml-2">
             v{{ config.public.appVersion }}
           </span>
