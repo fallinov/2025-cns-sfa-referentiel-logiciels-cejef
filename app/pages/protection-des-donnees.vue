@@ -13,7 +13,6 @@ const {
   audienceFilter,
   hasChosenAudience,
   setAudience,
-  resetAudience,
   filteredThemes,
   hasResults,
   totalSubThemes
@@ -135,8 +134,6 @@ function focusSidebarButton(index: number) {
       <template v-if="hasChosenAudience">
         <DataProtectionPageHeader
           v-model:search-query="searchQuery"
-          :audience-filter="audienceFilter"
-          @update:audience-filter="setAudience"
         />
 
         <div v-if="hasResults" class="px-4 sm:px-0">
@@ -174,6 +171,31 @@ function focusSidebarButton(index: number) {
               aria-label="Navigation des thèmes"
             >
               <div class="bg-gray-50 dark:bg-gray-800/50 rounded-[var(--ui-radius)] shadow-sm p-3 lg:sticky lg:top-20">
+                <!-- Toggle SEN / CEJEF -->
+                <div class="flex gap-1 mb-3 p-1 bg-gray-100 dark:bg-gray-700/50 rounded-[var(--ui-radius)]" role="group" aria-label="Profil">
+                  <button
+                    class="flex-1 px-3 py-1.5 text-xs font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    :class="audienceFilter === 'sen'
+                      ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
+                    :aria-pressed="audienceFilter === 'sen'"
+                    @click="setAudience('sen')"
+                  >
+                    SEN
+                  </button>
+                  <button
+                    class="flex-1 px-3 py-1.5 text-xs font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    :class="audienceFilter === 'cejef'
+                      ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
+                    :aria-pressed="audienceFilter === 'cejef'"
+                    @click="setAudience('cejef')"
+                  >
+                    CEJEF
+                  </button>
+                </div>
+
+                <!-- Liste des thèmes -->
                 <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
                 <ul class="space-y-0.5" @keydown="handleSidebarKeydown">
                   <li v-for="theme in filteredThemes" :key="theme.id">
@@ -190,17 +212,6 @@ function focusSidebarButton(index: number) {
                     </button>
                   </li>
                 </ul>
-
-                <!-- Changer de profil -->
-                <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
-                  <button
-                    class="w-full flex items-center gap-2 px-3 py-2 rounded-[var(--ui-radius)] text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-white/60 dark:hover:bg-gray-700/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                    @click="resetAudience()"
-                  >
-                    <UIcon name="i-lucide-repeat" class="w-3.5 h-3.5" aria-hidden="true" />
-                    Changer de profil ({{ audienceFilter === 'sen' ? 'SEN' : 'CEJEF' }})
-                  </button>
-                </div>
               </div>
             </nav>
 
