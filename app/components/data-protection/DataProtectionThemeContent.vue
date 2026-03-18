@@ -51,7 +51,7 @@ function hl(text: string) {
 
         <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
         <p
-          class="text-base lg:text-lg text-gray-600 dark:text-gray-300 leading-relaxed lg:leading-loose max-w-prose"
+          class="text-base lg:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-prose"
           v-html="hl(sub.description)"
         ></p>
 
