@@ -20,9 +20,12 @@ function hl(text: string) {
   return highlightText(text, searchQuery.value)
 }
 
+const toast = useToast()
+
 function copyLink(subThemeId: string) {
   const url = `${window.location.origin}${window.location.pathname}#${subThemeId}`
   navigator.clipboard.writeText(url)
+  toast.add({ title: "Lien copié", icon: "i-lucide-check", color: "success" })
 }
 </script>
 
