@@ -18,6 +18,7 @@ const {
 } = useDataProtection()
 
 provide("dpSearchQuery", searchQuery)
+provide("dpAudienceFilter", audienceFilter)
 
 const activeThemeId = ref<string | null>(null)
 
