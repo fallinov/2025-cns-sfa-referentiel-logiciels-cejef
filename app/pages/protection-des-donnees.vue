@@ -10,8 +10,6 @@ useSeoMeta({
 
 const {
   searchQuery,
-  audienceFilter,
-  setAudience,
   filteredThemes,
   hasResults,
   totalSubThemes
@@ -79,31 +77,6 @@ function scrollToTheme(id: string) {
           aria-label="Navigation des thèmes"
         >
           <div class="sticky top-20 bg-gray-50 dark:bg-gray-800/50 rounded-[var(--ui-radius)] shadow-sm p-3">
-            <!-- Toggle SEN / CEJEF -->
-            <div class="flex gap-1 mb-3 p-1 bg-gray-100 dark:bg-gray-700/50 rounded-[var(--ui-radius)]" role="group" aria-label="Profil">
-              <button
-                class="flex-1 px-3 py-2 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                :class="audienceFilter === 'sen'
-                  ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
-                :aria-pressed="audienceFilter === 'sen'"
-                @click="setAudience('sen')"
-              >
-                SEN
-              </button>
-              <button
-                class="flex-1 px-3 py-2 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                :class="audienceFilter === 'cejef'
-                  ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
-                :aria-pressed="audienceFilter === 'cejef'"
-                @click="setAudience('cejef')"
-              >
-                CEJEF
-              </button>
-            </div>
-
-            <!-- Liste des thèmes (scroll spy) -->
             <ul class="space-y-0.5">
               <li v-for="theme in filteredThemes" :key="theme.id">
                 <button
