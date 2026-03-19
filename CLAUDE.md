@@ -175,7 +175,7 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 - `SoftwareCard.vue` / `SoftwareListItem.vue` — cartes catalogue (grille/liste)
 - `SoftwareFeatureBadge.vue` — badge réutilisable (icon + label, tailles sm/md)
 - `SoftwareCertificationCard.vue` — statut LGPD détaillé avec alternatives vertes
-- `OnboardingModal.vue` — popup tricolore LGPD au 1er accès (localStorage)
+- `OnboardingModal.vue` — modale "Classification LGPD" au 1er accès (localStorage) + avertissement données sensibles
 - `AppHeader.vue` — header avec liens "Référentiel logiciels" et "Protection des données"
 - `DataProtectionThemeContent.vue` — affichage d'un thème avec sous-thèmes et navigation prev/next
 - `DataProtectionPageHeader.vue` — recherche avec animation typewriter

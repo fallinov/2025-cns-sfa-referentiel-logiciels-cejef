@@ -273,6 +273,8 @@ export const useSoftwareStore = defineStore("software", () => {
     isFiltersDrawerOpen,
     popularFilters,
 
+    // Data
+    softwareList,
     // Getters
     uniqueCategories,
     uniqueDisciplines,

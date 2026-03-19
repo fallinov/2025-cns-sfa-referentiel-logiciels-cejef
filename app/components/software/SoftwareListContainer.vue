@@ -12,6 +12,7 @@ const {
   selectedActivities,
   selectedPopularFilters,
   sortBy,
+  softwareList,
   filteredSoftwareList,
   hasActiveFilters
 } = storeToRefs(store)
@@ -182,19 +183,13 @@ onUnmounted(() => {
       </h1>
     </div>
 
-    <!-- Banner: Usage pédagogique uniquement -->
-    <div class="flex items-start gap-3 mb-6 px-4 py-3 sm:px-4 rounded-[var(--ui-radius)] bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/50 mx-4 sm:mx-0">
-      <UIcon name="i-lucide-info" class="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
-      <p class="text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
-        Ce catalogue recense uniquement des <strong>logiciels à usage pédagogique</strong>.
-        L'utilisation de <strong>données sensibles</strong> (santé, religion, opinions) <strong>est interdite</strong> dans tous ces outils.
-      </p>
-    </div>
-
     <!-- Header Row: Count & Reset -->
     <div class="flex items-center justify-between mb-4 px-4 sm:px-0">
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
         {{ filteredSoftwareList.length }} logiciel{{ filteredSoftwareList.length > 1 ? "s" : "" }}
+        <span v-if="hasActiveFilters" class="text-base font-normal text-gray-500 dark:text-gray-400">
+          sur {{ softwareList.length }}
+        </span>
       </h2>
 
       <button
@@ -218,28 +213,28 @@ onUnmounted(() => {
     />
 
     <!-- Initial Loading Skeletons -->
-    <div v-if="isInitialLoading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-0">
+    <div v-if="isInitialLoading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-0" aria-hidden="true">
       <div
         v-for="n in 12"
         :key="`skeleton-${n}`"
         class="relative w-full overflow-hidden bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-md p-6 flex flex-col gap-6 isolate"
       >
         <div class="absolute top-5 left-5 z-20 flex flex-col gap-1.5">
-          <USkeleton class="h-6 w-6 rounded-full" />
-          <USkeleton class="h-6 w-6 rounded-full" />
-          <USkeleton class="h-6 w-6 rounded-full" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-6 rounded-full"></div>
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-6 rounded-full"></div>
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-6 rounded-full"></div>
         </div>
         <div class="relative z-10 space-y-3 flex-1 w-full pl-12">
-          <USkeleton class="h-7 w-3/4 rounded-md" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-7 w-3/4 rounded-md"></div>
           <div class="space-y-2 pt-1">
-            <USkeleton class="h-4 w-full" />
-            <USkeleton class="h-4 w-5/6" />
-            <USkeleton class="h-4 w-4/6" />
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-full"></div>
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-5/6"></div>
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-4/6"></div>
           </div>
         </div>
         <div class="relative z-10 flex gap-2 mt-auto">
-          <USkeleton class="h-6 w-24 rounded-md" />
-          <USkeleton class="h-6 w-20 rounded-md" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-24 rounded-md"></div>
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-20 rounded-md"></div>
         </div>
       </div>
     </div>
@@ -269,6 +264,7 @@ onUnmounted(() => {
       v-if="hasMoreItems && filteredSoftwareList.length > 0"
       ref="loadMoreSentinel"
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-0 mt-6"
+      aria-hidden="true"
     >
       <div
         v-for="n in 4"
@@ -276,22 +272,22 @@ onUnmounted(() => {
         class="relative w-full overflow-hidden bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-md p-6 flex flex-col gap-6 isolate"
       >
         <div class="absolute top-5 right-5 z-20">
-          <USkeleton class="h-6 w-6 rounded-full" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-6 rounded-full"></div>
         </div>
         <div class="relative z-10 w-12 h-12">
-          <USkeleton class="h-full w-full rounded-lg" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-full w-full rounded-lg"></div>
         </div>
         <div class="relative z-10 space-y-3 flex-1 w-full">
-          <USkeleton class="h-7 w-3/4 rounded-md" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-7 w-3/4 rounded-md"></div>
           <div class="space-y-2 pt-1">
-            <USkeleton class="h-4 w-full" />
-            <USkeleton class="h-4 w-5/6" />
-            <USkeleton class="h-4 w-4/6" />
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-full"></div>
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-5/6"></div>
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-4/6"></div>
           </div>
         </div>
         <div class="relative z-10 flex gap-2 mt-auto">
-          <USkeleton class="h-6 w-24 rounded-md" />
-          <USkeleton class="h-6 w-20 rounded-md" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-24 rounded-md"></div>
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-20 rounded-md"></div>
         </div>
       </div>
     </div>
