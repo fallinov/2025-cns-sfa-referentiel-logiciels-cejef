@@ -149,6 +149,7 @@ const showLgpdDetails = ref(false)
               color="neutral"
               variant="ghost"
               icon="i-lucide-chevron-left"
+              size="xl"
               aria-label="Logiciel précédent"
               class="text-gray-500"
             />
@@ -161,6 +162,7 @@ const showLgpdDetails = ref(false)
               color="neutral"
               variant="ghost"
               icon="i-lucide-chevron-right"
+              size="xl"
               aria-label="Logiciel suivant"
               class="text-gray-500"
             />
@@ -261,7 +263,7 @@ const showLgpdDetails = ref(false)
               <div class="flex flex-wrap gap-4 mt-6 text-sm text-gray-600 dark:text-gray-400">
                 <div class="flex items-center gap-1.5 bg-gray-100 dark:bg-gray-800 px-2.5 py-1 rounded-full">
                   <UIcon name="i-lucide-calendar" class="w-4 h-4" />
-                  <span>Mis à jour le {{ new Date(software.updatedAt).toLocaleDateString('fr-CH') }}</span>
+                  <span>Mis à jour le {{ new Date(Number(software.updatedAt)).toLocaleDateString('fr-CH') }}</span>
                 </div>
                 <div
                   v-if="software.requiresEduAccount && certificationLevel === 1"
@@ -335,13 +337,13 @@ const showLgpdDetails = ref(false)
 
               <div class="flex flex-col gap-8 relative z-10">
                 <!-- Disciplines -->
-                <div v-if="software.disciplines?.length">
+                <div v-if="software.disciplines?.length && software.disciplines.some(d => d !== 'Transversal')">
                   <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
                     Disciplines concernées
                   </h3>
                   <div class="flex flex-wrap gap-2">
                     <NuxtLink
-                      v-for="discipline in software.disciplines"
+                      v-for="discipline in software.disciplines.filter(d => d !== 'Transversal')"
                       :key="discipline"
                       :to="{ path: '/', query: { discipline } }"
                       :aria-label="`Filtrer par discipline : ${discipline}`"
@@ -407,10 +409,8 @@ const showLgpdDetails = ref(false)
                   À propos de {{ software.name }}
                 </h2>
               </div>
-              <div class="prose prose-lg dark:prose-invert prose-gray max-w-none bg-transparent">
-                <div class="text-gray-600 dark:text-gray-300 whitespace-pre-line leading-relaxed">
-                  {{ software.description }}
-                </div>
+              <div class="text-base lg:text-lg text-gray-600 dark:text-gray-300 whitespace-pre-line leading-relaxed max-w-prose">
+                {{ software.description }}
               </div>
             </div>
           </section>
