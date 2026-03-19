@@ -22,11 +22,16 @@ const isOpen = defineModel<boolean>({ default: false })
         Les couleurs indiquent le niveau d'utilisation autorisé avec les élèves.
       </p>
 
-      <p class="text-base text-gray-600 dark:text-gray-300 mb-6 p-3 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/50 rounded-[var(--ui-radius)]">
-        Ce catalogue recense uniquement des <strong>logiciels à usage pédagogique</strong>.
-        L'utilisation de <strong>données sensibles</strong> (santé, religion, opinions)
-        <strong>est interdite</strong> dans tous ces outils.
-      </p>
+      <div class="flex items-start gap-4 p-4 mb-6 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/50 rounded-[var(--ui-radius)]">
+        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center shrink-0 shadow-md">
+          <UIcon name="i-lucide-info" class="w-6 h-6 text-white stroke-[3]" />
+        </div>
+        <p class="text-base text-blue-800 dark:text-blue-200">
+          Ce catalogue recense uniquement des <strong>logiciels à usage pédagogique</strong>.
+          L'utilisation de <strong>données sensibles</strong> (santé, religion, opinions)
+          <strong>est interdite</strong> dans tous ces outils.
+        </p>
+      </div>
 
       <div class="space-y-4">
         <div class="flex items-start gap-4 p-4 rounded-[var(--ui-radius)] bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-800/30">
