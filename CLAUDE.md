@@ -148,7 +148,8 @@ When creating new custom variants for Nuxt UI components:
 - `app/composables/useSoftware.ts` — accès aux données (`getSoftwareList()`, `getSoftwareById()`)
 - `app/composables/useSimilarSoftware.ts` — logiciels similaires par catégorie
 - `app/composables/useSoftwareNavigation.ts` — navigation précédent/suivant
-- `app/composables/useDataProtection.ts` — filtrage audience SEN/CEJEF, recherche, persistance localStorage
+- `app/stores/audience.ts` — Pinia store global SEN/CEJEF (persisté localStorage, partagé entre pages)
+- `app/composables/useDataProtection.ts` — filtrage audience + recherche pour la page protection des données
 
 ### Component Structure
 
@@ -167,7 +168,7 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 │   └── SoftwareDetailPracticalInfo.vue (coût, support, âge)
 └── pages/protection-des-donnees.vue (protection des données)
     ├── data-protection/DataProtectionPageHeader.vue (titre, recherche typewriter)
-    ├── data-protection/DataProtectionThemeContent.vue (contenu thème + nav prev/next)
+    ├── data-protection/DataProtectionThemeContent.vue (contenu d'un thème avec sous-thèmes)
     └── data-protection/DataProtectionLinkList.vue (liens avec source et icône par type)
 ```
 
@@ -177,7 +178,8 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 - `SoftwareCertificationCard.vue` — statut LGPD détaillé avec alternatives vertes
 - `OnboardingModal.vue` — modale "Classification LGPD" au 1er accès (localStorage) + avertissement données sensibles
 - `AppHeader.vue` — header avec liens "Référentiel logiciels" et "Protection des données"
-- `DataProtectionThemeContent.vue` — affichage d'un thème avec sous-thèmes et navigation prev/next
+- `DataProtectionThemeContent.vue` — affichage d'un thème avec sous-thèmes et bouton copie lien
+- `AudienceChoiceScreen.vue` — écran de choix SEN/CEJEF au premier accès
 - `DataProtectionPageHeader.vue` — recherche avec animation typewriter
 
 ### Deployment Strategy

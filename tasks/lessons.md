@@ -34,3 +34,17 @@
 **Erreur** : Les checklists du skill ne couvraient pas la typographie (interligne, largeur de ligne, tailles responsive) ni le design visuel (espacement, proportions icônes).
 **Correction** : Ajout de 2 nouvelles checklists (`typography.md`, `visual-design.md`) + complétion des 3 existantes. Total : 295 items.
 **Règle** : Après chaque session de corrections UX, vérifier que les règles appliquées sont dans le skill pour les prochains audits.
+
+## 2026-03-19 — storeToRefs ne fonctionne pas avec les constantes Pinia
+
+**Contexte** : Ajout du compteur filtré "X logiciels sur 127" qui accède à `softwareList.length`.
+**Erreur** : `softwareList` est une constante (`const softwareList = getSoftwareList()`) dans le store, pas un `ref`. `storeToRefs` retourne `undefined` pour les non-refs → TypeError.
+**Correction** : Accéder via `store.softwareList` directement au lieu de destructurer avec `storeToRefs`.
+**Règle** : `storeToRefs` ne fonctionne qu'avec les `ref`/`computed` du store. Les constantes doivent être accédées via `store.nomVariable`.
+
+## 2026-03-19 — Labels LGPD hébergement hardcodés = bug
+
+**Contexte** : Page détail logiciel affiche "Hébergement Union Européenne" pour Socrative (hébergé aux USA).
+**Erreur** : Le mapping `hosting: { 2: "Union Européenne" }` était hardcodé — la valeur 2 ne signifie pas toujours UE.
+**Correction** : Utiliser `software.dataLocation` (la vraie localisation) au lieu d'un label fixe par niveau.
+**Règle** : Ne jamais hardcoder des labels pour des niveaux de classification — utiliser les données réelles du logiciel.
