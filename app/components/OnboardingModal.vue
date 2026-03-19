@@ -127,6 +127,11 @@ watch(isOpen, (open) => {
           </div>
         </div>
 
+        <!-- Indication clic -->
+        <p class="mt-4 text-base text-gray-500 dark:text-gray-400 text-center italic">
+          Cliquez sur une fiche pour voir le détail complet : alternatives recommandées, informations pratiques et classification détaillée.
+        </p>
+
         <!-- Légende annotée -->
         <div class="mt-6 space-y-3">
           <div class="flex items-start gap-3">
