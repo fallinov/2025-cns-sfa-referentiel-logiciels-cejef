@@ -34,6 +34,18 @@ const goBack = () => {
 const softwareId = computed(() => route.params.id as string)
 const software = computed(() => getSoftwareById(softwareId.value))
 
+const audienceStore = useAudienceStore()
+
+// Copie du lien
+const copied = ref(false)
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href)
+  copied.value = true
+  setTimeout(() => {
+    copied.value = false
+  }, 1500)
+}
+
 // Navigation suivant/précédent
 const previousSoftware = computed(() => software.value ? getPreviousSoftware(software.value.id) : null)
 const nextSoftware = computed(() => software.value ? getNextSoftware(software.value.id) : null)
@@ -207,9 +219,40 @@ const showLgpdDetails = ref(false)
 
             <!-- Title & Intro -->
             <div class="flex-1 min-w-0">
-              <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
-                {{ software.name }}
-              </h1>
+              <div class="flex items-start gap-3 mb-3">
+                <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
+                  {{ software.name }}
+                </h1>
+                <div class="relative flex-shrink-0 mt-2">
+                  <Transition
+                    enter-active-class="transition-all duration-500 ease-out"
+                    enter-from-class="opacity-100 translate-y-0"
+                    enter-to-class="opacity-0 -translate-y-4"
+                  >
+                    <span
+                      v-if="copied"
+                      class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-green-600 dark:text-green-400 whitespace-nowrap pointer-events-none"
+                    >
+                      Copié !
+                    </span>
+                  </Transition>
+                  <button
+                    class="p-2 rounded-[var(--ui-radius)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    :class="copied
+                      ? 'text-green-500'
+                      : 'text-gray-300 hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-400'"
+                    title="Copier le lien de cette fiche"
+                    aria-label="Copier le lien de cette fiche"
+                    @click="copyLink()"
+                  >
+                    <UIcon
+                      :name="copied ? 'i-lucide-check' : 'i-lucide-link'"
+                      class="w-5 h-5"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </div>
+              </div>
               <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
                 {{ software.shortDescription }}
               </p>
@@ -222,17 +265,24 @@ const showLgpdDetails = ref(false)
                 </div>
                 <div
                   v-if="software.requiresEduAccount && certificationLevel === 1"
-                  class="flex items-center gap-1.5 bg-blue-600 text-white px-2.5 py-1 rounded-full"
+                  class="flex items-center gap-1.5 bg-blue-700 text-white px-2.5 py-1 rounded-full"
                 >
-                  <UIcon name="i-lucide-key-round" class="w-4 h-4" />
-                  <span>Compte @edu.jura.ch requis</span>
+                  <UIcon name="i-lucide-at-sign" class="w-4 h-4" />
+                  <span>Compte @edu</span>
                 </div>
                 <div
-                  v-if="software.approvedBySEN"
-                  class="flex items-center gap-1.5 bg-sky-600 text-white px-2.5 py-1 rounded-full"
+                  v-if="software.approvedBySEN && audienceStore.audience !== 'cejef'"
+                  class="flex items-center gap-1.5 bg-green-500 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-badge-check" class="w-4 h-4" />
                   <span>Approuvé SEN</span>
+                </div>
+                <div
+                  v-if="software.supportedByCEJEF && software.campusTraining && software.certificationLevel === 1 && audienceStore.audience !== 'sen'"
+                  class="flex items-center gap-1.5 bg-green-500 text-white px-2.5 py-1 rounded-full"
+                >
+                  <UIcon name="i-lucide-badge-check" class="w-4 h-4" />
+                  <span>Approuvé CEJEF</span>
                 </div>
               </div>
             </div>

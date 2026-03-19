@@ -8,6 +8,8 @@ interface Props {
 
 const props = defineProps<Props>()
 
+const audienceStore = useAudienceStore()
+
 const config = computed(() => {
   return getCertificationConfig(props.software.certificationLevel)
 })
@@ -86,16 +88,16 @@ const handleCardClick = () => {
     <!-- Badges (Quick Filters only) -->
     <div class="relative z-10 mt-auto flex flex-wrap gap-2 pt-2">
       <SoftwareFeatureBadge
-        v-if="isApprovedCejef"
+        v-if="isApprovedCejef && audienceStore.audience !== 'sen'"
         icon="i-lucide-badge-check"
         label="Approuvé CEJEF"
-        class="bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
+        class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
-        v-if="software.approvedBySEN"
+        v-if="software.approvedBySEN && audienceStore.audience !== 'cejef'"
         icon="i-lucide-badge-check"
         label="Approuvé SEN"
-        class="bg-sky-600 text-white dark:bg-sky-600 dark:text-white border-none"
+        class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.campusTraining && !isApprovedCejef"
@@ -104,15 +106,15 @@ const handleCardClick = () => {
       />
       <SoftwareFeatureBadge
         v-if="software.requiresEduAccount && software.certificationLevel === 1"
-        icon="i-lucide-key-round"
-        label="Compte @edu.jura.ch"
-        class="bg-blue-600 text-white dark:bg-blue-600 dark:text-white border-none"
+        icon="i-lucide-at-sign"
+        label="Compte @edu"
+        class="bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.requiresParentalConsent"
-        icon="i-lucide-shield-alert"
+        icon="i-lucide-cake"
         label="< 16 ans : accord parents"
-        class="bg-amber-500 text-white dark:bg-amber-500 dark:text-white border-none"
+        class="bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
       />
     </div>
   </NuxtLink>

@@ -5,6 +5,8 @@ const props = defineProps<{
   software: Software
 }>()
 
+const audienceStore = useAudienceStore()
+
 // "Approuvé CEJEF" requires: level 1 (green) + supportedByCEJEF + campusTraining
 const isApprovedCejef = computed(() => {
   return props.software.certificationLevel === 1
@@ -37,36 +39,36 @@ const isApprovedCejef = computed(() => {
     <!-- Meta / Badges -->
     <div class="hidden sm:flex items-center gap-2">
       <!-- Approuvé CEJEF (level 1 + supportedByCEJEF + campusTraining) -->
-      <div v-if="isApprovedCejef" class="inline-flex">
+      <div v-if="isApprovedCejef && audienceStore.audience !== 'sen'" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé CEJEF"
           size="sm"
           hide-label
-          class="lg:hidden bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
+          class="lg:hidden bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé CEJEF"
           size="sm"
-          class="hidden lg:inline-flex bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
+          class="hidden lg:inline-flex bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
       </div>
 
       <!-- Approuvé SEN -->
-      <div v-if="software.approvedBySEN" class="inline-flex">
+      <div v-if="software.approvedBySEN && audienceStore.audience !== 'cejef'" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé SEN"
           size="sm"
           hide-label
-          class="lg:hidden bg-sky-600 text-white dark:bg-sky-600 dark:text-white border-none"
+          class="lg:hidden bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé SEN"
           size="sm"
-          class="hidden lg:inline-flex bg-sky-600 text-white dark:bg-sky-600 dark:text-white border-none"
+          class="hidden lg:inline-flex bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
       </div>
 
@@ -90,34 +92,34 @@ const isApprovedCejef = computed(() => {
       <!-- Compte @edu.jura.ch requis -->
       <div v-if="software.requiresEduAccount && software.certificationLevel === 1" class="inline-flex">
         <SoftwareFeatureBadge
-          icon="i-lucide-key-round"
-          label="Compte @edu.jura.ch"
+          icon="i-lucide-at-sign"
+          label="Compte @edu"
           size="sm"
           hide-label
-          class="lg:hidden bg-blue-600 text-white dark:bg-blue-600 dark:text-white border-none"
+          class="lg:hidden bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
-          icon="i-lucide-key-round"
-          label="Compte @edu.jura.ch"
+          icon="i-lucide-at-sign"
+          label="Compte @edu"
           size="sm"
-          class="hidden lg:inline-flex bg-blue-600 text-white dark:bg-blue-600 dark:text-white border-none"
+          class="hidden lg:inline-flex bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
         />
       </div>
 
       <!-- Avertissement mineurs < 16 ans -->
       <div v-if="software.requiresParentalConsent" class="inline-flex">
         <SoftwareFeatureBadge
-          icon="i-lucide-shield-alert"
+          icon="i-lucide-cake"
           label="< 16 ans : accord parents"
           size="sm"
           hide-label
-          class="lg:hidden bg-amber-500 text-white dark:bg-amber-500 dark:text-white border-none"
+          class="lg:hidden bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
-          icon="i-lucide-shield-alert"
+          icon="i-lucide-cake"
           label="< 16 ans : accord parents"
           size="sm"
-          class="hidden lg:inline-flex bg-amber-500 text-white dark:bg-amber-500 dark:text-white border-none"
+          class="hidden lg:inline-flex bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
         />
       </div>
     </div>
