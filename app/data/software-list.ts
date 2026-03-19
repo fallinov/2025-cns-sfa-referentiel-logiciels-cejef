@@ -3011,7 +3011,7 @@ export const softwareList: Software[] = [
     description: "Socrative est une plateforme de quiz et d'évaluation formative qui permet aux enseignants de créer des questions (QCM, vrai/faux, réponse courte), de les administrer en temps réel et de visualiser instantanément les résultats. Les élèves rejoignent via un code de classe sans créer de compte (accès anonyme possible). L'outil propose des modes compétitifs (Space Race) et des rapports téléchargeables. Développé par Showbie Inc. (Canada).",
     lgpd: {
       hosting: 2,
-      rgpd: 2,
+      rgpd: 1,
       dataCollection: 1
     },
     certificationLevel: 2,
@@ -3037,7 +3037,7 @@ export const softwareList: Software[] = [
       "Transversal"
     ],
     usageNotes: "Accès élèves possible via code sans compte. Mode gratuit limité à 1 salle et 50 élèves.",
-    remarque: "Niveau 2 : Showbie Inc. (Canada, pays adéquat), hébergement AWS US (Cloud Act), conforme RGPD avec DPA, certifié COPPA/FERPA, EU-US DPF. Accès anonyme possible pour les élèves via code de classe.",
+    remarque: "Niveau 2 (Cloud Act) : Showbie Inc. (Canada, pays adéquat), hébergement AWS US sans contrat CEJEF. RGPD conforme avec DPA, certifié COPPA/FERPA, EU-US DPF. Collecte minimale, accès anonyme possible via code de classe.",
     createdAt: 1773878400000,
     updatedAt: 1773878400000
   },
