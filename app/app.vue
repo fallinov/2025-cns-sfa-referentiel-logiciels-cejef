@@ -34,6 +34,8 @@ const _links = [{
   to: "#"
 }]
 
+const audienceStore = useAudienceStore()
+
 const showOnboarding = ref(false)
 
 const openOnboarding = () => {
@@ -41,11 +43,20 @@ const openOnboarding = () => {
 }
 
 onMounted(() => {
-  const done = localStorage.getItem("referentiel-onboarding-done")
-  if (!done) {
-    showOnboarding.value = true
-  }
+  audienceStore.init()
 })
+
+// La modale LGPD s'affiche après le choix SEN/CEJEF (pas en même temps)
+watch(() => audienceStore.hasChosen, (chosen) => {
+  if (chosen) {
+    const done = localStorage.getItem("referentiel-onboarding-done")
+    if (!done) {
+      nextTick(() => {
+        showOnboarding.value = true
+      })
+    }
+  }
+}, { immediate: true })
 
 watch(showOnboarding, (newVal, oldVal) => {
   if (!newVal && oldVal) {
@@ -58,6 +69,11 @@ provide("openOnboarding", openOnboarding)
 
 <template>
   <UApp class="min-h-screen bg-gray-100 dark:bg-gray-950">
+    <!-- Écran de choix SEN/CEJEF au premier accès -->
+    <ClientOnly>
+      <AudienceChoiceScreen v-if="!audienceStore.hasChosen" />
+    </ClientOnly>
+
     <AppHeader />
     <OnboardingModal v-model="showOnboarding" />
 
