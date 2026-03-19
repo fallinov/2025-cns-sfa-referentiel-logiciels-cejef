@@ -63,7 +63,7 @@ watch(isOpen, (open) => {
                 Réservé aux enseignants
               </p>
               <p class="text-base text-orange-700 dark:text-orange-400 mt-1">
-                Les élèves ne doivent pas y créer de compte. L'enseignant peut l'utiliser sans y entrer de données d'élèves.
+                Pas de données d'élèves. Les élèves peuvent l'utiliser avec un compte anonyme (adresse e-mail alias).
               </p>
             </div>
           </div>
