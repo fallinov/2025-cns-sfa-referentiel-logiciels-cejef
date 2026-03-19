@@ -3012,7 +3012,7 @@ export const softwareList: Software[] = [
     lgpd: {
       hosting: 2,
       rgpd: 1,
-      dataCollection: 1
+      dataCollection: 2
     },
     certificationLevel: 2,
     dataLocation: "États-Unis",
@@ -3025,7 +3025,7 @@ export const softwareList: Software[] = [
     categories: [
       "Évaluation",
       "Quiz",
-      "Sondage"
+      "Sondages"
     ],
     pedagogicalActivities: [
       "Évaluation formative",
@@ -3036,8 +3036,8 @@ export const softwareList: Software[] = [
     disciplines: [
       "Transversal"
     ],
-    usageNotes: "Accès élèves possible via code sans compte. Mode gratuit limité à 1 salle et 50 élèves.",
-    remarque: "Niveau 2 (Cloud Act) : Showbie Inc. (Canada, pays adéquat), hébergement AWS US sans contrat CEJEF. RGPD conforme avec DPA, certifié COPPA/FERPA, EU-US DPF. Collecte minimale, accès anonyme possible via code de classe.",
+    usageNotes: "Accès élèves via code de classe sans compte (anonyme). Mode gratuit limité à 1 salle et 50 élèves. Ne pas utiliser AI Feedback avec des données d'élèves identifiables (OpenAI API).",
+    remarque: "Niveau 2 : Showbie Inc. (Canada), hébergement AWS US sans contrat CEJEF. RGPD conforme avec DPA+SCCs, certifié COPPA/FERPA, EU-US DPF. Analytics tiers : Amplitude, Google Looker, Intercom, Sentry. OpenAI API pour AI Feedback.",
     createdAt: 1773878400000,
     updatedAt: 1773878400000
   },
