@@ -107,14 +107,14 @@ const isApprovedCejef = computed(() => {
       <!-- Avertissement mineurs < 16 ans -->
       <div v-if="software.requiresParentalConsent" class="inline-flex">
         <SoftwareFeatureBadge
-          icon="i-lucide-cake"
+          icon="i-lucide-user-round-x"
           label="< 16 ans : accord parents"
           size="sm"
           hide-label
           class="lg:hidden bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
-          icon="i-lucide-cake"
+          icon="i-lucide-user-round-x"
           label="< 16 ans : accord parents"
           size="sm"
           class="hidden lg:inline-flex bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"

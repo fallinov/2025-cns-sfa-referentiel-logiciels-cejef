@@ -110,7 +110,7 @@ const handleCardClick = () => {
       />
       <SoftwareFeatureBadge
         v-if="software.requiresParentalConsent"
-        icon="i-lucide-cake"
+        icon="i-lucide-user-round-x"
         label="< 16 ans : accord parents"
         class="bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
       />
