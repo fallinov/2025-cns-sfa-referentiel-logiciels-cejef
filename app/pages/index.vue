@@ -31,9 +31,14 @@ onMounted(() => {
 <template>
   <div class="min-h-screen bg-gray-100 dark:bg-gray-950">
     <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8">
-      <h1 class="sr-only">
-        Référentiel Logiciels CEJEF
-      </h1>
+      <div class="mb-6 px-4 sm:px-0">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
+          Référentiel logiciels
+        </h1>
+        <p class="mt-2 text-base lg:text-lg text-gray-600 dark:text-gray-400">
+          Logiciels pédagogiques classifiés selon la protection des données (LGPD).
+        </p>
+      </div>
       <SoftwarePageHeader />
       <SoftwareListContainer />
     </UContainer>

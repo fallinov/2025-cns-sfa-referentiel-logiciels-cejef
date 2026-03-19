@@ -183,15 +183,6 @@ onUnmounted(() => {
       </h1>
     </div>
 
-    <!-- Banner: Usage pédagogique uniquement -->
-    <div class="flex items-start gap-3 mb-6 px-4 py-3 sm:px-4 rounded-[var(--ui-radius)] bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/50 mx-4 sm:mx-0">
-      <UIcon name="i-lucide-info" class="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
-      <p class="text-base text-blue-800 dark:text-blue-200 leading-relaxed max-w-prose">
-        Ce catalogue recense uniquement des <strong>logiciels à usage pédagogique</strong>.
-        L'utilisation de <strong>données sensibles</strong> (santé, religion, opinions) <strong>est interdite</strong> dans tous ces outils.
-      </p>
-    </div>
-
     <!-- Header Row: Count & Reset -->
     <div class="flex items-center justify-between mb-4 px-4 sm:px-0">
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
