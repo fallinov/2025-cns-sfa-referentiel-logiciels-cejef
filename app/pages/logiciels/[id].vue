@@ -261,7 +261,7 @@ const showLgpdDetails = ref(false)
               <div class="flex flex-wrap gap-4 mt-6 text-sm text-gray-600 dark:text-gray-400">
                 <div class="flex items-center gap-1.5 bg-gray-100 dark:bg-gray-800 px-2.5 py-1 rounded-full">
                   <UIcon name="i-lucide-calendar" class="w-4 h-4" />
-                  <span>Mis à jour le {{ new Date().toLocaleDateString('fr-CH') }}</span>
+                  <span>Mis à jour le {{ new Date(software.updatedAt).toLocaleDateString('fr-CH') }}</span>
                 </div>
                 <div
                   v-if="software.requiresEduAccount && certificationLevel === 1"
