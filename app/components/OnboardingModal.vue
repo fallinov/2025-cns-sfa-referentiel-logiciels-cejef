@@ -185,7 +185,7 @@ watch(isOpen, (open) => {
     </template>
 
     <template #footer>
-      <div class="flex justify-between">
+      <div class="flex w-full" :class="step === 2 ? 'justify-between' : 'justify-end'">
         <UButton
           v-if="step === 2"
           variant="ghost"
@@ -194,7 +194,6 @@ watch(isOpen, (open) => {
         >
           Précédent
         </UButton>
-        <div v-else></div>
 
         <UButton
           color="primary"
