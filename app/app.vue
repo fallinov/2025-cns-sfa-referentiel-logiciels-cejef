@@ -62,6 +62,11 @@ provide("openOnboarding", openOnboarding)
 
 <template>
   <UApp class="min-h-screen bg-gray-100 dark:bg-gray-950">
+    <!-- Écran de choix SEN/CEJEF au premier accès -->
+    <ClientOnly>
+      <AudienceChoiceScreen v-if="!audienceStore.hasChosen" />
+    </ClientOnly>
+
     <AppHeader />
     <OnboardingModal v-model="showOnboarding" />
 

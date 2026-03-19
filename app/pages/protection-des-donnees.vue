@@ -11,7 +11,6 @@ useSeoMeta({
 const {
   searchQuery,
   audienceFilter,
-  hasChosenAudience,
   setAudience,
   filteredThemes,
   hasResults,
@@ -90,178 +89,136 @@ function focusSidebarButton(index: number) {
 <template>
   <div class="min-h-screen bg-gray-100 dark:bg-gray-950">
     <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8 max-w-5xl">
-      <!-- Écran de choix initial -->
-      <ClientOnly>
-        <div
-          v-if="!hasChosenAudience"
-          class="flex flex-col items-center justify-center py-20 px-4 text-center"
-        >
-          <UIcon
-            name="i-lucide-shield"
-            class="w-16 h-16 text-primary-500 mb-6"
-            aria-hidden="true"
-          />
-          <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-            Protection des données
-          </h1>
-          <p class="text-base text-gray-600 dark:text-gray-400 mb-8 max-w-md">
-            Les contenus sont adaptés selon votre service. Choisissez votre profil pour afficher les informations qui vous concernent.
-          </p>
-
-          <div class="flex flex-col sm:flex-row gap-4">
-            <button
-              class="group flex flex-col items-center gap-3 px-8 py-6 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-[var(--ui-radius)] shadow-sm hover:shadow-lg hover:border-primary-500 dark:hover:border-primary-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-              @click="setAudience('sen')"
-            >
-              <UIcon name="i-lucide-building-2" class="w-8 h-8 text-gray-400 group-hover:text-primary-500 transition-colors" aria-hidden="true" />
-              <span class="text-lg font-semibold text-gray-900 dark:text-white">SEN</span>
-              <span class="text-sm text-gray-500 dark:text-gray-400">Service de l'enseignement</span>
-            </button>
-
-            <button
-              class="group flex flex-col items-center gap-3 px-8 py-6 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-[var(--ui-radius)] shadow-sm hover:shadow-lg hover:border-primary-500 dark:hover:border-primary-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-              @click="setAudience('cejef')"
-            >
-              <UIcon name="i-lucide-school" class="w-8 h-8 text-gray-400 group-hover:text-primary-500 transition-colors" aria-hidden="true" />
-              <span class="text-lg font-semibold text-gray-900 dark:text-white">CEJEF</span>
-              <span class="text-sm text-gray-500 dark:text-gray-400">Formation postobligatoire</span>
-            </button>
-          </div>
-        </div>
-      </ClientOnly>
-
       <!-- Contenu principal -->
-      <template v-if="hasChosenAudience">
-        <DataProtectionPageHeader
-          v-model:search-query="searchQuery"
-        />
+      <DataProtectionPageHeader
+        v-model:search-query="searchQuery"
+      />
 
-        <div v-if="hasResults" class="px-4 sm:px-0">
-          <!-- Bouton mobile sidebar -->
-          <button
-            class="flex items-center gap-2 mb-4 px-4 h-11 bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm text-base font-medium text-gray-700 dark:text-gray-200 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-            :aria-expanded="isMobileSidebarOpen"
-            aria-controls="dp-sidebar"
-            @click="isMobileSidebarOpen = !isMobileSidebarOpen"
-          >
-            <UIcon name="i-lucide-menu" class="w-4 h-4" aria-hidden="true" />
-            {{ activeTheme?.shortTitle || "Thèmes" }}
-            <UIcon
-              name="i-lucide-chevron-down"
-              class="w-4 h-4 ml-auto transition-transform"
-              :class="{ 'rotate-180': isMobileSidebarOpen }"
-              aria-hidden="true"
-            />
-          </button>
-
-          <!-- Backdrop mobile -->
-          <div
-            v-if="isMobileSidebarOpen"
-            class="fixed inset-0 z-30 bg-black/30 lg:hidden"
-            aria-hidden="true"
-            @click="isMobileSidebarOpen = false"
-          ></div>
-
-          <div class="flex gap-6">
-            <!-- Sidebar -->
-            <nav
-              id="dp-sidebar"
-              class="w-64 flex-shrink-0"
-              :class="isMobileSidebarOpen ? 'block absolute z-40 left-4 right-4 sm:left-6 sm:right-6 lg:static lg:block' : 'hidden lg:block'"
-              aria-label="Navigation des thèmes"
-            >
-              <div class="bg-gray-50 dark:bg-gray-800/50 rounded-[var(--ui-radius)] shadow-sm p-3 lg:sticky lg:top-20">
-                <!-- Toggle SEN / CEJEF -->
-                <div class="flex gap-1 mb-3 p-1 bg-gray-100 dark:bg-gray-700/50 rounded-[var(--ui-radius)]" role="group" aria-label="Profil">
-                  <button
-                    class="flex-1 px-3 py-2.5 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                    :class="audienceFilter === 'sen'
-                      ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
-                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
-                    :aria-pressed="audienceFilter === 'sen'"
-                    @click="setAudience('sen')"
-                  >
-                    SEN
-                  </button>
-                  <button
-                    class="flex-1 px-3 py-2.5 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                    :class="audienceFilter === 'cejef'
-                      ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
-                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
-                    :aria-pressed="audienceFilter === 'cejef'"
-                    @click="setAudience('cejef')"
-                  >
-                    CEJEF
-                  </button>
-                </div>
-
-                <!-- Liste des thèmes -->
-                <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
-                <ul class="space-y-0.5" @keydown="handleSidebarKeydown">
-                  <li v-for="theme in filteredThemes" :key="theme.id">
-                    <button
-                      class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-base transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                      :class="activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)
-                        ? 'bg-white dark:bg-gray-700 text-primary-700 dark:text-primary-300 font-semibold shadow-sm'
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100 hover:shadow-sm'"
-                      :aria-current="(activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)) ? 'true' : undefined"
-                      @click="selectTheme(theme.id)"
-                    >
-                      <UIcon :name="theme.icon" class="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                      <span class="truncate">{{ theme.shortTitle }}</span>
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-
-            <!-- Contenu -->
-            <main class="flex-1 min-w-0" aria-live="polite">
-              <!-- Compteur de résultats (visible uniquement avec recherche active) -->
-              <p
-                v-if="searchQuery.trim()"
-                class="text-xs text-gray-500 dark:text-gray-400 mb-3"
-              >
-                {{ totalSubThemes }} {{ totalSubThemes > 1 ? "résultats" : "résultat" }} dans {{ filteredThemes.length }} {{ filteredThemes.length > 1 ? "thèmes" : "thème" }}
-              </p>
-
-              <Transition
-                enter-active-class="transition-opacity duration-200 ease-out"
-                enter-from-class="opacity-0"
-                enter-to-class="opacity-100"
-                mode="out-in"
-              >
-                <DataProtectionThemeContent
-                  v-if="activeTheme"
-                  :key="activeTheme.id"
-                  :theme="activeTheme"
-                  :prev-theme="prevTheme"
-                  :next-theme="nextTheme"
-                  @navigate="selectTheme"
-                />
-              </Transition>
-            </main>
-          </div>
-        </div>
-
-        <!-- État vide -->
-        <div
-          v-else
-          class="flex flex-col items-center justify-center py-20 text-center"
+      <div v-if="hasResults" class="px-4 sm:px-0">
+        <!-- Bouton mobile sidebar -->
+        <button
+          class="flex items-center gap-2 mb-4 px-4 h-11 bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm text-base font-medium text-gray-700 dark:text-gray-200 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+          :aria-expanded="isMobileSidebarOpen"
+          aria-controls="dp-sidebar"
+          @click="isMobileSidebarOpen = !isMobileSidebarOpen"
         >
+          <UIcon name="i-lucide-menu" class="w-4 h-4" aria-hidden="true" />
+          {{ activeTheme?.shortTitle || "Thèmes" }}
           <UIcon
-            name="i-lucide-search-x"
-            class="w-12 h-12 text-gray-300 dark:text-gray-600 mb-4"
+            name="i-lucide-chevron-down"
+            class="w-4 h-4 ml-auto transition-transform"
+            :class="{ 'rotate-180': isMobileSidebarOpen }"
             aria-hidden="true"
           />
-          <p class="text-lg font-medium text-gray-500 dark:text-gray-400">
-            Aucun résultat trouvé
-          </p>
-          <p class="text-sm text-gray-400 dark:text-gray-500 mt-1">
-            Essayez avec d'autres termes de recherche ou changez le filtre.
-          </p>
+        </button>
+
+        <!-- Backdrop mobile -->
+        <div
+          v-if="isMobileSidebarOpen"
+          class="fixed inset-0 z-30 bg-black/30 lg:hidden"
+          aria-hidden="true"
+          @click="isMobileSidebarOpen = false"
+        ></div>
+
+        <div class="flex gap-6">
+          <!-- Sidebar -->
+          <nav
+            id="dp-sidebar"
+            class="w-64 flex-shrink-0"
+            :class="isMobileSidebarOpen ? 'block absolute z-40 left-4 right-4 sm:left-6 sm:right-6 lg:static lg:block' : 'hidden lg:block'"
+            aria-label="Navigation des thèmes"
+          >
+            <div class="bg-gray-50 dark:bg-gray-800/50 rounded-[var(--ui-radius)] shadow-sm p-3 lg:sticky lg:top-20">
+              <!-- Toggle SEN / CEJEF -->
+              <div class="flex gap-1 mb-3 p-1 bg-gray-100 dark:bg-gray-700/50 rounded-[var(--ui-radius)]" role="group" aria-label="Profil">
+                <button
+                  class="flex-1 px-3 py-2.5 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  :class="audienceFilter === 'sen'
+                    ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
+                  :aria-pressed="audienceFilter === 'sen'"
+                  @click="setAudience('sen')"
+                >
+                  SEN
+                </button>
+                <button
+                  class="flex-1 px-3 py-2.5 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  :class="audienceFilter === 'cejef'
+                    ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
+                  :aria-pressed="audienceFilter === 'cejef'"
+                  @click="setAudience('cejef')"
+                >
+                  CEJEF
+                </button>
+              </div>
+
+              <!-- Liste des thèmes -->
+              <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
+              <ul class="space-y-0.5" @keydown="handleSidebarKeydown">
+                <li v-for="theme in filteredThemes" :key="theme.id">
+                  <button
+                    class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-base transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    :class="activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)
+                      ? 'bg-white dark:bg-gray-700 text-primary-700 dark:text-primary-300 font-semibold shadow-sm'
+                      : 'text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100 hover:shadow-sm'"
+                    :aria-current="(activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)) ? 'true' : undefined"
+                    @click="selectTheme(theme.id)"
+                  >
+                    <UIcon :name="theme.icon" class="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                    <span class="truncate">{{ theme.shortTitle }}</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <!-- Contenu -->
+          <main class="flex-1 min-w-0" aria-live="polite">
+            <!-- Compteur de résultats (visible uniquement avec recherche active) -->
+            <p
+              v-if="searchQuery.trim()"
+              class="text-xs text-gray-500 dark:text-gray-400 mb-3"
+            >
+              {{ totalSubThemes }} {{ totalSubThemes > 1 ? "résultats" : "résultat" }} dans {{ filteredThemes.length }} {{ filteredThemes.length > 1 ? "thèmes" : "thème" }}
+            </p>
+
+            <Transition
+              enter-active-class="transition-opacity duration-200 ease-out"
+              enter-from-class="opacity-0"
+              enter-to-class="opacity-100"
+              mode="out-in"
+            >
+              <DataProtectionThemeContent
+                v-if="activeTheme"
+                :key="activeTheme.id"
+                :theme="activeTheme"
+                :prev-theme="prevTheme"
+                :next-theme="nextTheme"
+                @navigate="selectTheme"
+              />
+            </Transition>
+          </main>
         </div>
-      </template>
+      </div>
+
+      <!-- État vide -->
+      <div
+        v-else
+        class="flex flex-col items-center justify-center py-20 text-center"
+      >
+        <UIcon
+          name="i-lucide-search-x"
+          class="w-12 h-12 text-gray-300 dark:text-gray-600 mb-4"
+          aria-hidden="true"
+        />
+        <p class="text-lg font-medium text-gray-500 dark:text-gray-400">
+          Aucun résultat trouvé
+        </p>
+        <p class="text-sm text-gray-400 dark:text-gray-500 mt-1">
+          Essayez avec d'autres termes de recherche ou changez le filtre.
+        </p>
+      </div>
     </UContainer>
     <BackToTop />
   </div>
