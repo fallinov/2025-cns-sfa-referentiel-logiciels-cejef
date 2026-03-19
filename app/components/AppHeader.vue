@@ -89,6 +89,33 @@ const openOnboarding = inject<() => void>("openOnboarding")
           </li>
         </ul>
       </nav>
+
+      <!-- Toggle SEN/CEJEF dans le menu mobile -->
+      <div
+        v-if="audienceStore.hasChosen"
+        class="flex gap-1 p-1 mt-6 bg-gray-100 dark:bg-gray-800 rounded-[var(--ui-radius)]"
+        role="group"
+        aria-label="Profil"
+      >
+        <button
+          class="flex-1 px-3 py-3 text-base font-medium rounded-[var(--ui-radius)] transition-all"
+          :class="audienceStore.audience === 'sen'
+            ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+            : 'text-gray-500 dark:text-gray-400'"
+          @click="audienceStore.setAudience('sen')"
+        >
+          SEN
+        </button>
+        <button
+          class="flex-1 px-3 py-3 text-base font-medium rounded-[var(--ui-radius)] transition-all"
+          :class="audienceStore.audience === 'cejef'
+            ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+            : 'text-gray-500 dark:text-gray-400'"
+          @click="audienceStore.setAudience('cejef')"
+        >
+          CEJEF
+        </button>
+      </div>
     </template>
   </UHeader>
 </template>
