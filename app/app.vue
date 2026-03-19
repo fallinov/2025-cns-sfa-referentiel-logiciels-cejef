@@ -44,12 +44,19 @@ const openOnboarding = () => {
 
 onMounted(() => {
   audienceStore.init()
-
-  const done = localStorage.getItem("referentiel-onboarding-done")
-  if (!done) {
-    showOnboarding.value = true
-  }
 })
+
+// La modale LGPD s'affiche après le choix SEN/CEJEF (pas en même temps)
+watch(() => audienceStore.hasChosen, (chosen) => {
+  if (chosen) {
+    const done = localStorage.getItem("referentiel-onboarding-done")
+    if (!done) {
+      nextTick(() => {
+        showOnboarding.value = true
+      })
+    }
+  }
+}, { immediate: true })
 
 watch(showOnboarding, (newVal, oldVal) => {
   if (!newVal && oldVal) {
