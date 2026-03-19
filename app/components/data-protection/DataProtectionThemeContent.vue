@@ -20,12 +20,15 @@ function hl(text: string) {
   return highlightText(text, searchQuery.value)
 }
 
-const toast = useToast()
+const copiedId = ref<string | null>(null)
 
 function copyLink(subThemeId: string) {
   const url = `${window.location.origin}${window.location.pathname}#${subThemeId}`
   navigator.clipboard.writeText(url)
-  toast.add({ title: "Lien copié", icon: "i-lucide-check", color: "success" })
+  copiedId.value = subThemeId
+  setTimeout(() => {
+    copiedId.value = null
+  }, 1500)
 }
 </script>
 
@@ -55,14 +58,36 @@ function copyLink(subThemeId: string) {
           <UIcon :name="sub.icon" class="w-5 h-5 text-primary-500 flex-shrink-0" aria-hidden="true" />
           <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
           <h3 class="flex-1 text-lg lg:text-xl font-semibold text-gray-900 dark:text-white" v-html="hl(sub.title)"></h3>
-          <button
-            class="flex-shrink-0 p-2.5 -m-1 rounded-[var(--ui-radius)] text-gray-300 hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-            :title="`Copier le lien vers ${sub.title}`"
-            :aria-label="`Copier le lien vers ${sub.title}`"
-            @click="copyLink(sub.id)"
-          >
-            <UIcon name="i-lucide-link" class="w-4 h-4" aria-hidden="true" />
-          </button>
+          <div class="relative flex-shrink-0">
+            <!-- Animation "Copié !" -->
+            <Transition
+              enter-active-class="transition-all duration-500 ease-out"
+              enter-from-class="opacity-100 translate-y-0"
+              enter-to-class="opacity-0 -translate-y-4"
+            >
+              <span
+                v-if="copiedId === sub.id"
+                class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-green-600 dark:text-green-400 whitespace-nowrap pointer-events-none"
+              >
+                Copié !
+              </span>
+            </Transition>
+            <button
+              class="p-2.5 -m-1 rounded-[var(--ui-radius)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              :class="copiedId === sub.id
+                ? 'text-green-500'
+                : 'text-gray-300 hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-400'"
+              :title="`Copier le lien vers ${sub.title}`"
+              :aria-label="`Copier le lien vers ${sub.title}`"
+              @click="copyLink(sub.id)"
+            >
+              <UIcon
+                :name="copiedId === sub.id ? 'i-lucide-check' : 'i-lucide-link'"
+                class="w-4 h-4"
+                aria-hidden="true"
+              />
+            </button>
+          </div>
         </div>
 
         <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
