@@ -34,6 +34,8 @@ const _links = [{
   to: "#"
 }]
 
+const audienceStore = useAudienceStore()
+
 const showOnboarding = ref(false)
 
 const openOnboarding = () => {
@@ -41,6 +43,8 @@ const openOnboarding = () => {
 }
 
 onMounted(() => {
+  audienceStore.init()
+
   const done = localStorage.getItem("referentiel-onboarding-done")
   if (!done) {
     showOnboarding.value = true

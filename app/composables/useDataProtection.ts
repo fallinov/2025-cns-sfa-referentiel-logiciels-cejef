@@ -1,39 +1,17 @@
-import type { ThemeAudience, DataProtectionTheme } from "~~/types/data-protection"
+import type { DataProtectionTheme } from "~~/types/data-protection"
 import { dataProtectionThemes } from "~/data/data-protection-themes"
 import { normalizeText, matchesSearch } from "~/utils/search"
 
-const STORAGE_KEY = "referentiel-dp-audience"
-
 export function useDataProtection() {
+  const audienceStore = useAudienceStore()
   const searchQuery = ref("")
-  const audienceFilter = ref<ThemeAudience>("sen")
-  const hasChosenAudience = ref(false)
-
-  onMounted(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as ThemeAudience | null
-    if (stored === "sen" || stored === "cejef") {
-      audienceFilter.value = stored
-      hasChosenAudience.value = true
-    }
-  })
-
-  function setAudience(audience: ThemeAudience) {
-    audienceFilter.value = audience
-    hasChosenAudience.value = true
-    localStorage.setItem(STORAGE_KEY, audience)
-  }
-
-  function resetAudience() {
-    hasChosenAudience.value = false
-    localStorage.removeItem(STORAGE_KEY)
-  }
 
   const filteredThemes = computed(() => {
     return dataProtectionThemes
       .map((theme) => {
         const filteredSubThemes = theme.subThemes.filter((sub) => {
           if (sub.audience !== "both"
-            && sub.audience !== audienceFilter.value) {
+            && sub.audience !== audienceStore.audience) {
             return false
           }
 
@@ -53,7 +31,7 @@ export function useDataProtection() {
         if (filteredSubThemes.length === 0) return null
 
         if (theme.audience !== "both"
-          && theme.audience !== audienceFilter.value) {
+          && theme.audience !== audienceStore.audience) {
           return null
         }
 
@@ -70,10 +48,10 @@ export function useDataProtection() {
 
   return {
     searchQuery,
-    audienceFilter,
-    hasChosenAudience,
-    setAudience,
-    resetAudience,
+    audienceFilter: computed(() => audienceStore.audience),
+    hasChosenAudience: computed(() => audienceStore.hasChosen),
+    setAudience: audienceStore.setAudience,
+    resetAudience: audienceStore.reset,
     filteredThemes,
     hasResults,
     totalSubThemes
