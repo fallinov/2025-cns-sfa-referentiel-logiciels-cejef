@@ -34,6 +34,8 @@ const goBack = () => {
 const softwareId = computed(() => route.params.id as string)
 const software = computed(() => getSoftwareById(softwareId.value))
 
+const audienceStore = useAudienceStore()
+
 // Copie du lien
 const copied = ref(false)
 function copyLink() {
@@ -269,11 +271,18 @@ const showLgpdDetails = ref(false)
                   <span>Compte @edu.jura.ch requis</span>
                 </div>
                 <div
-                  v-if="software.approvedBySEN"
+                  v-if="software.approvedBySEN && audienceStore.audience !== 'cejef'"
                   class="flex items-center gap-1.5 bg-green-500 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-badge-check" class="w-4 h-4" />
                   <span>Approuvé SEN</span>
+                </div>
+                <div
+                  v-if="software.supportedByCEJEF && software.campusTraining && software.certificationLevel === 1 && audienceStore.audience !== 'sen'"
+                  class="flex items-center gap-1.5 bg-green-500 text-white px-2.5 py-1 rounded-full"
+                >
+                  <UIcon name="i-lucide-badge-check" class="w-4 h-4" />
+                  <span>Approuvé CEJEF</span>
                 </div>
               </div>
             </div>

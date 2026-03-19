@@ -5,6 +5,8 @@ const props = defineProps<{
   software: Software
 }>()
 
+const audienceStore = useAudienceStore()
+
 // "Approuvé CEJEF" requires: level 1 (green) + supportedByCEJEF + campusTraining
 const isApprovedCejef = computed(() => {
   return props.software.certificationLevel === 1
@@ -37,7 +39,7 @@ const isApprovedCejef = computed(() => {
     <!-- Meta / Badges -->
     <div class="hidden sm:flex items-center gap-2">
       <!-- Approuvé CEJEF (level 1 + supportedByCEJEF + campusTraining) -->
-      <div v-if="isApprovedCejef" class="inline-flex">
+      <div v-if="isApprovedCejef && audienceStore.audience !== 'sen'" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé CEJEF"
@@ -54,7 +56,7 @@ const isApprovedCejef = computed(() => {
       </div>
 
       <!-- Approuvé SEN -->
-      <div v-if="software.approvedBySEN" class="inline-flex">
+      <div v-if="software.approvedBySEN && audienceStore.audience !== 'cejef'" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé SEN"

@@ -8,6 +8,8 @@ interface Props {
 
 const props = defineProps<Props>()
 
+const audienceStore = useAudienceStore()
+
 const config = computed(() => {
   return getCertificationConfig(props.software.certificationLevel)
 })
@@ -86,13 +88,13 @@ const handleCardClick = () => {
     <!-- Badges (Quick Filters only) -->
     <div class="relative z-10 mt-auto flex flex-wrap gap-2 pt-2">
       <SoftwareFeatureBadge
-        v-if="isApprovedCejef"
+        v-if="isApprovedCejef && audienceStore.audience !== 'sen'"
         icon="i-lucide-badge-check"
         label="Approuvé CEJEF"
         class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
-        v-if="software.approvedBySEN"
+        v-if="software.approvedBySEN && audienceStore.audience !== 'cejef'"
         icon="i-lucide-badge-check"
         label="Approuvé SEN"
         class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
