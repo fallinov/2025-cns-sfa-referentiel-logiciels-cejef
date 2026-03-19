@@ -112,7 +112,7 @@ watch(isOpen, (open) => {
 
           <!-- Badges -->
           <div class="flex flex-wrap gap-2">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-emerald-600 text-white text-sm">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-green-500 text-white text-sm">
               <UIcon name="i-lucide-badge-check" class="w-3.5 h-3.5" />
               Approuvé CEJEF
             </span>
@@ -149,7 +149,7 @@ watch(isOpen, (open) => {
           </div>
 
           <div class="flex items-start gap-3">
-            <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-emerald-600 flex items-center justify-center shrink-0">
+            <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-green-500 flex items-center justify-center shrink-0">
               <UIcon name="i-lucide-badge-check" class="w-4 h-4 text-white" />
             </div>
             <div>

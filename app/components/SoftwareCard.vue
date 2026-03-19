@@ -89,13 +89,13 @@ const handleCardClick = () => {
         v-if="isApprovedCejef"
         icon="i-lucide-badge-check"
         label="Approuvé CEJEF"
-        class="bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
+        class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.approvedBySEN"
         icon="i-lucide-badge-check"
         label="Approuvé SEN"
-        class="bg-sky-600 text-white dark:bg-sky-600 dark:text-white border-none"
+        class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.campusTraining && !isApprovedCejef"

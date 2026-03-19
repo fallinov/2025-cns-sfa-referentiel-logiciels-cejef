@@ -43,13 +43,13 @@ const isApprovedCejef = computed(() => {
           label="Approuvé CEJEF"
           size="sm"
           hide-label
-          class="lg:hidden bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
+          class="lg:hidden bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé CEJEF"
           size="sm"
-          class="hidden lg:inline-flex bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white border-none"
+          class="hidden lg:inline-flex bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
       </div>
 
@@ -60,13 +60,13 @@ const isApprovedCejef = computed(() => {
           label="Approuvé SEN"
           size="sm"
           hide-label
-          class="lg:hidden bg-sky-600 text-white dark:bg-sky-600 dark:text-white border-none"
+          class="lg:hidden bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé SEN"
           size="sm"
-          class="hidden lg:inline-flex bg-sky-600 text-white dark:bg-sky-600 dark:text-white border-none"
+          class="hidden lg:inline-flex bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
       </div>
 
