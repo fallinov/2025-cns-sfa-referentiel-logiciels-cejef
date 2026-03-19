@@ -29,7 +29,7 @@ const isOpen = defineModel<boolean>({ default: false })
       </p>
 
       <div class="space-y-4">
-        <div class="flex items-start gap-4 p-4 rounded-lg bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-800/30">
+        <div class="flex items-start gap-4 p-4 rounded-[var(--ui-radius)] bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-800/30">
           <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center shrink-0 shadow-md">
             <UIcon name="i-lucide-check" class="w-6 h-6 text-white stroke-[3]" />
           </div>
@@ -43,7 +43,7 @@ const isOpen = defineModel<boolean>({ default: false })
           </div>
         </div>
 
-        <div class="flex items-start gap-4 p-4 rounded-lg bg-orange-50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-800/30">
+        <div class="flex items-start gap-4 p-4 rounded-[var(--ui-radius)] bg-orange-50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-800/30">
           <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center shrink-0 shadow-md">
             <UIcon name="i-lucide-alert-triangle" class="w-6 h-6 text-white stroke-[3]" />
           </div>
@@ -57,7 +57,7 @@ const isOpen = defineModel<boolean>({ default: false })
           </div>
         </div>
 
-        <div class="flex items-start gap-4 p-4 rounded-lg bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-800/30">
+        <div class="flex items-start gap-4 p-4 rounded-[var(--ui-radius)] bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-800/30">
           <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center shrink-0 shadow-md">
             <UIcon name="i-lucide-ban" class="w-6 h-6 text-white stroke-[3]" />
           </div>
