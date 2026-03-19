@@ -3038,8 +3038,8 @@ export const softwareList: Software[] = [
     ],
     usageNotes: "Accès élèves possible via code sans compte. Mode gratuit limité à 1 salle et 50 élèves.",
     remarque: "Niveau 2 : Showbie Inc. (Canada, pays adéquat), hébergement AWS US (Cloud Act), conforme RGPD avec DPA, certifié COPPA/FERPA, EU-US DPF. Accès anonyme possible pour les élèves via code de classe.",
-    createdAt: 1710806400000,
-    updatedAt: 1710806400000
+    createdAt: 1773878400000,
+    updatedAt: 1773878400000
   },
   {
     id: "6e7fea78-c1fc-4c26-88ec-3746ceb71e13",
