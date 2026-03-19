@@ -19,187 +19,122 @@ const {
 
 provide("dpSearchQuery", searchQuery)
 
+// Scroll spy — thème actif dans la sidebar
 const activeThemeId = ref<string | null>(null)
 
-const activeThemeIndex = computed(() => {
-  if (!activeThemeId.value) return 0
-  const idx = filteredThemes.value.findIndex(t => t.id === activeThemeId.value)
-  return idx >= 0 ? idx : 0
-})
-
-const activeTheme = computed(() => filteredThemes.value[activeThemeIndex.value] || null)
-const prevTheme = computed(() => filteredThemes.value[activeThemeIndex.value - 1] || null)
-const nextTheme = computed(() => filteredThemes.value[activeThemeIndex.value + 1] || null)
-
-// Point 1 : recherche cross-thèmes — auto-switch au premier thème avec résultats
-watch(filteredThemes, (themes) => {
-  if (themes.length > 0 && !themes.find(t => t.id === activeThemeId.value)) {
-    activeThemeId.value = themes[0]?.id ?? null
-  }
-})
-
-const isMobileSidebarOpen = ref(false)
-
-function selectTheme(id: string) {
-  activeThemeId.value = id
-  isMobileSidebarOpen.value = false
-}
-
-// Point 3 : support des ancres URL (#theme-id)
-const route = useRoute()
-
 onMounted(() => {
-  const hash = route.hash?.replace("#", "")
+  // Support ancre URL
+  const hash = useRoute().hash?.replace("#", "")
   if (hash) {
-    const matchingTheme = filteredThemes.value.find(t => t.id === hash)
-    if (matchingTheme) {
-      activeThemeId.value = matchingTheme.id
-    }
+    nextTick(() => {
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" })
+    })
   }
+
+  // Intersection Observer pour scroll spy
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          activeThemeId.value = entry.target.id
+        }
+      }
+    },
+    { rootMargin: "-20% 0px -60% 0px" }
+  )
+
+  // Observer chaque section de thème
+  nextTick(() => {
+    document.querySelectorAll("[data-theme-section]").forEach(el => observer.observe(el))
+  })
+
+  onUnmounted(() => observer.disconnect())
 })
 
-// Point 4 : navigation clavier dans la sidebar (flèches haut/bas)
-function handleSidebarKeydown(event: KeyboardEvent) {
-  const ids = filteredThemes.value.map(t => t.id)
-  const currentId = activeThemeId.value || ids[0]
-  const currentIndex = ids.indexOf(currentId ?? "")
-
-  const nextId = ids[currentIndex + 1]
-  const prevId = ids[currentIndex - 1]
-
-  if (event.key === "ArrowDown" && nextId) {
-    event.preventDefault()
-    selectTheme(nextId)
-    focusSidebarButton(currentIndex + 1)
-  } else if (event.key === "ArrowUp" && prevId) {
-    event.preventDefault()
-    selectTheme(prevId)
-    focusSidebarButton(currentIndex - 1)
-  }
-}
-
-function focusSidebarButton(index: number) {
-  nextTick(() => {
-    const buttons = document.querySelectorAll<HTMLButtonElement>("#dp-sidebar ul button")
-    buttons[index]?.focus()
-  })
+function scrollToTheme(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })
 }
 </script>
 
 <template>
   <div class="min-h-screen bg-gray-100 dark:bg-gray-950">
     <UContainer class="py-8 sm:py-12 px-0 sm:px-6 lg:px-8 max-w-5xl">
-      <!-- Contenu principal -->
       <DataProtectionPageHeader
         v-model:search-query="searchQuery"
       />
 
-      <div v-if="hasResults" class="px-4 sm:px-0">
-        <!-- Bouton mobile sidebar -->
-        <button
-          class="flex items-center gap-2 mb-4 px-4 h-11 bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-sm text-base font-medium text-gray-700 dark:text-gray-200 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-          :aria-expanded="isMobileSidebarOpen"
-          aria-controls="dp-sidebar"
-          @click="isMobileSidebarOpen = !isMobileSidebarOpen"
+      <!-- Compteur de résultats -->
+      <p
+        v-if="searchQuery.trim() && hasResults"
+        class="text-base text-gray-500 dark:text-gray-400 mb-4 px-4 sm:px-0"
+      >
+        {{ totalSubThemes }} {{ totalSubThemes > 1 ? "résultats" : "résultat" }} dans {{ filteredThemes.length }} {{ filteredThemes.length > 1 ? "thèmes" : "thème" }}
+      </p>
+
+      <div v-if="hasResults" class="flex gap-6 px-4 sm:px-0">
+        <!-- Sidebar sticky -->
+        <nav
+          id="dp-sidebar"
+          class="hidden lg:block w-56 flex-shrink-0"
+          aria-label="Navigation des thèmes"
         >
-          <UIcon name="i-lucide-menu" class="w-4 h-4" aria-hidden="true" />
-          {{ activeTheme?.shortTitle || "Thèmes" }}
-          <UIcon
-            name="i-lucide-chevron-down"
-            class="w-4 h-4 ml-auto transition-transform"
-            :class="{ 'rotate-180': isMobileSidebarOpen }"
-            aria-hidden="true"
-          />
-        </button>
-
-        <!-- Backdrop mobile -->
-        <div
-          v-if="isMobileSidebarOpen"
-          class="fixed inset-0 z-30 bg-black/30 lg:hidden"
-          aria-hidden="true"
-          @click="isMobileSidebarOpen = false"
-        ></div>
-
-        <div class="flex gap-6">
-          <!-- Sidebar -->
-          <nav
-            id="dp-sidebar"
-            class="w-64 flex-shrink-0"
-            :class="isMobileSidebarOpen ? 'block absolute z-40 left-4 right-4 sm:left-6 sm:right-6 lg:static lg:block' : 'hidden lg:block'"
-            aria-label="Navigation des thèmes"
-          >
-            <div class="bg-gray-50 dark:bg-gray-800/50 rounded-[var(--ui-radius)] shadow-sm p-3 lg:sticky lg:top-20">
-              <!-- Toggle SEN / CEJEF -->
-              <div class="flex gap-1 mb-3 p-1 bg-gray-100 dark:bg-gray-700/50 rounded-[var(--ui-radius)]" role="group" aria-label="Profil">
-                <button
-                  class="flex-1 px-3 py-2.5 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                  :class="audienceFilter === 'sen'
-                    ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
-                  :aria-pressed="audienceFilter === 'sen'"
-                  @click="setAudience('sen')"
-                >
-                  SEN
-                </button>
-                <button
-                  class="flex-1 px-3 py-2.5 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                  :class="audienceFilter === 'cejef'
-                    ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
-                  :aria-pressed="audienceFilter === 'cejef'"
-                  @click="setAudience('cejef')"
-                >
-                  CEJEF
-                </button>
-              </div>
-
-              <!-- Liste des thèmes -->
-              <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
-              <ul class="space-y-0.5" @keydown="handleSidebarKeydown">
-                <li v-for="theme in filteredThemes" :key="theme.id">
-                  <button
-                    class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[var(--ui-radius)] text-left text-base transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                    :class="activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)
-                      ? 'bg-white dark:bg-gray-700 text-primary-700 dark:text-primary-300 font-semibold shadow-sm'
-                      : 'text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100 hover:shadow-sm'"
-                    :aria-current="(activeThemeId === theme.id || (!activeThemeId && filteredThemes[0]?.id === theme.id)) ? 'true' : undefined"
-                    @click="selectTheme(theme.id)"
-                  >
-                    <UIcon :name="theme.icon" class="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                    <span class="truncate">{{ theme.shortTitle }}</span>
-                  </button>
-                </li>
-              </ul>
+          <div class="sticky top-20 bg-gray-50 dark:bg-gray-800/50 rounded-[var(--ui-radius)] shadow-sm p-3">
+            <!-- Toggle SEN / CEJEF -->
+            <div class="flex gap-1 mb-3 p-1 bg-gray-100 dark:bg-gray-700/50 rounded-[var(--ui-radius)]" role="group" aria-label="Profil">
+              <button
+                class="flex-1 px-3 py-2 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                :class="audienceFilter === 'sen'
+                  ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
+                :aria-pressed="audienceFilter === 'sen'"
+                @click="setAudience('sen')"
+              >
+                SEN
+              </button>
+              <button
+                class="flex-1 px-3 py-2 text-base font-medium rounded-[var(--ui-radius)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                :class="audienceFilter === 'cejef'
+                  ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
+                :aria-pressed="audienceFilter === 'cejef'"
+                @click="setAudience('cejef')"
+              >
+                CEJEF
+              </button>
             </div>
-          </nav>
 
-          <!-- Contenu -->
-          <main class="flex-1 min-w-0" aria-live="polite">
-            <!-- Compteur de résultats (visible uniquement avec recherche active) -->
-            <p
-              v-if="searchQuery.trim()"
-              class="text-xs text-gray-500 dark:text-gray-400 mb-3"
-            >
-              {{ totalSubThemes }} {{ totalSubThemes > 1 ? "résultats" : "résultat" }} dans {{ filteredThemes.length }} {{ filteredThemes.length > 1 ? "thèmes" : "thème" }}
-            </p>
+            <!-- Liste des thèmes (scroll spy) -->
+            <ul class="space-y-0.5">
+              <li v-for="theme in filteredThemes" :key="theme.id">
+                <button
+                  class="w-full flex items-center gap-2.5 px-3 py-2 rounded-[var(--ui-radius)] text-left text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  :class="activeThemeId === theme.id
+                    ? 'bg-white dark:bg-gray-700 text-primary-700 dark:text-primary-300 font-semibold shadow-sm'
+                    : 'text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100'"
+                  @click="scrollToTheme(theme.id)"
+                >
+                  <UIcon :name="theme.icon" class="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                  <span class="truncate">{{ theme.shortTitle }}</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
 
-            <Transition
-              enter-active-class="transition-opacity duration-200 ease-out"
-              enter-from-class="opacity-0"
-              enter-to-class="opacity-100"
-              mode="out-in"
-            >
-              <DataProtectionThemeContent
-                v-if="activeTheme"
-                :key="activeTheme.id"
-                :theme="activeTheme"
-                :prev-theme="prevTheme"
-                :next-theme="nextTheme"
-                @navigate="selectTheme"
-              />
-            </Transition>
-          </main>
-        </div>
+        <!-- Contenu empilé — tous les thèmes -->
+        <main class="flex-1 min-w-0 space-y-12" aria-live="polite">
+          <section
+            v-for="theme in filteredThemes"
+            :id="theme.id"
+            :key="theme.id"
+            data-theme-section
+            class="scroll-mt-20"
+          >
+            <DataProtectionThemeContent
+              :theme="theme"
+            />
+          </section>
+        </main>
       </div>
 
       <!-- État vide -->
