@@ -94,13 +94,13 @@ const isApprovedCejef = computed(() => {
           label="Compte @edu.jura.ch"
           size="sm"
           hide-label
-          class="lg:hidden bg-blue-600 text-white dark:bg-blue-600 dark:text-white border-none"
+          class="lg:hidden bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-key-round"
           label="Compte @edu.jura.ch"
           size="sm"
-          class="hidden lg:inline-flex bg-blue-600 text-white dark:bg-blue-600 dark:text-white border-none"
+          class="hidden lg:inline-flex bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
         />
       </div>
 
@@ -111,13 +111,13 @@ const isApprovedCejef = computed(() => {
           label="< 16 ans : accord parents"
           size="sm"
           hide-label
-          class="lg:hidden bg-amber-500 text-white dark:bg-amber-500 dark:text-white border-none"
+          class="lg:hidden bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-shield-alert"
           label="< 16 ans : accord parents"
           size="sm"
-          class="hidden lg:inline-flex bg-amber-500 text-white dark:bg-amber-500 dark:text-white border-none"
+          class="hidden lg:inline-flex bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
         />
       </div>
     </div>

@@ -116,11 +116,11 @@ watch(isOpen, (open) => {
               <UIcon name="i-lucide-badge-check" class="w-3.5 h-3.5" />
               Approuvé CEJEF
             </span>
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-blue-600 text-white text-sm">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-blue-700 text-white text-sm">
               <UIcon name="i-lucide-key-round" class="w-3.5 h-3.5" />
               Compte @edu
             </span>
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-amber-500 text-white text-sm">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-orange-500 text-white text-sm">
               <UIcon name="i-lucide-shield-alert" class="w-3.5 h-3.5" />
               &lt; 16 ans : accord parents
             </span>
@@ -163,7 +163,7 @@ watch(isOpen, (open) => {
           </div>
 
           <div class="flex items-start gap-3">
-            <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-blue-600 flex items-center justify-center shrink-0">
+            <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-blue-700 flex items-center justify-center shrink-0">
               <UIcon name="i-lucide-key-round" class="w-4 h-4 text-white" />
             </div>
             <div>
@@ -177,7 +177,7 @@ watch(isOpen, (open) => {
           </div>
 
           <div class="flex items-start gap-3">
-            <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-amber-500 flex items-center justify-center shrink-0">
+            <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-orange-500 flex items-center justify-center shrink-0">
               <UIcon name="i-lucide-shield-alert" class="w-4 h-4 text-white" />
             </div>
             <div>
