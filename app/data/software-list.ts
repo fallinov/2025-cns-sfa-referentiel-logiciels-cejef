@@ -3003,6 +3003,45 @@ export const softwareList: Software[] = [
     updatedAt: 1692206064000
   },
   {
+    id: "b2e4a1f7-8c3d-4e5f-a6b7-9d0e1f2a3b4c",
+    name: "SOCRATIVE",
+    logo: null,
+    icon: "i-lucide-circle-help",
+    shortDescription: "Plateforme d'évaluation formative en temps réel avec quiz et sondages",
+    description: "Socrative est une plateforme de quiz et d'évaluation formative qui permet aux enseignants de créer des questions (QCM, vrai/faux, réponse courte), de les administrer en temps réel et de visualiser instantanément les résultats. Les élèves rejoignent via un code de classe sans créer de compte (accès anonyme possible). L'outil propose des modes compétitifs (Space Race) et des rapports téléchargeables. Développé par Showbie Inc. (Canada).",
+    lgpd: {
+      hosting: 2,
+      rgpd: 2,
+      dataCollection: 1
+    },
+    certificationLevel: 2,
+    dataLocation: "États-Unis",
+    supportedByCEJEF: false,
+    campusTraining: false,
+    cost: "Freemium",
+    toolUrl: "https://www.socrative.com",
+    documentation: null,
+    targetAudience: "tous",
+    categories: [
+      "Évaluation",
+      "Quiz",
+      "Sondage"
+    ],
+    pedagogicalActivities: [
+      "Évaluation formative",
+      "Création de quiz",
+      "Sondages",
+      "Suivi des progrès"
+    ],
+    disciplines: [
+      "Transversal"
+    ],
+    usageNotes: "Accès élèves possible via code sans compte. Mode gratuit limité à 1 salle et 50 élèves.",
+    remarque: "Niveau 2 : Showbie Inc. (Canada, pays adéquat), hébergement AWS US (Cloud Act), conforme RGPD avec DPA, certifié COPPA/FERPA, EU-US DPF. Accès anonyme possible pour les élèves via code de classe.",
+    createdAt: 1710806400000,
+    updatedAt: 1710806400000
+  },
+  {
     id: "6e7fea78-c1fc-4c26-88ec-3746ceb71e13",
     name: "SOUNDTRAP EDUCATION",
     logo: null,
