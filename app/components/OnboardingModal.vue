@@ -120,6 +120,10 @@ watch(isOpen, (open) => {
               <UIcon name="i-lucide-key-round" class="w-3.5 h-3.5" />
               Compte @edu
             </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-amber-500 text-white text-sm">
+              <UIcon name="i-lucide-shield-alert" class="w-3.5 h-3.5" />
+              &lt; 16 ans : accord parents
+            </span>
           </div>
         </div>
 
@@ -148,7 +152,7 @@ watch(isOpen, (open) => {
                 Approuvé CEJEF / SEN
               </p>
               <p class="text-base text-gray-500 dark:text-gray-400">
-                Logiciel recommandé et mis en avant par le service. À utiliser en priorité parmi les alternatives disponibles.
+                Logiciel recommandé et mis en avant par le service, généralement financé par celui-ci. À utiliser en priorité parmi les alternatives disponibles.
               </p>
             </div>
           </div>
