@@ -254,6 +254,14 @@ const config = computed(() => {
             </div>
           </div>
         </div>
+
+        <!-- Remarque LGPD -->
+        <p
+          v-if="software.remarque"
+          class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 text-sm text-gray-500 dark:text-gray-400 leading-relaxed"
+        >
+          {{ software.remarque }}
+        </p>
       </div>
     </div>
   </div>
