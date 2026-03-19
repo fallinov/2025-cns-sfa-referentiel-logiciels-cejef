@@ -104,13 +104,13 @@ const handleCardClick = () => {
       />
       <SoftwareFeatureBadge
         v-if="software.requiresEduAccount && software.certificationLevel === 1"
-        icon="i-lucide-key-round"
+        icon="i-lucide-at-sign"
         label="Compte @edu.jura.ch"
         class="bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.requiresParentalConsent"
-        icon="i-lucide-shield-alert"
+        icon="i-lucide-cake"
         label="< 16 ans : accord parents"
         class="bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
       />

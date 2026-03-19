@@ -224,7 +224,7 @@ const showLgpdDetails = ref(false)
                   v-if="software.requiresEduAccount && certificationLevel === 1"
                   class="flex items-center gap-1.5 bg-blue-700 text-white px-2.5 py-1 rounded-full"
                 >
-                  <UIcon name="i-lucide-key-round" class="w-4 h-4" />
+                  <UIcon name="i-lucide-at-sign" class="w-4 h-4" />
                   <span>Compte @edu.jura.ch requis</span>
                 </div>
                 <div

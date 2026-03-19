@@ -90,14 +90,14 @@ const isApprovedCejef = computed(() => {
       <!-- Compte @edu.jura.ch requis -->
       <div v-if="software.requiresEduAccount && software.certificationLevel === 1" class="inline-flex">
         <SoftwareFeatureBadge
-          icon="i-lucide-key-round"
+          icon="i-lucide-at-sign"
           label="Compte @edu.jura.ch"
           size="sm"
           hide-label
           class="lg:hidden bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
-          icon="i-lucide-key-round"
+          icon="i-lucide-at-sign"
           label="Compte @edu.jura.ch"
           size="sm"
           class="hidden lg:inline-flex bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
@@ -107,14 +107,14 @@ const isApprovedCejef = computed(() => {
       <!-- Avertissement mineurs < 16 ans -->
       <div v-if="software.requiresParentalConsent" class="inline-flex">
         <SoftwareFeatureBadge
-          icon="i-lucide-shield-alert"
+          icon="i-lucide-cake"
           label="< 16 ans : accord parents"
           size="sm"
           hide-label
           class="lg:hidden bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
-          icon="i-lucide-shield-alert"
+          icon="i-lucide-cake"
           label="< 16 ans : accord parents"
           size="sm"
           class="hidden lg:inline-flex bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"

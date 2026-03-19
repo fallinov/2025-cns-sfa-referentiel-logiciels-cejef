@@ -117,11 +117,11 @@ watch(isOpen, (open) => {
               Approuvé CEJEF
             </span>
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-blue-700 text-white text-sm">
-              <UIcon name="i-lucide-key-round" class="w-3.5 h-3.5" />
+              <UIcon name="i-lucide-at-sign" class="w-3.5 h-3.5" />
               Compte @edu
             </span>
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-orange-500 text-white text-sm">
-              <UIcon name="i-lucide-shield-alert" class="w-3.5 h-3.5" />
+              <UIcon name="i-lucide-cake" class="w-3.5 h-3.5" />
               &lt; 16 ans : accord parents
             </span>
           </div>
@@ -164,7 +164,7 @@ watch(isOpen, (open) => {
 
           <div class="flex items-start gap-3">
             <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-blue-700 flex items-center justify-center shrink-0">
-              <UIcon name="i-lucide-key-round" class="w-4 h-4 text-white" />
+              <UIcon name="i-lucide-at-sign" class="w-4 h-4 text-white" />
             </div>
             <div>
               <p class="text-base font-semibold text-gray-900 dark:text-white">
@@ -178,7 +178,7 @@ watch(isOpen, (open) => {
 
           <div class="flex items-start gap-3">
             <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-orange-500 flex items-center justify-center shrink-0">
-              <UIcon name="i-lucide-shield-alert" class="w-4 h-4 text-white" />
+              <UIcon name="i-lucide-cake" class="w-4 h-4 text-white" />
             </div>
             <div>
               <p class="text-base font-semibold text-gray-900 dark:text-white">
