@@ -41,7 +41,7 @@ const openOnboarding = inject<() => void>("openOnboarding")
       <ClientOnly>
         <div
           v-if="audienceStore.hasChosen"
-          class="flex gap-0.5 p-0.5 bg-gray-100 dark:bg-gray-800 rounded-full"
+          class="hidden lg:flex gap-0.5 p-0.5 bg-gray-100 dark:bg-gray-800 rounded-full"
           role="group"
           aria-label="Profil"
         >
