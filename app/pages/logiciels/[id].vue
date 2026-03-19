@@ -88,12 +88,12 @@ const similarSoftwareList = computed(() =>
   software.value ? getSimilarSoftware(software.value) : []
 )
 
-// LGPD labels
-const lgpdLabels = {
+// LGPD labels — utilise dataLocation du logiciel pour l'hébergement (pas un label fixe)
+const lgpdLabels = computed(() => ({
   hosting: {
-    1: "Suisse",
-    2: "Union Européenne",
-    3: "Hors UE"
+    1: software.value?.dataLocation || "Suisse / UE",
+    2: software.value?.dataLocation || "Infrastructure US",
+    3: software.value?.dataLocation || "Pays non adéquat"
   },
   rgpd: {
     1: "Conforme",
@@ -105,7 +105,7 @@ const lgpdLabels = {
     2: "Partagée avec des tiers",
     3: "Collecte invasive"
   }
-}
+}))
 
 // Meta tags pour SEO
 useSeoMeta({

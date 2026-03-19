@@ -12,7 +12,7 @@ const {
 const { togglePopularFilter } = store
 
 const lgpdLevelOptions = [
-  { label: "Protection des données", value: "all" },
+  { label: "Classification LGPD", value: "all" },
   { label: "Autorisé", value: "1" },
   { label: "Usage limité", value: "2" },
   { label: "Interdit", value: "3" }
@@ -98,7 +98,7 @@ const lgpdSelectValue = computed({
           <!-- Dropdown niveau LGPD (Mobile) -->
           <div>
             <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
-              Protection des données
+              Classification LGPD
             </div>
             <USelect
               v-model="lgpdSelectValue"
