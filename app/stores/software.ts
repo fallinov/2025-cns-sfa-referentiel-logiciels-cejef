@@ -27,23 +27,28 @@ export const useSoftwareStore = defineStore("software", () => {
   }
 
   // Popular Filters Configuration
-  const popularFilters = [
+  const audienceStore = useAudienceStore()
+
+  const allPopularFilters = [
     {
       id: "approved-cejef",
       label: "Approuvé CEJEF",
       icon: "i-lucide-badge-check",
+      audience: "cejef" as const,
       predicate: (software: Software) => isApprovedCejef(software)
     },
     {
       id: "approved-sen",
       label: "Approuvé SEN",
       icon: "i-lucide-badge-check",
+      audience: "sen" as const,
       predicate: (software: Software) => !!software.approvedBySEN
     },
     {
       id: "student-data-allowed",
       label: "Utilisable avec élèves",
       icon: "i-lucide-user-check",
+      audience: null,
       predicate: (software: Software) => {
         const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
         return level === 1
@@ -53,16 +58,23 @@ export const useSoftwareStore = defineStore("software", () => {
       id: "campus-training",
       label: "Formation disponible",
       icon: "i-lucide-graduation-cap",
+      audience: null,
       predicate: (software: Software) => software.campusTraining
     }
-  ] as const
+  ]
 
-  const popularFilterMap = popularFilters.reduce(
-    (acc, filter) => {
-      acc[filter.id] = filter
-      return acc
-    },
-    {} as Record<string, (typeof popularFilters)[number]>
+  const popularFilters = computed(() =>
+    allPopularFilters.filter(f => !f.audience || f.audience === audienceStore.audience)
+  )
+
+  const popularFilterMap = computed(() =>
+    allPopularFilters.reduce(
+      (acc, filter) => {
+        acc[filter.id] = filter
+        return acc
+      },
+      {} as Record<string, (typeof allPopularFilters)[number]>
+    )
   )
 
   // Getters
@@ -143,7 +155,7 @@ export const useSoftwareStore = defineStore("software", () => {
     if (selectedPopularFilters.value.length > 0) {
       filtered = filtered.filter((software) => {
         return selectedPopularFilters.value.every((filterId) => {
-          const filter = popularFilterMap[filterId]
+          const filter = popularFilterMap.value[filterId]
           return filter ? filter.predicate(software) : true
         })
       })
