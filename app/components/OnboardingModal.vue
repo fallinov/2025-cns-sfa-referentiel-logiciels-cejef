@@ -134,7 +134,7 @@ watch(isOpen, (open) => {
                 Pastille de classification
               </p>
               <p class="text-base text-gray-500 dark:text-gray-400">
-                Indique le niveau de protection des données (vert, orange ou rouge).
+                Valide l'usage du logiciel avec les données des élèves (vert = autorisé, orange = restreint, rouge = interdit).
               </p>
             </div>
           </div>
@@ -145,10 +145,10 @@ watch(isOpen, (open) => {
             </div>
             <div>
               <p class="text-base font-semibold text-gray-900 dark:text-white">
-                Badges d'approbation
+                Approuvé CEJEF / SEN
               </p>
               <p class="text-base text-gray-500 dark:text-gray-400">
-                Approuvé CEJEF / SEN = validé par le service concerné pour un usage avec les élèves.
+                Logiciel recommandé et mis en avant par le service. À utiliser en priorité parmi les alternatives disponibles.
               </p>
             </div>
           </div>
@@ -162,7 +162,7 @@ watch(isOpen, (open) => {
                 Compte @edu.jura.ch
               </p>
               <p class="text-base text-gray-500 dark:text-gray-400">
-                Nécessite un compte institutionnel pour accéder à toutes les fonctionnalités.
+                La classification LGPD est validée uniquement avec le compte @edu.jura.ch (contrat institutionnel avec l'éditeur).
               </p>
             </div>
           </div>
