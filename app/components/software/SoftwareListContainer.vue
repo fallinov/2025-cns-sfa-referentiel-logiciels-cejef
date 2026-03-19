@@ -12,7 +12,6 @@ const {
   selectedActivities,
   selectedPopularFilters,
   sortBy,
-  softwareList,
   filteredSoftwareList,
   hasActiveFilters
 } = storeToRefs(store)
@@ -188,7 +187,7 @@ onUnmounted(() => {
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
         {{ filteredSoftwareList.length }} logiciel{{ filteredSoftwareList.length > 1 ? "s" : "" }}
         <span v-if="hasActiveFilters" class="text-base font-normal text-gray-500 dark:text-gray-400">
-          sur {{ softwareList.length }}
+          sur {{ store.softwareList.length }}
         </span>
       </h2>
 

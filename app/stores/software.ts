@@ -67,14 +67,12 @@ export const useSoftwareStore = defineStore("software", () => {
     allPopularFilters.filter(f => !f.audience || f.audience === audienceStore.audience)
   )
 
-  const popularFilterMap = computed(() =>
-    allPopularFilters.reduce(
-      (acc, filter) => {
-        acc[filter.id] = filter
-        return acc
-      },
-      {} as Record<string, (typeof allPopularFilters)[number]>
-    )
+  const popularFilterMap = allPopularFilters.reduce(
+    (acc, filter) => {
+      acc[filter.id] = filter
+      return acc
+    },
+    {} as Record<string, (typeof allPopularFilters)[number]>
   )
 
   // Getters
@@ -155,7 +153,7 @@ export const useSoftwareStore = defineStore("software", () => {
     if (selectedPopularFilters.value.length > 0) {
       filtered = filtered.filter((software) => {
         return selectedPopularFilters.value.every((filterId) => {
-          const filter = popularFilterMap.value[filterId]
+          const filter = popularFilterMap[filterId]
           return filter ? filter.predicate(software) : true
         })
       })
