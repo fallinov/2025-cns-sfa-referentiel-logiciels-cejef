@@ -67,7 +67,14 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
         icon: "i-lucide-smartphone",
         description: "Utilisation du téléphone portable dans les écoles obligatoires jurassiennes.",
         audience: "cejef",
-        resources: []
+        resources: [
+          {
+            title: "Directive téléphone portable",
+            url: "https://drive.google.com/file/d/140Vk_4_q5puwkmhrlZqDCp4_iFc1PuO8/view?usp=sharing",
+            source: "CEJEF",
+            type: "document"
+          }
+        ]
       },
       {
         id: "prises-de-vue-sen",
@@ -83,7 +90,14 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
         icon: "i-lucide-camera",
         description: "Prises de vue et enregistrements sonores dans le cadre d'activités pédagogiques à l'école obligatoire.",
         audience: "cejef",
-        resources: []
+        resources: [
+          {
+            title: "Directive prises de vue et enregistrements",
+            url: "https://drive.google.com/file/d/1WSmEwz8TvbwNBvCzogMvhh-2gIBGiCUU/view?usp=sharing",
+            source: "CEJEF",
+            type: "document"
+          }
+        ]
       },
       {
         id: "droit-image-voix-sen",

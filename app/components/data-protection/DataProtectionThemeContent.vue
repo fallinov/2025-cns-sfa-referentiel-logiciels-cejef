@@ -4,15 +4,9 @@ import { highlightText } from "~/utils/search"
 
 interface Props {
   theme: DataProtectionTheme
-  prevTheme?: DataProtectionTheme | null
-  nextTheme?: DataProtectionTheme | null
 }
 
 defineProps<Props>()
-
-const emit = defineEmits<{
-  navigate: [themeId: string]
-}>()
 
 const searchQuery = inject<Ref<string>>("dpSearchQuery", ref(""))
 
@@ -103,31 +97,5 @@ function copyLink(subThemeId: string) {
         />
       </div>
     </div>
-
-    <!-- Navigation précédent / suivant -->
-    <nav
-      class="flex items-center justify-between mt-10 pt-6 border-t border-gray-200 dark:border-gray-700"
-      aria-label="Navigation entre thèmes"
-    >
-      <button
-        v-if="prevTheme"
-        class="group flex items-center gap-2 px-4 py-3 rounded-[var(--ui-radius)] text-sm lg:text-base text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-        @click="emit('navigate', prevTheme.id)"
-      >
-        <UIcon name="i-lucide-arrow-left" class="w-4 h-4" aria-hidden="true" />
-        <span>{{ prevTheme.shortTitle }}</span>
-      </button>
-      <div v-else></div>
-
-      <button
-        v-if="nextTheme"
-        class="group flex items-center gap-2 px-4 py-3 rounded-[var(--ui-radius)] text-sm lg:text-base text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-        @click="emit('navigate', nextTheme.id)"
-      >
-        <span>{{ nextTheme.shortTitle }}</span>
-        <UIcon name="i-lucide-arrow-right" class="w-4 h-4" aria-hidden="true" />
-      </button>
-      <div v-else></div>
-    </nav>
   </div>
 </template>
