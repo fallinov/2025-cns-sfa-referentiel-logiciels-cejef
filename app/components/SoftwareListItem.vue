@@ -93,14 +93,14 @@ const isApprovedCejef = computed(() => {
       <div v-if="software.requiresEduAccount && software.certificationLevel === 1" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-at-sign"
-          label="Compte @edu.jura.ch"
+          label="Compte @edu"
           size="sm"
           hide-label
           class="lg:hidden bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-at-sign"
-          label="Compte @edu.jura.ch"
+          label="Compte @edu"
           size="sm"
           class="hidden lg:inline-flex bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
         />

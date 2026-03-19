@@ -268,7 +268,7 @@ const showLgpdDetails = ref(false)
                   class="flex items-center gap-1.5 bg-blue-700 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-at-sign" class="w-4 h-4" />
-                  <span>Compte @edu.jura.ch requis</span>
+                  <span>Compte @edu</span>
                 </div>
                 <div
                   v-if="software.approvedBySEN && audienceStore.audience !== 'cejef'"
