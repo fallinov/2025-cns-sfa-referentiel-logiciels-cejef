@@ -220,21 +220,21 @@ onUnmounted(() => {
         class="relative w-full overflow-hidden bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-md p-6 flex flex-col gap-6 isolate"
       >
         <div class="absolute top-5 left-5 z-20 flex flex-col gap-1.5">
-          <USkeleton class="h-6 w-6 rounded-full" />
-          <USkeleton class="h-6 w-6 rounded-full" />
-          <USkeleton class="h-6 w-6 rounded-full" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-6 rounded-full"></div>
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-6 rounded-full"></div>
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-6 rounded-full"></div>
         </div>
         <div class="relative z-10 space-y-3 flex-1 w-full pl-12">
-          <USkeleton class="h-7 w-3/4 rounded-md" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-7 w-3/4 rounded-md"></div>
           <div class="space-y-2 pt-1">
-            <USkeleton class="h-4 w-full" />
-            <USkeleton class="h-4 w-5/6" />
-            <USkeleton class="h-4 w-4/6" />
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-full"></div>
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-5/6"></div>
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-4/6"></div>
           </div>
         </div>
         <div class="relative z-10 flex gap-2 mt-auto">
-          <USkeleton class="h-6 w-24 rounded-md" />
-          <USkeleton class="h-6 w-20 rounded-md" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-24 rounded-md"></div>
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-20 rounded-md"></div>
         </div>
       </div>
     </div>
@@ -272,22 +272,22 @@ onUnmounted(() => {
         class="relative w-full overflow-hidden bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] shadow-md p-6 flex flex-col gap-6 isolate"
       >
         <div class="absolute top-5 right-5 z-20">
-          <USkeleton class="h-6 w-6 rounded-full" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-6 rounded-full"></div>
         </div>
         <div class="relative z-10 w-12 h-12">
-          <USkeleton class="h-full w-full rounded-lg" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-full w-full rounded-lg"></div>
         </div>
         <div class="relative z-10 space-y-3 flex-1 w-full">
-          <USkeleton class="h-7 w-3/4 rounded-md" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-7 w-3/4 rounded-md"></div>
           <div class="space-y-2 pt-1">
-            <USkeleton class="h-4 w-full" />
-            <USkeleton class="h-4 w-5/6" />
-            <USkeleton class="h-4 w-4/6" />
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-full"></div>
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-5/6"></div>
+            <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-4 w-4/6"></div>
           </div>
         </div>
         <div class="relative z-10 flex gap-2 mt-auto">
-          <USkeleton class="h-6 w-24 rounded-md" />
-          <USkeleton class="h-6 w-20 rounded-md" />
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-24 rounded-md"></div>
+          <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-6 w-20 rounded-md"></div>
         </div>
       </div>
     </div>
