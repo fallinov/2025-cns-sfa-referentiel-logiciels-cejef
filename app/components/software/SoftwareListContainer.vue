@@ -12,6 +12,7 @@ const {
   selectedActivities,
   selectedPopularFilters,
   sortBy,
+  softwareList,
   filteredSoftwareList,
   hasActiveFilters
 } = storeToRefs(store)
@@ -185,7 +186,7 @@ onUnmounted(() => {
     <!-- Banner: Usage pédagogique uniquement -->
     <div class="flex items-start gap-3 mb-6 px-4 py-3 sm:px-4 rounded-[var(--ui-radius)] bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/50 mx-4 sm:mx-0">
       <UIcon name="i-lucide-info" class="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
-      <p class="text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
+      <p class="text-base text-blue-800 dark:text-blue-200 leading-relaxed max-w-prose">
         Ce catalogue recense uniquement des <strong>logiciels à usage pédagogique</strong>.
         L'utilisation de <strong>données sensibles</strong> (santé, religion, opinions) <strong>est interdite</strong> dans tous ces outils.
       </p>
@@ -195,6 +196,9 @@ onUnmounted(() => {
     <div class="flex items-center justify-between mb-4 px-4 sm:px-0">
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
         {{ filteredSoftwareList.length }} logiciel{{ filteredSoftwareList.length > 1 ? "s" : "" }}
+        <span v-if="hasActiveFilters" class="text-base font-normal text-gray-500 dark:text-gray-400">
+          sur {{ softwareList.length }}
+        </span>
       </h2>
 
       <button
@@ -218,7 +222,7 @@ onUnmounted(() => {
     />
 
     <!-- Initial Loading Skeletons -->
-    <div v-if="isInitialLoading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-0">
+    <div v-if="isInitialLoading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-0" aria-hidden="true">
       <div
         v-for="n in 12"
         :key="`skeleton-${n}`"
@@ -269,6 +273,7 @@ onUnmounted(() => {
       v-if="hasMoreItems && filteredSoftwareList.length > 0"
       ref="loadMoreSentinel"
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-0 mt-6"
+      aria-hidden="true"
     >
       <div
         v-for="n in 4"

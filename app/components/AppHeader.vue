@@ -2,9 +2,11 @@
 import { computed, inject } from "vue"
 import EdujuraLogo from "@/components/EdujuraLogo.vue"
 
+const route = useRoute()
+
 const links = computed(() => [
-  { label: "Référentiel logiciels", to: "/", icon: "i-lucide-layout-grid" },
-  { label: "Protection des données", to: "/protection-des-donnees", icon: "i-lucide-shield" }
+  { label: "Référentiel logiciels", to: "/", icon: "i-lucide-layout-grid", active: route.path === "/" },
+  { label: "Protection des données", to: "/protection-des-donnees", icon: "i-lucide-shield", active: route.path === "/protection-des-donnees" }
 ])
 
 const mobileMenuUi = {
