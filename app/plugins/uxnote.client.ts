@@ -25,4 +25,10 @@ export default defineNuxtPlugin(() => {
   script.setAttribute("data-is-tool-visible-at-first-launch", "true")
   script.defer = true
   document.body.appendChild(script)
+
+  // Injecter le bouton "Envoyer" (companion script)
+  const sendScript = document.createElement("script")
+  sendScript.src = `${baseURL}static/uxnote-send.js`.replace(/\/+/g, "/")
+  sendScript.defer = true
+  document.body.appendChild(sendScript)
 })
