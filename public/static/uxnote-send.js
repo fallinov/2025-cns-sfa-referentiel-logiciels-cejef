@@ -7,6 +7,7 @@
   "use strict"
 
   var API_URL = "https://kode.ch/uxnotes/feedback.php"
+  var ANNOTATIONS_URL = "https://kode.ch/uxnotes/annotations/"
 
   function getAnnotations() {
     var annotations = []
@@ -180,11 +181,52 @@
     }
   }
 
+  // Auto-load annotations from server if ?load=ID is in the URL
+  function loadAnnotations() {
+    var params = new URLSearchParams(window.location.search)
+    var loadId = params.get("load")
+    if (!loadId) return
+
+    fetch(ANNOTATIONS_URL + encodeURIComponent(loadId) + ".json")
+      .then(function (res) {
+        if (!res.ok) throw new Error("Annotations non trouvées")
+        return res.json()
+      })
+      .then(function (data) {
+        var annotations = data.annotations || []
+        var imported = 0
+
+        annotations.forEach(function (entry) {
+          if (entry.key && entry.data) {
+            localStorage.setItem(entry.key, JSON.stringify(entry.data))
+            imported++
+          }
+        })
+
+        if (imported > 0) {
+          showMessage(imported + " annotation(s) chargée(s) — rechargement...", "success")
+          // Reload without the load param to avoid re-importing
+          setTimeout(function () {
+            var url = new URL(window.location.href)
+            url.searchParams.delete("load")
+            window.location.href = url.toString()
+          }, 1500)
+        } else {
+          showMessage("Aucune annotation à charger", "warning")
+        }
+      })
+      .catch(function (err) {
+        showMessage("Erreur : " + err.message, "error")
+      })
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
+      loadAnnotations()
       setTimeout(tryInject, 1500)
     })
   } else {
+    loadAnnotations()
     setTimeout(tryInject, 1500)
   }
 })()
