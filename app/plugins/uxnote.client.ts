@@ -21,7 +21,7 @@ export default defineNuxtPlugin(() => {
   // Injecter le script UXNote
   const script = document.createElement("script")
   script.src = `${baseURL}static/uxnote.min.js`.replace(/\/+/g, "/")
-  script.setAttribute("data-mailto", "steve.fallet@divtech.ch")
+  script.setAttribute("data-mailto", "steve.fallet@divtec.ch")
   script.setAttribute("data-is-tool-visible-at-first-launch", "true")
   script.defer = true
   document.body.appendChild(script)
