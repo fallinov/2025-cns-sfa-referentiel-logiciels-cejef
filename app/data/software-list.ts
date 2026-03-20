@@ -247,7 +247,7 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: 3,
+    certificationLevel: 2,
     dataLocation: "États-Unis",
     supportedByCEJEF: false,
     campusTraining: false,
@@ -323,7 +323,7 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: 1,
+    certificationLevel: 2,
     dataLocation: "France",
     supportedByCEJEF: false,
     campusTraining: false,
@@ -4026,7 +4026,7 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
-    certificationLevel: 2,
+    certificationLevel: 1,
     dataLocation: "États-Unis",
     supportedByCEJEF: true,
     campusTraining: false,
@@ -4135,7 +4135,7 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: 1,
+    certificationLevel: 2,
     dataLocation: "Union Européenne/Global",
     supportedByCEJEF: false,
     campusTraining: false,
@@ -4207,7 +4207,7 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: 3,
+    certificationLevel: 2,
     dataLocation: "Canada/Chine",
     supportedByCEJEF: false,
     campusTraining: false,
@@ -4243,7 +4243,7 @@ export const softwareList: Software[] = [
       rgpd: 2,
       dataCollection: 2
     },
-    certificationLevel: 1,
+    certificationLevel: 2,
     dataLocation: "Union Européenne (configurable)",
     supportedByCEJEF: false,
     campusTraining: false,
@@ -4350,7 +4350,7 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
-    certificationLevel: 2,
+    certificationLevel: 1,
     dataLocation: "États-Unis",
     supportedByCEJEF: false,
     campusTraining: false,
@@ -4385,7 +4385,7 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
-    certificationLevel: 2,
+    certificationLevel: 1,
     dataLocation: "Australie/États-Unis",
     supportedByCEJEF: true,
     campusTraining: false,
@@ -4458,7 +4458,7 @@ export const softwareList: Software[] = [
       rgpd: 1,
       dataCollection: 1
     },
-    certificationLevel: 2,
+    certificationLevel: 1,
     dataLocation: "États-Unis",
     supportedByCEJEF: true,
     campusTraining: true,
