@@ -1,6 +1,6 @@
 /**
  * UXNote Send Button — Injected into UXNote toolbar
- * Adds a "Send" button directly inside UXNote's bottom toolbar.
+ * Adds a "Send" icon button next to Import/Export in UXNote's toolbar.
  * Load this script AFTER uxnote.min.js.
  */
 (function () {
@@ -111,48 +111,48 @@
   }
 
   function injectIntoToolbar() {
-    var allElements = document.querySelectorAll("*")
-    var toolbar = null
-
-    for (var i = 0; i < allElements.length; i++) {
-      var el = allElements[i]
-      var style = window.getComputedStyle(el)
-
-      if (style.position === "fixed" && parseInt(style.bottom) <= 5
-        && el.offsetHeight < 80 && el.offsetHeight > 20
-        && el.querySelectorAll("button, svg").length >= 3) {
-        toolbar = el
+    // Find "Export JSON" button — our send button goes next to it
+    var exportBtn = null
+    var buttons = document.querySelectorAll("button")
+    for (var i = 0; i < buttons.length; i++) {
+      if (buttons[i].textContent.indexOf("Export JSON") !== -1) {
+        exportBtn = buttons[i]
         break
       }
     }
 
-    if (!toolbar) return false
+    if (!exportBtn) return false
 
-    var buttonContainer = null
-    var children = toolbar.querySelectorAll("div")
-    for (var j = 0; j < children.length; j++) {
-      var child = children[j]
-      if (child.querySelectorAll("button, svg").length >= 3) {
-        buttonContainer = child
-      }
-    }
+    // Don't inject twice
+    if (document.getElementById("uxnote-send-btn")) return true
 
-    if (!buttonContainer) buttonContainer = toolbar
+    var container = exportBtn.parentElement
 
+    // Create send button matching UXNote's button style
     var btn = document.createElement("button")
+    btn.id = "uxnote-send-btn"
     btn.appendChild(createSendSvg())
-    btn.title = "Envoyer les annotations"
-    btn.style.cssText = "background:none;border:none;cursor:pointer;padding:8px;"
-      + "color:inherit;display:flex;align-items:center;justify-content:center;"
-      + "border-radius:4px;transition:background 0.2s;"
+
+    // Add label text like other UXNote buttons
+    var label = document.createElement("span")
+    label.textContent = "Envoyer"
+    label.style.cssText = "font-size:11px;margin-top:2px;"
+    btn.appendChild(label)
+
+    // Copy the style from Export JSON button
+    var exportStyle = window.getComputedStyle(exportBtn)
+    btn.style.cssText = "display:flex;flex-direction:column;align-items:center;"
+      + "justify-content:center;cursor:pointer;background:none;border:none;"
+      + "color:" + exportStyle.color + ";padding:" + exportStyle.padding + ";"
+      + "font-family:" + exportStyle.fontFamily + ";gap:2px;transition:color 0.2s;"
+
+    btn.title = "Envoyer les annotations par email"
 
     btn.addEventListener("mouseenter", function () {
-      btn.style.background = "rgba(59,130,246,0.2)"
       btn.style.color = "#3b82f6"
     })
     btn.addEventListener("mouseleave", function () {
-      btn.style.background = "none"
-      btn.style.color = "inherit"
+      btn.style.color = exportStyle.color
     })
     btn.addEventListener("click", function (e) {
       e.preventDefault()
@@ -160,12 +160,13 @@
       sendAnnotations()
     })
 
-    buttonContainer.appendChild(btn)
+    container.appendChild(btn)
     return true
   }
 
+  // Poll until UXNote toolbar is ready
   var attempts = 0
-  var maxAttempts = 30
+  var maxAttempts = 40
 
   function tryInject() {
     attempts++
@@ -177,9 +178,9 @@
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
-      setTimeout(tryInject, 1000)
+      setTimeout(tryInject, 1500)
     })
   } else {
-    setTimeout(tryInject, 1000)
+    setTimeout(tryInject, 1500)
   }
 })()
