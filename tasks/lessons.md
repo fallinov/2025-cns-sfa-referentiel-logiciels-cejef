@@ -42,6 +42,13 @@
 **Correction** : Accéder via `store.softwareList` directement au lieu de destructurer avec `storeToRefs`.
 **Règle** : `storeToRefs` ne fonctionne qu'avec les `ref`/`computed` du store. Les constantes doivent être accédées via `store.nomVariable`.
 
+## 2026-03-20 — npm ci échoue en CI quand package-lock.json a des peer dependencies non résolues
+
+**Contexte** : Déploiement GitHub Pages v0.14.0 échoue — `npm ci` refuse d'installer.
+**Erreur** : `@nuxt/test-utils` embarque `h3@2.0.1-rc.11` qui demande `crossws@^0.4.1` en peer dependency optionnelle. Le lock file ne contenait que `crossws@0.3.5`. `npm install` local ne détecte pas le problème, mais `npm ci` en CI est plus strict.
+**Correction** : Ajout de `"overrides": { "crossws": "^0.4.1" }` dans `package.json` pour forcer la résolution.
+**Règle** : Après chaque ajout de devDependency (surtout les packages avec des RC comme `@nuxt/test-utils`), vérifier `npm ls` pour les `invalid` et tester `npm ci` avant de merger.
+
 ## 2026-03-19 — Labels LGPD hébergement hardcodés = bug
 
 **Contexte** : Page détail logiciel affiche "Hébergement Union Européenne" pour Socrative (hébergé aux USA).

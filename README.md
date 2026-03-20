@@ -132,11 +132,17 @@ python3 scripts/apply-lgpd-changes.py
 - **[Vue 3](https://vuejs.org/)** : Framework JavaScript progressif
 - **[Tailwind CSS v4](https://tailwindcss.com)** : Framework CSS utility-first avec thème personnalisé CEJEF
 
+### Tests
+
+- **[Vitest](https://vitest.dev/)** : Tests unitaires (99 tests) avec `@nuxt/test-utils` + `happy-dom`
+- **[Playwright](https://playwright.dev/)** : Tests e2e (desktop Chrome + mobile Pixel 7)
+
 ### Outils de développement
 
 - **ESLint** : Analyse statique du code (linting)
 - **GitHub Actions** : CI/CD pour déploiement automatisé
 - **Git** : Gestion de version
+- **[UXNote](https://uxnote.dev/)** : Widget d'annotation pour retours testeurs (staging uniquement, `?uxnote=1`)
 
 ### Hébergement
 
@@ -533,15 +539,21 @@ Pour la documentation complète des règles ESLint :
 │   └── app.vue                 # Composant racine
 ├── public/
 │   ├── logos/                  # Logos des logiciels (SVG)
+│   ├── static/
+│   │   └── uxnote.min.js      # Widget UXNote self-hosted (staging)
 │   ├── favicon.ico             # Icône du site
 │   └── .nojekyll               # Désactive Jekyll (GitHub Pages)
+├── tests/
+│   ├── unit/                   # Tests Vitest (99 tests)
+│   └── e2e/                    # Tests Playwright (desktop + mobile)
 ├── .gitignore                  # Fichiers ignorés par Git
 ├── CLAUDE.md                   # Instructions pour Claude Code
 ├── eslint.config.mjs           # Configuration ESLint
 ├── nuxt.config.ts              # Configuration Nuxt
 ├── package.json                # Dépendances du projet
+├── playwright.config.ts        # Configuration Playwright
 ├── README.md                   # Ce fichier
-├── tailwind.config.ts          # Configuration Tailwind CSS
+├── vitest.config.ts            # Configuration Vitest
 └── tsconfig.json               # Configuration TypeScript
 ```
 
