@@ -14,6 +14,15 @@ npm run generate         # Generate static site
 npm run preview          # Preview generated static site
 ```
 
+### Tests
+```bash
+npm test                 # Run Vitest unit tests (99 tests)
+npm run test:watch       # Run Vitest in watch mode
+npm run test:e2e         # Run Playwright e2e tests (desktop + mobile)
+npm run test:e2e:desktop # Playwright desktop only
+npm run test:e2e:mobile  # Playwright mobile only
+```
+
 ### Code Quality
 ```bash
 npm run lint             # Run ESLint
@@ -36,6 +45,9 @@ git push origin v1.0.0
 - **Nuxt 4** with Vue 3 (TypeScript)
 - **Nuxt UI v4.1.0** (Tailwind CSS-based component library)
 - **Static Site Generation (SSG)** - no backend required
+- **Vitest** + `@nuxt/test-utils` + `happy-dom` (tests unitaires)
+- **Playwright** (tests e2e, projets desktop + mobile)
+- **UXNote** (widget retours testeurs, staging uniquement)
 
 > Conventions Nuxt UI, workflow Git, qualité du code : voir `~/.claude/CLAUDE.md` et `~/.claude/rules/`.
 
@@ -181,6 +193,32 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 - `DataProtectionThemeContent.vue` — affichage d'un thème avec sous-thèmes et bouton copie lien
 - `AudienceChoiceScreen.vue` — écran de choix SEN/CEJEF au premier accès
 - `DataProtectionPageHeader.vue` — recherche avec animation typewriter
+
+### Testing
+
+**Configuration** : `vitest.config.ts` (unitaires) + `playwright.config.ts` (e2e)
+
+**Tests unitaires** (`tests/unit/`) — 8 fichiers, 99 tests :
+- `software-data.test.ts` — intégrité des données (champs requis, types, unicité IDs)
+- `store-filtering.test.ts` — filtres catalogue (certification, catégorie, audience, coût)
+- `store-sorting.test.ts` — tri (nom, certification, catégorie)
+- `search.test.ts` — recherche Fuse.js (fuzzy, accents, mots partiels)
+- `certification.test.ts` — calcul du niveau de certification (max des 3 critères LGPD)
+- `similar-software.test.ts` — logiciels similaires par catégorie
+- `navigation.test.ts` — navigation précédent/suivant dans le catalogue
+- `data-protection.test.ts` — filtrage audience SEN/CEJEF + recherche thèmes
+
+**Tests e2e** (`tests/e2e/`) — Playwright, projets desktop (Chrome) + mobile (Pixel 7) :
+- `catalog.spec.ts` — navigation catalogue, filtres, recherche, vue grille/liste
+- `accessibility.spec.ts` — structure sémantique, ARIA, navigation clavier
+
+### UXNote (retours testeurs)
+
+**Plugin** : `app/plugins/uxnote.client.ts` — widget d'annotation pour recueillir les retours.
+- **Activation** : staging uniquement (GitHub Pages) + paramètre URL `?uxnote=1`
+- **Script** : self-hosted `public/static/uxnote.min.js` (pas de CDN externe)
+- **Email** : retours envoyés à `steve.fallet@divtec.ch`
+- **URL testeurs** : `https://fallinov.github.io/2025-cns-sfa-referentiel-logiciels-cejef/?uxnote=1`
 
 ### Deployment Strategy
 
@@ -395,3 +433,4 @@ Pour modifier une classification, mettre à jour dans `app/data/software-list.ts
 - **Base URL handling**: When working on routing or assets, be aware of the dynamic `baseURL` for GitHub Pages.
 - **TypeScript strict mode**: All software objects must match the `Software` interface exactly.
 - **Component library**: Nuxt UI v4.1.0 — toujours vérifier l'API sur https://ui.nuxt.com avant d'utiliser un composant.
+- **npm overrides**: `crossws` est forcé à `^0.4.1` via `overrides` dans `package.json` (conflit entre `h3@2.0.1-rc.11` de `@nuxt/test-utils` et le reste de l'écosystème Nuxt). Si `npm ci` échoue en CI avec "Missing: crossws", vérifier que l'override est toujours présent.
