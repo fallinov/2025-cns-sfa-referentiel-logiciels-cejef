@@ -1,6 +1,6 @@
 /**
- * UXNote Send Button — Companion script
- * Adds a "Send" button to UXNote toolbar that sends annotations to the API.
+ * UXNote Send Button — Injected into UXNote toolbar
+ * Adds a "Send" button directly inside UXNote's bottom toolbar.
  * Load this script AFTER uxnote.min.js.
  */
 (function () {
@@ -8,68 +8,26 @@
 
   var API_URL = "https://kode.ch/uxnotes/feedback.php"
 
-  // Wait for UXNote toolbar to be ready
-  var maxAttempts = 50
-  var attempts = 0
-
-  function findToolbar() {
-    var toolbar = document.querySelector("[class*='uxnote']") ||
-      document.querySelector("footer[style]") ||
-      document.querySelector("[data-uxnote]")
-
-    // Look for the UXNote bar at the bottom
-    var allDivs = document.querySelectorAll("div")
-    for (var i = 0; i < allDivs.length; i++) {
-      if (allDivs[i].textContent.includes("UxNote") && allDivs[i].offsetHeight < 80) {
-        return allDivs[i]
-      }
-    }
-    return toolbar
-  }
-
   function getAnnotations() {
-    // UXNote stores annotations in localStorage with keys containing the URL
     var annotations = []
-    var pageUrl = window.location.href.split("?")[0]
-
     for (var i = 0; i < localStorage.length; i++) {
       var key = localStorage.key(i)
-      // UXNote uses keys like "uxnote-..." or contains annotation data
-      if (key && (key.indexOf("uxnote") !== -1 || key.indexOf("UxNote") !== -1)) {
-        try {
-          var value = JSON.parse(localStorage.getItem(key))
-          if (value) {
-            annotations.push({ key: key, data: value })
-          }
-        } catch (e) {
-          // Not JSON, skip
+      if (!key) continue
+      if (key.indexOf("referentiel") !== -1) continue
+      if (key.indexOf("nuxt") !== -1) continue
+      if (key.indexOf("vueuse") !== -1) continue
+      try {
+        var value = JSON.parse(localStorage.getItem(key))
+        if (value && typeof value === "object") {
+          annotations.push({ key: key, data: value })
         }
-      }
+      } catch (e) { /* not JSON */ }
     }
-
-    // Also try to get all localStorage as fallback
-    if (annotations.length === 0) {
-      for (var j = 0; j < localStorage.length; j++) {
-        var k = localStorage.key(j)
-        if (k && k.indexOf("referentiel") === -1 && k.indexOf("nuxt") === -1) {
-          try {
-            var v = JSON.parse(localStorage.getItem(k))
-            if (v && typeof v === "object" && (Array.isArray(v) || v.type || v.comment)) {
-              annotations.push({ key: k, data: v })
-            }
-          } catch (e) {
-            // Skip
-          }
-        }
-      }
-    }
-
     return annotations
   }
 
   function sendAnnotations() {
     var annotations = getAnnotations()
-
     if (annotations.length === 0) {
       showMessage("Aucune annotation à envoyer", "warning")
       return
@@ -80,10 +38,7 @@
       pageTitle: document.title,
       sentAt: new Date().toISOString(),
       annotations: annotations,
-      screen: {
-        width: window.innerWidth,
-        height: window.innerHeight
-      },
+      screen: { width: window.innerWidth, height: window.innerHeight },
       userAgent: navigator.userAgent
     }
 
@@ -116,53 +71,115 @@
     msg.textContent = text
 
     var colors = {
-      success: { bg: "#22c55e", fg: "#fff" },
-      error: { bg: "#ef4444", fg: "#fff" },
-      warning: { bg: "#f59e0b", fg: "#fff" },
-      info: { bg: "#3b82f6", fg: "#fff" }
+      success: "#22c55e", error: "#ef4444",
+      warning: "#f59e0b", info: "#3b82f6"
     }
-    var c = colors[type] || colors.info
 
     msg.style.cssText = "position:fixed;bottom:70px;left:50%;transform:translateX(-50%);"
-      + "background:" + c.bg + ";color:" + c.fg + ";padding:10px 20px;border-radius:8px;"
-      + "font-family:-apple-system,sans-serif;font-size:14px;font-weight:600;"
-      + "z-index:999999;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:opacity 0.3s;"
+      + "background:" + (colors[type] || colors.info) + ";color:#fff;padding:10px 20px;"
+      + "border-radius:8px;font-family:-apple-system,sans-serif;font-size:14px;"
+      + "font-weight:600;z-index:999999;box-shadow:0 4px 12px rgba(0,0,0,0.15);"
 
     document.body.appendChild(msg)
     setTimeout(function () {
       msg.style.opacity = "0"
+      msg.style.transition = "opacity 0.3s"
       setTimeout(function () { msg.remove() }, 300)
     }, 3000)
   }
 
-  function addSendButton() {
-    var btn = document.createElement("button")
-    btn.textContent = "📤 Envoyer"
-    btn.title = "Envoyer les annotations au développeur"
-    btn.style.cssText = "position:fixed;bottom:12px;right:20px;z-index:999998;"
-      + "background:#3b82f6;color:#fff;border:none;padding:8px 16px;border-radius:8px;"
-      + "font-family:-apple-system,sans-serif;font-size:13px;font-weight:600;"
-      + "cursor:pointer;box-shadow:0 2px 8px rgba(59,130,246,0.4);transition:all 0.2s;"
+  function createSendSvg() {
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+    svg.setAttribute("width", "20")
+    svg.setAttribute("height", "20")
+    svg.setAttribute("viewBox", "0 0 24 24")
+    svg.setAttribute("fill", "none")
+    svg.setAttribute("stroke", "currentColor")
+    svg.setAttribute("stroke-width", "2")
+    svg.setAttribute("stroke-linecap", "round")
+    svg.setAttribute("stroke-linejoin", "round")
 
-    btn.addEventListener("mouseenter", function () {
-      btn.style.background = "#2563eb"
-      btn.style.transform = "translateY(-1px)"
-    })
-    btn.addEventListener("mouseleave", function () {
-      btn.style.background = "#3b82f6"
-      btn.style.transform = "translateY(0)"
-    })
-    btn.addEventListener("click", sendAnnotations)
+    var path1 = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    path1.setAttribute("d", "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z")
 
-    document.body.appendChild(btn)
+    var path2 = document.createElementNS("http://www.w3.org/2000/svg", "path")
+    path2.setAttribute("d", "m21.854 2.147-10.94 10.939")
+
+    svg.appendChild(path1)
+    svg.appendChild(path2)
+    return svg
   }
 
-  // Initialize when DOM is ready
+  function injectIntoToolbar() {
+    var allElements = document.querySelectorAll("*")
+    var toolbar = null
+
+    for (var i = 0; i < allElements.length; i++) {
+      var el = allElements[i]
+      var style = window.getComputedStyle(el)
+
+      if (style.position === "fixed" && parseInt(style.bottom) <= 5
+        && el.offsetHeight < 80 && el.offsetHeight > 20
+        && el.querySelectorAll("button, svg").length >= 3) {
+        toolbar = el
+        break
+      }
+    }
+
+    if (!toolbar) return false
+
+    var buttonContainer = null
+    var children = toolbar.querySelectorAll("div")
+    for (var j = 0; j < children.length; j++) {
+      var child = children[j]
+      if (child.querySelectorAll("button, svg").length >= 3) {
+        buttonContainer = child
+      }
+    }
+
+    if (!buttonContainer) buttonContainer = toolbar
+
+    var btn = document.createElement("button")
+    btn.appendChild(createSendSvg())
+    btn.title = "Envoyer les annotations"
+    btn.style.cssText = "background:none;border:none;cursor:pointer;padding:8px;"
+      + "color:inherit;display:flex;align-items:center;justify-content:center;"
+      + "border-radius:4px;transition:background 0.2s;"
+
+    btn.addEventListener("mouseenter", function () {
+      btn.style.background = "rgba(59,130,246,0.2)"
+      btn.style.color = "#3b82f6"
+    })
+    btn.addEventListener("mouseleave", function () {
+      btn.style.background = "none"
+      btn.style.color = "inherit"
+    })
+    btn.addEventListener("click", function (e) {
+      e.preventDefault()
+      e.stopPropagation()
+      sendAnnotations()
+    })
+
+    buttonContainer.appendChild(btn)
+    return true
+  }
+
+  var attempts = 0
+  var maxAttempts = 30
+
+  function tryInject() {
+    attempts++
+    if (injectIntoToolbar()) return
+    if (attempts < maxAttempts) {
+      setTimeout(tryInject, 500)
+    }
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
-      setTimeout(addSendButton, 1000)
+      setTimeout(tryInject, 1000)
     })
   } else {
-    setTimeout(addSendButton, 1000)
+    setTimeout(tryInject, 1000)
   }
 })()
