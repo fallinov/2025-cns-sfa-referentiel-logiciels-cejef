@@ -30,6 +30,9 @@
     "nuxt": "^4.2.0",
     "pinia": "^3.0.4"
   },
+  "overrides": {
+    "crossws": "^0.4.1"
+  },
   "devDependencies": {
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/test-utils": "^4.0.0",
