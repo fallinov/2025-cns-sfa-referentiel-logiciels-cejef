@@ -1,0 +1,59 @@
+name: "Retour testeur"
+description: "Signaler un problème ou faire une suggestion"
+title: "[Feedback] "
+labels: ["feedback"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type de retour
+      options:
+        - Bug / Problème
+        - Suggestion d'amélioration
+        - Contenu incorrect
+        - Question
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Page concernée
+      description: "URL ou nom de la page"
+      placeholder: "ex: /logiciels/microsoft-teams ou page d'accueil"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "Décrivez le problème ou votre suggestion"
+      placeholder: "Quand je clique sur... je m'attendais à... mais..."
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Capture d'écran
+      description: "Glissez-déposez une image ici (optionnel)"
+  - type: dropdown
+    id: device
+    attributes:
+      label: Appareil
+      options:
+        - Ordinateur
+        - Smartphone
+        - Tablette
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Navigateur
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Autre
+    validations:
+      required: true
