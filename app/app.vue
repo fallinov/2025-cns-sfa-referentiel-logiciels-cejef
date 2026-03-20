@@ -20,19 +20,7 @@ useSeoMeta({
   twitterCard: "summary_large_image"
 })
 
-const _links = [{
-  label: "Proposer un logiciel",
-  icon: "i-lucide-plus",
-  to: "#"
-}, {
-  label: "Favoris",
-  icon: "i-lucide-heart",
-  to: "#"
-}, {
-  label: "Se connecter",
-  icon: "i-lucide-user",
-  to: "#"
-}]
+const feedbackUrl = "https://github.com/fallinov/2025-cns-sfa-referentiel-logiciels-cejef/issues/new?template=feedback.yml"
 
 const audienceStore = useAudienceStore()
 
@@ -95,6 +83,17 @@ provide("openOnboarding", openOnboarding)
       </template>
 
       <template #right>
+        <UButton
+          :to="feedbackUrl"
+          target="_blank"
+          variant="ghost"
+          color="neutral"
+          size="sm"
+          icon="i-lucide-message-circle"
+          trailing-icon="i-lucide-external-link"
+        >
+          Donner un retour
+        </UButton>
         <span class="text-xs text-gray-400 dark:text-gray-500">
           v{{ config.public.appVersion }}
         </span>
