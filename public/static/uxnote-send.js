@@ -1,6 +1,6 @@
 /**
  * UXNote Send Button — Injected into UXNote toolbar
- * Adds a "Send" icon button next to Import/Export in UXNote's toolbar.
+ * Adds a "Send" icon button in UXNote's toolbar (class: wn-annot-group).
  * Load this script AFTER uxnote.min.js.
  */
 (function () {
@@ -90,8 +90,7 @@
 
   function createSendSvg() {
     var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-    svg.setAttribute("width", "20")
-    svg.setAttribute("height", "20")
+    svg.setAttribute("class", "wn-annot-icon")
     svg.setAttribute("viewBox", "0 0 24 24")
     svg.setAttribute("fill", "none")
     svg.setAttribute("stroke", "currentColor")
@@ -111,57 +110,55 @@
   }
 
   function injectIntoToolbar() {
-    // Find "Export JSON" button — our send button goes next to it
-    var exportBtn = null
-    var buttons = document.querySelectorAll("button")
-    for (var i = 0; i < buttons.length; i++) {
-      if (buttons[i].textContent.indexOf("Export JSON") !== -1) {
-        exportBtn = buttons[i]
-        break
-      }
-    }
-
-    if (!exportBtn) return false
-
     // Don't inject twice
     if (document.getElementById("uxnote-send-btn")) return true
 
-    var container = exportBtn.parentElement
+    // Find UXNote toolbar groups by class
+    var groups = document.querySelectorAll(".wn-annot-group")
+    if (groups.length < 2) return false
 
-    // Create send button matching UXNote's button style
+    // The 2nd group contains Import/Export — add our button there
+    var targetGroup = groups[1]
+
+    // Create a spacer + new group for the send button (like UXNote does)
+    var spacer = document.createElement("div")
+    spacer.className = "wn-annot-spacer wn-annotator"
+
+    var newGroup = document.createElement("div")
+    newGroup.className = "wn-annot-group wn-annotator"
+
+    // Create send button with same classes as UXNote buttons
     var btn = document.createElement("button")
     btn.id = "uxnote-send-btn"
+    btn.className = "wn-annot-btn wn-annotator"
+    btn.title = "Envoyer les annotations"
     btn.appendChild(createSendSvg())
 
-    // Add label text like other UXNote buttons
-    var label = document.createElement("span")
-    label.textContent = "Envoyer"
-    label.style.cssText = "font-size:11px;margin-top:2px;"
-    btn.appendChild(label)
+    // Add tooltip span like UXNote does
+    var tooltip = document.createElement("span")
+    tooltip.className = "wn-annot-tooltip wn-annotator"
+    tooltip.textContent = "Envoyer"
+    btn.appendChild(tooltip)
 
-    // Copy the style from Export JSON button
-    var exportStyle = window.getComputedStyle(exportBtn)
-    btn.style.cssText = "display:flex;flex-direction:column;align-items:center;"
-      + "justify-content:center;cursor:pointer;background:none;border:none;"
-      + "color:" + exportStyle.color + ";padding:" + exportStyle.padding + ";"
-      + "font-family:" + exportStyle.fontFamily + ";gap:2px;transition:color 0.2s;"
-
-    btn.title = "Envoyer les annotations par email"
-
-    btn.addEventListener("mouseenter", function () {
-      btn.style.color = "#3b82f6"
-    })
-    btn.addEventListener("mouseleave", function () {
-      btn.style.color = exportStyle.color
-    })
     btn.addEventListener("click", function (e) {
       e.preventDefault()
       e.stopPropagation()
       sendAnnotations()
     })
 
-    container.appendChild(btn)
-    return true
+    newGroup.appendChild(btn)
+
+    // Insert after the 2nd group (Import/Export)
+    var toolbar = targetGroup.parentElement
+    if (toolbar) {
+      // Insert spacer + new group after the import/export group
+      var nextSibling = targetGroup.nextSibling
+      toolbar.insertBefore(spacer, nextSibling)
+      toolbar.insertBefore(newGroup, spacer.nextSibling)
+      return true
+    }
+
+    return false
   }
 
   // Poll until UXNote toolbar is ready
