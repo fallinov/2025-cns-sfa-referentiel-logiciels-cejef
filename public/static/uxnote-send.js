@@ -8,6 +8,7 @@
 
   var API_URL = "https://kode.ch/uxnotes/feedback.php"
   var ANNOTATIONS_URL = "https://kode.ch/uxnotes/annotations/"
+  var LIST_URL = "https://kode.ch/uxnotes/list.php"
 
   function getAnnotations() {
     var annotations = []
@@ -181,13 +182,19 @@
     }
   }
 
-  // Auto-load annotations from server if ?load=ID is in the URL
+  // Auto-load annotations from server if ?load=ID or ?load=all is in the URL
   function loadAnnotations() {
     var params = new URLSearchParams(window.location.search)
     var loadId = params.get("load")
     if (!loadId) return
 
-    fetch(ANNOTATIONS_URL + encodeURIComponent(loadId) + ".json")
+    var fetchUrl = loadId === "all"
+      ? LIST_URL
+      : ANNOTATIONS_URL + encodeURIComponent(loadId) + ".json"
+
+    showMessage("Chargement des annotations...", "info")
+
+    fetch(fetchUrl)
       .then(function (res) {
         if (!res.ok) throw new Error("Annotations non trouvées")
         return res.json()
@@ -203,14 +210,17 @@
           }
         })
 
-        if (imported > 0) {
-          showMessage(imported + " annotation(s) chargée(s) — rechargement...", "success")
-          // Reload without the load param to avoid re-importing
+        var total = data.count || imported
+        if (total > 0) {
+          var msg = loadId === "all"
+            ? total + " annotation(s) de " + (data.files || "?") + " retour(s) chargée(s)"
+            : total + " annotation(s) chargée(s)"
+          showMessage(msg + " — rechargement...", "success")
           setTimeout(function () {
             var url = new URL(window.location.href)
             url.searchParams.delete("load")
             window.location.href = url.toString()
-          }, 1500)
+          }, 2000)
         } else {
           showMessage("Aucune annotation à charger", "warning")
         }
