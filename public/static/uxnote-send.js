@@ -117,10 +117,17 @@
     var groups = document.querySelectorAll(".wn-annot-group")
     if (groups.length < 2) return false
 
-    // The 2nd group contains Import/Export — add our button there
+    // The 2nd group contains Import/Export — hide it and replace with our send button
     var targetGroup = groups[1]
+    targetGroup.style.display = "none"
 
-    // Create a spacer + new group for the send button (like UXNote does)
+    // Also hide the spacer before Import/Export group
+    var prevSpacer = targetGroup.previousElementSibling
+    if (prevSpacer && prevSpacer.classList.contains("wn-annot-spacer")) {
+      prevSpacer.style.display = "none"
+    }
+
+    // Create a new group for the send button (replaces Import/Export)
     var spacer = document.createElement("div")
     spacer.className = "wn-annot-spacer wn-annotator"
 
