@@ -212,13 +212,27 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 - `catalog.spec.ts` — navigation catalogue, filtres, recherche, vue grille/liste
 - `accessibility.spec.ts` — structure sémantique, ARIA, navigation clavier
 
-### UXNote (retours testeurs)
+### Feedback testeurs
 
-**Plugin** : `app/plugins/uxnote.client.ts` — widget d'annotation pour recueillir les retours.
-- **Activation** : staging uniquement (GitHub Pages) + paramètre URL `?uxnote=1`
-- **Script** : self-hosted `public/static/uxnote.min.js` (pas de CDN externe)
-- **Email** : retours envoyés à `steve.fallet@divtec.ch`
-- **URL testeurs** : `https://fallinov.github.io/2025-cns-sfa-referentiel-logiciels-cejef/?uxnote=1`
+**2 canaux de retour** :
+
+1. **Bouton "Donner un retour"** (footer) → ouvre un formulaire GitHub Issue (`.github/ISSUE_TEMPLATE/feedback.yml`)
+2. **UXNote** (annotation visuelle) → activé via `?uxnote=1` sur staging
+
+**UXNote — architecture** :
+- **Plugin** : `app/plugins/uxnote.client.ts` — activé uniquement sur GitHub Pages + `?uxnote=1`
+- **Scripts** : self-hosted `public/static/uxnote.min.js` + `uxnote-send.js` (pas de CDN)
+- **Backend** : API PHP sur `kode.ch/uxnotes/` (repo privé `fallinov/uxnotes-server`)
+  - `feedback.php` — reçoit le JSON, sauvegarde, envoie email SMTP (Infomaniak)
+  - `list.php` — fusionne toutes les annotations
+  - `viewer.html` — affiche les annotations (page par défaut de `kode.ch/uxnotes/`)
+- **Email** : SMTP `mail.infomaniak.com:587` via PHPMailer → `steve.fallet@divtec.ch`
+
+**URLs** :
+- Testeurs : `https://fallinov.github.io/2025-cns-sfa-referentiel-logiciels-cejef/?uxnote=1`
+- Charger une annotation : `?uxnote=1&load=ID`
+- Charger toutes les annotations : `?uxnote=1&load=all`
+- Dashboard : `https://kode.ch/uxnotes/`
 
 ### Deployment Strategy
 

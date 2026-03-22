@@ -55,3 +55,17 @@
 **Erreur** : Le mapping `hosting: { 2: "Union Européenne" }` était hardcodé — la valeur 2 ne signifie pas toujours UE.
 **Correction** : Utiliser `software.dataLocation` (la vraie localisation) au lieu d'un label fixe par niveau.
 **Règle** : Ne jamais hardcoder des labels pour des niveaux de classification — utiliser les données réelles du logiciel.
+
+## 2026-03-20 — UXNote utilise des classes CSS internes, pas du textContent
+
+**Contexte** : Injection d'un bouton "Envoyer" dans la toolbar UXNote.
+**Erreur** : Tentative de trouver le bouton "Export JSON" via `button.textContent.indexOf("Export JSON")` → retourne toujours 0. Les boutons UXNote n'ont pas de texte visible dans le DOM (le label vient de l'accessibilité/aria).
+**Correction** : Cibler les éléments par leurs classes CSS internes (`wn-annot-group`, `wn-annot-btn`, `wn-annot-icon`).
+**Règle** : Quand on manipule le DOM d'une librairie tierce, inspecter les classes CSS réelles (pas le snapshot Playwright qui montre les labels ARIA).
+
+## 2026-03-20 — Infomaniak mail() ne délivre pas, utiliser SMTP
+
+**Contexte** : Envoi d'email depuis `feedback.php` avec `mail()` retournait `true` mais les emails n'arrivaient jamais.
+**Erreur** : Infomaniak ne supporte pas `mail()` de manière fiable pour l'envoi. SPF non configuré → emails rejetés.
+**Correction** : PHPMailer avec SMTP authentifié (`mail.infomaniak.com:587` + STARTTLS + credentials).
+**Règle** : Sur Infomaniak, toujours utiliser SMTP authentifié. Ne jamais se fier à `mail()` qui retourne `true` sans garantie de délivrance.
