@@ -225,7 +225,14 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 - **Backend** : API PHP sur `kode.ch/uxnotes/` (repo privé `fallinov/uxnotes-server`)
   - `feedback.php` — reçoit le JSON, sauvegarde, envoie email SMTP (Infomaniak)
   - `list.php` — fusionne toutes les annotations
-  - `viewer.html` — affiche les annotations (page par défaut de `kode.ch/uxnotes/`)
+  - `list-files.php` — liste les soumissions individuelles avec métadonnées
+  - `delete.php` — supprime une soumission par ID
+  - `status.php` — marque une annotation comme résolue/non résolue
+- **Dashboard** : SPA Nuxt 4 sur `kode.ch/uxnotes/` (repo privé `fallinov/uxnotes-dashboard`)
+  - Remplace `viewer.html` comme page par défaut
+  - Liste soumissions, détail annotations, filtres/tri, marquer résolu, supprimer
+  - Stack : Nuxt 4 + Nuxt UI v3 + TypeScript (SPA, `ssr: false`)
+  - Déploiement : `npm run generate` → FTP sur `kode.ch/uxnotes/`
 - **Email** : SMTP `mail.infomaniak.com:587` via PHPMailer → `steve.fallet@divtec.ch`
 
 **URLs** :

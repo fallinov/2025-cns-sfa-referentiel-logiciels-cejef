@@ -63,6 +63,20 @@
 **Correction** : Cibler les éléments par leurs classes CSS internes (`wn-annot-group`, `wn-annot-btn`, `wn-annot-icon`).
 **Règle** : Quand on manipule le DOM d'une librairie tierce, inspecter les classes CSS réelles (pas le snapshot Playwright qui montre les labels ARIA).
 
+## 2026-03-22 — git remote set-url modifie le mauvais repo quand le cwd change silencieusement
+
+**Contexte** : Travail sur 2 repos en parallèle (uxnotes-server et uxnotes-dashboard). Après un `npm install`, le shell cwd a été réinitialisé vers un autre dossier.
+**Erreur** : `git remote set-url origin` exécuté sans vérifier le répertoire courant → a modifié le remote de uxnotes-server au lieu de uxnotes-dashboard. Des commits PHP ont été poussés sur le repo du dashboard.
+**Correction** : Force push pour réinitialiser le remote, suppression de la branche erronnée, restauration du bon remote.
+**Règle** : Toujours utiliser `cd /chemin/absolu &&` avant les commandes git quand on travaille sur plusieurs repos. Le cwd peut être réinitialisé par npm/nuxt.
+
+## 2026-03-22 — Nuxt 4 compatibilityVersion: 4 exige les types dans app/
+
+**Contexte** : Création d'un dossier `types/` à la racine du projet pour les interfaces TypeScript.
+**Erreur** : `nuxt typecheck` ne trouvait pas `~/types/annotation` — erreur TS2307.
+**Correction** : Déplacer `types/` dans `app/types/` car Nuxt 4 avec `compatibilityVersion: 4` résout `~/` vers `app/`.
+**Règle** : Avec Nuxt 4 (`compatibilityVersion: 4`), tout le code applicatif doit être dans `app/` — y compris les types. `~/` pointe vers `app/`, pas la racine.
+
 ## 2026-03-20 — Infomaniak mail() ne délivre pas, utiliser SMTP
 
 **Contexte** : Envoi d'email depuis `feedback.php` avec `mail()` retournait `true` mais les emails n'arrivaient jamais.
