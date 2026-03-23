@@ -225,7 +225,7 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
   - `uxnote.min.js` : interface traduite en français via sed sur le fichier minifié
   - `uxnote-send.js` : récupère le nom du testeur depuis le localStorage UXNote (`uxnote:annotator:{origin}`), pas de prompt séparé
 - **Backend** : API PHP sur `kode.ch/uxnotes/` (repo privé `fallinov/uxnotes-server`)
-  - `feedback.php` — reçoit le JSON, sauvegarde, envoie email SMTP (Infomaniak)
+  - `feedback.php` — reçoit le JSON, sauvegarde, envoie email enrichi (résumé priorités, détail annotations, liens dashboard + UXNote)
   - `list.php` — fusionne toutes les annotations
   - `list-files.php` — liste les soumissions individuelles avec métadonnées
   - `delete.php` — supprime une soumission par ID
