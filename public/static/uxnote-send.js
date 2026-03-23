@@ -28,19 +28,10 @@
     return annotations
   }
 
-  var AUTHOR_KEY = "uxnote-author"
-
-  function getAuthorName() {
-    var saved = localStorage.getItem(AUTHOR_KEY) || ""
-    var name = prompt("Votre nom (pour identifier vos retours) :", saved)
-    if (name === null) return null // cancelled
-    name = name.trim()
-    if (!name) {
-      showMessage("Nom requis pour envoyer", "warning")
-      return null
-    }
-    localStorage.setItem(AUTHOR_KEY, name)
-    return name
+  function getAuthorFromUxnote() {
+    // UXNote stocke le nom du reviewer dans uxnote:annotator:{origin}
+    var key = "uxnote:annotator:" + location.protocol + "//" + location.host
+    return localStorage.getItem(key) || ""
   }
 
   function sendAnnotations() {
@@ -50,8 +41,11 @@
       return
     }
 
-    var author = getAuthorName()
-    if (!author) return
+    var author = getAuthorFromUxnote()
+    if (!author) {
+      showMessage("Saisissez votre nom dans UXNote avant d'envoyer", "warning")
+      return
+    }
 
     var payload = {
       pageUrl: window.location.href.split("?")[0],
