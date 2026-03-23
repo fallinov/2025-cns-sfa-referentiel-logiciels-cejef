@@ -221,7 +221,9 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 
 **UXNote — architecture** :
 - **Plugin** : `app/plugins/uxnote.client.ts` — activé uniquement sur GitHub Pages + `?uxnote=1`
-- **Scripts** : self-hosted `public/static/uxnote.min.js` + `uxnote-send.js` (pas de CDN)
+- **Scripts** : self-hosted `public/static/uxnote.min.js` (traduit FR) + `uxnote-send.js` (pas de CDN)
+  - `uxnote.min.js` : interface traduite en français via sed sur le fichier minifié
+  - `uxnote-send.js` : récupère le nom du testeur depuis le localStorage UXNote (`uxnote:annotator:{origin}`), pas de prompt séparé
 - **Backend** : API PHP sur `kode.ch/uxnotes/` (repo privé `fallinov/uxnotes-server`)
   - `feedback.php` — reçoit le JSON, sauvegarde, envoie email SMTP (Infomaniak)
   - `list.php` — fusionne toutes les annotations

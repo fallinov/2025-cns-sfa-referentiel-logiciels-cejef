@@ -77,6 +77,13 @@
 **Correction** : Déplacer `types/` dans `app/types/` car Nuxt 4 avec `compatibilityVersion: 4` résout `~/` vers `app/`.
 **Règle** : Avec Nuxt 4 (`compatibilityVersion: 4`), tout le code applicatif doit être dans `app/` — y compris les types. `~/` pointe vers `app/`, pas la racine.
 
+## 2026-03-23 — uxnote:annotators: contient les labels d'annotation, pas les noms de testeurs
+
+**Contexte** : Dashboard UXNote affiche une colonne "Auteurs" avec des badges par testeur.
+**Erreur** : Extraction des noms depuis `uxnote:annotators:` → affichait "Texte intro", "test 55", "Revoir ce classement" (les labels que le testeur a mis par annotation dans UXNote, pas son nom).
+**Correction** : Ignorer `uxnote:annotators:`. Extraire le champ `author` de chaque annotation individuelle dans `uxnote:site:` (le vrai nom du reviewer UXNote).
+**Règle** : Dans UXNote, `uxnote:annotators:` n'est pas une liste de noms de personnes. Le vrai nom du testeur est dans `annotation.author` (chaque annotation) ou `payload.author` (racine du JSON envoyé par uxnote-send.js).
+
 ## 2026-03-20 — Infomaniak mail() ne délivre pas, utiliser SMTP
 
 **Contexte** : Envoi d'email depuis `feedback.php` avec `mail()` retournait `true` mais les emails n'arrivaient jamais.
