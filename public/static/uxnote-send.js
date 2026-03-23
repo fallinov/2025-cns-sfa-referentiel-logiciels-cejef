@@ -28,6 +28,21 @@
     return annotations
   }
 
+  var AUTHOR_KEY = "uxnote-author"
+
+  function getAuthorName() {
+    var saved = localStorage.getItem(AUTHOR_KEY) || ""
+    var name = prompt("Votre nom (pour identifier vos retours) :", saved)
+    if (name === null) return null // cancelled
+    name = name.trim()
+    if (!name) {
+      showMessage("Nom requis pour envoyer", "warning")
+      return null
+    }
+    localStorage.setItem(AUTHOR_KEY, name)
+    return name
+  }
+
   function sendAnnotations() {
     var annotations = getAnnotations()
     if (annotations.length === 0) {
@@ -35,10 +50,14 @@
       return
     }
 
+    var author = getAuthorName()
+    if (!author) return
+
     var payload = {
       pageUrl: window.location.href.split("?")[0],
       pageTitle: document.title,
       sentAt: new Date().toISOString(),
+      author: author,
       annotations: annotations,
       screen: { width: window.innerWidth, height: window.innerHeight },
       userAgent: navigator.userAgent
@@ -77,7 +96,7 @@
       warning: "#f59e0b", info: "#3b82f6"
     }
 
-    msg.style.cssText = "position:fixed;bottom:70px;left:50%;transform:translateX(-50%);"
+    msg.style.cssText = "position:fixed;top:20px;left:50%;transform:translateX(-50%);"
       + "background:" + (colors[type] || colors.info) + ";color:#fff;padding:10px 20px;"
       + "border-radius:8px;font-family:-apple-system,sans-serif;font-size:14px;"
       + "font-weight:600;z-index:999999;box-shadow:0 4px 12px rgba(0,0,0,0.15);"
