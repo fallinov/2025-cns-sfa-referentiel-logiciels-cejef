@@ -7,16 +7,17 @@ export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig()
   const baseURL = config.app.baseURL
 
-  // Activer uniquement sur staging (GitHub Pages = baseURL contient le nom du projet)
-  const isStaging = baseURL.length > 1
-
-  if (!isStaging) return
-
   // Vérifier si ?uxnote=1 est dans l'URL
   const urlParams = new URLSearchParams(window.location.search)
   const isActivated = urlParams.get("uxnote") === "1"
 
   if (!isActivated) return
+
+  // Activer uniquement sur staging (GitHub Pages) ou en dev local
+  const isStaging = baseURL.length > 1
+  const isDev = import.meta.dev
+
+  if (!isStaging && !isDev) return
 
   // Injecter le script UXNote
   const script = document.createElement("script")
