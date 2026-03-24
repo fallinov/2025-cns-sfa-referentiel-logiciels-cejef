@@ -211,6 +211,7 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 **Tests e2e** (`tests/e2e/`) — Playwright, projets desktop (Chrome) + mobile (Pixel 7) :
 - `catalog.spec.ts` — navigation catalogue, filtres, recherche, vue grille/liste
 - `accessibility.spec.ts` — structure sémantique, ARIA, navigation clavier
+- `uxnote.spec.ts` — toolbar UXNote, toast (z-index, position, disparition), traduction FR, nom testeur
 
 ### Feedback testeurs
 
