@@ -8,6 +8,7 @@
 ## 📋 Table des matières
 
 - [Présentation](#-présentation)
+- [Écosystème de projets](#-écosystème-de-projets)
 - [Fonctionnalités](#-fonctionnalités)
 - [Classification LGPD](#-classification-lgpd)
 - [Technologies](#-technologies)
@@ -42,6 +43,97 @@ Le **Référentiel Logiciels CEJEF** est une application web destinée aux ensei
 - Direction de l'établissement
 
 ---
+
+## 🌐 Écosystème de projets
+
+Le référentiel logiciels est composé de **3 projets** qui fonctionnent ensemble :
+
+| Projet | Rôle | Stack | Hébergement |
+|--------|------|-------|-------------|
+| **referentiel-logiciels** (ce repo) | Catalogue logiciels + widget UXNote | Nuxt 4, Nuxt UI, TypeScript | GitHub Pages (staging) / SFTP (prod) |
+| **[uxnotes-server](https://github.com/fallinov/uxnotes-server)** | API PHP pour les annotations | PHP, PHPMailer | Infomaniak (`kode.ch/uxnotes/`) |
+| **[uxnotes-dashboard](https://github.com/fallinov/uxnotes-dashboard)** | Dashboard admin annotations | Nuxt 4 SPA, Nuxt UI | Infomaniak (`kode.ch/uxnotes/`) |
+
+### Vue d'ensemble
+
+```mermaid
+graph TB
+    subgraph "Testeur (navigateur)"
+        A[Référentiel Logiciels<br>GitHub Pages] -->|?uxnote=1| B[Widget UXNote<br>uxnote.min.js]
+        B -->|clic Envoyer| C[uxnote-send.js]
+    end
+
+    subgraph "Infomaniak (kode.ch/uxnotes/)"
+        D[feedback.php<br>Reçoit annotations]
+        E[list-files.php<br>Liste soumissions]
+        F[delete.php<br>Supprime]
+        G[status.php<br>Résolu/non résolu]
+        H[(annotations/*.json<br>Fichiers JSON)]
+        I[Dashboard SPA<br>index.html + _nuxt/]
+    end
+
+    subgraph "Email"
+        J[📧 SMTP Infomaniak<br>steve.fallet@divtec.ch]
+    end
+
+    C -->|POST JSON| D
+    D -->|sauvegarde| H
+    D -->|envoie email| J
+    I -->|GET| E
+    I -->|DELETE| F
+    I -->|POST| G
+    E -->|lit| H
+    F -->|supprime| H
+    G -->|modifie| H
+```
+
+### Pipeline CI/CD
+
+```mermaid
+graph LR
+    subgraph "Référentiel Logiciels"
+        A1[Push sur main] -->|GitHub Actions| B1[nuxt generate]
+        B1 --> C1[Deploy GitHub Pages<br>staging]
+        D1[Push tag vX.Y.Z] -->|GitHub Actions| E1[nuxt generate]
+        E1 --> F1[Deploy SFTP<br>production]
+    end
+
+    subgraph "UXNote Dashboard"
+        A2[Push sur main] -->|GitHub Actions| B2[npm install + lint<br>+ typecheck + test<br>+ generate]
+        B2 --> C2[CI vert ✅]
+        D2[npm run generate] -->|./deploy.sh| E2[FTP kode.ch/uxnotes/]
+    end
+```
+
+### Flux d'une annotation
+
+```mermaid
+sequenceDiagram
+    participant T as Testeur
+    participant R as Référentiel (staging)
+    participant U as UXNote Widget
+    participant A as API PHP (kode.ch)
+    participant D as Dashboard (kode.ch)
+    participant E as Email
+
+    T->>R: Ouvre /?uxnote=1
+    R->>U: Charge uxnote.min.js + uxnote-send.js
+    T->>U: Saisit son nom
+    T->>U: Annote des éléments
+    T->>U: Clic "Envoyer"
+    U->>A: POST feedback.php (JSON)
+    A->>A: Sauvegarde annotations/*.json
+    A->>E: Email enrichi (priorités, détail)
+    A-->>U: { success: true }
+    U-->>T: Toast "Retour envoyé !"
+
+    Note over D: Plus tard...
+    D->>A: GET list-files.php
+    A-->>D: Liste des soumissions
+    D->>D: Affiche tableau + stats
+    D->>A: POST status.php
+    Note over D: Marque comme résolu
+```
 
 ## ✨ Fonctionnalités
 
