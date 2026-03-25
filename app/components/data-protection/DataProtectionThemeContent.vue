@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { DataProtectionTheme } from "~~/types/data-protection"
+import type { DataProtectionTheme, DataProtectionSection, DataProtectionItem } from "~~/types/data-protection"
+import type { AccordionItem } from "@nuxt/ui"
 import { highlightText } from "~/utils/search"
 
 interface Props {
@@ -16,13 +17,38 @@ function hl(text: string) {
 
 const copiedId = ref<string | null>(null)
 
-function copyLink(subThemeId: string) {
-  const url = `${window.location.origin}${window.location.pathname}#${subThemeId}`
+function copyLink(id: string) {
+  const url = `${window.location.origin}${window.location.pathname}#${id}`
   navigator.clipboard.writeText(url)
-  copiedId.value = subThemeId
-  setTimeout(() => {
-    copiedId.value = null
-  }, 1500)
+  copiedId.value = id
+  setTimeout(() => { copiedId.value = null }, 1500)
+}
+
+// Construire les items pour UAccordion
+function toAccordionItems(section: DataProtectionSection): AccordionItem[] {
+  return section.items.map(item => ({
+    label: item.title,
+    icon: item.icon,
+    value: item.id
+  }))
+}
+
+// Quand une recherche est active, ouvrir tous les tiroirs
+function accordionDefaultValue(section: DataProtectionSection): string[] {
+  if (searchQuery.value.trim()) {
+    return section.items.map(item => item.id)
+  }
+  return []
+}
+
+// Récupérer un item par son ID
+function getItem(section: DataProtectionSection, value: string): DataProtectionItem {
+  return section.items.find(item => item.id === value) as DataProtectionItem
+}
+
+// Premier item (pour le rendu direct)
+function firstItem(section: DataProtectionSection): DataProtectionItem {
+  return section.items[0] as DataProtectionItem
 }
 </script>
 
@@ -41,26 +67,27 @@ function copyLink(subThemeId: string) {
       </div>
     </div>
 
-    <!-- Sous-thèmes -->
-    <div class="space-y-4 lg:space-y-5">
+    <!-- Sections — une carte par section -->
+    <div class="space-y-5">
       <div
-        v-for="sub in theme.subThemes"
-        :key="sub.id"
-        class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] border border-gray-100 dark:border-gray-700/50 p-5 lg:p-6"
+        v-for="section in theme.sections"
+        :id="section.id"
+        :key="section.id"
+        class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] border border-gray-100 dark:border-gray-700/50 p-5 lg:p-6 scroll-mt-20"
       >
-        <div :id="sub.id" class="flex items-center gap-3 mb-3 scroll-mt-20">
-          <UIcon :name="sub.icon" class="w-5 h-5 text-primary-500 flex-shrink-0" aria-hidden="true" />
+        <!-- Titre de la carte + bouton copier -->
+        <div class="flex items-center gap-3 mb-4">
+          <UIcon :name="section.icon" class="w-5 h-5 text-primary-500 flex-shrink-0" aria-hidden="true" />
           <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
-          <h3 class="flex-1 text-lg lg:text-xl font-semibold text-gray-900 dark:text-white" v-html="hl(sub.title)"></h3>
+          <h3 class="flex-1 text-lg lg:text-xl font-semibold text-gray-900 dark:text-white" v-html="hl(section.title)"></h3>
           <div class="relative flex-shrink-0">
-            <!-- Animation "Copié !" -->
             <Transition
               enter-active-class="transition-all duration-500 ease-out"
               enter-from-class="opacity-100 translate-y-0"
               enter-to-class="opacity-0 -translate-y-4"
             >
               <span
-                v-if="copiedId === sub.id"
+                v-if="copiedId === section.id"
                 class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-semibold text-green-600 dark:text-green-400 whitespace-nowrap pointer-events-none"
               >
                 Copié !
@@ -68,15 +95,15 @@ function copyLink(subThemeId: string) {
             </Transition>
             <button
               class="p-2.5 -m-1 rounded-[var(--ui-radius)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-              :class="copiedId === sub.id
+              :class="copiedId === section.id
                 ? 'text-green-500'
                 : 'text-gray-300 hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-400'"
-              :title="`Copier le lien vers ${sub.title}`"
-              :aria-label="`Copier le lien vers ${sub.title}`"
-              @click="copyLink(sub.id)"
+              :title="`Copier le lien vers ${section.title}`"
+              :aria-label="`Copier le lien vers ${section.title}`"
+              @click="copyLink(section.id)"
             >
               <UIcon
-                :name="copiedId === sub.id ? 'i-lucide-check' : 'i-lucide-link'"
+                :name="copiedId === section.id ? 'i-lucide-check' : 'i-lucide-link'"
                 class="w-4 h-4"
                 aria-hidden="true"
               />
@@ -84,18 +111,76 @@ function copyLink(subThemeId: string) {
           </div>
         </div>
 
-        <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
-        <p
-          class="text-base lg:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-prose"
-          v-html="hl(sub.description)"
-        ></p>
+        <!-- 1 seul item → contenu affiché directement -->
+        <template v-if="section.items.length === 1">
+          <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
+          <div
+            class="text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-prose prose-content"
+            v-html="hl(firstItem(section).description)"
+          ></div>
 
-        <DataProtectionLinkList
-          v-if="sub.resources.length > 0"
-          :resources="sub.resources"
-          class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700/50"
-        />
+          <DataProtectionLinkList
+            v-if="firstItem(section).resources.length > 0"
+            :resources="firstItem(section).resources"
+            class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700/50"
+          />
+        </template>
+
+        <!-- Plusieurs items → tiroirs/accordéon -->
+        <UAccordion
+          v-else
+          type="multiple"
+          :default-value="accordionDefaultValue(section)"
+          :items="toAccordionItems(section)"
+          :ui="{
+            content: 'px-4 pb-4'
+          }"
+        >
+          <template #content="{ item }">
+            <!-- eslint-disable-next-line vue/no-v-html -- données statiques -->
+            <div
+              class="text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-prose prose-content"
+              v-html="hl(getItem(section, item.value as string).description)"
+            ></div>
+
+            <DataProtectionLinkList
+              v-if="getItem(section, item.value as string).resources.length > 0"
+              :resources="getItem(section, item.value as string).resources"
+              class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700/50"
+            />
+          </template>
+        </UAccordion>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.prose-content :deep(ul),
+.prose-content :deep(ol) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+}
+.prose-content :deep(ul) {
+  list-style-type: disc;
+}
+.prose-content :deep(ol) {
+  list-style-type: decimal;
+}
+.prose-content :deep(li) {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+.prose-content :deep(strong) {
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+:root.dark .prose-content :deep(strong) {
+  color: var(--color-gray-100);
+}
+.prose-content :deep(em) {
+  font-style: italic;
+  color: var(--color-gray-500);
+}
+</style>

@@ -2,14 +2,25 @@ import { describe, it, expect } from "vitest"
 import { dataProtectionThemes } from "~/data/data-protection-themes"
 
 describe("data-protection-themes données", () => {
-  it("contient 7 thèmes", () => {
-    expect(dataProtectionThemes.length).toBe(7)
+  it("contient 6 thèmes", () => {
+    expect(dataProtectionThemes.length).toBe(6)
+  })
+
+  it("l'ordre des thèmes respecte la hiérarchie du Genially", () => {
+    const ids = dataProtectionThemes.map(t => t.id)
+    expect(ids).toEqual([
+      "cadre-legal",
+      "ordonnances-recommandations",
+      "environnement-travail",
+      "coordinateurs-numeriques",
+      "enseignants",
+      "eleves"
+    ])
   })
 
   it("chaque thème a un id unique", () => {
     const ids = dataProtectionThemes.map(t => t.id)
-    const uniqueIds = new Set(ids)
-    expect(uniqueIds.size).toBe(ids.length)
+    expect(new Set(ids).size).toBe(ids.length)
   })
 
   it("chaque thème a les champs obligatoires", () => {
@@ -19,60 +30,76 @@ describe("data-protection-themes données", () => {
       expect(theme.shortTitle).toBeTruthy()
       expect(theme.icon).toBeTruthy()
       expect(theme.description).toBeTruthy()
-      expect(["sen", "cejef", "both"]).toContain(theme.audience)
-      expect(theme.subThemes.length).toBeGreaterThan(0)
+      expect(theme.sections.length).toBeGreaterThan(0)
     }
   })
 
-  it("chaque sous-thème a un id unique dans son thème", () => {
+  it("chaque section a au moins un item", () => {
     for (const theme of dataProtectionThemes) {
-      const ids = theme.subThemes.map(s => s.id)
-      const uniqueIds = new Set(ids)
-      expect(uniqueIds.size).toBe(ids.length)
-    }
-  })
-
-  it("chaque sous-thème a une audience valide", () => {
-    for (const theme of dataProtectionThemes) {
-      for (const sub of theme.subThemes) {
-        expect(["sen", "cejef", "both"]).toContain(sub.audience)
+      for (const section of theme.sections) {
+        expect(section.id).toBeTruthy()
+        expect(section.title).toBeTruthy()
+        expect(section.icon).toBeTruthy()
+        expect(section.items.length).toBeGreaterThan(0)
       }
     }
   })
 
-  it("les ressources ont une URL et un type valide", () => {
+  it("les IDs sont uniques globalement (ancres URL)", () => {
+    const allIds: string[] = []
+    for (const theme of dataProtectionThemes) {
+      allIds.push(theme.id)
+      for (const section of theme.sections) {
+        allIds.push(section.id)
+        for (const item of section.items) {
+          allIds.push(item.id)
+        }
+      }
+    }
+    expect(new Set(allIds).size).toBe(allIds.length)
+  })
+
+  it("les ressources ont une URL, un titre, une source et un type valide", () => {
     const validTypes = ["link", "document", "video", "image", "schema"]
     for (const theme of dataProtectionThemes) {
-      for (const sub of theme.subThemes) {
-        for (const resource of sub.resources) {
-          expect(resource.url).toBeTruthy()
-          expect(resource.title).toBeTruthy()
-          expect(resource.source).toBeTruthy()
-          expect(validTypes).toContain(resource.type)
+      for (const section of theme.sections) {
+        for (const item of section.items) {
+          for (const r of item.resources) {
+            expect(r.url).toBeTruthy()
+            expect(r.title).toBeTruthy()
+            expect(r.source).toBeTruthy()
+            expect(validTypes).toContain(r.type)
+          }
         }
       }
     }
   })
 
-  it("le thème Élèves est identique SEN/CEJEF (audience both)", () => {
-    const eleves = dataProtectionThemes.find(t => t.id === "eleves")
-    expect(eleves).toBeDefined()
-    expect(eleves!.audience).toBe("both")
-    for (const sub of eleves!.subThemes) {
-      expect(sub.audience).toBe("both")
-    }
-  })
-
-  it("Avenir Formation est uniquement CEJEF", () => {
-    const enseignants = dataProtectionThemes.find(t => t.id === "enseignants")
-    const avenir = enseignants!.subThemes.find(s => s.id === "avenir-formation")
-    expect(avenir).toBeDefined()
-    expect(avenir!.audience).toBe("cejef")
-  })
-
-  it("le shortTitle est plus court que le title", () => {
+  it("le shortTitle est plus court ou égal au title", () => {
     for (const theme of dataProtectionThemes) {
       expect(theme.shortTitle.length).toBeLessThanOrEqual(theme.title.length)
     }
+  })
+
+  it("les sections avec 1 item affichent le contenu directement", () => {
+    const cadre = dataProtectionThemes.find(t => t.id === "cadre-legal")!
+    expect(cadre.sections[0].items.length).toBe(1)
+  })
+
+  it("les sections avec 3 items utilisent des tiroirs (Environnement de travail)", () => {
+    const env = dataProtectionThemes.find(t => t.id === "environnement-travail")!
+    // Sécurité généralités : 3 tiroirs
+    const securite = env.sections.find(s => s.id === "securite-generalites")!
+    expect(securite.items.length).toBe(3)
+    expect(securite.items.map(i => i.id)).toEqual(["securite-m365", "infrastructure", "securite-reseau"])
+
+    // Plateformes scolaires : 3 tiroirs
+    const plateformes = env.sections.find(s => s.id === "plateformes-scolaires")!
+    expect(plateformes.items.length).toBe(3)
+    expect(plateformes.items.map(i => i.id)).toEqual(["educlasse", "cloee2", "webuntis"])
+
+    // edu.jura.ch : 3 tiroirs
+    const edu = env.sections.find(s => s.id === "edu-jura-services")!
+    expect(edu.items.length).toBe(3)
   })
 })

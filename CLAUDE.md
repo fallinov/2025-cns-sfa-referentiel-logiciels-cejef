@@ -16,7 +16,7 @@ npm run preview          # Preview generated static site
 
 ### Tests
 ```bash
-npm test                 # Run Vitest unit tests (99 tests)
+npm test                 # Run Vitest unit tests (100 tests)
 npm run test:watch       # Run Vitest in watch mode
 npm run test:e2e         # Run Playwright e2e tests (desktop + mobile)
 npm run test:e2e:desktop # Playwright desktop only
@@ -149,11 +149,14 @@ When creating new custom variants for Nuxt UI components:
 - `requiresParentalConsent?: boolean` — badge ambre "< 16 ans : accord parents"
 - `ageRestriction?: number` — âge minimum (ex: 16 pour ChatGPT)
 
-**Protection des données** (ajouté v0.9.0) :
-- `app/data/data-protection-themes.ts` — 7 thèmes, ~45 sous-thèmes (dupliqués SEN/CEJEF)
-- `types/data-protection.ts` — interfaces `DataProtectionTheme`, `DataProtectionSubTheme`, `ThemeResource`
-- Chaque thème a un `shortTitle` pour la sidebar et un `title` complet pour le contenu
-- Contenus différenciés SEN/CEJEF : sous-thèmes avec `audience: "sen" | "cejef" | "both"`
+**Protection des données** (v0.9.0, restructuré depuis Genially) :
+- `app/data/data-protection-themes.ts` — 6 thèmes basés sur le Genially, structure à 3 niveaux
+- `types/data-protection.ts` — interfaces `DataProtectionTheme`, `DataProtectionSection`, `DataProtectionItem`, `ThemeResource`
+- **Niveau 1** : thèmes (sidebar) — Cadre légal, Ordonnances, Environnement, Coordinateurs, Enseignants, Élèves
+- **Niveau 2** : sections (cartes) — toujours visibles dans la page
+- **Niveau 3** : items — si 1 seul → contenu direct dans la carte, si plusieurs → tiroirs UAccordion
+- Descriptions en HTML inline (`<ul>`, `<strong>`, `<br>`) pour le contenu riche
+- Source des données : Genially `https://view.genially.com/681afb1591ccbf218602e8ae`
 
 **State management**:
 - `app/stores/software.ts` — Pinia store pour filtres, tri, recherche (catalogue)
@@ -161,7 +164,7 @@ When creating new custom variants for Nuxt UI components:
 - `app/composables/useSimilarSoftware.ts` — logiciels similaires par catégorie
 - `app/composables/useSoftwareNavigation.ts` — navigation précédent/suivant
 - `app/stores/audience.ts` — Pinia store global SEN/CEJEF (persisté localStorage, partagé entre pages)
-- `app/composables/useDataProtection.ts` — filtrage audience + recherche pour la page protection des données
+- `app/composables/useDataProtection.ts` — recherche sur 3 niveaux (thèmes → sections → items)
 
 ### Component Structure
 
@@ -180,7 +183,7 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 │   └── SoftwareDetailPracticalInfo.vue (coût, support, âge)
 └── pages/protection-des-donnees.vue (protection des données)
     ├── data-protection/DataProtectionPageHeader.vue (titre, recherche typewriter)
-    ├── data-protection/DataProtectionThemeContent.vue (contenu d'un thème avec sous-thèmes)
+    ├── data-protection/DataProtectionThemeContent.vue (sections = cartes, items = direct ou tiroirs UAccordion)
     └── data-protection/DataProtectionLinkList.vue (liens avec source et icône par type)
 ```
 
@@ -198,7 +201,7 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 
 **Configuration** : `vitest.config.ts` (unitaires) + `playwright.config.ts` (e2e)
 
-**Tests unitaires** (`tests/unit/`) — 8 fichiers, 99 tests :
+**Tests unitaires** (`tests/unit/`) — 8 fichiers, 100 tests (dont 12 pour protection des données) :
 - `software-data.test.ts` — intégrité des données (champs requis, types, unicité IDs)
 - `store-filtering.test.ts` — filtres catalogue (certification, catégorie, audience, coût)
 - `store-sorting.test.ts` — tri (nom, certification, catégorie)
@@ -206,7 +209,7 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 - `certification.test.ts` — calcul du niveau de certification (max des 3 critères LGPD)
 - `similar-software.test.ts` — logiciels similaires par catégorie
 - `navigation.test.ts` — navigation précédent/suivant dans le catalogue
-- `data-protection.test.ts` — filtrage audience SEN/CEJEF + recherche thèmes
+- `data-protection.test.ts` — 6 thèmes Genially, IDs uniques, structure 3 niveaux, tiroirs, ressources valides
 
 **Tests e2e** (`tests/e2e/`) — Playwright, projets desktop (Chrome) + mobile (Pixel 7) :
 - `catalog.spec.ts` — navigation catalogue, filtres, recherche, vue grille/liste

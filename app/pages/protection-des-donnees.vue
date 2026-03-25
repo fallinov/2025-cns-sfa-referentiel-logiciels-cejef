@@ -12,7 +12,7 @@ const {
   searchQuery,
   filteredThemes,
   hasResults,
-  totalSubThemes
+  totalSections
 } = useDataProtection()
 
 provide("dpSearchQuery", searchQuery)
@@ -66,7 +66,7 @@ function scrollToTheme(id: string) {
         v-if="searchQuery.trim() && hasResults"
         class="text-base text-gray-500 dark:text-gray-400 mb-4 px-4 sm:px-0"
       >
-        {{ totalSubThemes }} {{ totalSubThemes > 1 ? "résultats" : "résultat" }} dans {{ filteredThemes.length }} {{ filteredThemes.length > 1 ? "thèmes" : "thème" }}
+        {{ totalSections }} {{ totalSections > 1 ? "résultats" : "résultat" }} dans {{ filteredThemes.length }} {{ filteredThemes.length > 1 ? "thèmes" : "thème" }}
       </p>
 
       <div v-if="hasResults" class="flex gap-6 px-4 sm:px-0">
@@ -124,7 +124,7 @@ function scrollToTheme(id: string) {
           Aucun résultat trouvé
         </p>
         <p class="text-sm text-gray-400 dark:text-gray-500 mt-1">
-          Essayez avec d'autres termes de recherche ou changez le filtre.
+          Essayez avec d'autres termes de recherche.
         </p>
       </div>
     </UContainer>
