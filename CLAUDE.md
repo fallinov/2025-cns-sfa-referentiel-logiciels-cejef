@@ -144,7 +144,8 @@ When creating new custom variants for Nuxt UI components:
 - Union types: `DataLocation`, `CostType`, `TargetAudience`
 
 **Champs de badges** (ajoutés v0.8.0) :
-- `requiresEduAccount?: boolean` — badge bleu "Compte @edu.jura.ch" (M365 level 1)
+- `requiresEduAccount?: boolean` — badge bleu "@edu.jura.ch" (M365 level 1)
+- `requiresEdulog?: boolean` — badge violet "Compte Edulog" (fédération Edulog)
 - `approvedBySEN?: boolean` — badge sky "Approuvé SEN"
 - `requiresParentalConsent?: boolean` — badge ambre "< 16 ans : accord parents"
 - `ageRestriction?: number` — âge minimum (ex: 16 pour ChatGPT)
@@ -326,7 +327,8 @@ interface Software {
   // Support CEJEF
   supportedByCEJEF: boolean
   campusTraining: boolean
-  requiresEduAccount?: boolean      // Badge bleu "Compte @edu.jura.ch" (v0.8.0)
+  requiresEduAccount?: boolean      // Badge bleu "@edu.jura.ch" (v0.8.0)
+  requiresEdulog?: boolean          // Badge violet "Compte Edulog"
   approvedBySEN?: boolean           // Badge sky "Approuvé SEN" (v0.8.0)
 
   // Usage
@@ -339,11 +341,12 @@ interface Software {
 }
 ```
 
-**Badges visuels (v0.8.0)** :
-- "Approuvé CEJEF" (emerald) : `supportedByCEJEF && campusTraining && certificationLevel === 1`
-- "Approuvé SEN" (sky) : `approvedBySEN`
-- "Compte @edu.jura.ch" (blue) : `requiresEduAccount && certificationLevel === 1`
-- "< 16 ans : accord parents" (amber) : `requiresParentalConsent`
+**Badges visuels** (tous avec tooltips au survol) :
+- "Approuvé CEJEF" (green-500) : `supportedByCEJEF && campusTraining && certificationLevel === 1`
+- "Approuvé SEN" (green-500) : `approvedBySEN`
+- "@edu.jura.ch" (blue-700) : `requiresEduAccount && certificationLevel === 1`
+- "Compte Edulog" (purple-600) : `requiresEdulog && certificationLevel === 1`
+- "< 16 ans : accord parents" (orange-500) : `requiresParentalConsent`
 
 **Règle** : Le `certificationLevel` détermine l'autorisation d'utiliser des données élèves :
 - Niveau 1 → Données élèves autorisées
