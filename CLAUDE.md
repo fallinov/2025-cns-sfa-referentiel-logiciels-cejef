@@ -193,7 +193,7 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 - `SoftwareCertificationCard.vue` — statut LGPD détaillé avec alternatives vertes
 - `OnboardingModal.vue` — modale "Classification LGPD" au 1er accès (localStorage) + avertissement données sensibles
 - `AppHeader.vue` — header avec liens "Référentiel logiciels" et "Protection des données"
-- `DataProtectionThemeContent.vue` — affichage d'un thème avec sous-thèmes et bouton copie lien
+- `DataProtectionThemeContent.vue` — sections en cartes, items directs ou tiroirs UAccordion
 - `AudienceChoiceScreen.vue` — écran de choix SEN/CEJEF au premier accès
 - `DataProtectionPageHeader.vue` — recherche avec animation typewriter
 
@@ -201,7 +201,7 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 
 **Configuration** : `vitest.config.ts` (unitaires) + `playwright.config.ts` (e2e)
 
-**Tests unitaires** (`tests/unit/`) — 8 fichiers, 100 tests (dont 12 pour protection des données) :
+**Tests unitaires** (`tests/unit/`) — 8 fichiers, 100 tests (dont 11 pour protection des données) :
 - `software-data.test.ts` — intégrité des données (champs requis, types, unicité IDs)
 - `store-filtering.test.ts` — filtres catalogue (certification, catégorie, audience, coût)
 - `store-sorting.test.ts` — tri (nom, certification, catégorie)
@@ -443,7 +443,7 @@ Pour modifier une classification, mettre à jour dans `app/data/software-list.ts
 - **Filtres/recherche** : `app/stores/software.ts` + `software/SoftwareFiltersBar.vue`
 - **Onboarding** : `OnboardingModal.vue` (popup) + `AppHeader.vue` (bouton "?")
 - **Protection des données** : `app/pages/protection-des-donnees.vue` (page) + composants `data-protection/`
-- **Données protection** : `app/data/data-protection-themes.ts` (contenu statique)
+- **Données protection** : `app/data/data-protection-themes.ts` (6 thèmes Genially, 3 niveaux)
 - **Global layout** : `app/app.vue`
 
 ### Code Style
