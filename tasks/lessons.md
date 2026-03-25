@@ -1,5 +1,12 @@
 # Leçons apprises
 
+## 2026-03-25 — Bien comprendre la hiérarchie d'un Genially avant de coder
+
+**Contexte** : Restructuration de la page protection des données depuis un Genially interactif.
+**Erreur** : 3 itérations nécessaires — d'abord mauvais thèmes de niveau 1, puis structure trop plate (2 niveaux), puis bonne structure (3 niveaux). Le Genially n'est pas un document linéaire : les boutons/popups cachent la hiérarchie réelle.
+**Correction** : Demander à l'utilisateur de lister les titres exacts de niveau 1 avant de coder. Ne pas deviner la hiérarchie depuis le scraping.
+**Règle** : Pour toute source interactive (Genially, Prezi, etc.), commencer par valider la liste des titres de niveau 1 avec l'utilisateur. Le scraping automatique ne capture pas la hiérarchie de navigation.
+
 ## 2026-03-14 — Conflits de merge sur branches parallèles modifiant les mêmes zones
 
 **Contexte** : 5 features développées en parallèle depuis `main`, toutes modifiant `SoftwareCard.vue`, `SoftwareListItem.vue`, `types/software.ts` et `software-list.ts`.
