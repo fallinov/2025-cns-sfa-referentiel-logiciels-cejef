@@ -43,7 +43,7 @@ const config = computed(() => {
         icon: "i-lucide-alert-triangle",
         title: "Réservé aux enseignants",
         description: "Vous pouvez utiliser cet outil pour préparer vos cours.",
-        emphasis: "Pas de données d'élèves : ni noms, ni prénoms, ni emails.",
+        emphasis: "Pas de données d'élèves : ni noms, ni prénoms, ni emails, ni date de naissance, ni lieu.",
         additionalInfo: "Vos élèves peuvent l'utiliser sans créer de compte ou avec un compte anonyme (alias).",
         containerClass: "bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700/50",
         iconContainerClass: "bg-orange-500 dark:bg-orange-500 ring-2 ring-orange-500 dark:ring-orange-500 shadow-md",

@@ -43,6 +43,7 @@ const isApprovedCejef = computed(() => {
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé CEJEF"
+          tooltip="Recommandé et financé par le CEJEF"
           size="sm"
           hide-label
           class="lg:hidden bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
@@ -50,6 +51,7 @@ const isApprovedCejef = computed(() => {
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé CEJEF"
+          tooltip="Recommandé et financé par le CEJEF"
           size="sm"
           class="hidden lg:inline-flex bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
@@ -60,6 +62,7 @@ const isApprovedCejef = computed(() => {
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé SEN"
+          tooltip="Recommandé et financé par le SEN"
           size="sm"
           hide-label
           class="lg:hidden bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
@@ -67,16 +70,18 @@ const isApprovedCejef = computed(() => {
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé SEN"
+          tooltip="Recommandé et financé par le SEN"
           size="sm"
           class="hidden lg:inline-flex bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
       </div>
 
-      <!-- Training Available - Icon only on sm-md, with label on lg+ (seulement si pas déjà Approuvé) -->
+      <!-- Training Available -->
       <div v-if="software.campusTraining && !isApprovedCejef" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-graduation-cap"
           label="Formation disponible"
+          tooltip="Une formation est proposée par le CEJEF"
           size="sm"
           hide-label
           class="lg:hidden"
@@ -84,6 +89,7 @@ const isApprovedCejef = computed(() => {
         <SoftwareFeatureBadge
           icon="i-lucide-graduation-cap"
           label="Formation disponible"
+          tooltip="Une formation est proposée par le CEJEF"
           size="sm"
           class="hidden lg:inline-flex"
         />
@@ -93,16 +99,37 @@ const isApprovedCejef = computed(() => {
       <div v-if="software.requiresEduAccount && software.certificationLevel === 1" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-at-sign"
-          label="Compte @edu"
+          label="@edu.jura.ch"
+          tooltip="Classification validée uniquement avec le compte @edu.jura.ch"
           size="sm"
           hide-label
           class="lg:hidden bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-at-sign"
-          label="Compte @edu"
+          label="@edu.jura.ch"
+          tooltip="Classification validée uniquement avec le compte @edu.jura.ch"
           size="sm"
           class="hidden lg:inline-flex bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
+        />
+      </div>
+
+      <!-- Compte Edulog requis -->
+      <div v-if="software.requiresEdulog && software.certificationLevel === 1" class="inline-flex">
+        <SoftwareFeatureBadge
+          icon="i-lucide-key-round"
+          label="Compte Edulog"
+          tooltip="Connexion possible via la fédération d'identités Edulog"
+          size="sm"
+          hide-label
+          class="lg:hidden bg-purple-600 text-white dark:bg-purple-600 dark:text-white border-none"
+        />
+        <SoftwareFeatureBadge
+          icon="i-lucide-key-round"
+          label="Compte Edulog"
+          tooltip="Connexion possible via la fédération d'identités Edulog"
+          size="sm"
+          class="hidden lg:inline-flex bg-purple-600 text-white dark:bg-purple-600 dark:text-white border-none"
         />
       </div>
 
@@ -111,6 +138,7 @@ const isApprovedCejef = computed(() => {
         <SoftwareFeatureBadge
           icon="i-lucide-cake"
           label="< 16 ans : accord parents"
+          tooltip="Accord parental obligatoire pour les moins de 16 ans"
           size="sm"
           hide-label
           class="lg:hidden bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
@@ -118,6 +146,7 @@ const isApprovedCejef = computed(() => {
         <SoftwareFeatureBadge
           icon="i-lucide-cake"
           label="< 16 ans : accord parents"
+          tooltip="Accord parental obligatoire pour les moins de 16 ans"
           size="sm"
           class="hidden lg:inline-flex bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
         />
