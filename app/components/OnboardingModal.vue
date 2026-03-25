@@ -118,7 +118,11 @@ watch(isOpen, (open) => {
             </span>
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-blue-700 text-white text-sm">
               <UIcon name="i-lucide-at-sign" class="w-3.5 h-3.5" />
-              Compte @edu
+              @edu.jura.ch
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-purple-600 text-white text-sm">
+              <UIcon name="i-lucide-key-round" class="w-3.5 h-3.5" />
+              Compte Edulog
             </span>
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-orange-500 text-white text-sm">
               <UIcon name="i-lucide-cake" class="w-3.5 h-3.5" />
@@ -177,6 +181,20 @@ watch(isOpen, (open) => {
           </div>
 
           <div class="flex items-start gap-3">
+            <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-purple-600 flex items-center justify-center shrink-0">
+              <UIcon name="i-lucide-key-round" class="w-4 h-4 text-white" />
+            </div>
+            <div>
+              <p class="text-base font-semibold text-gray-900 dark:text-white">
+                Compte Edulog
+              </p>
+              <p class="text-base text-gray-500 dark:text-gray-400">
+                Connexion possible via Edulog, la fédération d'identités numériques de l'éducation suisse.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
             <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-orange-500 flex items-center justify-center shrink-0">
               <UIcon name="i-lucide-cake" class="w-4 h-4 text-white" />
             </div>
@@ -185,7 +203,7 @@ watch(isOpen, (open) => {
                 Restriction d'âge
               </p>
               <p class="text-base text-gray-500 dark:text-gray-400">
-                Les élèves de moins de 16 ans nécessitent l'accord des parents.
+                L'utilisation de cette plateforme par des élèves de moins de 16 ans nécessite l'accord parental.
               </p>
             </div>
           </div>

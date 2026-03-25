@@ -270,7 +270,14 @@ const showLgpdDetails = ref(false)
                   class="flex items-center gap-1.5 bg-blue-700 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-at-sign" class="w-4 h-4" />
-                  <span>Compte @edu</span>
+                  <span>@edu.jura.ch</span>
+                </div>
+                <div
+                  v-if="software.requiresEdulog && certificationLevel === 1"
+                  class="flex items-center gap-1.5 bg-purple-600 text-white px-2.5 py-1 rounded-full"
+                >
+                  <UIcon name="i-lucide-key-round" class="w-4 h-4" />
+                  <span>Compte Edulog</span>
                 </div>
                 <div
                   v-if="software.approvedBySEN && audienceStore.audience !== 'cejef'"

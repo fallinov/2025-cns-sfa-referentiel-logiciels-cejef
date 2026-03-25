@@ -91,29 +91,41 @@ const handleCardClick = () => {
         v-if="isApprovedCejef && audienceStore.audience !== 'sen'"
         icon="i-lucide-badge-check"
         label="Approuvé CEJEF"
+        tooltip="Recommandé et financé par le CEJEF"
         class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.approvedBySEN && audienceStore.audience !== 'cejef'"
         icon="i-lucide-badge-check"
         label="Approuvé SEN"
+        tooltip="Recommandé et financé par le SEN"
         class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.campusTraining && !isApprovedCejef"
         icon="i-lucide-graduation-cap"
         label="Formation disponible"
+        tooltip="Une formation est proposée par le CEJEF"
       />
       <SoftwareFeatureBadge
         v-if="software.requiresEduAccount && software.certificationLevel === 1"
         icon="i-lucide-at-sign"
-        label="Compte @edu"
+        label="@edu.jura.ch"
+        tooltip="Classification validée uniquement avec le compte @edu.jura.ch"
         class="bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
+      />
+      <SoftwareFeatureBadge
+        v-if="software.requiresEdulog && software.certificationLevel === 1"
+        icon="i-lucide-key-round"
+        label="Compte Edulog"
+        tooltip="Connexion possible via la fédération d'identités Edulog"
+        class="bg-purple-600 text-white dark:bg-purple-600 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.requiresParentalConsent"
         icon="i-lucide-cake"
         label="< 16 ans : accord parents"
+        tooltip="Accord parental obligatoire pour les moins de 16 ans"
         class="bg-orange-500 text-white dark:bg-orange-500 dark:text-white border-none"
       />
     </div>
