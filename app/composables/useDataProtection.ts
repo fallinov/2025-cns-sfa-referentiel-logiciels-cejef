@@ -1,59 +1,57 @@
-import type { DataProtectionTheme } from "~~/types/data-protection"
+import type { DataProtectionTheme, DataProtectionSection, DataProtectionItem } from "~~/types/data-protection"
 import { dataProtectionThemes } from "~/data/data-protection-themes"
 import { normalizeText, matchesSearch } from "~/utils/search"
 
+function matchesItem(item: DataProtectionItem, searchTerms: string[]): boolean {
+  const text = [item.title, item.description, ...item.resources.map(r => r.title), ...item.resources.map(r => r.source)].join(" ")
+  return matchesSearch(text, searchTerms)
+}
+
 export function useDataProtection() {
-  const audienceStore = useAudienceStore()
   const searchQuery = ref("")
 
   const filteredThemes = computed(() => {
     return dataProtectionThemes
       .map((theme) => {
-        const filteredSubThemes = theme.subThemes.filter((sub) => {
-          if (sub.audience !== "both"
-            && sub.audience !== audienceStore.audience) {
-            return false
-          }
+        if (!searchQuery.value.trim()) return theme
 
-          if (!searchQuery.value.trim()) return true
+        const searchTerms = [normalizeText(searchQuery.value.trim())]
 
-          const searchTerms = [normalizeText(searchQuery.value.trim())]
-          const searchableText = [
-            sub.title,
-            sub.description,
-            ...sub.resources.map(r => r.title),
-            ...sub.resources.map(r => r.source)
-          ].join(" ")
-
-          return matchesSearch(searchableText, searchTerms)
-        })
-
-        if (filteredSubThemes.length === 0) return null
-
-        if (theme.audience !== "both"
-          && theme.audience !== audienceStore.audience) {
-          return null
+        // Si le thème matche → tout afficher
+        if (matchesSearch([theme.title, theme.description].join(" "), searchTerms)) {
+          return theme
         }
 
-        return { ...theme, subThemes: filteredSubThemes }
+        // Filtrer sections → items
+        const filteredSections = theme.sections
+          .map((section): DataProtectionSection | null => {
+            // Si la section matche → garder tous ses items
+            if (matchesSearch(section.title, searchTerms)) return section
+
+            // Filtrer les items individuellement
+            const filteredItems = section.items.filter(item => matchesItem(item, searchTerms))
+            if (filteredItems.length > 0) return { ...section, items: filteredItems }
+
+            return null
+          })
+          .filter((s): s is DataProtectionSection => s !== null)
+
+        if (filteredSections.length === 0) return null
+        return { ...theme, sections: filteredSections }
       })
       .filter((t): t is DataProtectionTheme => t !== null)
   })
 
   const hasResults = computed(() => filteredThemes.value.length > 0)
 
-  const totalSubThemes = computed(() =>
-    filteredThemes.value.reduce((sum, t) => sum + t.subThemes.length, 0)
+  const totalSections = computed(() =>
+    filteredThemes.value.reduce((sum, t) => sum + t.sections.length, 0)
   )
 
   return {
     searchQuery,
-    audienceFilter: computed(() => audienceStore.audience),
-    hasChosenAudience: computed(() => audienceStore.hasChosen),
-    setAudience: audienceStore.setAudience,
-    resetAudience: audienceStore.reset,
     filteredThemes,
     hasResults,
-    totalSubThemes
+    totalSections
   }
 }
