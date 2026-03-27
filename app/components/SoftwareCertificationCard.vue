@@ -28,10 +28,10 @@ const config = computed(() => {
         description: "Vos élèves peuvent créer un compte et utiliser cet outil avec leurs vraies données (nom, prénom, email scolaire).",
         emphasis: "",
         containerClass: "bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700/50",
-        iconContainerClass: "bg-green-500 dark:bg-green-500 ring-2 ring-green-500 dark:ring-green-500 shadow-md",
+        iconContainerClass: "bg-green-500 dark:bg-green-500 ring-2 ring-green-500 dark:ring-green-500 shadow-sm",
         titleClass: "text-gray-900 dark:text-white",
         textClass: "text-gray-600 dark:text-gray-300",
-        emphasisClass: "text-green-700 dark:text-green-400",
+        emphasisClass: "text-green-600 dark:text-green-400",
         // Button/UI
         buttonColor: "neutral" as const,
         buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
@@ -46,10 +46,10 @@ const config = computed(() => {
         emphasis: "Pas de données d'élèves : ni noms, ni prénoms, ni emails, ni date de naissance, ni lieu.",
         additionalInfo: "Vos élèves peuvent l'utiliser sans créer de compte ou avec un compte anonyme (alias).",
         containerClass: "bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700/50",
-        iconContainerClass: "bg-orange-500 dark:bg-orange-500 ring-2 ring-orange-500 dark:ring-orange-500 shadow-md",
+        iconContainerClass: "bg-orange-500 dark:bg-orange-500 ring-2 ring-orange-500 dark:ring-orange-500 shadow-sm",
         titleClass: "text-gray-900 dark:text-white",
         textClass: "text-gray-600 dark:text-gray-300",
-        emphasisClass: "text-orange-700 dark:text-orange-400",
+        emphasisClass: "text-orange-600 dark:text-orange-400",
         // Notes
         noteClass: "bg-orange-50 dark:bg-orange-900/10 text-orange-800 dark:text-orange-200 border border-orange-100 dark:border-orange-800/30",
         // Button/UI
@@ -65,10 +65,10 @@ const config = computed(() => {
         description: "Cet outil ne peut pas être utilisé dans le cadre scolaire.",
         emphasis: "Il ne respecte pas les exigences de protection des données.",
         containerClass: "bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700/50",
-        iconContainerClass: "bg-red-500 dark:bg-red-500 ring-2 ring-red-500 dark:ring-red-500 shadow-md",
+        iconContainerClass: "bg-red-500 dark:bg-red-500 ring-2 ring-red-500 dark:ring-red-500 shadow-sm",
         titleClass: "text-gray-900 dark:text-white",
         textClass: "text-gray-600 dark:text-gray-300",
-        emphasisClass: "text-red-700 dark:text-red-400",
+        emphasisClass: "text-red-600 dark:text-red-400",
         // UI
         buttonColor: "neutral" as const,
         buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"

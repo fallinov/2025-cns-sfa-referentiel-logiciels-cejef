@@ -41,42 +41,42 @@ watch(isOpen, (open) => {
 
         <div class="space-y-4">
           <div class="flex items-start gap-4 p-4 rounded-[var(--ui-radius)] bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-800/30">
-            <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center shrink-0 shadow-md">
+            <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center shrink-0 shadow-sm">
               <UIcon name="i-lucide-check" class="w-6 h-6 text-white stroke-[3]" />
             </div>
             <div>
               <p class="font-bold text-green-800 dark:text-green-300">
                 Utilisable avec vos élèves
               </p>
-              <p class="text-base text-green-700 dark:text-green-400 mt-1">
+              <p class="text-base text-green-600 dark:text-green-400 mt-1">
                 Les élèves peuvent créer un compte et utiliser l'outil avec leurs vraies données.
               </p>
             </div>
           </div>
 
           <div class="flex items-start gap-4 p-4 rounded-[var(--ui-radius)] bg-orange-50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-800/30">
-            <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center shrink-0 shadow-md">
+            <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center shrink-0 shadow-sm">
               <UIcon name="i-lucide-alert-triangle" class="w-6 h-6 text-white stroke-[3]" />
             </div>
             <div>
               <p class="font-bold text-orange-800 dark:text-orange-300">
                 Réservé aux enseignants
               </p>
-              <p class="text-base text-orange-700 dark:text-orange-400 mt-1">
+              <p class="text-base text-orange-600 dark:text-orange-400 mt-1">
                 Pas de données d'élèves. Les élèves peuvent l'utiliser avec un compte anonyme (adresse e-mail alias).
               </p>
             </div>
           </div>
 
           <div class="flex items-start gap-4 p-4 rounded-[var(--ui-radius)] bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-800/30">
-            <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center shrink-0 shadow-md">
+            <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center shrink-0 shadow-sm">
               <UIcon name="i-lucide-ban" class="w-6 h-6 text-white stroke-[3]" />
             </div>
             <div>
               <p class="font-bold text-red-800 dark:text-red-300">
                 Interdit
               </p>
-              <p class="text-base text-red-700 dark:text-red-400 mt-1">
+              <p class="text-base text-red-600 dark:text-red-400 mt-1">
                 Ne respecte pas les exigences de protection des données. Usage interdit.
               </p>
             </div>
@@ -93,7 +93,7 @@ watch(isOpen, (open) => {
         <!-- Carte miniature annotée -->
         <div class="relative bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] border border-gray-200 dark:border-gray-700 p-5 max-w-sm mx-auto">
           <!-- Badge LGPD -->
-          <div class="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-green-500 shadow-md ring-2 ring-green-400">
+          <div class="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-green-500 shadow-sm ring-2 ring-green-500">
             <UIcon name="i-lucide-check" class="w-6 h-6 text-white stroke-[3]" />
           </div>
 
@@ -116,11 +116,11 @@ watch(isOpen, (open) => {
               <UIcon name="i-lucide-badge-check" class="w-3.5 h-3.5" />
               Approuvé CEJEF
             </span>
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-blue-700 text-white text-sm">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-blue-500 text-white text-sm">
               <UIcon name="i-lucide-at-sign" class="w-3.5 h-3.5" />
-              @edu.jura.ch
+              Compte edu.jura.ch
             </span>
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-purple-600 text-white text-sm">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-blue-500 text-white text-sm">
               <UIcon name="i-lucide-key-round" class="w-3.5 h-3.5" />
               Compte Edulog
             </span>
@@ -167,12 +167,12 @@ watch(isOpen, (open) => {
           </div>
 
           <div class="flex items-start gap-3">
-            <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-blue-700 flex items-center justify-center shrink-0">
+            <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-blue-500 flex items-center justify-center shrink-0">
               <UIcon name="i-lucide-at-sign" class="w-4 h-4 text-white" />
             </div>
             <div>
               <p class="text-base font-semibold text-gray-900 dark:text-white">
-                Compte @edu.jura.ch
+                Compte edu.jura.ch
               </p>
               <p class="text-base text-gray-500 dark:text-gray-400">
                 La classification LGPD est validée uniquement avec le compte @edu.jura.ch (contrat institutionnel avec l'éditeur).
@@ -181,7 +181,7 @@ watch(isOpen, (open) => {
           </div>
 
           <div class="flex items-start gap-3">
-            <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-purple-600 flex items-center justify-center shrink-0">
+            <div class="w-7 h-7 rounded-[var(--ui-radius)] bg-blue-500 flex items-center justify-center shrink-0">
               <UIcon name="i-lucide-key-round" class="w-4 h-4 text-white" />
             </div>
             <div>

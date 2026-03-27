@@ -108,7 +108,7 @@ defineExpose({
         <!-- Search Button (Icon) -->
         <button
           type="button"
-          class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 transition-all shadow-sm hover:bg-slate-800 dark:hover:bg-gray-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+          class="flex items-center justify-center w-12 h-12 rounded-full bg-red-500 dark:bg-red-500 text-white transition-all shadow-sm hover:bg-red-600 dark:hover:bg-red-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
           aria-label="Lancer la recherche"
           @click="emit('submit')"
         >

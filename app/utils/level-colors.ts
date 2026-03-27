@@ -11,9 +11,9 @@ export type Level = 1 | 2 | 3 | null
 export function getLevelTextColor(level: Level): string {
   if (!level) return ""
   const colors: Record<NonNullable<Level>, string> = {
-    1: "text-green-600 dark:text-green-400",
-    2: "text-orange-600 dark:text-orange-400",
-    3: "text-red-600 dark:text-red-400"
+    1: "text-green-500 dark:text-green-400",
+    2: "text-orange-500 dark:text-orange-400",
+    3: "text-red-500 dark:text-red-400"
   }
   return colors[level]
 }

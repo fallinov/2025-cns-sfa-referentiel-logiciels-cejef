@@ -11,7 +11,7 @@
       class="h-10 w-auto object-contain hidden dark:block"
     />
     <span class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-      Edu<span class="text-red-600 dark:text-red-500">Jura</span>
+      Edu<span class="text-red-500 dark:text-red-400">Jura</span>
     </span>
   </div>
 </template>

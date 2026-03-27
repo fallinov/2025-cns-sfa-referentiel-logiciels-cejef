@@ -267,14 +267,14 @@ const showLgpdDetails = ref(false)
                 </div>
                 <div
                   v-if="software.requiresEduAccount && certificationLevel === 1"
-                  class="flex items-center gap-1.5 bg-blue-700 text-white px-2.5 py-1 rounded-full"
+                  class="flex items-center gap-1.5 bg-blue-500 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-at-sign" class="w-4 h-4" />
-                  <span>@edu.jura.ch</span>
+                  <span>Compte edu.jura.ch</span>
                 </div>
                 <div
                   v-if="software.requiresEdulog && certificationLevel === 1"
-                  class="flex items-center gap-1.5 bg-purple-600 text-white px-2.5 py-1 rounded-full"
+                  class="flex items-center gap-1.5 bg-blue-500 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-key-round" class="w-4 h-4" />
                   <span>Compte Edulog</span>

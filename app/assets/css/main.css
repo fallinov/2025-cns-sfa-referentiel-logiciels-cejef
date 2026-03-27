@@ -15,86 +15,61 @@ body {
 
   /* Palette CEJEF — https://coolors.co/ffffff-f9fafb-e5e7eb-4b5563-111827-9a211f-1d7a3f-946017-2563eb */
 
-  /* Rouge CEJEF - Couleur d'accent principale */
-  /* Base : #9A211F (600) — WCAG AAA sur blanc (7.5:1) */
+  /* Rouge CEJEF — accent principal, CTA */
+  /* 500 = #9A211F — WCAG AAA sur blanc (7.5:1) */
   --color-red-50: #fef2f2;
   --color-red-100: #fee2e2;
   --color-red-200: #fecaca;
-  --color-red-300: #f5a3a2;
-  --color-red-400: #e06462;
-  --color-red-500: #c43533;
-  --color-red-600: #9a211f;
-  --color-red-700: #7d1b19;
-  --color-red-800: #5e1413;
-  --color-red-900: #3f0e0d;
-  --color-red-950: #200707;
+  --color-red-300: #e88a88;
+  --color-red-400: #c43533;
+  --color-red-500: #9a211f;
+  --color-red-600: #821c1a;
+  --color-red-700: #691615;
+  --color-red-800: #4d100f;
+  --color-red-900: #330b0a;
+  --color-red-950: #1a0505;
 
-  /* Vert CEJEF - Statut "Autorisé" */
-  /* Base : #1D7A3F (700) — WCAG AA sur blanc (5.4:1), meilleure distinction daltonisme */
+  /* Vert CEJEF — statut "Autorise" */
+  /* 500 = #1D7A3F — WCAG AA sur blanc (5.4:1) */
   --color-green-50: #ecfdf5;
   --color-green-100: #d1fae5;
   --color-green-200: #a7f3d0;
   --color-green-300: #6ee7b7;
-  --color-green-400: #34d399;
-  --color-green-500: #22a756;
-  --color-green-600: #1d9049;
-  --color-green-700: #1d7a3f;
-  --color-green-800: #166534;
-  --color-green-900: #14532d;
-  --color-green-950: #052e16;
+  --color-green-400: #34b36c;
+  --color-green-500: #1d7a3f;
+  --color-green-600: #186634;
+  --color-green-700: #135229;
+  --color-green-800: #0e3e1f;
+  --color-green-900: #092a15;
+  --color-green-950: #04160a;
 
-  /* Orange/Amber CEJEF - Statut "Attention" */
-  /* Base : #946017 (700) — WCAG AA sur blanc (5.0:1) */
+  /* Orange CEJEF — statut "Attention" */
+  /* 500 = #946017 — WCAG AA sur blanc (5.0:1) */
   --color-orange-50: #fefce8;
   --color-orange-100: #fef9c3;
   --color-orange-200: #fef08a;
   --color-orange-300: #fde047;
-  --color-orange-400: #facc15;
-  --color-orange-500: #ca9a0a;
-  --color-orange-600: #a47d08;
-  --color-orange-700: #946017;
-  --color-orange-800: #713f12;
-  --color-orange-900: #422006;
-  --color-orange-950: #271303;
+  --color-orange-400: #c8930f;
+  --color-orange-500: #946017;
+  --color-orange-600: #7a5013;
+  --color-orange-700: #61400f;
+  --color-orange-800: #48300b;
+  --color-orange-900: #302008;
+  --color-orange-950: #181004;
 
-  /* Émeraude - Pour niveau 1 "Autorisé" */
-  --color-emerald-50: #ecfdf5;
-  --color-emerald-100: #d1fae5;
-  --color-emerald-200: #a7f3d0;
-  --color-emerald-300: #6ee7b7;
-  --color-emerald-400: #34d399;
-  --color-emerald-500: #10b981;
-  --color-emerald-600: #059669;
-  --color-emerald-700: #047857;
-  --color-emerald-800: #065f46;
-  --color-emerald-900: #064e3b;
-  --color-emerald-950: #022c22;
-
-  /* Ambre - Pour niveau 2 "Attention" */
-  --color-amber-50: #fffbeb;
-  --color-amber-100: #fef3c7;
-  --color-amber-200: #fde68a;
-  --color-amber-300: #fcd34d;
-  --color-amber-400: #fbbf24;
-  --color-amber-500: #f59e0b;
-  --color-amber-600: #d97706;
-  --color-amber-700: #b45309;
-  --color-amber-800: #92400e;
-  --color-amber-900: #78350f;
-  --color-amber-950: #451a03;
-
-  /* Rose - Pour niveau 3 "Interdit" */
-  --color-rose-50: #fff1f2;
-  --color-rose-100: #ffe4e6;
-  --color-rose-200: #fecdd3;
-  --color-rose-300: #fda4af;
-  --color-rose-400: #fb7185;
-  --color-rose-500: #f43f5e;
-  --color-rose-600: #e11d48;
-  --color-rose-700: #be123c;
-  --color-rose-800: #9f1239;
-  --color-rose-900: #881337;
-  --color-rose-950: #4c0519;
+  /* Bleu CEJEF — messages d'information */
+  /* 500 = #2563EB — WCAG AA sur blanc (4.6:1) */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #2563eb;
+  --color-blue-600: #1d4ed8;
+  --color-blue-700: #1e40af;
+  --color-blue-800: #1e3a8a;
+  --color-blue-900: #172554;
+  --color-blue-950: #0f172a;
 
   /* Global Radius Configuration */
   --ui-radius: 1.5rem;

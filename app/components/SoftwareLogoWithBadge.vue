@@ -59,7 +59,7 @@ const sizeClasses = computed(() => {
 
     <!-- Certification Badge (Floating Top Right of Logo) -->
     <div
-      class="absolute flex items-center justify-center rounded-full shadow-md ring-2 transition-colors duration-500 z-20"
+      class="absolute flex items-center justify-center rounded-full shadow-sm ring-2 transition-colors duration-500 z-20"
       :class="[sizeClasses.badge, config.solidBg, config.ringSolid]"
     >
       <UIcon

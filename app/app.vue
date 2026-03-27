@@ -84,6 +84,15 @@ provide("openOnboarding", openOnboarding)
 
       <template #right>
         <UButton
+          to="/charte-graphique"
+          variant="ghost"
+          color="neutral"
+          size="sm"
+          icon="i-lucide-palette"
+        >
+          Charte graphique
+        </UButton>
+        <UButton
           :to="feedbackUrl"
           target="_blank"
           variant="ghost"

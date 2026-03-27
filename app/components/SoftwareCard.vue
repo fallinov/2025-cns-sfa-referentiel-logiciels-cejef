@@ -39,7 +39,7 @@ const handleCardClick = () => {
   >
     <!-- Certification Badge (Floating Top Right of Card) -->
     <div
-      class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full shadow-md ring-2 transition-colors duration-500 z-20"
+      class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full shadow-sm ring-2 transition-colors duration-500 z-20"
       :class="[config.solidBg, config.ringSolid]"
       :aria-label="`Certification LGPD: ${config.label}`"
       :title="`Certification LGPD: ${config.label}`"
@@ -110,16 +110,16 @@ const handleCardClick = () => {
       <SoftwareFeatureBadge
         v-if="software.requiresEduAccount && software.certificationLevel === 1"
         icon="i-lucide-at-sign"
-        label="@edu.jura.ch"
+        label="Compte edu.jura.ch"
         tooltip="Classification validée uniquement avec le compte @edu.jura.ch"
-        class="bg-blue-700 text-white dark:bg-blue-700 dark:text-white border-none"
+        class="bg-blue-500 text-white dark:bg-blue-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.requiresEdulog && software.certificationLevel === 1"
         icon="i-lucide-key-round"
         label="Compte Edulog"
         tooltip="Connexion possible via la fédération d'identités Edulog"
-        class="bg-purple-600 text-white dark:bg-purple-600 dark:text-white border-none"
+        class="bg-blue-500 text-white dark:bg-blue-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.requiresParentalConsent"
