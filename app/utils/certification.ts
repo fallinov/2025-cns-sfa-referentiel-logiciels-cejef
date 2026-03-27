@@ -12,7 +12,7 @@ export interface CertificationConfig {
 
 export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   1: {
-    fill: "text-green-500 dark:text-green-500",
+    fill: "text-green-500 dark:text-green-400",
     label: "Autorisé",
     icon: "i-lucide-check",
     bg: "bg-green-50 dark:bg-green-950",
@@ -23,7 +23,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
     color: "success"
   },
   2: {
-    fill: "text-orange-500 dark:text-orange-500",
+    fill: "text-orange-500 dark:text-orange-400",
     label: "Restreint",
     icon: "i-lucide-alert-triangle",
     bg: "bg-orange-50 dark:bg-orange-950",
@@ -34,7 +34,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
     color: "warning"
   },
   3: {
-    fill: "text-red-500 dark:text-red-500",
+    fill: "text-red-500 dark:text-red-400",
     label: "Interdit",
     icon: "i-lucide-x",
     bg: "bg-red-50 dark:bg-red-950",
