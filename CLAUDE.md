@@ -72,11 +72,11 @@ A custom variant for `UBadge` that applies the signature liquid glass effect:
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: "red",      // Rouge CEJEF #9A211F (600)
-      success: "green",    // Vert #1D7A3F (700)
-      warning: "orange",   // Orange #946017 (700)
+      primary: "red",      // Rouge CEJEF #9A211F (500)
+      success: "green",    // Vert #1D7A3F (500)
+      warning: "orange",   // Orange #946017 (500)
       error: "red",
-      info: "blue",        // Bleu info #2563EB (600)
+      info: "blue",        // Bleu info #2563EB (500)
       neutral: "gray"
     },
     badge: {
@@ -152,10 +152,12 @@ Définie dans `app/assets/css/main.css` via `@theme static`. Palette : https://c
 | gray-200 | #E5E7EB | Bordures, séparateurs | — |
 | gray-600 | #4B5563 | Texte secondaire | 7.4:1 (AAA) |
 | gray-900 | #111827 | Texte principal | 15.4:1 (AAA) |
-| red-600 | #9A211F | Accent, CTA, erreur | 7.5:1 (AAA) |
-| green-700 | #1D7A3F | Autorisé | 5.4:1 (AA) |
-| orange-700 | #946017 | Attention | 5.0:1 (AA) |
-| blue-600 | #2563EB | Info | 4.6:1 (AA) |
+| red-500 | #9A211F | Accent, CTA, erreur | 7.5:1 (AAA) |
+| green-500 | #1D7A3F | Autorisé | 5.4:1 (AA) |
+| orange-500 | #946017 | Attention | 5.0:1 (AA) |
+| blue-500 | #2563EB | Info | 4.6:1 (AA) |
+
+> **Convention** : shade 500 = couleur de base de la charte pour toutes les palettes custom. Charte complète : `docs/charte-graphique-sfp.md` et page `/charte-graphique`.
 
 ### Data Architecture
 
@@ -168,10 +170,10 @@ Définie dans `app/assets/css/main.css` via `@theme static`. Palette : https://c
 - Union types: `DataLocation`, `CostType`, `TargetAudience`
 
 **Champs de badges** (ajoutés v0.8.0) :
-- `requiresEduAccount?: boolean` — badge bleu "@edu.jura.ch" (M365 level 1)
-- `requiresEdulog?: boolean` — badge violet "Compte Edulog" (fédération Edulog)
-- `approvedBySEN?: boolean` — badge sky "Approuvé SEN"
-- `requiresParentalConsent?: boolean` — badge ambre "< 16 ans : accord parents"
+- `requiresEduAccount?: boolean` — badge bleu "Compte edu.jura.ch" (M365 level 1)
+- `requiresEdulog?: boolean` — badge bleu "Compte Edulog" (fédération Edulog)
+- `approvedBySEN?: boolean` — badge vert "Approuvé SEN"
+- `requiresParentalConsent?: boolean` — badge orange "< 16 ans : accord parents"
 - `ageRestriction?: number` — âge minimum (ex: 16 pour ChatGPT)
 
 **Protection des données** (v0.9.0, restructuré depuis Genially) :
@@ -206,10 +208,11 @@ app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
 │   ├── SoftwareCertificationCard.vue (statut LGPD + alternatives)
 │   ├── SoftwareDetailSimilar.vue (logiciels similaires)
 │   └── SoftwareDetailPracticalInfo.vue (coût, support, âge)
-└── pages/protection-des-donnees.vue (protection des données)
-    ├── data-protection/DataProtectionPageHeader.vue (titre, recherche typewriter)
-    ├── data-protection/DataProtectionThemeContent.vue (sections = cartes, items = direct ou tiroirs UAccordion)
-    └── data-protection/DataProtectionLinkList.vue (liens avec source et icône par type)
+├── pages/protection-des-donnees.vue (protection des données)
+│   ├── data-protection/DataProtectionPageHeader.vue (titre, recherche typewriter)
+│   ├── data-protection/DataProtectionThemeContent.vue (sections = cartes, items = direct ou tiroirs UAccordion)
+│   └── data-protection/DataProtectionLinkList.vue (liens avec source et icône par type)
+└── pages/charte-graphique.vue (charte graphique interactive, 12 sections)
 ```
 
 **Composants clés** :
@@ -365,12 +368,12 @@ interface Software {
 }
 ```
 
-**Badges visuels** (tous avec tooltips au survol) :
-- "Approuvé CEJEF" (green-500) : `supportedByCEJEF && campusTraining && certificationLevel === 1`
-- "Approuvé SEN" (green-500) : `approvedBySEN`
-- "@edu.jura.ch" (blue-700) : `requiresEduAccount && certificationLevel === 1`
-- "Compte Edulog" (purple-600) : `requiresEdulog && certificationLevel === 1`
-- "< 16 ans : accord parents" (orange-500) : `requiresParentalConsent`
+**Badges visuels** (tous avec tooltips au survol, couleurs = shade 500 des palettes custom) :
+- "Approuvé CEJEF" (green-500 #1D7A3F) : `supportedByCEJEF && campusTraining && certificationLevel === 1`
+- "Approuvé SEN" (green-500 #1D7A3F) : `approvedBySEN`
+- "Compte edu.jura.ch" (blue-500 #2563EB) : `requiresEduAccount && certificationLevel === 1`
+- "Compte Edulog" (blue-500 #2563EB) : `requiresEdulog && certificationLevel === 1`
+- "< 16 ans : accord parents" (orange-500 #946017) : `requiresParentalConsent`
 
 **Règle** : Le `certificationLevel` détermine l'autorisation d'utiliser des données élèves :
 - Niveau 1 → Données élèves autorisées

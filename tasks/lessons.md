@@ -1,5 +1,12 @@
 # Leçons apprises
 
+## 2026-03-27 — Palettes Tailwind custom : toujours placer la couleur de base au shade 500
+
+**Contexte** : Palette CEJEF avec `#9A211F` au shade 600 et `#1D7A3F` au shade 700.
+**Erreur** : Nuxt UI utilise le shade 500 par defaut pour les boutons, badges, liens actifs. Le bouton vue grille actif affichait `#C43533` (red-500) au lieu de `#9A211F` (red-600). Idem pour les pastilles vertes/orange.
+**Correction** : Recaler les 4 palettes custom (red, green, orange, blue) pour que shade 500 = couleur de base de la charte. Mettre a jour toutes les references dans les composants.
+**Regle** : Quand on definit une palette Tailwind custom pour un framework UI (Nuxt UI, shadcn), toujours placer la couleur de reference au shade 500 — c'est le shade par defaut utilise par le framework.
+
 ## 2026-03-25 — Bien comprendre la hiérarchie d'un Genially avant de coder
 
 **Contexte** : Restructuration de la page protection des données depuis un Genially interactif.
