@@ -71,6 +71,14 @@ A custom variant for `UBadge` that applies the signature liquid glass effect:
 // app/app.config.ts
 export default defineAppConfig({
   ui: {
+    colors: {
+      primary: "red",      // Rouge CEJEF #9A211F (600)
+      success: "green",    // Vert #1D7A3F (700)
+      warning: "orange",   // Orange #946017 (700)
+      error: "red",
+      info: "blue",        // Bleu info #2563EB (600)
+      neutral: "gray"
+    },
     badge: {
       variants: {
         liquid: {
@@ -132,6 +140,22 @@ When creating new custom variants for Nuxt UI components:
 2. Document the variant in this section
 3. Provide usage examples
 4. Reference where it's currently used in the codebase
+
+### Palette de couleurs (WCAG AAA)
+
+Définie dans `app/assets/css/main.css` via `@theme static`. Palette : https://coolors.co/ffffff-f9fafb-e5e7eb-4b5563-111827-9a211f-1d7a3f-946017-2563eb
+
+| Token | Hex | Rôle | Contraste/blanc |
+|-------|-----|------|-----------------|
+| white | #FFFFFF | Fond principal | — |
+| gray-50 | #F9FAFB | Fond secondaire, cards | — |
+| gray-200 | #E5E7EB | Bordures, séparateurs | — |
+| gray-600 | #4B5563 | Texte secondaire | 7.4:1 (AAA) |
+| gray-900 | #111827 | Texte principal | 15.4:1 (AAA) |
+| red-600 | #9A211F | Accent, CTA, erreur | 7.5:1 (AAA) |
+| green-700 | #1D7A3F | Autorisé | 5.4:1 (AA) |
+| orange-700 | #946017 | Attention | 5.0:1 (AA) |
+| blue-600 | #2563EB | Info | 4.6:1 (AA) |
 
 ### Data Architecture
 
