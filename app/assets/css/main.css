@@ -13,49 +13,49 @@ body {
 @theme static {
   --font-sans: "Inter", sans-serif;
 
-  /* https://coolors.co/121212-f7f7f7-2e7d32-e98325-c62828 */
+  /* Palette CEJEF — https://coolors.co/ffffff-f9fafb-e5e7eb-4b5563-111827-9a211f-1d7a3f-946017-2563eb */
 
-  /* Rouge CEJEF - Remplace la couleur 'red' de Tailwind */
-  /* Palette générée à partir de #b12726 (500 - couleur de base) */
-  --color-red-50: #fee7e7;
-  --color-red-100: #fccfce;
-  --color-red-200: #f99f9d;
-  --color-red-300: #f56f6c;
-  --color-red-400: #dd3a38;
-  --color-red-500: #b12726;
+  /* Rouge CEJEF - Couleur d'accent principale */
+  /* Base : #9A211F (600) — WCAG AAA sur blanc (7.5:1) */
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #f5a3a2;
+  --color-red-400: #e06462;
+  --color-red-500: #c43533;
   --color-red-600: #9a211f;
   --color-red-700: #7d1b19;
   --color-red-800: #5e1413;
   --color-red-900: #3f0e0d;
   --color-red-950: #200707;
 
-  /* Vert CEJEF - Remplace la couleur 'green' de Tailwind */
-  /* Palette générée à partir de #2e7633 (500 - couleur de base) */
-  --color-green-50: #e8f5e9;
-  --color-green-100: #c8e6c9;
-  --color-green-200: #a5d6a7;
-  --color-green-300: #81c784;
-  --color-green-400: #52a158;
-  --color-green-500: #2e7633;
-  --color-green-600: #26632c;
-  --color-green-700: #1f5024;
-  --color-green-800: #173c1b;
-  --color-green-900: #102812;
-  --color-green-950: #081409;
+  /* Vert CEJEF - Statut "Autorisé" */
+  /* Base : #1D7A3F (700) — WCAG AA sur blanc (5.4:1), meilleure distinction daltonisme */
+  --color-green-50: #ecfdf5;
+  --color-green-100: #d1fae5;
+  --color-green-200: #a7f3d0;
+  --color-green-300: #6ee7b7;
+  --color-green-400: #34d399;
+  --color-green-500: #22a756;
+  --color-green-600: #1d9049;
+  --color-green-700: #1d7a3f;
+  --color-green-800: #166534;
+  --color-green-900: #14532d;
+  --color-green-950: #052e16;
 
-  /* Orange CEJEF - Remplace la couleur 'orange' de Tailwind */
-  /* Palette générée à partir de #ba691e (500 - couleur de base) */
-  --color-orange-50: #fef4e6;
-  --color-orange-100: #fde8cc;
-  --color-orange-200: #fcd1a3;
-  --color-orange-300: #faba7a;
-  --color-orange-400: #dd9044;
-  --color-orange-500: #ba691e;
-  --color-orange-600: #9f5a1a;
-  --color-orange-700: #804915;
-  --color-orange-800: #603710;
-  --color-orange-900: #40250b;
-  --color-orange-950: #201206;
+  /* Orange/Amber CEJEF - Statut "Attention" */
+  /* Base : #946017 (700) — WCAG AA sur blanc (5.0:1) */
+  --color-orange-50: #fefce8;
+  --color-orange-100: #fef9c3;
+  --color-orange-200: #fef08a;
+  --color-orange-300: #fde047;
+  --color-orange-400: #facc15;
+  --color-orange-500: #ca9a0a;
+  --color-orange-600: #a47d08;
+  --color-orange-700: #946017;
+  --color-orange-800: #713f12;
+  --color-orange-900: #422006;
+  --color-orange-950: #271303;
 
   /* Émeraude - Pour niveau 1 "Autorisé" */
   --color-emerald-50: #ecfdf5;

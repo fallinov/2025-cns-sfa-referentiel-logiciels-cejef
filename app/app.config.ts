@@ -5,7 +5,7 @@ export default defineAppConfig({
       success: "green",
       warning: "orange",
       error: "red",
-      info: "gray",
+      info: "blue",
       neutral: "gray"
     },
     badge: {

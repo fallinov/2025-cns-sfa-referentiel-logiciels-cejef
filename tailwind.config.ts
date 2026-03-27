@@ -18,18 +18,21 @@ import scrollbarHide from "tailwind-scrollbar-hide"
  *
  * 2. Niveau Nuxt UI (app.config.ts) :
  *    - Mappe les couleurs Tailwind vers des noms sémantiques :
- *      • primary: 'red'    → Rouge CEJEF (#d1232a)
- *      • success: 'green'  → Vert CEJEF (#659157)
- *      • error: 'orange'   → Orange CEJEF (#f4b886)
+ *      • primary: 'red'    → Rouge CEJEF (#9A211F)
+ *      • success: 'green'  → Vert CEJEF (#1D7A3F)
+ *      • warning: 'orange' → Orange CEJEF (#946017)
+ *      • error: 'red'      → Rouge CEJEF (#9A211F)
+ *      • info: 'blue'      → Bleu info (#2563EB)
  *
  * 3. Niveau Composants :
- *    - Utilisent les noms sémantiques (primary, success, error)
+ *    - Utilisent les noms sémantiques (primary, success, warning, error, info)
  *    - Exemple : <UButton color="primary" /> → utilise le rouge CEJEF
  *
  * Couleurs CEJEF définies :
- * - Rouge (red) : Couleur principale CEJEF - #d1232a (nuance 500)
- * - Vert (green) : Indicateurs de conformité - #659157 (nuance 500)
- * - Orange (orange) : Avertissements et alertes - #f4b886 (nuance 500)
+ * - Rouge (red-600) : Couleur d'accent principale - #9A211F (WCAG AAA)
+ * - Vert (green-700) : Statut "Autorisé" - #1D7A3F (WCAG AA)
+ * - Orange (orange-700) : Statut "Attention" - #946017 (WCAG AA)
+ * - Bleu (blue-600) : Info - #2563EB (WCAG AA)
  *
  * @see app/assets/css/main.css - Définition des couleurs avec @theme static
  * @see app/app.config.ts - Mapping des couleurs sémantiques Nuxt UI
@@ -55,7 +58,7 @@ export default {
         4000: "4s"
       },
       borderColor: {
-        DEFAULT: "#1C293C"
+        DEFAULT: "#E5E7EB"
       },
       borderWidth: {
         DEFAULT: "1px"
