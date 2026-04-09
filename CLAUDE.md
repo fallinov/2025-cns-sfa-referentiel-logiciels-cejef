@@ -4,6 +4,8 @@
 
 Catalogue statique de logiciels éducatifs pour le CEJEF avec classifications LGPD (protection des données).
 
+<!-- Documentation détaillée dans docs/ -->
+
 ## Key Commands
 
 ### Development
@@ -50,444 +52,105 @@ git push origin v1.0.0
 - **UXNote** (widget retours testeurs, staging uniquement)
 
 > Conventions Nuxt UI, workflow Git, qualité du code : voir `~/.claude/CLAUDE.md` et `~/.claude/rules/`.
-
-**Nuxt UI — pièges spécifiques :**
-- `UDivider` n'existe pas → utiliser `USeparator`
-- `USlideover` : slot `#body`, prop `side` · `UDrawer` : slot `#content`, prop `direction`
-- `UModal` trigger externe → `:open` + `@update:open` (PAS `v-model`)
-- Exemple de référence : `app/components/SoftwareCommandPalette.vue`
-
-### Nuxt UI Custom Variants
-
-This project defines custom variants for Nuxt UI components to support the **Liquid Glass** design aesthetic.
-
-**Configuration Location:** `app/app.config.ts`
-
-#### Liquid Glass Badge Variant
-
-A custom variant for `UBadge` that applies the signature liquid glass effect:
-
-```typescript
-// app/app.config.ts
-export default defineAppConfig({
-  ui: {
-    colors: {
-      primary: "red",      // Rouge CEJEF #9A211F (500)
-      success: "green",    // Vert #1D7A3F (500)
-      warning: "orange",   // Orange #946017 (500)
-      error: "red",
-      info: "blue",        // Bleu info #2563EB (500)
-      neutral: "gray"
-    },
-    badge: {
-      variants: {
-        liquid: {
-          root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 rounded-full backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] px-4 py-2",
-          label: "text-sm font-bold uppercase tracking-widest text-white"
-        }
-      }
-    }
-  }
-})
-```
-
-**Usage Example:**
-
-```vue
-<!-- Define the liquid badge UI configuration -->
-<script setup>
-const liquidBadgeUi = {
-  root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 rounded-full backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] px-4 py-2",
-  label: "text-sm font-bold uppercase tracking-widest text-white"
-}
-</script>
-
-<template>
-  <!-- Use via :ui prop -->
-  <UBadge :ui="liquidBadgeUi">
-    <template #leading>
-      <UIcon name="i-heroicons-wallet" class="w-4 h-4 text-white" />
-    </template>
-    Premium
-  </UBadge>
-</template>
-```
-
-**Note:** We use the `:ui` prop directly instead of `variant="liquid"` to avoid TypeScript type conflicts with Nuxt UI's predefined variants.
-
-**Where it's used:**
-- **CardLiquidGlass.vue**: All badges (header certification badge + footer metadata badges)
-- Provides consistent liquid glass styling across all badge instances
-- Can be used anywhere in the app where liquid glass aesthetic is needed
-
-**Customization via :ui prop:**
-
-The `liquidBadgeUi` constant in `CardLiquidGlass.vue` provides component-level customization:
-
-```typescript
-const liquidBadgeUi = {
-  root: "bg-white/20 dark:bg-white/10 border-white/50 dark:border-white/30 rounded-full backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] px-4 py-2",
-  label: "text-sm font-bold uppercase tracking-widest text-white"
-}
-```
-
-**Important:** UBadge uses `root` for the container element and `label` for text styling. All visual styles (background, border, padding, etc.) must be on `root`.
-
-**Future Variants:**
-
-When creating new custom variants for Nuxt UI components:
-1. Add the variant configuration to `app/app.config.ts` under `ui.{componentName}.variants`
-2. Document the variant in this section
-3. Provide usage examples
-4. Reference where it's currently used in the codebase
-
-### Palette de couleurs (WCAG AAA)
-
-Définie dans `app/assets/css/main.css` via `@theme static`. Palette : https://coolors.co/ffffff-f9fafb-e5e7eb-4b5563-111827-9a211f-1d7a3f-946017-2563eb
-
-| Token | Hex | Rôle | Contraste/blanc |
-|-------|-----|------|-----------------|
-| white | #FFFFFF | Fond principal | — |
-| gray-50 | #F9FAFB | Fond secondaire, cards | — |
-| gray-200 | #E5E7EB | Bordures, séparateurs | — |
-| gray-600 | #4B5563 | Texte secondaire | 7.4:1 (AAA) |
-| gray-900 | #111827 | Texte principal | 15.4:1 (AAA) |
-| red-500 | #9A211F | Accent, CTA, erreur | 7.5:1 (AAA) |
-| green-500 | #1D7A3F | Autorisé | 5.4:1 (AA) |
-| orange-500 | #946017 | Attention | 5.0:1 (AA) |
-| blue-500 | #2563EB | Info | 4.6:1 (AA) |
-
-> **Convention** : shade 500 = couleur de base de la charte pour toutes les palettes custom. Charte complète : `docs/charte-graphique-sfp.md` et page `/charte-graphique`.
+> Composants, variantes custom, palette couleurs : voir `docs/components.md`.
 
 ### Data Architecture
 
-**Static data source**: `app/data/software-list.ts` exports a hardcoded array of software objects. There is no database or CMS.
+**Source statique** : `app/data/software-list.ts` (tableau hardcodé, pas de BDD).
+**Types** : `types/software.ts` (`Software`, `LgpdClassification`, `CertificationLevel`, `DataLocation`).
+**State** : Pinia stores (`software.ts`, `audience.ts`) + composables (`useSoftware`, `useDataProtection`).
 
-**Type system**: `types/software.ts` defines strict TypeScript interfaces:
-- `Software` - main software object with LGPD classification, badges et métadonnées
-- `LgpdClassification` - 3 critères: hosting, rgpd, dataCollection (chacun 1/2/3)
-- `CertificationLevel` - 1 (vert) | 2 (orange) | 3 (rouge) | null
-- Union types: `DataLocation`, `CostType`, `TargetAudience`
+> Détails complets : `docs/data-architecture.md`
 
-**Champs de badges** (ajoutés v0.8.0) :
-- `requiresEduAccount?: boolean` — badge bleu "Compte edu.jura.ch" (M365 level 1)
-- `requiresEdulog?: boolean` — badge bleu "Compte Edulog" (fédération Edulog)
-- `approvedBySEN?: boolean` — badge vert "Approuvé SEN"
-- `requiresParentalConsent?: boolean` — badge orange "< 16 ans : accord parents"
-- `ageRestriction?: number` — âge minimum (ex: 16 pour ChatGPT)
+### Classification LGPD
 
-**Protection des données** (v0.9.0, restructuré depuis Genially) :
-- `app/data/data-protection-themes.ts` — 6 thèmes basés sur le Genially, structure à 3 niveaux
-- `types/data-protection.ts` — interfaces `DataProtectionTheme`, `DataProtectionSection`, `DataProtectionItem`, `ThemeResource`
-- **Niveau 1** : thèmes (sidebar) — Cadre légal, Ordonnances, Environnement, Coordinateurs, Enseignants, Élèves
-- **Niveau 2** : sections (cartes) — toujours visibles dans la page
-- **Niveau 3** : items — si 1 seul → contenu direct dans la carte, si plusieurs → tiroirs UAccordion
-- Descriptions en HTML inline (`<ul>`, `<strong>`, `<br>`) pour le contenu riche
-- Source des données : Genially `https://view.genially.com/681afb1591ccbf218602e8ae`
+3 niveaux : vert (autorisé) / orange (précautions) / rouge (interdit). Basé sur 3 critères : hosting, rgpd, dataCollection. Le `certificationLevel` = max des 3.
 
-**State management**:
-- `app/stores/software.ts` — Pinia store pour filtres, tri, recherche (catalogue)
-- `app/composables/useSoftware.ts` — accès aux données (`getSoftwareList()`, `getSoftwareById()`)
-- `app/composables/useSimilarSoftware.ts` — logiciels similaires par catégorie
-- `app/composables/useSoftwareNavigation.ts` — navigation précédent/suivant
-- `app/stores/audience.ts` — Pinia store global SEN/CEJEF (persisté localStorage, partagé entre pages)
-- `app/composables/useDataProtection.ts` — recherche sur 3 niveaux (thèmes → sections → items)
-
-### Component Structure
-
-```
-app.vue (root layout: AppHeader + OnboardingModal + NuxtPage + UFooter)
-├── pages/index.vue (catalogue logiciels)
-│   ├── software/SoftwarePageHeader.vue (titre, recherche, filtres)
-│   └── software/SoftwareListContainer.vue (grille/liste)
-│       ├── SoftwareCard.vue (vue grille)
-│       └── SoftwareListItem.vue (vue liste)
-│           └── SoftwareLogoWithBadge.vue (logo + pastille certification)
-│               └── SoftwareFeatureBadge.vue (badges: Approuvé CEJEF/SEN, edu, mineurs)
-├── pages/logiciels/[id].vue (page détail logiciel)
-│   ├── SoftwareCertificationCard.vue (statut LGPD + alternatives)
-│   ├── SoftwareDetailSimilar.vue (logiciels similaires)
-│   └── SoftwareDetailPracticalInfo.vue (coût, support, âge)
-├── pages/protection-des-donnees.vue (protection des données)
-│   ├── data-protection/DataProtectionPageHeader.vue (titre, recherche typewriter)
-│   ├── data-protection/DataProtectionThemeContent.vue (sections = cartes, items = direct ou tiroirs UAccordion)
-│   └── data-protection/DataProtectionLinkList.vue (liens avec source et icône par type)
-└── pages/charte-graphique.vue (charte graphique interactive, 12 sections)
-```
-
-**Composants clés** :
-- `SoftwareCard.vue` / `SoftwareListItem.vue` — cartes catalogue (grille/liste)
-- `SoftwareFeatureBadge.vue` — badge réutilisable (icon + label, tailles sm/md)
-- `SoftwareCertificationCard.vue` — statut LGPD détaillé avec alternatives vertes
-- `OnboardingModal.vue` — modale "Classification LGPD" au 1er accès (localStorage) + avertissement données sensibles
-- `AppHeader.vue` — header avec liens "Référentiel logiciels" et "Protection des données"
-- `DataProtectionThemeContent.vue` — sections en cartes, items directs ou tiroirs UAccordion
-- `AudienceChoiceScreen.vue` — écran de choix SEN/CEJEF au premier accès
-- `DataProtectionPageHeader.vue` — recherche avec animation typewriter
+> Critères détaillés, cas particuliers, scripts, workflow : `docs/lgpd-classification.md`
 
 ### Testing
 
 **Configuration** : `vitest.config.ts` (unitaires) + `playwright.config.ts` (e2e)
 
-**Tests unitaires** (`tests/unit/`) — 8 fichiers, 100 tests (dont 11 pour protection des données) :
-- `software-data.test.ts` — intégrité des données (champs requis, types, unicité IDs)
-- `store-filtering.test.ts` — filtres catalogue (certification, catégorie, audience, coût)
-- `store-sorting.test.ts` — tri (nom, certification, catégorie)
-- `search.test.ts` — recherche Fuse.js (fuzzy, accents, mots partiels)
-- `certification.test.ts` — calcul du niveau de certification (max des 3 critères LGPD)
-- `similar-software.test.ts` — logiciels similaires par catégorie
-- `navigation.test.ts` — navigation précédent/suivant dans le catalogue
-- `data-protection.test.ts` — 6 thèmes Genially, IDs uniques, structure 3 niveaux, tiroirs, ressources valides
+**Tests unitaires** (`tests/unit/`) — 8 fichiers, 100 tests :
+- `software-data.test.ts` — intégrité des données
+- `store-filtering.test.ts` — filtres catalogue
+- `store-sorting.test.ts` — tri
+- `search.test.ts` — recherche Fuse.js (fuzzy, accents)
+- `certification.test.ts` — calcul certification LGPD
+- `similar-software.test.ts` — logiciels similaires
+- `navigation.test.ts` — navigation précédent/suivant
+- `data-protection.test.ts` — 6 thèmes Genially, structure 3 niveaux
 
 **Tests e2e** (`tests/e2e/`) — Playwright, projets desktop (Chrome) + mobile (Pixel 7) :
-- `catalog.spec.ts` — navigation catalogue, filtres, recherche, vue grille/liste
-- `accessibility.spec.ts` — structure sémantique, ARIA, navigation clavier
-- `uxnote.spec.ts` — toolbar UXNote, toast (z-index, position, disparition), traduction FR, nom testeur
+- `catalog.spec.ts` — navigation, filtres, recherche, grille/liste
+- `accessibility.spec.ts` — sémantique, ARIA, navigation clavier
+- `uxnote.spec.ts` — toolbar UXNote, toast, traduction FR
 
 ### Feedback testeurs
 
-**2 canaux de retour** :
-
-1. **Bouton "Donner un retour"** (footer) → ouvre un formulaire GitHub Issue (`.github/ISSUE_TEMPLATE/feedback.yml`)
+**2 canaux** :
+1. **Bouton "Donner un retour"** (footer) → GitHub Issue (`.github/ISSUE_TEMPLATE/feedback.yml`)
 2. **UXNote** (annotation visuelle) → activé via `?uxnote=1` sur staging
 
 **UXNote — architecture** :
 - **Plugin** : `app/plugins/uxnote.client.ts` — activé uniquement sur GitHub Pages + `?uxnote=1`
 - **Scripts** : self-hosted `public/static/uxnote.min.js` (traduit FR) + `uxnote-send.js` (pas de CDN)
-  - `uxnote.min.js` : interface traduite en français via sed sur le fichier minifié
-  - `uxnote-send.js` : récupère le nom du testeur depuis le localStorage UXNote (`uxnote:annotator:{origin}`), pas de prompt séparé
 - **Backend** : API PHP sur `kode.ch/uxnotes/` (repo privé `fallinov/uxnotes-server`)
-  - `feedback.php` — reçoit le JSON, sauvegarde, envoie email enrichi (résumé priorités, détail annotations, liens dashboard + UXNote)
-  - `list.php` — fusionne toutes les annotations
-  - `list-files.php` — liste les soumissions individuelles avec métadonnées
-  - `delete.php` — supprime une soumission par ID
-  - `status.php` — marque une annotation comme résolue/non résolue
 - **Dashboard** : SPA Nuxt 4 sur `kode.ch/uxnotes/` (repo privé `fallinov/uxnotes-dashboard`)
-  - Remplace `viewer.html` comme page par défaut
-  - Liste soumissions, détail annotations, filtres/tri, marquer résolu, supprimer
-  - Stack : Nuxt 4 + Nuxt UI v3 + TypeScript (SPA, `ssr: false`)
-  - Déploiement : `npm run generate` → FTP sur `kode.ch/uxnotes/`
 - **Email** : SMTP `mail.infomaniak.com:587` via PHPMailer → `steve.fallet@divtec.ch`
 
 **URLs** :
 - Testeurs : `https://fallinov.github.io/2025-cns-sfa-referentiel-logiciels-cejef/?uxnote=1`
-- Charger une annotation : `?uxnote=1&load=ID`
-- Charger toutes les annotations : `?uxnote=1&load=all`
+- Charger annotation : `?uxnote=1&load=ID` | Toutes : `?uxnote=1&load=all`
 - Dashboard : `https://kode.ch/uxnotes/`
 
 ### Deployment Strategy
 
-**Two environments**:
-1. **Staging**: GitHub Pages at `https://fallinov.github.io/2025-cns-sfa-referentiel-logiciels-cejef/`
-   - Auto-deploys on every push to `main`
-   - Uses `baseURL: /2025-cns-sfa-referentiel-logiciels-cejef/`
+**Two environments** :
+1. **Staging** : GitHub Pages (`https://fallinov.github.io/2025-cns-sfa-referentiel-logiciels-cejef/`)
+   - Auto-deploy on push to `main`, `baseURL: /2025-cns-sfa-referentiel-logiciels-cejef/`
    - Workflow: `.github/workflows/deploy-github-pages.yml`
 
-2. **Production**: SFTP server
-   - Manual deployment via Git tags (e.g., `v1.0.0`)
-   - Uses `baseURL: /` (root)
+2. **Production** : SFTP server
+   - Manual via Git tags, `baseURL: /`
    - Workflow: `.github/workflows/deploy-production.yml`
-   - Requires secrets: `SFTP_SERVER`, `SFTP_USERNAME`, `SFTP_PASSWORD`, `SFTP_PORT`, `SFTP_SERVER_DIR`
+   - Secrets: `SFTP_SERVER`, `SFTP_USERNAME`, `SFTP_PASSWORD`, `SFTP_PORT`, `SFTP_SERVER_DIR`
 
-**Configuration**: `nuxt.config.ts` uses `process.env.NUXT_APP_BASE_URL` to handle different base URLs for staging vs production.
+**Config** : `nuxt.config.ts` utilise `process.env.NUXT_APP_BASE_URL`.
 
 ## Common Development Tasks
 
 ### Adding a New Software
 
-1. Edit `app/data/software-list.ts`
-2. Add new object matching `Software` interface with all required fields:
-   - Ensure `id` is unique (slug format)
-   - Include complete `lgpd` classification object
-   - Set `supportedByCEJEF`, `campusTraining`, et optionnellement `approvedBySEN`, `requiresEduAccount`, `requiresParentalConsent`
-   - Provide all required metadata (cost, categories, disciplines, etc.)
-3. Commit with semantic message: `git commit -m "feat: add [software name]"`
-4. Push to deploy to staging automatically
-5. Test on staging, then tag for production: `git tag v1.x.0 && git push origin v1.x.0`
+1. Éditer `app/data/software-list.ts`
+2. Ajouter un objet conforme à `Software` (id unique, `lgpd` complet, badges, métadonnées)
+3. Commit : `git commit -m "feat: add [software name]"`
+4. Push → staging auto. Tag pour production : `git tag v1.x.0 && git push origin v1.x.0`
 
-### LGPD Classification System (GCN 2026)
-
-#### Classification Levels
-
-| Niveau | Couleur | Signification | Critères |
-|--------|---------|---------------|----------|
-| **1** | 🟢 Vert | Usage autorisé | CH/UE hébergement + conforme RGPD + pas de tracking invasif |
-| **2** | 🟠 Orange | Usage avec précautions | Entreprise US avec certification DPF OU analytics tiers |
-| **3** | 🔴 Rouge | Usage interdit | Non conforme RGPD OU hébergement pays non adéquat (Chine, etc.) |
-
-#### Critères de classification détaillés
-
-**Niveau 1 (Vert) - Critères cumulatifs :**
-- Siège social en Suisse, UE, ou pays adéquat (Canada, UK, Corée du Sud, Japon)
-- Hébergement des données en Suisse ou UE
-- Politique de confidentialité conforme RGPD
-- Pas de collecte de données invasive ni tracking publicitaire
-- OU contrat DPA institutionnel CEJEF (ex: Microsoft 365)
-
-**Niveau 2 (Orange) - Un des critères suivants :**
-- Entreprise US avec certification EU-US Data Privacy Framework (DPF)
-- Hébergement sur infrastructure US (AWS, Google Cloud) même pour entreprise UE → Cloud Act
-- Utilisation d'analytics tiers (Google Analytics, etc.)
-- Sous-traitants US dans la chaîne de traitement
-- Certifications : SOC 2, ISO 27001, COPPA, FERPA
-
-**Niveau 3 (Rouge) - Un des critères suivants :**
-- Hébergement dans pays non adéquat (Chine, Russie, etc.)
-- Entreprise chinoise (ByteDance, Tencent, etc.)
-- Non-conformité RGPD avérée ou amendes RGPD
-- Politique de confidentialité insuffisante ou absente
-- Collecte de données extensive sans consentement
-
-#### Structure des données (`types/software.ts`)
-
-```typescript
-interface Software {
-  // Classification LGPD
-  lgpd: {
-    hosting: 1 | 2 | 3
-    rgpd: 1 | 2 | 3
-    dataCollection: 1 | 2 | 3
-  }
-  certificationLevel: 1 | 2 | 3 | null  // Niveau global (max des 3)
-  dataLocation: DataLocation
-
-  // Support CEJEF
-  supportedByCEJEF: boolean
-  campusTraining: boolean
-  requiresEduAccount?: boolean      // Badge bleu "@edu.jura.ch" (v0.8.0)
-  requiresEdulog?: boolean          // Badge violet "Compte Edulog"
-  approvedBySEN?: boolean           // Badge sky "Approuvé SEN" (v0.8.0)
-
-  // Usage
-  ageRestriction?: number           // Âge minimum (ex: 16)
-  requiresParentalConsent?: boolean  // Badge ambre mineurs (v0.8.0)
-
-  // Validation LGPD
-  toValidate?: boolean
-  remarque?: string
-}
-```
-
-**Badges visuels** (tous avec tooltips au survol, couleurs = shade 500 des palettes custom) :
-- "Approuvé CEJEF" (green-500 #1D7A3F) : `supportedByCEJEF && campusTraining && certificationLevel === 1`
-- "Approuvé SEN" (green-500 #1D7A3F) : `approvedBySEN`
-- "Compte edu.jura.ch" (blue-500 #2563EB) : `requiresEduAccount && certificationLevel === 1`
-- "Compte Edulog" (blue-500 #2563EB) : `requiresEdulog && certificationLevel === 1`
-- "< 16 ans : accord parents" (orange-500 #946017) : `requiresParentalConsent`
-
-**Règle** : Le `certificationLevel` détermine l'autorisation d'utiliser des données élèves :
-- Niveau 1 → Données élèves autorisées
-- Niveau 2/3 → Données élèves non autorisées
-
-#### Localisations de données (`DataLocation`)
-
-```typescript
-type DataLocation =
-  // Pays adéquats (niveau 1 possible)
-  | "Suisse" | "France" | "Allemagne" | "Union Européenne"
-  | "Royaume-Uni" | "Canada" | "Corée du Sud" | "Local"
-
-  // Avec infrastructure US (niveau 2)
-  | "États-Unis" | "États-Unis (option UE)"
-  | "Union Européenne (AWS)" | "Australie/États-Unis"
-
-  // Pays non adéquats (niveau 3)
-  | "Chine" | "Inconnu" | "Hors UE"
-```
-
-#### Scripts d'automatisation (`scripts/`)
-
-**`scripts/classify-lgpd.py`** - Analyse et classification automatique
-```bash
-python3 scripts/classify-lgpd.py
-# Génère: scripts/lgpd-classifications.json
-```
-
-**`scripts/apply-lgpd-changes.py`** - Applique les classifications au fichier TS
-```bash
-python3 scripts/apply-lgpd-changes.py
-# Modifie: app/data/software-list.ts
-```
-
-**`scripts/apply-remaining-lgpd.py`** - Classifications complémentaires (navigateurs, IA, dev tools)
-
-#### Workflow de classification d'un nouveau logiciel
-
-1. **Recherche** - Identifier le siège social, politique de confidentialité, certifications
-2. **Critères à vérifier** :
-   - Localisation siège social
-   - Localisation hébergement (AWS? Google Cloud? Azure?)
-   - Certification DPF (vérifier sur https://www.dataprivacyframework.gov/)
-   - Certifications sécurité (SOC 2, ISO 27001)
-   - Conformité COPPA/FERPA (si éducatif)
-   - Historique amendes RGPD
-3. **Classification** - Appliquer les critères ci-dessus
-4. **Documentation** - Ajouter `remarque` avec justification
-
-#### Cas particuliers
-
-**Microsoft 365 (Word, Excel, Teams, etc.) → Niveau 1**
-- CEJEF dispose d'un contrat DPA institutionnel
-- Hébergement UE garanti contractuellement
-- Sans ce contrat, ces produits seraient niveau 2
-
-**Entreprises UE utilisant AWS/Google Cloud → Niveau 2**
-- Ex: Babbel (Allemagne) utilise AWS → Cloud Act applicable
-- L'infrastructure US soumet les données au droit américain
-
-**Navigateurs → Variable**
-- Brave → Niveau 1 (pas de stockage historique, bloque trackers)
-- Chrome, Firefox, Edge → Niveau 2 (télémétrie vers US)
-
-**Outils IA génératifs → Niveau 2 minimum**
-- ChatGPT, Claude, Gemini → Niveau 2 (données traitées US)
-- Mistral Le Chat → Niveau 1 (entreprise française, hébergement UE)
-
-#### Logiciels à valider manuellement (`toValidate: true`)
-
-Certains logiciels nécessitent une vérification humaine :
-- Service discontinué ou en transition
-- Acquisition récente (changement de politique)
-- Information insuffisante disponible
-
-```bash
-# Lister les logiciels à valider
-grep -B 20 "toValidate: true" app/data/software-list.ts | grep "name:"
-```
-
-### Modifying LGPD Classification
-
-Pour modifier une classification, mettre à jour dans `app/data/software-list.ts` :
-1. L'objet `lgpd` (hosting, rgpd, dataCollection)
-2. Le `certificationLevel` (doit être le max des 3 valeurs lgpd)
-3. La `dataLocation` (localisation précise)
-4. La `remarque` (justification obligatoire)
-5. Optionnel: `toValidate: true` si révision nécessaire
-
-### Modifying UI Components
-
-- **Carte catalogue** : `SoftwareCard.vue` (grille) / `SoftwareListItem.vue` (liste)
-- **Page détail** : `app/pages/logiciels/[id].vue`
-- **Statut LGPD** : `SoftwareCertificationCard.vue`
-- **Badges** : `SoftwareFeatureBadge.vue` (composant réutilisable)
-- **Filtres/recherche** : `app/stores/software.ts` + `software/SoftwareFiltersBar.vue`
-- **Onboarding** : `OnboardingModal.vue` (popup) + `AppHeader.vue` (bouton "?")
-- **Protection des données** : `app/pages/protection-des-donnees.vue` (page) + composants `data-protection/`
-- **Données protection** : `app/data/data-protection-themes.ts` (6 thèmes Genially, 3 niveaux)
-- **Global layout** : `app/app.vue`
+> Classification LGPD d'un nouveau logiciel : `docs/lgpd-classification.md`
 
 ### Code Style
 
 **ESLint** : `@nuxt/eslint` — `npm run lint` après chaque modification, `npm run typecheck` avant chaque commit.
 
-**Règles spécifiques :** double quotes, pas de trailing commas, pas de semicolons, indentation 2 espaces, 1tbs brace style.
+**Règles** : double quotes, pas de trailing commas, pas de semicolons, indentation 2 espaces, 1tbs brace style.
 
 ## Important Notes
 
-- **Présentations HTML** : Les présentations HTML (GCN, COPIL, SEN) ont été déplacées dans le dépôt centralisé SFA-PRESENTATION : `~/WebstormProjects/SFA-PRESENTATION/referentiel-logiciels/`
-- **No backend**: This is a 100% static site. All data is in TypeScript files.
-- **Redeployment required**: Any data changes require regeneration and redeployment.
-- **Base URL handling**: When working on routing or assets, be aware of the dynamic `baseURL` for GitHub Pages.
-- **TypeScript strict mode**: All software objects must match the `Software` interface exactly.
-- **Component library**: Nuxt UI v4.1.0 — toujours vérifier l'API sur https://ui.nuxt.com avant d'utiliser un composant.
-- **npm overrides**: `crossws` est forcé à `^0.4.1` via `overrides` dans `package.json` (conflit entre `h3@2.0.1-rc.11` de `@nuxt/test-utils` et le reste de l'écosystème Nuxt). Si `npm ci` échoue en CI avec "Missing: crossws", vérifier que l'override est toujours présent.
+- **Présentations HTML** : déplacées dans `~/WebstormProjects/SFA-PRESENTATION/referentiel-logiciels/`
+- **No backend** : site 100% statique, toutes les données sont dans des fichiers TypeScript.
+- **Redeployment required** : tout changement de données nécessite régénération et redéploiement.
+- **Base URL** : attention au `baseURL` dynamique pour GitHub Pages (routing, assets).
+- **TypeScript strict** : tous les objets doivent matcher l'interface `Software` exactement.
+- **Nuxt UI v4.1.0** : toujours vérifier l'API sur https://ui.nuxt.com avant d'utiliser un composant.
+- **npm overrides** : `crossws` forcé à `^0.4.1` via `overrides` dans `package.json` (conflit `h3`/`@nuxt/test-utils`).
+
+## Documentation externalisée
+
+| Fichier | Contenu |
+|---------|---------|
+| `docs/lgpd-classification.md` | Système de classification LGPD complet (critères, niveaux, cas particuliers, scripts, workflow) |
+| `docs/components.md` | Composants, variantes custom (Liquid Glass), palette couleurs WCAG, arbre composants |
+| `docs/data-architecture.md` | Types, sources de données, state management, protection des données |
+| `docs/charte-graphique-sfp.md` | Charte graphique SFP |
