@@ -18,12 +18,15 @@ npm run preview          # Preview generated static site
 
 ### Tests
 ```bash
-npm test                 # Run Vitest unit tests (100 tests)
-npm run test:watch       # Run Vitest in watch mode
-npm run test:e2e         # Run Playwright e2e tests (desktop + mobile)
+npm test                 # Vitest unit tests (214 tests, 19 fichiers)
+npm run test:watch       # Vitest watch mode
+npm run test:coverage    # Vitest + v8 coverage (seuils 70/55/70/70)
+npm run test:e2e         # Playwright e2e (desktop + mobile)
 npm run test:e2e:desktop # Playwright desktop only
 npm run test:e2e:mobile  # Playwright mobile only
 ```
+
+**CI** : `.github/workflows/test.yml` lance `lint + typecheck + test:coverage` sur PR/main. Job Playwright en parallèle (`continue-on-error: true`). Artifacts coverage-report + playwright-report rétention 7j.
 
 ### Code Quality
 ```bash
@@ -90,21 +93,32 @@ git push origin main
 
 ### Testing
 
-**Configuration** : `vitest.config.ts` (unitaires) + `playwright.config.ts` (e2e)
+**Configuration** : `vitest.config.ts` (unit + coverage v8 + seuils) + `playwright.config.ts` (e2e). Couverture mesurable : ~77 % lines.
 
-**Tests unitaires** (`tests/unit/`) — 8 fichiers, 100 tests :
-- `software-data.test.ts` — intégrité des données
-- `store-filtering.test.ts` — filtres catalogue
-- `store-sorting.test.ts` — tri
+**Tests unitaires** (`tests/unit/`) — 19 fichiers, 214 tests :
+- `software-data.test.ts` — intégrité du seed legacy
+- `store-filtering.test.ts` / `store-sorting.test.ts` — filtres + tri Pinia
 - `search.test.ts` — recherche Fuse.js (fuzzy, accents)
-- `certification.test.ts` — calcul certification LGPD
-- `similar-software.test.ts` — logiciels similaires
+- `certification.test.ts` — `getCertificationLevel` + helpers UI (config/colors/icon)
 - `navigation.test.ts` — navigation précédent/suivant
 - `data-protection.test.ts` — 6 thèmes Genially, structure 3 niveaux
+- `alternatives.test.ts` — `useAlternatives` (filtre, tri, état vide)
+- `use-software.test.ts` — `useSoftware` (Ref, getById)
+- `use-data-protection.test.ts` — filtrage thèmes
+- `use-search-suggestions.test.ts` — Fuse.js + debounce
+- `use-typewriter.test.ts` — API composable
+- `audience-store.test.ts` — Pinia + localStorage
+- `level-colors.test.ts` — 7 fonctions × 4 niveaux
+- `server-directus-utils.test.ts` — `mapSoftware` + `mapDataLocationLabel` (factorisés)
+- `component-software-list-empty.test.ts` — Vue mount + emit
+- `component-software-detail-alternatives.test.ts` — état vide vs liste
+- `component-software-feature-badge.test.ts` — variantes tooltip/size
 
-**Tests e2e** (`tests/e2e/`) — Playwright, projets desktop (Chrome) + mobile (Pixel 7) :
+**Tests e2e** (`tests/e2e/`) — Playwright desktop (Chrome) + mobile (Pixel 7) :
 - `catalog.spec.ts` — navigation, filtres, recherche, grille/liste
 - `accessibility.spec.ts` — sémantique, ARIA, navigation clavier
+- `alternatives.spec.ts` — section alternatives (vide + DeepL Std → DeepL Pro)
+- `data-protection.spec.ts` — page LPD (titre, thèmes, recherche)
 - `uxnote.spec.ts` — toolbar UXNote, toast, traduction FR
 
 ### Feedback testeurs
