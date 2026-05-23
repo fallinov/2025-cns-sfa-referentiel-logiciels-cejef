@@ -42,13 +42,15 @@ test.describe("Accessibilité — dark mode et light mode", () => {
     await page.addInitScript(() => {
       localStorage.setItem("nuxt-color-mode", "dark")
     })
-    // Naviguer directement vers une page détail
-    await page.goto("/logiciels/microsoft-teams")
+    // V1 : récupère dynamiquement la 1re fiche depuis la liste (UUIDs Directus)
+    await page.goto("/")
+    const firstCard = page.locator("a[href^='/logiciels/']").first()
+    const href = await firstCard.getAttribute("href")
+    await page.goto(href!)
     await page.waitForSelector("h1", { timeout: 10000 })
 
     const title = page.locator("h1")
     await expect(title).toBeVisible()
-    await expect(title).toContainText("Microsoft Teams")
   })
 })
 
