@@ -30,3 +30,6 @@ test-results/
 
 # Nuxt local config
 .nuxtrc
+
+# Coverage reports
+coverage/
