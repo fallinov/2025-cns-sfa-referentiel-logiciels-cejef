@@ -93,7 +93,11 @@ test.describe("Catalogue — navigation détail", () => {
   })
 
   test("le bouton retour est visible sur la page détail", async ({ page }) => {
-    await page.goto("/logiciels/microsoft-teams")
+    // V1 : les IDs sont des UUIDs Directus, on récupère le 1er logiciel disponible
+    await page.goto("/")
+    const firstCard = page.locator("a[href^='/logiciels/']").first()
+    const href = await firstCard.getAttribute("href")
+    await page.goto(href!)
     await page.waitForSelector("h1.tracking-tight", { timeout: 10000 })
 
     const backButton = page.getByLabel("Retour au catalogue")
@@ -105,11 +109,15 @@ test.describe("Catalogue — navigation détail", () => {
 test.describe("Catalogue — page détail", () => {
   test("la page détail affiche toutes les sections", async ({ page }) => {
     await setupLocalStorage(page)
-    await page.goto("/logiciels/microsoft-teams")
+    // V1 : les IDs sont des UUIDs Directus, on récupère le 1er logiciel disponible
+    await page.goto("/")
+    const firstCard = page.locator("a[href^='/logiciels/']").first()
+    const href = await firstCard.getAttribute("href")
+    await page.goto(href!)
     await page.waitForSelector("h1.tracking-tight", { timeout: 10000 })
 
-    // Titre
-    await expect(page.locator("h1.tracking-tight")).toContainText("Microsoft Teams")
+    // Titre — V1 : on vérifie juste qu'un titre H1 existe (le nom dépend du 1er logiciel)
+    await expect(page.locator("h1.tracking-tight")).toBeVisible()
 
     // Section conformité LGPD
     const certSection = page.locator("section[aria-label='Statut de conformité']")
