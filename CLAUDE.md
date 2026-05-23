@@ -33,12 +33,12 @@ npm run typecheck        # Check TypeScript types
 
 ### Deployment
 ```bash
-# Staging (GitHub Pages) - automatic on push to main
+# Vercel (SSR) - automatic on push to main
 git push origin main
+# → https://logiciels.vercel.app
 
-# Production (SFTP) - manual via Git tags
-git tag v1.0.0
-git push origin v1.0.0
+# Production future : Infomaniak Cloud Managé (à configurer)
+# GitHub Pages désactivé (workflow .disabled)
 ```
 
 ## Architecture
