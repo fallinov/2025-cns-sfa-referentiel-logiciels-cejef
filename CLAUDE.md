@@ -18,7 +18,7 @@ npm run preview          # Preview generated static site
 
 ### Tests
 ```bash
-npm test                 # Vitest unit tests (214 tests, 19 fichiers)
+npm test                 # Vitest unit tests (208 tests, 17 fichiers)
 npm run test:watch       # Vitest watch mode
 npm run test:coverage    # Vitest + v8 coverage (seuils 70/55/70/70)
 npm run test:e2e         # Playwright e2e (desktop + mobile)
@@ -81,7 +81,7 @@ git push origin main
 
 **Types** : `types/software.ts` (`Software`, `LgpdClassification`, `CertificationLevel`, `DataLocation`).
 **State** : Pinia stores (`software.ts`, `audience.ts`) + composables (`useSoftware`, `useDataProtection`).
-**Legacy** : `app/data/software-list.ts` reste comme seed des tests unitaires (`tests/unit/`) — pas utilisé par le runtime.
+**Legacy** : `app/data/software-list.ts` reste dans le repo mais n'est plus utilisé — ni par le runtime (Directus), ni par les tests (qui utilisent `tests/fixtures/software.ts`). Peut être supprimé dans une PR dédiée.
 
 > Détails complets : `docs/data-architecture.md`
 
@@ -93,14 +93,15 @@ git push origin main
 
 ### Testing
 
-**Configuration** : `vitest.config.ts` (unit + coverage v8 + seuils) + `playwright.config.ts` (e2e). Couverture mesurable : ~77 % lines.
+**Configuration** : `vitest.config.ts` (unit + coverage v8 + seuils) + `playwright.config.ts` (e2e). Couverture : 78 % lines / 64.35 % branches / 77.47 % functions.
 
-**Tests unitaires** (`tests/unit/`) — 19 fichiers, 214 tests :
-- `software-data.test.ts` — intégrité du seed legacy
-- `store-filtering.test.ts` / `store-sorting.test.ts` — filtres + tri Pinia
+**Fixtures de test** : `tests/fixtures/software.ts` (14 logiciels synthétiques) — utilisée par les tests qui ont besoin d'un dataset. **Le seed legacy `app/data/software-list.ts` n'est plus référencé par aucun test** (il a divergé du runtime Directus : 128 vs 104 logiciels, flags désynchronisés).
+
+**Tests unitaires** (`tests/unit/`) — 17 fichiers, 208 tests :
+- `store-filtering.test.ts` / `store-sorting.test.ts` — filtres + tri Pinia (sur fixtures)
 - `search.test.ts` — recherche Fuse.js (fuzzy, accents)
 - `certification.test.ts` — `getCertificationLevel` + helpers UI (config/colors/icon)
-- `navigation.test.ts` — navigation précédent/suivant
+- `navigation.test.ts` — navigation précédent/suivant (sur fixtures)
 - `data-protection.test.ts` — 6 thèmes Genially, structure 3 niveaux
 - `alternatives.test.ts` — `useAlternatives` (filtre, tri, état vide)
 - `use-software.test.ts` — `useSoftware` (Ref, getById)

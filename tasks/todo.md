@@ -27,13 +27,9 @@ Ces 3 composables ont une couverture sous 55 % :
 
 Phase optionnelle quand le besoin se présentera.
 
-### Fixtures dédiées vs seed legacy `app/data/software-list.ts`
+### Suppression de `app/data/software-list.ts` (4002 lignes orphelines)
 
-Le fichier (4002 lignes) sert encore de seed pour les tests unit. Décider :
-- soit le synchroniser régulièrement avec Directus (risque de drift)
-- soit remplacer par `tests/fixtures/software.ts` (15-20 logiciels représentatifs)
-
-Pas urgent — les tests passent avec le seed actuel.
+Le seed legacy n'est plus utilisé : ni par le runtime (Directus), ni par les tests (passés sur `tests/fixtures/software.ts` en PR #66). Peut être supprimé en une PR dédiée — vérifier juste qu'aucun import résiduel ne traîne.
 
 ### Mise à jour packages CI (Node 24)
 
@@ -41,6 +37,7 @@ Workflows GitHub Pages désactivés mais `claude.yml` et `test.yml` utilisent No
 
 ## Historique récent (pour référence)
 
+- 2026-05-24 : découplage tests / seed legacy via fixtures (PR #66) — 208 tests unit / coverage lines 78 % / branches 64.35 %
 - 2026-05-24 : tests phases 4-6 — composants + seuils CI + E2E LPD (PR #64) — 214 tests unit / 65 E2E / coverage 76.83 %
 - 2026-05-23 : tests phases 0-3 — CI workflow + coverage v8 + server/composables/utils (PR #63)
 - 2026-05-23 : tests alternatives + use-software (PR #62)

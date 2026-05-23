@@ -1,5 +1,12 @@
 # Leçons apprises
 
+## 2026-05-24 — Drift seed legacy vs runtime : un test sans seed teste un store VIDE = succès trivial
+
+**Contexte** : Audit de la pertinence des tests post-bascule Directus. `tests/unit/store-sorting.test.ts` créait un store mais ne seedait jamais `useState("software-list")`. Conséquence : `store.filteredSoftwareList` retournait `[]`. Toutes les assertions de tri étaient des boucles `for (let i = 1; i < 0; i++)` → boucles vides → tests verts sans rien tester.
+**Erreur** : 7 tests "store-sorting" passaient en CI sans valider la logique réelle. Pire : le code de test référençait `supportedByCEJEF` et `campusTraining`, champs supprimés du type `Software` (remplacés par `approvedBySEN`/`approvedBySFP`). Le test était trompeur ET référençait du code mort.
+**Correction** : Réécrit complètement le fichier avec seed obligatoire des fixtures dans `beforeEach`, et assertions cohérentes avec la vraie logique de tri "recommended" (basée sur `approvedBySEN/SFP`). Suppression de `software-data.test.ts` (testait l'intégrité du seed legacy lui-même → valeur nulle depuis Directus).
+**Règle** : Pour tout test qui appelle un store Pinia avec une liste réactive, **toujours seeder explicitement le useState/useState dans `beforeEach`**. Si les assertions sont des boucles `for` sur une liste, ajouter un `expect(list.length).toBeGreaterThan(0)` en premier pour détecter le cas "liste vide → boucle vide → faux succès". Et toujours vérifier que les champs référencés dans les tests existent encore dans le type courant.
+
 ## 2026-05-24 — Tests composants Vue : stubs Nuxt UI doivent forwarder $attrs pour préserver aria-*
 
 **Contexte** : Tests `@vue/test-utils mount()` du composant `SoftwareFeatureBadge.vue` (badge utilisant `UBadge` de Nuxt UI). On voulait vérifier que `aria-label` était bien rendu côté DOM.
