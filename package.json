@@ -14,6 +14,7 @@
     "typecheck": "nuxt typecheck",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:e2e:desktop": "playwright test --project=desktop",
     "test:e2e:mobile": "playwright test --project=mobile"
@@ -39,6 +40,7 @@
     "@nuxt/test-utils": "^4.0.0",
     "@playwright/test": "^1.58.2",
     "@types/node": "^24.10.1",
+    "@vitest/coverage-v8": "^4.1.7",
     "@vue/test-utils": "^2.4.6",
     "dotenv": "^17.4.2",
     "eslint": "^9.38.0",

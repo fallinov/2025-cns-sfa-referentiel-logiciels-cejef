@@ -1,0 +1,48 @@
+# =============================================================================
+# CI Tests — lance lint + typecheck + tests unitaires sur PR et push main
+# =============================================================================
+# Garantit que tout changement merge sur main n'introduit pas de régression.
+# Sans cette CI, la valeur des 98+ tests dépend de la discipline locale.
+
+name: Tests
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+
+# Annule les runs en cours si un nouveau commit arrive sur la même branche
+# (utile pour les PR rapidement amendées)
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        # Le lint a des erreurs preexistantes (variables non utilisees dans
+        # composants legacy) qui ne sont pas regressions. On loggue mais on
+        # ne fait pas echouer la CI tant que ces erreurs ne sont pas nettoyees.
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm test

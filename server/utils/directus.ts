@@ -6,6 +6,7 @@
  */
 
 import { createDirectus, rest, staticToken } from "@directus/sdk"
+import type { Software } from "~~/types/software"
 
 export interface DirectusSoftware {
   id: string
@@ -66,6 +67,77 @@ export function mapDataLocationLabel(value: string | null): string {
       return "Autre / non adéquat / inconnu"
     default:
       return "Non renseigné"
+  }
+}
+
+/**
+ * Liste des champs Directus à demander pour pouvoir mapper proprement.
+ * Centralisé pour cohérence entre les endpoints index et [id].
+ */
+export const SOFTWARE_FIELDS = [
+  "*",
+  "categories.category_id.id",
+  "categories.category_id.name",
+  "pedagogical_activities.pedagogical_activity_id.id",
+  "pedagogical_activities.pedagogical_activity_id.name",
+  "alternatives.alternative_id.id"
+] as const
+
+/**
+ * Mappe un logiciel Directus (snake_case + lgpd plat) vers le format
+ * `Software` attendu par le frontend (camelCase + lgpd imbriqué +
+ * certificationLevel calculé).
+ *
+ * Fonction pure — facile à tester unitairement sans monter Nuxt.
+ */
+export function mapSoftware(item: DirectusSoftware): Software {
+  const certificationLevel = Math.max(
+    item.lgpd_hosting,
+    item.lgpd_rgpd,
+    item.lgpd_data_collection
+  ) as 1 | 2 | 3
+
+  const categoryNames = (item.categories ?? [])
+    .map(c => c.category_id?.name)
+    .filter((n): n is string => Boolean(n))
+
+  const activityNames = (item.pedagogical_activities ?? [])
+    .map(a => a.pedagogical_activity_id?.name)
+    .filter((n): n is string => Boolean(n))
+
+  const alternativeIds = (item.alternatives ?? [])
+    .map(a => a.alternative_id?.id)
+    .filter((id): id is string => Boolean(id))
+
+  return {
+    id: item.id,
+    name: item.name,
+    logo: item.logo,
+    icon: item.icon,
+    shortDescription: item.short_description,
+    description: item.description,
+    lgpd: {
+      hosting: item.lgpd_hosting,
+      rgpd: item.lgpd_rgpd,
+      dataCollection: item.lgpd_data_collection
+    },
+    certificationLevel,
+    dataLocation: mapDataLocationLabel(item.data_location) as Software["dataLocation"],
+    requiresEduAccount: item.requires_edu_account,
+    requiresEdulog: item.requires_edulog,
+    approvedBySEN: item.approved_by_sen,
+    approvedBySFP: item.approved_by_sfp,
+    cost: (item.cost ?? "Gratuit") as Software["cost"],
+    toolUrl: item.tool_url,
+    documentation: item.doc_url,
+    targetAudience: item.target_audience,
+    requiresParentalConsent: item.requires_parental_consent,
+    usageNotes: item.notes,
+    categories: categoryNames,
+    pedagogicalActivities: activityNames,
+    alternatives: alternativeIds,
+    createdAt: item.date_created ? new Date(item.date_created).getTime() : undefined,
+    updatedAt: item.date_updated ? new Date(item.date_updated).getTime() : undefined
   }
 }
 
