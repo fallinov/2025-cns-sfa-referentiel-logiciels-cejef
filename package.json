@@ -19,6 +19,7 @@
     "test:e2e:mobile": "playwright test --project=mobile"
   },
   "dependencies": {
+    "@directus/sdk": "^21.3.0",
     "@iconify-json/lucide": "^1.2.71",
     "@iconify-json/simple-icons": "^1.2.55",
     "@nuxt/fonts": "^0.12.1",

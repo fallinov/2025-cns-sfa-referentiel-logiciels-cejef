@@ -1,0 +1,92 @@
+/**
+ * GET /api/software/:id
+ *
+ * Retourne le détail d'un logiciel publié depuis Directus, mappé au format
+ * `Software` attendu par le frontend.
+ *
+ * 404 si non trouvé ou non publié.
+ */
+
+import { readItems } from "@directus/sdk"
+import type { Software } from "~~/types/software"
+import { type DirectusSoftware, useDirectusClient } from "../../utils/directus"
+
+function mapSoftware(item: DirectusSoftware): Software {
+  const certificationLevel = Math.max(
+    item.lgpd_hosting,
+    item.lgpd_rgpd,
+    item.lgpd_data_collection
+  ) as 1 | 2 | 3
+
+  const categoryNames = (item.categories ?? [])
+    .map(c => c.category_id?.name)
+    .filter((n): n is string => Boolean(n))
+
+  const activityNames = (item.pedagogical_activities ?? [])
+    .map(a => a.pedagogical_activity_id?.name)
+    .filter((n): n is string => Boolean(n))
+
+  return {
+    id: item.id,
+    name: item.name,
+    logo: item.logo,
+    icon: item.icon,
+    shortDescription: item.short_description,
+    description: item.description,
+    lgpd: {
+      hosting: item.lgpd_hosting,
+      rgpd: item.lgpd_rgpd,
+      dataCollection: item.lgpd_data_collection
+    },
+    certificationLevel,
+    dataLocation: (item.data_location ?? "Inconnu") as Software["dataLocation"],
+    supportedByCEJEF: false,
+    cejefFavorite: false,
+    campusTraining: false,
+    requiresEduAccount: item.requires_edu_account,
+    requiresEdulog: item.requires_edulog,
+    approvedBySEN: item.approved_by_sen,
+    cost: (item.cost ?? "Gratuit") as Software["cost"],
+    toolUrl: item.tool_url,
+    documentation: item.doc_url,
+    targetAudience: item.target_audience,
+    requiresParentalConsent: item.requires_parental_consent,
+    usageNotes: item.notes,
+    categories: categoryNames,
+    pedagogicalActivities: activityNames,
+    disciplines: [],
+    createdAt: item.date_created ? new Date(item.date_created).getTime() : undefined,
+    updatedAt: item.date_updated ? new Date(item.date_updated).getTime() : undefined
+  }
+}
+
+export default defineEventHandler(async (event): Promise<Software> => {
+  const id = getRouterParam(event, "id")
+  if (!id) {
+    throw createError({ statusCode: 400, message: "ID manquant" })
+  }
+
+  const directus = useDirectusClient()
+
+  const items = await directus.request(
+    readItems("software", {
+      filter: {
+        _and: [{ id: { _eq: id } }, { status: { _eq: "published" } }]
+      },
+      fields: [
+        "*",
+        "categories.category_id.id",
+        "categories.category_id.name",
+        "pedagogical_activities.pedagogical_activity_id.id",
+        "pedagogical_activities.pedagogical_activity_id.name"
+      ],
+      limit: 1
+    })
+  )
+
+  if (items.length === 0) {
+    throw createError({ statusCode: 404, message: "Logiciel non trouvé" })
+  }
+
+  return mapSoftware(items[0] as DirectusSoftware)
+})

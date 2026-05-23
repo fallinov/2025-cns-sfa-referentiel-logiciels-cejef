@@ -74,8 +74,12 @@ export default defineNuxtConfig({
   // ========================================
   // Variables accessibles côté client via useRuntimeConfig()
   runtimeConfig: {
+    // Variables côté serveur uniquement (non exposées au client)
+    directusUrl: process.env.DIRECTUS_URL || "",
+    directusToken: process.env.DIRECTUS_TOKEN || "",
     public: {
-      appVersion: pkg.version // Version de l'application depuis package.json
+      appVersion: pkg.version, // Version de l'application depuis package.json
+      directusUrl: "/api/directus" // Proxy public — le client passe par le serveur Nuxt
     }
   },
 
