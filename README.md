@@ -141,7 +141,7 @@ python3 scripts/apply-lgpd-changes.py
 
 ### Tests
 
-- **[Vitest](https://vitest.dev/)** : Tests unitaires (99 tests) avec `@nuxt/test-utils` + `happy-dom`
+- **[Vitest](https://vitest.dev/)** : Tests unitaires (214 tests) avec `@nuxt/test-utils` + `happy-dom` + couverture v8 (~77 % lines)
 - **[Playwright](https://playwright.dev/)** : Tests e2e (desktop Chrome + mobile Pixel 7)
 
 ### Outils de développement
@@ -551,7 +551,7 @@ Pour la documentation complète des règles ESLint :
 │   ├── favicon.ico             # Icône du site
 │   └── .nojekyll               # Désactive Jekyll (GitHub Pages)
 ├── tests/
-│   ├── unit/                   # Tests Vitest (99 tests)
+│   ├── unit/                   # Tests Vitest (214 tests, 19 fichiers)
 │   └── e2e/                    # Tests Playwright (desktop + mobile)
 ├── .gitignore                  # Fichiers ignorés par Git
 ├── CLAUDE.md                   # Instructions pour Claude Code

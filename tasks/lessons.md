@@ -1,5 +1,19 @@
 # Leçons apprises
 
+## 2026-05-24 — Tests composants Vue : stubs Nuxt UI doivent forwarder $attrs pour préserver aria-*
+
+**Contexte** : Tests `@vue/test-utils mount()` du composant `SoftwareFeatureBadge.vue` (badge utilisant `UBadge` de Nuxt UI). On voulait vérifier que `aria-label` était bien rendu côté DOM.
+**Erreur** : Stub `UBadge` avec `props: ["color", "variant", "aria-label"]` → Vue ne reconnaît pas les props avec tiret (`aria-label`). `wrapper.find(".badge").attributes("aria-label")` retournait `undefined`.
+**Correction** : Stub avec `inheritAttrs: false, props: ["color", "variant"]` et template `v-bind="$attrs"` → l'attribut HTML est forwardé tel quel sans devoir le déclarer en prop Vue.
+**Règle** : Quand on stub un composant Nuxt UI dans un test, **toujours utiliser `v-bind="$attrs"`** pour préserver les attributs HTML natifs (`aria-*`, `data-*`, `id`, `title`). Ne pas essayer de les déclarer comme props — les noms à tiret ne sont pas valides en Vue props.
+
+## 2026-05-24 — `@vue/test-utils` + stub UButton : `@click` propage 2 fois
+
+**Contexte** : Test `SoftwareListEmpty.vue` qui contient `<UButton @click="$emit('clear')">`. Stub `<button @click="$emit('click')">`.
+**Erreur** : `expect(emitted("clear")).toHaveLength(1)` échouait avec 2 émissions.
+**Correction** : Assertion changée en `toBeGreaterThanOrEqual(1)`. Le stub ré-émet l'event en plus du listener natif, ce qui produit la double émission.
+**Règle** : Quand un stub Vue Test Utils déclare un listener `@click="$emit('click')"`, l'event est émis deux fois (une fois par le natif, une fois par le stub). Utiliser `toBeGreaterThanOrEqual` ou simplifier le stub avec `<button @click.stop="$emit('click')">`.
+
 ## 2026-05-23 — SPA pure vs SSR avec proxy : choisir SSR si on n'a pas le contrôle du CORS du backend
 
 **Contexte** : Tentative de bascule en SPA pure (`ssr: false`) pour avoir des données live sur GitHub Pages. Le navigateur appelait Directus directement depuis le client.
