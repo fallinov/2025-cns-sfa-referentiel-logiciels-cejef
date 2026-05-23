@@ -137,7 +137,7 @@ python3 scripts/apply-lgpd-changes.py
 - **[Directus 11](https://directus.io/)** : CMS headless, source de vérité des logiciels (`http://46.140.144.167:8055`, serveur Noirmont)
 - **[@directus/sdk](https://docs.directus.io/guides/sdk/getting-started.html)** : Client REST + types côté serveur Nuxt
 - **Pipeline** : `nuxt generate` prefetch les données via les endpoints `server/api/software/` au build → site statique avec données figées
-- **Accès** : anonyme via rôle Public Directus (lecture `software` publiés). Token optionnel pour le dev local (drafts).
+- **Accès** : anonyme via rôle Public Directus (lecture `software` publiés + relations + fichiers). Aucun token nécessaire en CI, dev ou prod — la collection ne contient que des données publiques.
 
 ### Tests
 
