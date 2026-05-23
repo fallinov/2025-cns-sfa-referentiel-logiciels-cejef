@@ -28,19 +28,13 @@ export const useSimilarSoftware = () => {
         score += shared.length * 2
       }
 
-      // Score by Discipline match (Low weight)
-      if (software.disciplines && candidate.disciplines) {
-        const shared = software.disciplines.filter(d => candidate.disciplines?.includes(d))
-        score += shared.length * 1
-      }
-
       // Boost if it's a "Green" alternative (Level 1)
       if (candidate.certificationLevel === 1) {
         score += 0.5
       }
 
-      // Boost for "Approuvé CEJEF" (level 1 + supportedByCEJEF + campusTraining)
-      if (candidate.certificationLevel === 1 && candidate.supportedByCEJEF && candidate.campusTraining) {
+      // Boost for institutional approval (SEN or SFP, V1)
+      if (candidate.approvedBySEN || candidate.approvedBySFP) {
         score += 2
       }
 

@@ -5,7 +5,6 @@ export interface SearchSuggestions {
   query: string
   totalResults: number
   categories: string[]
-  disciplines: string[]
   activities: string[]
   software: Software[]
 }
@@ -22,7 +21,6 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
       { name: "name", weight: 2 },
       { name: "shortDescription", weight: 1.5 },
       { name: "categories", weight: 1 },
-      { name: "disciplines", weight: 1 },
       { name: "pedagogicalActivities", weight: 0.8 }
     ]
   }
@@ -41,7 +39,6 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
         query: "",
         totalResults: 0,
         categories: [],
-        disciplines: [],
         activities: [],
         software: []
       }
@@ -56,7 +53,6 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
         query: searchQuery.value,
         totalResults: 0,
         categories: [],
-        disciplines: [],
         activities: [],
         software: []
       }
@@ -66,14 +62,12 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
     const results = fuse.search(query)
     const matchingSoftware = results.map(result => result.item)
 
-    // Extraire les catégories, disciplines et activités uniques
+    // Extraire les catégories et activités uniques
     const categoriesSet = new Set<string>()
-    const disciplinesSet = new Set<string>()
     const activitiesSet = new Set<string>()
 
     matchingSoftware.forEach((s) => {
       s.categories?.forEach(cat => categoriesSet.add(cat))
-      s.disciplines?.forEach(disc => disciplinesSet.add(disc))
       s.pedagogicalActivities?.forEach(act => activitiesSet.add(act))
     })
 
@@ -81,7 +75,6 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
       query: searchQuery.value,
       totalResults: matchingSoftware.length,
       categories: Array.from(categoriesSet).slice(0, 3),
-      disciplines: Array.from(disciplinesSet).slice(0, 3),
       activities: Array.from(activitiesSet).slice(0, 3),
       software: matchingSoftware.slice(0, 6)
     }

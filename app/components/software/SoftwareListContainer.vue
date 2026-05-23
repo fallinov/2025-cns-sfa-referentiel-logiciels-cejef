@@ -8,7 +8,6 @@ const store = useSoftwareStore()
 const {
   searchQuery,
   selectedCategories,
-  selectedDisciplines,
   selectedActivities,
   selectedPopularFilters,
   sortBy,
@@ -22,7 +21,6 @@ const {
 
 const pageTitle = computed(() => {
   if (selectedCategories.value.length > 0) return `Catégorie «${selectedCategories.value[0]}»`
-  if (selectedDisciplines.value.length > 0) return `Discipline «${selectedDisciplines.value[0]}»`
   if (selectedActivities.value.length > 0) return `Activité «${selectedActivities.value[0]}»`
   if (searchQuery.value) return `Résultats pour «${searchQuery.value}»`
   return ""
@@ -62,7 +60,7 @@ const loadMore = () => {
 }
 
 // Réinitialiser la pagination seulement si les filtres changent explicitement
-watch([searchQuery, selectedCategories, selectedDisciplines, selectedActivities, selectedPopularFilters], () => {
+watch([searchQuery, selectedCategories, selectedActivities, selectedPopularFilters], () => {
   displayedItems.value = itemsPerPage
 })
 

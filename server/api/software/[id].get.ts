@@ -9,7 +9,7 @@
 
 import { readItems } from "@directus/sdk"
 import type { Software } from "~~/types/software"
-import { type DirectusSoftware, useDirectusClient } from "../../utils/directus"
+import { type DirectusSoftware, mapDataLocationLabel, useDirectusClient } from "../../utils/directus"
 
 function mapSoftware(item: DirectusSoftware): Software {
   const certificationLevel = Math.max(
@@ -39,13 +39,11 @@ function mapSoftware(item: DirectusSoftware): Software {
       dataCollection: item.lgpd_data_collection
     },
     certificationLevel,
-    dataLocation: (item.data_location ?? "Inconnu") as Software["dataLocation"],
-    supportedByCEJEF: false,
-    cejefFavorite: false,
-    campusTraining: false,
+    dataLocation: mapDataLocationLabel(item.data_location) as Software["dataLocation"],
     requiresEduAccount: item.requires_edu_account,
     requiresEdulog: item.requires_edulog,
     approvedBySEN: item.approved_by_sen,
+    approvedBySFP: item.approved_by_sfp,
     cost: (item.cost ?? "Gratuit") as Software["cost"],
     toolUrl: item.tool_url,
     documentation: item.doc_url,
@@ -54,7 +52,6 @@ function mapSoftware(item: DirectusSoftware): Software {
     usageNotes: item.notes,
     categories: categoryNames,
     pedagogicalActivities: activityNames,
-    disciplines: [],
     createdAt: item.date_created ? new Date(item.date_created).getTime() : undefined,
     updatedAt: item.date_updated ? new Date(item.date_updated).getTime() : undefined
   }

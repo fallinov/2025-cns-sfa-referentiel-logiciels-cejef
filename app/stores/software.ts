@@ -13,36 +13,29 @@ export const useSoftwareStore = defineStore("software", () => {
   const selectedCosts = ref<CostType[]>([])
   const selectedCertifications = ref<number[]>([])
   const selectedCategories = ref<string[]>([])
-  const selectedDisciplines = ref<string[]>([])
   const selectedActivities = ref<string[]>([])
   const selectedPopularFilters = ref<string[]>([])
   const selectedLgpdLevel = ref<number | null>(null)
   const sortBy = ref("recommended")
   const isFiltersDrawerOpen = ref(false)
 
-  // Helper function to check if software is "Approuvé CEJEF"
-  const isApprovedCejef = (software: Software): boolean => {
-    const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
-    return software.supportedByCEJEF && software.campusTraining && level === 1
-  }
-
-  // Popular Filters Configuration
+  // Popular Filters Configuration (V1 — schéma Directus)
   const audienceStore = useAudienceStore()
 
   const allPopularFilters = [
-    {
-      id: "approved-cejef",
-      label: "Approuvé CEJEF",
-      icon: "i-lucide-badge-check",
-      audience: "cejef" as const,
-      predicate: (software: Software) => isApprovedCejef(software)
-    },
     {
       id: "approved-sen",
       label: "Approuvé SEN",
       icon: "i-lucide-badge-check",
       audience: "sen" as const,
       predicate: (software: Software) => !!software.approvedBySEN
+    },
+    {
+      id: "approved-sfp",
+      label: "Approuvé SFP",
+      icon: "i-lucide-badge-check",
+      audience: null,
+      predicate: (software: Software) => !!software.approvedBySFP
     },
     {
       id: "student-data-allowed",
@@ -53,13 +46,6 @@ export const useSoftwareStore = defineStore("software", () => {
         const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
         return level === 1
       }
-    },
-    {
-      id: "campus-training",
-      label: "Formation disponible",
-      icon: "i-lucide-graduation-cap",
-      audience: null,
-      predicate: (software: Software) => software.campusTraining
     }
   ]
 
@@ -82,12 +68,6 @@ export const useSoftwareStore = defineStore("software", () => {
     return Array.from(categories).sort()
   })
 
-  const uniqueDisciplines = computed(() => {
-    const disciplines = new Set<string>()
-    softwareList.value.forEach(s => s.disciplines?.forEach(d => disciplines.add(d)))
-    return Array.from(disciplines).sort()
-  })
-
   const uniqueActivities = computed(() => {
     const activities = new Set<string>()
     softwareList.value.forEach(s => s.pedagogicalActivities?.forEach(a => activities.add(a)))
@@ -101,13 +81,6 @@ export const useSoftwareStore = defineStore("software", () => {
     if (selectedCategories.value.length > 0) {
       filtered = filtered.filter(software =>
         software.categories?.some(c => selectedCategories.value.includes(c))
-      )
-    }
-
-    // Apply discipline filter
-    if (selectedDisciplines.value.length > 0) {
-      filtered = filtered.filter(software =>
-        software.disciplines?.some(d => selectedDisciplines.value.includes(d))
       )
     }
 
@@ -130,7 +103,6 @@ export const useSoftwareStore = defineStore("software", () => {
     // Only apply if the search query is NOT one of the active filters (to avoid double filtering)
     const isExactFilterMatch
       = (selectedCategories.value.length === 1 && selectedCategories.value[0] === searchQuery.value)
-        || (selectedDisciplines.value.length === 1 && selectedDisciplines.value[0] === searchQuery.value)
         || (selectedActivities.value.length === 1 && selectedActivities.value[0] === searchQuery.value)
 
     if (searchQuery.value && !isExactFilterMatch) {
@@ -141,8 +113,7 @@ export const useSoftwareStore = defineStore("software", () => {
           software.name,
           software.shortDescription,
           ...(software.categories || []),
-          ...(software.pedagogicalActivities || []),
-          ...(software.disciplines || [])
+          ...(software.pedagogicalActivities || [])
         ].join(" ")
 
         return matchesSearch(searchableText, searchTerms)
@@ -173,13 +144,13 @@ export const useSoftwareStore = defineStore("software", () => {
       const levelB = b.certificationLevel ?? getCertificationLevel(b.lgpd) ?? 99
       const nameA = a.name || ""
       const nameB = b.name || ""
-      const isApprovedA = isApprovedCejef(a)
-      const isApprovedB = isApprovedCejef(b)
+      const approvedA = (a.approvedBySEN ? 1 : 0) + (a.approvedBySFP ? 1 : 0)
+      const approvedB = (b.approvedBySEN ? 1 : 0) + (b.approvedBySFP ? 1 : 0)
 
       switch (sortBy.value) {
         case "recommended":
-          // Approuvé CEJEF en premier
-          if (isApprovedA !== isApprovedB) return isApprovedA ? -1 : 1
+          // Logiciels approuvés SEN/SFP en premier (plus d'approbations = plus haut)
+          if (approvedA !== approvedB) return approvedB - approvedA
           // Secondaire : par conformité (validé d'abord)
           if (levelA !== levelB) return levelA - levelB
           // Tertiaire : alphabétique
@@ -207,7 +178,6 @@ export const useSoftwareStore = defineStore("software", () => {
       + selectedPopularFilters.value.length
       + (selectedLgpdLevel.value !== null ? 1 : 0)
       + selectedCategories.value.length
-      + selectedDisciplines.value.length
       + selectedActivities.value.length
   )
 
@@ -231,7 +201,6 @@ export const useSoftwareStore = defineStore("software", () => {
     selectedPopularFilters.value = []
     selectedLgpdLevel.value = null
     selectedCategories.value = []
-    selectedDisciplines.value = []
     selectedActivities.value = []
     searchQuery.value = ""
   }
@@ -242,29 +211,19 @@ export const useSoftwareStore = defineStore("software", () => {
     selectedPopularFilters.value = []
     selectedLgpdLevel.value = null
     selectedCategories.value = []
-    selectedDisciplines.value = []
     selectedActivities.value = []
     // Keep searchQuery
   }
 
   const handleCategoryFilter = (category: string) => {
     selectedCategories.value = [category]
-    selectedDisciplines.value = []
     selectedActivities.value = []
     searchQuery.value = category
-  }
-
-  const handleDisciplineFilter = (discipline: string) => {
-    selectedDisciplines.value = [discipline]
-    selectedCategories.value = []
-    selectedActivities.value = []
-    searchQuery.value = discipline
   }
 
   const handleActivityFilter = (activity: string) => {
     selectedActivities.value = [activity]
     selectedCategories.value = []
-    selectedDisciplines.value = []
     searchQuery.value = activity
   }
 
@@ -275,7 +234,6 @@ export const useSoftwareStore = defineStore("software", () => {
     selectedCosts,
     selectedCertifications,
     selectedCategories,
-    selectedDisciplines,
     selectedActivities,
     selectedPopularFilters,
     selectedLgpdLevel,
@@ -287,7 +245,6 @@ export const useSoftwareStore = defineStore("software", () => {
     softwareList,
     // Getters
     uniqueCategories,
-    uniqueDisciplines,
     uniqueActivities,
     filteredSoftwareList,
     activeFiltersCount,
@@ -297,7 +254,6 @@ export const useSoftwareStore = defineStore("software", () => {
     clearAllFilters,
     resetFilters,
     handleCategoryFilter,
-    handleDisciplineFilter,
     handleActivityFilter
   }
 })

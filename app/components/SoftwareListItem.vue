@@ -6,13 +6,6 @@ const props = defineProps<{
 }>()
 
 const audienceStore = useAudienceStore()
-
-// "Approuvé CEJEF" requires: level 1 (green) + supportedByCEJEF + campusTraining
-const isApprovedCejef = computed(() => {
-  return props.software.certificationLevel === 1
-    && props.software.supportedByCEJEF
-    && props.software.campusTraining
-})
 </script>
 
 <template>
@@ -38,31 +31,12 @@ const isApprovedCejef = computed(() => {
 
     <!-- Meta / Badges -->
     <div class="hidden sm:flex items-center gap-2">
-      <!-- Approuvé CEJEF (level 1 + supportedByCEJEF + campusTraining) -->
-      <div v-if="isApprovedCejef && audienceStore.audience !== 'sen'" class="inline-flex">
-        <SoftwareFeatureBadge
-          icon="i-lucide-badge-check"
-          label="Approuvé CEJEF"
-          tooltip="Recommandé et financé par le CEJEF"
-          size="sm"
-          hide-label
-          class="lg:hidden bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
-        />
-        <SoftwareFeatureBadge
-          icon="i-lucide-badge-check"
-          label="Approuvé CEJEF"
-          tooltip="Recommandé et financé par le CEJEF"
-          size="sm"
-          class="hidden lg:inline-flex bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
-        />
-      </div>
-
       <!-- Approuvé SEN -->
-      <div v-if="software.approvedBySEN && audienceStore.audience !== 'cejef'" class="inline-flex">
+      <div v-if="software.approvedBySEN" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé SEN"
-          tooltip="Recommandé et financé par le SEN"
+          tooltip="Recommandé par le Service de l'Enseignement"
           size="sm"
           hide-label
           class="lg:hidden bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
@@ -70,28 +44,28 @@ const isApprovedCejef = computed(() => {
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé SEN"
-          tooltip="Recommandé et financé par le SEN"
+          tooltip="Recommandé par le Service de l'Enseignement"
           size="sm"
           class="hidden lg:inline-flex bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
       </div>
 
-      <!-- Training Available -->
-      <div v-if="software.campusTraining && !isApprovedCejef" class="inline-flex">
+      <!-- Approuvé SFP -->
+      <div v-if="software.approvedBySFP" class="inline-flex">
         <SoftwareFeatureBadge
-          icon="i-lucide-graduation-cap"
-          label="Formation disponible"
-          tooltip="Une formation est proposée par le CEJEF"
+          icon="i-lucide-badge-check"
+          label="Approuvé SFP"
+          tooltip="Recommandé par le Service de la Formation Postobligatoire"
           size="sm"
           hide-label
-          class="lg:hidden"
+          class="lg:hidden bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
-          icon="i-lucide-graduation-cap"
-          label="Formation disponible"
-          tooltip="Une formation est proposée par le CEJEF"
+          icon="i-lucide-badge-check"
+          label="Approuvé SFP"
+          tooltip="Recommandé par le Service de la Formation Postobligatoire"
           size="sm"
-          class="hidden lg:inline-flex"
+          class="hidden lg:inline-flex bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
       </div>
 

@@ -9,7 +9,6 @@ const {
 
 const {
   handleCategoryFilter,
-  handleDisciplineFilter,
   handleActivityFilter,
   resetFilters
 } = store
@@ -36,7 +35,6 @@ const handleSearchClear = () => {
       <SearchBar
         v-model:search="searchQuery"
         @filter-by-category="handleCategoryFilter"
-        @filter-by-discipline="handleDisciplineFilter"
         @filter-by-activity="handleActivityFilter"
         @search="handleGlobalSearch"
         @clear="handleSearchClear"

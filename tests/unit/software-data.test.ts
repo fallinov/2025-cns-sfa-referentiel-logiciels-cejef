@@ -53,6 +53,5 @@ describe("software-list données", () => {
     const teams = softwareList.find(s => s.name === "Microsoft Teams")
     expect(teams).toBeDefined()
     expect(teams!.certificationLevel).toBe(1)
-    expect(teams!.supportedByCEJEF).toBe(true)
   })
 })

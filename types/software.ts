@@ -75,7 +75,8 @@ export function getCertificationLevel(lgpd?: LgpdClassification): CertificationL
 }
 
 /**
- * Interface principale d'un logiciel pédagogique
+ * Interface principale d'un logiciel pédagogique — schéma V1 aligné sur Directus
+ * (voir collection `software` du référentiel CEJEF).
  */
 export interface Software {
   // IDENTIFICATION
@@ -93,13 +94,11 @@ export interface Software {
   certificationLevel?: CertificationLevel
   dataLocation: DataLocation
 
-  // SUPPORT CEJEF
-  supportedByCEJEF: boolean
-  cejefFavorite?: boolean
-  campusTraining: boolean
+  // CONDITIONS / APPROBATIONS
   requiresEduAccount?: boolean
   requiresEdulog?: boolean
   approvedBySEN?: boolean
+  approvedBySFP?: boolean
 
   // COÛT
   cost: CostType
@@ -110,23 +109,14 @@ export interface Software {
 
   // USAGE
   targetAudience?: TargetAudience | null
-  ageRestriction?: number | null
   requiresParentalConsent?: boolean
   usageNotes?: string | null
-
-  // ALTERNATIVES VERTES (pour logiciels niveau 2 ou 3)
-  greenAlternatives?: string[]
 
   // CLASSIFICATION PÉDAGOGIQUE
   categories?: string[]
   pedagogicalActivities?: string[]
-  disciplines?: string[]
 
   // DATES
   createdAt?: number
   updatedAt?: number
-
-  // VALIDATION LGPD
-  toValidate?: boolean
-  remarque?: string
 }
