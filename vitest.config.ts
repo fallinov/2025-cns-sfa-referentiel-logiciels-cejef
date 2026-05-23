@@ -26,7 +26,16 @@ export default defineVitestConfig({
         "**/*.d.ts",
         ".nuxt/**",
         ".output/**"
-      ]
+      ],
+      // Seuils minimum : un peu en dessous des valeurs atteintes (74.7/58.9/77.4/76.8)
+      // pour garder une marge sans casser la CI au moindre ajout. À augmenter quand
+      // useTypewriter / useSoftwareNavigation / useSearchSuggestions seront mieux testés.
+      thresholds: {
+        lines: 70,
+        functions: 70,
+        branches: 55,
+        statements: 70
+      }
     }
   }
 })
