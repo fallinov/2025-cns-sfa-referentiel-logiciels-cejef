@@ -805,9 +805,19 @@ import { platformIcons } from "~/utils/formatters"
 
 ## 🚀 Déploiement
 
-### Stratégie de déploiement
+> **🆕 Depuis v0.22+ : déploiement sur Vercel (SSR)** — https://logiciels.vercel.app
+>
+> Le site n'est plus statique. Vercel render chaque visite côté serveur avec données live depuis Directus. Plus de re-build manuel : une modification dans Directus est visible immédiatement après refresh.
+>
+> Env var Vercel : `DIRECTUS_URL=http://46.140.144.167:8055` (anonyme, pas de token nécessaire).
+>
+> **Workflow GitHub Pages désactivé** — fichier `.github/workflows/deploy-github-pages.yml.disabled` gardé en référence.
+>
+> **Production future** : Infomaniak Cloud Managé (souveraineté CH).
 
-Le projet utilise une **double stratégie de déploiement** :
+### Stratégie de déploiement (legacy — pré-Vercel)
+
+Le projet utilisait une **double stratégie de déploiement** :
 
 1. **Environnement de staging (test)** : GitHub Pages
 2. **Environnement de production** : Serveur SFTP
