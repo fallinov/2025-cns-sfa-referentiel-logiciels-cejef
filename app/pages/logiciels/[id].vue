@@ -10,7 +10,7 @@ const route = useRoute()
 const router = useRouter()
 const { getSoftwareById } = useSoftware()
 const { getPreviousSoftware, getNextSoftware } = useSoftwareNavigation()
-const { getSimilarSoftware } = useSimilarSoftware()
+const { getAlternatives } = useAlternatives()
 
 // Fonction de retour intelligente (historique ou accueil)
 const goBack = () => {
@@ -83,9 +83,9 @@ const certificationLevel = computed(() =>
     : null
 )
 
-// Logiciels similaires
-const similarSoftwareList = computed(() =>
-  software.value ? getSimilarSoftware(software.value) : []
+// Alternatives recommandées (saisie manuelle dans Directus)
+const alternativesList = computed(() =>
+  software.value ? getAlternatives(software.value) : []
 )
 
 // LGPD labels — utilise dataLocation du logiciel pour l'hébergement (pas un label fixe)
@@ -404,8 +404,8 @@ const showLgpdDetails = ref(false)
 
         <!-- SIDEBAR (Right) -->
         <div class="lg:col-span-4 space-y-6">
-          <!-- Similar Software (en premier) -->
-          <SoftwareDetailSimilar :similar-software="similarSoftwareList.slice(0, 3)" />
+          <!-- Alternatives recommandées (saisie manuelle dans Directus) -->
+          <SoftwareDetailAlternatives :alternatives="alternativesList" />
 
           <!-- Info Card -->
           <SoftwareDetailPracticalInfo

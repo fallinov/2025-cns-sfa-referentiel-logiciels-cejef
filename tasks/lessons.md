@@ -1,5 +1,12 @@
 # Leçons apprises
 
+## 2026-05-23 — Directus M2M auto-référentielle : alias virtuel à créer explicitement
+
+**Contexte** : Création de la junction `software_alternative` (software ↔ software, unidirectionnelle) pour les alternatives recommandées.
+**Erreur** : Après création de la relation avec `meta.one_field=alternatives`, le champ alias virtuel `alternatives` n'apparaissait PAS automatiquement sur `software` (pourtant créé pour `categories` et `pedagogical_activities`). L'API anonyme retournait FORBIDDEN sur le field.
+**Correction** : Créer explicitement le champ alias via `POST /fields/software` avec `type:alias, special:["m2m"], interface:"list-m2m"`. La relation seule ne suffit pas pour une auto-référentielle.
+**Règle** : Pour une M2M auto-référentielle dans Directus, toujours créer manuellement le champ alias `type:alias` sur la collection source — la relation crée seulement la junction et les FK, pas l'alias virtuel. La différence avec une M2M entre 2 collections distinctes vient probablement de la résolution du `junction_field`.
+
 ## 2026-05-23 — Build statique Nuxt qui appelle un backend externe : ne JAMAIS rendre obligatoire un secret en CI
 
 **Contexte** : Migration du frontend de la liste statique TypeScript vers Directus. Le serveur Nuxt expose un endpoint `/api/software` qui proxifie Directus avec un token statique. Mode `nuxt generate` (SSG).

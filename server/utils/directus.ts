@@ -35,6 +35,7 @@ export interface DirectusSoftware {
   date_updated: string | null
   categories?: Array<{ category_id: { id: string, name: string } | null }>
   pedagogical_activities?: Array<{ pedagogical_activity_id: { id: string, name: string } | null }>
+  alternatives?: Array<{ alternative_id: { id: string } | null }>
 }
 
 export interface DirectusSchema {

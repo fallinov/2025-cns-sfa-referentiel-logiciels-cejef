@@ -59,7 +59,7 @@ git push origin v1.0.0
 
 ### Data Architecture
 
-**Source de vérité (runtime)** : Directus 11 — `http://46.140.144.167:8055`. Collection `software` (status=published), relations M2M vers `category` et `pedagogical_activity`.
+**Source de vérité (runtime)** : Directus 11 — `http://46.140.144.167:8055`. Collection `software` (status=published), relations M2M vers `category`, `pedagogical_activity`, et `software_alternative` (auto-référentielle, unidirectionnelle — alternatives recommandées).
 
 **Pipeline build** :
 1. `nuxt generate` lance le serveur Nitro en local

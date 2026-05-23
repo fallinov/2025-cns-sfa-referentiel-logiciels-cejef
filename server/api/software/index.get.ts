@@ -26,6 +26,10 @@ function mapSoftware(item: DirectusSoftware): Software {
     .map(a => a.pedagogical_activity_id?.name)
     .filter((n): n is string => Boolean(n))
 
+  const alternativeIds = (item.alternatives ?? [])
+    .map(a => a.alternative_id?.id)
+    .filter((id): id is string => Boolean(id))
+
   return {
     id: item.id,
     name: item.name,
@@ -54,6 +58,7 @@ function mapSoftware(item: DirectusSoftware): Software {
     usageNotes: item.notes,
     categories: categoryNames,
     pedagogicalActivities: activityNames,
+    alternatives: alternativeIds,
     createdAt: item.date_created ? new Date(item.date_created).getTime() : undefined,
     updatedAt: item.date_updated ? new Date(item.date_updated).getTime() : undefined
   }
@@ -70,7 +75,8 @@ export default defineEventHandler(async (): Promise<Software[]> => {
         "categories.category_id.id",
         "categories.category_id.name",
         "pedagogical_activities.pedagogical_activity_id.id",
-        "pedagogical_activities.pedagogical_activity_id.name"
+        "pedagogical_activities.pedagogical_activity_id.name",
+        "alternatives.alternative_id.id"
       ],
       limit: -1
     })
