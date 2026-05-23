@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest"
 import { createPinia, setActivePinia } from "pinia"
 import { useSoftwareStore } from "~/stores/software"
-import { softwareList } from "~/data/software-list"
+import { softwareFixtures as softwareList } from "~~/tests/fixtures/software"
 import { getCertificationLevel, type Software } from "~~/types/software"
 
 describe("software store - filtres", () => {
