@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest"
 import type { Software } from "~~/types/software"
-import { softwareList } from "~/data/software-list"
+import { softwareFixtures as softwareList } from "~~/tests/fixtures/software"
 
 /**
  * Tests pour la logique de navigation prev/next.
