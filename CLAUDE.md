@@ -69,9 +69,10 @@ git push origin v1.0.0
 5. Pages prerendées avec les données figées dans le HTML/JSON statique
 
 **Accès Directus** :
-- **CI/build statique** : anonyme via permissions du rôle Public (lecture `software` publiés + `category` + `pedagogical_activity` + `directus_files`)
-- **Dev local** : token optionnel via `.env` (`DIRECTUS_TOKEN`) — utile pour lire les drafts
-- **Token jamais exposé au client** : tout passe par les server endpoints Nuxt
+- **Tous environnements (CI, dev, prod)** : anonyme via permissions du rôle Public (lecture `software` publiés + `category` + `pedagogical_activity` + `directus_files` + `software_alternative`)
+- **Pas de token côté frontend** : ni en CI, ni en dev local. Le frontend ne lit que les `status: published`, ce qui correspond exactement aux droits du rôle Public.
+- **`DIRECTUS_TOKEN` reste pris en charge** par `useDirectusClient()` (variable d'env optionnelle) — utile seulement si une feature future a besoin de lire les drafts. Ne pas l'ajouter au `.env` par défaut.
+- **Si jamais un token est utilisé** : il reste côté serveur Nuxt uniquement, jamais exposé au client.
 
 **Types** : `types/software.ts` (`Software`, `LgpdClassification`, `CertificationLevel`, `DataLocation`).
 **State** : Pinia stores (`software.ts`, `audience.ts`) + composables (`useSoftware`, `useDataProtection`).
@@ -135,7 +136,7 @@ git push origin v1.0.0
    - Workflow: `.github/workflows/deploy-production.yml`
    - Secrets: `SFTP_SERVER`, `SFTP_USERNAME`, `SFTP_PASSWORD`, `SFTP_PORT`, `SFTP_SERVER_DIR`
 
-**Config** : `nuxt.config.ts` utilise `process.env.NUXT_APP_BASE_URL`. `runtimeConfig.directusUrl` et `directusToken` injectés via env (token optionnel — fallback sur accès anonyme).
+**Config** : `nuxt.config.ts` utilise `process.env.NUXT_APP_BASE_URL`. `runtimeConfig.directusUrl` est le seul nécessaire. `directusToken` est lu si défini mais n'est plus utilisé (accès anonyme par défaut).
 
 ## Common Development Tasks
 
