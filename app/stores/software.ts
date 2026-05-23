@@ -4,8 +4,8 @@ import { getCertificationLevel } from "~~/types/software"
 import { expandSearchQuery, matchesSearch } from "~/utils/search"
 
 export const useSoftwareStore = defineStore("software", () => {
-  const { getSoftwareList } = useSoftware()
-  const softwareList = getSoftwareList()
+  // Source de vérité : ref alimenté par plugins/software-data.ts (fetch /api/software → Directus)
+  const { softwareList } = useSoftware()
 
   // State
   const searchQuery = ref("")
@@ -78,24 +78,24 @@ export const useSoftwareStore = defineStore("software", () => {
   // Getters
   const uniqueCategories = computed(() => {
     const categories = new Set<string>()
-    softwareList.forEach(s => s.categories?.forEach(c => categories.add(c)))
+    softwareList.value.forEach(s => s.categories?.forEach(c => categories.add(c)))
     return Array.from(categories).sort()
   })
 
   const uniqueDisciplines = computed(() => {
     const disciplines = new Set<string>()
-    softwareList.forEach(s => s.disciplines?.forEach(d => disciplines.add(d)))
+    softwareList.value.forEach(s => s.disciplines?.forEach(d => disciplines.add(d)))
     return Array.from(disciplines).sort()
   })
 
   const uniqueActivities = computed(() => {
     const activities = new Set<string>()
-    softwareList.forEach(s => s.pedagogicalActivities?.forEach(a => activities.add(a)))
+    softwareList.value.forEach(s => s.pedagogicalActivities?.forEach(a => activities.add(a)))
     return Array.from(activities).sort()
   })
 
   const filteredSoftwareList = computed(() => {
-    let filtered = [...softwareList]
+    let filtered = [...softwareList.value]
 
     // Apply category filter
     if (selectedCategories.value.length > 0) {

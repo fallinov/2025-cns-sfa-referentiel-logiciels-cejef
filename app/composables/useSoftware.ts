@@ -1,30 +1,21 @@
 import type { Software } from "~~/types/software"
-import { softwareList } from "~/data/software-list"
 
 /**
- * Composable pour gérer l'accès aux données des logiciels
+ * Composable d'accès aux logiciels du référentiel.
+ *
+ * Les données sont chargées au démarrage par `plugins/software-data.ts` depuis
+ * l'endpoint serveur `/api/software` (Directus). Stockées dans `useState` pour
+ * être partagées entre tous les composants et survivre à la navigation.
+ *
+ * Le `softwareList` retourné est un Ref<Software[]> — réactif côté Vue.
  */
-/**
- * Composable pour gérer l'accès aux données des logiciels
- */
-
 export const useSoftware = () => {
-  /**
-   * Récupère la liste de tous les logiciels
-   */
-  const getSoftwareList = (): Software[] => {
-    return softwareList
-  }
-
-  /**
-   * Récupère un logiciel par son ID
-   */
-  const getSoftwareById = (id: string): Software | undefined => {
-    return softwareList.find(software => software.id === id)
-  }
+  const softwareList = useState<Software[]>("software-list", () => [])
 
   return {
-    getSoftwareList,
-    getSoftwareById
+    softwareList,
+    getSoftwareList: (): Software[] => softwareList.value,
+    getSoftwareById: (id: string): Software | undefined =>
+      softwareList.value.find(software => software.id === id)
   }
 }

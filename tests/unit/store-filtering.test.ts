@@ -2,13 +2,18 @@ import { describe, it, expect, beforeEach } from "vitest"
 import { createPinia, setActivePinia } from "pinia"
 import { useSoftwareStore } from "~/stores/software"
 import { softwareList } from "~/data/software-list"
-import { getCertificationLevel } from "~~/types/software"
+import { getCertificationLevel, type Software } from "~~/types/software"
 
 describe("software store - filtres", () => {
   let store: ReturnType<typeof useSoftwareStore>
 
   beforeEach(() => {
     setActivePinia(createPinia())
+    // Source des données : le store lit `useState('software-list')` (alimenté par
+    // plugins/software-data.ts en runtime via /api/software). Pour les tests, on
+    // seed avec la liste statique historique software-list.ts.
+    const data = useState<Software[]>("software-list", () => [])
+    data.value = [...softwareList]
     store = useSoftwareStore()
   })
 
