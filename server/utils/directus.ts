@@ -69,18 +69,21 @@ export function mapDataLocationLabel(value: string | null): string {
 }
 
 /**
- * Crée un client Directus authentifié pour le serveur Nuxt.
- * @throws Error si DIRECTUS_URL ou DIRECTUS_TOKEN ne sont pas configurés.
+ * Crée un client Directus pour le serveur Nuxt.
+ *
+ * - DIRECTUS_URL est obligatoire.
+ * - DIRECTUS_TOKEN est optionnel : si présent, on l'utilise (utile en dev
+ *   pour lire les drafts ou écrire). Sinon, on appelle Directus en anonyme
+ *   et on s'appuie sur les permissions publiques (lecture des `software`
+ *   publiés + catégories + activités). C'est le mode utilisé par le build
+ *   statique GitHub Pages.
  */
 export function useDirectusClient() {
   const config = useRuntimeConfig()
-  if (!config.directusUrl) {
-    throw createError({ statusCode: 500, message: "DIRECTUS_URL non configuré" })
+  const url = config.directusUrl || "http://46.140.144.167:8055"
+  const client = createDirectus<DirectusSchema>(url).with(rest())
+  if (config.directusToken) {
+    return client.with(staticToken(config.directusToken))
   }
-  if (!config.directusToken) {
-    throw createError({ statusCode: 500, message: "DIRECTUS_TOKEN non configuré" })
-  }
-  return createDirectus<DirectusSchema>(config.directusUrl)
-    .with(rest())
-    .with(staticToken(config.directusToken))
+  return client
 }
