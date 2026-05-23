@@ -1,5 +1,12 @@
 # Leçons apprises
 
+## 2026-05-23 — SPA pure vs SSR avec proxy : choisir SSR si on n'a pas le contrôle du CORS du backend
+
+**Contexte** : Tentative de bascule en SPA pure (`ssr: false`) pour avoir des données live sur GitHub Pages. Le navigateur appelait Directus directement depuis le client.
+**Erreur** : CORS Directus côté serveur Noirmont rejetait la réponse (`Access-Control-Allow-Origin` absent). Diagnostic : le `docker-compose.yml` prévoit bien `CORS_ENABLED=true` et `CORS_ORIGIN=true`, mais les variables n'arrivent pas au conteneur en prod (probablement `.env` non synchronisé avec le repo). Pas d'accès SSH au serveur depuis l'extérieur du réseau jura.ch → blocage.
+**Correction** : Abandonné le mode SPA pur. Bascule sur Vercel en mode SSR — Nuxt server-side calls Directus, le navigateur appelle uniquement `/api/software` (même origine). Pas de CORS à gérer. Le pattern est identique à celui du site CEJEF (`server/routes/api/directus/[...path].ts` sur le site CEJEF, endpoints `server/api/software/*.ts` sur le référentiel).
+**Règle** : Quand un site front doit consommer un backend dont on ne maîtrise pas le CORS, **toujours préférer SSR ou un proxy serveur** plutôt que SPA pure avec appels directs depuis le navigateur. Le proxy serveur (Nuxt SSR, Vercel functions, etc.) contourne le problème par construction : navigateur → serveur Nuxt (même origine) → Directus (server-to-server, pas de CORS). Bonus : le token éventuel reste côté serveur, jamais exposé au client.
+
 ## 2026-05-23 — Directus M2M auto-référentielle : alias virtuel à créer explicitement
 
 **Contexte** : Création de la junction `software_alternative` (software ↔ software, unidirectionnelle) pour les alternatives recommandées.
