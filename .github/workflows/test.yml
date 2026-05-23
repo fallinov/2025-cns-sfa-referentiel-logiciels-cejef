@@ -1,8 +1,7 @@
 # =============================================================================
-# CI Tests — lance lint + typecheck + tests unitaires sur PR et push main
+# CI Tests — lance lint + typecheck + tests unitaires + Playwright sur PR
 # =============================================================================
-# Garantit que tout changement merge sur main n'introduit pas de régression.
-# Sans cette CI, la valeur des 98+ tests dépend de la discipline locale.
+# Garantit que tout changement merge sur main n'introduit pas de regression.
 
 name: Tests
 
@@ -12,14 +11,13 @@ on:
   push:
     branches: ["main"]
 
-# Annule les runs en cours si un nouveau commit arrive sur la même branche
-# (utile pour les PR rapidement amendées)
 concurrency:
   group: tests-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  test:
+  unit:
+    name: Unit tests + coverage
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -44,5 +42,48 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
-      - name: Unit tests
-        run: npm test
+      - name: Unit tests (avec couverture + seuils)
+        run: npm run test:coverage
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 7
+
+  e2e:
+    name: Playwright E2E (desktop)
+    runs-on: ubuntu-latest
+    # Continue-on-error : ne bloque pas la PR si Directus est temporairement
+    # injoignable ou si UXNote a un test flaky. Les unit tests sont la garde principale.
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright tests (desktop)
+        run: npm run test:e2e:desktop
+        env:
+          DIRECTUS_URL: http://46.140.144.167:8055
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
