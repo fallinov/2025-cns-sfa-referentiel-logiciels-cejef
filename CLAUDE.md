@@ -2,7 +2,7 @@
 
 > Projet lié au CNS : voir `~/CNS/CLAUDE.md`
 
-Catalogue statique de logiciels éducatifs pour le CEJEF avec classifications LGPD (protection des données).
+Catalogue de logiciels éducatifs pour le CEJEF avec classifications LGPD (protection des données). Données stockées dans Directus 11 (Noirmont), site statique prefetché depuis Directus au build.
 
 <!-- Documentation détaillée dans docs/ -->
 
@@ -46,7 +46,10 @@ git push origin v1.0.0
 ### Tech Stack
 - **Nuxt 4** with Vue 3 (TypeScript)
 - **Nuxt UI v4.1.0** (Tailwind CSS-based component library)
-- **Static Site Generation (SSG)** - no backend required
+- **Directus 11** (CMS headless, source de vérité des logiciels)
+- **@directus/sdk** (client REST + types)
+- **Pinia** + `useState` (state global réactif)
+- **Static Site Generation (SSG)** — données prefetchées depuis Directus au build
 - **Vitest** + `@nuxt/test-utils` + `happy-dom` (tests unitaires)
 - **Playwright** (tests e2e, projets desktop + mobile)
 - **UXNote** (widget retours testeurs, staging uniquement)
@@ -56,9 +59,23 @@ git push origin v1.0.0
 
 ### Data Architecture
 
-**Source statique** : `app/data/software-list.ts` (tableau hardcodé, pas de BDD).
+**Source de vérité (runtime)** : Directus 11 — `http://46.140.144.167:8055`. Collection `software` (status=published), relations M2M vers `category` et `pedagogical_activity`.
+
+**Pipeline build** :
+1. `nuxt generate` lance le serveur Nitro en local
+2. Plugin `app/plugins/software-data.ts` appelle `/api/software` au boot
+3. Endpoint serveur `server/api/software/index.get.ts` → Directus via SDK → mappe snake_case en camelCase
+4. Liste écrite dans `useState("software-list")` → sérialisée dans le payload
+5. Pages prerendées avec les données figées dans le HTML/JSON statique
+
+**Accès Directus** :
+- **CI/build statique** : anonyme via permissions du rôle Public (lecture `software` publiés + `category` + `pedagogical_activity` + `directus_files`)
+- **Dev local** : token optionnel via `.env` (`DIRECTUS_TOKEN`) — utile pour lire les drafts
+- **Token jamais exposé au client** : tout passe par les server endpoints Nuxt
+
 **Types** : `types/software.ts` (`Software`, `LgpdClassification`, `CertificationLevel`, `DataLocation`).
 **State** : Pinia stores (`software.ts`, `audience.ts`) + composables (`useSoftware`, `useDataProtection`).
+**Legacy** : `app/data/software-list.ts` reste comme seed des tests unitaires (`tests/unit/`) — pas utilisé par le runtime.
 
 > Détails complets : `docs/data-architecture.md`
 
@@ -111,23 +128,25 @@ git push origin v1.0.0
 1. **Staging** : GitHub Pages (`https://fallinov.github.io/2025-cns-sfa-referentiel-logiciels-cejef/`)
    - Auto-deploy on push to `main`, `baseURL: /2025-cns-sfa-referentiel-logiciels-cejef/`
    - Workflow: `.github/workflows/deploy-github-pages.yml`
+   - Env vars : `NUXT_APP_BASE_URL`, `DIRECTUS_URL` (URL publique, pas de secret)
 
 2. **Production** : SFTP server
    - Manual via Git tags, `baseURL: /`
    - Workflow: `.github/workflows/deploy-production.yml`
    - Secrets: `SFTP_SERVER`, `SFTP_USERNAME`, `SFTP_PASSWORD`, `SFTP_PORT`, `SFTP_SERVER_DIR`
 
-**Config** : `nuxt.config.ts` utilise `process.env.NUXT_APP_BASE_URL`.
+**Config** : `nuxt.config.ts` utilise `process.env.NUXT_APP_BASE_URL`. `runtimeConfig.directusUrl` et `directusToken` injectés via env (token optionnel — fallback sur accès anonyme).
 
 ## Common Development Tasks
 
 ### Adding a New Software
 
-1. Éditer `app/data/software-list.ts`
-2. Ajouter un objet conforme à `Software` (id unique, `lgpd` complet, badges, métadonnées)
-3. Commit : `git commit -m "feat: add [software name]"`
-4. Push → staging auto. Tag pour production : `git tag v1.x.0 && git push origin v1.x.0`
+1. Connexion Directus (`http://46.140.144.167:8055`) avec un compte CNS
+2. Collection `software` → "Créer un nouveau" → remplir les champs (statut, classification LGPD, catégories M2M…)
+3. Publier (`status: published`) pour que l'item apparaisse en ligne
+4. Relancer le workflow GitHub Pages (auto au prochain push, ou manuel via Actions)
 
+> Procédure de saisie détaillée : `~/CNS/projets/referentiel/PROCEDURE-DIRECTUS-V1.md`
 > Classification LGPD d'un nouveau logiciel : `docs/lgpd-classification.md`
 
 ### Code Style
@@ -139,8 +158,8 @@ git push origin v1.0.0
 ## Important Notes
 
 - **Présentations HTML** : déplacées dans `~/WebstormProjects/SFA-PRESENTATION/referentiel-logiciels/`
-- **No backend** : site 100% statique, toutes les données sont dans des fichiers TypeScript.
-- **Redeployment required** : tout changement de données nécessite régénération et redéploiement.
+- **Backend Directus** : source de vérité runtime, mais le site final est statique (données figées au build).
+- **Redeployment required** : tout changement Directus nécessite un re-build GitHub Pages (auto au push, manuel via Actions).
 - **Base URL** : attention au `baseURL` dynamique pour GitHub Pages (routing, assets).
 - **TypeScript strict** : tous les objets doivent matcher l'interface `Software` exactement.
 - **Nuxt UI v4.1.0** : toujours vérifier l'API sur https://ui.nuxt.com avant d'utiliser un composant.

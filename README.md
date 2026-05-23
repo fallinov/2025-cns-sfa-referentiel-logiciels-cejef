@@ -132,6 +132,13 @@ python3 scripts/apply-lgpd-changes.py
 - **[Vue 3](https://vuejs.org/)** : Framework JavaScript progressif
 - **[Tailwind CSS v4](https://tailwindcss.com)** : Framework CSS utility-first avec thème personnalisé CEJEF
 
+### Backend de données
+
+- **[Directus 11](https://directus.io/)** : CMS headless, source de vérité des logiciels (`http://46.140.144.167:8055`, serveur Noirmont)
+- **[@directus/sdk](https://docs.directus.io/guides/sdk/getting-started.html)** : Client REST + types côté serveur Nuxt
+- **Pipeline** : `nuxt generate` prefetch les données via les endpoints `server/api/software/` au build → site statique avec données figées
+- **Accès** : anonyme via rôle Public Directus (lecture `software` publiés). Token optionnel pour le dev local (drafts).
+
 ### Tests
 
 - **[Vitest](https://vitest.dev/)** : Tests unitaires (99 tests) avec `@nuxt/test-utils` + `happy-dom`

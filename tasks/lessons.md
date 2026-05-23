@@ -1,5 +1,12 @@
 # Leçons apprises
 
+## 2026-05-23 — Build statique Nuxt qui appelle un backend externe : ne JAMAIS rendre obligatoire un secret en CI
+
+**Contexte** : Migration du frontend de la liste statique TypeScript vers Directus. Le serveur Nuxt expose un endpoint `/api/software` qui proxifie Directus avec un token statique. Mode `nuxt generate` (SSG).
+**Erreur** : `useDirectusClient()` throw `DIRECTUS_TOKEN non configuré` (500). Le prerender lance le serveur Nitro en local, qui appelle son propre endpoint → 500 → liste vide → 6 routes `/logiciels/<uuid>` lient vers des UUIDs morts (page liquid-glass utilisait encore la liste statique) → exit 1.
+**Correction** : (1) token optionnel côté serveur (anonymous Directus si absent — permissions Public déjà configurées) ; (2) `DIRECTUS_URL` passée en env du workflow (URL publique, pas un secret) ; (3) page `liquid-glass.vue` bascule sur `useSoftware()` au lieu de `data/software-list.ts`.
+**Règle** : Pour un site statique qui dépend d'un backend externe, le build doit pouvoir s'exécuter sans secrets (lecture anonyme via permissions backend) — c'est plus sûr ET plus simple que stocker un token dans les secrets CI. Si le token est vraiment nécessaire (drafts, écriture), le rendre optionnel : la lib client doit fonctionner avec ou sans.
+
 ## 2026-03-27 — Palettes Tailwind custom : toujours placer la couleur de base au shade 500
 
 **Contexte** : Palette CEJEF avec `#9A211F` au shade 600 et `#1D7A3F` au shade 700.
