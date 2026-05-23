@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { softwareList } from "~/data/software-list"
+const softwareList = useSoftware()
 
-// Utiliser les 6 premiers logiciels pour la démo
-const demoSoftware = softwareList.slice(0, 6)
+const demoSoftware = computed(() => softwareList.value.slice(0, 6))
 </script>
 
 <template>

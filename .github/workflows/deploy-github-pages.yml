@@ -71,6 +71,9 @@ jobs:
         run: npm run generate
         env:
           NUXT_APP_BASE_URL: /2025-cns-sfa-referentiel-logiciels-cejef/
+          # URL publique de Directus — lecture anonyme des logiciels publiés
+          # via les permissions du rôle Public (pas de token nécessaire).
+          DIRECTUS_URL: http://46.140.144.167:8055
 
       # --- ÉTAPE 6 : Préparer l'upload vers GitHub Pages ---
       # Crée un artifact (archive) contenant tous les fichiers générés
