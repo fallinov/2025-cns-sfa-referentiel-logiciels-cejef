@@ -61,18 +61,20 @@ git push origin v1.0.0
 
 **Source de vérité (runtime)** : Directus 11 — `http://46.140.144.167:8055`. Collection `software` (status=published), relations M2M vers `category`, `pedagogical_activity`, et `software_alternative` (auto-référentielle, unidirectionnelle — alternatives recommandées).
 
-**Pipeline build** :
-1. `nuxt generate` lance le serveur Nitro en local
-2. Plugin `app/plugins/software-data.ts` appelle `/api/software` au boot
+**Mode SSR sur Vercel** : depuis v0.21+, le site n'est plus statique. Chaque visite déclenche un render serveur qui appelle Directus en live. Plus de re-build manuel — les modifications côté Directus sont visibles dès le refresh suivant.
+
+**Pipeline runtime (SSR Vercel)** :
+1. Visite navigateur → Vercel déclenche le SSR Nuxt
+2. Plugin `app/plugins/software-data.ts` appelle `/api/software` (endpoint local)
 3. Endpoint serveur `server/api/software/index.get.ts` → Directus via SDK → mappe snake_case en camelCase
-4. Liste écrite dans `useState("software-list")` → sérialisée dans le payload
-5. Pages prerendées avec les données figées dans le HTML/JSON statique
+4. Liste écrite dans `useState("software-list")` → sérialisée dans le payload pour hydratation client
+5. Page rendue côté serveur avec données fraîches, puis hydratée côté client
 
 **Accès Directus** :
-- **Tous environnements (CI, dev, prod)** : anonyme via permissions du rôle Public (lecture `software` publiés + `category` + `pedagogical_activity` + `directus_files` + `software_alternative`)
-- **Pas de token côté frontend** : ni en CI, ni en dev local. Le frontend ne lit que les `status: published`, ce qui correspond exactement aux droits du rôle Public.
+- **Tous environnements (Vercel SSR, dev local)** : anonyme via permissions du rôle Public (lecture `software` publiés + `category` + `pedagogical_activity` + `directus_files` + `software_alternative`)
+- **Pas de token côté frontend** : ni en CI, ni en dev local, ni sur Vercel. Le frontend ne lit que les `status: published`.
+- **Pas de problème CORS** : le navigateur ne contacte JAMAIS Directus directement. Il appelle les endpoints serveur Nuxt (`/api/software`, `/api/software/:id`), qui appellent Directus côté serveur (Vercel ou dev local).
 - **`DIRECTUS_TOKEN` reste pris en charge** par `useDirectusClient()` (variable d'env optionnelle) — utile seulement si une feature future a besoin de lire les drafts. Ne pas l'ajouter au `.env` par défaut.
-- **Si jamais un token est utilisé** : il reste côté serveur Nuxt uniquement, jamais exposé au client.
 
 **Types** : `types/software.ts` (`Software`, `LgpdClassification`, `CertificationLevel`, `DataLocation`).
 **State** : Pinia stores (`software.ts`, `audience.ts`) + composables (`useSoftware`, `useDataProtection`).
@@ -125,18 +127,20 @@ git push origin v1.0.0
 
 ### Deployment Strategy
 
-**Two environments** :
-1. **Staging** : GitHub Pages (`https://fallinov.github.io/2025-cns-sfa-referentiel-logiciels-cejef/`)
-   - Auto-deploy on push to `main`, `baseURL: /2025-cns-sfa-referentiel-logiciels-cejef/`
-   - Workflow: `.github/workflows/deploy-github-pages.yml`
-   - Env vars : `NUXT_APP_BASE_URL`, `DIRECTUS_URL` (URL publique, pas de secret)
+**Cible actuelle : Vercel (SSR)** — https://logiciels.vercel.app
+- Mode SSR natif (`nuxt build`) — données live à chaque visite via `/api/software`
+- Auto-deploy sur push to `main` (configuré dans le dashboard Vercel)
+- Env vars Vercel : `DIRECTUS_URL=http://46.140.144.167:8055` (anonyme, pas de token nécessaire)
+- Pas de `NUXT_APP_BASE_URL` sur Vercel → `baseURL: "/"`
+- Pas de problème CORS : le navigateur appelle `/api/software` (même origine), le serveur Nuxt forward vers Directus
 
-2. **Production** : SFTP server
-   - Manual via Git tags, `baseURL: /`
-   - Workflow: `.github/workflows/deploy-production.yml`
-   - Secrets: `SFTP_SERVER`, `SFTP_USERNAME`, `SFTP_PASSWORD`, `SFTP_PORT`, `SFTP_SERVER_DIR`
+**Pourquoi Vercel et pas GitHub Pages** : la formation des saisisseurs CNS (séance 27.05) nécessite que les modifications Directus soient visibles immédiatement après refresh navigateur. GitHub Pages = mode statique, données figées au build (re-build manuel de ~2 min par modif). Vercel = SSR, données live.
 
-**Config** : `nuxt.config.ts` utilise `process.env.NUXT_APP_BASE_URL`. `runtimeConfig.directusUrl` est le seul nécessaire. `directusToken` est lu si défini mais n'est plus utilisé (accès anonyme par défaut).
+**Workflow GitHub Pages désactivé** (`.github/workflows/deploy-github-pages.yml.disabled`) — gardé en référence si retour au mode statique nécessaire (cf branche `feat/spa-mode` pour le pattern SPA pure).
+
+**Production future** : Infomaniak Cloud Managé (Suisse) — souveraineté CH. Bascule prévue après stabilisation Vercel.
+
+**Config** : `nuxt.config.ts` utilise `process.env.DIRECTUS_URL` (server) et fallback `NUXT_PUBLIC_DIRECTUS_URL` (public). `directusToken` reste optionnel — non utilisé en prod.
 
 ## Common Development Tasks
 
@@ -159,8 +163,8 @@ git push origin v1.0.0
 ## Important Notes
 
 - **Présentations HTML** : déplacées dans `~/WebstormProjects/SFA-PRESENTATION/referentiel-logiciels/`
-- **Backend Directus** : source de vérité runtime, mais le site final est statique (données figées au build).
-- **Redeployment required** : tout changement Directus nécessite un re-build GitHub Pages (auto au push, manuel via Actions).
+- **Backend Directus** : source de vérité runtime. Le site est en SSR sur Vercel — pas de re-build nécessaire pour voir les changements.
+- **Données live** : modifier un logiciel dans Directus → refresh navigateur → modification visible immédiatement.
 - **Base URL** : attention au `baseURL` dynamique pour GitHub Pages (routing, assets).
 - **TypeScript strict** : tous les objets doivent matcher l'interface `Software` exactement.
 - **Nuxt UI v4.1.0** : toujours vérifier l'API sur https://ui.nuxt.com avant d'utiliser un composant.
