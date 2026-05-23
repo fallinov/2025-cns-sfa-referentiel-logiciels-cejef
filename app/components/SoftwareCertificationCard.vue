@@ -136,27 +136,12 @@ const config = computed(() => {
         <span class="font-bold not-italic">Note :</span> {{ software.usageNotes }}
       </div>
 
-      <!-- Alternatives (Level 3 only) -->
-      <div v-if="certificationLevel === 3 && software.greenAlternatives?.length" class="mt-4">
+      <!-- Alternatives recommandées : retirées en V1, à réintroduire en V1.x si pertinent -->
+      <div v-if="false" class="mt-4">
         <p class="font-bold text-sm text-gray-700 dark:text-gray-300 mb-1">
           Alternatives recommandées
         </p>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
-          Outils conformes qui remplissent la même fonction.
-        </p>
-        <div class="flex flex-wrap gap-2">
-          <UButton
-            v-for="altId in software.greenAlternatives"
-            :key="altId"
-            :to="`/logiciels/${altId}`"
-            color="success"
-            variant="outline"
-            size="sm"
-            icon="i-lucide-arrow-right"
-          >
-            {{ getSoftwareById(altId)?.name || "Alternative" }}
-          </UButton>
-        </div>
+        <div></div>
       </div>
 
       <!-- Avertissement mineurs < 16 ans -->
@@ -255,13 +240,7 @@ const config = computed(() => {
           </div>
         </div>
 
-        <!-- Remarque LGPD -->
-        <p
-          v-if="software.remarque"
-          class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 text-sm text-gray-500 dark:text-gray-400 leading-relaxed"
-        >
-          {{ software.remarque }}
-        </p>
+        <!-- Remarque interne CNS retirée en V1 (champ fusionné avec notes) -->
       </div>
     </div>
   </div>

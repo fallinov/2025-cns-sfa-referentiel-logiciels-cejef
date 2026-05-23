@@ -287,11 +287,11 @@ const showLgpdDetails = ref(false)
                   <span>Approuvé SEN</span>
                 </div>
                 <div
-                  v-if="software.supportedByCEJEF && software.campusTraining && software.certificationLevel === 1 && audienceStore.audience !== 'sen'"
+                  v-if="software.approvedBySFP"
                   class="flex items-center gap-1.5 bg-green-500 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-badge-check" class="w-4 h-4" />
-                  <span>Approuvé CEJEF</span>
+                  <span>Approuvé SFP</span>
                 </div>
               </div>
             </div>
@@ -333,7 +333,7 @@ const showLgpdDetails = ref(false)
           </section>
 
           <!-- 2. PEDAGOGICAL CONTEXT (Teacher Focused) -->
-          <section v-if="software.categories?.length || software.disciplines?.length || software.pedagogicalActivities?.length" aria-label="Pour quels cours ?">
+          <section v-if="software.categories?.length || software.pedagogicalActivities?.length" aria-label="Pour quels cours ?">
             <div class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700/50 relative overflow-hidden">
               <div class="flex items-center gap-3 mb-6 relative z-10">
                 <UIcon name="i-lucide-graduation-cap" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
@@ -343,27 +343,6 @@ const showLgpdDetails = ref(false)
               </div>
 
               <div class="flex flex-col gap-8 relative z-10">
-                <!-- Disciplines -->
-                <div v-if="software.disciplines?.length && software.disciplines.some(d => d !== 'Transversal')">
-                  <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
-                    Disciplines concernées
-                  </h3>
-                  <div class="flex flex-wrap gap-2">
-                    <NuxtLink
-                      v-for="discipline in software.disciplines.filter(d => d !== 'Transversal')"
-                      :key="discipline"
-                      :to="{ path: '/', query: { discipline } }"
-                      :aria-label="`Filtrer par discipline : ${discipline}`"
-                      class="hover:scale-105 transition-transform"
-                    >
-                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">
-                        <UIcon name="i-lucide-book-open" class="w-3.5 h-3.5 text-gray-500" />
-                        {{ discipline }}
-                      </span>
-                    </NuxtLink>
-                  </div>
-                </div>
-
                 <!-- Activities -->
                 <div v-if="software.pedagogicalActivities?.length">
                   <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">

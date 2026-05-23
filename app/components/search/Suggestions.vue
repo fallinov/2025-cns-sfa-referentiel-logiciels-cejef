@@ -3,7 +3,6 @@ import type { Software } from "~~/types/software"
 
 interface Suggestions {
   categories: string[]
-  disciplines: string[]
   activities: string[]
   software: Software[]
 }
@@ -25,7 +24,6 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   clickCategory: [category: string]
-  clickDiscipline: [discipline: string]
   clickActivity: [activity: string]
   clickSoftware: [id: string]
 }>()
@@ -41,11 +39,6 @@ const isItemSelected = (type: string, localIndex: number) => {
     return props.selectedIndex === currentGlobalIndex + localIndex
   }
   currentGlobalIndex += props.suggestions.categories.length
-
-  if (type === "discipline") {
-    return props.selectedIndex === currentGlobalIndex + localIndex
-  }
-  currentGlobalIndex += props.suggestions.disciplines.length
 
   if (type === "activity") {
     return props.selectedIndex === currentGlobalIndex + localIndex
@@ -139,33 +132,6 @@ watch(() => props.selectedIndex, async (newIndex) => {
               class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
             />
             <span class="text-base text-gray-900 dark:text-white">{{ category }}</span>
-          </button>
-        </div>
-
-        <!-- Disciplines -->
-        <div v-if="suggestions.disciplines.length > 0">
-          <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-            Disciplines
-          </div>
-          <button
-            v-for="(discipline, index) in suggestions.disciplines"
-            :key="`discipline-${discipline}`"
-            type="button"
-            role="option"
-            :aria-selected="isItemSelected('discipline', index)"
-            :class="[
-              'w-full text-left px-5 py-4 transition-colors flex items-center gap-4',
-              isItemSelected('discipline', index)
-                ? 'bg-gray-100 dark:bg-gray-700'
-                : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
-            ]"
-            @click="emit('clickDiscipline', discipline)"
-          >
-            <UIcon
-              name="i-lucide-book-open"
-              class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
-            />
-            <span class="text-base text-gray-900 dark:text-white">{{ discipline }}</span>
           </button>
         </div>
 

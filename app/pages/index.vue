@@ -6,7 +6,6 @@ import SoftwareListContainer from "~/components/software/SoftwareListContainer.v
 const store = useSoftwareStore()
 const {
   handleCategoryFilter,
-  handleDisciplineFilter,
   handleActivityFilter
 } = store
 
@@ -20,8 +19,6 @@ defineOptions({
 onMounted(() => {
   if (route.query.category) {
     handleCategoryFilter(route.query.category as string)
-  } else if (route.query.discipline) {
-    handleDisciplineFilter(route.query.discipline as string)
   } else if (route.query.activity) {
     handleActivityFilter(route.query.activity as string)
   }

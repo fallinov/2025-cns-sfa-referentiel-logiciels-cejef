@@ -44,6 +44,31 @@ export interface DirectusSchema {
 }
 
 /**
+ * Convertit la valeur technique Directus de `data_location` en label
+ * lisible pour les visiteurs du référentiel.
+ *
+ * Aligné sur les `text` des choices Directus (radios du formulaire de saisie).
+ */
+export function mapDataLocationLabel(value: string | null): string {
+  switch (value) {
+    case "switzerland":
+      return "Suisse"
+    case "eu_eea":
+      return "Union européenne / EEE"
+    case "adequate":
+      return "Pays adéquat (UK, Canada, Japon, Corée du Sud…)"
+    case "us_dpf":
+      return "États-Unis (avec certification DPF)"
+    case "multi_or_partial":
+      return "Hébergement multi-régions / réparti"
+    case "other":
+      return "Autre / non adéquat / inconnu"
+    default:
+      return "Non renseigné"
+  }
+}
+
+/**
  * Crée un client Directus authentifié pour le serveur Nuxt.
  * @throws Error si DIRECTUS_URL ou DIRECTUS_TOKEN ne sont pas configurés.
  */

@@ -69,7 +69,6 @@ watch([isFocused, isMobile], ([focused, mobile]) => {
 
 const emit = defineEmits<{
   "filterByCategory": [category: string]
-  "filterByDiscipline": [discipline: string]
   "filterByActivity": [activity: string]
   "search": [query: string]
   "clear": []
@@ -108,10 +107,6 @@ const allSuggestionItems = computed(() => {
     items.push({ type: "category", value: cat, index: globalIndex++ })
   })
 
-  suggestions.value.disciplines.forEach((disc) => {
-    items.push({ type: "discipline", value: disc, index: globalIndex++ })
-  })
-
   suggestions.value.activities.forEach((act) => {
     items.push({ type: "activity", value: act, index: globalIndex++ })
   })
@@ -137,13 +132,6 @@ const handleSoftwareClick = (softwareId: string) => {
 const handleCategoryClick = (category: string) => {
   emit("filterByCategory", category)
   search.value = category
-  closeSuggestions()
-  searchInputComponent.value?.blur()
-}
-
-const handleDisciplineClick = (discipline: string) => {
-  emit("filterByDiscipline", discipline)
-  search.value = discipline
   closeSuggestions()
   searchInputComponent.value?.blur()
 }
@@ -206,9 +194,6 @@ const selectItemAtIndex = (index: number) => {
   switch (item.type) {
     case "category":
       handleCategoryClick(item.value)
-      break
-    case "discipline":
-      handleDisciplineClick(item.value)
       break
     case "activity":
       handleActivityClick(item.value)
@@ -307,7 +292,6 @@ const handleKeyDown = (event: KeyboardEvent) => {
             :selected-index="selectedIndex"
             :is-mobile-focused="isMobileFocused"
             @click-category="handleCategoryClick"
-            @click-discipline="handleDisciplineClick"
             @click-activity="handleActivityClick"
             @click-software="handleSoftwareClick"
           />

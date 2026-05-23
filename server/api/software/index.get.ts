@@ -9,7 +9,7 @@
 
 import { readItems } from "@directus/sdk"
 import type { Software } from "~~/types/software"
-import { type DirectusSoftware, useDirectusClient } from "../../utils/directus"
+import { type DirectusSoftware, mapDataLocationLabel, useDirectusClient } from "../../utils/directus"
 
 function mapSoftware(item: DirectusSoftware): Software {
   const certificationLevel = Math.max(
@@ -39,18 +39,13 @@ function mapSoftware(item: DirectusSoftware): Software {
       dataCollection: item.lgpd_data_collection
     },
     certificationLevel,
-    // Champs Directus → mapping vers structure historique de Software.
-    // Les valeurs littérales du type DataLocation ne correspondent plus
-    // exactement à la nouvelle énumération Directus (switzerland/eu_eea/...),
-    // mais le frontend actuel n'effectue aucune comparaison stricte sur
-    // dataLocation — sera ré-aligné en V1.2.
-    dataLocation: (item.data_location ?? "Inconnu") as Software["dataLocation"],
-    supportedByCEJEF: false, // Retiré du V1 schema Directus
-    cejefFavorite: false, // Retiré
-    campusTraining: false, // Retiré
+    // Convertit la valeur technique Directus (switzerland, us_dpf, …) en
+    // libellé lisible pour les visiteurs (Suisse, États-Unis (DPF), …).
+    dataLocation: mapDataLocationLabel(item.data_location) as Software["dataLocation"],
     requiresEduAccount: item.requires_edu_account,
     requiresEdulog: item.requires_edulog,
     approvedBySEN: item.approved_by_sen,
+    approvedBySFP: item.approved_by_sfp,
     cost: (item.cost ?? "Gratuit") as Software["cost"],
     toolUrl: item.tool_url,
     documentation: item.doc_url,
@@ -59,7 +54,6 @@ function mapSoftware(item: DirectusSoftware): Software {
     usageNotes: item.notes,
     categories: categoryNames,
     pedagogicalActivities: activityNames,
-    disciplines: [], // Retiré V1
     createdAt: item.date_created ? new Date(item.date_created).getTime() : undefined,
     updatedAt: item.date_updated ? new Date(item.date_updated).getTime() : undefined
   }

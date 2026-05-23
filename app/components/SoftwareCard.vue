@@ -14,11 +14,9 @@ const config = computed(() => {
   return getCertificationConfig(props.software.certificationLevel)
 })
 
-// "Approuvé CEJEF" requires: level 1 (green) + supportedByCEJEF + campusTraining
-const isApprovedCejef = computed(() => {
-  return props.software.certificationLevel === 1
-    && props.software.supportedByCEJEF
-    && props.software.campusTraining
+// Approbation institutionnelle V1 : SEN ou SFP (champs Directus)
+const isApprovedInstitution = computed(() => {
+  return !!props.software.approvedBySEN || !!props.software.approvedBySFP
 })
 
 const handleCardClick = () => {
@@ -88,24 +86,18 @@ const handleCardClick = () => {
     <!-- Badges (Quick Filters only) -->
     <div class="relative z-10 mt-auto flex flex-wrap gap-2 pt-2">
       <SoftwareFeatureBadge
-        v-if="isApprovedCejef && audienceStore.audience !== 'sen'"
-        icon="i-lucide-badge-check"
-        label="Approuvé CEJEF"
-        tooltip="Recommandé et financé par le CEJEF"
-        class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
-      />
-      <SoftwareFeatureBadge
-        v-if="software.approvedBySEN && audienceStore.audience !== 'cejef'"
+        v-if="software.approvedBySEN"
         icon="i-lucide-badge-check"
         label="Approuvé SEN"
-        tooltip="Recommandé et financé par le SEN"
+        tooltip="Recommandé par le Service de l'Enseignement (SEN)"
         class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
-        v-if="software.campusTraining && !isApprovedCejef"
-        icon="i-lucide-graduation-cap"
-        label="Formation disponible"
-        tooltip="Une formation est proposée par le CEJEF"
+        v-if="software.approvedBySFP"
+        icon="i-lucide-badge-check"
+        label="Approuvé SFP"
+        tooltip="Recommandé par le Service de la Formation Postobligatoire (SFP)"
+        class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
         v-if="software.requiresEduAccount && software.certificationLevel === 1"

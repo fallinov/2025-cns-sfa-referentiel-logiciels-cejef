@@ -49,20 +49,6 @@ describe("software store - filtres", () => {
     })
   })
 
-  describe("filtre par discipline", () => {
-    it("filtre par une discipline", () => {
-      const discipline = store.uniqueDisciplines[0]
-      store.selectedDisciplines = [discipline]
-
-      for (const software of store.filteredSoftwareList) {
-        expect(
-          software.disciplines,
-          `${software.name} devrait contenir la discipline "${discipline}"`
-        ).toContain(discipline)
-      }
-    })
-  })
-
   describe("filtre par activité pédagogique", () => {
     it("filtre par une activité", () => {
       const activity = store.uniqueActivities[0]
@@ -136,28 +122,6 @@ describe("software store - filtres", () => {
       }
     })
 
-    it("filtre 'Formation disponible' = campusTraining true", () => {
-      store.selectedPopularFilters = ["campus-training"]
-
-      for (const software of store.filteredSoftwareList) {
-        expect(
-          software.campusTraining,
-          `${software.name} devrait avoir campusTraining = true`
-        ).toBe(true)
-      }
-    })
-
-    it("filtre 'Approuvé CEJEF' = supportedByCEJEF + campusTraining + niveau 1", () => {
-      store.selectedPopularFilters = ["approved-cejef"]
-
-      for (const software of store.filteredSoftwareList) {
-        const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
-        expect(software.supportedByCEJEF, `${software.name} supportedByCEJEF`).toBe(true)
-        expect(software.campusTraining, `${software.name} campusTraining`).toBe(true)
-        expect(level, `${software.name} niveau`).toBe(1)
-      }
-    })
-
     it("filtre 'Approuvé SEN' = approvedBySEN true", () => {
       store.selectedPopularFilters = ["approved-sen"]
 
@@ -169,13 +133,14 @@ describe("software store - filtres", () => {
       }
     })
 
-    it("combine plusieurs filtres populaires (AND)", () => {
-      store.selectedPopularFilters = ["student-data-allowed", "campus-training"]
+    it("filtre 'Approuvé SFP' = approvedBySFP true", () => {
+      store.selectedPopularFilters = ["approved-sfp"]
 
       for (const software of store.filteredSoftwareList) {
-        const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
-        expect(level, `${software.name} niveau`).toBe(1)
-        expect(software.campusTraining, `${software.name} campusTraining`).toBe(true)
+        expect(
+          software.approvedBySFP,
+          `${software.name} devrait avoir approvedBySFP = true`
+        ).toBe(true)
       }
     })
   })
@@ -290,13 +255,11 @@ describe("software store - filtres", () => {
     })
 
     it("handleCategoryFilter set la catégorie et clear les autres", () => {
-      store.selectedDisciplines = ["test"]
       store.selectedActivities = ["test"]
 
       store.handleCategoryFilter("Bureautique")
 
       expect(store.selectedCategories).toEqual(["Bureautique"])
-      expect(store.selectedDisciplines).toEqual([])
       expect(store.selectedActivities).toEqual([])
       expect(store.searchQuery).toBe("Bureautique")
     })
@@ -316,7 +279,7 @@ describe("software store - filtres", () => {
     it("hasActiveFilters est true quand des filtres sont actifs", () => {
       expect(store.hasActiveFilters).toBe(false)
 
-      store.selectedPopularFilters = ["campus-training"]
+      store.selectedPopularFilters = ["approved-sen"]
       expect(store.hasActiveFilters).toBe(true)
     })
   })
@@ -332,12 +295,6 @@ describe("software store - filtres", () => {
       const allCategories = new Set<string>()
       softwareList.forEach(s => s.categories?.forEach(c => allCategories.add(c)))
       expect(store.uniqueCategories.length).toBe(allCategories.size)
-    })
-
-    it("uniqueDisciplines est trié (.sort() par défaut)", () => {
-      const disciplines = store.uniqueDisciplines
-      const sorted = [...disciplines].sort()
-      expect(disciplines).toEqual(sorted)
     })
 
     it("uniqueActivities est trié (.sort() par défaut)", () => {
