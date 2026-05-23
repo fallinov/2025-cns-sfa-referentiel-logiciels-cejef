@@ -116,6 +116,12 @@ export interface Software {
   categories?: string[]
   pedagogicalActivities?: string[]
 
+  // ALTERNATIVES RECOMMANDÉES
+  // Liste d'UUIDs de logiciels proposés comme alternatives (niveau 1 ou 2).
+  // Saisie manuelle dans Directus (junction software_alternative), relation
+  // unidirectionnelle. Vide si rien n'a été validé pour ce logiciel.
+  alternatives?: string[]
+
   // DATES
   createdAt?: number
   updatedAt?: number

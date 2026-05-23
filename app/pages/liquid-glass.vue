@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const softwareList = useSoftware()
+const { softwareList } = useSoftware()
 
 const demoSoftware = computed(() => softwareList.value.slice(0, 6))
 </script>
