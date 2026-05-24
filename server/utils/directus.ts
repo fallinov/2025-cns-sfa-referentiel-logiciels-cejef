@@ -6,23 +6,25 @@
  */
 
 import { createDirectus, rest, staticToken } from "@directus/sdk"
-import type { Software } from "~~/types/software"
+import type { CategoryRef, PedagogicalActivityRef, Software, SchoolLevel } from "~~/types/software"
+
+type LgpdValue = 0 | 1 | 2 | 3
 
 export interface DirectusSoftware {
   id: string
   status: "draft" | "pending" | "published" | "archived"
   name: string
   icon: string | null
-  logo: string | null
   short_description: string
   description: string | null
-  lgpd_hosting: 1 | 2 | 3
-  lgpd_rgpd: 1 | 2 | 3
-  lgpd_data_collection: 1 | 2 | 3
+  lgpd_hosting: LgpdValue | null
+  lgpd_rgpd: LgpdValue | null
+  lgpd_data_collection: LgpdValue | null
   data_location: string | null
   cost: string | null
   funding: string[] | null
   target_audience: "élèves" | "enseignants" | "tous" | null
+  school_level: SchoolLevel[] | null
   tool_url: string
   doc_url: string | null
   notes: string | null
@@ -34,15 +36,15 @@ export interface DirectusSoftware {
   contractual_safeguards: string[] | null
   date_created: string | null
   date_updated: string | null
-  categories?: Array<{ category_id: { id: string, name: string } | null }>
-  pedagogical_activities?: Array<{ pedagogical_activity_id: { id: string, name: string } | null }>
+  categories?: Array<{ category_id: { id: string, name: string, icon: string | null } | null }>
+  pedagogical_activities?: Array<{ pedagogical_activity_id: { id: string, name: string, icon: string | null } | null }>
   alternatives?: Array<{ alternative_id: { id: string } | null }>
 }
 
 export interface DirectusSchema {
   software: DirectusSoftware[]
-  category: { id: string, name: string, description: string | null }[]
-  pedagogical_activity: { id: string, name: string, description: string | null }[]
+  category: { id: string, name: string, description: string | null, icon: string | null }[]
+  pedagogical_activity: { id: string, name: string, description: string | null, icon: string | null }[]
 }
 
 /**
@@ -78,8 +80,10 @@ export const SOFTWARE_FIELDS = [
   "*",
   "categories.category_id.id",
   "categories.category_id.name",
+  "categories.category_id.icon",
   "pedagogical_activities.pedagogical_activity_id.id",
   "pedagogical_activities.pedagogical_activity_id.name",
+  "pedagogical_activities.pedagogical_activity_id.icon",
   "alternatives.alternative_id.id"
 ] as const
 
@@ -90,20 +94,35 @@ export const SOFTWARE_FIELDS = [
  *
  * Fonction pure — facile à tester unitairement sans monter Nuxt.
  */
+/**
+ * Normalise un score LGPD : null Directus → 0 (Non évaluée).
+ * Évite d'avoir à gérer null partout côté frontend.
+ */
+function normalizeLgpd(value: LgpdValue | null): LgpdValue {
+  return value ?? 0
+}
+
 export function mapSoftware(item: DirectusSoftware): Software {
-  const certificationLevel = Math.max(
-    item.lgpd_hosting,
-    item.lgpd_rgpd,
-    item.lgpd_data_collection
-  ) as 1 | 2 | 3
+  const hosting = normalizeLgpd(item.lgpd_hosting)
+  const rgpd = normalizeLgpd(item.lgpd_rgpd)
+  const dataCollection = normalizeLgpd(item.lgpd_data_collection)
 
-  const categoryNames = (item.categories ?? [])
-    .map(c => c.category_id?.name)
-    .filter((n): n is string => Boolean(n))
+  // Règle conservatrice : si au moins un axe est Non évalué (0),
+  // le niveau global est 0. Sinon, max des 3 axes.
+  const values = [hosting, rgpd, dataCollection]
+  const certificationLevel = values.some(v => v === 0)
+    ? 0
+    : (Math.max(...values) as 1 | 2 | 3)
 
-  const activityNames = (item.pedagogical_activities ?? [])
-    .map(a => a.pedagogical_activity_id?.name)
-    .filter((n): n is string => Boolean(n))
+  const categories: CategoryRef[] = (item.categories ?? [])
+    .map(c => c.category_id)
+    .filter((c): c is { id: string, name: string, icon: string | null } => Boolean(c))
+    .map(c => ({ name: c.name, icon: c.icon }))
+
+  const activities: PedagogicalActivityRef[] = (item.pedagogical_activities ?? [])
+    .map(a => a.pedagogical_activity_id)
+    .filter((a): a is { id: string, name: string, icon: string | null } => Boolean(a))
+    .map(a => ({ name: a.name, icon: a.icon }))
 
   const alternativeIds = (item.alternatives ?? [])
     .map(a => a.alternative_id?.id)
@@ -112,15 +131,10 @@ export function mapSoftware(item: DirectusSoftware): Software {
   return {
     id: item.id,
     name: item.name,
-    logo: item.logo,
     icon: item.icon,
     shortDescription: item.short_description,
     description: item.description,
-    lgpd: {
-      hosting: item.lgpd_hosting,
-      rgpd: item.lgpd_rgpd,
-      dataCollection: item.lgpd_data_collection
-    },
+    lgpd: { hosting, rgpd, dataCollection },
     certificationLevel,
     dataLocation: mapDataLocationLabel(item.data_location) as Software["dataLocation"],
     requiresEduAccount: item.requires_edu_account,
@@ -131,10 +145,11 @@ export function mapSoftware(item: DirectusSoftware): Software {
     toolUrl: item.tool_url,
     documentation: item.doc_url,
     targetAudience: item.target_audience,
+    schoolLevel: item.school_level ?? [],
     requiresParentalConsent: item.requires_parental_consent,
     usageNotes: item.notes,
-    categories: categoryNames,
-    pedagogicalActivities: activityNames,
+    categories,
+    pedagogicalActivities: activities,
     alternatives: alternativeIds,
     createdAt: item.date_created ? new Date(item.date_created).getTime() : undefined,
     updatedAt: item.date_updated ? new Date(item.date_updated).getTime() : undefined

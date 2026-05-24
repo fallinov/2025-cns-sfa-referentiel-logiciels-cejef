@@ -47,31 +47,59 @@ export type DataLocation
 
 export type TargetAudience = "élèves" | "enseignants" | "tous"
 
+export type SchoolLevel
+  = | "primaire"
+    | "secondaire_1"
+    | "secondaire_2"
+    | "formation_professionnelle"
+    | "enseignement_specialise"
+
+/**
+ * Référence d'une catégorie pédagogique (nom + icône Lucide optionnelle).
+ * Provient de la collection Directus `category`.
+ */
+export interface CategoryRef {
+  name: string
+  icon: string | null
+}
+
+/**
+ * Référence d'une activité pédagogique (nom + icône Lucide optionnelle).
+ * Provient de la collection Directus `pedagogical_activity`.
+ */
+export interface PedagogicalActivityRef {
+  name: string
+  icon: string | null
+}
+
 /**
  * Classification LGPD (Loi sur la protection des données)
- * Valeurs numériques: 1 = OK, 2 = Attention, 3 = Interdit
+ * Valeurs numériques: 0 = Non évaluée, 1 = OK, 2 = Attention, 3 = Interdit
  */
 export interface LgpdClassification {
-  hosting: 1 | 2 | 3
-  rgpd: 1 | 2 | 3
-  dataCollection: 1 | 2 | 3
+  hosting: 0 | 1 | 2 | 3
+  rgpd: 0 | 1 | 2 | 3
+  dataCollection: 0 | 1 | 2 | 3
 }
 
 /**
  * Niveau de certification CEJEF :
- * null = pas évalué, 1 = OK, 2 = Attention, 3 = Interdit
+ * null = pas de classification du tout, 0 = au moins un axe Non évalué (prudence),
+ * 1 = OK, 2 = Attention, 3 = Interdit
  */
-export type CertificationLevel = 1 | 2 | 3 | null
+export type CertificationLevel = 0 | 1 | 2 | 3 | null
 
 /**
  * Calcule le niveau de certification global à partir de la classification LGPD.
- * Retourne null si lgpd manquant.
+ * Règle conservatrice : si au moins un axe est Non évalué (0), le niveau global
+ * est 0 (Non évaluée) — on ne donne pas une fausse sécurité en ignorant un
+ * axe manquant. Sinon, max des 3 axes.
  */
 export function getCertificationLevel(lgpd?: LgpdClassification): CertificationLevel {
   if (!lgpd) return null
   const values = [lgpd.hosting, lgpd.rgpd, lgpd.dataCollection]
-  const maxValue = Math.max(...values)
-  return (maxValue as CertificationLevel)
+  if (values.some(v => v === 0)) return 0
+  return (Math.max(...values) as CertificationLevel)
 }
 
 /**
@@ -82,7 +110,6 @@ export interface Software {
   // IDENTIFICATION
   id: string
   name: string
-  logo: string | null
   icon?: string | null
 
   // DESCRIPTION
@@ -109,12 +136,13 @@ export interface Software {
 
   // USAGE
   targetAudience?: TargetAudience | null
+  schoolLevel?: SchoolLevel[]
   requiresParentalConsent?: boolean
   usageNotes?: string | null
 
   // CLASSIFICATION PÉDAGOGIQUE
-  categories?: string[]
-  pedagogicalActivities?: string[]
+  categories?: CategoryRef[]
+  pedagogicalActivities?: PedagogicalActivityRef[]
 
   // ALTERNATIVES RECOMMANDÉES
   // Liste d'UUIDs de logiciels proposés comme alternatives (niveau 1 ou 2).

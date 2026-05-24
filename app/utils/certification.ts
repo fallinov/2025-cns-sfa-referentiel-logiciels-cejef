@@ -11,6 +11,17 @@ export interface CertificationConfig {
 }
 
 export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
+  0: {
+    fill: "text-gray-500 dark:text-gray-400",
+    label: "Non évaluée",
+    icon: "i-lucide-help",
+    bg: "bg-gray-50 dark:bg-gray-950",
+    solidBg: "bg-gray-400 dark:bg-gray-500",
+    ring: "ring-gray-400/20",
+    ringSolid: "ring-gray-400 dark:ring-gray-500",
+    text: "text-gray-500 dark:text-gray-400",
+    color: "neutral"
+  },
   1: {
     fill: "text-green-500 dark:text-green-400",
     label: "Autorisé",
@@ -59,7 +70,7 @@ export const DEFAULT_CERTIFICATION: CertificationConfig = {
 }
 
 export function getCertificationConfig(level: number | null | undefined): CertificationConfig {
-  if (!level) return DEFAULT_CERTIFICATION
+  if (level === null || level === undefined) return DEFAULT_CERTIFICATION
   return CERTIFICATION_LEVELS[level] || DEFAULT_CERTIFICATION
 }
 
@@ -86,6 +97,8 @@ export function getCertificationColors(level: number | null | undefined): { bg: 
  */
 export function getCertificationIcon(level: number | null | undefined): string {
   switch (level) {
+    case 0:
+      return "i-lucide-help"
     case 1:
       return "i-lucide-check"
     case 2:

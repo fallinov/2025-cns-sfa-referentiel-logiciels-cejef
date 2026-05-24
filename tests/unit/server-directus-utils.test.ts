@@ -8,7 +8,6 @@ function makeDirectusSoftware(overrides: Partial<DirectusSoftware> = {}): Direct
     status: "published",
     name: "Test Software",
     icon: null,
-    logo: null,
     short_description: "Description courte",
     description: null,
     lgpd_hosting: 1,
@@ -18,6 +17,7 @@ function makeDirectusSoftware(overrides: Partial<DirectusSoftware> = {}): Direct
     cost: "Gratuit",
     funding: null,
     target_audience: null,
+    school_level: null,
     tool_url: "https://example.com",
     doc_url: null,
     notes: null,
@@ -59,7 +59,7 @@ describe("mapDataLocationLabel — valeurs techniques → libellés FR", () => {
 })
 
 describe("mapSoftware — transformation Directus → Software", () => {
-  describe("certificationLevel = max des 3 axes LGPD", () => {
+  describe("certificationLevel = max des 3 axes LGPD (axes évalués uniquement)", () => {
     it.each([
       [1, 1, 1, 1],
       [1, 2, 1, 2],
@@ -76,10 +76,41 @@ describe("mapSoftware — transformation Directus → Software", () => {
     })
   })
 
+  describe("certificationLevel = 0 (Non évaluée) si au moins un axe est 0 ou null", () => {
+    it("renvoie 0 si un axe est explicitement 0", () => {
+      const item = makeDirectusSoftware({ lgpd_hosting: 0, lgpd_rgpd: 2, lgpd_data_collection: 1 })
+      expect(mapSoftware(item).certificationLevel).toBe(0)
+    })
+
+    it("normalise null → 0 et renvoie 0 même si les autres axes sont 1", () => {
+      const item = makeDirectusSoftware({ lgpd_hosting: null, lgpd_rgpd: 1, lgpd_data_collection: 1 })
+      expect(mapSoftware(item).certificationLevel).toBe(0)
+      expect(mapSoftware(item).lgpd).toEqual({ hosting: 0, rgpd: 1, dataCollection: 1 })
+    })
+
+    it("renvoie 0 si les 3 axes sont null", () => {
+      const item = makeDirectusSoftware({ lgpd_hosting: null, lgpd_rgpd: null, lgpd_data_collection: null })
+      expect(mapSoftware(item).certificationLevel).toBe(0)
+      expect(mapSoftware(item).lgpd).toEqual({ hosting: 0, rgpd: 0, dataCollection: 0 })
+    })
+  })
+
   describe("structure LGPD imbriquée", () => {
     it("regroupe les 3 axes dans un objet lgpd", () => {
       const item = makeDirectusSoftware({ lgpd_hosting: 1, lgpd_rgpd: 2, lgpd_data_collection: 3 })
       expect(mapSoftware(item).lgpd).toEqual({ hosting: 1, rgpd: 2, dataCollection: 3 })
+    })
+  })
+
+  describe("school_level — niveaux scolaires", () => {
+    it("retourne le tableau tel quel si non null", () => {
+      const item = makeDirectusSoftware({ school_level: ["secondaire_2", "formation_professionnelle"] })
+      expect(mapSoftware(item).schoolLevel).toEqual(["secondaire_2", "formation_professionnelle"])
+    })
+
+    it("retourne [] si school_level est null", () => {
+      const item = makeDirectusSoftware({ school_level: null })
+      expect(mapSoftware(item).schoolLevel).toEqual([])
     })
   })
 
@@ -122,15 +153,18 @@ describe("mapSoftware — transformation Directus → Software", () => {
   })
 
   describe("relations M2M", () => {
-    it("extrait les noms de catégories en filtrant les category_id null", () => {
+    it("extrait nom + icône des catégories en filtrant les category_id null", () => {
       const item = makeDirectusSoftware({
         categories: [
-          { category_id: { id: "c1", name: "Bureautique" } },
+          { category_id: { id: "c1", name: "Bureautique", icon: "i-lucide-briefcase" } },
           { category_id: null },
-          { category_id: { id: "c2", name: "Multimédia" } }
+          { category_id: { id: "c2", name: "Multimédia", icon: null } }
         ]
       })
-      expect(mapSoftware(item).categories).toEqual(["Bureautique", "Multimédia"])
+      expect(mapSoftware(item).categories).toEqual([
+        { name: "Bureautique", icon: "i-lucide-briefcase" },
+        { name: "Multimédia", icon: null }
+      ])
     })
 
     it("retourne [] si categories est undefined", () => {
@@ -138,14 +172,17 @@ describe("mapSoftware — transformation Directus → Software", () => {
       expect(mapSoftware(item).categories).toEqual([])
     })
 
-    it("extrait les noms d'activités pédagogiques", () => {
+    it("extrait nom + icône des activités pédagogiques", () => {
       const item = makeDirectusSoftware({
         pedagogical_activities: [
-          { pedagogical_activity_id: { id: "a1", name: "Évaluation" } },
-          { pedagogical_activity_id: { id: "a2", name: "Collaboration" } }
+          { pedagogical_activity_id: { id: "a1", name: "Évaluation", icon: "i-lucide-file-check" } },
+          { pedagogical_activity_id: { id: "a2", name: "Collaboration", icon: null } }
         ]
       })
-      expect(mapSoftware(item).pedagogicalActivities).toEqual(["Évaluation", "Collaboration"])
+      expect(mapSoftware(item).pedagogicalActivities).toEqual([
+        { name: "Évaluation", icon: "i-lucide-file-check" },
+        { name: "Collaboration", icon: null }
+      ])
     })
 
     it("extrait les UUIDs d'alternatives en filtrant les null", () => {

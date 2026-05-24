@@ -24,7 +24,7 @@ describe("software store - filtres", () => {
 
       for (const software of store.filteredSoftwareList) {
         expect(
-          software.categories,
+          software.categories?.map(c => c.name),
           `${software.name} devrait contenir la catégorie "${category}"`
         ).toContain(category)
       }
@@ -43,7 +43,7 @@ describe("software store - filtres", () => {
       store.selectedCategories = [cat1, cat2]
 
       for (const software of store.filteredSoftwareList) {
-        const hasMatch = software.categories?.some(c => [cat1, cat2].includes(c))
+        const hasMatch = software.categories?.some(c => [cat1, cat2].includes(c.name))
         expect(hasMatch, `${software.name} devrait contenir "${cat1}" ou "${cat2}"`).toBe(true)
       }
     })
@@ -56,7 +56,7 @@ describe("software store - filtres", () => {
 
       for (const software of store.filteredSoftwareList) {
         expect(
-          software.pedagogicalActivities,
+          software.pedagogicalActivities?.map(a => a.name),
           `${software.name} devrait contenir l'activité "${activity}"`
         ).toContain(activity)
       }
@@ -200,7 +200,7 @@ describe("software store - filtres", () => {
       store.selectedCertifications = [1]
 
       for (const software of store.filteredSoftwareList) {
-        expect(software.categories).toContain(category)
+        expect(software.categories?.map(c => c.name)).toContain(category)
         const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)
         expect(level).toBe(1)
       }
@@ -293,7 +293,7 @@ describe("software store - filtres", () => {
 
     it("uniqueCategories contient toutes les catégories des logiciels", () => {
       const allCategories = new Set<string>()
-      softwareList.forEach(s => s.categories?.forEach(c => allCategories.add(c)))
+      softwareList.forEach(s => s.categories?.forEach(c => allCategories.add(c.name)))
       expect(store.uniqueCategories.length).toBe(allCategories.size)
     })
 

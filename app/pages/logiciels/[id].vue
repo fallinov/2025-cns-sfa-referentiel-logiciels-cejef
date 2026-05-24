@@ -1,5 +1,15 @@
 <script setup lang="ts">
-import { getCertificationLevel } from "~~/types/software"
+import { getCertificationLevel, type SchoolLevel } from "~~/types/software"
+
+const SCHOOL_LEVEL_LABELS: Record<SchoolLevel, string> = {
+  primaire: "Primaire (1H-8H)",
+  secondaire_1: "Secondaire I (9H-11H)",
+  secondaire_2: "Secondaire II",
+  formation_professionnelle: "Formation professionnelle",
+  enseignement_specialise: "Enseignement spécialisé"
+}
+
+const schoolLevelLabel = (level: SchoolLevel) => SCHOOL_LEVEL_LABELS[level] ?? level
 
 /**
  * Page de détail d'un logiciel (version simplifiée)
@@ -176,22 +186,7 @@ const showLgpdDetails = ref(false)
       <UContainer class="max-w-[1240px] py-10 sm:py-14 relative">
         <!-- Decorative background element -->
         <div class="absolute top-0 right-0 p-12 pointer-events-none select-none">
-          <div
-            v-if="software.logo"
-            class="w-96 h-96 transform rotate-12 translate-x-12 -translate-y-12 bg-gray-200 dark:bg-gray-800"
-            :style="{
-              WebkitMaskImage: `url(/logos/${software.logo}.svg)`,
-              WebkitMaskSize: 'contain',
-              WebkitMaskRepeat: 'no-repeat',
-              WebkitMaskPosition: 'center',
-              maskImage: `url(/logos/${software.logo}.svg)`,
-              maskSize: 'contain',
-              maskRepeat: 'no-repeat',
-              maskPosition: 'center'
-            }"
-          ></div>
           <UIcon
-            v-else
             :name="software.icon || 'i-lucide-box'"
             class="w-96 h-96 text-[#F3F4F6] dark:text-white transform rotate-12 translate-x-12 -translate-y-12"
           />
@@ -199,17 +194,11 @@ const showLgpdDetails = ref(false)
 
         <div class="relative z-10">
           <div class="flex flex-col md:flex-row gap-8 items-start">
-            <!-- Logo Card -->
+            <!-- Icon -->
             <div class="shrink-0 ml-1">
               <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
-                <img
-                  v-if="software.logo"
-                  :src="`/logos/${software.logo}.svg`"
-                  :alt="`${software.name} logo`"
-                  class="w-full h-full object-contain"
-                />
                 <UIcon
-                  v-else-if="software.icon"
+                  v-if="software.icon"
                   :name="software.icon"
                   class="w-full h-full text-gray-900 dark:text-white"
                 />
@@ -333,7 +322,7 @@ const showLgpdDetails = ref(false)
           </section>
 
           <!-- 2. PEDAGOGICAL CONTEXT (Teacher Focused) -->
-          <section v-if="software.categories?.length || software.pedagogicalActivities?.length" aria-label="Pour quels cours ?">
+          <section v-if="software.categories?.length || software.pedagogicalActivities?.length || software.schoolLevel?.length" aria-label="Pour quels cours ?">
             <div class="bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] p-6 sm:p-8 shadow-sm border border-gray-100 dark:border-gray-700/50 relative overflow-hidden">
               <div class="flex items-center gap-3 mb-6 relative z-10">
                 <UIcon name="i-lucide-graduation-cap" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
@@ -351,16 +340,33 @@ const showLgpdDetails = ref(false)
                   <div class="flex flex-wrap gap-2">
                     <NuxtLink
                       v-for="activity in software.pedagogicalActivities"
-                      :key="activity"
-                      :to="{ path: '/', query: { activity } }"
-                      :aria-label="`Filtrer par activité : ${activity}`"
+                      :key="activity.name"
+                      :to="{ path: '/', query: { activity: activity.name } }"
+                      :aria-label="`Filtrer par activité : ${activity.name}`"
                       class="hover:scale-105 transition-transform"
                     >
                       <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">
-                        <UIcon name="i-lucide-puzzle" class="w-3.5 h-3.5 text-gray-500" />
-                        {{ activity }}
+                        <UIcon :name="activity.icon || 'i-lucide-puzzle'" class="w-3.5 h-3.5 text-gray-500" />
+                        {{ activity.name }}
                       </span>
                     </NuxtLink>
+                  </div>
+                </div>
+
+                <!-- School levels -->
+                <div v-if="software.schoolLevel?.length">
+                  <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
+                    Niveau scolaire
+                  </h3>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      v-for="level in software.schoolLevel"
+                      :key="level"
+                      class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700"
+                    >
+                      <UIcon name="i-lucide-school" class="w-3.5 h-3.5 text-gray-500" />
+                      {{ schoolLevelLabel(level) }}
+                    </span>
                   </div>
                 </div>
 
@@ -372,14 +378,14 @@ const showLgpdDetails = ref(false)
                   <div class="flex flex-wrap gap-2">
                     <NuxtLink
                       v-for="category in software.categories"
-                      :key="category"
-                      :to="{ path: '/', query: { category } }"
-                      :aria-label="`Filtrer par catégorie : ${category}`"
+                      :key="category.name"
+                      :to="{ path: '/', query: { category: category.name } }"
+                      :aria-label="`Filtrer par catégorie : ${category.name}`"
                       class="hover:scale-105 transition-transform"
                     >
                       <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">
-                        <UIcon name="i-lucide-tag" class="w-3.5 h-3.5 text-gray-500" />
-                        {{ category }}
+                        <UIcon :name="category.icon || 'i-lucide-tag'" class="w-3.5 h-3.5 text-gray-500" />
+                        {{ category.name }}
                       </span>
                     </NuxtLink>
                   </div>
