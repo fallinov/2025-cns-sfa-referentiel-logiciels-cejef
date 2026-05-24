@@ -36,15 +36,8 @@ const sizeClasses = computed(() => {
       class="flex items-center justify-center shrink-0"
       :class="sizeClasses.container"
     >
-      <img
-        v-if="software.logo"
-        :src="`/logos/${software.logo}.svg`"
-        :alt="`${software.name} logo`"
-        class="object-contain"
-        :class="sizeClasses.icon"
-      />
       <UIcon
-        v-else-if="software.icon"
+        v-if="software.icon"
         :name="software.icon"
         class="text-gray-600 dark:text-gray-300"
         :class="sizeClasses.icon"

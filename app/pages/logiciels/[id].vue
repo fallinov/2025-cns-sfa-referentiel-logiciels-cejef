@@ -176,22 +176,7 @@ const showLgpdDetails = ref(false)
       <UContainer class="max-w-[1240px] py-10 sm:py-14 relative">
         <!-- Decorative background element -->
         <div class="absolute top-0 right-0 p-12 pointer-events-none select-none">
-          <div
-            v-if="software.logo"
-            class="w-96 h-96 transform rotate-12 translate-x-12 -translate-y-12 bg-gray-200 dark:bg-gray-800"
-            :style="{
-              WebkitMaskImage: `url(/logos/${software.logo}.svg)`,
-              WebkitMaskSize: 'contain',
-              WebkitMaskRepeat: 'no-repeat',
-              WebkitMaskPosition: 'center',
-              maskImage: `url(/logos/${software.logo}.svg)`,
-              maskSize: 'contain',
-              maskRepeat: 'no-repeat',
-              maskPosition: 'center'
-            }"
-          ></div>
           <UIcon
-            v-else
             :name="software.icon || 'i-lucide-box'"
             class="w-96 h-96 text-[#F3F4F6] dark:text-white transform rotate-12 translate-x-12 -translate-y-12"
           />
@@ -199,17 +184,11 @@ const showLgpdDetails = ref(false)
 
         <div class="relative z-10">
           <div class="flex flex-col md:flex-row gap-8 items-start">
-            <!-- Logo Card -->
+            <!-- Icon -->
             <div class="shrink-0 ml-1">
               <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
-                <img
-                  v-if="software.logo"
-                  :src="`/logos/${software.logo}.svg`"
-                  :alt="`${software.name} logo`"
-                  class="w-full h-full object-contain"
-                />
                 <UIcon
-                  v-else-if="software.icon"
+                  v-if="software.icon"
                   :name="software.icon"
                   class="w-full h-full text-gray-900 dark:text-white"
                 />

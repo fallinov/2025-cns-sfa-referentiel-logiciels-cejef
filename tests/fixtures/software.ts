@@ -19,7 +19,6 @@ import type { Software } from "~~/types/software"
 
 function makeSoftware(p: Partial<Software> & { id: string, name: string }): Software {
   return {
-    logo: null,
     icon: null,
     shortDescription: p.shortDescription ?? `${p.name} — description courte`,
     description: null,

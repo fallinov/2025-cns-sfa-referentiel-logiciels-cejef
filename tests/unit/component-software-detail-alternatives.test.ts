@@ -5,7 +5,6 @@ import type { Software } from "~~/types/software"
 
 function makeSoftware(p: Partial<Software> & { id: string, name: string }): Software {
   return {
-    logo: null,
     shortDescription: "desc",
     lgpd: { hosting: 1, rgpd: 1, dataCollection: 1 },
     certificationLevel: 1,

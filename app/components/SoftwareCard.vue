@@ -50,16 +50,10 @@ const handleCardClick = () => {
       />
     </div>
 
-    <!-- Logo/Icon -->
+    <!-- Icon -->
     <div class="relative flex-shrink-0 w-16 h-16 flex items-center justify-center mb-2">
-      <img
-        v-if="software.logo"
-        :src="`/logos/${software.logo}.svg`"
-        :alt="`${software.name} logo`"
-        class="w-full h-full object-contain"
-      />
       <UIcon
-        v-else-if="software.icon"
+        v-if="software.icon"
         :name="software.icon"
         class="w-full h-full transition-colors duration-500 text-gray-600 dark:text-gray-300"
       />

@@ -4,7 +4,6 @@ import type { Software } from "~~/types/software"
 
 function makeSoftware(partial: Partial<Software> & { id: string, name: string, certificationLevel: 1 | 2 | 3 }): Software {
   return {
-    logo: null,
     shortDescription: "desc",
     lgpd: {
       hosting: partial.certificationLevel,
