@@ -20,8 +20,8 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
     keys: [
       { name: "name", weight: 2 },
       { name: "shortDescription", weight: 1.5 },
-      { name: "categories", weight: 1 },
-      { name: "pedagogicalActivities", weight: 0.8 }
+      { name: "categories.name", weight: 1 },
+      { name: "pedagogicalActivities.name", weight: 0.8 }
     ]
   }
 
@@ -67,8 +67,8 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
     const activitiesSet = new Set<string>()
 
     matchingSoftware.forEach((s) => {
-      s.categories?.forEach(cat => categoriesSet.add(cat))
-      s.pedagogicalActivities?.forEach(act => activitiesSet.add(act))
+      s.categories?.forEach(cat => categoriesSet.add(cat.name))
+      s.pedagogicalActivities?.forEach(act => activitiesSet.add(act.name))
     })
 
     return {

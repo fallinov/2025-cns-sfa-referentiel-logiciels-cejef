@@ -64,13 +64,13 @@ export const useSoftwareStore = defineStore("software", () => {
   // Getters
   const uniqueCategories = computed(() => {
     const categories = new Set<string>()
-    softwareList.value.forEach(s => s.categories?.forEach(c => categories.add(c)))
+    softwareList.value.forEach(s => s.categories?.forEach(c => categories.add(c.name)))
     return Array.from(categories).sort()
   })
 
   const uniqueActivities = computed(() => {
     const activities = new Set<string>()
-    softwareList.value.forEach(s => s.pedagogicalActivities?.forEach(a => activities.add(a)))
+    softwareList.value.forEach(s => s.pedagogicalActivities?.forEach(a => activities.add(a.name)))
     return Array.from(activities).sort()
   })
 
@@ -80,14 +80,14 @@ export const useSoftwareStore = defineStore("software", () => {
     // Apply category filter
     if (selectedCategories.value.length > 0) {
       filtered = filtered.filter(software =>
-        software.categories?.some(c => selectedCategories.value.includes(c))
+        software.categories?.some(c => selectedCategories.value.includes(c.name))
       )
     }
 
     // Apply activity filter
     if (selectedActivities.value.length > 0) {
       filtered = filtered.filter(software =>
-        software.pedagogicalActivities?.some(a => selectedActivities.value.includes(a))
+        software.pedagogicalActivities?.some(a => selectedActivities.value.includes(a.name))
       )
     }
 
@@ -112,8 +112,8 @@ export const useSoftwareStore = defineStore("software", () => {
         const searchableText = [
           software.name,
           software.shortDescription,
-          ...(software.categories || []),
-          ...(software.pedagogicalActivities || [])
+          ...(software.categories?.map(c => c.name) || []),
+          ...(software.pedagogicalActivities?.map(a => a.name) || [])
         ].join(" ")
 
         return matchesSearch(searchableText, searchTerms)

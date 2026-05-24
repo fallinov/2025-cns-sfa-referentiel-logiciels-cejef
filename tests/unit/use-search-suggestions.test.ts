@@ -3,7 +3,15 @@ import { ref } from "vue"
 import { useSearchSuggestions } from "~/composables/useSearchSuggestions"
 import type { Software } from "~~/types/software"
 
-function makeSoftware(p: Partial<Software> & { id: string, name: string }): Software {
+type SoftwareInput = Partial<Omit<Software, "categories" | "pedagogicalActivities">> & {
+  id: string
+  name: string
+  categories?: string[]
+  pedagogicalActivities?: string[]
+}
+
+function makeSoftware(p: SoftwareInput): Software {
+  const { categories, pedagogicalActivities, ...rest } = p
   return {
     shortDescription: "desc",
     lgpd: { hosting: 1, rgpd: 1, dataCollection: 1 },
@@ -11,9 +19,9 @@ function makeSoftware(p: Partial<Software> & { id: string, name: string }): Soft
     dataLocation: "Suisse",
     cost: "Gratuit",
     toolUrl: "https://example.com",
-    categories: [],
-    pedagogicalActivities: [],
-    ...p
+    ...rest,
+    categories: (categories ?? []).map(name => ({ name, icon: null })),
+    pedagogicalActivities: (pedagogicalActivities ?? []).map(name => ({ name, icon: null }))
   }
 }
 

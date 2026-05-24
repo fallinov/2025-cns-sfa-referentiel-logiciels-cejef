@@ -153,7 +153,7 @@ describe("mapSoftware — transformation Directus → Software", () => {
   })
 
   describe("relations M2M", () => {
-    it("extrait les noms de catégories en filtrant les category_id null", () => {
+    it("extrait nom + icône des catégories en filtrant les category_id null", () => {
       const item = makeDirectusSoftware({
         categories: [
           { category_id: { id: "c1", name: "Bureautique", icon: "i-lucide-briefcase" } },
@@ -161,7 +161,10 @@ describe("mapSoftware — transformation Directus → Software", () => {
           { category_id: { id: "c2", name: "Multimédia", icon: null } }
         ]
       })
-      expect(mapSoftware(item).categories).toEqual(["Bureautique", "Multimédia"])
+      expect(mapSoftware(item).categories).toEqual([
+        { name: "Bureautique", icon: "i-lucide-briefcase" },
+        { name: "Multimédia", icon: null }
+      ])
     })
 
     it("retourne [] si categories est undefined", () => {
@@ -169,14 +172,17 @@ describe("mapSoftware — transformation Directus → Software", () => {
       expect(mapSoftware(item).categories).toEqual([])
     })
 
-    it("extrait les noms d'activités pédagogiques", () => {
+    it("extrait nom + icône des activités pédagogiques", () => {
       const item = makeDirectusSoftware({
         pedagogical_activities: [
           { pedagogical_activity_id: { id: "a1", name: "Évaluation", icon: "i-lucide-file-check" } },
           { pedagogical_activity_id: { id: "a2", name: "Collaboration", icon: null } }
         ]
       })
-      expect(mapSoftware(item).pedagogicalActivities).toEqual(["Évaluation", "Collaboration"])
+      expect(mapSoftware(item).pedagogicalActivities).toEqual([
+        { name: "Évaluation", icon: "i-lucide-file-check" },
+        { name: "Collaboration", icon: null }
+      ])
     })
 
     it("extrait les UUIDs d'alternatives en filtrant les null", () => {

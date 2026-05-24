@@ -17,16 +17,28 @@
 
 import type { Software } from "~~/types/software"
 
-function makeSoftware(p: Partial<Software> & { id: string, name: string }): Software {
+/**
+ * Forme d'entrée simplifiée : catégories et activités exprimées en string[]
+ * (historique des fixtures). Le helper convertit en CategoryRef[]/PedagogicalActivityRef[].
+ */
+type SoftwareInput = Partial<Omit<Software, "categories" | "pedagogicalActivities">> & {
+  id: string
+  name: string
+  categories?: string[]
+  pedagogicalActivities?: string[]
+}
+
+function makeSoftware(p: SoftwareInput): Software {
+  const { categories, pedagogicalActivities, ...rest } = p
   return {
     icon: null,
-    shortDescription: p.shortDescription ?? `${p.name} — description courte`,
+    shortDescription: rest.shortDescription ?? `${p.name} — description courte`,
     description: null,
-    lgpd: p.lgpd ?? { hosting: 1, rgpd: 1, dataCollection: 1 },
-    certificationLevel: p.certificationLevel ?? 1,
-    dataLocation: p.dataLocation ?? "Suisse",
-    cost: p.cost ?? "Gratuit",
-    toolUrl: p.toolUrl ?? `https://example.com/${p.id}`,
+    lgpd: rest.lgpd ?? { hosting: 1, rgpd: 1, dataCollection: 1 },
+    certificationLevel: rest.certificationLevel ?? 1,
+    dataLocation: rest.dataLocation ?? "Suisse",
+    cost: rest.cost ?? "Gratuit",
+    toolUrl: rest.toolUrl ?? `https://example.com/${p.id}`,
     documentation: null,
     targetAudience: null,
     requiresParentalConsent: false,
@@ -35,10 +47,10 @@ function makeSoftware(p: Partial<Software> & { id: string, name: string }): Soft
     approvedBySEN: false,
     approvedBySFP: false,
     usageNotes: null,
-    categories: [],
-    pedagogicalActivities: [],
     alternatives: [],
-    ...p
+    ...rest,
+    categories: (categories ?? []).map(name => ({ name, icon: null })),
+    pedagogicalActivities: (pedagogicalActivities ?? []).map(name => ({ name, icon: null }))
   }
 }
 

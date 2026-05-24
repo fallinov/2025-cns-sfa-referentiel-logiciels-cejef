@@ -28,6 +28,12 @@ describe("getCertificationLevel — calcul depuis LGPD", () => {
     expect(getCertificationLevel({ hosting: 1, rgpd: 1, dataCollection: 3 })).toBe(3)
     expect(getCertificationLevel({ hosting: 3, rgpd: 3, dataCollection: 3 })).toBe(3)
   })
+
+  it("niveau 0 = au moins un axe Non évaluée (règle conservatrice)", () => {
+    expect(getCertificationLevel({ hosting: 0, rgpd: 1, dataCollection: 1 })).toBe(0)
+    expect(getCertificationLevel({ hosting: 1, rgpd: 0, dataCollection: 3 })).toBe(0)
+    expect(getCertificationLevel({ hosting: 0, rgpd: 0, dataCollection: 0 })).toBe(0)
+  })
 })
 
 describe("getCertificationConfig — helper UI complet", () => {
@@ -49,6 +55,14 @@ describe("getCertificationConfig — helper UI complet", () => {
     const config = getCertificationConfig(3)
     expect(config.label).toBe("Interdit")
     expect(config.color).toBe("error")
+  })
+
+  it("retourne la config du niveau 0 (Non évaluée — gris neutre)", () => {
+    const config = getCertificationConfig(0)
+    expect(config).toBe(CERTIFICATION_LEVELS[0])
+    expect(config.label).toBe("Non évaluée")
+    expect(config.color).toBe("neutral")
+    expect(config.icon).toBe("i-lucide-help")
   })
 
   it("retourne DEFAULT_CERTIFICATION pour null", () => {
@@ -88,6 +102,7 @@ describe("getCertificationColors — extraction trio bg/bgLight/text", () => {
 
 describe("getCertificationIcon — switch simple", () => {
   it.each([
+    [0, "i-lucide-help"],
     [1, "i-lucide-check"],
     [2, "i-lucide-alert-triangle"],
     [3, "i-lucide-x"]

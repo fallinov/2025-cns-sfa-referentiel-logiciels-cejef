@@ -55,6 +55,24 @@ export type SchoolLevel
     | "enseignement_specialise"
 
 /**
+ * Référence d'une catégorie pédagogique (nom + icône Lucide optionnelle).
+ * Provient de la collection Directus `category`.
+ */
+export interface CategoryRef {
+  name: string
+  icon: string | null
+}
+
+/**
+ * Référence d'une activité pédagogique (nom + icône Lucide optionnelle).
+ * Provient de la collection Directus `pedagogical_activity`.
+ */
+export interface PedagogicalActivityRef {
+  name: string
+  icon: string | null
+}
+
+/**
  * Classification LGPD (Loi sur la protection des données)
  * Valeurs numériques: 0 = Non évaluée, 1 = OK, 2 = Attention, 3 = Interdit
  */
@@ -123,8 +141,8 @@ export interface Software {
   usageNotes?: string | null
 
   // CLASSIFICATION PÉDAGOGIQUE
-  categories?: string[]
-  pedagogicalActivities?: string[]
+  categories?: CategoryRef[]
+  pedagogicalActivities?: PedagogicalActivityRef[]
 
   // ALTERNATIVES RECOMMANDÉES
   // Liste d'UUIDs de logiciels proposés comme alternatives (niveau 1 ou 2).
