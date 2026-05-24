@@ -61,10 +61,14 @@ export function mapDataLocationLabel(value: string | null): string {
       return "Union européenne / EEE"
     case "adequate":
       return "Pays adéquat (UK, Canada, Japon, Corée du Sud…)"
+    case "united_states":
+      return "États-Unis"
     case "us_dpf":
-      return "États-Unis (DPF certifié)"
+      // V1.4: deprecated, kept for backward compatibility (migrated to united_states)
+      return "États-Unis"
     case "us_no_dpf":
-      return "États-Unis (sans certification DPF)"
+      // V1.4: deprecated, kept for backward compatibility (migrated to united_states)
+      return "États-Unis"
     case "multi_or_partial":
       return "Hébergement multi-régions / réparti"
     case "other":
