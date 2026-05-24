@@ -62,7 +62,9 @@ export function mapDataLocationLabel(value: string | null): string {
     case "adequate":
       return "Pays adéquat (UK, Canada, Japon, Corée du Sud…)"
     case "us_dpf":
-      return "États-Unis (avec certification DPF)"
+      return "États-Unis (DPF certifié)"
+    case "us_no_dpf":
+      return "États-Unis (sans certification DPF)"
     case "multi_or_partial":
       return "Hébergement multi-régions / réparti"
     case "other":
