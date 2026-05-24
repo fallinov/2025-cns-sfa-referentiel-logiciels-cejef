@@ -38,7 +38,8 @@ describe("mapDataLocationLabel — valeurs techniques → libellés FR", () => {
     ["switzerland", "Suisse"],
     ["eu_eea", "Union européenne / EEE"],
     ["adequate", "Pays adéquat (UK, Canada, Japon, Corée du Sud…)"],
-    ["us_dpf", "États-Unis (avec certification DPF)"],
+    ["us_dpf", "États-Unis (DPF certifié)"],
+    ["us_no_dpf", "États-Unis (sans certification DPF)"],
     ["multi_or_partial", "Hébergement multi-régions / réparti"],
     ["other", "Autre / non adéquat / inconnu"]
   ])("valeur %s → %s", (value, expected) => {
@@ -141,7 +142,12 @@ describe("mapSoftware — transformation Directus → Software", () => {
   describe("data_location → dataLocation libellé", () => {
     it("convertit la valeur technique en libellé via mapDataLocationLabel", () => {
       const item = makeDirectusSoftware({ data_location: "us_dpf" })
-      expect(mapSoftware(item).dataLocation).toBe("États-Unis (avec certification DPF)")
+      expect(mapSoftware(item).dataLocation).toBe("États-Unis (DPF certifié)")
+    })
+
+    it("convertit us_no_dpf en libellé explicite (V1.2)", () => {
+      const item = makeDirectusSoftware({ data_location: "us_no_dpf" })
+      expect(mapSoftware(item).dataLocation).toBe("États-Unis (sans certification DPF)")
     })
   })
 
