@@ -33,3 +33,6 @@ test-results/
 
 # Coverage reports
 coverage/
+
+# Captures temporaires (Genially scraping)
+/genially-*.png
