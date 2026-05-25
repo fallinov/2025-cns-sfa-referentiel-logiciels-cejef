@@ -115,6 +115,28 @@ export const useSoftwareStore = defineStore("software", () => {
     return counts
   })
 
+  // Maps name -> icon pour les categories et activites (l'icone est fixe
+  // par categorie/activite, definie dans Directus). Premier rencontre gagne.
+  const categoryIcons = computed<Record<string, string | null>>(() => {
+    const icons: Record<string, string | null> = {}
+    softwareList.value.forEach(s =>
+      s.categories?.forEach((c) => {
+        if (!(c.name in icons)) icons[c.name] = c.icon
+      })
+    )
+    return icons
+  })
+
+  const activityIcons = computed<Record<string, string | null>>(() => {
+    const icons: Record<string, string | null> = {}
+    softwareList.value.forEach(s =>
+      s.pedagogicalActivities?.forEach((a) => {
+        if (!(a.name in icons)) icons[a.name] = a.icon
+      })
+    )
+    return icons
+  })
+
   const filteredSoftwareList = computed(() => {
     let filtered = [...softwareList.value]
 
@@ -311,6 +333,8 @@ export const useSoftwareStore = defineStore("software", () => {
     categoryCounts,
     activityCounts,
     schoolLevelCounts,
+    categoryIcons,
+    activityIcons,
     filteredSoftwareList,
     activeFiltersCount,
     hasActiveFilters,

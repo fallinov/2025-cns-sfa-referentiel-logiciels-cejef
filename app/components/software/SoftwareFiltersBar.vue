@@ -3,6 +3,7 @@ import { useSoftwareStore } from "~/stores/software"
 import { storeToRefs } from "pinia"
 import { SCHOOL_LEVEL_LABELS } from "~/utils/school-level"
 import type { SchoolLevel } from "~~/types/software"
+import IconGridFilter from "~/components/software/IconGridFilter.vue"
 
 const store = useSoftwareStore()
 const {
@@ -42,7 +43,8 @@ const categoryItems = computed(() =>
   store.uniqueCategories.map((name: string) => ({
     label: name,
     value: name,
-    count: store.categoryCounts[name] ?? 0
+    count: store.categoryCounts[name] ?? 0,
+    icon: store.categoryIcons[name] ?? null
   }))
 )
 
@@ -50,7 +52,8 @@ const activityItems = computed(() =>
   store.uniqueActivities.map((name: string) => ({
     label: name,
     value: name,
-    count: store.activityCounts[name] ?? 0
+    count: store.activityCounts[name] ?? 0,
+    icon: store.activityIcons[name] ?? null
   }))
 )
 </script>
@@ -98,41 +101,27 @@ const activityItems = computed(() =>
           class="w-56 rounded-[var(--ui-radius)] cursor-pointer"
         />
 
-        <!-- Multi-select catégories -->
-        <USelectMenu
+        <!-- Multi-select catégories : modal grille visuelle -->
+        <IconGridFilter
           v-model="selectedCategories"
           :items="categoryItems"
-          value-key="value"
-          multiple
-          searchable
+          title="Filtrer par catégorie"
           placeholder="Catégories"
           leading-icon="i-lucide-tag"
-          size="xl"
-          class="w-56 rounded-[var(--ui-radius)] cursor-pointer"
-        >
-          <template #item="{ item }">
-            <span class="truncate flex-1">{{ item.label }}</span>
-            <span class="ml-2 text-xs text-gray-500 dark:text-gray-400 tabular-nums shrink-0">{{ item.count }}</span>
-          </template>
-        </USelectMenu>
+          default-icon="i-lucide-tag"
+          search-placeholder="Rechercher une catégorie…"
+        />
 
-        <!-- Multi-select activités pédagogiques -->
-        <USelectMenu
+        <!-- Multi-select activités pédagogiques : modal grille visuelle -->
+        <IconGridFilter
           v-model="selectedActivities"
           :items="activityItems"
-          value-key="value"
-          multiple
-          searchable
+          title="Filtrer par activité pédagogique"
           placeholder="Activités"
           leading-icon="i-lucide-puzzle"
-          size="xl"
-          class="w-56 rounded-[var(--ui-radius)] cursor-pointer"
-        >
-          <template #item="{ item }">
-            <span class="truncate flex-1">{{ item.label }}</span>
-            <span class="ml-2 text-xs text-gray-500 dark:text-gray-400 tabular-nums shrink-0">{{ item.count }}</span>
-          </template>
-        </USelectMenu>
+          default-icon="i-lucide-puzzle"
+          search-placeholder="Rechercher une activité…"
+        />
 
         <!-- Multi-select niveau scolaire -->
         <USelectMenu
@@ -193,32 +182,28 @@ const activityItems = computed(() =>
             <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
               Catégories
             </div>
-            <USelectMenu
+            <IconGridFilter
               v-model="selectedCategories"
               :items="categoryItems"
-              value-key="value"
-              multiple
-              searchable
+              title="Filtrer par catégorie"
               placeholder="Toutes catégories"
               leading-icon="i-lucide-tag"
-              size="xl"
-              class="w-full rounded-[var(--ui-radius)] cursor-pointer"
+              default-icon="i-lucide-tag"
+              search-placeholder="Rechercher une catégorie…"
             />
           </div>
           <div>
             <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
               Activités pédagogiques
             </div>
-            <USelectMenu
+            <IconGridFilter
               v-model="selectedActivities"
               :items="activityItems"
-              value-key="value"
-              multiple
-              searchable
+              title="Filtrer par activité pédagogique"
               placeholder="Toutes activités"
               leading-icon="i-lucide-puzzle"
-              size="xl"
-              class="w-full rounded-[var(--ui-radius)] cursor-pointer"
+              default-icon="i-lucide-puzzle"
+              search-placeholder="Rechercher une activité…"
             />
           </div>
           <div>
