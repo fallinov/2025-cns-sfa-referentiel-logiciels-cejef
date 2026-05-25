@@ -108,6 +108,23 @@ describe("software store - filtres", () => {
       expect(store.selectedCategories).toEqual([])
       expect(store.selectedActivities).toEqual([])
     })
+
+    it("uniqueSchoolLevels est trié dans l'ordre canonique (du plus bas au plus haut)", () => {
+      const levels = store.uniqueSchoolLevels
+      const canonicalOrder = [
+        "primaire",
+        "secondaire_1",
+        "secondaire_2",
+        "formation_professionnelle",
+        "enseignement_specialise"
+      ]
+      // chaque element est dans l'ordre canonique relatif aux autres
+      for (let i = 0; i < levels.length - 1; i++) {
+        const idxA = canonicalOrder.indexOf(levels[i])
+        const idxB = canonicalOrder.indexOf(levels[i + 1])
+        expect(idxA, `${levels[i]} doit precéder ${levels[i + 1]}`).toBeLessThan(idxB)
+      }
+    })
   })
 
   describe("filtre par certification LGPD", () => {
@@ -180,7 +197,7 @@ describe("software store - filtres", () => {
       }
     })
 
-    it("filtre 'Approuvé SFP' = approvedBySFP true", () => {
+    it("filtre 'Approuvé CEJEF' (approved-sfp) = approvedBySFP true", () => {
       store.selectedPopularFilters = ["approved-sfp"]
 
       for (const software of store.filteredSoftwareList) {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getCertificationLevel } from "~~/types/software"
-import { schoolLevelLabel } from "~/utils/school-level"
+import { schoolLevelLabel, sortSchoolLevels } from "~/utils/school-level"
 
 /**
  * Page de détail d'un logiciel (version simplifiée)
@@ -271,7 +271,7 @@ const showLgpdDetails = ref(false)
                   class="flex items-center gap-1.5 bg-green-500 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-badge-check" class="w-4 h-4" />
-                  <span>Approuvé SFP</span>
+                  <span>Approuvé CEJEF</span>
                 </div>
               </div>
             </div>
@@ -372,7 +372,7 @@ const showLgpdDetails = ref(false)
                   </h3>
                   <div class="flex flex-wrap gap-2">
                     <NuxtLink
-                      v-for="level in software.schoolLevel"
+                      v-for="level in sortSchoolLevels(software.schoolLevel)"
                       :key="level"
                       :to="{ path: '/', query: { level } }"
                       :aria-label="`Filtrer par niveau scolaire : ${schoolLevelLabel(level)}`"
