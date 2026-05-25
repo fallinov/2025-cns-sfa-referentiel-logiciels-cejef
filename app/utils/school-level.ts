@@ -26,3 +26,12 @@ export function sortSchoolLevels(levels: readonly SchoolLevel[]): SchoolLevel[] 
     (a, b) => SCHOOL_LEVELS_ORDER.indexOf(a) - SCHOOL_LEVELS_ORDER.indexOf(b)
   )
 }
+
+// Garde uniquement les valeurs canoniques (defense en profondeur : Directus
+// peut contenir des valeurs legacy comme "secondaire1" sans underscore ou
+// "tertiaire" hors-schema). Sans ce filtre, le dropdown affichait des lignes
+// vides pour ces valeurs sans label.
+export function filterValidSchoolLevels(levels: readonly string[]): SchoolLevel[] {
+  const valid = new Set<string>(SCHOOL_LEVELS_ORDER)
+  return levels.filter((l): l is SchoolLevel => valid.has(l))
+}

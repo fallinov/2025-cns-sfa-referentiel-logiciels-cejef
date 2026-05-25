@@ -2,7 +2,7 @@ import { defineStore } from "pinia"
 import type { CostType, SchoolLevel, Software } from "~~/types/software"
 import { getCertificationLevel } from "~~/types/software"
 import { expandSearchQuery, matchesSearch } from "~/utils/search"
-import { sortSchoolLevels } from "~/utils/school-level"
+import { filterValidSchoolLevels, sortSchoolLevels } from "~/utils/school-level"
 
 export const useSoftwareStore = defineStore("software", () => {
   // Source de vérité : ref alimenté par plugins/software-data.ts (fetch /api/software → Directus)
@@ -77,9 +77,9 @@ export const useSoftwareStore = defineStore("software", () => {
   })
 
   const uniqueSchoolLevels = computed<SchoolLevel[]>(() => {
-    const levels = new Set<SchoolLevel>()
+    const levels = new Set<string>()
     softwareList.value.forEach(s => s.schoolLevel?.forEach(l => levels.add(l)))
-    return sortSchoolLevels(Array.from(levels))
+    return sortSchoolLevels(filterValidSchoolLevels(Array.from(levels)))
   })
 
   const filteredSoftwareList = computed(() => {
