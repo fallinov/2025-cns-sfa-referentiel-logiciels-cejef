@@ -63,6 +63,53 @@ describe("software store - filtres", () => {
     })
   })
 
+  describe("filtre par niveau scolaire", () => {
+    it("filtre par un niveau", () => {
+      store.selectedSchoolLevels = ["secondaire_2"]
+
+      for (const software of store.filteredSoftwareList) {
+        expect(
+          software.schoolLevel,
+          `${software.name} devrait contenir le niveau secondaire_2`
+        ).toContain("secondaire_2")
+      }
+    })
+
+    it("filtre multi-niveaux (OR sur les niveaux)", () => {
+      store.selectedSchoolLevels = ["primaire", "secondaire_1"]
+
+      for (const software of store.filteredSoftwareList) {
+        const hasOverlap = software.schoolLevel?.some(l =>
+          ["primaire", "secondaire_1"].includes(l)
+        )
+        expect(
+          hasOverlap,
+          `${software.name} devrait contenir primaire ou secondaire_1`
+        ).toBe(true)
+      }
+    })
+
+    it("activeFiltersCount inclut les niveaux sélectionnés", () => {
+      store.selectedSchoolLevels = ["primaire", "secondaire_2"]
+      expect(store.activeFiltersCount).toBeGreaterThanOrEqual(2)
+    })
+
+    it("clearAllFilters vide aussi les niveaux scolaires", () => {
+      store.selectedSchoolLevels = ["primaire"]
+      store.clearAllFilters()
+      expect(store.selectedSchoolLevels).toEqual([])
+    })
+
+    it("handleSchoolLevelFilter remplace les autres filtres", () => {
+      store.selectedCategories = ["Bureautique"]
+      store.selectedActivities = ["Quiz"]
+      store.handleSchoolLevelFilter("secondaire_2")
+      expect(store.selectedSchoolLevels).toEqual(["secondaire_2"])
+      expect(store.selectedCategories).toEqual([])
+      expect(store.selectedActivities).toEqual([])
+    })
+  })
+
   describe("filtre par certification LGPD", () => {
     it("filtre niveau 1 (vert)", () => {
       store.selectedCertifications = [1]

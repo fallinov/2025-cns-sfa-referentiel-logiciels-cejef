@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { useSoftwareStore } from "~/stores/software"
 import { storeToRefs } from "pinia"
+import { SCHOOL_LEVEL_LABELS } from "~/utils/school-level"
+import type { SchoolLevel } from "~~/types/software"
 
 const store = useSoftwareStore()
 const {
   selectedPopularFilters,
   selectedLgpdLevel,
+  selectedCategories,
+  selectedActivities,
+  selectedSchoolLevels,
   isFiltersDrawerOpen
 } = storeToRefs(store)
 
@@ -24,6 +29,13 @@ const lgpdSelectValue = computed({
     selectedLgpdLevel.value = val === "all" ? null : Number(val)
   }
 })
+
+const schoolLevelItems = computed(() =>
+  store.uniqueSchoolLevels.map((value: SchoolLevel) => ({
+    label: SCHOOL_LEVEL_LABELS[value],
+    value
+  }))
+)
 </script>
 
 <template>
@@ -42,12 +54,12 @@ const lgpdSelectValue = computed({
         </template>
         Filtres
         <UBadge
-          v-if="selectedPopularFilters.length > 0 || selectedLgpdLevel !== null"
+          v-if="store.activeFiltersCount > 0"
           color="primary"
           size="sm"
           class="ml-2 rounded-[var(--ui-radius)] cursor-pointer"
         >
-          {{ selectedPopularFilters.length + (selectedLgpdLevel !== null ? 1 : 0) }}
+          {{ store.activeFiltersCount }}
         </UBadge>
       </UButton>
     </div>
@@ -65,6 +77,42 @@ const lgpdSelectValue = computed({
           option-attribute="label"
           value-attribute="value"
           leading-icon="i-lucide-filter"
+          size="xl"
+          class="w-56 rounded-[var(--ui-radius)] cursor-pointer"
+        />
+
+        <!-- Multi-select catégories -->
+        <USelectMenu
+          v-model="selectedCategories"
+          :items="store.uniqueCategories"
+          multiple
+          searchable
+          placeholder="Catégories"
+          leading-icon="i-lucide-tag"
+          size="xl"
+          class="w-56 rounded-[var(--ui-radius)] cursor-pointer"
+        />
+
+        <!-- Multi-select activités pédagogiques -->
+        <USelectMenu
+          v-model="selectedActivities"
+          :items="store.uniqueActivities"
+          multiple
+          searchable
+          placeholder="Activités"
+          leading-icon="i-lucide-puzzle"
+          size="xl"
+          class="w-56 rounded-[var(--ui-radius)] cursor-pointer"
+        />
+
+        <!-- Multi-select niveau scolaire -->
+        <USelectMenu
+          v-model="selectedSchoolLevels"
+          :items="schoolLevelItems"
+          value-key="value"
+          multiple
+          placeholder="Niveau scolaire"
+          leading-icon="i-lucide-school"
           size="xl"
           class="w-56 rounded-[var(--ui-radius)] cursor-pointer"
         />
@@ -111,6 +159,53 @@ const lgpdSelectValue = computed({
             />
           </div>
 
+          <!-- Catégories / Activités / Niveau scolaire (Mobile) -->
+          <div>
+            <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
+              Catégories
+            </div>
+            <USelectMenu
+              v-model="selectedCategories"
+              :items="store.uniqueCategories"
+              multiple
+              searchable
+              placeholder="Toutes catégories"
+              leading-icon="i-lucide-tag"
+              size="xl"
+              class="w-full rounded-[var(--ui-radius)] cursor-pointer"
+            />
+          </div>
+          <div>
+            <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
+              Activités pédagogiques
+            </div>
+            <USelectMenu
+              v-model="selectedActivities"
+              :items="store.uniqueActivities"
+              multiple
+              searchable
+              placeholder="Toutes activités"
+              leading-icon="i-lucide-puzzle"
+              size="xl"
+              class="w-full rounded-[var(--ui-radius)] cursor-pointer"
+            />
+          </div>
+          <div>
+            <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
+              Niveau scolaire
+            </div>
+            <USelectMenu
+              v-model="selectedSchoolLevels"
+              :items="schoolLevelItems"
+              value-key="value"
+              multiple
+              placeholder="Tous niveaux"
+              leading-icon="i-lucide-school"
+              size="xl"
+              class="w-full rounded-[var(--ui-radius)] cursor-pointer"
+            />
+          </div>
+
           <!-- Filtres populaires (Mobile) -->
           <div>
             <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
@@ -137,12 +232,12 @@ const lgpdSelectValue = computed({
 
           <div class="mt-2 pt-4 border-t dark:border-gray-800">
             <UButton
-              v-if="selectedPopularFilters.length > 0 || selectedLgpdLevel !== null"
+              v-if="store.hasActiveFilters"
               color="neutral"
               variant="ghost"
               size="lg"
               block
-              @click="selectedPopularFilters = []; selectedLgpdLevel = null"
+              @click="store.resetFilters()"
             >
               <template #leading>
                 <UIcon name="i-lucide-x" class="w-5 h-5" />

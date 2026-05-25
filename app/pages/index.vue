@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { SchoolLevel } from "~~/types/software"
 import { useSoftwareStore } from "~/stores/software"
 import SoftwarePageHeader from "~/components/software/SoftwarePageHeader.vue"
 import SoftwareListContainer from "~/components/software/SoftwareListContainer.vue"
@@ -6,7 +7,8 @@ import SoftwareListContainer from "~/components/software/SoftwareListContainer.v
 const store = useSoftwareStore()
 const {
   handleCategoryFilter,
-  handleActivityFilter
+  handleActivityFilter,
+  handleSchoolLevelFilter
 } = store
 
 // Handle URL Query Parameters for filtering
@@ -21,6 +23,8 @@ onMounted(() => {
     handleCategoryFilter(route.query.category as string)
   } else if (route.query.activity) {
     handleActivityFilter(route.query.activity as string)
+  } else if (route.query.level) {
+    handleSchoolLevelFilter(route.query.level as SchoolLevel)
   }
 })
 </script>

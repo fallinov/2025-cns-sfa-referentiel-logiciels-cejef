@@ -1,15 +1,6 @@
 <script setup lang="ts">
-import { getCertificationLevel, type SchoolLevel } from "~~/types/software"
-
-const SCHOOL_LEVEL_LABELS: Record<SchoolLevel, string> = {
-  primaire: "Primaire (1H-8H)",
-  secondaire_1: "Secondaire I (9H-11H)",
-  secondaire_2: "Secondaire II",
-  formation_professionnelle: "Formation professionnelle",
-  enseignement_specialise: "Enseignement spécialisé"
-}
-
-const schoolLevelLabel = (level: SchoolLevel) => SCHOOL_LEVEL_LABELS[level] ?? level
+import { getCertificationLevel } from "~~/types/software"
+import { schoolLevelLabel } from "~/utils/school-level"
 
 /**
  * Page de détail d'un logiciel (version simplifiée)
@@ -332,6 +323,27 @@ const showLgpdDetails = ref(false)
               </div>
 
               <div class="flex flex-col gap-8 relative z-10">
+                <!-- Categories -->
+                <div v-if="software.categories?.length">
+                  <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
+                    Catégories
+                  </h3>
+                  <div class="flex flex-wrap gap-2">
+                    <NuxtLink
+                      v-for="category in software.categories"
+                      :key="category.name"
+                      :to="{ path: '/', query: { category: category.name } }"
+                      :aria-label="`Filtrer par catégorie : ${category.name}`"
+                      class="hover:scale-105 transition-transform"
+                    >
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">
+                        <UIcon :name="category.icon || 'i-lucide-tag'" class="w-3.5 h-3.5 text-gray-500" />
+                        {{ category.name }}
+                      </span>
+                    </NuxtLink>
+                  </div>
+                </div>
+
                 <!-- Activities -->
                 <div v-if="software.pedagogicalActivities?.length">
                   <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
@@ -359,33 +371,16 @@ const showLgpdDetails = ref(false)
                     Niveau scolaire
                   </h3>
                   <div class="flex flex-wrap gap-2">
-                    <span
+                    <NuxtLink
                       v-for="level in software.schoolLevel"
                       :key="level"
-                      class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700"
-                    >
-                      <UIcon name="i-lucide-school" class="w-3.5 h-3.5 text-gray-500" />
-                      {{ schoolLevelLabel(level) }}
-                    </span>
-                  </div>
-                </div>
-
-                <!-- Categories (Full width if needed) -->
-                <div v-if="software.categories?.length">
-                  <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
-                    Catégories
-                  </h3>
-                  <div class="flex flex-wrap gap-2">
-                    <NuxtLink
-                      v-for="category in software.categories"
-                      :key="category.name"
-                      :to="{ path: '/', query: { category: category.name } }"
-                      :aria-label="`Filtrer par catégorie : ${category.name}`"
+                      :to="{ path: '/', query: { level } }"
+                      :aria-label="`Filtrer par niveau scolaire : ${schoolLevelLabel(level)}`"
                       class="hover:scale-105 transition-transform"
                     >
                       <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700">
-                        <UIcon :name="category.icon || 'i-lucide-tag'" class="w-3.5 h-3.5 text-gray-500" />
-                        {{ category.name }}
+                        <UIcon name="i-lucide-school" class="w-3.5 h-3.5 text-gray-500" />
+                        {{ schoolLevelLabel(level) }}
                       </span>
                     </NuxtLink>
                   </div>
