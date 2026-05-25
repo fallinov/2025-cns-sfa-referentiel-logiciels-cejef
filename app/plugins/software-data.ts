@@ -14,6 +14,7 @@ import type { Software } from "~~/types/software"
 
 export default defineNuxtPlugin(async () => {
   const softwareList = useState<Software[]>("software-list", () => [])
+  const isLoaded = useState<boolean>("software-list-loaded", () => false)
 
   const { data, error } = await useFetch<Software[]>("/api/software", {
     key: "software-list-initial",
@@ -22,10 +23,9 @@ export default defineNuxtPlugin(async () => {
 
   if (error.value) {
     console.warn("[software-data] Erreur de chargement Directus :", error.value.message)
-    return
-  }
-
-  if (data.value) {
+  } else if (data.value) {
     softwareList.value = data.value
   }
+
+  isLoaded.value = true
 })

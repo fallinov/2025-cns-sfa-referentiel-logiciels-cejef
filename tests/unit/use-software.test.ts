@@ -54,4 +54,23 @@ describe("useSoftware — accès partagé via useState", () => {
     a.softwareList.value = [makeSoftware({ id: "new-id", name: "Nouveau" })]
     expect(b.getSoftwareList().map(s => s.name)).toEqual(["Nouveau"])
   })
+
+  describe("isLoaded — signal de fin de fetch initial", () => {
+    beforeEach(() => {
+      const loaded = useState<boolean>("software-list-loaded", () => false)
+      loaded.value = false
+    })
+
+    it("expose un Ref isLoaded initialisé à false", () => {
+      const { isLoaded } = useSoftware()
+      expect(isLoaded.value).toBe(false)
+    })
+
+    it("est partagé entre appels (permet de distinguer 'pas encore chargé' de 'liste vide')", () => {
+      const a = useSoftware()
+      const b = useSoftware()
+      a.isLoaded.value = true
+      expect(b.isLoaded.value).toBe(true)
+    })
+  })
 })

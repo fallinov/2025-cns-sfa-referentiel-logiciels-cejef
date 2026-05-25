@@ -3,6 +3,7 @@ import { useSoftwareStore } from "~/stores/software"
 import { storeToRefs } from "pinia"
 
 const { setFilteredList } = useSoftwareNavigation()
+const { isLoaded } = useSoftware()
 
 const store = useSoftwareStore()
 const {
@@ -37,8 +38,10 @@ watch(
 
 const viewMode = useState<"grid" | "list">("viewMode", () => "grid")
 
-// Initial loading state (for skeleton display)
-const isInitialLoading = ref(true)
+// Skeleton tant que le plugin n'a pas fini son fetch initial (vrai signal,
+// pas un timer aveugle — sinon impossible de distinguer « pas encore chargé »
+// d'une « liste réellement vide »).
+const isInitialLoading = computed(() => !isLoaded.value)
 
 // Pagination pour améliorer les performances (126 logiciels)
 const itemsPerPage = 24
@@ -142,19 +145,7 @@ onMounted(() => {
       observer.observe(newEl)
     }
   })
-
-  // Stop initial loading once data is available
-  if (filteredSoftwareList.value.length > 0) {
-    isInitialLoading.value = false
-  }
 })
-
-// Watch for data changes to stop initial loading
-watch(filteredSoftwareList, (newList) => {
-  if (newList.length > 0 && isInitialLoading.value) {
-    isInitialLoading.value = false
-  }
-}, { immediate: true })
 
 onActivated(() => {
   if (loadMoreSentinel.value && observer) {
@@ -236,6 +227,13 @@ onUnmounted(() => {
       </div>
     </div>
 
+    <!-- Empty State (chargement terminé, aucun résultat) -->
+    <SoftwareListEmpty
+      v-else-if="filteredSoftwareList.length === 0"
+      :has-active-filters="hasActiveFilters"
+      @clear="clearAllFilters"
+    />
+
     <!-- Grid View -->
     <div v-else-if="viewMode === 'grid'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-0 items-stretch">
       <SoftwareCard
@@ -288,11 +286,5 @@ onUnmounted(() => {
         </div>
       </div>
     </div>
-
-    <SoftwareListEmpty
-      v-if="filteredSoftwareList.length === 0"
-      :has-active-filters="hasActiveFilters"
-      @clear="clearAllFilters"
-    />
   </div>
 </template>
