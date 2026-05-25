@@ -197,13 +197,13 @@ describe("software store - filtres", () => {
       }
     })
 
-    it("filtre 'Approuvé CEJEF' (approved-sfp) = approvedBySFP true", () => {
-      store.selectedPopularFilters = ["approved-sfp"]
+    it("filtre 'Approuvé CEJEF' (approved-cejef) = approvedByCEJEF true", () => {
+      store.selectedPopularFilters = ["approved-cejef"]
 
       for (const software of store.filteredSoftwareList) {
         expect(
-          software.approvedBySFP,
-          `${software.name} devrait avoir approvedBySFP = true`
+          software.approvedByCEJEF,
+          `${software.name} devrait avoir approvedByCEJEF = true`
         ).toBe(true)
       }
     })

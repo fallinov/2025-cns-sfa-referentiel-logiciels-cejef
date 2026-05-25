@@ -33,11 +33,11 @@ export const useSoftwareStore = defineStore("software", () => {
       predicate: (software: Software) => !!software.approvedBySEN
     },
     {
-      id: "approved-sfp",
+      id: "approved-cejef",
       label: "Approuvé CEJEF",
       icon: "i-lucide-badge-check",
       audience: "cejef" as const,
-      predicate: (software: Software) => !!software.approvedBySFP
+      predicate: (software: Software) => !!software.approvedByCEJEF
     },
     {
       id: "student-data-allowed",
@@ -159,8 +159,8 @@ export const useSoftwareStore = defineStore("software", () => {
       const levelB = b.certificationLevel ?? getCertificationLevel(b.lgpd) ?? 99
       const nameA = a.name || ""
       const nameB = b.name || ""
-      const approvedA = (a.approvedBySEN ? 1 : 0) + (a.approvedBySFP ? 1 : 0)
-      const approvedB = (b.approvedBySEN ? 1 : 0) + (b.approvedBySFP ? 1 : 0)
+      const approvedA = (a.approvedBySEN ? 1 : 0) + (a.approvedByCEJEF ? 1 : 0)
+      const approvedB = (b.approvedBySEN ? 1 : 0) + (b.approvedByCEJEF ? 1 : 0)
 
       switch (sortBy.value) {
         case "recommended":

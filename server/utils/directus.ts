@@ -48,7 +48,7 @@ export interface DirectusSoftware {
   requires_edu_account: boolean
   requires_edulog: boolean
   approved_by_sen: boolean
-  approved_by_sfp: boolean
+  approved_by_cejef: boolean
   contractual_safeguards: string[] | null
   date_created: string | null
   date_updated: string | null
@@ -165,7 +165,7 @@ export function mapSoftware(item: DirectusSoftware): Software {
     requiresEduAccount: item.requires_edu_account,
     requiresEdulog: item.requires_edulog,
     approvedBySEN: item.approved_by_sen,
-    approvedBySFP: item.approved_by_sfp,
+    approvedByCEJEF: item.approved_by_cejef,
     cost: (item.cost ?? "Gratuit") as Software["cost"],
     fundedByCejef: item.funded_by_cejef ?? false,
     fundedBySEN: item.funded_by_sen ?? false,

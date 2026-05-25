@@ -133,7 +133,7 @@ export interface Software {
   requiresEduAccount?: boolean
   requiresEdulog?: boolean
   approvedBySEN?: boolean
-  approvedBySFP?: boolean
+  approvedByCEJEF?: boolean
 
   // COÛT & PRISE EN CHARGE
   cost: CostType

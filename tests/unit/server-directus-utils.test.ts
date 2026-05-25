@@ -27,7 +27,7 @@ function makeDirectusSoftware(overrides: Partial<DirectusSoftware> = {}): Direct
     requires_edu_account: false,
     requires_edulog: false,
     approved_by_sen: false,
-    approved_by_sfp: false,
+    approved_by_cejef: false,
     contractual_safeguards: null,
     date_created: null,
     date_updated: null,
@@ -126,7 +126,7 @@ describe("mapSoftware — transformation Directus → Software", () => {
         doc_url: "https://d.example",
         requires_edu_account: true,
         approved_by_sen: true,
-        approved_by_sfp: false,
+        approved_by_cejef: false,
         requires_parental_consent: true,
         target_audience: "élèves"
       })
@@ -136,7 +136,7 @@ describe("mapSoftware — transformation Directus → Software", () => {
       expect(result.documentation).toBe("https://d.example")
       expect(result.requiresEduAccount).toBe(true)
       expect(result.approvedBySEN).toBe(true)
-      expect(result.approvedBySFP).toBe(false)
+      expect(result.approvedByCEJEF).toBe(false)
       expect(result.requiresParentalConsent).toBe(true)
       expect(result.targetAudience).toBe("élèves")
     })

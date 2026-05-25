@@ -126,7 +126,7 @@ async function importSoftware(s: Software): Promise<void> {
     requires_edu_account: s.requiresEduAccount ?? false,
     requires_edulog: s.requiresEdulog ?? false,
     approved_by_sen: s.approvedBySEN ?? false,
-    approved_by_sfp: false, // Pas dans le legacy
+    approved_by_cejef: false, // Pas dans le legacy
     status: "draft" as const, // Toutes les fiches importées sont en brouillon
     categories: categoryIds.map(id => ({ category_id: id })),
     pedagogical_activities: activityIds.map(id => ({ pedagogical_activity_id: id }))

@@ -51,7 +51,7 @@ const audienceStore = useAudienceStore()
       </div>
 
       <!-- Approuvé CEJEF -->
-      <div v-if="software.approvedBySFP" class="inline-flex">
+      <div v-if="software.approvedByCEJEF" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé CEJEF"

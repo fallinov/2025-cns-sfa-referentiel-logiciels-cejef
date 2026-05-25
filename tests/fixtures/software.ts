@@ -45,7 +45,7 @@ function makeSoftware(p: SoftwareInput): Software {
     requiresEduAccount: false,
     requiresEdulog: false,
     approvedBySEN: false,
-    approvedBySFP: false,
+    approvedByCEJEF: false,
     usageNotes: null,
     alternatives: [],
     ...rest,
@@ -79,7 +79,7 @@ export const softwareFixtures: Software[] = [
     contractualSafeguards: ["eu_data_boundary", "dpa"],
     targetAudience: "tous",
     approvedBySEN: true,
-    approvedBySFP: true,
+    approvedByCEJEF: true,
     categories: ["Communication", "Bureautique"],
     pedagogicalActivities: ["Collaboration", "Visioconférence"]
   }),
@@ -111,7 +111,7 @@ export const softwareFixtures: Software[] = [
     shortDescription: "Quiz et sondages interactifs",
     certificationLevel: 1,
     cost: "Freemium",
-    approvedBySFP: true,
+    approvedByCEJEF: true,
     categories: ["Évaluation"],
     pedagogicalActivities: ["Quiz"]
   }),

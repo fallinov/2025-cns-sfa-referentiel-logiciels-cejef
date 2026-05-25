@@ -163,7 +163,7 @@ async function importRow(row: XlsxRow): Promise<ImportResult> {
     requires_edu_account: false,
     requires_edulog: false,
     approved_by_sen: false,
-    approved_by_sfp: false,
+    approved_by_cejef: false,
     contractual_safeguards: null
   }
 

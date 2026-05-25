@@ -16,7 +16,7 @@ const config = computed(() => {
 
 // Approbation institutionnelle V1 : SEN ou SFP (champs Directus)
 const isApprovedInstitution = computed(() => {
-  return !!props.software.approvedBySEN || !!props.software.approvedBySFP
+  return !!props.software.approvedBySEN || !!props.software.approvedByCEJEF
 })
 
 const handleCardClick = () => {
@@ -87,7 +87,7 @@ const handleCardClick = () => {
         class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
-        v-if="software.approvedBySFP"
+        v-if="software.approvedByCEJEF"
         icon="i-lucide-badge-check"
         label="Approuvé CEJEF"
         tooltip="Recommandé par le CEJEF (Service de la Formation Postobligatoire)"
