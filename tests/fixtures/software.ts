@@ -62,7 +62,7 @@ function makeSoftware(p: SoftwareInput): Software {
  * - Toutes les catégories courantes
  * - Activités pédagogiques variées
  * - Approbations SEN + SFP
- * - Tous les coûts (Gratuit / Payant / Freemium / Financé CEJEF)
+ * - Tous les coûts (Gratuit / Payant / Freemium) + prise en charge CEJEF/SEN
  * - Tous les targetAudience
  * - Recherche fuzzy : noms communs (Microsoft, Adobe, Google)
  */
@@ -74,7 +74,9 @@ export const softwareFixtures: Software[] = [
     shortDescription: "Plateforme de collaboration et visioconférence",
     lgpd: { hosting: 1, rgpd: 1, dataCollection: 1 },
     certificationLevel: 1,
-    cost: "Financé CEJEF",
+    cost: "Payant",
+    fundedByCejef: true,
+    contractualSafeguards: ["eu_data_boundary", "dpa"],
     targetAudience: "tous",
     approvedBySEN: true,
     approvedBySFP: true,
@@ -224,7 +226,9 @@ export const softwareFixtures: Software[] = [
     name: "Logiciel compte EDU",
     shortDescription: "Outil nécessitant un compte institutionnel CEJEF",
     certificationLevel: 1,
-    cost: "Financé CEJEF",
+    cost: "Payant",
+    fundedByCejef: true,
+    fundedBySEN: true,
     requiresEduAccount: true,
     targetAudience: "enseignants",
     categories: ["Bureautique"]

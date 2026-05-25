@@ -6,9 +6,24 @@
  */
 
 import { createDirectus, rest, staticToken } from "@directus/sdk"
-import type { CategoryRef, PedagogicalActivityRef, Software, SchoolLevel } from "~~/types/software"
+import type {
+  CategoryRef,
+  ContractualSafeguard,
+  PedagogicalActivityRef,
+  Software,
+  SchoolLevel
+} from "~~/types/software"
 
 type LgpdValue = 0 | 1 | 2 | 3
+
+const CONTRACTUAL_SAFEGUARD_VALUES: readonly ContractualSafeguard[] = [
+  "dpa",
+  "eu_data_boundary",
+  "scc",
+  "dpf",
+  "independent_audit",
+  "guaranteed_hosting"
+] as const
 
 export interface DirectusSoftware {
   id: string
@@ -22,7 +37,8 @@ export interface DirectusSoftware {
   lgpd_data_collection: LgpdValue | null
   data_location: string | null
   cost: string | null
-  funding: string[] | null
+  funded_by_cejef: boolean | null
+  funded_by_sen: boolean | null
   target_audience: "élèves" | "enseignants" | "tous" | null
   school_level: SchoolLevel[] | null
   tool_url: string
@@ -134,6 +150,9 @@ export function mapSoftware(item: DirectusSoftware): Software {
     .map(a => a.alternative_id?.id)
     .filter((id): id is string => Boolean(id))
 
+  const contractualSafeguards = (item.contractual_safeguards ?? [])
+    .filter((v): v is ContractualSafeguard => CONTRACTUAL_SAFEGUARD_VALUES.includes(v as ContractualSafeguard))
+
   return {
     id: item.id,
     name: item.name,
@@ -148,6 +167,9 @@ export function mapSoftware(item: DirectusSoftware): Software {
     approvedBySEN: item.approved_by_sen,
     approvedBySFP: item.approved_by_sfp,
     cost: (item.cost ?? "Gratuit") as Software["cost"],
+    fundedByCejef: item.funded_by_cejef ?? false,
+    fundedBySEN: item.funded_by_sen ?? false,
+    contractualSafeguards,
     toolUrl: item.tool_url,
     documentation: item.doc_url,
     targetAudience: item.target_audience,

@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest"
 import type { DirectusSoftware } from "~~/server/utils/directus"
 import { mapDataLocationLabel, mapSoftware } from "~~/server/utils/directus"
+import { mapContractualSafeguardLabel } from "~/utils/contractual-safeguards"
 
 function makeDirectusSoftware(overrides: Partial<DirectusSoftware> = {}): DirectusSoftware {
   return {
@@ -15,7 +16,8 @@ function makeDirectusSoftware(overrides: Partial<DirectusSoftware> = {}): Direct
     lgpd_data_collection: 1,
     data_location: "switzerland",
     cost: "Gratuit",
-    funding: null,
+    funded_by_cejef: false,
+    funded_by_sen: false,
     target_audience: null,
     school_level: null,
     tool_url: "https://example.com",
@@ -235,5 +237,48 @@ describe("mapSoftware — transformation Directus → Software", () => {
       const item = makeDirectusSoftware({ id: "550e8400-e29b-41d4-a716-446655440000" })
       expect(mapSoftware(item).id).toBe("550e8400-e29b-41d4-a716-446655440000")
     })
+  })
+
+  describe("prise en charge financière (funded_by_*)", () => {
+    it("mappe funded_by_cejef et funded_by_sen vers fundedByCejef / fundedBySEN", () => {
+      const item = makeDirectusSoftware({ funded_by_cejef: true, funded_by_sen: false })
+      const result = mapSoftware(item)
+      expect(result.fundedByCejef).toBe(true)
+      expect(result.fundedBySEN).toBe(false)
+    })
+
+    it("null Directus → false côté front (champ optionnel non rempli)", () => {
+      const item = makeDirectusSoftware({ funded_by_cejef: null, funded_by_sen: null })
+      const result = mapSoftware(item)
+      expect(result.fundedByCejef).toBe(false)
+      expect(result.fundedBySEN).toBe(false)
+    })
+  })
+
+  describe("garanties contractuelles (contractual_safeguards)", () => {
+    it("expose le tableau filtré sur les valeurs connues", () => {
+      const item = makeDirectusSoftware({
+        contractual_safeguards: ["dpa", "eu_data_boundary", "unknown_value"]
+      })
+      expect(mapSoftware(item).contractualSafeguards).toEqual(["dpa", "eu_data_boundary"])
+    })
+
+    it("retourne [] si null", () => {
+      const item = makeDirectusSoftware({ contractual_safeguards: null })
+      expect(mapSoftware(item).contractualSafeguards).toEqual([])
+    })
+  })
+})
+
+describe("mapContractualSafeguardLabel — valeurs techniques → libellés FR", () => {
+  it.each([
+    ["dpa", "DPA institutionnel"],
+    ["eu_data_boundary", "EU Data Boundary"],
+    ["scc", "Clauses contractuelles types (SCC)"],
+    ["dpf", "Data Privacy Framework (DPF)"],
+    ["independent_audit", "Audit indépendant"],
+    ["guaranteed_hosting", "Hébergement garanti"]
+  ] as const)("valeur %s → %s", (value, expected) => {
+    expect(mapContractualSafeguardLabel(value)).toBe(expected)
   })
 })

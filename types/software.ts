@@ -2,7 +2,15 @@
  * Types pour le référentiel logiciels CEJEF (source unique)
  */
 
-export type CostType = "Gratuit" | "Payant" | "Freemium" | "Financé CEJEF"
+export type CostType = "Gratuit" | "Payant" | "Freemium"
+
+export type ContractualSafeguard
+  = | "dpa"
+    | "eu_data_boundary"
+    | "scc"
+    | "dpf"
+    | "independent_audit"
+    | "guaranteed_hosting"
 
 export type DataLocation
   // Pays adéquats (niveau 1)
@@ -127,8 +135,13 @@ export interface Software {
   approvedBySEN?: boolean
   approvedBySFP?: boolean
 
-  // COÛT
+  // COÛT & PRISE EN CHARGE
   cost: CostType
+  fundedByCejef?: boolean
+  fundedBySEN?: boolean
+
+  // GARANTIES CONTRACTUELLES (V1.4 — justifient un score 🟢 malgré l'origine)
+  contractualSafeguards?: ContractualSafeguard[]
 
   // LIENS
   toolUrl: string

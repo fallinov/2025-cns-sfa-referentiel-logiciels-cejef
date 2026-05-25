@@ -106,10 +106,6 @@ async function importSoftware(s: Software): Promise<void> {
     .filter((v): v is string => Boolean(v))
     .join(" — ") || null
 
-  // Cost legacy "Financé CEJEF" → cost="Payant" + funding=["cejef"]
-  const legacyFundedByCejef = s.cost === "Financé CEJEF"
-  const cost = legacyFundedByCejef ? "Payant" : s.cost
-
   const payload = {
     name: s.name,
     icon: s.icon ?? null,
@@ -119,8 +115,9 @@ async function importSoftware(s: Software): Promise<void> {
     lgpd_rgpd: s.lgpd.rgpd,
     lgpd_data_collection: s.lgpd.dataCollection,
     data_location: mapDataLocation(s.dataLocation),
-    cost,
-    funding: legacyFundedByCejef ? ["cejef"] : null,
+    cost: s.cost,
+    funded_by_cejef: s.fundedByCejef ?? false,
+    funded_by_sen: s.fundedBySEN ?? false,
     target_audience: s.targetAudience ?? null,
     tool_url: s.toolUrl,
     doc_url: s.documentation ?? null,
@@ -138,7 +135,7 @@ async function importSoftware(s: Software): Promise<void> {
   if (DRY_RUN) {
     console.log(`[DRY] ${s.name}`)
     console.log(`      data_location: ${s.dataLocation} → ${payload.data_location}`)
-    console.log(`      cost: ${s.cost} → ${payload.cost}${payload.funding ? " + funding=cejef" : ""}`)
+    console.log(`      cost: ${s.cost}${payload.funded_by_cejef ? " + funded_by_cejef" : ""}`)
     console.log(`      categories: ${(s.categories ?? []).join(", ") || "—"}`)
     return
   }

@@ -54,7 +54,7 @@ Variables consommées via `useRuntimeConfig()` (server-only, jamais exposées au
 
 1. **Champs retirés du schéma Directus** mais encore présents dans `Software` type historique : `supportedByCEJEF`, `cejefFavorite`, `campusTraining`, `disciplines` (toujours `[]`, `false`). À retirer du type front en V1.2.
 2. **`dataLocation`** : la nouvelle énumération Directus (`switzerland`, `eu_eea`, …) ne correspond pas aux anciennes valeurs (`Suisse`, `France`, …). Le mapping actuel garde la valeur Directus brute — le frontend doit être adapté pour les nouvelles valeurs.
-3. **`contractual_safeguards`** et **`funding`** (nouveaux champs Directus) ne sont pas exposés dans le type `Software` actuel. À ajouter en V1.2.
+3. ~~`contractual_safeguards` et `funding` non exposés.~~ Fait : `contractualSafeguards` + `fundedByCejef` + `fundedBySEN` mappés et affichés dans la fiche pratique. `funding` (csv) supprimé de Directus au profit de deux booléens.
 
 ## Migration future du frontend
 
