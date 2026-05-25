@@ -82,6 +82,39 @@ export const useSoftwareStore = defineStore("software", () => {
     return sortSchoolLevels(filterValidSchoolLevels(Array.from(levels)))
   })
 
+  // Compteurs : nombre de logiciels par catégorie / activité / niveau scolaire.
+  // Calculés sur la liste totale (pas filtrée) — pertinence stable même quand
+  // d'autres filtres sont actifs. Pattern Booking.com/Amazon.
+  const categoryCounts = computed<Record<string, number>>(() => {
+    const counts: Record<string, number> = {}
+    softwareList.value.forEach(s =>
+      s.categories?.forEach((c) => {
+        counts[c.name] = (counts[c.name] ?? 0) + 1
+      })
+    )
+    return counts
+  })
+
+  const activityCounts = computed<Record<string, number>>(() => {
+    const counts: Record<string, number> = {}
+    softwareList.value.forEach(s =>
+      s.pedagogicalActivities?.forEach((a) => {
+        counts[a.name] = (counts[a.name] ?? 0) + 1
+      })
+    )
+    return counts
+  })
+
+  const schoolLevelCounts = computed<Record<string, number>>(() => {
+    const counts: Record<string, number> = {}
+    softwareList.value.forEach(s =>
+      s.schoolLevel?.forEach((l) => {
+        counts[l] = (counts[l] ?? 0) + 1
+      })
+    )
+    return counts
+  })
+
   const filteredSoftwareList = computed(() => {
     let filtered = [...softwareList.value]
 
@@ -275,6 +308,9 @@ export const useSoftwareStore = defineStore("software", () => {
     uniqueCategories,
     uniqueActivities,
     uniqueSchoolLevels,
+    categoryCounts,
+    activityCounts,
+    schoolLevelCounts,
     filteredSoftwareList,
     activeFiltersCount,
     hasActiveFilters,

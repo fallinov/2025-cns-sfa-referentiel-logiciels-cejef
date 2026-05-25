@@ -33,7 +33,24 @@ const lgpdSelectValue = computed({
 const schoolLevelItems = computed(() =>
   store.uniqueSchoolLevels.map((value: SchoolLevel) => ({
     label: SCHOOL_LEVEL_LABELS[value],
-    value
+    value,
+    count: store.schoolLevelCounts[value] ?? 0
+  }))
+)
+
+const categoryItems = computed(() =>
+  store.uniqueCategories.map((name: string) => ({
+    label: name,
+    value: name,
+    count: store.categoryCounts[name] ?? 0
+  }))
+)
+
+const activityItems = computed(() =>
+  store.uniqueActivities.map((name: string) => ({
+    label: name,
+    value: name,
+    count: store.activityCounts[name] ?? 0
   }))
 )
 </script>
@@ -84,26 +101,38 @@ const schoolLevelItems = computed(() =>
         <!-- Multi-select catégories -->
         <USelectMenu
           v-model="selectedCategories"
-          :items="store.uniqueCategories"
+          :items="categoryItems"
+          value-key="value"
           multiple
           searchable
           placeholder="Catégories"
           leading-icon="i-lucide-tag"
           size="xl"
           class="w-56 rounded-[var(--ui-radius)] cursor-pointer"
-        />
+        >
+          <template #item="{ item }">
+            <span class="truncate flex-1">{{ item.label }}</span>
+            <span class="ml-2 text-xs text-gray-500 dark:text-gray-400 tabular-nums shrink-0">{{ item.count }}</span>
+          </template>
+        </USelectMenu>
 
         <!-- Multi-select activités pédagogiques -->
         <USelectMenu
           v-model="selectedActivities"
-          :items="store.uniqueActivities"
+          :items="activityItems"
+          value-key="value"
           multiple
           searchable
           placeholder="Activités"
           leading-icon="i-lucide-puzzle"
           size="xl"
           class="w-56 rounded-[var(--ui-radius)] cursor-pointer"
-        />
+        >
+          <template #item="{ item }">
+            <span class="truncate flex-1">{{ item.label }}</span>
+            <span class="ml-2 text-xs text-gray-500 dark:text-gray-400 tabular-nums shrink-0">{{ item.count }}</span>
+          </template>
+        </USelectMenu>
 
         <!-- Multi-select niveau scolaire -->
         <USelectMenu
@@ -166,7 +195,8 @@ const schoolLevelItems = computed(() =>
             </div>
             <USelectMenu
               v-model="selectedCategories"
-              :items="store.uniqueCategories"
+              :items="categoryItems"
+              value-key="value"
               multiple
               searchable
               placeholder="Toutes catégories"
@@ -181,7 +211,8 @@ const schoolLevelItems = computed(() =>
             </div>
             <USelectMenu
               v-model="selectedActivities"
-              :items="store.uniqueActivities"
+              :items="activityItems"
+              value-key="value"
               multiple
               searchable
               placeholder="Toutes activités"
