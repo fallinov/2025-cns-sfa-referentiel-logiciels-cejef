@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach } from "vitest"
-import { ref } from "vue"
+import { describe, it, expect, beforeEach, vi, afterEach } from "vitest"
+import { ref, nextTick } from "vue"
 import { useSearchSuggestions } from "~/composables/useSearchSuggestions"
 import type { Software } from "~~/types/software"
 
@@ -68,5 +68,70 @@ describe("useSearchSuggestions — Fuse.js + debounce", () => {
     list.value = []
     const query = ref("test")
     expect(() => useSearchSuggestions(query)).not.toThrow()
+  })
+})
+
+describe("useSearchSuggestions — priorisation (best practices UX 2026)", () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    const list = useState<Software[]>("software-list", () => [])
+    list.value = [
+      makeSoftware({ id: "canva", name: "Canva", shortDescription: "Création graphique", categories: ["Création graphique"] }),
+      makeSoftware({ id: "code-org", name: "Code.org", shortDescription: "Apprentissage du code" }),
+      // Logiciel dont le nom contient « canva » mais ne commence pas par : ne doit PAS être prioritaire prefix
+      makeSoftware({ id: "other", name: "Visual Canvas", shortDescription: "Tableau blanc" })
+    ]
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it("place les match préfixe-nom en tête (intent detection)", async () => {
+    const query = ref("can")
+    const { suggestions } = useSearchSuggestions(query)
+    vi.advanceTimersByTime(350)
+    await nextTick()
+
+    expect(suggestions.value.software.length).toBeGreaterThan(0)
+    // « Canva » commence par « can » → doit être en tête (prefix match)
+    expect(suggestions.value.software[0]!.software.name).toBe("Canva")
+    expect(suggestions.value.software[0]!.isPrefixMatch).toBe(true)
+  })
+
+  it("marque isPrefixMatch=false pour les matches non-préfixe", async () => {
+    const query = ref("canv")
+    const { suggestions } = useSearchSuggestions(query)
+    vi.advanceTimersByTime(350)
+    await nextTick()
+
+    const visualCanvas = suggestions.value.software.find(s => s.software.id === "other")
+    if (visualCanvas) {
+      expect(visualCanvas.isPrefixMatch).toBe(false)
+    }
+  })
+
+  it("expose les matches Fuse pour le highlight", async () => {
+    const query = ref("canv")
+    const { suggestions } = useSearchSuggestions(query)
+    vi.advanceTimersByTime(350)
+    await nextTick()
+
+    const first = suggestions.value.software[0]
+    expect(first).toBeDefined()
+    expect(Array.isArray(first!.matches)).toBe(true)
+  })
+
+  it("limite à 5 logiciels max (loi de Hick)", async () => {
+    const list = useState<Software[]>("software-list", () => [])
+    list.value = Array.from({ length: 10 }, (_, i) =>
+      makeSoftware({ id: `sw-${i}`, name: `Software${i}`, shortDescription: "test" })
+    )
+    const query = ref("software")
+    const { suggestions } = useSearchSuggestions(query)
+    vi.advanceTimersByTime(350)
+    await nextTick()
+
+    expect(suggestions.value.software.length).toBeLessThanOrEqual(5)
   })
 })

@@ -98,10 +98,17 @@ const popularSearches = [
 // Suggestions via composable
 const { suggestions, hasSuggestions } = useSearchSuggestions(search)
 
-// Flattened items for keyboard navigation (Must match order in Suggestions.vue)
+// Flattened items for keyboard navigation. DOIT correspondre exactement
+// à l'ordre de rendu dans Suggestions.vue : logiciels d'abord (cible primaire
+// d'une recherche par nom), puis catégories et activités en filtres secondaires
+// (best practices NN/g + Baymard 2026).
 const allSuggestionItems = computed(() => {
   const items: Array<{ type: string, value: string, index: number }> = []
   let globalIndex = 0
+
+  suggestions.value.software.forEach((s) => {
+    items.push({ type: "software", value: s.software.id, index: globalIndex++ })
+  })
 
   suggestions.value.categories.forEach((cat) => {
     items.push({ type: "category", value: cat, index: globalIndex++ })
@@ -109,10 +116,6 @@ const allSuggestionItems = computed(() => {
 
   suggestions.value.activities.forEach((act) => {
     items.push({ type: "activity", value: act, index: globalIndex++ })
-  })
-
-  suggestions.value.software.forEach((soft) => {
-    items.push({ type: "software", value: soft.id, index: globalIndex++ })
   })
 
   return items

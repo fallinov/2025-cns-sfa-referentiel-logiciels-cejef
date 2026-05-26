@@ -1,22 +1,48 @@
 import Fuse from "fuse.js"
+import type { FuseResultMatch } from "fuse.js"
 import type { Software } from "~~/types/software"
+
+/**
+ * Une suggestion enrichie d'informations sur le match (pour le highlight des
+ * segments matchant dans le rendu). `matches` est fourni par Fuse quand on
+ * active `includeMatches`.
+ */
+export interface SoftwareSuggestion {
+  software: Software
+  matches: readonly FuseResultMatch[]
+  /** True si la query est un préfixe du nom (entité reconnue → priorité absolue). */
+  isPrefixMatch: boolean
+}
 
 export interface SearchSuggestions {
   query: string
   totalResults: number
+  /** Catégories agrégées des logiciels matchants (3 max). */
   categories: string[]
+  /** Activités pédagogiques agrégées (2 max). */
   activities: string[]
-  software: Software[]
+  /** Logiciels matchants enrichis du contexte de match (5 max). */
+  software: SoftwareSuggestion[]
 }
 
+/**
+ * Bonnes pratiques UX 2026 appliquées (Nielsen Norman, Baymard, Algolia) :
+ *   1. **Detect intent** : si la query est un préfixe du nom d'un logiciel,
+ *      ce logiciel devient prioritaire absolu (l'utilisateur sait ce qu'il cherche).
+ *   2. **Logiciels d'abord** : la cible primaire d'une recherche par nom doit être
+ *      en haut, pas les filtres taxonomiques.
+ *   3. **Highlight** : segments matchant retournés via `includeMatches` Fuse pour
+ *      surlignage côté UI.
+ *   4. **Loi de Hick** : 8 résultats max total (5 logiciels + 2 catégories + 1 activité).
+ */
 export const useSearchSuggestions = (searchQuery: Ref<string>) => {
   const { getSoftwareList } = useSoftware()
   const softwareList = getSoftwareList()
 
-  // Configuration Fuse.js pour fuzzy search
   const fuseOptions = {
     includeScore: true,
-    threshold: 0.4, // 0 = exact match, 1 = match anything
+    includeMatches: true,
+    threshold: 0.4,
     keys: [
       { name: "name", weight: 2 },
       { name: "shortDescription", weight: 1.5 },
@@ -25,58 +51,70 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
     ]
   }
 
-  // Initialiser Fuse une seule fois (avec fallback tableau vide)
   const safeSoftwareList = softwareList || []
   const fuse = new Fuse(safeSoftwareList, fuseOptions)
 
-  // Debounced search query (300ms) pour éviter trop de calculs
   const debouncedQuery = refDebounced(searchQuery, 300)
 
+  const emptyResult: SearchSuggestions = {
+    query: "",
+    totalResults: 0,
+    categories: [],
+    activities: [],
+    software: []
+  }
+
   const suggestions = computed<SearchSuggestions>(() => {
-    // Check immédiat pour réactivité UI
     if (!searchQuery.value || searchQuery.value.length < 2) {
-      return {
-        query: "",
-        totalResults: 0,
-        categories: [],
-        activities: [],
-        software: []
-      }
+      return emptyResult
     }
 
-    // Utilise la query debounced pour la recherche réelle (évite calculs inutiles)
     const query = debouncedQuery.value.trim()
-
-    // Si debounced est vide, retourner vide (attente du debounce)
     if (!query) {
-      return {
-        query: searchQuery.value,
-        totalResults: 0,
-        categories: [],
-        activities: [],
-        software: []
+      return { ...emptyResult, query: searchQuery.value }
+    }
+
+    const normalizedQuery = query.toLowerCase()
+    const fuseResults = fuse.search(query)
+
+    // Boost « préfixe nom » : on remonte en tête les logiciels dont le nom
+    // commence exactement par la query (intent detection). Ces résultats
+    // gardent leur ordre Fuse interne entre eux.
+    const prefixMatches: SoftwareSuggestion[] = []
+    const otherMatches: SoftwareSuggestion[] = []
+
+    for (const result of fuseResults) {
+      const isPrefixMatch = result.item.name.toLowerCase().startsWith(normalizedQuery)
+      const enriched: SoftwareSuggestion = {
+        software: result.item,
+        matches: result.matches ?? [],
+        isPrefixMatch
+      }
+      if (isPrefixMatch) {
+        prefixMatches.push(enriched)
+      } else {
+        otherMatches.push(enriched)
       }
     }
 
-    // Recherche fuzzy avec Fuse.js (seulement après debounce)
-    const results = fuse.search(query)
-    const matchingSoftware = results.map(result => result.item)
+    // Logiciels : 5 max (loi de Hick), préfixes d'abord
+    const software = [...prefixMatches, ...otherMatches].slice(0, 5)
 
-    // Extraire les catégories et activités uniques
+    // Catégories & activités : agrégées sur les logiciels matchants, limitées
+    // pour ne pas noyer les résultats principaux (3 cat + 2 act = 5 secondaires).
     const categoriesSet = new Set<string>()
     const activitiesSet = new Set<string>()
-
-    matchingSoftware.forEach((s) => {
-      s.categories?.forEach(cat => categoriesSet.add(cat.name))
-      s.pedagogicalActivities?.forEach(act => activitiesSet.add(act.name))
-    })
+    for (const s of software) {
+      s.software.categories?.forEach(cat => categoriesSet.add(cat.name))
+      s.software.pedagogicalActivities?.forEach(act => activitiesSet.add(act.name))
+    }
 
     return {
       query: searchQuery.value,
-      totalResults: matchingSoftware.length,
+      totalResults: fuseResults.length,
       categories: Array.from(categoriesSet).slice(0, 3),
-      activities: Array.from(activitiesSet).slice(0, 3),
-      software: matchingSoftware.slice(0, 6)
+      activities: Array.from(activitiesSet).slice(0, 2),
+      software
     }
   })
 
