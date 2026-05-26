@@ -285,7 +285,7 @@ const levelTokens = {
       </section>
 
       <!-- Section 4 — Précision USA -->
-      <section class="mb-14 px-4 sm:px-0">
+      <section class="mb-10 px-4 sm:px-0">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-5">
           Précision : les États-Unis
         </h2>
@@ -299,6 +299,43 @@ const levelTokens = {
             </p>
             <p class="text-orange-700 dark:text-orange-400 text-sm leading-relaxed">
               Ce choix est un parti pris : plutôt que de marquer rouge tous les logiciels américains (ce qui interdirait la majorité des outils numériques utilisés en classe), nous concentrons l'attention sur les <strong>vrais risques</strong> : les éditeurs qui collectent vos données pour la publicité, les revendent à des entreprises tierces, ou les envoient dans des pays sans aucune protection. Ces risques sont mesurés par les deux autres critères (<em>Conformité aux règles européennes</em> et <em>Collecte de données</em>), qui restent évalués strictement.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5 — Garanties contractuelles : comment un logiciel peut passer au vert -->
+      <section class="mb-14 px-4 sm:px-0">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-5">
+          Comment un logiciel peut-il être classé vert malgré tout ?
+        </h2>
+        <div class="flex items-start gap-4 p-5 rounded-[var(--ui-radius)] border bg-green-50 dark:bg-green-900/10 border-green-100 dark:border-green-800/30">
+          <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center shrink-0 shadow-sm">
+            <UIcon name="i-lucide-shield-check" class="w-6 h-6 text-white stroke-[3]" />
+          </div>
+          <div>
+            <p class="text-green-800 dark:text-green-300 font-semibold mb-2 leading-relaxed">
+              Certains éditeurs s'engagent contractuellement à protéger les données au-delà de leurs obligations par défaut. Quand le CEJEF (ou un service public suisse ou européen) a signé un tel contrat, l'évaluation en tient compte.
+            </p>
+            <p class="text-green-700 dark:text-green-400 text-sm leading-relaxed mb-3">
+              Trois garanties peuvent faire passer un logiciel au vert :
+            </p>
+            <ul class="space-y-2 text-sm text-green-700 dark:text-green-400 leading-relaxed mb-3">
+              <li class="flex items-start gap-2">
+                <UIcon name="i-lucide-file-signature" class="w-4 h-4 mt-0.5 shrink-0" />
+                <span><strong>Contrat institutionnel signé avec le CEJEF</strong> qui détaille comment les données seront traitées.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <UIcon name="i-lucide-map-pin" class="w-4 h-4 mt-0.5 shrink-0" />
+                <span><strong>Engagement de stockage en Europe</strong> pris par l'éditeur, même s'il est basé hors UE.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <UIcon name="i-lucide-badge-check" class="w-4 h-4 mt-0.5 shrink-0" />
+                <span><strong>Audit indépendant</strong> confirmant régulièrement la conformité.</span>
+              </li>
+            </ul>
+            <p class="text-green-700 dark:text-green-400 text-sm leading-relaxed">
+              <strong>Exemple :</strong> Microsoft 365 est utilisé au CEJEF dans le cadre d'un contrat qui impose le stockage des données dans des centres situés en Europe. Cet engagement permet à l'évaluation de passer au vert sur le critère hébergement, malgré l'origine américaine de l'éditeur.
             </p>
           </div>
         </div>
