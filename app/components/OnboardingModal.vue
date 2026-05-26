@@ -5,12 +5,22 @@ const step = ref(1)
 watch(isOpen, (open) => {
   if (open) step.value = 1
 })
+
+// Reset du scroll en haut quand l'utilisateur change d'étape — sinon il reste
+// en bas (là où il a cliqué « Suivant ») et doit remonter manuellement pour
+// lire le début de la nouvelle étape. Class custom appliquée au content UModal
+// pour cibler le scroller sans dépendre des classes générées par Nuxt UI.
+watch(step, () => {
+  nextTick(() => {
+    document.querySelector(".onboarding-scroll-root")?.scrollTo({ top: 0, behavior: "instant" })
+  })
+})
 </script>
 
 <template>
   <UModal
     v-model:open="isOpen"
-    :ui="{ content: 'max-h-[80vh] overflow-y-auto' }"
+    :ui="{ content: 'max-h-[80vh] overflow-y-auto onboarding-scroll-root' }"
   >
     <template #header>
       <div class="flex items-center justify-between w-full">
