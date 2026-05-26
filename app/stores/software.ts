@@ -1,12 +1,16 @@
 import { defineStore } from "pinia"
 import type { CostType, SchoolLevel, Software } from "~~/types/software"
 import { getCertificationLevel } from "~~/types/software"
+import type { CategoryEntry } from "~~/server/api/categories.get"
 import { expandSearchQuery, matchesSearch } from "~/utils/search"
 import { filterValidSchoolLevels, sortSchoolLevels } from "~/utils/school-level"
 
 export const useSoftwareStore = defineStore("software", () => {
   // Source de vérité : ref alimenté par plugins/software-data.ts (fetch /api/software → Directus)
   const { softwareList } = useSoftware()
+  // Liste complete des categories (incluant celles a count=0, affichees en
+  // mode disabled dans les filtres au lieu d'etre masquees).
+  const categoryList = useState<CategoryEntry[]>("category-list", () => [])
 
   // State
   const searchQuery = ref("")
@@ -64,7 +68,13 @@ export const useSoftwareStore = defineStore("software", () => {
   )
 
   // Getters
+  // Liste complete des categories Directus (incluant celles a count=0).
+  // Fallback sur l'extraction depuis les logiciels si la taxonomie n'a pas
+  // ete chargee (compatibilite SSR pre-fetch, tests unit, etc.).
   const uniqueCategories = computed(() => {
+    if (categoryList.value.length > 0) {
+      return categoryList.value.map(c => c.name).sort()
+    }
     const categories = new Set<string>()
     softwareList.value.forEach(s => s.categories?.forEach(c => categories.add(c.name)))
     return Array.from(categories).sort()
@@ -119,6 +129,11 @@ export const useSoftwareStore = defineStore("software", () => {
   // par categorie/activite, definie dans Directus). Premier rencontre gagne.
   const categoryIcons = computed<Record<string, string | null>>(() => {
     const icons: Record<string, string | null> = {}
+    // Source primaire : taxonomie complete (couvre les categories sans logiciel).
+    categoryList.value.forEach((c) => {
+      icons[c.name] = c.icon
+    })
+    // Fallback : extraction depuis les logiciels (compatibilite tests / pre-fetch).
     softwareList.value.forEach(s =>
       s.categories?.forEach((c) => {
         if (!(c.name in icons)) icons[c.name] = c.icon
