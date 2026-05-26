@@ -100,7 +100,7 @@ const triggerLabel = computed(() => {
     :title="title"
     :ui="{
       content: 'sm:max-w-3xl max-h-[90vh] sm:max-h-[85vh] flex flex-col',
-      body: 'p-0 flex-1 flex flex-col min-h-0 overflow-hidden',
+      body: 'p-0 flex-1 min-h-0 overflow-y-auto',
       header: 'bg-white dark:bg-gray-900',
       footer: 'bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800'
     }"
@@ -125,8 +125,8 @@ const triggerLabel = computed(() => {
     </template>
 
     <template #body>
-      <!-- Barre de recherche fixe en haut du body -->
-      <div class="shrink-0 bg-white dark:bg-gray-900 px-4 sm:px-6 py-3 border-b border-gray-100 dark:border-gray-800">
+      <!-- Barre de recherche sticky : reste visible au scroll, sans wrapper qui crée des trous visuels -->
+      <div class="sticky top-0 z-10 bg-white dark:bg-gray-900 px-4 sm:px-6 py-3 border-b border-gray-100 dark:border-gray-800">
         <UInput
           v-model="search"
           :placeholder="searchPlaceholder ?? `Rechercher dans ${items.length} options…`"
@@ -137,8 +137,8 @@ const triggerLabel = computed(() => {
         />
       </div>
 
-      <!-- Grille scrollable -->
-      <div class="flex-1 overflow-y-auto px-4 sm:px-6 py-4">
+      <!-- Grille : hauteur naturelle, padding cohérent avec la barre — pas de flex-1 pour éviter le blanc en bas -->
+      <div class="px-4 sm:px-6 py-4">
         <div
           v-if="sortedFiltered.length === 0"
           class="text-center py-12 text-gray-500 dark:text-gray-400"

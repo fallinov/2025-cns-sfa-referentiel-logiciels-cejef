@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Software } from "~~/types/software"
 import { getCertificationConfig, getCertificationIcon } from "~/utils/certification"
+import { getSoftwareIcon } from "~/utils/software-icon"
 
 interface Props {
   software: Software
@@ -37,17 +38,10 @@ const sizeClasses = computed(() => {
       :class="sizeClasses.container"
     >
       <UIcon
-        v-if="software.icon"
-        :name="software.icon"
+        :name="getSoftwareIcon(software)"
         class="text-gray-600 dark:text-gray-300"
         :class="sizeClasses.icon"
       />
-      <span
-        v-else
-        class="text-lg font-black text-gray-600 dark:text-gray-300"
-      >
-        {{ software.name.substring(0, 2).toUpperCase() }}
-      </span>
     </div>
 
     <!-- Certification Badge (Floating Top Right of Logo) -->
