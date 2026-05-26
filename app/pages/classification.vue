@@ -29,7 +29,7 @@ const levels: Level[] = [
     code: 1,
     icon: "i-lucide-check",
     label: "Validé",
-    short: "Utilisable sans restriction dans le cadre scolaire.",
+    short: "Utilisable librement avec les élèves, y compris avec leurs vraies données (nom, prénom, travaux scolaires).",
     bg: "bg-green-50 dark:bg-green-900/10",
     border: "border-green-100 dark:border-green-800/30",
     iconBg: "bg-green-500",
@@ -40,7 +40,7 @@ const levels: Level[] = [
     code: 2,
     icon: "i-lucide-alert-triangle",
     label: "Vigilance",
-    short: "Utilisable sous conditions : pas de données sensibles, anonymat si possible.",
+    short: "Utilisable, mais sans données privées (santé, religion, opinions) et en évitant si possible d'identifier les élèves par leur nom.",
     bg: "bg-orange-50 dark:bg-orange-900/10",
     border: "border-orange-100 dark:border-orange-800/30",
     iconBg: "bg-orange-500",
@@ -51,7 +51,7 @@ const levels: Level[] = [
     code: 3,
     icon: "i-lucide-x",
     label: "Interdit",
-    short: "À proscrire dans le cadre scolaire.",
+    short: "Ne doit pas être utilisé dans le cadre scolaire : les risques pour les données des élèves sont trop importants.",
     bg: "bg-red-50 dark:bg-red-900/10",
     border: "border-red-100 dark:border-red-800/30",
     iconBg: "bg-red-500",
@@ -62,7 +62,7 @@ const levels: Level[] = [
     code: 0,
     icon: "i-lucide-help-circle",
     label: "Non évaluée",
-    short: "Validation en cours — la fiche n'est pas encore publiée.",
+    short: "Le logiciel est en cours d'analyse. Sa fiche apparaîtra publiquement une fois l'évaluation terminée.",
     bg: "bg-gray-50 dark:bg-gray-900/40",
     border: "border-gray-200 dark:border-gray-700",
     iconBg: "bg-gray-400 dark:bg-gray-500",
@@ -88,34 +88,34 @@ const criteria: Criteria[] = [
   {
     id: "hosting",
     icon: "i-lucide-server",
-    title: "Hébergement",
-    question: "Où sont stockées les données ? Sous quelle juridiction ?",
+    title: "Hébergement des données",
+    question: "Dans quel pays sont stockées les données ? Quelle loi s'applique en cas de problème ?",
     rows: [
-      { level: 1, text: "Données hébergées exclusivement en Suisse ou dans l'UE/EEE." },
-      { level: 2, text: "Hébergement aux États-Unis ou dans un pays adéquat (UK, Japon, Canada, Corée du Sud…) ou multi-régions partiel." },
-      { level: 3, text: "Hébergement dans un pays non adéquat (Chine, Russie, Inde, Émirats…) ou éditeur opaque sur la localisation." }
+      { level: 1, text: "Les données sont stockées uniquement en Suisse ou dans l'Union européenne (et pays associés : Norvège, Islande, Liechtenstein)." },
+      { level: 2, text: "Les données sont stockées aux États-Unis ou dans un pays reconnu pour son bon niveau de protection (Royaume-Uni, Canada, Japon, Corée du Sud…), ou réparties entre plusieurs pays." },
+      { level: 3, text: "Les données sont stockées dans un pays qui n'offre pas de garantie suffisante (Chine, Russie, Inde, Émirats arabes unis…), ou l'éditeur refuse de préciser où elles se trouvent." }
     ]
   },
   {
     id: "rgpd",
     icon: "i-lucide-scale",
-    title: "Conformité RGPD",
-    question: "L'éditeur respecte-t-il les principes de protection des données ?",
+    title: "Conformité aux règles européennes",
+    question: "L'éditeur respecte-t-il les règles européennes de protection des données (RGPD) ?",
     rows: [
-      { level: 1, text: "Politique de confidentialité claire, DPO ou contact identifié, droits d'accès et de suppression accessibles, base légale et durée de conservation documentées." },
-      { level: 2, text: "Politique accessible mais incomplète ; transferts encadrés mais sans Clauses Contractuelles Types (SCC) ; conformité partielle." },
-      { level: 3, text: "Pas de politique de confidentialité, ou transferts vers des pays non adéquats sans garantie, ou éditeur sans engagement RGPD." }
+      { level: 1, text: "L'éditeur publie une politique de confidentialité claire, désigne un responsable à contacter, vous permet de consulter ou supprimer vos données, et indique combien de temps elles sont conservées." },
+      { level: 2, text: "L'éditeur publie une politique de confidentialité, mais avec des informations incomplètes ou imprécises. Conformité partielle." },
+      { level: 3, text: "L'éditeur ne publie pas de politique de confidentialité claire, ou envoie les données vers des pays sans garantie suffisante, ou ne s'engage pas à respecter les règles européennes." }
     ]
   },
   {
     id: "collection",
     icon: "i-lucide-database",
     title: "Collecte de données",
-    question: "Que collecte l'éditeur ? Tracking, profilage, revente, entraînement IA ?",
+    question: "Quelles informations l'éditeur récupère-t-il sur vous, et qu'en fait-il ?",
     rows: [
-      { level: 1, text: "Aucun tracking publicitaire, pas d'analytics tiers, pas de revente, pas d'entraînement IA sur les données. Cookies strictement nécessaires uniquement." },
-      { level: 2, text: "Collecte limitée fonctionnelle : analytics propres, télémétrie, cookies de confort. Entraînement IA possible avec opt-out clair. Pas de profilage publicitaire." },
-      { level: 3, text: "Profilage publicitaire, partage commercial avec des tiers, revente de données, entraînement IA sans opt-out, cookies publicitaires." }
+      { level: 1, text: "Aucun suivi à des fins publicitaires, pas de mesure externe (type Google Analytics), pas de revente de vos données, pas d'utilisation pour entraîner une intelligence artificielle. Seuls les cookies indispensables au fonctionnement (connexion, préférences) sont utilisés." },
+      { level: 2, text: "L'éditeur collecte certaines informations pour améliorer son service (statistiques internes, cookies de confort). Si vos données peuvent servir à entraîner une intelligence artificielle, vous pouvez le refuser facilement. Pas de publicité ciblée." },
+      { level: 3, text: "L'éditeur crée un profil de vous pour afficher de la publicité ciblée, partage ou revend vos données à des entreprises tierces, utilise vos données pour entraîner une intelligence artificielle sans possibilité de refuser, ou installe des cookies publicitaires." }
     ]
   }
 ]
@@ -157,8 +157,11 @@ const levelTokens = {
         <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">
           Système de classification
         </h1>
-        <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
+        <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-4">
           Trois critères, quatre niveaux, une décision claire.
+        </p>
+        <p class="text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
+          Le CEJEF évalue chaque logiciel pédagogique sur la manière dont il traite les données de ses utilisateurs (élèves, enseignants). Cette page explique comment cette évaluation est réalisée, pour que vous compreniez ce que signifie le niveau affiché sur la fiche de chaque logiciel.
         </p>
       </header>
 
@@ -256,7 +259,7 @@ const levelTokens = {
         </h2>
         <div class="bg-white dark:bg-gray-900 rounded-[var(--ui-radius)] shadow-sm border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
           <p class="text-gray-700 dark:text-gray-200 mb-6 leading-relaxed">
-            Le niveau global affiché sur la fiche correspond <strong>au critère le plus défavorable</strong> parmi les trois. Un seul critère rouge suffit à classer le logiciel en rouge.
+            Le niveau global affiché sur la fiche du logiciel correspond <strong>au critère le moins favorable</strong> parmi les trois. Autrement dit : il suffit d'un seul critère rouge pour que le logiciel soit classé rouge dans son ensemble. C'est une approche prudente : on ne masque pas un point faible en le compensant par les autres.
           </p>
           <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-500 shadow-sm" aria-label="Validé">
@@ -276,7 +279,7 @@ const levelTokens = {
             </span>
           </div>
           <p class="text-sm text-gray-500 dark:text-gray-400 text-center mt-4 italic">
-            Hébergement Suisse + RGPD conforme + Collecte rouge = niveau global rouge.
+            Exemple : un logiciel hébergé en Suisse (vert) et conforme aux règles européennes (vert), mais qui revend les données à des annonceurs (rouge), est classé rouge.
           </p>
         </div>
       </section>
@@ -292,10 +295,10 @@ const levelTokens = {
           </div>
           <div>
             <p class="text-orange-800 dark:text-orange-300 font-semibold mb-2 leading-relaxed">
-              Au CEJEF, les logiciels hébergés aux États-Unis sont assimilés aux pays adéquats (niveau vigilance), au même titre que le Royaume-Uni, le Canada ou le Japon.
+              Au CEJEF, les logiciels hébergés aux États-Unis sont classés en vigilance — au même titre que ceux hébergés au Royaume-Uni, au Canada ou au Japon.
             </p>
             <p class="text-orange-700 dark:text-orange-400 text-sm leading-relaxed">
-              Ce choix concentre la vigilance sur les vrais risques : la <strong>collecte agressive</strong> et les <strong>transferts opaques</strong>. La rigueur passe par les critères <em>Conformité RGPD</em> et <em>Collecte de données</em>, qui restent évalués strictement.
+              Ce choix est un parti pris : plutôt que de marquer rouge tous les logiciels américains (ce qui interdirait la majorité des outils numériques utilisés en classe), nous concentrons l'attention sur les <strong>vrais risques</strong> : les éditeurs qui collectent vos données pour la publicité, les revendent à des entreprises tierces, ou les envoient dans des pays sans aucune protection. Ces risques sont mesurés par les deux autres critères (<em>Conformité aux règles européennes</em> et <em>Collecte de données</em>), qui restent évalués strictement.
             </p>
           </div>
         </div>
