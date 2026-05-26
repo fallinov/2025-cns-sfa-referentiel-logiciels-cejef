@@ -147,7 +147,7 @@ watch(isOpen, (open) => {
                 Pastille de classification
               </p>
               <p class="text-base text-gray-500 dark:text-gray-400">
-                Valide l'usage du logiciel avec les données des élèves (vert = autorisé, orange = restreint, rouge = interdit).
+                Valide l'usage du logiciel avec les données des élèves (vert = validé, orange = vigilance, rouge = interdit).
               </p>
             </div>
           </div>
@@ -212,7 +212,7 @@ watch(isOpen, (open) => {
     </template>
 
     <template #footer>
-      <div class="flex w-full" :class="step === 2 ? 'justify-between' : 'justify-end'">
+      <div class="flex w-full flex-wrap gap-2" :class="step === 2 ? 'justify-between' : 'justify-end'">
         <UButton
           v-if="step === 2"
           variant="ghost"
@@ -222,13 +222,25 @@ watch(isOpen, (open) => {
           Précédent
         </UButton>
 
-        <UButton
-          color="primary"
-          size="lg"
-          @click="step === 1 ? step = 2 : isOpen = false"
-        >
-          {{ step === 1 ? "Suivant" : "J'ai compris" }}
-        </UButton>
+        <div class="flex flex-wrap gap-2 justify-end">
+          <UButton
+            v-if="step === 2"
+            to="/classification"
+            variant="outline"
+            color="primary"
+            icon="i-lucide-book-open-check"
+            @click="isOpen = false"
+          >
+            Système de classification
+          </UButton>
+          <UButton
+            color="primary"
+            size="lg"
+            @click="step === 1 ? step = 2 : isOpen = false"
+          >
+            {{ step === 1 ? "Suivant" : "J'ai compris" }}
+          </UButton>
+        </div>
       </div>
     </template>
   </UModal>

@@ -21,7 +21,7 @@ const badgeConfig = computed(() => {
     case 2:
       return {
         src: `${baseURL}logos/cejef-badge-restreint.svg`.replace(/\/\/+/g, "/"),
-        alt: "Badge Restreint"
+        alt: "Badge Vigilance"
       }
     case 3:
       return {

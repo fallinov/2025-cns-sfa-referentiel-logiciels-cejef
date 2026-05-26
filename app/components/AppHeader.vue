@@ -7,7 +7,6 @@ const audienceStore = useAudienceStore()
 
 const links = computed(() => [
   { label: "Référentiel logiciels", to: "/", icon: "i-lucide-layout-grid", active: route.path === "/" },
-  { label: "Méthodologie", to: "/methodologie", icon: "i-lucide-book-open-check", active: route.path === "/methodologie" },
   { label: "Protection des données", to: "/protection-des-donnees", icon: "i-lucide-shield", active: route.path === "/protection-des-donnees" }
 ])
 

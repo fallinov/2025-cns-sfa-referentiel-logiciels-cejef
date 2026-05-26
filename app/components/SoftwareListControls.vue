@@ -43,7 +43,7 @@ const viewMode = defineModel<"grid" | "list">("viewMode", { required: true })
 
 const sortOptions = [
   { label: "Recommandés", value: "recommended" },
-  { label: "Autorisé → Interdit", value: "level-asc" },
+  { label: "Validé → Interdit", value: "level-asc" },
   { label: "Nom A → Z", value: "name-asc" },
   { label: "Plus récents", value: "date-desc" }
 ]

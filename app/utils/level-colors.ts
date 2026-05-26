@@ -89,8 +89,8 @@ export function getLevelIcon(level: Level): string {
 export function getLevelLabel(level: Level): string {
   if (!level) return ""
   const labels: Record<NonNullable<Level>, string> = {
-    1: "OK",
-    2: "Attention",
+    1: "Validé",
+    2: "Vigilance",
     3: "Interdit"
   }
   return labels[level]

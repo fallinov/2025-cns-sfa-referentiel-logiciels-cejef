@@ -82,7 +82,7 @@ export interface PedagogicalActivityRef {
 
 /**
  * Classification LGPD (Loi sur la protection des données)
- * Valeurs numériques: 0 = Non évaluée, 1 = OK, 2 = Attention, 3 = Interdit
+ * Valeurs numériques: 0 = Non évaluée, 1 = Validé, 2 = Vigilance, 3 = Interdit
  */
 export interface LgpdClassification {
   hosting: 0 | 1 | 2 | 3
@@ -93,7 +93,7 @@ export interface LgpdClassification {
 /**
  * Niveau de certification CEJEF :
  * null = pas de classification du tout, 0 = au moins un axe Non évalué (prudence),
- * 1 = OK, 2 = Attention, 3 = Interdit
+ * 1 = Validé, 2 = Vigilance, 3 = Interdit
  */
 export type CertificationLevel = 0 | 1 | 2 | 3 | null
 

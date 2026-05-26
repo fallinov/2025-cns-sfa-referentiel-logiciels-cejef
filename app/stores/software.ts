@@ -224,9 +224,19 @@ export const useSoftwareStore = defineStore("software", () => {
     }
 
     // Apply sorting
+    // Poids de tri : Validé (1) → Vigilance (2) → Interdit (3) → Non évaluée (0 → 4)
+    // → Logiciel inconnu (null → 5). Les fiches sans verdict tombent en queue plutôt
+    // qu'en tête, car elles ne sont pas exploitables pour un enseignant.
+    const sortWeight = (lvl: number | null | undefined): number => {
+      if (lvl === 1) return 1
+      if (lvl === 2) return 2
+      if (lvl === 3) return 3
+      if (lvl === 0) return 4
+      return 5
+    }
     filtered.sort((a, b) => {
-      const levelA = a.certificationLevel ?? getCertificationLevel(a.lgpd) ?? 99
-      const levelB = b.certificationLevel ?? getCertificationLevel(b.lgpd) ?? 99
+      const levelA = sortWeight(a.certificationLevel ?? getCertificationLevel(a.lgpd))
+      const levelB = sortWeight(b.certificationLevel ?? getCertificationLevel(b.lgpd))
       const nameA = a.name || ""
       const nameB = b.name || ""
       const approvedA = (a.approvedBySEN ? 1 : 0) + (a.approvedByCEJEF ? 1 : 0)
@@ -241,7 +251,7 @@ export const useSoftwareStore = defineStore("software", () => {
           // Tertiaire : alphabétique
           return nameA.localeCompare(nameB)
         case "level-asc":
-          // Validé (1) → Restreint (2) → Interdit (3)
+          // Validé (1) → Vigilance (2) → Interdit (3)
           if (levelA !== levelB) return levelA - levelB
           return nameA.localeCompare(nameB)
         case "name-asc":
