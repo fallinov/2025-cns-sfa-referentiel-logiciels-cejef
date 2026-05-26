@@ -103,21 +103,21 @@ describe("IconGridFilter.vue — seuil barre de recherche", () => {
 })
 
 describe("IconGridFilter.vue — modal grille", () => {
-  it("rend toutes les cartes triées (sélectionnées d'abord puis par count desc)", async () => {
+  it("rend toutes les cartes triées par count desc puis alphabétique (position stable, pas de selected-first)", async () => {
+    // La carte selectionnee NE remonte PAS en haut — la position reste stable
+    // pour preserver la reconnaissance spatiale (Material Design 3 / NN/g 2024).
     const wrapper = mount(IconGridFilter, {
       props: { items, title: "Filtrer", placeholder: "Catégories", leadingIcon: "i-lucide-tag", modelValue: ["eval"] },
       global: { stubs: globalStubs }
     })
     await wrapper.find("button").trigger("click")
-    // 4 items au total (4 cartes + 2 boutons footer + 1 bouton trigger)
     const allButtons = wrapper.findAll("button")
-    // Premier item rendu dans la grille doit être la sélection (eval)
-    const cardButtons = allButtons.filter(b => b.attributes("aria-pressed") !== undefined)
+    const cardButtons = allButtons.filter(b => b.attributes("aria-pressed") !== undefined || b.attributes("aria-disabled") === "true")
     expect(cardButtons).toHaveLength(4)
-    expect(cardButtons[0]!.text()).toContain("Évaluation")
-    // Ensuite par count desc : Bureautique (12), Création (8), Catégorie rare (1)
-    expect(cardButtons[1]!.text()).toContain("Bureautique")
-    expect(cardButtons[2]!.text()).toContain("Création")
+    // Tri par count decroissant : Bureautique (12), Création (8), Évaluation (6), Catégorie rare (1)
+    expect(cardButtons[0]!.text()).toContain("Bureautique")
+    expect(cardButtons[1]!.text()).toContain("Création")
+    expect(cardButtons[2]!.text()).toContain("Évaluation")
     expect(cardButtons[3]!.text()).toContain("Catégorie rare")
   })
 
@@ -153,6 +153,39 @@ describe("IconGridFilter.vue — modal grille", () => {
     await wrapper.find("button").trigger("click")
     const badge = wrapper.find(".badge")
     expect(badge.text()).toBe("2")
+  })
+
+  it("rend les cartes avec count=0 en mode disabled (aria-disabled + bouton :disabled)", async () => {
+    const withEmpty: TestItem[] = [
+      ...items,
+      { value: "empty", label: "Catégorie vide", count: 0, icon: "i-lucide-shield-check" }
+    ]
+    const wrapper = mount(IconGridFilter, {
+      props: { items: withEmpty, title: "Filtrer", placeholder: "Catégories", leadingIcon: "i-lucide-tag", modelValue: [] },
+      global: { stubs: globalStubs }
+    })
+    await wrapper.find("button").trigger("click")
+    const allButtons = wrapper.findAll("button")
+    const emptyCard = allButtons.find(b => b.text().includes("Catégorie vide"))
+    expect(emptyCard).toBeDefined()
+    expect(emptyCard!.attributes("aria-disabled")).toBe("true")
+    expect(emptyCard!.attributes("disabled")).toBeDefined()
+  })
+
+  it("clic sur une carte count=0 ne modifie pas la sélection (defense-in-depth)", async () => {
+    const withEmpty: TestItem[] = [
+      ...items,
+      { value: "empty", label: "Catégorie vide", count: 0, icon: null }
+    ]
+    const wrapper = mount(IconGridFilter, {
+      props: { items: withEmpty, title: "Filtrer", placeholder: "Catégories", leadingIcon: "i-lucide-tag", modelValue: [] },
+      global: { stubs: globalStubs }
+    })
+    await wrapper.find("button").trigger("click")
+    const emptyCard = wrapper.findAll("button").find(b => b.text().includes("Catégorie vide"))
+    // Force le click pour bypasser le :disabled HTML — verifie la garde JS
+    await emptyCard!.trigger("click")
+    expect(wrapper.props("modelValue")).toEqual([])
   })
 
   it("footer affiche 'Aucune sélection' quand vide, 'X sélectionnées' sinon", async () => {

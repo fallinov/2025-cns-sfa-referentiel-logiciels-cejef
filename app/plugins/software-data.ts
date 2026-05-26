@@ -11,20 +11,38 @@
  */
 
 import type { Software } from "~~/types/software"
+import type { CategoryEntry } from "~~/server/api/categories.get"
 
 export default defineNuxtPlugin(async () => {
   const softwareList = useState<Software[]>("software-list", () => [])
+  const categoryList = useState<CategoryEntry[]>("category-list", () => [])
   const isLoaded = useState<boolean>("software-list-loaded", () => false)
 
-  const { data, error } = await useFetch<Software[]>("/api/software", {
-    key: "software-list-initial",
-    default: () => []
-  })
+  // Fetch en parallele : la liste de logiciels et la taxonomie complete des
+  // categories (incluant les categories vides, affichees en mode disabled
+  // dans les filtres). Les deux sont independantes : si l'une echoue, l'autre
+  // peut quand meme alimenter l'UI.
+  const [softwareRes, categoryRes] = await Promise.all([
+    useFetch<Software[]>("/api/software", {
+      key: "software-list-initial",
+      default: () => []
+    }),
+    useFetch<CategoryEntry[]>("/api/categories", {
+      key: "category-list-initial",
+      default: () => []
+    })
+  ])
 
-  if (error.value) {
-    console.warn("[software-data] Erreur de chargement Directus :", error.value.message)
-  } else if (data.value) {
-    softwareList.value = data.value
+  if (softwareRes.error.value) {
+    console.warn("[software-data] Erreur de chargement logiciels :", softwareRes.error.value.message)
+  } else if (softwareRes.data.value) {
+    softwareList.value = softwareRes.data.value
+  }
+
+  if (categoryRes.error.value) {
+    console.warn("[software-data] Erreur de chargement categories :", categoryRes.error.value.message)
+  } else if (categoryRes.data.value) {
+    categoryList.value = categoryRes.data.value
   }
 
   isLoaded.value = true

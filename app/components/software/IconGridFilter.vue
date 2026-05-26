@@ -48,17 +48,19 @@ const filteredItems = computed(() =>
 )
 
 const sortedFiltered = computed(() =>
+  // Tri stable : compteur decroissant puis alphabetique. On ne fait PAS remonter
+  // les selectionnees — la reconnaissance spatiale est preservee (Material Design
+  // 3 / Nielsen Norman 2024 : pas de reordonnancement a la selection).
   [...filteredItems.value].sort((a, b) => {
-    // Sélectionnés d'abord, puis par compteur décroissant, puis alphabétique
-    const aSelected = selected.value.includes(a.value) ? 0 : 1
-    const bSelected = selected.value.includes(b.value) ? 0 : 1
-    if (aSelected !== bSelected) return aSelected - bSelected
     if (a.count !== b.count) return b.count - a.count
     return a.label.localeCompare(b.label, "fr")
   })
 )
 
-const toggle = (value: T) => {
+const toggle = (value: T, count: number) => {
+  // Cartes vides : non-cliquables (cf. mode disabled). Defense-in-depth en plus
+  // du :disabled HTML et du aria-disabled.
+  if (count === 0) return
   if (selected.value.includes(value)) {
     selected.value = selected.value.filter(v => v !== value)
   } else {
@@ -164,12 +166,18 @@ const triggerLabel = computed(() => {
             v-for="item in sortedFiltered"
             :key="item.value"
             type="button"
-            :aria-pressed="isSelected(item.value)"
-            class="group relative flex flex-col items-center justify-center gap-2 p-3 sm:p-4 rounded-[var(--ui-radius)] border-2 transition-all text-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-            :class="isSelected(item.value)
-              ? 'border-primary-500 bg-primary-50 dark:bg-primary-950/40 dark:border-primary-400'
-              : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/50'"
-            @click="toggle(item.value)"
+            :disabled="item.count === 0"
+            :aria-pressed="item.count > 0 ? isSelected(item.value) : undefined"
+            :aria-disabled="item.count === 0 ? 'true' : undefined"
+            class="group relative flex flex-col items-center justify-center gap-2 p-3 sm:p-4 rounded-[var(--ui-radius)] border-2 transition-all text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            :class="[
+              item.count === 0
+                ? 'border-gray-200 dark:border-gray-800 opacity-50 cursor-not-allowed bg-gray-50 dark:bg-gray-900/40'
+                : isSelected(item.value)
+                  ? 'border-primary-500 bg-primary-50 dark:bg-primary-950/40 dark:border-primary-400 cursor-pointer'
+                  : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer'
+            ]"
+            @click="toggle(item.value, item.count)"
           >
             <!-- Check overlay quand sélectionné -->
             <div
