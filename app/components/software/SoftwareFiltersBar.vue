@@ -129,6 +129,7 @@ const activityItems = computed(() =>
           :items="schoolLevelItems"
           value-key="value"
           multiple
+          :search-input="false"
           placeholder="Niveau scolaire"
           leading-icon="i-lucide-school"
           size="xl"
@@ -215,6 +216,7 @@ const activityItems = computed(() =>
               :items="schoolLevelItems"
               value-key="value"
               multiple
+              :search-input="false"
               placeholder="Tous niveaux"
               leading-icon="i-lucide-school"
               size="xl"
