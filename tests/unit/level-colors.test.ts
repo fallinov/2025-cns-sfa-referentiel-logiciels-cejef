@@ -73,8 +73,8 @@ describe("level-colors — 7 fonctions de mapping niveau → CSS/labels", () => 
   })
 
   describe("getLevelLabel — textes FR", () => {
-    it("niveau 1 → OK", () => expect(getLevelLabel(1)).toBe("OK"))
-    it("niveau 2 → Attention", () => expect(getLevelLabel(2)).toBe("Attention"))
+    it("niveau 1 → Validé", () => expect(getLevelLabel(1)).toBe("Validé"))
+    it("niveau 2 → Vigilance", () => expect(getLevelLabel(2)).toBe("Vigilance"))
     it("niveau 3 → Interdit", () => expect(getLevelLabel(3)).toBe("Interdit"))
     it("null → chaîne vide", () => expect(getLevelLabel(null)).toBe(""))
   })

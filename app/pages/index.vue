@@ -39,7 +39,16 @@ onMounted(() => {
         <p class="mt-2 text-base lg:text-lg text-gray-600 dark:text-gray-400">
           Logiciels pédagogiques classifiés selon la protection des données (LGPD).
         </p>
+        <NuxtLink
+          to="/classification"
+          class="mt-3 inline-flex items-center gap-1.5 text-sm sm:text-base font-semibold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 hover:gap-2.5 transition-all"
+        >
+          <UIcon name="i-lucide-book-open-check" class="w-4 h-4" />
+          Comprendre le système de classification
+          <UIcon name="i-lucide-arrow-right" class="w-4 h-4" />
+        </NuxtLink>
       </div>
+
       <SoftwarePageHeader />
       <SoftwareListContainer />
     </UContainer>

@@ -19,7 +19,7 @@ const { togglePopularFilter } = store
 
 const lgpdLevelOptions = [
   { label: "Niveau LGPD", value: "all" },
-  { label: "Autorisé", value: "1" },
+  { label: "Validé", value: "1" },
   { label: "Usage limité", value: "2" },
   { label: "Interdit", value: "3" }
 ]

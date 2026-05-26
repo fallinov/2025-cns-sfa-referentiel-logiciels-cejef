@@ -84,6 +84,15 @@ provide("openOnboarding", openOnboarding)
 
       <template #right>
         <UButton
+          to="/classification"
+          variant="ghost"
+          color="neutral"
+          size="sm"
+          icon="i-lucide-book-open-check"
+        >
+          Système de classification
+        </UButton>
+        <UButton
           to="/charte-graphique"
           variant="ghost"
           color="neutral"

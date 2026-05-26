@@ -14,7 +14,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   0: {
     fill: "text-gray-500 dark:text-gray-400",
     label: "Non évaluée",
-    icon: "i-lucide-help",
+    icon: "i-lucide-circle-help",
     bg: "bg-gray-50 dark:bg-gray-950",
     solidBg: "bg-gray-400 dark:bg-gray-500",
     ring: "ring-gray-400/20",
@@ -24,7 +24,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   },
   1: {
     fill: "text-green-500 dark:text-green-400",
-    label: "Autorisé",
+    label: "Validé",
     icon: "i-lucide-check",
     bg: "bg-green-50 dark:bg-green-950",
     solidBg: "bg-green-500 dark:bg-green-500",
@@ -35,7 +35,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   },
   2: {
     fill: "text-orange-500 dark:text-orange-400",
-    label: "Restreint",
+    label: "Vigilance",
     icon: "i-lucide-alert-triangle",
     bg: "bg-orange-50 dark:bg-orange-950",
     solidBg: "bg-orange-500 dark:bg-orange-500",
@@ -98,7 +98,7 @@ export function getCertificationColors(level: number | null | undefined): { bg: 
 export function getCertificationIcon(level: number | null | undefined): string {
   switch (level) {
     case 0:
-      return "i-lucide-help"
+      return "i-lucide-circle-help"
     case 1:
       return "i-lucide-check"
     case 2:
@@ -106,6 +106,6 @@ export function getCertificationIcon(level: number | null | undefined): string {
     case 3:
       return "i-lucide-x"
     default:
-      return "i-lucide-help-circle"
+      return "i-lucide-circle-help"
   }
 }

@@ -37,17 +37,17 @@ describe("getCertificationLevel — calcul depuis LGPD", () => {
 })
 
 describe("getCertificationConfig — helper UI complet", () => {
-  it("retourne la config du niveau 1 (Autorisé)", () => {
+  it("retourne la config du niveau 1 (Validé)", () => {
     const config = getCertificationConfig(1)
     expect(config).toBe(CERTIFICATION_LEVELS[1])
-    expect(config.label).toBe("Autorisé")
+    expect(config.label).toBe("Validé")
     expect(config.color).toBe("success")
     expect(config.icon).toBe("i-lucide-check")
   })
 
-  it("retourne la config du niveau 2 (Restreint)", () => {
+  it("retourne la config du niveau 2 (Vigilance)", () => {
     const config = getCertificationConfig(2)
-    expect(config.label).toBe("Restreint")
+    expect(config.label).toBe("Vigilance")
     expect(config.color).toBe("warning")
   })
 
@@ -62,7 +62,7 @@ describe("getCertificationConfig — helper UI complet", () => {
     expect(config).toBe(CERTIFICATION_LEVELS[0])
     expect(config.label).toBe("Non évaluée")
     expect(config.color).toBe("neutral")
-    expect(config.icon).toBe("i-lucide-help")
+    expect(config.icon).toBe("i-lucide-circle-help")
   })
 
   it("retourne DEFAULT_CERTIFICATION pour null", () => {
@@ -102,7 +102,7 @@ describe("getCertificationColors — extraction trio bg/bgLight/text", () => {
 
 describe("getCertificationIcon — switch simple", () => {
   it.each([
-    [0, "i-lucide-help"],
+    [0, "i-lucide-circle-help"],
     [1, "i-lucide-check"],
     [2, "i-lucide-alert-triangle"],
     [3, "i-lucide-x"]
@@ -110,15 +110,15 @@ describe("getCertificationIcon — switch simple", () => {
     expect(getCertificationIcon(lvl)).toBe(expected)
   })
 
-  it("null → icône help-circle (défaut)", () => {
-    expect(getCertificationIcon(null)).toBe("i-lucide-help-circle")
+  it("null → icône circle-help (défaut)", () => {
+    expect(getCertificationIcon(null)).toBe("i-lucide-circle-help")
   })
 
-  it("undefined → icône help-circle (défaut)", () => {
-    expect(getCertificationIcon(undefined)).toBe("i-lucide-help-circle")
+  it("undefined → icône circle-help (défaut)", () => {
+    expect(getCertificationIcon(undefined)).toBe("i-lucide-circle-help")
   })
 
-  it("niveau inconnu (4) → icône help-circle (défaut)", () => {
-    expect(getCertificationIcon(4)).toBe("i-lucide-help-circle")
+  it("niveau inconnu (4) → icône circle-help (défaut)", () => {
+    expect(getCertificationIcon(4)).toBe("i-lucide-circle-help")
   })
 })

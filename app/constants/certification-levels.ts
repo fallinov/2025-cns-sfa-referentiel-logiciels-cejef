@@ -25,9 +25,9 @@ export const CERTIFICATION_LEVELS: readonly CertificationLevelConfig[] = [
   },
   {
     value: 2,
-    label: "Restreint",
+    label: "Vigilance",
     description: "Usage sous conditions (données sensibles à éviter)",
-    badgeLabel: "Restreint",
+    badgeLabel: "Vigilance",
     badgeColor: "warning",
     icon: "i-lucide-alert-triangle"
   },
