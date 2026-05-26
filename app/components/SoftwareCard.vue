@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Software } from "~~/types/software"
 import { getCertificationConfig, getCertificationIcon } from "~/utils/certification"
+import { getSoftwareIcon } from "~/utils/software-icon"
 
 interface Props {
   software: Software
@@ -53,16 +54,9 @@ const handleCardClick = () => {
     <!-- Icon -->
     <div class="relative flex-shrink-0 w-16 h-16 flex items-center justify-center mb-2">
       <UIcon
-        v-if="software.icon"
-        :name="software.icon"
+        :name="getSoftwareIcon(software)"
         class="w-full h-full transition-colors duration-500 text-gray-600 dark:text-gray-300"
       />
-      <span
-        v-else
-        class="text-2xl font-black transition-colors duration-500 text-gray-600 dark:text-gray-300"
-      >
-        {{ software.name.substring(0, 2).toUpperCase() }}
-      </span>
     </div>
 
     <!-- Content -->

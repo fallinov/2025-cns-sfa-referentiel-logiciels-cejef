@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getCertificationLevel } from "~~/types/software"
 import { schoolLevelLabel, sortSchoolLevels } from "~/utils/school-level"
+import { getSoftwareIcon } from "~/utils/software-icon"
 
 /**
  * Page de détail d'un logiciel (version simplifiée)
@@ -178,7 +179,7 @@ const showLgpdDetails = ref(false)
         <!-- Decorative background element -->
         <div class="absolute top-0 right-0 p-12 pointer-events-none select-none">
           <UIcon
-            :name="software.icon || 'i-lucide-box'"
+            :name="getSoftwareIcon(software)"
             class="w-96 h-96 text-[#F3F4F6] dark:text-white transform rotate-12 translate-x-12 -translate-y-12"
           />
         </div>
@@ -189,13 +190,9 @@ const showLgpdDetails = ref(false)
             <div class="shrink-0 ml-1">
               <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
                 <UIcon
-                  v-if="software.icon"
-                  :name="software.icon"
+                  :name="getSoftwareIcon(software)"
                   class="w-full h-full text-gray-900 dark:text-white"
                 />
-                <span v-else class="text-4xl font-black text-gray-900 dark:text-white">
-                  {{ software.name.substring(0, 2).toUpperCase() }}
-                </span>
               </div>
             </div>
 
