@@ -74,6 +74,34 @@ describe("IconGridFilter.vue — bouton trigger", () => {
   })
 })
 
+describe("IconGridFilter.vue — seuil barre de recherche", () => {
+  it("masque la barre de recherche pour les listes < 15 items", async () => {
+    // 4 items < seuil → pas de barre
+    const wrapper = mount(IconGridFilter, {
+      props: { items, title: "Filtrer", placeholder: "Activités", leadingIcon: "i-lucide-puzzle", modelValue: [] },
+      global: { stubs: globalStubs }
+    })
+    await wrapper.find("button").trigger("click")
+    // Aucun input texte rendu dans la modale
+    expect(wrapper.find("input").exists()).toBe(false)
+  })
+
+  it("affiche la barre de recherche pour les listes >= 15 items", async () => {
+    const manyItems: TestItem[] = Array.from({ length: 15 }, (_, i) => ({
+      value: `item-${i}`,
+      label: `Item ${i}`,
+      count: i + 1,
+      icon: null
+    }))
+    const wrapper = mount(IconGridFilter, {
+      props: { items: manyItems, title: "Filtrer", placeholder: "Catégories", leadingIcon: "i-lucide-tag", modelValue: [] },
+      global: { stubs: globalStubs }
+    })
+    await wrapper.find("button").trigger("click")
+    expect(wrapper.find("input").exists()).toBe(true)
+  })
+})
+
 describe("IconGridFilter.vue — modal grille", () => {
   it("rend toutes les cartes triées (sélectionnées d'abord puis par count desc)", async () => {
     const wrapper = mount(IconGridFilter, {

@@ -22,6 +22,12 @@ const props = defineProps<{
   searchPlaceholder?: string
 }>()
 
+// Seuil au-dessus duquel la barre de recherche apparait. En dessous, la
+// liste est assez courte pour etre scannee d'un coup d'oeil et la barre
+// occuperait de l'espace pour rien (convention UX Booking/Notion : ~15 items).
+const SEARCH_THRESHOLD = 15
+const showSearch = computed(() => props.items.length >= SEARCH_THRESHOLD)
+
 const selected = defineModel<T[]>({ required: true })
 
 const isOpen = ref(false)
@@ -125,8 +131,11 @@ const triggerLabel = computed(() => {
     </template>
 
     <template #body>
-      <!-- Barre de recherche sticky : reste visible au scroll, sans wrapper qui crée des trous visuels -->
-      <div class="sticky top-0 z-10 bg-white dark:bg-gray-900 px-4 sm:px-6 py-3 border-b border-gray-100 dark:border-gray-800">
+      <!-- Barre de recherche sticky : visible uniquement au-dela du seuil (listes courtes scannables sans recherche) -->
+      <div
+        v-if="showSearch"
+        class="sticky top-0 z-10 bg-white dark:bg-gray-900 px-4 sm:px-6 py-3 border-b border-gray-100 dark:border-gray-800"
+      >
         <UInput
           v-model="search"
           :placeholder="searchPlaceholder ?? `Rechercher dans ${items.length} options…`"
