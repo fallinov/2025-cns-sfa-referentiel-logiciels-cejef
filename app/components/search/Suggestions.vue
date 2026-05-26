@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { Software } from "~~/types/software"
+import type { SoftwareSuggestion } from "~/composables/useSearchSuggestions"
+import { highlightMatch } from "~/utils/highlight-match"
 
 interface Suggestions {
   categories: string[]
   activities: string[]
-  software: Software[]
+  software: SoftwareSuggestion[]
 }
 
 interface PopularSearch {
@@ -30,11 +31,16 @@ const emit = defineEmits<{
 
 const suggestionsContainer = ref<HTMLElement | null>(null)
 
-// Helper to match the flat index from parent to the visual item
+// Ordre flat : Logiciels (#1, cible primaire) → Catégories (#2) → Activités (#3).
+// Cet ordre MOIT correspondre au parent (gestion clavier).
 const isItemSelected = (type: string, localIndex: number) => {
   let currentGlobalIndex = 0
 
-  // Order MUST match parent's flat list construction
+  if (type === "software") {
+    return props.selectedIndex === currentGlobalIndex + localIndex
+  }
+  currentGlobalIndex += props.suggestions.software.length
+
   if (type === "category") {
     return props.selectedIndex === currentGlobalIndex + localIndex
   }
@@ -43,22 +49,14 @@ const isItemSelected = (type: string, localIndex: number) => {
   if (type === "activity") {
     return props.selectedIndex === currentGlobalIndex + localIndex
   }
-  currentGlobalIndex += props.suggestions.activities.length
-
-  if (type === "software") {
-    return props.selectedIndex === currentGlobalIndex + localIndex
-  }
 
   return false
 }
 
-// Scroll into view logic
 watch(() => props.selectedIndex, async (newIndex) => {
   if (newIndex === -1 || !suggestionsContainer.value) return
-
   await nextTick()
   const selectedElement = suggestionsContainer.value.querySelector("[aria-selected=\"true\"]") as HTMLElement
-
   if (selectedElement) {
     selectedElement.scrollIntoView({ block: "nearest" })
   }
@@ -106,12 +104,60 @@ watch(() => props.selectedIndex, async (newIndex) => {
         </button>
       </div>
 
-      <!-- Regular search results (when typing) -->
+      <!-- Résultats : Logiciels d'abord (cible primaire), puis taxonomie -->
       <div v-else-if="search.length >= 2 && hasSuggestions">
-        <!-- Categories -->
-        <div v-if="suggestions.categories.length > 0">
+        <!-- 1. Logiciels (priorité absolue) -->
+        <div v-if="suggestions.software.length > 0">
           <div class="px-5 py-2 mt-1 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-            Catégories
+            Logiciels
+          </div>
+          <button
+            v-for="(item, index) in suggestions.software"
+            :key="`software-${item.software.id}`"
+            type="button"
+            role="option"
+            :aria-selected="isItemSelected('software', index)"
+            :class="[
+              'w-full text-left px-5 py-3 transition-colors flex items-start gap-3',
+              isItemSelected('software', index)
+                ? 'bg-gray-100 dark:bg-gray-700'
+                : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
+            ]"
+            @click="emit('clickSoftware', item.software.id)"
+          >
+            <UIcon
+              :name="item.software.icon || 'i-lucide-app-window'"
+              class="w-6 h-6 text-gray-500 dark:text-gray-400 shrink-0 mt-0.5"
+            />
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="text-base font-medium text-gray-900 dark:text-white truncate">
+                  <template
+                    v-for="(seg, segIdx) in highlightMatch(item.software.name, item.matches, 'name')"
+                    :key="`seg-${segIdx}`"
+                  >
+                    <mark
+                      v-if="seg.type === 'mark'"
+                      class="bg-primary-100 dark:bg-primary-900/50 text-primary-900 dark:text-primary-200 rounded-sm px-0.5"
+                    >{{ seg.value }}</mark>
+                    <template v-else>{{ seg.value }}</template>
+                  </template>
+                </span>
+              </div>
+              <div class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 mt-0.5">
+                {{ item.software.shortDescription }}
+              </div>
+            </div>
+            <span class="shrink-0 text-[10px] uppercase tracking-wider font-semibold text-gray-400 dark:text-gray-500 mt-1">
+              Logiciel
+            </span>
+          </button>
+        </div>
+
+        <!-- 2. Catégories (filtres secondaires) -->
+        <div v-if="suggestions.categories.length > 0">
+          <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+            Filtrer par catégorie
           </div>
           <button
             v-for="(category, index) in suggestions.categories"
@@ -120,7 +166,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
             role="option"
             :aria-selected="isItemSelected('category', index)"
             :class="[
-              'w-full text-left px-5 py-4 transition-colors flex items-center gap-4',
+              'w-full text-left px-5 py-3 transition-colors flex items-center gap-3',
               isItemSelected('category', index)
                 ? 'bg-gray-100 dark:bg-gray-700'
                 : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
@@ -131,14 +177,17 @@ watch(() => props.selectedIndex, async (newIndex) => {
               name="i-lucide-tag"
               class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
             />
-            <span class="text-base text-gray-900 dark:text-white">{{ category }}</span>
+            <span class="text-base text-gray-900 dark:text-white flex-1 truncate">{{ category }}</span>
+            <span class="shrink-0 text-[10px] uppercase tracking-wider font-semibold text-gray-400 dark:text-gray-500">
+              Catégorie
+            </span>
           </button>
         </div>
 
-        <!-- Activities -->
+        <!-- 3. Activités pédagogiques -->
         <div v-if="suggestions.activities.length > 0">
           <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-            Activités
+            Filtrer par activité pédagogique
           </div>
           <button
             v-for="(activity, index) in suggestions.activities"
@@ -147,7 +196,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
             role="option"
             :aria-selected="isItemSelected('activity', index)"
             :class="[
-              'w-full text-left px-5 py-4 transition-colors flex items-center gap-4',
+              'w-full text-left px-5 py-3 transition-colors flex items-center gap-3',
               isItemSelected('activity', index)
                 ? 'bg-gray-100 dark:bg-gray-700'
                 : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
@@ -158,57 +207,26 @@ watch(() => props.selectedIndex, async (newIndex) => {
               name="i-lucide-puzzle"
               class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
             />
-            <span class="text-base text-gray-900 dark:text-white">{{ activity }}</span>
-          </button>
-        </div>
-
-        <!-- Software -->
-        <div v-if="suggestions.software.length > 0">
-          <div class="px-5 py-2 mt-2 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-            Logiciels
-          </div>
-          <button
-            v-for="(software, index) in suggestions.software"
-            :key="`software-${software.id}`"
-            type="button"
-            role="option"
-            :aria-selected="isItemSelected('software', index)"
-            :class="[
-              'w-full text-left px-5 py-4 transition-colors flex items-start gap-4',
-              isItemSelected('software', index)
-                ? 'bg-gray-100 dark:bg-gray-700'
-                : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
-            ]"
-            @click="emit('clickSoftware', software.id)"
-          >
-            <UIcon
-              :name="software.icon || 'i-lucide-package'"
-              class="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0 mt-0.5"
-            />
-            <div class="flex-1 min-w-0">
-              <div class="text-base text-gray-900 dark:text-white truncate">
-                {{ software.name }}
-              </div>
-              <div class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 mt-0.5">
-                {{ software.shortDescription }}
-              </div>
-            </div>
+            <span class="text-base text-gray-900 dark:text-white flex-1 truncate">{{ activity }}</span>
+            <span class="shrink-0 text-[10px] uppercase tracking-wider font-semibold text-gray-400 dark:text-gray-500">
+              Activité
+            </span>
           </button>
         </div>
       </div>
 
-      <!-- Empty state -->
+      <!-- Empty state explicite avec suggestions de catégories populaires -->
       <div v-else-if="search.length >= 2 && !hasSuggestions">
-        <div class="p-8 text-center">
+        <div class="px-5 py-6 text-center">
           <UIcon
             name="i-lucide-search-x"
-            class="w-12 h-12 mx-auto text-gray-300 dark:text-gray-600 mb-3"
+            class="w-10 h-10 mx-auto text-gray-300 dark:text-gray-600 mb-3"
           />
-          <p class="text-sm text-gray-700 dark:text-gray-300">
-            Aucun résultat pour "{{ search }}"
+          <p class="text-sm text-gray-700 dark:text-gray-300 mb-1">
+            Aucun logiciel ne correspond à « {{ search }} ».
           </p>
-          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
-            Essayez avec d'autres mots-clés
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            Essayez par catégorie ou activité depuis les filtres ci-dessous.
           </p>
         </div>
       </div>
@@ -217,7 +235,6 @@ watch(() => props.selectedIndex, async (newIndex) => {
 </template>
 
 <style scoped>
-/* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
   width: 10px;
 }
@@ -228,22 +245,21 @@ watch(() => props.selectedIndex, async (newIndex) => {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #e2e8f0; /* gray-200 */
+  background-color: #e2e8f0;
   border-radius: 20px;
   border: 3px solid transparent;
   background-clip: content-box;
 }
 
 .custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1; /* gray-300 */
+  background-color: #cbd5e1;
 }
 
-/* Dark mode */
 :global(.dark) .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #374151; /* gray-700 */
+  background-color: #374151;
 }
 
 :global(.dark) .custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: #4b5563; /* gray-600 */
+  background-color: #4b5563;
 }
 </style>
