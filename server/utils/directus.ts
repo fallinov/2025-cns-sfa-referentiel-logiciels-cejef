@@ -39,7 +39,7 @@ export interface DirectusSoftware {
   cost: string | null
   funded_by_cejef: boolean | null
   funded_by_sen: boolean | null
-  target_audience: "élèves" | "enseignants" | "tous" | null
+  target_audience: "élèves" | "enseignants" | "enseignants et élèves" | null
   school_level: SchoolLevel[] | null
   tool_url: string
   doc_url: string | null

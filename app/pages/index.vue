@@ -37,7 +37,7 @@ onMounted(() => {
           Référentiel logiciels
         </h1>
         <p class="mt-2 text-base lg:text-lg text-gray-600 dark:text-gray-400">
-          Logiciels pédagogiques classifiés selon la protection des données (LGPD).
+          Logiciels pédagogiques classifiés selon la protection des données (LPD).
         </p>
         <NuxtLink
           to="/classification"

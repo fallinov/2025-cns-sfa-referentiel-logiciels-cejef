@@ -13,7 +13,7 @@ export interface CertificationConfig {
 export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   0: {
     fill: "text-gray-500 dark:text-gray-400",
-    label: "Non évaluée",
+    label: "Non évalué",
     icon: "i-lucide-circle-help",
     bg: "bg-gray-50 dark:bg-gray-950",
     solidBg: "bg-gray-400 dark:bg-gray-500",
@@ -24,7 +24,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   },
   1: {
     fill: "text-green-500 dark:text-green-400",
-    label: "Validé",
+    label: "Utilisable avec vos élèves",
     icon: "i-lucide-check",
     bg: "bg-green-50 dark:bg-green-950",
     solidBg: "bg-green-500 dark:bg-green-500",
@@ -35,7 +35,7 @@ export const CERTIFICATION_LEVELS: Record<number, CertificationConfig> = {
   },
   2: {
     fill: "text-orange-500 dark:text-orange-400",
-    label: "Vigilance",
+    label: "Réservé aux enseignants",
     icon: "i-lucide-alert-triangle",
     bg: "bg-orange-50 dark:bg-orange-950",
     solidBg: "bg-orange-500 dark:bg-orange-500",

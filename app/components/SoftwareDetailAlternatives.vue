@@ -13,7 +13,7 @@ defineProps<Props>()
     <div class="flex items-center gap-3 mb-2">
       <UIcon name="i-lucide-sparkles" class="w-7 h-7 text-gray-900 dark:text-gray-100" />
       <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
-        Alternatives recommandées
+        Logiciels alternatifs recommandés
       </h3>
     </div>
     <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">

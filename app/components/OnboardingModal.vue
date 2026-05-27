@@ -33,7 +33,7 @@ watch(step, () => {
             class="hidden sm:block w-7 h-7 text-primary-600 shrink-0"
           />
           <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-            {{ step === 1 ? "Classification LGPD" : "Comprendre une fiche" }}
+            {{ step === 1 ? "Classification LPD" : "Comprendre une fiche" }}
           </h2>
         </div>
         <span class="text-sm text-gray-400 dark:text-gray-500">{{ step }}/2</span>
@@ -41,10 +41,10 @@ watch(step, () => {
     </template>
 
     <template #body>
-      <!-- Étape 1 : Classification LGPD -->
+      <!-- Étape 1 : Classification LPD -->
       <div v-if="step === 1">
         <p class="text-base text-gray-600 dark:text-gray-300 mb-2">
-          Chaque logiciel est classifié selon la Loi sur la Protection des Données (LGPD).
+          Chaque logiciel est classifié selon la Loi sur la Protection des Données (LPD).
           Les couleurs indiquent le niveau d'utilisation autorisé avec les élèves.
         </p>
 
@@ -105,7 +105,7 @@ watch(step, () => {
 
         <!-- Carte miniature annotée -->
         <div class="relative bg-white dark:bg-gray-800 rounded-[var(--ui-radius)] border border-gray-200 dark:border-gray-700 p-5 max-w-sm mx-auto">
-          <!-- Badge LGPD -->
+          <!-- Badge LPD -->
           <div class="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-green-500 shadow-sm ring-2 ring-green-500">
             <UIcon name="i-lucide-check" class="w-6 h-6 text-white stroke-[3]" />
           </div>
@@ -188,7 +188,7 @@ watch(step, () => {
                 Compte edu.jura.ch
               </p>
               <p class="text-base text-gray-500 dark:text-gray-400">
-                La classification LGPD est validée uniquement avec le compte @edu.jura.ch (contrat institutionnel avec l'éditeur).
+                La classification LPD est validée uniquement avec le compte @edu.jura.ch (contrat institutionnel avec l'éditeur).
               </p>
             </div>
           </div>
