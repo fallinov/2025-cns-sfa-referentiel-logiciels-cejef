@@ -45,7 +45,7 @@ export const useSoftwareStore = defineStore("software", () => {
     },
     {
       id: "student-data-allowed",
-      label: "Utilisable avec élèves",
+      label: "Utilisable avec vos élèves",
       icon: "i-lucide-user-check",
       audience: null,
       predicate: (software: Software) => {

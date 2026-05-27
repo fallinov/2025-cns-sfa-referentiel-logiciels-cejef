@@ -17,24 +17,24 @@ export interface CertificationLevelConfig {
 export const CERTIFICATION_LEVELS: readonly CertificationLevelConfig[] = [
   {
     value: 1,
-    label: "Validé",
-    description: "Usage autorisé sans restriction particulière",
-    badgeLabel: "Validé",
+    label: "Utilisable avec vos élèves",
+    description: "Les élèves peuvent créer un compte et utiliser l'outil avec leurs vraies données.",
+    badgeLabel: "Utilisable avec vos élèves",
     badgeColor: "success",
     icon: "i-lucide-check"
   },
   {
     value: 2,
-    label: "Vigilance",
-    description: "Usage sous conditions (données sensibles à éviter)",
-    badgeLabel: "Vigilance",
+    label: "Réservé aux enseignants",
+    description: "Pas de données d'élèves. Les élèves peuvent l'utiliser avec un compte anonyme (adresse e-mail alias).",
+    badgeLabel: "Réservé aux enseignants",
     badgeColor: "warning",
     icon: "i-lucide-alert-triangle"
   },
   {
     value: 3,
     label: "Interdit",
-    description: "Usage non autorisé pour les données personnelles",
+    description: "Ne respecte pas les exigences de protection des données. Usage interdit.",
     badgeLabel: "Interdit",
     badgeColor: "error",
     icon: "i-lucide-x"

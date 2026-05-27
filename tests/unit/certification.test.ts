@@ -37,17 +37,17 @@ describe("getCertificationLevel — calcul depuis LGPD", () => {
 })
 
 describe("getCertificationConfig — helper UI complet", () => {
-  it("retourne la config du niveau 1 (Validé)", () => {
+  it("retourne la config du niveau 1 (Utilisable avec vos élèves)", () => {
     const config = getCertificationConfig(1)
     expect(config).toBe(CERTIFICATION_LEVELS[1])
-    expect(config.label).toBe("Validé")
+    expect(config.label).toBe("Utilisable avec vos élèves")
     expect(config.color).toBe("success")
     expect(config.icon).toBe("i-lucide-check")
   })
 
-  it("retourne la config du niveau 2 (Vigilance)", () => {
+  it("retourne la config du niveau 2 (Réservé aux enseignants)", () => {
     const config = getCertificationConfig(2)
-    expect(config.label).toBe("Vigilance")
+    expect(config.label).toBe("Réservé aux enseignants")
     expect(config.color).toBe("warning")
   })
 
@@ -57,10 +57,10 @@ describe("getCertificationConfig — helper UI complet", () => {
     expect(config.color).toBe("error")
   })
 
-  it("retourne la config du niveau 0 (Non évaluée — gris neutre)", () => {
+  it("retourne la config du niveau 0 (Non évalué — gris neutre)", () => {
     const config = getCertificationConfig(0)
     expect(config).toBe(CERTIFICATION_LEVELS[0])
-    expect(config.label).toBe("Non évaluée")
+    expect(config.label).toBe("Non évalué")
     expect(config.color).toBe("neutral")
     expect(config.icon).toBe("i-lucide-circle-help")
   })

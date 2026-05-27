@@ -40,8 +40,8 @@ const handleCardClick = () => {
     <div
       class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full shadow-sm ring-2 transition-colors duration-500 z-20"
       :class="[config.solidBg, config.ringSolid]"
-      :aria-label="`Certification LGPD: ${config.label}`"
-      :title="`Certification LGPD: ${config.label}`"
+      :aria-label="`Certification LPD: ${config.label}`"
+      :title="`Certification LPD: ${config.label}`"
       role="img"
     >
       <UIcon

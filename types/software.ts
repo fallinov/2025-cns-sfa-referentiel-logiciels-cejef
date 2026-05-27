@@ -53,7 +53,7 @@ export type DataLocation
     | "Hors UE"
     | "Inconnu"
 
-export type TargetAudience = "élèves" | "enseignants" | "tous"
+export type TargetAudience = "élèves" | "enseignants" | "enseignants et élèves"
 
 export type SchoolLevel
   = | "primaire"

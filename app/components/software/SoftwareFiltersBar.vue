@@ -18,9 +18,9 @@ const {
 const { togglePopularFilter } = store
 
 const lgpdLevelOptions = [
-  { label: "Niveau LGPD", value: "all" },
-  { label: "Validé", value: "1" },
-  { label: "Usage limité", value: "2" },
+  { label: "Niveau LPD", value: "all" },
+  { label: "Utilisable avec vos élèves", value: "1" },
+  { label: "Réservé aux enseignants", value: "2" },
   { label: "Interdit", value: "3" }
 ]
 

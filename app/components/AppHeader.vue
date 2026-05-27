@@ -32,7 +32,7 @@ const openOnboarding = inject<() => void>("openOnboarding")
           variant="ghost"
           color="neutral"
           icon="i-lucide-circle-help"
-          aria-label="Comprendre les couleurs LGPD"
+          aria-label="Comprendre les couleurs LPD"
           @click="openOnboarding?.()"
         />
       </UTooltip>

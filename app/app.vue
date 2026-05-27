@@ -10,7 +10,7 @@ useHead({
 
 const title = "Référentiel Logiciels CEJEF"
 const description
-  = "Référentiel de logiciels pédagogiques pour le CEJEF avec classification LGPD (Loi sur la protection des données)"
+  = "Référentiel de logiciels pédagogiques pour le CEJEF avec classification LPD (Loi sur la protection des données)"
 
 useSeoMeta({
   title,

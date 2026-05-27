@@ -49,12 +49,12 @@ describe("SoftwareDetailAlternatives.vue", () => {
       expect(wrapper.findAll("a")).toHaveLength(0)
     })
 
-    it("conserve le titre 'Alternatives recommandées' même en état vide", () => {
+    it("conserve le titre 'Logiciels alternatifs recommandés' même en état vide", () => {
       const wrapper = mount(SoftwareDetailAlternatives, {
         props: { alternatives: [] },
         global: { stubs: globalStubs }
       })
-      expect(wrapper.text()).toContain("Alternatives recommandées")
+      expect(wrapper.text()).toContain("Logiciels alternatifs recommandés")
     })
   })
 
