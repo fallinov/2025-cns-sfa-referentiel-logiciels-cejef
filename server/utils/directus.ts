@@ -10,8 +10,7 @@ import type {
   CategoryRef,
   ContractualSafeguard,
   PedagogicalActivityRef,
-  Software,
-  SchoolLevel
+  Software
 } from "~~/types/software"
 
 type LgpdValue = 0 | 1 | 2 | 3
@@ -40,7 +39,6 @@ export interface DirectusSoftware {
   funded_by_cejef: boolean | null
   funded_by_sen: boolean | null
   target_audience: "élèves" | "enseignants" | "enseignants et élèves" | null
-  school_level: SchoolLevel[] | null
   tool_url: string
   doc_url: string | null
   notes: string | null
@@ -173,7 +171,6 @@ export function mapSoftware(item: DirectusSoftware): Software {
     toolUrl: item.tool_url,
     documentation: item.doc_url,
     targetAudience: item.target_audience,
-    schoolLevel: item.school_level ?? [],
     requiresParentalConsent: item.requires_parental_consent,
     usageNotes: item.notes,
     categories,

@@ -19,7 +19,6 @@ function makeDirectusSoftware(overrides: Partial<DirectusSoftware> = {}): Direct
     funded_by_cejef: false,
     funded_by_sen: false,
     target_audience: null,
-    school_level: null,
     tool_url: "https://example.com",
     doc_url: null,
     notes: null,
@@ -103,18 +102,6 @@ describe("mapSoftware — transformation Directus → Software", () => {
     it("regroupe les 3 axes dans un objet lgpd", () => {
       const item = makeDirectusSoftware({ lgpd_hosting: 1, lgpd_rgpd: 2, lgpd_data_collection: 3 })
       expect(mapSoftware(item).lgpd).toEqual({ hosting: 1, rgpd: 2, dataCollection: 3 })
-    })
-  })
-
-  describe("school_level — niveaux scolaires", () => {
-    it("retourne le tableau tel quel si non null", () => {
-      const item = makeDirectusSoftware({ school_level: ["secondaire_2", "formation_professionnelle"] })
-      expect(mapSoftware(item).schoolLevel).toEqual(["secondaire_2", "formation_professionnelle"])
-    })
-
-    it("retourne [] si school_level est null", () => {
-      const item = makeDirectusSoftware({ school_level: null })
-      expect(mapSoftware(item).schoolLevel).toEqual([])
     })
   })
 
