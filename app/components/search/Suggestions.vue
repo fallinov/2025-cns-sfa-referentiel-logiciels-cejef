@@ -215,18 +215,29 @@ watch(() => props.selectedIndex, async (newIndex) => {
         </div>
       </div>
 
-      <!-- Empty state explicite avec suggestions de catégories populaires -->
+      <!-- Empty state avec CTA « proposer ce logiciel » (best practice UX : transformer
+           une frustration en action — l'utilisateur qui ne trouve pas son logiciel
+           dispose d'une porte d'entrée immédiate pour le signaler à l'équipe CNS) -->
       <div v-else-if="search.length >= 2 && !hasSuggestions">
         <div class="px-5 py-6 text-center">
           <UIcon
             name="i-lucide-search-x"
             class="w-10 h-10 mx-auto text-gray-300 dark:text-gray-600 mb-3"
           />
-          <p class="text-sm text-gray-700 dark:text-gray-300 mb-1">
+          <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
             Aucun logiciel ne correspond à « {{ search }} ».
           </p>
-          <p class="text-xs text-gray-500 dark:text-gray-400">
-            Essayez par catégorie ou activité depuis les filtres ci-dessous.
+          <UButton
+            :to="`mailto:steve.fallet@jura.ch?subject=Proposition%20de%20logiciel%20%C3%A0%20ajouter%20au%20r%C3%A9f%C3%A9rentiel&body=Bonjour%2C%0A%0AJe%20souhaite%20proposer%20le%20logiciel%20suivant%20pour%20une%20%C3%A9valuation%20et%20un%20ajout%20au%20r%C3%A9f%C3%A9rentiel%20%3A%0A%0ANom%20du%20logiciel%20%3A%20${encodeURIComponent(search)}%0AURL%20du%20site%20officiel%20%3A%20%0AUsage%20p%C3%A9dagogique%20%3A%20%0A%0AMerci%20%21`"
+            color="primary"
+            size="md"
+            icon="i-lucide-send"
+            class="font-semibold"
+          >
+            Proposer ce logiciel
+          </UButton>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">
+            Ou essayez par catégorie ou activité depuis les filtres ci-dessous.
           </p>
         </div>
       </div>
