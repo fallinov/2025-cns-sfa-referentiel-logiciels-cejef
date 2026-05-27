@@ -1,9 +1,8 @@
 import { defineStore } from "pinia"
-import type { CostType, SchoolLevel, Software } from "~~/types/software"
+import type { CostType, Software } from "~~/types/software"
 import { getCertificationLevel } from "~~/types/software"
 import type { CategoryEntry } from "~~/server/api/categories.get"
 import { expandSearchQuery, matchesSearch } from "~/utils/search"
-import { filterValidSchoolLevels, sortSchoolLevels } from "~/utils/school-level"
 
 export const useSoftwareStore = defineStore("software", () => {
   // Source de vérité : ref alimenté par plugins/software-data.ts (fetch /api/software → Directus)
@@ -19,7 +18,6 @@ export const useSoftwareStore = defineStore("software", () => {
   const selectedCertifications = ref<number[]>([])
   const selectedCategories = ref<string[]>([])
   const selectedActivities = ref<string[]>([])
-  const selectedSchoolLevels = ref<SchoolLevel[]>([])
   const selectedPopularFilters = ref<string[]>([])
   const selectedLgpdLevel = ref<number | null>(null)
   const sortBy = ref("recommended")
@@ -86,13 +84,7 @@ export const useSoftwareStore = defineStore("software", () => {
     return Array.from(activities).sort()
   })
 
-  const uniqueSchoolLevels = computed<SchoolLevel[]>(() => {
-    const levels = new Set<string>()
-    softwareList.value.forEach(s => s.schoolLevel?.forEach(l => levels.add(l)))
-    return sortSchoolLevels(filterValidSchoolLevels(Array.from(levels)))
-  })
-
-  // Compteurs : nombre de logiciels par catégorie / activité / niveau scolaire.
+  // Compteurs : nombre de logiciels par catégorie / activité.
   // Calculés sur la liste totale (pas filtrée) — pertinence stable même quand
   // d'autres filtres sont actifs. Pattern Booking.com/Amazon.
   const categoryCounts = computed<Record<string, number>>(() => {
@@ -110,16 +102,6 @@ export const useSoftwareStore = defineStore("software", () => {
     softwareList.value.forEach(s =>
       s.pedagogicalActivities?.forEach((a) => {
         counts[a.name] = (counts[a.name] ?? 0) + 1
-      })
-    )
-    return counts
-  })
-
-  const schoolLevelCounts = computed<Record<string, number>>(() => {
-    const counts: Record<string, number> = {}
-    softwareList.value.forEach(s =>
-      s.schoolLevel?.forEach((l) => {
-        counts[l] = (counts[l] ?? 0) + 1
       })
     )
     return counts
@@ -166,13 +148,6 @@ export const useSoftwareStore = defineStore("software", () => {
     if (selectedActivities.value.length > 0) {
       filtered = filtered.filter(software =>
         software.pedagogicalActivities?.some(a => selectedActivities.value.includes(a.name))
-      )
-    }
-
-    // Apply school level filter
-    if (selectedSchoolLevels.value.length > 0) {
-      filtered = filtered.filter(software =>
-        software.schoolLevel?.some(l => selectedSchoolLevels.value.includes(l))
       )
     }
 
@@ -274,7 +249,6 @@ export const useSoftwareStore = defineStore("software", () => {
       + (selectedLgpdLevel.value !== null ? 1 : 0)
       + selectedCategories.value.length
       + selectedActivities.value.length
-      + selectedSchoolLevels.value.length
   )
 
   const hasActiveFilters = computed(() => activeFiltersCount.value > 0)
@@ -298,7 +272,6 @@ export const useSoftwareStore = defineStore("software", () => {
     selectedLgpdLevel.value = null
     selectedCategories.value = []
     selectedActivities.value = []
-    selectedSchoolLevels.value = []
     searchQuery.value = ""
   }
 
@@ -309,29 +282,19 @@ export const useSoftwareStore = defineStore("software", () => {
     selectedLgpdLevel.value = null
     selectedCategories.value = []
     selectedActivities.value = []
-    selectedSchoolLevels.value = []
     // Keep searchQuery
   }
 
   const handleCategoryFilter = (category: string) => {
     selectedCategories.value = [category]
     selectedActivities.value = []
-    selectedSchoolLevels.value = []
     searchQuery.value = category
   }
 
   const handleActivityFilter = (activity: string) => {
     selectedActivities.value = [activity]
     selectedCategories.value = []
-    selectedSchoolLevels.value = []
     searchQuery.value = activity
-  }
-
-  const handleSchoolLevelFilter = (level: SchoolLevel) => {
-    selectedSchoolLevels.value = [level]
-    selectedCategories.value = []
-    selectedActivities.value = []
-    searchQuery.value = ""
   }
 
   return {
@@ -342,7 +305,6 @@ export const useSoftwareStore = defineStore("software", () => {
     selectedCertifications,
     selectedCategories,
     selectedActivities,
-    selectedSchoolLevels,
     selectedPopularFilters,
     selectedLgpdLevel,
     sortBy,
@@ -354,10 +316,8 @@ export const useSoftwareStore = defineStore("software", () => {
     // Getters
     uniqueCategories,
     uniqueActivities,
-    uniqueSchoolLevels,
     categoryCounts,
     activityCounts,
-    schoolLevelCounts,
     categoryIcons,
     activityIcons,
     filteredSoftwareList,
@@ -368,7 +328,6 @@ export const useSoftwareStore = defineStore("software", () => {
     clearAllFilters,
     resetFilters,
     handleCategoryFilter,
-    handleActivityFilter,
-    handleSchoolLevelFilter
+    handleActivityFilter
   }
 })

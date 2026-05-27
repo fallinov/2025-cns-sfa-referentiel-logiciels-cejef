@@ -55,13 +55,6 @@ export type DataLocation
 
 export type TargetAudience = "élèves" | "enseignants" | "enseignants et élèves"
 
-export type SchoolLevel
-  = | "primaire"
-    | "secondaire_1"
-    | "secondaire_2"
-    | "formation_professionnelle"
-    | "enseignement_specialise"
-
 /**
  * Référence d'une catégorie pédagogique (nom + icône Lucide optionnelle).
  * Provient de la collection Directus `category`.
@@ -149,7 +142,6 @@ export interface Software {
 
   // USAGE
   targetAudience?: TargetAudience | null
-  schoolLevel?: SchoolLevel[]
   requiresParentalConsent?: boolean
   usageNotes?: string | null
 

@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useSoftwareStore } from "~/stores/software"
 import { storeToRefs } from "pinia"
-import { SCHOOL_LEVEL_LABELS } from "~/utils/school-level"
-import type { SchoolLevel } from "~~/types/software"
 import IconGridFilter from "~/components/software/IconGridFilter.vue"
 
 const store = useSoftwareStore()
@@ -11,7 +9,6 @@ const {
   selectedLgpdLevel,
   selectedCategories,
   selectedActivities,
-  selectedSchoolLevels,
   isFiltersDrawerOpen
 } = storeToRefs(store)
 
@@ -30,14 +27,6 @@ const lgpdSelectValue = computed({
     selectedLgpdLevel.value = val === "all" ? null : Number(val)
   }
 })
-
-const schoolLevelItems = computed(() =>
-  store.uniqueSchoolLevels.map((value: SchoolLevel) => ({
-    label: SCHOOL_LEVEL_LABELS[value],
-    value,
-    count: store.schoolLevelCounts[value] ?? 0
-  }))
-)
 
 const categoryItems = computed(() =>
   store.uniqueCategories.map((name: string) => ({
@@ -123,19 +112,6 @@ const activityItems = computed(() =>
           search-placeholder="Rechercher une activité…"
         />
 
-        <!-- Multi-select niveau scolaire -->
-        <USelectMenu
-          v-model="selectedSchoolLevels"
-          :items="schoolLevelItems"
-          value-key="value"
-          multiple
-          :search-input="false"
-          placeholder="Niveau scolaire"
-          leading-icon="i-lucide-school"
-          size="xl"
-          class="w-56 rounded-[var(--ui-radius)] cursor-pointer"
-        />
-
         <!-- Boutons filtres populaires -->
         <UButton
           v-for="filter in store.popularFilters"
@@ -165,7 +141,7 @@ const activityItems = computed(() =>
           <!-- Dropdown niveau LGPD (Mobile) -->
           <div>
             <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
-              Niveau LGPD
+              Niveau LPD
             </div>
             <USelect
               v-model="lgpdSelectValue"
@@ -178,7 +154,7 @@ const activityItems = computed(() =>
             />
           </div>
 
-          <!-- Catégories / Activités / Niveau scolaire (Mobile) -->
+          <!-- Catégories / Activités (Mobile) -->
           <div>
             <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
               Catégories
@@ -207,23 +183,6 @@ const activityItems = computed(() =>
               search-placeholder="Rechercher une activité…"
             />
           </div>
-          <div>
-            <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
-              Niveau scolaire
-            </div>
-            <USelectMenu
-              v-model="selectedSchoolLevels"
-              :items="schoolLevelItems"
-              value-key="value"
-              multiple
-              :search-input="false"
-              placeholder="Tous niveaux"
-              leading-icon="i-lucide-school"
-              size="xl"
-              class="w-full rounded-[var(--ui-radius)] cursor-pointer"
-            />
-          </div>
-
           <!-- Filtres populaires (Mobile) -->
           <div>
             <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
