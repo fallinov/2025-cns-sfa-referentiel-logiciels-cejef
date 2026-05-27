@@ -403,7 +403,7 @@ const showLgpdDetails = ref(false)
         <!-- SIDEBAR (Right) -->
         <div class="lg:col-span-4 space-y-6">
           <!-- Alternatives recommandées (saisie manuelle dans Directus) -->
-          <SoftwareDetailAlternatives :alternatives="alternativesList" />
+          <SoftwareDetailAlternatives :alternatives="alternativesList" :software-name="software.name" />
 
           <!-- Info Card -->
           <SoftwareDetailPracticalInfo

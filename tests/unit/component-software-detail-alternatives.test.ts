@@ -21,6 +21,10 @@ const globalStubs = {
     props: ["name"],
     template: "<span :data-icon=\"name\" />"
   },
+  UButton: {
+    props: ["to", "color", "variant", "size", "icon"],
+    template: "<a :href=\"to\" class=\"u-button\"><slot /></a>"
+  },
   NuxtLink: {
     props: ["to"],
     template: "<a :href=\"to\"><slot /></a>"
@@ -33,20 +37,25 @@ const globalStubs = {
 
 describe("SoftwareDetailAlternatives.vue", () => {
   describe("État vide", () => {
-    it("affiche le message 'Pas d'alternative validée' quand alternatives est vide", () => {
+    it("affiche un CTA « Proposer une alternative » au lieu d'un message « pas d'alternative »", () => {
       const wrapper = mount(SoftwareDetailAlternatives, {
-        props: { alternatives: [] },
+        props: { alternatives: [], softwareName: "Adobe Acrobat" },
         global: { stubs: globalStubs }
       })
-      expect(wrapper.text()).toContain("Pas d'alternative validée")
+      expect(wrapper.text()).toContain("Proposer une alternative")
+      expect(wrapper.text()).not.toContain("Pas d'alternative validée")
     })
 
-    it("NE rend AUCUN lien quand alternatives est vide", () => {
+    it("le lien CTA est un mailto pré-rempli avec le nom du logiciel courant", () => {
       const wrapper = mount(SoftwareDetailAlternatives, {
-        props: { alternatives: [] },
+        props: { alternatives: [], softwareName: "Adobe Acrobat" },
         global: { stubs: globalStubs }
       })
-      expect(wrapper.findAll("a")).toHaveLength(0)
+      const ctaLink = wrapper.find(".u-button")
+      expect(ctaLink.exists()).toBe(true)
+      const href = ctaLink.attributes("href") ?? ""
+      expect(href).toContain("mailto:steve.fallet@jura.ch")
+      expect(href).toContain(encodeURIComponent("Adobe Acrobat"))
     })
 
     it("conserve le titre 'Logiciels alternatifs recommandés' même en état vide", () => {
@@ -97,13 +106,14 @@ describe("SoftwareDetailAlternatives.vue", () => {
       expect(text).toContain("Collaboration")
     })
 
-    it("NE montre PAS le message d'état vide quand des alternatives sont présentes", () => {
+    it("NE montre PAS le CTA d'état vide quand des alternatives sont présentes", () => {
       const alts = [makeSoftware({ id: "id-1", name: "Word" })]
       const wrapper = mount(SoftwareDetailAlternatives, {
-        props: { alternatives: alts },
+        props: { alternatives: alts, softwareName: "Adobe Acrobat" },
         global: { stubs: globalStubs }
       })
-      expect(wrapper.text()).not.toContain("Pas d'alternative validée")
+      expect(wrapper.text()).not.toContain("Proposer une alternative")
+      expect(wrapper.text()).not.toContain("Vous connaissez une alternative")
     })
   })
 })

@@ -3,9 +3,26 @@ import type { Software } from "~~/types/software"
 
 interface Props {
   alternatives: Software[]
+  softwareName?: string
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+
+// Mailto pré-rempli pour proposer une alternative au logiciel courant.
+// Tant qu'on n'a pas de boîte générique CNS, on cible steve.fallet@jura.ch.
+const proposeAlternativeMailto = computed(() => {
+  const subject = `Proposition d'alternative pour ${props.softwareName ?? "un logiciel"}`
+  const body = `Bonjour,
+
+Je souhaite proposer une alternative au logiciel « ${props.softwareName ?? ""} » dans le référentiel CEJEF :
+
+Nom de l'alternative :
+URL du site officiel :
+Pourquoi cette alternative est pertinente :
+
+Merci !`
+  return `mailto:steve.fallet@jura.ch?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+})
 </script>
 
 <template>
@@ -39,11 +56,21 @@ defineProps<Props>()
       </NuxtLink>
     </div>
 
-    <div
-      v-else
-      class="rounded-lg border border-dashed border-gray-300 dark:border-gray-700 p-4 text-sm text-gray-500 dark:text-gray-400"
-    >
-      Pas d'alternative validée pour ce logiciel.
+    <!-- Empty state : pas d'« il n'y a rien », à la place un CTA pour signaler une alternative
+         que le visiteur connaîtrait (recommandation UX NN/g : transformer un vide en action). -->
+    <div v-else class="text-center py-2">
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+        Vous connaissez une alternative pertinente à ce logiciel ?
+      </p>
+      <UButton
+        :to="proposeAlternativeMailto"
+        color="primary"
+        variant="outline"
+        size="md"
+        icon="i-lucide-send"
+      >
+        Proposer une alternative
+      </UButton>
     </div>
   </UCard>
 </template>
