@@ -6,7 +6,7 @@ defineOptions({
 useSeoMeta({
   title: "Système de classification — Référentiel Logiciels CEJEF",
   description:
-    "Comment le CEJEF classe les logiciels selon la protection des données : trois critères, quatre niveaux, une décision claire."
+    "Comment le SEN et le CNS classent les logiciels selon la protection des données : trois critères, quatre niveaux, une décision claire."
 })
 
 // Source unique : GRILLE-CLASSIFICATION-LGPD.md V1.4.1
@@ -161,7 +161,7 @@ const levelTokens = {
           Trois critères, quatre niveaux, une décision claire.
         </p>
         <p class="text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-          Le CEJEF évalue chaque logiciel pédagogique sur la manière dont il traite les données de ses utilisateurs (élèves, enseignants). Cette page explique comment cette évaluation est réalisée, pour que vous compreniez ce que signifie le niveau affiché sur la fiche de chaque logiciel.
+          Le SEN (Service de l'Enseignement, pour l'école obligatoire) et le CNS (Centre Numérique du CEJEF, pour le postobligatoire) évaluent chaque logiciel pédagogique sur la manière dont il traite les données de ses utilisateurs (élèves, enseignants). Cette page explique comment cette évaluation est réalisée, pour que vous compreniez ce que signifie le niveau affiché sur la fiche de chaque logiciel.
         </p>
       </header>
 
@@ -295,7 +295,7 @@ const levelTokens = {
           </div>
           <div>
             <p class="text-orange-800 dark:text-orange-300 font-semibold mb-2 leading-relaxed">
-              Au CEJEF, les logiciels hébergés aux États-Unis sont classés en vigilance — au même titre que ceux hébergés au Royaume-Uni, au Canada ou au Japon.
+              Au SEN et au CNS, les logiciels hébergés aux États-Unis sont classés en vigilance — au même titre que ceux hébergés au Royaume-Uni, au Canada ou au Japon.
             </p>
             <p class="text-orange-700 dark:text-orange-400 text-sm leading-relaxed">
               Ce choix est un parti pris : plutôt que de marquer rouge tous les logiciels américains (ce qui interdirait la majorité des outils numériques utilisés en classe), nous concentrons l'attention sur les <strong>vrais risques</strong> : les éditeurs qui collectent vos données pour la publicité, les revendent à des entreprises tierces, ou les envoient dans des pays sans aucune protection. Ces risques sont mesurés par les deux autres critères (<em>Conformité aux règles européennes</em> et <em>Collecte de données</em>), qui restent évalués strictement.
@@ -315,7 +315,7 @@ const levelTokens = {
           </div>
           <div>
             <p class="text-green-800 dark:text-green-300 font-semibold mb-2 leading-relaxed">
-              Certains éditeurs s'engagent contractuellement à protéger les données au-delà de leurs obligations par défaut. Quand le CEJEF (ou un service public suisse ou européen) a signé un tel contrat, l'évaluation en tient compte.
+              Certains éditeurs s'engagent contractuellement à protéger les données au-delà de leurs obligations par défaut. Quand le SEN, le CNS (ou un autre service public suisse ou européen) a signé un tel contrat, l'évaluation en tient compte.
             </p>
             <p class="text-green-700 dark:text-green-400 text-sm leading-relaxed mb-3">
               Trois garanties peuvent faire passer un logiciel au vert :
@@ -323,7 +323,7 @@ const levelTokens = {
             <ul class="space-y-2 text-sm text-green-700 dark:text-green-400 leading-relaxed mb-3">
               <li class="flex items-start gap-2">
                 <UIcon name="i-lucide-file-signature" class="w-4 h-4 mt-0.5 shrink-0" />
-                <span><strong>Contrat institutionnel signé avec le CEJEF</strong> qui détaille comment les données seront traitées.</span>
+                <span><strong>Contrat institutionnel signé avec le SEN ou le CNS</strong> qui détaille comment les données seront traitées.</span>
               </li>
               <li class="flex items-start gap-2">
                 <UIcon name="i-lucide-map-pin" class="w-4 h-4 mt-0.5 shrink-0" />
@@ -352,7 +352,7 @@ const levelTokens = {
               Une question sur un classement ?
             </h2>
             <p class="text-gray-600 dark:text-gray-300 text-sm">
-              Contactez le Centre Numérique du CEJEF (CNS) pour toute précision ou demande de révision.
+              Contactez le SEN (école obligatoire) ou le CNS (Centre Numérique du CEJEF, postobligatoire) pour toute précision ou demande de révision.
             </p>
           </div>
           <UButton

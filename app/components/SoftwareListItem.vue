@@ -50,20 +50,20 @@ const audienceStore = useAudienceStore()
         />
       </div>
 
-      <!-- Approuvé CEJEF -->
+      <!-- Approuvé CNS -->
       <div v-if="software.approvedByCEJEF" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
-          label="Approuvé CEJEF"
-          tooltip="Recommandé par le CEJEF (Service de la Formation Postobligatoire)"
+          label="Approuvé CNS"
+          tooltip="Recommandé par le CNS (Centre Numérique du CEJEF)"
           size="sm"
           hide-label
           class="lg:hidden bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
-          label="Approuvé CEJEF"
-          tooltip="Recommandé par le CEJEF (Service de la Formation Postobligatoire)"
+          label="Approuvé CNS"
+          tooltip="Recommandé par le CNS (Centre Numérique du CEJEF)"
           size="sm"
           class="hidden lg:inline-flex bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />

@@ -127,7 +127,7 @@ watch(step, () => {
           <div class="flex flex-wrap gap-2">
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-green-500 text-white text-sm">
               <UIcon name="i-lucide-badge-check" class="w-3.5 h-3.5" />
-              Approuvé CEJEF
+              Approuvé CNS
             </span>
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--ui-radius)] bg-blue-500 text-white text-sm">
               <UIcon name="i-lucide-at-sign" class="w-3.5 h-3.5" />
@@ -171,10 +171,10 @@ watch(step, () => {
             </div>
             <div>
               <p class="text-base font-semibold text-gray-900 dark:text-white">
-                Approuvé CEJEF / SEN
+                Approuvé SEN / CNS
               </p>
               <p class="text-base text-gray-500 dark:text-gray-400">
-                Logiciel recommandé et mis en avant par le service, généralement financé par celui-ci. À utiliser en priorité parmi les alternatives disponibles.
+                Logiciel recommandé et mis en avant par le service correspondant (SEN ou CNS), généralement financé par celui-ci. À utiliser en priorité parmi les alternatives disponibles.
               </p>
             </div>
           </div>

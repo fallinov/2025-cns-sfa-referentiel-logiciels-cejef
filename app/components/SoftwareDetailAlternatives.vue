@@ -14,7 +14,7 @@ const proposeAlternativeMailto = computed(() => {
   const subject = `Proposition d'alternative pour ${props.softwareName ?? "un logiciel"}`
   const body = `Bonjour,
 
-Je souhaite proposer une alternative au logiciel « ${props.softwareName ?? ""} » dans le référentiel CEJEF :
+Je souhaite proposer une alternative au logiciel « ${props.softwareName ?? ""} » dans le référentiel SEN / CNS :
 
 Nom de l'alternative :
 URL du site officiel :

@@ -83,8 +83,8 @@ const handleCardClick = () => {
       <SoftwareFeatureBadge
         v-if="software.approvedByCEJEF"
         icon="i-lucide-badge-check"
-        label="Approuvé CEJEF"
-        tooltip="Recommandé par le CEJEF (Service de la Formation Postobligatoire)"
+        label="Approuvé CNS"
+        tooltip="Recommandé par le CNS (Centre Numérique du CEJEF)"
         class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge

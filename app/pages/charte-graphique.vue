@@ -638,7 +638,7 @@ function copyToClipboard(text: string) {
               <div class="flex flex-wrap gap-3">
                 <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#1d7a3f] text-white text-sm">
                   <UIcon name="i-lucide-badge-check" class="w-3.5 h-3.5" />
-                  Approuve CEJEF
+                  Approuvé CNS
                 </span>
                 <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#2563eb] text-white text-sm">
                   <UIcon name="i-lucide-at-sign" class="w-3.5 h-3.5" />
