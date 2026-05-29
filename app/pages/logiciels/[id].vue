@@ -263,7 +263,7 @@ const showLgpdDetails = ref(false)
                   <span>Approuvé SEN</span>
                 </div>
                 <div
-                  v-if="software.approvedByCEJEF"
+                  v-if="software.approvedBySFP"
                   class="flex items-center gap-1.5 bg-green-500 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-badge-check" class="w-4 h-4" />

@@ -10,10 +10,10 @@ useSeoMeta({
 })
 
 // Encart contact adaptatif selon l'audience sélectionnée dans le header :
-// - audience SEN (école obligatoire) → contact = CNS
+// - audience SEN (école obligatoire)  → contact = SEN
 // - audience CEJEF (postobligatoire)  → contact = SFP
 const audienceStore = useAudienceStore()
-const contactService = computed(() => audienceStore.audience === "sen" ? "CNS" : "SFP")
+const contactService = computed(() => audienceStore.audience === "sen" ? "SEN" : "SFP")
 const contactMailto = computed(() => {
   const subject = `Référentiel logiciels — question sur un classement (${contactService.value})`
   return `mailto:steve.fallet@jura.ch?subject=${encodeURIComponent(subject)}`

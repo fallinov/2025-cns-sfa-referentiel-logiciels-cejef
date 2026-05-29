@@ -16,7 +16,7 @@ function makeDirectusSoftware(overrides: Partial<DirectusSoftware> = {}): Direct
     lgpd_data_collection: 1,
     data_location: "switzerland",
     cost: "Gratuit",
-    funded_by_cejef: false,
+    funded_by_sfp: false,
     funded_by_sen: false,
     target_audience: null,
     tool_url: "https://example.com",
@@ -26,7 +26,7 @@ function makeDirectusSoftware(overrides: Partial<DirectusSoftware> = {}): Direct
     requires_edu_account: false,
     requires_edulog: false,
     approved_by_sen: false,
-    approved_by_cejef: false,
+    approved_by_sfp: false,
     contractual_safeguards: null,
     date_created: null,
     date_updated: null,
@@ -113,7 +113,7 @@ describe("mapSoftware — transformation Directus → Software", () => {
         doc_url: "https://d.example",
         requires_edu_account: true,
         approved_by_sen: true,
-        approved_by_cejef: false,
+        approved_by_sfp: false,
         requires_parental_consent: true,
         target_audience: "élèves"
       })
@@ -123,7 +123,7 @@ describe("mapSoftware — transformation Directus → Software", () => {
       expect(result.documentation).toBe("https://d.example")
       expect(result.requiresEduAccount).toBe(true)
       expect(result.approvedBySEN).toBe(true)
-      expect(result.approvedByCEJEF).toBe(false)
+      expect(result.approvedBySFP).toBe(false)
       expect(result.requiresParentalConsent).toBe(true)
       expect(result.targetAudience).toBe("élèves")
     })
@@ -227,17 +227,17 @@ describe("mapSoftware — transformation Directus → Software", () => {
   })
 
   describe("prise en charge financière (funded_by_*)", () => {
-    it("mappe funded_by_cejef et funded_by_sen vers fundedByCejef / fundedBySEN", () => {
-      const item = makeDirectusSoftware({ funded_by_cejef: true, funded_by_sen: false })
+    it("mappe funded_by_sfp et funded_by_sen vers fundedBySFP / fundedBySEN", () => {
+      const item = makeDirectusSoftware({ funded_by_sfp: true, funded_by_sen: false })
       const result = mapSoftware(item)
-      expect(result.fundedByCejef).toBe(true)
+      expect(result.fundedBySFP).toBe(true)
       expect(result.fundedBySEN).toBe(false)
     })
 
     it("null Directus → false côté front (champ optionnel non rempli)", () => {
-      const item = makeDirectusSoftware({ funded_by_cejef: null, funded_by_sen: null })
+      const item = makeDirectusSoftware({ funded_by_sfp: null, funded_by_sen: null })
       const result = mapSoftware(item)
-      expect(result.fundedByCejef).toBe(false)
+      expect(result.fundedBySFP).toBe(false)
       expect(result.fundedBySEN).toBe(false)
     })
   })

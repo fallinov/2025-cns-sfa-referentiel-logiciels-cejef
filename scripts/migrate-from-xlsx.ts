@@ -153,7 +153,7 @@ async function importRow(row: XlsxRow): Promise<ImportResult> {
     lgpd_data_collection: score,
     data_location: dataLoc,
     cost: null,
-    funded_by_cejef: false,
+    funded_by_sfp: false,
     funded_by_sen: false,
     target_audience: null,
     tool_url: "https://placeholder.cejef.ch/a-completer",
@@ -163,7 +163,7 @@ async function importRow(row: XlsxRow): Promise<ImportResult> {
     requires_edu_account: false,
     requires_edulog: false,
     approved_by_sen: false,
-    approved_by_cejef: false,
+    approved_by_sfp: false,
     contractual_safeguards: null
   }
 

@@ -12,7 +12,7 @@ const props = defineProps<Props>()
 
 const fundingLabels = computed<string[]>(() => {
   const labels: string[] = []
-  if (props.software.fundedByCejef) labels.push("SFP")
+  if (props.software.fundedBySFP) labels.push("SFP")
   if (props.software.fundedBySEN) labels.push("SEN")
   return labels
 })

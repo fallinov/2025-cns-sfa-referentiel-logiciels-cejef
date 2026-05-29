@@ -74,7 +74,7 @@ const handleCardClick = () => {
         class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
-        v-if="software.approvedByCEJEF"
+        v-if="software.approvedBySFP"
         icon="i-lucide-badge-check"
         label="Approuvé SFP"
         tooltip="Recommandé par le SFP (Service de la Formation Postobligatoire)"
