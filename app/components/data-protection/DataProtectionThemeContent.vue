@@ -21,7 +21,9 @@ function copyLink(id: string) {
   const url = `${window.location.origin}${window.location.pathname}#${id}`
   navigator.clipboard.writeText(url)
   copiedId.value = id
-  setTimeout(() => { copiedId.value = null }, 1500)
+  setTimeout(() => {
+    copiedId.value = null
+  }, 1500)
 }
 
 // Construire les items pour UAccordion

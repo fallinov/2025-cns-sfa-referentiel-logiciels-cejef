@@ -36,7 +36,7 @@ export const useSoftwareStore = defineStore("software", () => {
     },
     {
       id: "approved-cejef",
-      label: "Approuvé CNS",
+      label: "Approuvé SFP",
       icon: "i-lucide-badge-check",
       audience: "cejef" as const,
       predicate: (software: Software) => !!software.approvedByCEJEF

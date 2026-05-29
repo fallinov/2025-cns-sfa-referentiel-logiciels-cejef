@@ -4,8 +4,8 @@ defineOptions({
 })
 
 useSeoMeta({
-  title: "Charte graphique — Applications SFP / SEN / CEJEF",
-  description: "Charte graphique officielle pour les applications du Service de la Formation Professionnelle."
+  title: "Charte graphique — Applications SEN / SFP",
+  description: "Charte graphique officielle pour les applications du SEN (Service de l'Enseignement) et du SFP (Service de la Formation Postobligatoire)."
 })
 
 // Palette interface
@@ -138,7 +138,7 @@ function copyToClipboard(text: string) {
           Charte graphique
         </h1>
         <p class="mt-2 text-base lg:text-lg text-gray-600 dark:text-gray-400">
-          Identite visuelle officielle pour les applications SFP / SEN / CEJEF.
+          Identite visuelle officielle pour les applications SEN / SFP.
         </p>
 
         <!-- Resume executif -->
@@ -638,7 +638,7 @@ function copyToClipboard(text: string) {
               <div class="flex flex-wrap gap-3">
                 <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#1d7a3f] text-white text-sm">
                   <UIcon name="i-lucide-badge-check" class="w-3.5 h-3.5" />
-                  Approuvé CNS
+                  Approuvé SFP
                 </span>
                 <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#2563eb] text-white text-sm">
                   <UIcon name="i-lucide-at-sign" class="w-3.5 h-3.5" />

@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type { Software } from "~~/types/software"
 
-const props = defineProps<{
+defineProps<{
   software: Software
 }>()
-
-const audienceStore = useAudienceStore()
 </script>
 
 <template>
@@ -50,20 +48,20 @@ const audienceStore = useAudienceStore()
         />
       </div>
 
-      <!-- Approuvé CNS -->
+      <!-- Approuvé SFP -->
       <div v-if="software.approvedByCEJEF" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
-          label="Approuvé CNS"
-          tooltip="Recommandé par le CNS (Centre Numérique du CEJEF)"
+          label="Approuvé SFP"
+          tooltip="Recommandé par le SFP (Service de la Formation Postobligatoire)"
           size="sm"
           hide-label
           class="lg:hidden bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
-          label="Approuvé CNS"
-          tooltip="Recommandé par le CNS (Centre Numérique du CEJEF)"
+          label="Approuvé SFP"
+          tooltip="Recommandé par le SFP (Service de la Formation Postobligatoire)"
           size="sm"
           class="hidden lg:inline-flex bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
         />

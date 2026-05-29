@@ -110,9 +110,9 @@ const lgpdLabels = computed(() => ({
 
 // Meta tags pour SEO
 useSeoMeta({
-  title: `${software.value.name} - Référentiel Logiciels CEJEF`,
+  title: `${software.value.name} - Référentiel Logiciels SEN / SFP`,
   description: software.value.shortDescription,
-  ogTitle: `${software.value.name} - Référentiel Logiciels CEJEF`,
+  ogTitle: `${software.value.name} - Référentiel Logiciels SEN / SFP`,
   ogDescription: software.value.shortDescription
 })
 
@@ -267,7 +267,7 @@ const showLgpdDetails = ref(false)
                   class="flex items-center gap-1.5 bg-green-500 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-badge-check" class="w-4 h-4" />
-                  <span>Approuvé CNS</span>
+                  <span>Approuvé SFP</span>
                 </div>
               </div>
             </div>

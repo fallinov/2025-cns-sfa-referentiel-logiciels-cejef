@@ -22,7 +22,7 @@ const demoSoftware = computed(() => softwareList.value.slice(0, 6))
                 Liquid Glass Cards - Demo
               </h1>
               <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-widest">
-                CEJEF • Design Prototype
+                SEN / SFP • Design Prototype
               </p>
             </div>
           </div>
@@ -66,7 +66,7 @@ const demoSoftware = computed(() => softwareList.value.slice(0, 6))
       <footer class="border-t border-white/20 bg-white/10 dark:bg-black/20 backdrop-blur-md mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p class="text-base text-slate-600 dark:text-slate-400 font-medium">
-            © 2024 CEJEF — Centre de formation
+            © 2026 SEN et SFP — Canton du Jura
           </p>
           <div class="flex gap-6 text-sm font-semibold text-slate-500 dark:text-slate-500 uppercase tracking-wider">
             <a href="#" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Confidentialité</a>

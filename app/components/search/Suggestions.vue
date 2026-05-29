@@ -217,7 +217,7 @@ watch(() => props.selectedIndex, async (newIndex) => {
 
       <!-- Empty state avec CTA « proposer ce logiciel » (best practice UX : transformer
            une frustration en action — l'utilisateur qui ne trouve pas son logiciel
-           dispose d'une porte d'entrée immédiate pour le signaler à l'équipe CNS) -->
+           dispose d'une porte d'entrée immédiate pour le signaler à l'équipe SFP) -->
       <div v-else-if="search.length >= 2 && !hasSuggestions">
         <div class="px-5 py-6 text-center">
           <UIcon

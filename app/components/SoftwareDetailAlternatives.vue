@@ -9,12 +9,12 @@ interface Props {
 const props = defineProps<Props>()
 
 // Mailto pré-rempli pour proposer une alternative au logiciel courant.
-// Tant qu'on n'a pas de boîte générique CNS, on cible steve.fallet@jura.ch.
+// Tant qu'on n'a pas de boîte générique SFP, on cible steve.fallet@jura.ch.
 const proposeAlternativeMailto = computed(() => {
   const subject = `Proposition d'alternative pour ${props.softwareName ?? "un logiciel"}`
   const body = `Bonjour,
 
-Je souhaite proposer une alternative au logiciel « ${props.softwareName ?? ""} » dans le référentiel SEN / CNS :
+Je souhaite proposer une alternative au logiciel « ${props.softwareName ?? ""} » dans le référentiel SEN / SFP :
 
 Nom de l'alternative :
 URL du site officiel :

@@ -63,7 +63,7 @@ const openOnboarding = inject<() => void>("openOnboarding")
             :aria-pressed="audienceStore.audience === 'cejef'"
             @click="audienceStore.setAudience('cejef')"
           >
-            CEJEF
+            SFP
           </button>
         </div>
       </ClientOnly>
@@ -113,7 +113,7 @@ const openOnboarding = inject<() => void>("openOnboarding")
             : 'text-gray-500 dark:text-gray-400'"
           @click="audienceStore.setAudience('cejef')"
         >
-          CEJEF
+          SFP
         </button>
       </div>
     </template>
