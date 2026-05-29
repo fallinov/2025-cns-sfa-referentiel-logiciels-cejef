@@ -1,8 +1,8 @@
-# Référentiel Logiciels CEJEF
+# Référentiel Logiciels SEN / SFP
 
 > Projet lié au CNS : voir `~/CNS/CLAUDE.md`
 
-Catalogue de logiciels éducatifs pour le CEJEF avec classifications LGPD (protection des données). Données stockées dans Directus 11 (Noirmont), site statique prefetché depuis Directus au build.
+Catalogue de logiciels éducatifs du Canton du Jura (SEN + SFP) avec classifications LPD (Loi sur la protection des données). Données stockées dans Directus 11 (Noirmont), frontend Nuxt 4 SSR déployé sur Vercel (https://logiciels.vercel.app).
 
 <!-- Documentation détaillée dans docs/ -->
 
