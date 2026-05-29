@@ -12,7 +12,6 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const { getSoftwareById } = useSoftware()
 
 const showLgpdDetails = defineModel<boolean>("showDetails", { default: false })
 
@@ -240,7 +239,7 @@ const config = computed(() => {
           </div>
         </div>
 
-        <!-- Remarque interne CNS retirée en V1 (champ fusionné avec notes) -->
+        <!-- Remarque interne retirée en V1 (champ fusionné avec notes) -->
       </div>
     </div>
   </div>

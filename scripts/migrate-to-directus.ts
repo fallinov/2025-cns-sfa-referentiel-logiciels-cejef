@@ -116,7 +116,7 @@ async function importSoftware(s: Software): Promise<void> {
     lgpd_data_collection: s.lgpd.dataCollection,
     data_location: mapDataLocation(s.dataLocation),
     cost: s.cost,
-    funded_by_cejef: s.fundedByCejef ?? false,
+    funded_by_sfp: s.fundedBySFP ?? false,
     funded_by_sen: s.fundedBySEN ?? false,
     target_audience: s.targetAudience ?? null,
     tool_url: s.toolUrl,
@@ -126,7 +126,7 @@ async function importSoftware(s: Software): Promise<void> {
     requires_edu_account: s.requiresEduAccount ?? false,
     requires_edulog: s.requiresEdulog ?? false,
     approved_by_sen: s.approvedBySEN ?? false,
-    approved_by_cejef: false, // Pas dans le legacy
+    approved_by_sfp: false, // Pas dans le legacy
     status: "draft" as const, // Toutes les fiches importées sont en brouillon
     categories: categoryIds.map(id => ({ category_id: id })),
     pedagogical_activities: activityIds.map(id => ({ pedagogical_activity_id: id }))
@@ -135,7 +135,7 @@ async function importSoftware(s: Software): Promise<void> {
   if (DRY_RUN) {
     console.log(`[DRY] ${s.name}`)
     console.log(`      data_location: ${s.dataLocation} → ${payload.data_location}`)
-    console.log(`      cost: ${s.cost}${payload.funded_by_cejef ? " + funded_by_cejef" : ""}`)
+    console.log(`      cost: ${s.cost}${payload.funded_by_sfp ? " + funded_by_sfp" : ""}`)
     console.log(`      categories: ${(s.categories ?? []).join(", ") || "—"}`)
     return
   }

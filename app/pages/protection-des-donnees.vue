@@ -4,7 +4,7 @@ defineOptions({
 })
 
 useSeoMeta({
-  title: "Protection des données — Référentiel Logiciels CEJEF",
+  title: "Protection des données — Référentiel Logiciels SEN / SFP",
   description: "Mesures prises par le Canton du Jura pour la protection des données dans l'enseignement."
 })
 

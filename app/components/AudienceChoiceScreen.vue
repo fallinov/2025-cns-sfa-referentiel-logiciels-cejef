@@ -32,8 +32,8 @@ const audienceStore = useAudienceStore()
           @click="audienceStore.setAudience('cejef')"
         >
           <UIcon name="i-lucide-school" class="w-8 h-8 text-gray-400 group-hover:text-primary-500 transition-colors" aria-hidden="true" />
-          <span class="text-lg font-semibold text-gray-900 dark:text-white">CEJEF</span>
-          <span class="text-base text-gray-500 dark:text-gray-400">Formation postobligatoire</span>
+          <span class="text-lg font-semibold text-gray-900 dark:text-white">SFP</span>
+          <span class="text-base text-gray-500 dark:text-gray-400">Service de la formation postobligatoire</span>
         </button>
       </div>
     </div>

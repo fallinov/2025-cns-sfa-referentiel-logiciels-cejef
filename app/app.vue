@@ -8,9 +8,9 @@ useHead({
   }
 })
 
-const title = "Référentiel Logiciels CEJEF"
+const title = "Référentiel Logiciels SEN / SFP"
 const description
-  = "Référentiel de logiciels pédagogiques pour le CEJEF avec classification LPD (Loi sur la protection des données)"
+  = "Référentiel de logiciels pédagogiques du Canton du Jura (SEN et SFP) avec classification LPD (Loi sur la protection des données)"
 
 useSeoMeta({
   title,
@@ -78,7 +78,7 @@ provide("openOnboarding", openOnboarding)
     <UFooter>
       <template #left>
         <p class="text-sm text-gray-600 dark:text-gray-400">
-          Service de la formation postobligatoire (SFP) • {{ new Date().getFullYear() }}
+          Une application réalisée par le SEN et le SFP • {{ new Date().getFullYear() }}
         </p>
       </template>
 

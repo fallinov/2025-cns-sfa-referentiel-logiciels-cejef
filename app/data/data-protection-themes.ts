@@ -48,9 +48,9 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
             icon: "i-lucide-landmark",
             description: "Plusieurs directives liées à la protection des données ont déjà été édictées par le ministre de la Formation. Elles définissent des lignes directrices claires concernant les pratiques pédagogiques numériques et l'usage encadré de certains outils technologiques dans les établissements scolaires.<br><br><strong>Directives disponibles :</strong><ul><li>Utilisation du téléphone portable dans les écoles obligatoires jurassiennes</li><li>Prises de vue et enregistrements sonores dans le cadre d'activités pédagogiques à l'école obligatoire</li><li>Intelligence artificielle générative — Recommandations pour l'école obligatoire</li></ul>",
             resources: [
-              { title: "Directive — Téléphone portable", url: "https://drive.google.com/file/d/140Vk_4_q5puwkmhrlZqDCp4_iFc1PuO8/view?usp=sharing", source: "CEJEF", type: "document" },
-              { title: "Directive — Prises de vue et enregistrements sonores", url: "https://drive.google.com/file/d/1WSmEwz8TvbwNBvCzogMvhh-2gIBGiCUU/view?usp=drive_link", source: "CEJEF", type: "document" },
-              { title: "Directive — Intelligence artificielle générative", url: "https://drive.google.com/file/d/1lzfEraujC-FDIyrq74aavJb2cmWSQUsj/view?usp=drive_link", source: "CEJEF", type: "document" }
+              { title: "Directive — Téléphone portable", url: "https://drive.google.com/file/d/140Vk_4_q5puwkmhrlZqDCp4_iFc1PuO8/view?usp=sharing", source: "SFP", type: "document" },
+              { title: "Directive — Prises de vue et enregistrements sonores", url: "https://drive.google.com/file/d/1WSmEwz8TvbwNBvCzogMvhh-2gIBGiCUU/view?usp=drive_link", source: "SFP", type: "document" },
+              { title: "Directive — Intelligence artificielle générative", url: "https://drive.google.com/file/d/1lzfEraujC-FDIyrq74aavJb2cmWSQUsj/view?usp=drive_link", source: "SFP", type: "document" }
             ]
           }
         ]
@@ -200,7 +200,7 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
             description: "Un diplôme particulier est requis pour exercer la fonction de coordinateur numérique en établissement. Le Canton du Jura a collaboré avec la HEP-BEJUNE à l'élaboration du CAS CNE afin de développer une nouvelle offre de formation. Un axe entier de cette dernière est consacré au domaine de la protection des données et de la sécurité informatique. Lors des séances de rencontre entre coordinateurs numériques du canton, une intervention régulière est consacrée aux enjeux de la protection des données dans l'éducation.",
             resources: [
               { title: "CAS Coordinateur numérique en établissement", url: "https://www.hep-bejune.ch/fr/Formations-continues/Formations-postgrades/CAS/Coordinateur-numerique-en-etablissement/CAS-Coordinateur-ou-coordinatrice-numerique-en-etablissement.html", source: "HEP-BEJUNE", type: "link" },
-              { title: "Cahier des charges des responsables numériques", url: "https://drive.google.com/file/d/1YyuXqpJ59Ph64L0F7miRTBarj8SWVxG5/view?usp=sharing", source: "CEJEF", type: "document" }
+              { title: "Cahier des charges des responsables numériques", url: "https://drive.google.com/file/d/1YyuXqpJ59Ph64L0F7miRTBarj8SWVxG5/view?usp=sharing", source: "SFP", type: "document" }
             ]
           }
         ]
@@ -214,7 +214,7 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
             id: "documents-reference-contenu",
             title: "Documents de référence",
             icon: "i-lucide-book-open",
-            description: "Le CEIJ et le CEJEF encadrent l'utilisation des outils et plateformes numériques dans le domaine de l'éducation. Ces outils sont évalués selon des critères précis, permettant de déterminer leur niveau de sécurité, en particulier en matière de protection des données des élèves. La Confédération met également à disposition une plateforme (navigateur Educa) qui a les mêmes ambitions.",
+            description: "Le SEN et le SFP encadrent l'utilisation des outils et plateformes numériques dans le domaine de l'éducation. Ces outils sont évalués selon des critères précis, permettant de déterminer leur niveau de sécurité, en particulier en matière de protection des données des élèves. La Confédération met également à disposition une plateforme (navigateur Educa) qui a les mêmes ambitions.",
             resources: [
               { title: "Navigateur Educa", url: "https://navi.educa.ch/", source: "Educa", type: "link" }
             ]
@@ -257,7 +257,7 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
             icon: "i-lucide-list-checks",
             description: "Les enseignants doivent être capables de :<ol><li>Reconnaître avec quel type de données ils travaillent</li><li>Traiter les données d'après leur type</li><li>Conserver les données selon le niveau de sécurité adéquat</li><li>Être vigilants avec les travaux d'élèves</li><li>Travailler avec les données personnelles mais ne pas utiliser de données sensibles dans les documents</li></ol>",
             resources: [
-              { title: "Guide des compétences fondamentales (PDF)", url: "https://drive.google.com/file/d/1LOjjgCu-L5W7lx2Jb0phHYmI2MvconU_/view?usp=sharing", source: "CEJEF", type: "document" }
+              { title: "Guide des compétences fondamentales (PDF)", url: "https://drive.google.com/file/d/1LOjjgCu-L5W7lx2Jb0phHYmI2MvconU_/view?usp=sharing", source: "SFP", type: "document" }
             ]
           }
         ]
@@ -274,7 +274,7 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
             description: "Des conférences ont été organisées sur le thème de la sécurité informatique et de la protection des données. Parmi les conférenciers figurent le PPDT JUNE, Christian Flückiger, et Céline Bulliard, juriste HEP-BEJUNE.<br><br>Une conférence obligatoire sur la protection des données sera mise sur pied pour 2026.<br><br>Les enseignants ont pris part à une opération de sensibilisation au hameçonnage. Le SFP organise une conférence annuelle (2024 : gestion des mots de passe et protection des données).<br><br>Formations dédiées à l'éducation numérique. Prise en compte systématique de la protection des données. Catalogue AVENIR FORMATION.",
             resources: [
               { title: "DiagnoPhish — sensibilisation au hameçonnage", url: "https://www.diagnophish.ch/", source: "DiagnoPhish", type: "link" },
-              { title: "Catalogue de formations continues CEJEF", url: "https://www.esig-ju.ch/cejef/fc/FC-printemps26_resume.pdf", source: "ESIG-JU", type: "document" }
+              { title: "Catalogue de formations continues SFP", url: "https://www.esig-ju.ch/cejef/fc/FC-printemps26_resume.pdf", source: "ESIG-JU", type: "document" }
             ]
           }
         ]
@@ -301,10 +301,10 @@ export const dataProtectionThemes: DataProtectionTheme[] = [
             icon: "i-lucide-scroll-text",
             description: "Documents de référence destinés aux élèves, enseignants et parents :<ul><li><strong>Charte numérique + Guide d'utilisation de l'IA</strong> — destinés aux élèves</li><li><strong>Charte numérique cantonale</strong> — droits et devoirs en matière d'usage des outils numériques</li><li><strong>Espace M365 : informations aux parents et enseignants</strong></li><li><strong>Espace M365 : contrat élève</strong></li></ul>",
             resources: [
-              { title: "Charte numérique + Guide IA (PDF)", url: "https://drive.google.com/file/d/1E9ihMJm6v1GsoxlIxK51bczVcsHvbH7c/view?usp=sharing", source: "CEJEF", type: "document" },
-              { title: "Charte numérique cantonale (Word)", url: "https://divtec.sharepoint.com/:w:/r/sites/T-CoordinationnumriqueSFP/Documents%20partages/Support%20et%20soutien/Charte%20num%C3%A9rique%20et%20IA/Charte%20num%C3%A9rique/charte_num%C3%A9rique_CEJEF.docx", source: "SharePoint CEJEF", type: "document" },
-              { title: "Informations parents et enseignants (PDF)", url: "https://drive.google.com/file/d/1jCthIZA0xLGng47YZq8i4lSf_u-ZJF2m/view?usp=sharing", source: "CEJEF", type: "document" },
-              { title: "Contrat élève M365 (PDF)", url: "https://drive.google.com/file/d/1i5JFyyT9zgQKwS2_0tmqcRm5iNFL_OVE/view?usp=sharing", source: "CEJEF", type: "document" }
+              { title: "Charte numérique + Guide IA (PDF)", url: "https://drive.google.com/file/d/1E9ihMJm6v1GsoxlIxK51bczVcsHvbH7c/view?usp=sharing", source: "SFP", type: "document" },
+              { title: "Charte numérique cantonale (Word)", url: "https://divtec.sharepoint.com/:w:/r/sites/T-CoordinationnumriqueSFP/Documents%20partages/Support%20et%20soutien/Charte%20num%C3%A9rique%20et%20IA/Charte%20num%C3%A9rique/charte_num%C3%A9rique_CEJEF.docx", source: "SharePoint SFP", type: "document" },
+              { title: "Informations parents et enseignants (PDF)", url: "https://drive.google.com/file/d/1jCthIZA0xLGng47YZq8i4lSf_u-ZJF2m/view?usp=sharing", source: "SFP", type: "document" },
+              { title: "Contrat élève M365 (PDF)", url: "https://drive.google.com/file/d/1i5JFyyT9zgQKwS2_0tmqcRm5iNFL_OVE/view?usp=sharing", source: "SFP", type: "document" }
             ]
           }
         ]

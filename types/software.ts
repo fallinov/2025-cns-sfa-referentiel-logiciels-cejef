@@ -126,11 +126,11 @@ export interface Software {
   requiresEduAccount?: boolean
   requiresEdulog?: boolean
   approvedBySEN?: boolean
-  approvedByCEJEF?: boolean
+  approvedBySFP?: boolean
 
   // COÛT & PRISE EN CHARGE
   cost: CostType
-  fundedByCejef?: boolean
+  fundedBySFP?: boolean
   fundedBySEN?: boolean
 
   // GARANTIES CONTRACTUELLES (V1.4 — justifient un score 🟢 malgré l'origine)

@@ -133,13 +133,13 @@ describe("software store - filtres", () => {
       }
     })
 
-    it("filtre 'Approuvé CEJEF' (approved-cejef) = approvedByCEJEF true", () => {
+    it("filtre 'Approuvé CEJEF' (approved-cejef) = approvedBySFP true", () => {
       store.selectedPopularFilters = ["approved-cejef"]
 
       for (const software of store.filteredSoftwareList) {
         expect(
-          software.approvedByCEJEF,
-          `${software.name} devrait avoir approvedByCEJEF = true`
+          software.approvedBySFP,
+          `${software.name} devrait avoir approvedBySFP = true`
         ).toBe(true)
       }
     })

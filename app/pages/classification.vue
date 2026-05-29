@@ -4,9 +4,19 @@ defineOptions({
 })
 
 useSeoMeta({
-  title: "Système de classification — Référentiel Logiciels CEJEF",
+  title: "Système de classification — Référentiel Logiciels SEN / SFP",
   description:
-    "Comment le CEJEF classe les logiciels selon la protection des données : trois critères, quatre niveaux, une décision claire."
+    "Comment le SEN et le SFP classent les logiciels selon la protection des données : trois critères, quatre niveaux, une décision claire."
+})
+
+// Encart contact adaptatif selon l'audience sélectionnée dans le header :
+// - audience SEN (école obligatoire)  → contact = SEN
+// - audience CEJEF (postobligatoire)  → contact = SFP
+const audienceStore = useAudienceStore()
+const contactService = computed(() => audienceStore.audience === "sen" ? "SEN" : "SFP")
+const contactMailto = computed(() => {
+  const subject = `Référentiel logiciels — question sur un classement (${contactService.value})`
+  return `mailto:steve.fallet@jura.ch?subject=${encodeURIComponent(subject)}`
 })
 
 // Source unique : GRILLE-CLASSIFICATION-LGPD.md V1.4.1
@@ -161,7 +171,7 @@ const levelTokens = {
           Trois critères, quatre niveaux, une décision claire.
         </p>
         <p class="text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
-          Le CEJEF évalue chaque logiciel pédagogique sur la manière dont il traite les données de ses utilisateurs (élèves, enseignants). Cette page explique comment cette évaluation est réalisée, pour que vous compreniez ce que signifie le niveau affiché sur la fiche de chaque logiciel.
+          Le SEN (Service de l'Enseignement, pour l'école obligatoire) et le SFP (Service de la Formation Postobligatoire) évaluent chaque logiciel pédagogique sur la manière dont il traite les données de ses utilisateurs (élèves, enseignants). Cette page explique comment cette évaluation est réalisée, pour que vous compreniez ce que signifie le niveau affiché sur la fiche de chaque logiciel.
         </p>
       </header>
 
@@ -295,7 +305,7 @@ const levelTokens = {
           </div>
           <div>
             <p class="text-orange-800 dark:text-orange-300 font-semibold mb-2 leading-relaxed">
-              Au CEJEF, les logiciels hébergés aux États-Unis sont classés en vigilance — au même titre que ceux hébergés au Royaume-Uni, au Canada ou au Japon.
+              Au SEN et au SFP, les logiciels hébergés aux États-Unis sont classés en vigilance — au même titre que ceux hébergés au Royaume-Uni, au Canada ou au Japon.
             </p>
             <p class="text-orange-700 dark:text-orange-400 text-sm leading-relaxed">
               Ce choix est un parti pris : plutôt que de marquer rouge tous les logiciels américains (ce qui interdirait la majorité des outils numériques utilisés en classe), nous concentrons l'attention sur les <strong>vrais risques</strong> : les éditeurs qui collectent vos données pour la publicité, les revendent à des entreprises tierces, ou les envoient dans des pays sans aucune protection. Ces risques sont mesurés par les deux autres critères (<em>Conformité aux règles européennes</em> et <em>Collecte de données</em>), qui restent évalués strictement.
@@ -315,7 +325,7 @@ const levelTokens = {
           </div>
           <div>
             <p class="text-green-800 dark:text-green-300 font-semibold mb-2 leading-relaxed">
-              Certains éditeurs s'engagent contractuellement à protéger les données au-delà de leurs obligations par défaut. Quand le CEJEF (ou un service public suisse ou européen) a signé un tel contrat, l'évaluation en tient compte.
+              Certains éditeurs s'engagent contractuellement à protéger les données au-delà de leurs obligations par défaut. Quand le SEN, le SFP (ou un autre service public suisse ou européen) a signé un tel contrat, l'évaluation en tient compte.
             </p>
             <p class="text-green-700 dark:text-green-400 text-sm leading-relaxed mb-3">
               Trois garanties peuvent faire passer un logiciel au vert :
@@ -323,7 +333,7 @@ const levelTokens = {
             <ul class="space-y-2 text-sm text-green-700 dark:text-green-400 leading-relaxed mb-3">
               <li class="flex items-start gap-2">
                 <UIcon name="i-lucide-file-signature" class="w-4 h-4 mt-0.5 shrink-0" />
-                <span><strong>Contrat institutionnel signé avec le CEJEF</strong> qui détaille comment les données seront traitées.</span>
+                <span><strong>Contrat institutionnel signé avec le SEN ou le SFP</strong> qui détaille comment les données seront traitées.</span>
               </li>
               <li class="flex items-start gap-2">
                 <UIcon name="i-lucide-map-pin" class="w-4 h-4 mt-0.5 shrink-0" />
@@ -335,7 +345,7 @@ const levelTokens = {
               </li>
             </ul>
             <p class="text-green-700 dark:text-green-400 text-sm leading-relaxed">
-              <strong>Exemple :</strong> Microsoft 365 est utilisé au CEJEF dans le cadre d'un contrat qui impose le stockage des données dans des centres situés en Europe. Cet engagement permet à l'évaluation de passer au vert sur le critère hébergement, malgré l'origine américaine de l'éditeur.
+              <strong>Exemple :</strong> Microsoft 365 est utilisé au SEN et au SFP dans le cadre d'un contrat qui impose le stockage des données dans des centres situés en Europe. Cet engagement permet à l'évaluation de passer au vert sur le critère hébergement, malgré l'origine américaine de l'éditeur.
             </p>
           </div>
         </div>
@@ -352,17 +362,17 @@ const levelTokens = {
               Une question sur un classement ?
             </h2>
             <p class="text-gray-600 dark:text-gray-300 text-sm">
-              Contactez le Centre Numérique du CEJEF (CNS) pour toute précision ou demande de révision.
+              Contacter le {{ contactService }} pour toute précision ou demande de révision.
             </p>
           </div>
           <UButton
-            to="mailto:steve.fallet@jura.ch?subject=R%C3%A9f%C3%A9rentiel%20logiciels%20%E2%80%94%20question%20classement"
+            :to="contactMailto"
             color="primary"
             size="lg"
             icon="i-lucide-send"
             class="shrink-0"
           >
-            Écrire au CNS
+            Écrire au {{ contactService }}
           </UButton>
         </div>
       </section>

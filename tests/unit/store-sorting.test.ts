@@ -74,7 +74,7 @@ describe("software store - tri", () => {
       const list = store.filteredSoftwareList
 
       const approvalScore = (s: Software) =>
-        (s.approvedBySEN ? 1 : 0) + (s.approvedByCEJEF ? 1 : 0)
+        (s.approvedBySEN ? 1 : 0) + (s.approvedBySFP ? 1 : 0)
 
       // Le score d'approbation est monotone décroissant
       for (let i = 1; i < list.length; i++) {
@@ -87,7 +87,7 @@ describe("software store - tri", () => {
       const list = store.filteredSoftwareList
 
       const approvalScore = (s: Software) =>
-        (s.approvedBySEN ? 1 : 0) + (s.approvedByCEJEF ? 1 : 0)
+        (s.approvedBySEN ? 1 : 0) + (s.approvedBySFP ? 1 : 0)
 
       for (let i = 1; i < list.length; i++) {
         const a = list[i - 1]!

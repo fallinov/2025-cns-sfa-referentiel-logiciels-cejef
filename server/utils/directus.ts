@@ -36,7 +36,7 @@ export interface DirectusSoftware {
   lgpd_data_collection: LgpdValue | null
   data_location: string | null
   cost: string | null
-  funded_by_cejef: boolean | null
+  funded_by_sfp: boolean | null
   funded_by_sen: boolean | null
   target_audience: "élèves" | "enseignants" | "enseignants et élèves" | null
   tool_url: string
@@ -46,7 +46,7 @@ export interface DirectusSoftware {
   requires_edu_account: boolean
   requires_edulog: boolean
   approved_by_sen: boolean
-  approved_by_cejef: boolean
+  approved_by_sfp: boolean
   contractual_safeguards: string[] | null
   date_created: string | null
   date_updated: string | null
@@ -163,9 +163,9 @@ export function mapSoftware(item: DirectusSoftware): Software {
     requiresEduAccount: item.requires_edu_account,
     requiresEdulog: item.requires_edulog,
     approvedBySEN: item.approved_by_sen,
-    approvedByCEJEF: item.approved_by_cejef,
+    approvedBySFP: item.approved_by_sfp,
     cost: (item.cost ?? "Gratuit") as Software["cost"],
-    fundedByCejef: item.funded_by_cejef ?? false,
+    fundedBySFP: item.funded_by_sfp ?? false,
     fundedBySEN: item.funded_by_sen ?? false,
     contractualSafeguards,
     toolUrl: item.tool_url,
