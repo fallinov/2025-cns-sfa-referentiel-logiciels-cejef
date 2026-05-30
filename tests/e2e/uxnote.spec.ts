@@ -3,17 +3,21 @@ import { test, expect } from "@playwright/test"
 test.describe("UXNote", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?uxnote=1")
-    // Attendre que la toolbar UXNote soit injectée
     await page.waitForSelector(".wn-annot-group", { timeout: 15000 })
-    // Isoler chaque test : retirer toute clé uxnote:* persistée d'un test
-    // précédent (Playwright partage le contexte BrowserContext entre tests
-    // d'une même worker). `getAnnotations()` côté uxnote-send.js itère tout
-    // le localStorage sauf les clés filtrées (referentiel/nuxt/vueuse), donc
-    // un `uxnote:site:*` setup par un autre test fausse le compte ici.
+    // Isoler chaque test : retirer toutes les clés que `getAnnotations()`
+    // côté uxnote-send.js pourrait comptabiliser (toute valeur JSON-object
+    // sauf clés contenant referentiel/nuxt/vueuse). Inclut les clés
+    // injectées au chargement par UXNote lui-même (`uxnote:hidden:*`) et
+    // par Vue Devtools (`__VUE_DEVTOOLS_NEXT_PLUGIN_SETTINGS__*`).
     await page.evaluate(() => {
-      Object.keys(localStorage)
-        .filter(k => k.startsWith("uxnote:"))
-        .forEach(k => localStorage.removeItem(k))
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i)
+        if (!key) continue
+        if (key.indexOf("referentiel") !== -1) continue
+        if (key.indexOf("nuxt") !== -1) continue
+        if (key.indexOf("vueuse") !== -1) continue
+        localStorage.removeItem(key)
+      }
     })
   })
 
@@ -28,9 +32,9 @@ test.describe("UXNote", () => {
   })
 
   test("le bouton Envoyer affiche un message si aucune annotation", async ({ page }) => {
-    // Pré-condition : le beforeEach a vidé toutes les clés uxnote:* du
-    // localStorage, donc `getAnnotations()` doit retourner 0 → message
-    // « Aucune annotation à envoyer » (vérifié avant le contrôle du nom).
+    // Le beforeEach a vidé toutes les clés non-filtrées du localStorage,
+    // donc `getAnnotations()` doit retourner 0 → « Aucune annotation à
+    // envoyer » (vérifié avant le contrôle du nom dans uxnote-send.js).
     await page.locator("#uxnote-send-btn").click()
 
     const toast = page.locator("#uxnote-send-msg")
