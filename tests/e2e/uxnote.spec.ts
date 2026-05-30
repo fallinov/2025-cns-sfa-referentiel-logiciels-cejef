@@ -18,10 +18,16 @@ test.describe("UXNote", () => {
   })
 
   test("le bouton Envoyer affiche un message si aucune annotation", async ({ page }) => {
-    // Cliquer sur Envoyer sans annotation
+    // Pré-condition : nom de l'évaluateur renseigné (le contrôle UXNote vérifie
+    // d'abord le nom puis le nombre d'annotations — si nom vide, on tombe sur
+    // « Saisissez votre nom » au lieu d'« Aucune annotation »).
+    await page.evaluate(() => {
+      const key = `uxnote:annotator:${location.protocol}//${location.host}`
+      localStorage.setItem(key, "Test User")
+    })
+
     await page.locator("#uxnote-send-btn").click()
 
-    // Le toast doit apparaître en haut de page
     const toast = page.locator("#uxnote-send-msg")
     await expect(toast).toBeVisible()
     await expect(toast).toContainText("Aucune annotation")
