@@ -5,6 +5,16 @@ test.describe("UXNote", () => {
     await page.goto("/?uxnote=1")
     // Attendre que la toolbar UXNote soit injectée
     await page.waitForSelector(".wn-annot-group", { timeout: 15000 })
+    // Isoler chaque test : retirer toute clé uxnote:* persistée d'un test
+    // précédent (Playwright partage le contexte BrowserContext entre tests
+    // d'une même worker). `getAnnotations()` côté uxnote-send.js itère tout
+    // le localStorage sauf les clés filtrées (referentiel/nuxt/vueuse), donc
+    // un `uxnote:site:*` setup par un autre test fausse le compte ici.
+    await page.evaluate(() => {
+      Object.keys(localStorage)
+        .filter(k => k.startsWith("uxnote:"))
+        .forEach(k => localStorage.removeItem(k))
+    })
   })
 
   test("la toolbar UXNote et le bouton Envoyer sont visibles", async ({ page }) => {
@@ -18,14 +28,9 @@ test.describe("UXNote", () => {
   })
 
   test("le bouton Envoyer affiche un message si aucune annotation", async ({ page }) => {
-    // Pré-condition : nom de l'évaluateur renseigné (le contrôle UXNote vérifie
-    // d'abord le nom puis le nombre d'annotations — si nom vide, on tombe sur
-    // « Saisissez votre nom » au lieu d'« Aucune annotation »).
-    await page.evaluate(() => {
-      const key = `uxnote:annotator:${location.protocol}//${location.host}`
-      localStorage.setItem(key, "Test User")
-    })
-
+    // Pré-condition : le beforeEach a vidé toutes les clés uxnote:* du
+    // localStorage, donc `getAnnotations()` doit retourner 0 → message
+    // « Aucune annotation à envoyer » (vérifié avant le contrôle du nom).
     await page.locator("#uxnote-send-btn").click()
 
     const toast = page.locator("#uxnote-send-msg")
