@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test"
+import { skipIfEmptyCatalog } from "./helpers"
 
 async function setupLocalStorage(page: import("@playwright/test").Page) {
   await page.addInitScript(() => {
@@ -37,7 +38,8 @@ test.describe("Accessibilité — dark mode et light mode", () => {
     }
   })
 
-  test("la page détail fonctionne en dark mode", async ({ page }) => {
+  test("la page détail fonctionne en dark mode", async ({ page }, testInfo) => {
+    await skipIfEmptyCatalog(page, testInfo)
     await setupLocalStorage(page)
     await page.addInitScript(() => {
       localStorage.setItem("nuxt-color-mode", "dark")

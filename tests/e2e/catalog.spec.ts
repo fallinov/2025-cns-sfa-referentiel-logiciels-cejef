@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test"
+import { skipIfEmptyCatalog } from "./helpers"
 
 async function setupLocalStorage(page: import("@playwright/test").Page) {
   await page.addInitScript(() => {
@@ -44,7 +45,8 @@ test.describe("Catalogue — recherche", () => {
 })
 
 test.describe("Catalogue — navigation détail", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }, testInfo) => {
+    await skipIfEmptyCatalog(page, testInfo)
     await setupLocalStorage(page)
     await page.goto("/")
     await waitForCatalog(page)
@@ -107,7 +109,8 @@ test.describe("Catalogue — navigation détail", () => {
 })
 
 test.describe("Catalogue — page détail", () => {
-  test("la page détail affiche toutes les sections", async ({ page }) => {
+  test("la page détail affiche toutes les sections", async ({ page }, testInfo) => {
+    await skipIfEmptyCatalog(page, testInfo)
     await setupLocalStorage(page)
     // V1 : les IDs sont des UUIDs Directus, on récupère le 1er logiciel disponible
     await page.goto("/")

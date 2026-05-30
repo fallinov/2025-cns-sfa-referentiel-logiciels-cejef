@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test"
+import { skipIfEmptyCatalog } from "./helpers"
 
 /**
  * Tests E2E pour la section « Alternatives recommandées » sur la page détail
@@ -29,7 +30,8 @@ async function findAlternativesCard(page: import("@playwright/test").Page) {
 }
 
 test.describe("Alternatives recommandées — page détail", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }, testInfo) => {
+    await skipIfEmptyCatalog(page, testInfo)
     await setupLocalStorage(page)
   })
 
