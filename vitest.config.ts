@@ -29,7 +29,13 @@ export default defineVitestConfig({
         // metier (mapping, parsing) vit dans server/utils/directus.ts qui est
         // teste (84%). Tester les handlers eux-memes demanderait un mock complet
         // de l'environnement Nuxt server, sans gain.
-        "server/api/**"
+        "server/api/**",
+        // useDataProtection : depend de useFetch Nuxt auto-import + audience
+        // store. La logique metier (mapping Directus -> DataProtectionTheme)
+        // vit dans server/utils/data-protection.ts qui est testee (7 tests sur
+        // mapDataProtectionThemes). Tester le composable demanderait un mock
+        // complet de useFetch sans gain en V1.
+        "app/composables/useDataProtection.ts"
       ],
       // Seuils minimum : un peu en dessous des valeurs atteintes (74.6/67.1/68.7/77.1)
       // pour garder une marge sans casser la CI au moindre ajout. À augmenter quand
