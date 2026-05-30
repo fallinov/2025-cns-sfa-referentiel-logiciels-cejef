@@ -9,6 +9,7 @@ export interface ThemeResource {
   description?: string
   type: ResourceType
   fileSize?: string
+  audience?: string[]
 }
 
 // Niveau 3 — contenu dans un tiroir (ou affiché directement si seul item)
@@ -18,6 +19,7 @@ export interface DataProtectionItem {
   icon: string
   description: string
   resources: ThemeResource[]
+  audience?: string[]
 }
 
 // Niveau 2 — carte visible dans la page
@@ -26,6 +28,7 @@ export interface DataProtectionSection {
   title: string
   icon: string
   items: DataProtectionItem[]
+  audience?: string[]
 }
 
 // Niveau 1 — thème principal (sidebar)
@@ -36,4 +39,5 @@ export interface DataProtectionTheme {
   icon: string
   description: string
   sections: DataProtectionSection[]
+  audience?: string[]
 }

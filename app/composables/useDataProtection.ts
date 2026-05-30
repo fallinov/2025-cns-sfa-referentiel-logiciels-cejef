@@ -1,5 +1,4 @@
 import type { DataProtectionTheme, DataProtectionSection, DataProtectionItem } from "~~/types/data-protection"
-import { dataProtectionThemes } from "~/data/data-protection-themes"
 import { normalizeText, matchesSearch } from "~/utils/search"
 
 function matchesItem(item: DataProtectionItem, searchTerms: string[]): boolean {
@@ -7,39 +6,78 @@ function matchesItem(item: DataProtectionItem, searchTerms: string[]): boolean {
   return matchesSearch(text, searchTerms)
 }
 
+/**
+ * Vrai si l'élément n'a pas d'audience renseignée (visible pour tous),
+ * ou si l'audience courante est dans la liste de l'élément.
+ *
+ * Sans audience courante (l'utilisateur n'a pas encore choisi), on affiche tout.
+ */
+function matchesAudience(elementAudience: string[] | undefined, currentAudience: string | null): boolean {
+  if (!currentAudience) return true
+  if (!elementAudience || elementAudience.length === 0) return true
+  return elementAudience.includes(currentAudience)
+}
+
 export function useDataProtection() {
+  const audienceStore = useAudienceStore()
   const searchQuery = ref("")
 
+  const currentAudience = computed<string | null>(() => audienceStore.hasChosen ? audienceStore.audience : null)
+
+  // Map le code interne du store ("cejef") vers le code Directus ("sfp")
+  const audienceCode = computed<string | null>(() => {
+    if (!currentAudience.value) return null
+    return currentAudience.value === "cejef" ? "sfp" : currentAudience.value
+  })
+
+  const { data: themes, pending, refresh } = useFetch<DataProtectionTheme[]>("/api/data-protection/themes", {
+    key: "data-protection-themes",
+    default: () => []
+  })
+
   const filteredThemes = computed(() => {
-    return dataProtectionThemes
+    const aud = audienceCode.value
+    const list = themes.value ?? []
+    return list
+      .filter(theme => matchesAudience(theme.audience, aud))
       .map((theme) => {
-        if (!searchQuery.value.trim()) return theme
+        const themeWithFilteredAudience: DataProtectionTheme = {
+          ...theme,
+          sections: theme.sections
+            .filter(section => matchesAudience(section.audience, aud))
+            .map(section => ({
+              ...section,
+              items: section.items
+                .filter(item => matchesAudience(item.audience, aud))
+                .map(item => ({
+                  ...item,
+                  resources: item.resources.filter(r => matchesAudience(r.audience, aud))
+                }))
+            }))
+        }
+
+        if (!searchQuery.value.trim()) return themeWithFilteredAudience
 
         const searchTerms = [normalizeText(searchQuery.value.trim())]
 
-        // Si le thème matche → tout afficher
         if (matchesSearch([theme.title, theme.description].join(" "), searchTerms)) {
-          return theme
+          return themeWithFilteredAudience
         }
 
-        // Filtrer sections → items
-        const filteredSections = theme.sections
+        const filteredSections = themeWithFilteredAudience.sections
           .map((section): DataProtectionSection | null => {
-            // Si la section matche → garder tous ses items
             if (matchesSearch(section.title, searchTerms)) return section
-
-            // Filtrer les items individuellement
             const filteredItems = section.items.filter(item => matchesItem(item, searchTerms))
             if (filteredItems.length > 0) return { ...section, items: filteredItems }
-
             return null
           })
           .filter((s): s is DataProtectionSection => s !== null)
 
         if (filteredSections.length === 0) return null
-        return { ...theme, sections: filteredSections }
+        return { ...themeWithFilteredAudience, sections: filteredSections }
       })
       .filter((t): t is DataProtectionTheme => t !== null)
+      .filter(t => t.sections.length > 0 || !searchQuery.value.trim())
   })
 
   const hasResults = computed(() => filteredThemes.value.length > 0)
@@ -52,6 +90,8 @@ export function useDataProtection() {
     searchQuery,
     filteredThemes,
     hasResults,
-    totalSections
+    totalSections,
+    pending,
+    refresh
   }
 }
