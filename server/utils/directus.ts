@@ -59,6 +59,50 @@ export interface DirectusSchema {
   software: DirectusSoftware[]
   category: { id: string, name: string, description: string | null, icon: string | null }[]
   pedagogical_activity: { id: string, name: string, description: string | null, icon: string | null }[]
+  dp_theme: {
+    id: string
+    sort: number | null
+    status: string
+    title: string
+    short_title: string | null
+    icon: string | null
+    description: string | null
+    audience: string[] | null
+  }[]
+  dp_section: {
+    id: string
+    sort: number | null
+    title: string
+    icon: string | null
+    audience: string[] | null
+    theme_id: string
+  }[]
+  dp_item: {
+    id: string
+    sort: number | null
+    title: string
+    icon: string | null
+    description: string | null
+    audience: string[] | null
+    section_id: string
+  }[]
+  dp_resource: {
+    id: string
+    sort: number | null
+    title: string
+    url: string
+    source: string | null
+    type: string
+    description: string | null
+    file_size: string | null
+    audience: string[] | null
+  }[]
+  dp_resource_owner: {
+    id: number
+    dp_resource_id: string
+    collection: "dp_theme" | "dp_section" | "dp_item"
+    item: string
+  }[]
 }
 
 /**
