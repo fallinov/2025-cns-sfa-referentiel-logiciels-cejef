@@ -28,10 +28,10 @@ function mountEmpty(props: { hasActiveFilters: boolean, searchQuery?: string }) 
 }
 
 describe("SoftwareListEmpty.vue", () => {
-  it("affiche le titre éditorial 'Aidez-nous à enrichir le catalogue'", () => {
+  it("affiche le titre éditorial 'Aidez-nous à enrichir le référentiel'", () => {
     const wrapper = mountEmpty({ hasActiveFilters: false })
     expect(wrapper.text()).toContain("Aidez-nous à enrichir")
-    expect(wrapper.text()).toContain("le catalogue")
+    expect(wrapper.text()).toContain("le référentiel")
   })
 
   it("affiche le message participatif", () => {
