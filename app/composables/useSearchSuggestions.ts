@@ -1,5 +1,6 @@
 import Fuse from "fuse.js"
 import type { FuseResultMatch } from "fuse.js"
+import { expandSearchQuery } from "~/utils/search"
 import type { Software } from "~~/types/software"
 
 /**
@@ -75,7 +76,26 @@ export const useSearchSuggestions = (searchQuery: Ref<string>) => {
     }
 
     const normalizedQuery = query.toLowerCase()
-    const fuseResults = fuse.search(query)
+    // Expansion via le dictionnaire de synonymes (ia / intelligence
+    // artificielle / ai, visio / vidéo, etc.). On lance une recherche Fuse
+    // par terme et on dédoublonne par software.id en gardant le meilleur
+    // score Fuse (score le plus bas).
+    const searchTerms = expandSearchQuery(query)
+    const dedup = new Map<string, { score: number, matches: readonly FuseResultMatch[], item: typeof safeSoftwareList[number] }>()
+    for (const term of searchTerms) {
+      for (const result of fuse.search(term)) {
+        const id = result.item.id
+        const existing = dedup.get(id)
+        if (!existing || (result.score ?? 1) < existing.score) {
+          dedup.set(id, {
+            score: result.score ?? 1,
+            matches: result.matches ?? [],
+            item: result.item
+          })
+        }
+      }
+    }
+    const fuseResults = Array.from(dedup.values()).sort((a, b) => a.score - b.score)
 
     // Boost « préfixe nom » : on remonte en tête les logiciels dont le nom
     // commence exactement par la query (intent detection). Ces résultats

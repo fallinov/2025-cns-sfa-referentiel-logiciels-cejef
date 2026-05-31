@@ -1,11 +1,45 @@
+/**
+ * Dictionnaire de synonymes pour étendre une requête utilisateur.
+ *
+ * Clé = terme tapé (normalisé minuscule, sans accent).
+ * Valeurs = termes équivalents à inclure dans la recherche.
+ *
+ * Utilisé par :
+ *  - le store software (filtrage du catalogue)
+ *  - useSearchSuggestions (autocomplete Fuse)
+ *
+ * Convention : si un terme A est synonyme d'un terme B, déclarer la relation
+ * dans les deux sens (`A → [B]` ET `B → [A]`) pour que la recherche soit
+ * symétrique. La fonction expandSearchQuery applique `includes(key)`, donc
+ * une clé doit être un sous-mot atomique (pas une phrase ambiguë).
+ */
 export const SYNONYMS: Record<string, string[]> = {
+  // Intelligence artificielle
   "ia": ["intelligence artificielle", "ai", "artificial intelligence"],
   "intelligence artificielle": ["ia", "ai"],
   "ai": ["ia", "intelligence artificielle"],
-  "visio": ["visioconférence", "video"],
+  // Visioconférence
+  "visio": ["visioconférence", "video", "teams", "zoom", "meet"],
+  "visioconference": ["visio", "video"],
+  // Bureautique
   "texte": ["traitement de texte", "word"],
   "tableur": ["excel", "feuille de calcul"],
-  "presentation": ["powerpoint", "diaporama"]
+  "presentation": ["powerpoint", "diaporama"],
+  "diaporama": ["presentation", "powerpoint"],
+  // Traduction
+  "traduction": ["traducteur", "translate", "deepl"],
+  "traducteur": ["traduction", "translate", "deepl"],
+  // Carte mentale
+  "carte mentale": ["mind map", "mindmap", "schema"],
+  "mind map": ["carte mentale"],
+  // Quiz / sondage
+  "quiz": ["quizz", "questionnaire", "sondage"],
+  "sondage": ["quiz", "vote", "questionnaire"],
+  // Code
+  "code": ["programmation", "developpement", "coder"],
+  "programmation": ["code", "coder"],
+  // PDF
+  "pdf": ["adobe acrobat", "lecteur pdf"]
 }
 
 export function expandSearchQuery(query: string): string[] {
