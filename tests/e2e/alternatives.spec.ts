@@ -23,7 +23,10 @@ async function setupLocalStorage(page: import("@playwright/test").Page) {
 }
 
 async function findAlternativesCard(page: import("@playwright/test").Page) {
-  const heading = page.getByRole("heading", { name: /alternatives recommand/i })
+  // Le titre du composant a évolué « Alternatives recommandées » →
+  // « Logiciels alternatifs recommandés ». Match les deux pour rester
+  // tolérant aux futurs ajustements de wording.
+  const heading = page.getByRole("heading", { name: /logiciels alternatifs recommand|alternatives recommand/i })
   await heading.waitFor({ state: "visible", timeout: 10000 })
   // Le composant racine est une UCard — on remonte au plus proche bloc avec le bouton/contenu
   return heading.locator("xpath=ancestor::*[contains(@class, 'rounded')][1]")
@@ -54,7 +57,9 @@ test.describe("Alternatives recommandées — page détail", () => {
       await page.goto(href)
       await page.waitForSelector("h1.tracking-tight", { timeout: 10000 })
 
-      const emptyMessage = page.getByText(/pas d'alternative validée/i)
+      // L'empty state a évolué : « pas d'alternative validée » →
+      // « Vous connaissez une alternative pertinente à ce logiciel ? »
+      const emptyMessage = page.getByText(/connaissez une alternative pertinente|pas d'alternative validée/i)
       if (await emptyMessage.isVisible({ timeout: 2000 }).catch(() => false)) {
         foundEmpty = true
         break
@@ -79,8 +84,10 @@ test.describe("Alternatives recommandées — page détail", () => {
 
     const card = await findAlternativesCard(page)
 
-    // Le message vide ne doit PAS apparaître
-    await expect(card.getByText(/pas d'alternative validée/i)).toHaveCount(0)
+    // L'empty state CTA ne doit PAS apparaître (le wording « pas d'alternative
+    // validée » est obsolète depuis v0.31.0 — désormais « Vous connaissez une
+    // alternative pertinente à ce logiciel ? »).
+    await expect(card.getByText(/connaissez une alternative pertinente|pas d'alternative validée/i)).toHaveCount(0)
 
     // Le lien vers DeepL Pro doit être présent et cliquable
     const deeplProLink = card.locator(`a[href="/logiciels/${deeplProId}"]`)
