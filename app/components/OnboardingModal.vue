@@ -160,7 +160,7 @@ watch(step, () => {
                 Pastille de classification
               </p>
               <p class="text-base text-gray-500 dark:text-gray-400">
-                Valide l'usage du logiciel avec les données des élèves (vert = validé, orange = vigilance, rouge = interdit).
+                Valide l'usage du logiciel avec les données des élèves (vert = utilisable avec vos élèves, orange = réservé aux enseignants, rouge = interdit).
               </p>
             </div>
           </div>

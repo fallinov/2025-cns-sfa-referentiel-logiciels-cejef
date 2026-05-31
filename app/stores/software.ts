@@ -204,7 +204,7 @@ export const useSoftwareStore = defineStore("software", () => {
       })
     }
 
-    // Apply LGPD level filter
+    // Apply LPD level filter
     if (selectedLgpdLevel.value !== null) {
       filtered = filtered.filter((software) => {
         const level = software.certificationLevel ?? getCertificationLevel(software.lgpd)

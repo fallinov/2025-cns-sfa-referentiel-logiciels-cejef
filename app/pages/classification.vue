@@ -272,11 +272,11 @@ const levelTokens = {
             Le niveau global affiché sur la fiche du logiciel correspond <strong>au critère le moins favorable</strong> parmi les trois. Autrement dit : il suffit d'un seul critère rouge pour que le logiciel soit classé rouge dans son ensemble. C'est une approche prudente : on ne masque pas un point faible en le compensant par les autres.
           </p>
           <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-500 shadow-sm" aria-label="Validé">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-500 shadow-sm" aria-label="Utilisable avec vos élèves">
               <UIcon name="i-lucide-check" class="w-7 h-7 text-white stroke-[3]" />
             </span>
             <span class="text-gray-300 dark:text-gray-600 font-light text-xl select-none">+</span>
-            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-500 shadow-sm" aria-label="Validé">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-500 shadow-sm" aria-label="Utilisable avec vos élèves">
               <UIcon name="i-lucide-check" class="w-7 h-7 text-white stroke-[3]" />
             </span>
             <span class="text-gray-300 dark:text-gray-600 font-light text-xl select-none">+</span>

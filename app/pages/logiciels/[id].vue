@@ -89,7 +89,7 @@ const alternativesList = computed(() =>
   software.value ? getAlternatives(software.value) : []
 )
 
-// LGPD labels — utilise dataLocation du logiciel pour l'hébergement (pas un label fixe)
+// LPD labels — utilise dataLocation du logiciel pour l'hébergement (pas un label fixe)
 const lgpdLabels = computed(() => ({
   hosting: {
     1: software.value?.dataLocation || "Suisse / UE",

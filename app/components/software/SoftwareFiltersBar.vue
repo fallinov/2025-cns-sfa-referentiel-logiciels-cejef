@@ -79,7 +79,7 @@ const activityItems = computed(() =>
         Filtres
       </div>
       <div class="flex flex-wrap items-center gap-2">
-        <!-- Dropdown niveau LGPD -->
+        <!-- Dropdown niveau LPD -->
         <USelect
           v-model="lgpdSelectValue"
           :items="lgpdLevelOptions"
@@ -138,7 +138,7 @@ const activityItems = computed(() =>
     >
       <template #content>
         <div class="flex flex-col gap-6 p-4">
-          <!-- Dropdown niveau LGPD (Mobile) -->
+          <!-- Dropdown niveau LPD (Mobile) -->
           <div>
             <div class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
               Niveau LPD

@@ -159,7 +159,7 @@ export const SOFTWARE_FIELDS = [
  * Fonction pure — facile à tester unitairement sans monter Nuxt.
  */
 /**
- * Normalise un score LGPD : null Directus → 0 (Non évaluée).
+ * Normalise un score LPD : null Directus → 0 (Non évaluée).
  * Évite d'avoir à gérer null partout côté frontend.
  */
 function normalizeLgpd(value: LgpdValue | null): LgpdValue {
