@@ -175,11 +175,17 @@ const showLgpdDetails = ref(false)
     <!-- Hero Section with Background Identity -->
     <div class="bg-white dark:bg-gray-900 relative overflow-hidden">
       <UContainer class="max-w-[1240px] py-10 sm:py-14 relative">
-        <!-- Decorative background element -->
-        <div class="absolute top-0 right-0 p-12 pointer-events-none select-none">
+        <!-- Décoration de fond : silhouette estompée du logo, ne doit
+             JAMAIS interférer avec la lisibilité du texte par-dessus.
+             Light : gris très pâle. Dark : blanc à 4% (le blanc opaque
+             rendait le texte du Hero illisible — fix 31.05.2026). -->
+        <div
+          aria-hidden="true"
+          class="absolute top-0 right-0 p-12 pointer-events-none select-none"
+        >
           <UIcon
             :name="getSoftwareIcon(software)"
-            class="w-96 h-96 text-[#F3F4F6] dark:text-white transform rotate-12 translate-x-12 -translate-y-12"
+            class="w-96 h-96 text-[#F3F4F6] dark:text-white/[0.04] transform rotate-12 translate-x-12 -translate-y-12"
           />
         </div>
 
