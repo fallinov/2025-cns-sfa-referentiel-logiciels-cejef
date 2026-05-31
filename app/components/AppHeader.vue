@@ -47,21 +47,21 @@ const openOnboarding = inject<() => void>("openOnboarding")
         >
           <button
             class="px-2.5 py-1 text-xs font-semibold rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-            :class="audienceStore.audience === 'sen'
+            :class="audienceStore.audience === 'SEN'
               ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
               : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
-            :aria-pressed="audienceStore.audience === 'sen'"
-            @click="audienceStore.setAudience('sen')"
+            :aria-pressed="audienceStore.audience === 'SEN'"
+            @click="audienceStore.setAudience('SEN')"
           >
             SEN
           </button>
           <button
             class="px-2.5 py-1 text-xs font-semibold rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-            :class="audienceStore.audience === 'cejef'
+            :class="audienceStore.audience === 'SFP'
               ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
               : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'"
-            :aria-pressed="audienceStore.audience === 'cejef'"
-            @click="audienceStore.setAudience('cejef')"
+            :aria-pressed="audienceStore.audience === 'SFP'"
+            @click="audienceStore.setAudience('SFP')"
           >
             SFP
           </button>
@@ -99,19 +99,19 @@ const openOnboarding = inject<() => void>("openOnboarding")
       >
         <button
           class="flex-1 px-3 py-3 text-base font-medium rounded-[var(--ui-radius)] transition-all"
-          :class="audienceStore.audience === 'sen'
+          :class="audienceStore.audience === 'SEN'
             ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
             : 'text-gray-500 dark:text-gray-400'"
-          @click="audienceStore.setAudience('sen')"
+          @click="audienceStore.setAudience('SEN')"
         >
           SEN
         </button>
         <button
           class="flex-1 px-3 py-3 text-base font-medium rounded-[var(--ui-radius)] transition-all"
-          :class="audienceStore.audience === 'cejef'
+          :class="audienceStore.audience === 'SFP'
             ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
             : 'text-gray-500 dark:text-gray-400'"
-          @click="audienceStore.setAudience('cejef')"
+          @click="audienceStore.setAudience('SFP')"
         >
           SFP
         </button>

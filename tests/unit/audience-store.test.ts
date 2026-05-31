@@ -16,24 +16,24 @@ describe("audience store — Pinia + localStorage", () => {
 
   it("initialise avec audience=sen, hasChosen=false par défaut", () => {
     const store = useAudienceStore()
-    expect(store.audience).toBe("sen")
+    expect(store.audience).toBe("SEN")
     expect(store.hasChosen).toBe(false)
   })
 
   describe("init() — lecture depuis localStorage", () => {
-    it("restaure l'audience 'sen' stockée", () => {
-      localStorage.setItem(STORAGE_KEY, "sen")
+    it("restaure l'audience 'SEN' stockée", () => {
+      localStorage.setItem(STORAGE_KEY, "SEN")
       const store = useAudienceStore()
       store.init()
-      expect(store.audience).toBe("sen")
+      expect(store.audience).toBe("SEN")
       expect(store.hasChosen).toBe(true)
     })
 
-    it("restaure l'audience 'cejef' stockée", () => {
-      localStorage.setItem(STORAGE_KEY, "cejef")
+    it("restaure l'audience 'SFP' stockée", () => {
+      localStorage.setItem(STORAGE_KEY, "SFP")
       const store = useAudienceStore()
       store.init()
-      expect(store.audience).toBe("cejef")
+      expect(store.audience).toBe("SFP")
       expect(store.hasChosen).toBe(true)
     })
 
@@ -42,7 +42,7 @@ describe("audience store — Pinia + localStorage", () => {
       const store = useAudienceStore()
       store.init()
       expect(store.hasChosen).toBe(false)
-      expect(store.audience).toBe("sen")
+      expect(store.audience).toBe("SEN")
     })
 
     it("hasChosen reste false si le localStorage est vide", () => {
@@ -55,23 +55,23 @@ describe("audience store — Pinia + localStorage", () => {
   describe("setAudience() — persistance", () => {
     it("met à jour audience et persiste dans localStorage", () => {
       const store = useAudienceStore()
-      store.setAudience("cejef")
-      expect(store.audience).toBe("cejef")
+      store.setAudience("SFP")
+      expect(store.audience).toBe("SFP")
       expect(store.hasChosen).toBe(true)
-      expect(localStorage.getItem(STORAGE_KEY)).toBe("cejef")
+      expect(localStorage.getItem(STORAGE_KEY)).toBe("SFP")
     })
 
-    it("setAudience('sen') persiste 'sen' dans localStorage", () => {
+    it("setAudience('SEN') persiste 'SEN' dans localStorage", () => {
       const store = useAudienceStore()
-      store.setAudience("sen")
-      expect(localStorage.getItem(STORAGE_KEY)).toBe("sen")
+      store.setAudience("SEN")
+      expect(localStorage.getItem(STORAGE_KEY)).toBe("SEN")
     })
   })
 
   describe("reset() — efface l'état", () => {
     it("réinitialise hasChosen=false et efface le localStorage", () => {
       const store = useAudienceStore()
-      store.setAudience("cejef")
+      store.setAudience("SFP")
       store.reset()
       expect(store.hasChosen).toBe(false)
       expect(localStorage.getItem(STORAGE_KEY)).toBeNull()
@@ -79,9 +79,9 @@ describe("audience store — Pinia + localStorage", () => {
 
     it("audience peut conserver sa dernière valeur (mais hasChosen=false force re-choix)", () => {
       const store = useAudienceStore()
-      store.setAudience("cejef")
+      store.setAudience("SFP")
       store.reset()
-      // L'audience reste à 'cejef' (pas remise à sen) mais hasChosen=false
+      // L'audience reste à 'SFP' (pas remise à sen) mais hasChosen=false
       // forcera l'écran de choix d'audience à réapparaître
       expect(store.hasChosen).toBe(false)
     })

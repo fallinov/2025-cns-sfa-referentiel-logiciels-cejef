@@ -1,4 +1,4 @@
-export type ThemeAudience = "sen" | "cejef" | "both"
+export type ThemeAudience = "SEN" | "SFP" | "both"
 
 export type ResourceType = "link" | "image" | "video" | "schema" | "document"
 
