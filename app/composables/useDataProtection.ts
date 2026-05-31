@@ -24,10 +24,11 @@ export function useDataProtection() {
 
   const currentAudience = computed<string | null>(() => audienceStore.hasChosen ? audienceStore.audience : null)
 
-  // Map le code interne du store ("cejef") vers le code Directus ("sfp")
+  // Map le code interne du store ("sen" | "cejef") vers le code Directus
+  // ("SEN" | "SFP"), qui utilise les majuscules par convention métier.
   const audienceCode = computed<string | null>(() => {
     if (!currentAudience.value) return null
-    return currentAudience.value === "cejef" ? "sfp" : currentAudience.value
+    return currentAudience.value === "cejef" ? "SFP" : "SEN"
   })
 
   const { data: themes, pending, refresh } = useFetch<DataProtectionTheme[]>("/api/data-protection/themes", {
