@@ -34,7 +34,7 @@ onMounted(() => {
   audienceStore.init()
 })
 
-// La modale LGPD s'affiche après le choix SEN/CEJEF (pas en même temps)
+// La modale LPD s'affiche après le choix SEN/CEJEF (pas en même temps)
 watch(() => audienceStore.hasChosen, (chosen) => {
   if (chosen) {
     const done = localStorage.getItem("referentiel-onboarding-done")

@@ -12,46 +12,22 @@ export type ContractualSafeguard
     | "independent_audit"
     | "guaranteed_hosting"
 
+/**
+ * Localisation d'hébergement — grille V1.4.1.
+ *
+ * Les 6 libellés sont alignés sur les valeurs `data_location` Directus
+ * (switzerland / eu_eea / adequate / united_states / multi_or_partial /
+ * other) traduites en français par `server/utils/directus.ts:mapDataLocationLabel`.
+ * Un 7e libellé « Non renseigné » couvre le cas null / undefined.
+ */
 export type DataLocation
-  // Pays adéquats (niveau 1)
   = | "Suisse"
-    | "Suisse/Luxembourg"
-    | "France"
-    | "France/Union Européenne"
-    | "Allemagne"
-    | "Union Européenne"
-    | "Union Européenne (AWS)"
-    | "Union Européenne (option)"
-    | "Union Européenne (configurable)"
-    | "Union Européenne/États-Unis"
-    | "Union Européenne/Global"
-    | "Royaume-Uni"
-    | "Royaume-Uni/États-Unis"
-    | "Canada"
-    | "Canada/États-Unis"
-    | "Corée du Sud"
-    | "Local"
-    | "Local/États-Unis"
-    | "CEJEF"
-  // Pays avec DPF (niveau 2)
+    | "Union européenne / EEE"
+    | "Pays adéquat (UK, Canada, Japon, Corée du Sud…)"
     | "États-Unis"
-    | "États-Unis (option UE)"
-    | "États-Unis (option UE Enterprise)"
-    | "États-Unis (option UE/CH)"
-    | "États-Unis (centres UE disponibles)"
-    | "États-Unis (UE Enterprise)"
-    | "États-Unis (SCCs UE)"
-    | "États-Unis/Australie"
-    | "États-Unis/Global"
-    | "Australie/États-Unis"
-  // Pays non adéquats (niveau 3)
-    | "Chine"
-    | "Canada/Chine"
-    | "Hongrie"
-    | "Israël"
-    | "Ukraine"
-    | "Hors UE"
-    | "Inconnu"
+    | "Hébergement multi-régions / réparti"
+    | "Autre / non adéquat / inconnu"
+    | "Non renseigné"
 
 export type TargetAudience = "élèves" | "enseignants" | "enseignants et élèves"
 
@@ -74,7 +50,7 @@ export interface PedagogicalActivityRef {
 }
 
 /**
- * Classification LGPD (Loi sur la protection des données)
+ * Classification LPD (Loi sur la protection des données)
  * Valeurs numériques: 0 = Non évaluée, 1 = Validé, 2 = Vigilance, 3 = Interdit
  */
 export interface LgpdClassification {
@@ -91,7 +67,7 @@ export interface LgpdClassification {
 export type CertificationLevel = 0 | 1 | 2 | 3 | null
 
 /**
- * Calcule le niveau de certification global à partir de la classification LGPD.
+ * Calcule le niveau de certification global à partir de la classification LPD.
  * Règle conservatrice : si au moins un axe est Non évalué (0), le niveau global
  * est 0 (Non évaluée) — on ne donne pas une fausse sécurité en ignorant un
  * axe manquant. Sinon, max des 3 axes.
