@@ -7,7 +7,7 @@ import { test, expect } from "@playwright/test"
 
 async function setupLocalStorage(page: import("@playwright/test").Page) {
   await page.addInitScript(() => {
-    localStorage.setItem("referentiel-dp-audience", JSON.stringify({ audience: "sen", hasChosen: true }))
+    localStorage.setItem("referentiel-dp-audience", JSON.stringify({ audience: "SEN", hasChosen: true }))
     localStorage.setItem("referentiel-onboarding-done", "true")
   })
 }

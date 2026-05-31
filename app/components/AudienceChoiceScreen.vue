@@ -20,7 +20,7 @@ const audienceStore = useAudienceStore()
       <div class="flex flex-col sm:flex-row gap-4">
         <button
           class="group flex flex-col items-center gap-3 px-8 py-6 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-[var(--ui-radius)] shadow-sm hover:shadow-lg hover:border-primary-500 dark:hover:border-primary-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-          @click="audienceStore.setAudience('sen')"
+          @click="audienceStore.setAudience('SEN')"
         >
           <UIcon name="i-lucide-building-2" class="w-8 h-8 text-gray-400 group-hover:text-primary-500 transition-colors" aria-hidden="true" />
           <span class="text-lg font-semibold text-gray-900 dark:text-white">SEN</span>
@@ -29,7 +29,7 @@ const audienceStore = useAudienceStore()
 
         <button
           class="group flex flex-col items-center gap-3 px-8 py-6 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-[var(--ui-radius)] shadow-sm hover:shadow-lg hover:border-primary-500 dark:hover:border-primary-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-          @click="audienceStore.setAudience('cejef')"
+          @click="audienceStore.setAudience('SFP')"
         >
           <UIcon name="i-lucide-school" class="w-8 h-8 text-gray-400 group-hover:text-primary-500 transition-colors" aria-hidden="true" />
           <span class="text-lg font-semibold text-gray-900 dark:text-white">SFP</span>

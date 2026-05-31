@@ -130,7 +130,7 @@ describe("mapDataProtectionThemes — Directus → DataProtectionTheme[]", () =>
   })
 
   it("propage le champ audience du thème si renseigné", () => {
-    const themeWithAudience: DirectusDpTheme = { ...theme, audience: ["sen"] }
+    const themeWithAudience: DirectusDpTheme = { ...theme, audience: ["SEN"] }
     const result = mapDataProtectionThemes({
       themes: [themeWithAudience],
       sections: [],
@@ -139,7 +139,7 @@ describe("mapDataProtectionThemes — Directus → DataProtectionTheme[]", () =>
       owners: []
     })
 
-    expect(result[0].audience).toEqual(["sen"])
+    expect(result[0].audience).toEqual(["SEN"])
   })
 
   it("attache plusieurs ressources au même item via plusieurs owners", () => {

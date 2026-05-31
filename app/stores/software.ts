@@ -31,14 +31,14 @@ export const useSoftwareStore = defineStore("software", () => {
       id: "approved-sen",
       label: "Approuvé SEN",
       icon: "i-lucide-badge-check",
-      audience: "sen" as const,
+      audience: "SEN" as const,
       predicate: (software: Software) => !!software.approvedBySEN
     },
     {
       id: "approved-cejef",
       label: "Approuvé SFP",
       icon: "i-lucide-badge-check",
-      audience: "cejef" as const,
+      audience: "SFP" as const,
       predicate: (software: Software) => !!software.approvedBySFP
     },
     {

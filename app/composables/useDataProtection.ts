@@ -24,12 +24,8 @@ export function useDataProtection() {
 
   const currentAudience = computed<string | null>(() => audienceStore.hasChosen ? audienceStore.audience : null)
 
-  // Map le code interne du store ("sen" | "cejef") vers le code Directus
-  // ("SEN" | "SFP"), qui utilise les majuscules par convention métier.
-  const audienceCode = computed<string | null>(() => {
-    if (!currentAudience.value) return null
-    return currentAudience.value === "cejef" ? "SFP" : "SEN"
-  })
+  // Le store et Directus utilisent désormais le même code majuscule SEN/SFP.
+  const audienceCode = computed<string | null>(() => currentAudience.value)
 
   const { data: themes, pending, refresh } = useFetch<DataProtectionTheme[]>("/api/data-protection/themes", {
     key: "data-protection-themes",
