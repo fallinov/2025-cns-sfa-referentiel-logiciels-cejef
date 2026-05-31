@@ -85,15 +85,22 @@ onUnmounted(() => {
   deactivateFocusTrap()
 })
 
-// Popular searches
-const popularSearches = [
-  { type: "category", label: "Bureautique", icon: "i-lucide-file-text" },
-  { type: "category", label: "Programmation", icon: "i-lucide-code" },
-  { type: "category", label: "Langues", icon: "i-lucide-languages" },
-  { type: "category", label: "Gestion de projet", icon: "i-lucide-folder-kanban" },
-  { type: "category", label: "Intelligence artificielle", icon: "i-lucide-brain-circuit" },
-  { type: "category", label: "Communication", icon: "i-lucide-message-square" }
-]
+// Suggestions populaires : top 6 catégories Directus par nombre de logiciels
+// publiés (signal réel d'usage). Évite les listes statiques qui deviennent
+// obsolètes à chaque évolution de la taxonomie.
+const softwareStore = useSoftwareStore()
+const popularSearches = computed(() => {
+  const counts = softwareStore.categoryCounts
+  const icons = softwareStore.categoryIcons
+  return Object.entries(counts)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 6)
+    .map(([name]) => ({
+      type: "category",
+      label: name,
+      icon: icons[name] ?? "i-lucide-tag"
+    }))
+})
 
 // Suggestions via composable
 const { suggestions, hasSuggestions } = useSearchSuggestions(search)

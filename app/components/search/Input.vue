@@ -18,17 +18,19 @@ const emit = defineEmits<{
 
 const searchInput = ref<HTMLInputElement | null>(null)
 
-// Typewriter Effect
+// Typewriter Effect — placeholders rotatifs.
+// Échantillon volontairement composé de noms de logiciels Directus
+// (pas de noms de catégories qui pourraient drift à chaque évolution
+// de la taxonomie). À toucher manuellement si un logiciel disparaît
+// du catalogue.
 const phrases = [
   "Que cherchez-vous ?",
-  "Bureautique...",
-  "Gestion de projet...",
-  "Langues...",
-  "Programmation...",
   "Canva...",
-  "Code.org...",
   "Antidote...",
-  "Taptouche..."
+  "TapTouche...",
+  "ChatGPT...",
+  "Padlet...",
+  "Quizlet..."
 ]
 
 const { placeholderText } = useTypewriter(phrases)
