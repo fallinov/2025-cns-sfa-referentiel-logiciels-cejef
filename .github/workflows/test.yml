@@ -57,7 +57,7 @@ jobs:
     name: Playwright E2E (desktop)
     runs-on: ubuntu-latest
     # Continue-on-error : ne bloque pas la PR si Directus est temporairement
-    # injoignable ou si UXNote a un test flaky. Les unit tests sont la garde principale.
+    # injoignable. Les unit tests sont la garde principale.
     continue-on-error: true
     steps:
       - name: Checkout
