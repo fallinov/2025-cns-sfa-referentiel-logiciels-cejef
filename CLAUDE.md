@@ -55,7 +55,6 @@ git push origin main
 - **Static Site Generation (SSG)** — données prefetchées depuis Directus au build
 - **Vitest** + `@nuxt/test-utils` + `happy-dom` (tests unitaires)
 - **Playwright** (tests e2e, projets desktop + mobile)
-- **UXNote** (widget retours testeurs, staging uniquement)
 
 > Conventions Nuxt UI, workflow Git, qualité du code : voir `~/.claude/CLAUDE.md` et `~/.claude/rules/`.
 > Composants, variantes custom, palette couleurs : voir `docs/components.md`.
@@ -120,25 +119,11 @@ git push origin main
 - `accessibility.spec.ts` — sémantique, ARIA, navigation clavier
 - `alternatives.spec.ts` — section alternatives (vide + DeepL Std → DeepL Pro)
 - `data-protection.spec.ts` — page LPD (titre, thèmes, recherche)
-- `uxnote.spec.ts` — toolbar UXNote, toast, traduction FR
 
-### Feedback testeurs
+### Feedback utilisateurs
 
-**2 canaux** :
-1. **Bouton "Donner un retour"** (footer) → GitHub Issue (`.github/ISSUE_TEMPLATE/feedback.yml`)
-2. **UXNote** (annotation visuelle) → activé via `?uxnote=1` sur staging
-
-**UXNote — architecture** :
-- **Plugin** : `app/plugins/uxnote.client.ts` — activé uniquement sur GitHub Pages + `?uxnote=1`
-- **Scripts** : self-hosted `public/static/uxnote.min.js` (traduit FR) + `uxnote-send.js` (pas de CDN)
-- **Backend** : API PHP sur `kode.ch/uxnotes/` (repo privé `fallinov/uxnotes-server`)
-- **Dashboard** : SPA Nuxt 4 sur `kode.ch/uxnotes/` (repo privé `fallinov/uxnotes-dashboard`)
-- **Email** : SMTP `mail.infomaniak.com:587` via PHPMailer → `steve.fallet@divtec.ch`
-
-**URLs** :
-- Testeurs : `https://fallinov.github.io/2025-cns-sfa-referentiel-logiciels-cejef/?uxnote=1`
-- Charger annotation : `?uxnote=1&load=ID` | Toutes : `?uxnote=1&load=all`
-- Dashboard : `https://kode.ch/uxnotes/`
+**Bouton "Donner un retour"** (footer) → GitHub Issue (`.github/ISSUE_TEMPLATE/feedback.yml`).
+Les empty states (autocomplete, liste alternatives, catalogue vide) proposent aussi un mailto pré-rempli vers `steve.fallet@jura.ch` pour suggestion de logiciels.
 
 ### Deployment Strategy
 

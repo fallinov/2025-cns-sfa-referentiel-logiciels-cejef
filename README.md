@@ -149,7 +149,6 @@ python3 scripts/apply-lgpd-changes.py
 - **ESLint** : Analyse statique du code (linting)
 - **GitHub Actions** : CI/CD pour déploiement automatisé
 - **Git** : Gestion de version
-- **[UXNote](https://uxnote.dev/)** : Widget d'annotation pour retours testeurs — voir [uxnotes-server](https://github.com/fallinov/uxnotes-server) pour la documentation complète
 
 ### Hébergement
 
@@ -546,8 +545,6 @@ Pour la documentation complète des règles ESLint :
 │   └── app.vue                 # Composant racine
 ├── public/
 │   ├── logos/                  # Logos des logiciels (SVG)
-│   ├── static/
-│   │   └── uxnote.min.js      # Widget UXNote self-hosted (staging)
 │   ├── favicon.ico             # Icône du site
 │   └── .nojekyll               # Désactive Jekyll (GitHub Pages)
 ├── tests/

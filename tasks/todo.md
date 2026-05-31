@@ -14,10 +14,6 @@ Refactor SPA prêt (commit `0e86077`) mais bloqué par CORS Directus serveur Noi
 
 Aujourd'hui hébergé sur Vercel (US). Bascule vers Infomaniak Cloud Managé (CH) pour respecter la règle de souveraineté quand le site CEJEF y sera aussi.
 
-### Tests UXNote flaky (3 échecs Playwright)
-
-Tests `tests/e2e/uxnote.spec.ts` instables (toolbar UXNote, toast, traduction FR). Non bloquants en CI (`continue-on-error: true` sur le job e2e). À investiguer plus tard.
-
 ### Couvrir useTypewriter + useSoftwareNavigation + useSearchSuggestions
 
 Ces 3 composables ont une couverture sous 55 % :

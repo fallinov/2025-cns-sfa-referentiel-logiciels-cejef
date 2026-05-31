@@ -231,6 +231,7 @@ onUnmounted(() => {
     <SoftwareListEmpty
       v-else-if="filteredSoftwareList.length === 0"
       :has-active-filters="hasActiveFilters"
+      :search-query="searchQuery"
       @clear="clearAllFilters"
     />
 
