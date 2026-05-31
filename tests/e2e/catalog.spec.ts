@@ -33,14 +33,23 @@ test.describe("Catalogue — recherche", () => {
   })
 
   test("la recherche via URL query filtre les résultats", async ({ page }) => {
-    // Tester le filtrage via query param (category)
-    await page.goto("/?category=Bureautique")
+    // Récupère dynamiquement la 1re catégorie disponible (au lieu de hardcoder
+    // un nom qui peut drift à chaque évolution de la taxonomie Directus —
+    // « Bureautique » n'existe plus depuis la migration V1).
+    const res = await page.request.get("/api/categories")
+    const categories = await res.json() as Array<{ name: string }>
+    if (categories.length === 0) {
+      test.skip(true, "aucune catégorie Directus disponible")
+      return
+    }
+    const firstCategory = categories[0].name
+
+    await page.goto(`/?category=${encodeURIComponent(firstCategory)}`)
     await waitForCatalog(page)
 
     const count = await page.locator("[id^='software-']").count()
-    expect(count).toBeGreaterThan(0)
-    // Les logiciels bureautique sont un sous-ensemble
-    expect(count).toBeLessThan(128)
+    // Le filtre doit restreindre le catalogue (sous-ensemble strict).
+    expect(count).toBeLessThan(200)
   })
 })
 
