@@ -77,4 +77,51 @@ describe("expandSearchQuery", () => {
     expect(result).toContain("intelligence artificielle")
     expect(result).toContain("ai")
   })
+
+  it("ajoute les synonymes pour AI (sens inverse)", () => {
+    const result = expandSearchQuery("ai")
+    expect(result).toContain("ai")
+    expect(result).toContain("ia")
+    expect(result).toContain("intelligence artificielle")
+  })
+
+  it("ajoute les synonymes pour intelligence artificielle (sens inverse)", () => {
+    const result = expandSearchQuery("intelligence artificielle")
+    expect(result).toContain("ia")
+    expect(result).toContain("ai")
+  })
+
+  it("ajoute les synonymes pour visio (incluant teams, zoom, meet)", () => {
+    const result = expandSearchQuery("visio")
+    expect(result).toContain("visioconference")
+    expect(result).toContain("teams")
+    expect(result).toContain("zoom")
+    expect(result).toContain("meet")
+  })
+
+  it("ajoute les synonymes pour traduction", () => {
+    const result = expandSearchQuery("traduction")
+    expect(result).toContain("traducteur")
+    expect(result).toContain("translate")
+    expect(result).toContain("deepl")
+  })
+
+  it("ajoute les synonymes pour quiz", () => {
+    const result = expandSearchQuery("quiz")
+    expect(result).toContain("quizz")
+    expect(result).toContain("questionnaire")
+    expect(result).toContain("sondage")
+  })
+
+  it("ajoute les synonymes pour pdf", () => {
+    const result = expandSearchQuery("pdf")
+    expect(result).toContain("adobe acrobat")
+    expect(result).toContain("lecteur pdf")
+  })
+
+  it("ajoute les synonymes pour code", () => {
+    const result = expandSearchQuery("code")
+    expect(result).toContain("programmation")
+    expect(result).toContain("developpement")
+  })
 })

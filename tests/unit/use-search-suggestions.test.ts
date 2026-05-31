@@ -135,3 +135,78 @@ describe("useSearchSuggestions — priorisation (best practices UX 2026)", () =>
     expect(suggestions.value.software.length).toBeLessThanOrEqual(5)
   })
 })
+
+describe("useSearchSuggestions — expansion synonymes", () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  beforeEach(() => {
+    vi.useFakeTimers()
+    const list = useState<Software[]>("software-list", () => [])
+    list.value = [
+      // Aucun de ces logiciels ne contient le mot « ia » de manière indépendante,
+      // mais ils contiennent « intelligence artificielle » dans la description ou
+      // la catégorie. L'expansion synonymes doit les faire remonter.
+      makeSoftware({
+        id: "chatgpt",
+        name: "ChatGPT",
+        shortDescription: "Assistant conversationnel basé sur l'intelligence artificielle",
+        categories: ["Intelligence artificielle générative"]
+      }),
+      makeSoftware({
+        id: "copilot",
+        name: "Microsoft Copilot",
+        shortDescription: "Assistant Microsoft 365 d'intelligence artificielle",
+        categories: ["Intelligence artificielle générative"]
+      }),
+      makeSoftware({
+        id: "gemini",
+        name: "Google Gemini",
+        shortDescription: "Assistant Google d'intelligence artificielle",
+        categories: ["Intelligence artificielle générative"]
+      }),
+      // Un logiciel qui ne devrait pas matcher (aucun terme IA dans ses champs)
+      makeSoftware({
+        id: "excel",
+        name: "Excel",
+        shortDescription: "Tableur",
+        categories: ["Bureautique"]
+      })
+    ]
+  })
+
+  it("taper « ia » fait remonter les logiciels avec « intelligence artificielle »", async () => {
+    const query = ref("ia")
+    const { suggestions } = useSearchSuggestions(query)
+    vi.advanceTimersByTime(350)
+    await nextTick()
+
+    const ids = suggestions.value.software.map(s => s.software.id)
+    expect(ids).toContain("chatgpt")
+    expect(ids).toContain("copilot")
+    expect(ids).toContain("gemini")
+    expect(ids).not.toContain("excel")
+  })
+
+  it("taper « ai » fait remonter les logiciels avec « intelligence artificielle » (sens inverse)", async () => {
+    const query = ref("ai")
+    const { suggestions } = useSearchSuggestions(query)
+    vi.advanceTimersByTime(350)
+    await nextTick()
+
+    const ids = suggestions.value.software.map(s => s.software.id)
+    expect(ids).toContain("chatgpt")
+  })
+
+  it("taper « intelligence artificielle » fait remonter les mêmes logiciels", async () => {
+    const query = ref("intelligence artificielle")
+    const { suggestions } = useSearchSuggestions(query)
+    vi.advanceTimersByTime(350)
+    await nextTick()
+
+    const ids = suggestions.value.software.map(s => s.software.id)
+    expect(ids).toContain("chatgpt")
+    expect(ids).toContain("copilot")
+  })
+})
