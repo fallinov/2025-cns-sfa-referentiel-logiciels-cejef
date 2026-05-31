@@ -2,6 +2,7 @@ import { defineStore } from "pinia"
 import type { CostType, Software } from "~~/types/software"
 import { getCertificationLevel } from "~~/types/software"
 import type { CategoryEntry } from "~~/server/api/categories.get"
+import type { ActivityEntry } from "~~/server/api/pedagogical-activities.get"
 import { expandSearchQuery, matchesSearch } from "~/utils/search"
 
 export const useSoftwareStore = defineStore("software", () => {
@@ -10,6 +11,8 @@ export const useSoftwareStore = defineStore("software", () => {
   // Liste complete des categories (incluant celles a count=0, affichees en
   // mode disabled dans les filtres au lieu d'etre masquees).
   const categoryList = useState<CategoryEntry[]>("category-list", () => [])
+  // Idem pour les activites pedagogiques.
+  const activityList = useState<ActivityEntry[]>("activity-list", () => [])
 
   // State
   const searchQuery = ref("")
@@ -78,7 +81,13 @@ export const useSoftwareStore = defineStore("software", () => {
     return Array.from(categories).sort()
   })
 
+  // Liste complete des activites pedagogiques Directus (incluant celles a
+  // count=0). Fallback sur l'extraction depuis les logiciels si la taxonomie
+  // n'a pas ete chargee (SSR pre-fetch, tests unit, etc.).
   const uniqueActivities = computed(() => {
+    if (activityList.value.length > 0) {
+      return activityList.value.map(a => a.name).sort()
+    }
     const activities = new Set<string>()
     softwareList.value.forEach(s => s.pedagogicalActivities?.forEach(a => activities.add(a.name)))
     return Array.from(activities).sort()
@@ -126,6 +135,11 @@ export const useSoftwareStore = defineStore("software", () => {
 
   const activityIcons = computed<Record<string, string | null>>(() => {
     const icons: Record<string, string | null> = {}
+    // Source primaire : taxonomie complete (couvre les activites sans logiciel).
+    activityList.value.forEach((a) => {
+      icons[a.name] = a.icon
+    })
+    // Fallback : extraction depuis les logiciels (compatibilite tests / pre-fetch).
     softwareList.value.forEach(s =>
       s.pedagogicalActivities?.forEach((a) => {
         if (!(a.name in icons)) icons[a.name] = a.icon

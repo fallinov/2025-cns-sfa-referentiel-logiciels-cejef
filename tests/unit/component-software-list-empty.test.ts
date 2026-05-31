@@ -28,19 +28,15 @@ function mountEmpty(props: { hasActiveFilters: boolean, searchQuery?: string }) 
 }
 
 describe("SoftwareListEmpty.vue", () => {
-  it("affiche le titre 'Aucun logiciel ne correspond à votre recherche'", () => {
+  it("affiche le titre éditorial 'Aidez-nous à enrichir le catalogue'", () => {
     const wrapper = mountEmpty({ hasActiveFilters: false })
-    expect(wrapper.text()).toContain("Aucun logiciel ne correspond à votre recherche")
+    expect(wrapper.text()).toContain("Aidez-nous à enrichir")
+    expect(wrapper.text()).toContain("le catalogue")
   })
 
   it("affiche le message participatif", () => {
     const wrapper = mountEmpty({ hasActiveFilters: false })
     expect(wrapper.text()).toContain("Cet outil se construit avec vous")
-  })
-
-  it("affiche l'icône search-x", () => {
-    const wrapper = mountEmpty({ hasActiveFilters: false })
-    expect(wrapper.find("[data-icon='i-lucide-search-x']").exists()).toBe(true)
   })
 
   it("affiche le CTA 'Proposer un logiciel' avec un mailto", () => {
