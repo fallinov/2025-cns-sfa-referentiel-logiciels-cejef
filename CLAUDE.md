@@ -18,7 +18,7 @@ npm run preview          # Preview generated static site
 
 ### Tests
 ```bash
-npm test                 # Vitest unit tests (233 tests, 18 fichiers)
+npm test                 # Vitest unit tests (242 tests, 19 fichiers)
 npm run test:watch       # Vitest watch mode
 npm run test:coverage    # Vitest + v8 coverage (seuils 70/55/70/70)
 npm run test:e2e         # Playwright e2e (desktop + mobile)
@@ -75,7 +75,7 @@ git push origin main
 - **Tous environnements (Vercel SSR, dev local)** : anonyme via permissions du rôle Public (lecture `software` publiés + `category` + `pedagogical_activity` + `directus_files` + `software_alternative`)
 - **Pas de token côté frontend** : ni en CI, ni en dev local, ni sur Vercel. Le frontend ne lit que les `status: published`.
 - **Pas de problème CORS** : le navigateur ne contacte JAMAIS Directus directement. Il appelle les endpoints serveur Nuxt (`/api/software`, `/api/software/:id`), qui appellent Directus côté serveur (Vercel ou dev local).
-- **`DIRECTUS_TOKEN` reste pris en charge** par `useDirectusClient()` (variable d'env optionnelle) — utile seulement si une feature future a besoin de lire les drafts. Ne pas l'ajouter au `.env` par défaut.
+- **`DIRECTUS_TOKEN`** : utilisé par `scripts/mcp-directus-auth.sh` (MCP Directus pour les pipelines de classification IA, `.mcp.json`). Jamais exposé au frontend SSR. Ajouter au `.env` local uniquement si tu utilises les skills de classification (`/sfa-classify-software`).
 
 **Types** : `types/software.ts` (`Software`, `LgpdClassification`, `CertificationLevel`, `DataLocation`).
 **State** : Pinia stores (`software.ts`, `audience.ts`) + composables (`useSoftware`, `useDataProtection`).
@@ -95,7 +95,7 @@ git push origin main
 
 **Fixtures de test** : `tests/fixtures/software.ts` (14 logiciels synthétiques) — utilisée par les tests qui ont besoin d'un dataset. **Le seed legacy `app/data/software-list.ts` n'est plus référencé par aucun test** (il a divergé du runtime Directus : 128 vs 104 logiciels, flags désynchronisés).
 
-**Tests unitaires** (`tests/unit/`) — 18 fichiers, 233 tests :
+**Tests unitaires** (`tests/unit/`) — 19 fichiers, 242 tests :
 - `store-filtering.test.ts` / `store-sorting.test.ts` — filtres + tri Pinia (sur fixtures)
 - `search.test.ts` — recherche Fuse.js (fuzzy, accents)
 - `certification.test.ts` — `getCertificationLevel` + helpers UI (config/colors/icon)
@@ -107,7 +107,7 @@ git push origin main
 - `server-directus-utils.test.ts` — `mapSoftware` + `mapDataLocationLabel`
 - `highlight-match.test.ts` — utilitaire de surlignage dans l'autocomplete
 - `software-icon.test.ts` — cascade de fallback d'icônes logiciels
-- `component-software-list-empty.test.ts` / `component-software-detail-alternatives.test.ts` / `component-software-feature-badge.test.ts` / `component-icon-grid-filter.test.ts` — composants Vue
+- `component-software-list-empty.test.ts` / `component-software-detail-alternatives.test.ts` / `component-software-feature-badge.test.ts` / `component-icon-grid-filter.test.ts` / `component-software-certification-card.test.ts` — composants Vue
 
 **Tests e2e** (`tests/e2e/`) — Playwright desktop (Chrome) + mobile (Pixel 7) :
 - `catalog.spec.ts` — navigation, filtres, recherche, grille/liste
@@ -147,7 +147,8 @@ Les empty states (autocomplete, liste alternatives, catalogue vide) proposent au
 4. Pas de rebuild nécessaire — le site SSR sert les données live depuis Directus au prochain refresh
 
 > Procédure de saisie détaillée : `~/CNS/projets/referentiel/PROCEDURE-DIRECTUS-V1.md`
-> Classification LGPD d'un nouveau logiciel : `docs/lgpd-classification.md`
+> Classification LGPD (assistée par IA) : skill `/sfa-classify-software <url>` — nécessite `DIRECTUS_TOKEN` dans `.env` + MCP Directus (`.mcp.json`)
+> Classification LGPD manuelle : `docs/lgpd-classification.md`
 
 ### Code Style
 
