@@ -1,5 +1,19 @@
 # Leçons apprises
 
+## 2026-06-03 — MCP project-scoped non chargé si Claude Code est déjà ouvert
+
+**Contexte** : Ajout de `.mcp.json` (MCP Directus HTTP) en cours de session Claude Code.
+**Erreur** : `claude mcp list` montrait le MCP connecté côté CLI mais `ToolSearch` ne trouvait aucun outil Directus — la session courante ne voyait pas le nouveau MCP.
+**Correction** : Relancer Claude Code après ajout d'un `.mcp.json` project-scoped. Les MCPs sont lus uniquement au démarrage de session.
+**Règle** : Un `.mcp.json` ajouté en cours de session ne prend effet qu'au prochain démarrage. Pour tester rapidement, utiliser `claude mcp list` (détecte la config) mais les outils ne seront disponibles dans ToolSearch qu'à la prochaine session.
+
+## 2026-06-03 — `${VAR}` dans `.mcp.json` ne lit pas le `.env` du projet
+
+**Contexte** : Config `"headers": { "Authorization": "Bearer ${DIRECTUS_TOKEN}" }` dans `.mcp.json`. Le `.env` du projet contient `DIRECTUS_TOKEN=...`.
+**Erreur** : `Missing environment variables: DIRECTUS_TOKEN` — Claude Code ne source pas automatiquement le `.env` du projet pour résoudre les variables dans `.mcp.json`.
+**Correction** : Utiliser `headersHelper` (script Bash qui lit le `.env` lui-même et retourne le JSON header) au lieu de `headers` avec `${VAR}`. Voir `scripts/mcp-directus-auth.sh`.
+**Règle** : `${VAR}` dans `.mcp.json` est résolu depuis l'environnement shell de Claude Code (variables exportées au lancement), pas depuis le `.env` du projet. Pour les tokens sensibles, préférer `headersHelper` qui lit le fichier au moment de la connexion.
+
 ## 2026-06-03 — Tests qui valident la mauvaise règle métier : le bug passe en CI
 
 **Contexte** : Correction du tri "recommandé" dans `app/stores/software.ts` — le score d'approbation devait devenir contextuel à l'audience active SEN/SFP.
