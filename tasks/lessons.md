@@ -1,5 +1,12 @@
 # Leçons apprises
 
+## 2026-06-04 — DIRECTUS_TOKEN sans droits write : FORBIDDEN silencieux au pipeline IA
+
+**Contexte** : Classification ActivePresenter via `/sfa-classify-software` — la fiche ne pouvait pas être créée dans Directus.
+**Erreur** : Le `DIRECTUS_TOKEN` chargé via direnv retournait `FORBIDDEN` sur `POST /items/software` et sur toutes les mutations. Le MCP indiquait "Connected" et la lecture fonctionnait — signe trompeur d'un token en lecture seule.
+**Correction** : Utiliser un token lié à un rôle avec `create`+`update` sur `software`, `software_category`, `software_pedagogical_activity`. Fallback : passer le token directement à curl (`-H "Authorization: Bearer <token>"`).
+**Règle** : Quand le MCP Directus retourne `FORBIDDEN` sur create/update mais pas sur read, le token a un rôle lecture seule. Vérifier dans Directus admin > Settings > Access Control > [rôle du token] > permissions sur les 3 collections. Le `DIRECTUS_TOKEN` dans `.env` doit être régénéré si le rôle associé a été modifié.
+
 ## 2026-06-03 — MCP project-scoped non chargé si Claude Code est déjà ouvert
 
 **Contexte** : Ajout de `.mcp.json` (MCP Directus HTTP) en cours de session Claude Code.

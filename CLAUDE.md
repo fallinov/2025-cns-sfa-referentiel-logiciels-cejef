@@ -75,11 +75,11 @@ git push origin main
 - **Tous environnements (Vercel SSR, dev local)** : anonyme via permissions du rôle Public (lecture `software` publiés + `category` + `pedagogical_activity` + `directus_files` + `software_alternative`)
 - **Pas de token côté frontend** : ni en CI, ni en dev local, ni sur Vercel. Le frontend ne lit que les `status: published`.
 - **Pas de problème CORS** : le navigateur ne contacte JAMAIS Directus directement. Il appelle les endpoints serveur Nuxt (`/api/software`, `/api/software/:id`), qui appellent Directus côté serveur (Vercel ou dev local).
-- **`DIRECTUS_TOKEN`** : utilisé par le MCP Directus (`.mcp.json`, `headers.Authorization`) pour les pipelines de classification IA. Chargé automatiquement via `direnv` (`.envrc` → `dotenv`). Jamais exposé au frontend SSR. Requis uniquement pour `/sfa-classify-software`.
+- **`DIRECTUS_TOKEN`** : utilisé par le MCP Directus (`.mcp.json`, `headers.Authorization`) pour les pipelines de classification IA. Chargé automatiquement via `direnv` (`.envrc` → `dotenv`). Jamais exposé au frontend SSR. Requis uniquement pour `/sfa-classify-software`. Le token doit avoir les droits `create`+`update` sur `software`, `software_category`, `software_pedagogical_activity` — si `FORBIDDEN`, vérifier le rôle Directus associé au token.
 
 **Types** : `types/software.ts` (`Software`, `LgpdClassification`, `CertificationLevel`, `DataLocation`).
 **State** : Pinia stores (`software.ts`, `audience.ts`) + composables (`useSoftware`, `useDataProtection`).
-**Legacy** : `app/data/software-list.ts` reste dans le repo mais n'est plus utilisé — ni par le runtime (Directus), ni par les tests (qui utilisent `tests/fixtures/software.ts`). Peut être supprimé dans une PR dédiée.
+**Legacy** : `app/data/software-list.ts` n'est plus utilisé (ni runtime, ni tests). Peut être supprimé dans une PR dédiée.
 
 > Détails complets : `docs/data-architecture.md`
 
@@ -95,25 +95,9 @@ git push origin main
 
 **Fixtures de test** : `tests/fixtures/software.ts` (14 logiciels synthétiques) — utilisée par les tests qui ont besoin d'un dataset. **Le seed legacy `app/data/software-list.ts` n'est plus référencé par aucun test** (il a divergé du runtime Directus : 128 vs 104 logiciels, flags désynchronisés).
 
-**Tests unitaires** (`tests/unit/`) — 19 fichiers, 242 tests :
-- `store-filtering.test.ts` / `store-sorting.test.ts` — filtres + tri Pinia (sur fixtures)
-- `search.test.ts` — recherche Fuse.js (fuzzy, accents)
-- `certification.test.ts` — `getCertificationLevel` + helpers UI (config/colors/icon)
-- `navigation.test.ts` — navigation précédent/suivant (sur fixtures)
-- `data-protection-mapper.test.ts` — mapper thèmes Genially, structure 3 niveaux
-- `alternatives.test.ts` — `useAlternatives` (filtre, tri, état vide)
-- `use-software.test.ts` / `use-search-suggestions.test.ts` / `use-typewriter.test.ts` — composables
-- `audience-store.test.ts` — Pinia + localStorage
-- `server-directus-utils.test.ts` — `mapSoftware` + `mapDataLocationLabel`
-- `highlight-match.test.ts` — utilitaire de surlignage dans l'autocomplete
-- `software-icon.test.ts` — cascade de fallback d'icônes logiciels
-- `component-software-list-empty.test.ts` / `component-software-detail-alternatives.test.ts` / `component-software-feature-badge.test.ts` / `component-icon-grid-filter.test.ts` / `component-software-certification-card.test.ts` — composants Vue
+**Tests unitaires** (`tests/unit/`) — 19 fichiers, 242 tests : stores Pinia (filtres, tri), Fuse.js, certification, navigation, mapper LPD, alternatives, composables, composants Vue.
 
-**Tests e2e** (`tests/e2e/`) — Playwright desktop (Chrome) + mobile (Pixel 7) :
-- `catalog.spec.ts` — navigation, filtres, recherche, grille/liste
-- `accessibility.spec.ts` — sémantique, ARIA, navigation clavier
-- `alternatives.spec.ts` — section alternatives (vide + DeepL Std → DeepL Pro)
-- `data-protection.spec.ts` — page LPD (titre, thèmes, recherche)
+**Tests e2e** (`tests/e2e/`) — Playwright desktop (Chrome) + mobile (Pixel 7) : catalog, accessibility, alternatives, data-protection.
 
 ### Feedback utilisateurs
 
@@ -129,9 +113,7 @@ Les empty states (autocomplete, liste alternatives, catalogue vide) proposent au
 - Pas de `NUXT_APP_BASE_URL` sur Vercel → `baseURL: "/"`
 - Pas de problème CORS : le navigateur appelle `/api/software` (même origine), le serveur Nuxt forward vers Directus
 
-**Pourquoi Vercel et pas GitHub Pages** : la formation des saisisseurs CNS (séance 27.05) nécessite que les modifications Directus soient visibles immédiatement après refresh navigateur. GitHub Pages = mode statique, données figées au build (re-build manuel de ~2 min par modif). Vercel = SSR, données live.
-
-**Workflow GitHub Pages désactivé** (`.github/workflows/deploy-github-pages.yml.disabled`) — gardé en référence si retour au mode statique nécessaire (cf branche `feat/spa-mode` pour le pattern SPA pure).
+**GitHub Pages désactivé** (workflow `.disabled`) — gardé en référence pour un éventuel retour au mode statique (cf branche `feat/spa-mode`).
 
 **Production future** : Infomaniak Cloud Managé (Suisse) — souveraineté CH. Bascule prévue après stabilisation Vercel.
 
