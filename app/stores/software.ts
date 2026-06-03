@@ -223,17 +223,24 @@ export const useSoftwareStore = defineStore("software", () => {
       if (lvl === 0) return 4
       return 5
     }
+    // Tri "recommandé" : seules les approbations de l'audience active (SEN/SFP)
+    // remontent les logiciels. Lu hors du sort pour que Vue trace la
+    // dépendance et recalcule le computed quand l'audience change.
+    const activeAudience = audienceStore.audience
+    const isApprovedForActiveAudience = (s: Software): boolean =>
+      activeAudience === "SEN" ? !!s.approvedBySEN : !!s.approvedBySFP
+
     filtered.sort((a, b) => {
       const levelA = sortWeight(a.certificationLevel ?? getCertificationLevel(a.lgpd))
       const levelB = sortWeight(b.certificationLevel ?? getCertificationLevel(b.lgpd))
       const nameA = a.name || ""
       const nameB = b.name || ""
-      const approvedA = (a.approvedBySEN ? 1 : 0) + (a.approvedBySFP ? 1 : 0)
-      const approvedB = (b.approvedBySEN ? 1 : 0) + (b.approvedBySFP ? 1 : 0)
+      const approvedA = isApprovedForActiveAudience(a) ? 1 : 0
+      const approvedB = isApprovedForActiveAudience(b) ? 1 : 0
 
       switch (sortBy.value) {
         case "recommended":
-          // Logiciels approuvés SEN/SFP en premier (plus d'approbations = plus haut)
+          // Logiciels approuvés par l'audience active en premier
           if (approvedA !== approvedB) return approvedB - approvedA
           // Secondaire : par conformité (validé d'abord)
           if (levelA !== levelB) return levelA - levelB

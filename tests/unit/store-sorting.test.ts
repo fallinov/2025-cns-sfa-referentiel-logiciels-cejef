@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest"
 import { createPinia, setActivePinia } from "pinia"
 import { useSoftwareStore } from "~/stores/software"
+import { useAudienceStore } from "~/stores/audience"
 import { softwareFixtures } from "~~/tests/fixtures/software"
 import { getCertificationLevel, type Software } from "~~/types/software"
 
@@ -69,30 +70,30 @@ describe("software store - tri", () => {
   })
 
   describe("tri 'recommended' (par défaut)", () => {
-    it("place les logiciels approuvés (SEN/CEJEF) avant les non-approuvés", () => {
+    // Score d'approbation contextuel : seules les approbations de l'audience
+    // active comptent (DeepL Pro = 1 en SEN, 0 en SFP).
+    const approvalScoreFor = (audience: "SEN" | "SFP") => (s: Software) =>
+      audience === "SEN" ? (s.approvedBySEN ? 1 : 0) : (s.approvedBySFP ? 1 : 0)
+
+    it("place les logiciels approuvés par l'audience active avant les autres", () => {
       store.sortBy = "recommended"
       const list = store.filteredSoftwareList
+      const score = approvalScoreFor("SEN")
 
-      const approvalScore = (s: Software) =>
-        (s.approvedBySEN ? 1 : 0) + (s.approvedBySFP ? 1 : 0)
-
-      // Le score d'approbation est monotone décroissant
       for (let i = 1; i < list.length; i++) {
-        expect(approvalScore(list[i]!)).toBeLessThanOrEqual(approvalScore(list[i - 1]!))
+        expect(score(list[i]!)).toBeLessThanOrEqual(score(list[i - 1]!))
       }
     })
 
     it("à approbation égale, trie par niveau croissant", () => {
       store.sortBy = "recommended"
       const list = store.filteredSoftwareList
-
-      const approvalScore = (s: Software) =>
-        (s.approvedBySEN ? 1 : 0) + (s.approvedBySFP ? 1 : 0)
+      const score = approvalScoreFor("SEN")
 
       for (let i = 1; i < list.length; i++) {
         const a = list[i - 1]!
         const b = list[i]!
-        if (approvalScore(a) === approvalScore(b)) {
+        if (score(a) === score(b)) {
           const lvlA = a.certificationLevel ?? getCertificationLevel(a.lgpd) ?? 99
           const lvlB = b.certificationLevel ?? getCertificationLevel(b.lgpd) ?? 99
           expect(lvlB).toBeGreaterThanOrEqual(lvlA)
@@ -100,9 +101,46 @@ describe("software store - tri", () => {
       }
     })
 
-    it("Microsoft Teams (SEN+SFP) apparaît en premier dans les fixtures", () => {
+    it("en audience SEN, DeepL Pro et Microsoft Teams (approuvés SEN) sont en tête", () => {
+      // Audience par défaut = SEN. Score 1 : DeepL Pro + Teams.
+      // Ex aequo sur le niveau (1) → tri alpha → DeepL Pro avant Microsoft Teams.
       store.sortBy = "recommended"
-      expect(store.filteredSoftwareList[0]!.name).toBe("Microsoft Teams")
+      const top = store.filteredSoftwareList.slice(0, 2).map(s => s.name)
+      expect(top).toEqual(["DeepL Pro", "Microsoft Teams"])
+    })
+
+    it("en audience SFP, Microsoft Teams et Wooflash (approuvés SFP) sont en tête", () => {
+      const audienceStore = useAudienceStore()
+      audienceStore.setAudience("SFP")
+      store.sortBy = "recommended"
+      // Score 1 : Microsoft Teams + Wooflash. Teams (lvl 1) avant Wooflash (lvl 1)
+      // par ordre alpha (M < W).
+      const top = store.filteredSoftwareList.slice(0, 2).map(s => s.name)
+      expect(top).toEqual(["Microsoft Teams", "Wooflash"])
+    })
+
+    it("changer d'audience SEN ↔ SFP réordonne la liste", () => {
+      store.sortBy = "recommended"
+      const audienceStore = useAudienceStore()
+
+      const topInSen = store.filteredSoftwareList[0]!.name
+      audienceStore.setAudience("SFP")
+      const topInSfp = store.filteredSoftwareList[0]!.name
+      // En SEN : DeepL Pro remonte (approuvé SEN seul). En SFP : il redescend.
+      expect(topInSen).toBe("DeepL Pro")
+      expect(topInSfp).toBe("Microsoft Teams")
+    })
+
+    it("DeepL Pro (approuvé SEN) n'a aucun boost quand l'audience est SFP", () => {
+      const audienceStore = useAudienceStore()
+      audienceStore.setAudience("SFP")
+      store.sortBy = "recommended"
+      // DeepL Pro doit se retrouver au même rang qu'un logiciel non-approuvé
+      // de niveau 1, classé alphabétiquement (donc derrière Teams et Wooflash).
+      const names = store.filteredSoftwareList.map(s => s.name)
+      const deeplIdx = names.indexOf("DeepL Pro")
+      const wooflashIdx = names.indexOf("Wooflash")
+      expect(deeplIdx).toBeGreaterThan(wooflashIdx)
     })
   })
 
