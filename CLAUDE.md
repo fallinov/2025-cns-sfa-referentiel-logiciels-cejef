@@ -75,7 +75,7 @@ git push origin main
 - **Tous environnements (Vercel SSR, dev local)** : anonyme via permissions du rôle Public (lecture `software` publiés + `category` + `pedagogical_activity` + `directus_files` + `software_alternative`)
 - **Pas de token côté frontend** : ni en CI, ni en dev local, ni sur Vercel. Le frontend ne lit que les `status: published`.
 - **Pas de problème CORS** : le navigateur ne contacte JAMAIS Directus directement. Il appelle les endpoints serveur Nuxt (`/api/software`, `/api/software/:id`), qui appellent Directus côté serveur (Vercel ou dev local).
-- **`DIRECTUS_TOKEN`** : utilisé par `scripts/mcp-directus-auth.sh` (MCP Directus pour les pipelines de classification IA, `.mcp.json`). Jamais exposé au frontend SSR. Ajouter au `.env` local uniquement si tu utilises les skills de classification (`/sfa-classify-software`).
+- **`DIRECTUS_TOKEN`** : utilisé par le MCP Directus (`.mcp.json`, `headers.Authorization`) pour les pipelines de classification IA. Chargé automatiquement via `direnv` (`.envrc` → `dotenv`). Jamais exposé au frontend SSR. Requis uniquement pour `/sfa-classify-software`.
 
 **Types** : `types/software.ts` (`Software`, `LgpdClassification`, `CertificationLevel`, `DataLocation`).
 **State** : Pinia stores (`software.ts`, `audience.ts`) + composables (`useSoftware`, `useDataProtection`).

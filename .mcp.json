@@ -3,7 +3,9 @@
     "directus": {
       "type": "http",
       "url": "http://46.140.144.167:8055/mcp",
-      "headersHelper": "${CLAUDE_PROJECT_DIR:-.}/scripts/mcp-directus-auth.sh",
+      "headers": {
+        "Authorization": "Bearer ${DIRECTUS_TOKEN}"
+      },
       "alwaysLoad": true
     }
   }

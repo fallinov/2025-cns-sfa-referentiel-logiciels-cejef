@@ -7,12 +7,13 @@
 **Correction** : Relancer Claude Code après ajout d'un `.mcp.json` project-scoped. Les MCPs sont lus uniquement au démarrage de session.
 **Règle** : Un `.mcp.json` ajouté en cours de session ne prend effet qu'au prochain démarrage. Pour tester rapidement, utiliser `claude mcp list` (détecte la config) mais les outils ne seront disponibles dans ToolSearch qu'à la prochaine session.
 
-## 2026-06-03 — `${VAR}` dans `.mcp.json` ne lit pas le `.env` du projet
+## 2026-06-04 — MCP Directus HTTP : `headersHelper` inopérant, `headers` + direnv requis
 
-**Contexte** : Config `"headers": { "Authorization": "Bearer ${DIRECTUS_TOKEN}" }` dans `.mcp.json`. Le `.env` du projet contient `DIRECTUS_TOKEN=...`.
-**Erreur** : `Missing environment variables: DIRECTUS_TOKEN` — Claude Code ne source pas automatiquement le `.env` du projet pour résoudre les variables dans `.mcp.json`.
-**Correction** : Utiliser `headersHelper` (script Bash qui lit le `.env` lui-même et retourne le JSON header) au lieu de `headers` avec `${VAR}`. Voir `scripts/mcp-directus-auth.sh`.
-**Règle** : `${VAR}` dans `.mcp.json` est résolu depuis l'environnement shell de Claude Code (variables exportées au lancement), pas depuis le `.env` du projet. Pour les tokens sensibles, préférer `headersHelper` qui lit le fichier au moment de la connexion.
+**Contexte** : Auth token pour MCP Directus (`type: "http"`) dans `.mcp.json`. Deux approches testées successivement.
+**Erreur 1** : `headers: { Authorization: "Bearer ${DIRECTUS_TOKEN}" }` → `Missing environment variables` car Claude Code ne source pas le `.env` du projet automatiquement.
+**Erreur 2** : `headersHelper: "scripts/mcp-directus-auth.sh"` (script qui lit `.env` et retourne le JSON header) → le script s'exécute correctement à la main, mais Claude Code ne l'appelle pas pour les MCP `type: http`. Le MCP se connecte anonymement (rôle Public → read-only). Reconnect MCP ne corrige pas le problème.
+**Correction** : Revenir à `headers: { Authorization: "Bearer ${DIRECTUS_TOKEN}" }` ET exporter la variable dans l'environnement shell avant de lancer Claude Code. Solution propre : `direnv` + `.envrc` contenant `dotenv` — la variable est exportée automatiquement à chaque `cd` dans le projet.
+**Règle** : Pour les MCP `type: http`, `headersHelper` est documenté mais non honoré en pratique (version actuelle). Utiliser `headers` + `${VAR}` avec `direnv` pour que la variable soit dans l'env shell au démarrage de Claude Code. Ne jamais supposer que reconnect MCP ou redémarrage session suffit sans que la variable soit exportée.
 
 ## 2026-06-03 — Tests qui valident la mauvaise règle métier : le bug passe en CI
 
