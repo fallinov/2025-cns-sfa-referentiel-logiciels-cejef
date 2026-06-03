@@ -31,6 +31,8 @@ const config = computed(() => {
         titleClass: "text-gray-900 dark:text-white",
         textClass: "text-gray-600 dark:text-gray-300",
         emphasisClass: "text-green-600 dark:text-green-400",
+        // Notes
+        noteClass: "bg-green-50 dark:bg-green-900/10 text-green-800 dark:text-green-200 border border-green-100 dark:border-green-800/30",
         // Button/UI
         buttonColor: "neutral" as const,
         buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
@@ -68,6 +70,8 @@ const config = computed(() => {
         titleClass: "text-gray-900 dark:text-white",
         textClass: "text-gray-600 dark:text-gray-300",
         emphasisClass: "text-red-600 dark:text-red-400",
+        // Notes
+        noteClass: "bg-red-50 dark:bg-red-900/10 text-red-800 dark:text-red-200 border border-red-100 dark:border-red-800/30",
         // UI
         buttonColor: "neutral" as const,
         buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
@@ -85,6 +89,7 @@ const config = computed(() => {
         titleClass: "text-gray-900 dark:text-white",
         textClass: "text-gray-600 dark:text-gray-300",
         emphasisClass: "text-gray-700 dark:text-gray-300",
+        noteClass: "bg-gray-50 dark:bg-gray-900/10 text-gray-800 dark:text-gray-200 border border-gray-100 dark:border-gray-800/30",
         buttonColor: "neutral" as const,
         buttonClass: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
       }
@@ -126,9 +131,9 @@ const config = computed(() => {
         {{ config.additionalInfo }}
       </p>
 
-      <!-- Usage Notes (Level 2 only) -->
+      <!-- Usage Notes (toujours affiche si renseignees, couleur adaptee au niveau) -->
       <div
-        v-if="certificationLevel === 2 && software.usageNotes"
+        v-if="software.usageNotes && software.usageNotes.trim()"
         class="mt-3 p-3 rounded-lg text-base italic"
         :class="config.noteClass"
       >
