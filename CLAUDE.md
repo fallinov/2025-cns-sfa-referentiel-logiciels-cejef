@@ -18,7 +18,7 @@ npm run preview          # Preview generated static site
 
 ### Tests
 ```bash
-npm test                 # Vitest unit tests (208 tests, 17 fichiers)
+npm test                 # Vitest unit tests (233 tests, 18 fichiers)
 npm run test:watch       # Vitest watch mode
 npm run test:coverage    # Vitest + v8 coverage (seuils 70/55/70/70)
 npm run test:e2e         # Playwright e2e (desktop + mobile)
@@ -52,7 +52,6 @@ git push origin main
 - **Directus 11** (CMS headless, source de vérité des logiciels)
 - **@directus/sdk** (client REST + types)
 - **Pinia** + `useState` (state global réactif)
-- **Static Site Generation (SSG)** — données prefetchées depuis Directus au build
 - **Vitest** + `@nuxt/test-utils` + `happy-dom` (tests unitaires)
 - **Playwright** (tests e2e, projets desktop + mobile)
 
@@ -63,7 +62,7 @@ git push origin main
 
 **Source de vérité (runtime)** : Directus 11 — `http://46.140.144.167:8055`. Collection `software` (status=published), relations M2M vers `category`, `pedagogical_activity`, et `software_alternative` (auto-référentielle, unidirectionnelle — alternatives recommandées).
 
-**Mode SSR sur Vercel** : depuis v0.21+, le site n'est plus statique. Chaque visite déclenche un render serveur qui appelle Directus en live. Plus de re-build manuel — les modifications côté Directus sont visibles dès le refresh suivant.
+**Mode SSR sur Vercel** : le site est en SSR natif. Chaque visite déclenche un render serveur qui appelle Directus en live. Plus de re-build manuel — les modifications côté Directus sont visibles dès le refresh suivant.
 
 **Pipeline runtime (SSR Vercel)** :
 1. Visite navigateur → Vercel déclenche le SSR Nuxt
@@ -96,23 +95,19 @@ git push origin main
 
 **Fixtures de test** : `tests/fixtures/software.ts` (14 logiciels synthétiques) — utilisée par les tests qui ont besoin d'un dataset. **Le seed legacy `app/data/software-list.ts` n'est plus référencé par aucun test** (il a divergé du runtime Directus : 128 vs 104 logiciels, flags désynchronisés).
 
-**Tests unitaires** (`tests/unit/`) — 17 fichiers, 208 tests :
+**Tests unitaires** (`tests/unit/`) — 18 fichiers, 233 tests :
 - `store-filtering.test.ts` / `store-sorting.test.ts` — filtres + tri Pinia (sur fixtures)
 - `search.test.ts` — recherche Fuse.js (fuzzy, accents)
 - `certification.test.ts` — `getCertificationLevel` + helpers UI (config/colors/icon)
 - `navigation.test.ts` — navigation précédent/suivant (sur fixtures)
-- `data-protection.test.ts` — 6 thèmes Genially, structure 3 niveaux
+- `data-protection-mapper.test.ts` — mapper thèmes Genially, structure 3 niveaux
 - `alternatives.test.ts` — `useAlternatives` (filtre, tri, état vide)
-- `use-software.test.ts` — `useSoftware` (Ref, getById)
-- `use-data-protection.test.ts` — filtrage thèmes
-- `use-search-suggestions.test.ts` — Fuse.js + debounce
-- `use-typewriter.test.ts` — API composable
+- `use-software.test.ts` / `use-search-suggestions.test.ts` / `use-typewriter.test.ts` — composables
 - `audience-store.test.ts` — Pinia + localStorage
-- `level-colors.test.ts` — 7 fonctions × 4 niveaux
-- `server-directus-utils.test.ts` — `mapSoftware` + `mapDataLocationLabel` (factorisés)
-- `component-software-list-empty.test.ts` — Vue mount + emit
-- `component-software-detail-alternatives.test.ts` — état vide vs liste
-- `component-software-feature-badge.test.ts` — variantes tooltip/size
+- `server-directus-utils.test.ts` — `mapSoftware` + `mapDataLocationLabel`
+- `highlight-match.test.ts` — utilitaire de surlignage dans l'autocomplete
+- `software-icon.test.ts` — cascade de fallback d'icônes logiciels
+- `component-software-list-empty.test.ts` / `component-software-detail-alternatives.test.ts` / `component-software-feature-badge.test.ts` / `component-icon-grid-filter.test.ts` — composants Vue
 
 **Tests e2e** (`tests/e2e/`) — Playwright desktop (Chrome) + mobile (Pixel 7) :
 - `catalog.spec.ts` — navigation, filtres, recherche, grille/liste
@@ -149,7 +144,7 @@ Les empty states (autocomplete, liste alternatives, catalogue vide) proposent au
 1. Connexion Directus (`http://46.140.144.167:8055`) avec un compte CNS
 2. Collection `software` → "Créer un nouveau" → remplir les champs (statut, classification LGPD, catégories M2M…)
 3. Publier (`status: published`) pour que l'item apparaisse en ligne
-4. Relancer le workflow GitHub Pages (auto au prochain push, ou manuel via Actions)
+4. Pas de rebuild nécessaire — le site SSR sert les données live depuis Directus au prochain refresh
 
 > Procédure de saisie détaillée : `~/CNS/projets/referentiel/PROCEDURE-DIRECTUS-V1.md`
 > Classification LGPD d'un nouveau logiciel : `docs/lgpd-classification.md`
