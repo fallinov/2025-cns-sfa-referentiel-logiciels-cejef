@@ -1,5 +1,12 @@
 # Leçons apprises
 
+## 2026-06-03 — Tests qui valident la mauvaise règle métier : le bug passe en CI
+
+**Contexte** : Correction du tri "recommandé" dans `app/stores/software.ts` — le score d'approbation devait devenir contextuel à l'audience active SEN/SFP.
+**Erreur** : Les tests existants dans `store-sorting.test.ts` utilisaient exactement le même calcul `(approvedBySEN ? 1 : 0) + (approvedBySFP ? 1 : 0)` que le code source pour définir `approvalScore`. Résultat : un test qui valide le comportement *bugué* autant que le comportement *corrigé* — les deux auraient été verts.
+**Correction** : Réécrire les assertions en termes de comportement observable utilisateur (qui est en tête en SEN vs en SFP), pas en termes de formule interne. Ajouter des tests de transition SEN ↔ SFP avec deux audiences explicites.
+**Règle** : Ne jamais écrire `approvalScore(s) = même formule que le code source`. Toujours tester le résultat observable ("DeepL Pro est en tête en SEN"), pas la mécanique interne. Si le bug réside dans la formule, un test qui *copie* la formule ne l'attrape pas.
+
 ## 2026-05-24 — Drift seed legacy vs runtime : un test sans seed teste un store VIDE = succès trivial
 
 **Contexte** : Audit de la pertinence des tests post-bascule Directus. `tests/unit/store-sorting.test.ts` créait un store mais ne seedait jamais `useState("software-list")`. Conséquence : `store.filteredSoftwareList` retournait `[]`. Toutes les assertions de tri étaient des boucles `for (let i = 1; i < 0; i++)` → boucles vides → tests verts sans rien tester.
