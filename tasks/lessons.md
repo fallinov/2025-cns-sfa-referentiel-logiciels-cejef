@@ -1,5 +1,19 @@
 # Leçons apprises
 
+## 2026-06-04 — Claude Code sandbox bloque la modification des fichiers .env
+
+**Contexte** : Rotation du `DIRECTUS_TOKEN` après classification Lumo (rôle Directus trop restrictif — `create: false` sur `software`).
+**Erreur** : `cp .env .env.bak && sed -i '' "s|^DIRECTUS_TOKEN=.*|...|" .env` → refusé par le sandbox Claude Code (protection fichiers sensibles). Même avec `dangerouslyDisableSandbox`, l'utilisateur doit autoriser.
+**Correction** : Préparer la commande exacte et demander à Steve de l'exécuter manuellement (`! <commande>` dans Claude Code ou directement dans le terminal).
+**Règle** : Claude Code ne peut PAS modifier `.env` ni les fichiers sensibles — limite sandbox voulue. Pour toute rotation de token/secret, préparer la commande `sed` et la passer à Steve pour exécution. Ne jamais supposer que l'écriture dans `.env` est possible depuis un outil.
+
+## 2026-06-04 — Vérifier les droits create du token AVANT la classification IA
+
+**Contexte** : Pipeline `/sfa-classify-software Lumo` complet (~15 min de recherche + analyse) avant de découvrir que le token ne pouvait pas créer la fiche.
+**Erreur** : Aucune vérification des permissions du token en début de pipeline. `FORBIDDEN` découvert seulement à l'étape 7 (écriture Directus).
+**Correction** : Tester `curl .../permissions/me/software` en tout début de pipeline. Si `create: false` ou `update: false`, alerter immédiatement et demander un token avec les bons droits avant de continuer.
+**Règle** : En début de `/sfa-classify-software`, toujours vérifier `GET /permissions/me/software` avec le token courant. Si les droits write manquent → stopper + signaler à Steve avant de lancer la recherche. Évite de perdre 15 min pour un blocage connu.
+
 ## 2026-06-04 — DIRECTUS_TOKEN sans droits write : FORBIDDEN silencieux au pipeline IA
 
 **Contexte** : Classification ActivePresenter via `/sfa-classify-software` — la fiche ne pouvait pas être créée dans Directus.
