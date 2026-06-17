@@ -262,14 +262,14 @@ const showLgpdDetails = ref(false)
                   <span>Compte Edulog</span>
                 </div>
                 <div
-                  v-if="software.approvedBySEN && audienceStore.audience !== 'SFP'"
+                  v-if="audienceStore.audience === 'SEN' && software.approvedBySEN"
                   class="flex items-center gap-1.5 bg-green-500 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-badge-check" class="w-4 h-4" />
                   <span>Approuvé SEN</span>
                 </div>
                 <div
-                  v-if="software.approvedBySFP"
+                  v-if="audienceStore.audience === 'SFP' && software.approvedBySFP"
                   class="flex items-center gap-1.5 bg-green-500 text-white px-2.5 py-1 rounded-full"
                 >
                   <UIcon name="i-lucide-badge-check" class="w-4 h-4" />

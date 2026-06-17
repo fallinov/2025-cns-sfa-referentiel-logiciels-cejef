@@ -4,6 +4,8 @@ import type { Software } from "~~/types/software"
 defineProps<{
   software: Software
 }>()
+
+const audienceStore = useAudienceStore()
 </script>
 
 <template>
@@ -30,7 +32,7 @@ defineProps<{
     <!-- Meta / Badges -->
     <div class="hidden sm:flex items-center gap-2">
       <!-- Approuvé SEN -->
-      <div v-if="software.approvedBySEN" class="inline-flex">
+      <div v-if="audienceStore.audience === 'SEN' && software.approvedBySEN" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé SEN"
@@ -49,7 +51,7 @@ defineProps<{
       </div>
 
       <!-- Approuvé SFP -->
-      <div v-if="software.approvedBySFP" class="inline-flex">
+      <div v-if="audienceStore.audience === 'SFP' && software.approvedBySFP" class="inline-flex">
         <SoftwareFeatureBadge
           icon="i-lucide-badge-check"
           label="Approuvé SFP"

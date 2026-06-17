@@ -4,6 +4,7 @@ import { getCertificationLevel } from "~~/types/software"
 import type { CategoryEntry } from "~~/server/api/categories.get"
 import type { ActivityEntry } from "~~/server/api/pedagogical-activities.get"
 import { expandSearchQuery, matchesSearch } from "~/utils/search"
+import { isApprovedForAudience } from "~/utils/approval"
 
 export const useSoftwareStore = defineStore("software", () => {
   // Source de vérité : ref alimenté par plugins/software-data.ts (fetch /api/software → Directus)
@@ -228,7 +229,7 @@ export const useSoftwareStore = defineStore("software", () => {
     // dépendance et recalcule le computed quand l'audience change.
     const activeAudience = audienceStore.audience
     const isApprovedForActiveAudience = (s: Software): boolean =>
-      activeAudience === "SEN" ? !!s.approvedBySEN : !!s.approvedBySFP
+      isApprovedForAudience(s, activeAudience)
 
     filtered.sort((a, b) => {
       const levelA = sortWeight(a.certificationLevel ?? getCertificationLevel(a.lgpd))
