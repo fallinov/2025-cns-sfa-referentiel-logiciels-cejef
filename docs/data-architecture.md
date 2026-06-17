@@ -2,7 +2,9 @@
 
 ## Source de données
 
-**Fichier statique** : `app/data/software-list.ts` exporte un tableau hardcodé d'objets logiciels. Pas de base de données ni de CMS.
+**Directus 11** (CMS headless, Noirmont) — collection `software` (status=published) = source de vérité runtime. Le frontend Nuxt est en SSR : chaque visite appelle l'endpoint serveur `/api/software` (`server/api/software/index.get.ts`) qui interroge Directus via le SDK et mappe snake_case → camelCase.
+
+**Legacy** : `app/data/software-list.ts` (seed hardcodé) n'est plus importé — ni par le runtime, ni par les tests (qui utilisent `tests/fixtures/software.ts`). Pipeline complet : voir `CLAUDE.md` § Data Architecture.
 
 ## Système de types (`types/software.ts`)
 
