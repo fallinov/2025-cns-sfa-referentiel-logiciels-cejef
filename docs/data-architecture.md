@@ -11,13 +11,16 @@
 - `CertificationLevel` — 1 (vert) | 2 (orange) | 3 (rouge) | null
 - Union types : `DataLocation`, `CostType`, `TargetAudience`
 
-## Champs de badges (v0.8.0)
+## Champs de badges
 
 - `requiresEduAccount?: boolean` — badge bleu "Compte edu.jura.ch" (M365 level 1)
 - `requiresEdulog?: boolean` — badge bleu "Compte Edulog" (fédération Edulog)
 - `approvedBySEN?: boolean` — badge vert "Approuvé SEN"
+- `approvedBySFP?: boolean` — badge vert "Approuvé SFP"
 - `requiresParentalConsent?: boolean` — badge orange "< 16 ans : accord parents"
 - `ageRestriction?: number` — âge minimum (ex: 16 pour ChatGPT)
+
+**Affichage selon l'audience (symétrie stricte)** : les badges d'approbation ne sont visibles que pour l'audience active — `approvedBySEN` n'apparaît qu'en audience SEN, `approvedBySFP` qu'en audience SFP. Règle centralisée dans `app/utils/approval.ts` (`isApprovedForAudience`), appliquée par `SoftwareCard`, `SoftwareListItem`, la page détail (`logiciels/[id].vue`) et le tri "recommandé" du store.
 
 ## Protection des données (v0.9.0)
 
@@ -36,5 +39,6 @@ Restructuré depuis Genially :
 - `app/composables/useSoftware.ts` — accès aux données (`getSoftwareList()`, `getSoftwareById()`)
 - `app/composables/useSimilarSoftware.ts` — logiciels similaires par catégorie
 - `app/composables/useSoftwareNavigation.ts` — navigation précédent/suivant
-- `app/stores/audience.ts` — Pinia store global SEN/CEJEF (persisté localStorage, partagé entre pages)
+- `app/stores/audience.ts` — Pinia store global SEN/SFP (persisté localStorage, partagé entre pages)
+- `app/utils/approval.ts` — règle d'affichage des badges d'approbation selon l'audience (`isApprovedForAudience`)
 - `app/composables/useDataProtection.ts` — recherche sur 3 niveaux (thèmes → sections → items)

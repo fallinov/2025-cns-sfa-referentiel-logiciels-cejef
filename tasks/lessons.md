@@ -162,6 +162,13 @@
 **Correction** : Cibler les éléments par leurs classes CSS internes (`wn-annot-group`, `wn-annot-btn`, `wn-annot-icon`).
 **Règle** : Quand on manipule le DOM d'une librairie tierce, inspecter les classes CSS réelles (pas le snapshot Playwright qui montre les labels ARIA).
 
+## 2026-06-17 — Compter des badges via innerHTML donne des faux positifs (variantes responsive masquées)
+
+**Contexte** : Vérification Playwright du fix d'affichage des badges d'approbation selon l'audience (SoftwareListItem). But : confirmer 0 badge "Approuvé SEN" en mode SFP.
+**Erreur** : `element.innerHTML.match(/Approuvé SEN/)` retournait 24 badges SEN ET 24 SFP — un faux positif. SoftwareFeatureBadge rend deux variantes (mobile `hide-label lg:hidden` + desktop `lg:inline-flex`), donc le label reste dans le markup même quand il est masqué en CSS, et l'attribut `tooltip`/`aria` le duplique.
+**Correction** : Mesurer le texte **réellement visible** via un `TreeWalker` filtrant `el.offsetParent !== null` → résultat correct (0 SEN / 2 SFP).
+**Règle** : Pour vérifier qu'un élément est *affiché* (pas seulement présent dans le DOM), tester `offsetParent !== null` ou `getBoundingClientRect()`, jamais `innerHTML`. Les composants à variantes responsive (`hidden`/`lg:hidden`) gardent le markup masqué dans le DOM.
+
 ## 2026-03-22 — git remote set-url modifie le mauvais repo quand le cwd change silencieusement
 
 **Contexte** : Travail sur 2 repos en parallèle (uxnotes-server et uxnotes-dashboard). Après un `npm install`, le shell cwd a été réinitialisé vers un autre dossier.

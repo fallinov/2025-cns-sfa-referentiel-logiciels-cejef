@@ -33,6 +33,7 @@ Workflows GitHub Pages désactivés mais `claude.yml` et `test.yml` utilisent No
 
 ## Historique récent (pour référence)
 
+- 2026-06-17 : fix badges d'approbation selon l'audience — symétrie stricte, helper `isApprovedForAudience` (PR #110, v0.40.5)
 - 2026-05-24 : découplage tests / seed legacy via fixtures (PR #66) — 208 tests unit / coverage lines 78 % / branches 64.35 %
 - 2026-05-24 : tests phases 4-6 — composants + seuils CI + E2E LPD (PR #64) — 214 tests unit / 65 E2E / coverage 76.83 %
 - 2026-05-23 : tests phases 0-3 — CI workflow + coverage v8 + server/composables/utils (PR #63)
