@@ -9,6 +9,8 @@ interface Props {
 
 const props = defineProps<Props>()
 
+const audienceStore = useAudienceStore()
+
 const config = computed(() => {
   return getCertificationConfig(props.software.certificationLevel)
 })
@@ -67,14 +69,14 @@ const handleCardClick = () => {
     <!-- Badges (Quick Filters only) -->
     <div class="relative z-10 mt-auto flex flex-wrap gap-2 pt-2">
       <SoftwareFeatureBadge
-        v-if="software.approvedBySEN"
+        v-if="audienceStore.audience === 'SEN' && software.approvedBySEN"
         icon="i-lucide-badge-check"
         label="Approuvé SEN"
         tooltip="Recommandé par le Service de l'Enseignement (SEN)"
         class="bg-green-500 text-white dark:bg-green-500 dark:text-white border-none"
       />
       <SoftwareFeatureBadge
-        v-if="software.approvedBySFP"
+        v-if="audienceStore.audience === 'SFP' && software.approvedBySFP"
         icon="i-lucide-badge-check"
         label="Approuvé SFP"
         tooltip="Recommandé par le SFP (Service de la Formation Postobligatoire)"
